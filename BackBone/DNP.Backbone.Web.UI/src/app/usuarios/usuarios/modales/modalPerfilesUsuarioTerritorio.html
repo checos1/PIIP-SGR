@@ -1,0 +1,230 @@
+﻿
+<modal-dialog cerrar="vm.cerrar" guardar="vm.activarBotonInvitar() ? vm.guardar : null" ng-init="vm.init()">
+
+    <div class="modal-body modalebodyDNP" id="modal-body" style="min-height:350px">
+        <div class="row modaleDNP" style="margin-left: 0px !important; margin-right: 0px !important; margin-top: -40px; ">
+            <div>
+                <br /><br />
+                <h3 class="modal-title" id="modal-title">Datos básicos </h3>
+                <span class="modal-title22" style="font-family: 'Montserrat Medium', 'Montserrat Regular', 'Montserrat', sans-serif; font-weight: 500; font-size: 16px !important;">  {{vm.idUsuarioDNP}}.  {{vm.TipoUsuario}}. {{vm.Nombres}}. {{vm.Correo}}. {{vm.EstadoUsuario}}</span><br />
+                <span class="modal-title22" style="font-family: 'Montserrat Medium', 'Montserrat Regular', 'Montserrat', sans-serif; font-weight: 500; font-size: 16px !important;">  {{vm.nombreEntidad}}</span>
+            </div>
+        </div>
+        <br /><br /> <br /><br />
+        <div class="row" style="margin-left:0px;margin-right:0px">
+            <div class="col-md-6" style="padding-left: 0px; padding-right: 0px; text-align: left; height: 30px; font-family: 'Work Sans', sans-serif; font-weight: 400; ">
+              
+            </div>
+            <div class="col-md-6" style="text-align: right; height: 30px; padding-left: 0px; padding-right: 0px font-family: 'Work Sans', sans-serif; font-weight: 400; ">
+                <label>Total perfiles: <span style="font-family: 'Work Sans SemiBold', 'Work Sans Regular Roman', 'Work Sans', sans-serif; font-weight: 600; color: #3366CC;">{{vm.ListaPerfilesUsuario.length}}</span>  </label>
+            </div>
+        </div>
+        <div class="row" style="margin-left:0px;margin-right:0px">
+
+            <div class="col-md-12 colchechkPerfilesDNP containerchek">
+                <div ng-repeat="perfilesusu in vm.listaPerfilesBackbone">
+
+                    <div class="col-md-4">
+                        <ul>
+
+                            <li>
+                                <!--<li>-->
+                                <input type="checkbox" id="chk-{{perfilesusu.IdPerfil}}" name="perfilesusu" ng-model="perfilesusu.isCheckedee" ng-value="perfilesusu" ng-checked="vm.ValidarPerfilyaregistra(perfilesusu.IdPerfil)" ng-click="vm.toggleCurrency(perfilesusu.IdPerfil)">
+                                <label for="chk-{{perfilesusu.IdPerfil}}">{{perfilesusu.NombrePerfil}} </label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</modal-dialog>
+
+
+<style>
+    .closemodalDNP {
+        display: flex;
+        right: 30px;
+        top: 0px;
+        margin-top: -20px;
+    }
+
+    .modalebodyDNP {
+        background: transparent !important;
+        margin-left: 20px !important;
+        padding: 0px !important;
+        margin-right: 20px !important;
+        margin-top: 25px !important;
+    }
+
+    .InputBuscadorDNP[disabled] {
+        border: 1px solid rgba(230, 239, 253, 1) !important;
+        background-color: rgba(246, 248, 249, 1);
+        text-align: left;
+        margin-left: -5px;
+        box-shadow: 0px 0px 0px;
+        margin-bottom: 0px;
+        cursor: not-allowed !important;
+    }
+
+    .mensajeinformacion {
+        border-width: 0px;
+        margin-top: 10px;
+        height: 31px;
+        background: inherit;
+        background-color: rgba(255, 171, 1, 1);
+        border: none;
+        border-radius: 5px;
+        -moz-box-shadow: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        font-family: 'Work Sans SemiBold', 'Work Sans Regular Roman', 'Work Sans', sans-serif;
+        font-weight: 600;
+        font-style: normal;
+        font-size: 16px;
+        color: #FFFFFF;
+        margin-left: 0px;
+        margin-right: 0px;
+        font-family: 'Work Sans SemiBold', 'Work Sans Regular Roman', 'Work Sans', sans-serif;
+        font-weight: 600;
+        font-style: normal;
+        font-size: 16px;
+        color: #FFFFFF;
+        text-align: center;
+        padding-top: 4px
+    }
+
+    .mensajeinformacion2 {
+        border-width: 0px;
+        margin-top: 10px;
+        height: 31px;
+        background: inherit;
+        background-color: rgba(0, 72, 132, 1);
+        border: none;
+        border-radius: 5px;
+        -moz-box-shadow: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        font-family: 'Work Sans SemiBold', 'Work Sans Regular Roman', 'Work Sans', sans-serif;
+        font-weight: 600;
+        font-style: normal;
+        font-size: 16px;
+        color: #FFFFFF;
+        margin-left: 0px;
+        margin-right: 0px;
+        font-family: 'Work Sans SemiBold', 'Work Sans Regular Roman', 'Work Sans', sans-serif;
+        font-weight: 600;
+        font-style: normal;
+        font-size: 16px;
+        color: #FFFFFF;
+        text-align: center;
+        padding-top: 4px
+    }
+
+    .mensajeinformacion3 {
+        border-width: 0px;
+        margin-top: 10px;
+        height: 31px;
+        background: inherit;
+        background-color: rgba(6, 145, 105, 1);
+        border: none;
+        border-radius: 5px;
+        -moz-box-shadow: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        font-family: 'Work Sans SemiBold', 'Work Sans Regular Roman', 'Work Sans', sans-serif;
+        font-weight: 600;
+        font-style: normal;
+        font-size: 16px;
+        color: #FFFFFF;
+        margin-left: 0px;
+        margin-right: 0px;
+        font-family: 'Work Sans SemiBold', 'Work Sans Regular Roman', 'Work Sans', sans-serif;
+        font-weight: 600;
+        font-style: normal;
+        font-size: 16px;
+        color: #FFFFFF;
+        text-align: center;
+        padding-top: 4px
+    }
+
+    .btneditarDNP[disabled] {
+        -webkit-border-radius: 50px;
+        background-color: transparent !important;
+        border-width: 2px !important;
+        border-style: solid !important;
+        border-color: rgba(186, 186, 186, 0.996) !important;
+        color: rgba(186, 186, 186, 0.996) !important;
+        font-size: 16px !important;
+        font-weight: 500 !important;
+        padding-right: 18px !important;
+        padding-left: 18px !important;
+        padding: 3px 0px 3px 0px;
+        font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans';
+        white-space: nowrap;
+    }
+
+    .selectDNP[disabled] {
+        border: 1px solid rgba(230, 239, 253, 1) !important;
+        background-color: rgba(246, 248, 249, 1);
+        text-align: left;
+        margin-left: -5px;
+        box-shadow: 0px 0px 0px;
+        margin-bottom: 0px;
+        cursor: not-allowed !important;
+    }
+
+    .labelbuscadorDNP {
+        height: 40px;
+    }
+
+        .labelbuscadorDNP p {
+            margin-top: -5px !important;
+            font-family: 'Work Sans', sans-serif !important;
+            font-weight: 400 !important;
+            font-style: normal !important;
+            color: #A80521 !important;
+            font-size: 14px !important;
+        }
+
+    .DivListaPerfilesDNP {
+        left: 0px;
+        top: 0px;
+        width: 1006px;
+        height: 259px;
+        background: inherit;
+        background-color: rgba(255, 255, 255, 1);
+        box-sizing: border-box;
+        border-width: 1px;
+        border-style: solid;
+        border-color: rgba(170, 170, 170, 1);
+        border-radius: 5px;
+        -moz-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+        -webkit-box-shadow: 5px 5px 5px rgb(0 0 0 / 20%);
+        box-shadow: 5px 5px 5px rgb(0 0 0 / 20%);
+        margin-left: 0px;
+        margin-right: 0px;
+        padding: 40px;
+        margin-top: 10px;
+    }
+
+    .colchechkPerfilesDNP {
+      
+        height: 159px;
+        overflow: auto;
+        -webkit-overflow-scrolling: touch;
+        -ms-overflow-x: hidden;
+        overflow-x: hidden;
+        background-image: none;
+        box-sizing: border-box;
+        border-width: 2px;
+        border-style: solid;
+        border-color: rgba(230, 239, 253, 1);
+        border-radius: 0px;
+        -moz-box-shadow: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
+</style>

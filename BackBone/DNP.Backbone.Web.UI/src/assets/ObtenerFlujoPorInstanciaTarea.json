@@ -1,0 +1,142 @@
+﻿{
+  "Id": "662a97f9-57b0-40d8-8950-0e8019e0f09f",
+  "Nombre": "Flujo Sencillo PBI 2320",
+  "Descripcion": "Flujo Sencillo PBI 2320",
+  "IdInstancia": "13039628-3b7c-4f03-90d0-cc05af96ca65",
+  "Acciones": [
+    {
+      "Id": "661f942a-04da-45cb-8325-b7c9c476ac45",
+      "AccionInstanciaId": "7cb063e8-7a35-42f9-b40f-6cdeebb881eb",
+      "Nombre": "Transacción A1",
+      "Descripcion": null,
+      "IdFormulario": "6133EA0B-9E33-4809-BBDE-5A8B8263901F",
+      "ModificadoPor": null,
+      "FechaModificacion": "2018-01-29T12:26:14.537",
+      "Estado": "Ejecutada",
+      "OrdenVisualizacion": "A1",
+      "FlujoAnidado": null
+    },
+    {
+      "Id": "6133EA0B-9E33-4809-BBDE-5A8B8263901F",
+      "AccionInstanciaId": null,
+      "Nombre": "Transacción A2",
+      "Descripcion": null,
+      "IdFormulario": "00000000-0000-0000-0000-000000000000",
+      "ModificadoPor": null,
+      "FechaModificacion": "2018-01-29T12:26:14.567",
+      "Estado": "Ejecutada",
+      "OrdenVisualizacion": "A2",
+      "FlujoAnidado": {
+        "Id": "662a97f9-57b0-40d8-8950-0e8019e0f09f",
+        "Nombre": "Flujo Anidado PBI 2320",
+        "Descripcion": "Flujo Sencillo PBI 2320",
+        "IdInstancia": "13039628-3b7c-4f03-90d0-cc05af96ca65",
+        "Acciones": [
+          {
+            "Id": "661f942a-04da-45cb-8325-b7c9c476ac45",
+            "AccionInstanciaId": "7cb063e8-7a35-42f9-b40f-6cdeebb881eb",
+            "Nombre": "Transacción A2.B1 Anidado",
+            "Descripcion": null,
+            "IdFormulario": "df1ec10c-2e5e-4e65-9083-6f50bd145ad9",
+            "ModificadoPor": null,
+            "FechaModificacion": "2018-01-29T12:26:14.537",
+            "Estado": "Ejecutada",
+            "OrdenVisualizacion": "A2.B1",
+            "FlujoAnidado": null
+          },
+          {
+            "Id": "c5e0e026-c1f2-4a42-b276-4e29550af0e2",
+            "AccionInstanciaId": null,
+            "Nombre": "Transacción A2.B2 Anidado",
+            "Descripcion": null,
+            "IdFormulario": "fefb671f-40a1-4f7b-911a-0653fbc87780",
+            "ModificadoPor": null,
+            "FechaModificacion": "2018-01-29T12:26:14.567",
+            "Estado": "Ejecutada",
+            "OrdenVisualizacion": "A2.B2",
+            "FlujoAnidado": {
+              "Id": "662a97f9-57b0-40d8-8950-0e8019e0f09f",
+              "Nombre": "Flujo Anidado 2 PBI 2320",
+              "Descripcion": "Flujo Sencillo PBI 2320",
+              "IdInstancia": "13039628-3b7c-4f03-90d0-cc05af96ca65",
+              "Acciones": [
+                {
+                  "Id": "661f942a-04da-45cb-8325-b7c9c476ac45",
+                  "AccionInstanciaId": "7cb063e8-7a35-42f9-b40f-6cdeebb881eb",
+                  "Nombre": "Transacción A2.B2.C1 Anidado 2",
+                  "Descripcion": null,
+                  "IdFormulario": "df1ec10c-2e5e-4e65-9083-6f50bd145ad9",
+                  "ModificadoPor": null,
+                  "FechaModificacion": "2018-01-29T12:26:14.537",
+                  "Estado": "Ejecutada",
+                  "OrdenVisualizacion": "A2.B2.C1",
+                  "FlujoAnidado": null
+                },
+                {
+                  "Id": "c5e0e026-c1f2-4a42-b276-4e29550af0e2",
+                  "AccionInstanciaId": null,
+                  "Nombre": "Transacción A2.B2.C2 Anidado 2",
+                  "Descripcion": null,
+                  "IdFormulario": "fefb671f-40a1-4f7b-911a-0653fbc87780",
+                  "ModificadoPor": null,
+                  "FechaModificacion": "2018-01-29T12:26:14.567",
+                  "Estado": "PorDefinir",
+                  "OrdenVisualizacion": "A2.B2.C2",
+                  "FlujoAnidado": null
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "Id": "6133EA0B-9E33-4809-BBDE-5A8B8263901F",
+      "AccionInstanciaId": null,
+      "Nombre": "Transacción A3",
+      "Descripcion": null,
+      "IdFormulario": "6133EA0B-9E33-4809-BBDE-5A8B8263901F",
+      "ModificadoPor": null,
+      "FechaModificacion": "2018-01-29T12:26:14.567",
+      "Estado": "PasoEnProgreso",
+      "OrdenVisualizacion": "A3",
+      "FlujoAnidado": null
+    },
+    {
+      "Id": "6133EA0B-9E33-4809-BBDE-5A8B8263901F",
+      "AccionInstanciaId": null,
+      "Nombre": "Transacción A4",
+      "Descripcion": null,
+      "IdFormulario": "6133EA0B-9E33-4809-BBDE-5A8B8263901F",
+      "ModificadoPor": null,
+      "FechaModificacion": "2018-01-29T12:26:14.567",
+      "Estado": "PorDefinir",
+      "OrdenVisualizacion": "A4",
+      "FlujoAnidado": null
+    },
+    {
+      "Id": "6133EA0B-9E33-4809-BBDE-5A8B8263901F",
+      "AccionInstanciaId": null,
+      "Nombre": "Transacción A5",
+      "Descripcion": null,
+      "IdFormulario": "6133EA0B-9E33-4809-BBDE-5A8B8263901F",
+      "ModificadoPor": null,
+      "FechaModificacion": "2018-01-29T12:26:14.567",
+      "Estado": "PorDefinir",
+      "OrdenVisualizacion": "A5",
+      "FlujoAnidado": null
+    },
+    {
+      "Id": "6133EA0B-9E33-4809-BBDE-5A8B8263901F",
+      "AccionInstanciaId": null,
+      "Nombre": "Transacción A6",
+      "Descripcion": null,
+      "IdFormulario": "6133EA0B-9E33-4809-BBDE-5A8B8263901F",
+      "ModificadoPor": null,
+      "FechaModificacion": "2018-01-29T12:26:14.567",
+      "Estado": "PorDefinir",
+      "OrdenVisualizacion": "A6",
+      "FlujoAnidado": null
+    }
+  ]
+}

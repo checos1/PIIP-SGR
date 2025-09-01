@@ -1,0 +1,67 @@
+﻿<div ng-init="vm.init();">
+    <div id="SGRERRSEC{{vm.nombreComponente}}" class="hidden mb-3 ml-5 errorSeccionPriorizacion" style="text-align: left; font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans'; font-size: 12px; font-style: normal; color: #A80521;"></div>
+
+    <div class="ui-accordion-container hidden" id="accordion-sgraprobacion1aprobacionopcregistroaprobacionopc">
+        <div class="alert panel-heading row ui-accordion-header">
+            <button type="button" data-toggle="collapse" data-target="#sgraprobacion1aprobacionopcregistroaprobacionopc" ng-click="vm.changeArrow('sgraprobacion1aprobacionopcregistroaprobacionopc')">
+                <span class="d-inline-block" id="alert-sgraprobacion1aprobacionopcregistroaprobacionopc"></span>
+                <span id="name-capitulo-sgraprobacion1aprobacionopcregistroaprobacionopc"></span>
+                <span class="hidden" id="id-capitulo-sgraprobacion1aprobacionopcregistroaprobacionopc"></span>
+                <span id="arrow-sgraprobacion1aprobacionopcregistroaprobacionopc" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#sgraprobacion1aprobacionopcregistroaprobacionopc"></span>
+            </button>
+        </div>
+        <div class="collapse" id="sgraprobacion1aprobacionopcregistroaprobacionopc">
+            <div class="row m-0 mb-3">
+                <div class="col-md-12 ">
+                    <registro-aprobacion-opc-sgr callback="vm.notificarGuardado()"
+                                                 guardadocomponent="vm.guardadohijos(nombreComponenteHijo)"
+                                                 guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                                 notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                 notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"
+                                                 notificarrefresco="vm.notificarRefresco(handler, nombreComponente)"
+                                                 notificacioncambios="vm.notificacionCambiosCapitulosExternos(handler, nombreComponente)">
+                    </registro-aprobacion-opc-sgr>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ui-accordion-container hidden" id="accordion-sgraprobacion1aprobacionopcresumenaprobacionopc">
+        <div class="alert panel-heading row ui-accordion-header">
+            <button type="button" data-toggle="collapse" data-target="#sgraprobacion1aprobacionopcresumenaprobacionopc" ng-click="vm.changeArrow('sgraprobacion1aprobacionopcresumenaprobacionopc')">
+                <span class="d-inline-block" id="alert-sgraprobacion1aprobacionopcresumenaprobacionopc"></span>
+                <span id="name-capitulo-sgraprobacion1aprobacionopcresumenaprobacionopc"></span>
+                <span class="hidden" id="id-capitulo-sgraprobacion1aprobacionopcresumenaprobacionopc"></span>
+                <span id="arrow-sgraprobacion1aprobacionopcresumenaprobacionopc" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#sgraprobacion1aprobacionopcresumenaprobacionopc"></span>
+            </button>
+        </div>
+        <div class="collapse" id="sgraprobacion1aprobacionopcresumenaprobacionopc">
+            <div class="row m-0 mb-3">
+                <div class="col-md-12 ">
+                    <resumen-credito-aprobacion-sgr>
+                    </resumen-credito-aprobacion-sgr>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div ng-if="vm.ProyectoTieneInstanciasNoOPC" class="ui-accordion-container hidden" id="accordion-sgraprobacion1aprobacionopcresumenaprobacion">
+        <div class="alert panel-heading row ui-accordion-header">
+            <button type="button" data-toggle="collapse" data-target="#sgraprobacion1aprobacionopcresumenaprobacion" ng-click="vm.changeArrow('sgraprobacion1aprobacionopcresumenaprobacion')">
+                <span class="d-inline-block" id="alert-sgraprobacion1aprobacionopcresumenaprobacion"></span>
+                <span id="name-capitulo-sgraprobacion1aprobacionopcresumenaprobacion"></span>
+                <span class="hidden" id="id-capitulo-sgraprobacion1aprobacionopcresumenaprobacion"></span>
+                <span id="arrow-sgraprobacion1aprobacionopcresumenaprobacion" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#sgraprobacion1aprobacionopcresumenaprobacion"></span>
+            </button>
+        </div>
+        <div class="collapse" id="sgraprobacion1aprobacionopcresumenaprobacion">
+            <div class="row m-0 mb-3">
+                <div class="col-md-12 ">
+                    <resumen-aprobacion-sgr>
+                    </resumen-aprobacion-sgr>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

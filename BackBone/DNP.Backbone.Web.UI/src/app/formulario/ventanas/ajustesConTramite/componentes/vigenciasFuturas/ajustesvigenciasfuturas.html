@@ -1,0 +1,59 @@
+<section>
+	<div class="container-fluid inbox" ng-init="vm.init();">
+		<div class="tab-content">
+			<div class="ui-accordion-container hidden" id="accordion-ajustesvigenciasfuturasajusolvigfutura">
+				<div class="alert panel-heading row ui-accordion-header">
+					<button type="button" data-toggle="collapse" data-target="#ajustesvigenciasfuturasajusolvigfutura-1" ng-click="vm.changeArrow('ajustesvigenciasfuturasajusolvigfutura-1')">
+						<span class="d-inline-block" id="alert-ajustesvigenciasfuturasajusolvigfutura-1"></span>
+						<span id="name-capitulo-ajustesvigenciasfuturasajusolvigfutura"></span>
+						<span class="hidden" id="id-capitulo-ajustesvigenciasfuturasajusolvigfutura"></span>
+						<span id="arrow-ajustesvigenciasfuturasajusolvigfutura-1" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#ajustesvigenciasfuturasajusolvigfutura-1"></span>
+					</button>
+				</div>
+				<div class="collapse" id="ajustesvigenciasfuturasajusolvigfutura-1">
+					<div class="row m-0 mb-3">
+						<ajustesolicitudvigfuturas guardadoevent="vm.guardado(nombreComponenteHijo, data)"
+												   notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+												   notificacioncambios="vm.notificacionCambiosCapitulosExternos(handler,nombreComponente)"
+												   notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"></ajustesolicitudvigfuturas>
+					</div>
+				</div>
+			</div>
+			<div class="ui-accordion-container hidden" id="accordion-ajustesvigenciasfuturasvfproductos">
+				<div class="alert panel-heading row ui-accordion-header">
+					<button type="button" data-toggle="collapse" data-target="#ajustesvigenciasfuturasvfproductos-1" ng-click="vm.changeArrow('ajustesvigenciasfuturasvfproductos-1')">
+						<span class="d-inline-block" id="alert-ajustesvigenciasfuturasvfproductos-1"></span>
+						<span id="name-capitulo-ajustesvigenciasfuturasvfproductos"></span>
+						<span class="hidden" id="id-capitulo-ajustesvigenciasfuturasvfproductos"></span>
+						<span id="arrow-ajustesvigenciasfuturasvfproductos-1" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#ajustesvigenciasfuturasvfproductos-1"></span>
+					</button>
+				</div>
+				<div class="collapse" id="ajustesvigenciasfuturasvfproductos-1">
+					<div class="row m-0 mb-3">
+						<vigfuturaproductoss guardadoevent="vm.guardado(nombreComponenteHijo)"
+												   notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+												   notificacioncambios="vm.notificacionCambiosCapitulosExternos(handler,nombreComponente)"
+												   notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"></vigfuturaproductoss>
+					</div>
+				</div>
+			</div>
+			<div class="ui-accordion-container hidden" id="accordion-ajustesvigenciasfuturascronograma">
+				<div class="alert panel-heading row ui-accordion-header">
+					<button type="button" data-toggle="collapse" data-target="#ajustesvigenciasfuturascronograma-1" ng-click="vm.changeArrow('ajustesvigenciasfuturascronograma-1')">
+						<span class="d-inline-block" id="alert-ajustesvigenciasfuturascronograma-1"></span>
+						<span id="name-capitulo-ajustesvigenciasfuturascronograma"></span>
+						<span class="hidden" id="id-capitulo-ajustesvigenciasfuturascronograma"></span>
+						<span id="arrow-ajustesvigenciasfuturascronograma-1" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#ajustesvigenciasfuturascronograma-1"></span>
+					</button>
+				</div>
+				<div class="collapse" id="ajustesvigenciasfuturascronograma-1">
+					<div class="row m-0 mb-3">
+						<cronogramavigfuturas guardadoevent="vm.guardado(nombreComponenteHijo)"
+											  notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+											  notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"></cronogramavigfuturas>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

@@ -1,0 +1,379 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Aceptar" xml:space="preserve">
+    <value>Aceptar</value>
+  </data>
+  <data name="ApiArregloVacio" xml:space="preserve">
+    <value>El servicio consumido no contiene registros para mostrar.</value>
+  </data>
+  <data name="ArchivoGuardado" xml:space="preserve">
+    <value>ArchivoGuardado</value>
+  </data>
+  <data name="ArrastreAqui1" xml:space="preserve">
+    <value>para subir un archivo haga clic aquí o</value>
+  </data>
+  <data name="ArrastreAqui2" xml:space="preserve">
+    <value>arrastre el archivo</value>
+  </data>
+  <data name="Borrar" xml:space="preserve">
+    <value>Borrar</value>
+  </data>
+  <data name="BotonAsociarMetadatos" xml:space="preserve">
+    <value>Asociar Metadatos</value>
+  </data>
+  <data name="BotonCancelarCarga" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="BotonSiguiente" xml:space="preserve">
+    <value>SIGUIENTE</value>
+  </data>
+  <data name="Cancelar" xml:space="preserve">
+    <value>CANCELAR</value>
+  </data>
+  <data name="CancelarAsociaciónMetadatos" xml:space="preserve">
+    <value>¿Está seguro que desea cancelar la asociación de los metadatos a los archivos cargados?</value>
+  </data>
+  <data name="CancelarCargaArchivos" xml:space="preserve">
+    <value>La carga del archivo se cancelará, ¿Está seguro que desea continuar?</value>
+  </data>
+  <data name="CantitadArchivosInvalidos" xml:space="preserve">
+    <value>Número de archivos a cargar no válido. Número de archivos permitidos: {0}</value>
+  </data>
+  <data name="CategoriasObligatorias" xml:space="preserve">
+    <value>Existe categoría sin seleccionar</value>
+  </data>
+  <data name="ConfirmaCancelarEdicionFilaPrevisualizar" xml:space="preserve">
+    <value>¿Está Seguro de Salir sin Guardar?</value>
+  </data>
+  <data name="ConfirmaGuardarArchivo" xml:space="preserve">
+    <value>¿Está seguro que desea guardar el archivo?</value>
+  </data>
+  <data name="ConfirmaCancelar" xml:space="preserve">
+    <value>¿Está seguro de cancelar los cambios realizados?</value>
+  </data>
+  <data name="ConfirmarEliminarRegistro" xml:space="preserve">
+    <value>¿Está seguro que desea eliminar el registro?</value>
+  </data>
+  <data name="ConfirmarGuardar" xml:space="preserve">
+    <value>¿Está seguro de Guardar?</value>
+  </data>
+  <data name="Eliminar" xml:space="preserve">
+    <value>Eliminar</value>
+  </data>
+  <data name="ConfirmarAccionGuardar" xml:space="preserve">
+    <value>¿Desea guardar el formulario temporalmente?</value>
+  </data>
+  <data name="ConfirmarAccionSiguiente" xml:space="preserve">
+    <value>¿Desea guardar el formulario definitivamente?</value>
+  </data>
+  <data name="ConsultarMetadatos" xml:space="preserve">
+    <value>Asociar Metadatos</value>
+  </data>
+  <data name="EliminadoExitosoMetadato" xml:space="preserve">
+    <value>El registro se ha eliminado exitosamente</value>
+  </data>
+  <data name="EliminarMetadato" xml:space="preserve">
+    <value>¿Desea eliminar este metadato?</value>
+  </data>
+  <data name="ErrorLecturaContenido" xml:space="preserve">
+    <value>Error al leer el contenido de la URL.</value>
+  </data>
+  <data name="ErrorObtenerDatos" xml:space="preserve">
+    <value>Hubo problemas para obtener la información</value>
+  </data>
+  <data name="ErrorUrl" xml:space="preserve">
+    <value>No fue posible obtener información de esta URL.</value>
+  </data>
+  <data name="FormatoURL" xml:space="preserve">
+    <value>El formato para la URL debe ser 'http://www.pagina.com' o 'https://www.pagina.com.</value>
+  </data>
+  <data name="ErrorGuardadoFormulario" xml:space="preserve">
+    <value>Error al guardar formulario.</value>
+  </data>
+  <data name="ExitoGuardadoFormulario" xml:space="preserve">
+    <value>Cuestionario enviado satisfactoriamente al siguiente paso</value>
+  </data>
+  <data name="GuardadoDefinitivo" xml:space="preserve">
+    <value>Cuestionario enviado satisfactoriamente al siguiente paso</value>
+  </data>
+  <data name="GuardadoTemporal" xml:space="preserve">
+    <value>El formulario fue guardado temporalmente. </value>
+  </data>
+  <data name="Guardar" xml:space="preserve">
+    <value>GUARDAR</value>
+  </data>
+  <data name="MetadatosGuardados" xml:space="preserve">
+    <value>Metadatos guardados exitosamente</value>
+  </data>
+  <data name="MetadatosObligatorios" xml:space="preserve">
+    <value>Existen metadatos obligatorios</value>
+  </data>
+  <data name="SeleccioneOArrastreArchivo" xml:space="preserve">
+    <value>Seleccione o arrastre el archivo</value>
+  </data>
+  <data name="TamañoMáximoPorArchivoInvalido" xml:space="preserve">
+    <value>Tamaño máximo de carga por archivo no válido. Tamaño máximo por archivo permitido: {0}</value>
+  </data>
+  <data name="TamañoMáximoTotalInvalido" xml:space="preserve">
+    <value>Tamaño total de archivos no válido. Tamaño máximo total permitido: {0}</value>
+  </data>
+  <data name="UrlNoAsignada" xml:space="preserve">
+    <value>Url no asignada.</value>
+  </data>
+  <data name="YaExisteNombreParaCargar" xml:space="preserve">
+    <value>El archivo {0} ya se encuentra listo para cargar.</value>
+  </data>
+  <data name="InformacionAdicionalError" xml:space="preserve">
+    <value>Información adicional</value>
+  </data>
+  <data name="ErrorCargaFormulario" xml:space="preserve">
+    <value>Error al cargar la información en el formulario.</value>
+  </data>
+  <data name="TooltipBotonAsociarMetadatos" xml:space="preserve">
+    <value>Asociar metadatos</value>
+  </data>
+  <data name="TooltipBotonCancelarCarga" xml:space="preserve">
+    <value>Cancelar cargar de archivos</value>
+  </data>
+  <data name="ErrorGuardadoTemporal" xml:space="preserve">
+    <value>Se presentó un problema al momento de guardar. {0} &lt;/br&gt;
+Intente nuevamente. Si el problema persiste contacte al administrador.</value>
+  </data>
+  <data name="TextoSeleccionarEntidad" xml:space="preserve">
+    <value>Seleccionar Entidad</value>
+  </data>
+  <data name="TextoEntidad" xml:space="preserve">
+    <value>Entidad</value>
+  </data>
+  <data name="TextoBotonContinuar" xml:space="preserve">
+    <value>Continuar</value>
+  </data>
+  <data name="TextoNoResultadosBusqueda" xml:space="preserve">
+    <value>No existen resultados aún para esta búsqueda</value>
+  </data>
+  <data name="TextoSeleccioneFiltrosMensaje" xml:space="preserve">
+    <value>Seleccione los filtros deseados para obtener resultados</value>
+  </data>
+  <data name="TextoDebeSeleccionarEntidad" xml:space="preserve">
+    <value>Debe seleccionar una entidad</value>
+  </data>
+  <data name="TextoAcciones" xml:space="preserve">
+    <value>Acciones</value>
+  </data>
+  <data name="TextoCrearTarea" xml:space="preserve">
+    <value>Crear Tarea</value>
+  </data>
+  <data name="NoResultadosBusqueda" xml:space="preserve">
+    <value>No existen resultados aún para esta búsqueda</value>
+  </data>
+  <data name="SeleccioneFiltrosMensaje" xml:space="preserve">
+    <value>Seleccione los filtros deseados para obtener resultados</value>
+  </data>
+  <data name="ErrorUsuarioConRolSinOpciones" xml:space="preserve">
+    <value>El usuario no tiene opciones habilitadas para su(s) rol(es)</value>
+  </data>
+  <data name="ErrorRolesSinEntidades" xml:space="preserve">
+    <value>El usuario no tiene entidades asociadas a ninguno de sus roles</value>
+  </data>
+  <data name="ErrorUsuarioSinPermisoAccion" xml:space="preserve">
+    <value>El usuario no tiene permisos para ejecutar la accion</value>
+  </data>
+  <data name="ErrorUsuarioSinPermisosAplicacion" xml:space="preserve">
+    <value>El usuario no tiene permisos para acceder a la aplicación.</value>
+  </data>
+  <data name="Editar" xml:space="preserve">
+    <value>Editar</value>
+  </data>
+  <data name="CategoriasMetadatosObligatorias" xml:space="preserve">
+    <value>Existe categoría sin seleccionar y metadatos obligatorios</value>
+  </data>
+  <data name="NoHayProyectosDisponibles" xml:space="preserve">
+    <value>No hay proyectos disponibles</value>
+  </data>
+  <data name="InsertarRegistro" xml:space="preserve">
+    <value>Insertar</value>
+  </data>
+  <data name="Acciones" xml:space="preserve">
+    <value>Acciones</value>
+  </data>
+  <data name="BotonCargarConsultarArchivos" xml:space="preserve">
+    <value>Cargar y consultar archivos</value>
+  </data>
+  <data name="Descargar" xml:space="preserve">
+    <value>Descargar</value>
+  </data>
+  <data name="BotonCargarArchivos" xml:space="preserve">
+    <value>Guardar</value>
+  </data>
+  <data name="EtiquetaSeleccionArchivos" xml:space="preserve">
+    <value>Seleccione o arrastre uno o varios archivos a la vez</value>
+  </data>
+  <data name="EtiquetaFiltro" xml:space="preserve">
+    <value>Filtro</value>
+  </data>
+  <data name="BotonBuscarFiltro" xml:space="preserve">
+    <value>Buscar</value>
+  </data>
+  <data name="BotonLimpiarFiltro" xml:space="preserve">
+    <value>Limpiar</value>
+  </data>
+  <data name="BotonCerrarCarga" xml:space="preserve">
+    <value>Cerrar</value>
+  </data>
+  <data name="ArchivosSinCategoria" xml:space="preserve">
+    <value>Los siguientes archivos {0} no tienen categoria asignada.</value>
+  </data>
+  <data name="MensajeExtensionNoValida" xml:space="preserve">
+    <value>Extensión de archivo no permitida</value>
+  </data>
+  <data name="confirmaEjecutarSerivicio" xml:space="preserve">
+    <value>¿Desea ejecutar el servicio asociado?</value>
+  </data>
+  <data name="errorTipoAccionCustom" xml:space="preserve">
+    <value>Error: Acción del boton no encontrada.</value>
+  </data>
+  <data name="ConfirmarNuevoPeriodoProgramacion" xml:space="preserve">
+    <value>¿Esta seguro que desea crear un nuevo periodo? Todas las instancias actuales que todavía se encuentren en estado abiertas serán detenidas y se crearan nuevas para el nuevo periodo</value>
+  </data>
+  <data name="ConfirmarProgramacionIniciarProceso" xml:space="preserve">
+    <value>¿Esta seguro que desea iniciar el proceso de creación de instancias masivas?</value>
+  </data>
+  <data name="ConfirmarFichaBorrador" xml:space="preserve">
+    <value>La siguiente acción va a generar una ficha temporal. &lt;br/&gt;¿Desea continuar?</value>
+  </data>
+  <data name="FichaGeneradaCorrectamente" xml:space="preserve">
+    <value>Ficha generada correctamente</value>
+  </data>
+  <data name="MensajeExitoBorradoConpesTramiteVF" xml:space="preserve">
+    <value>Los datos fueron eliminados correctamente</value>
+  </data>
+  <data name="MensajeExitoConpesTramiteVF" xml:space="preserve">
+    <value>Se han adicionado líneas de información en la parte inferior de la tabla 'Documentos Conpes'</value>
+  </data>
+  <data name="MensajeExitoDatosGuardados" xml:space="preserve">
+    <value>Los datos fueron agregados y guardados con éxito</value>
+  </data>
+  <data name="ValidacionBorradoConpesTramiteVF" xml:space="preserve">
+    <value>Los datos seleccionados serán eliminados</value>
+  </data>
+  <data name="ValidacionBorradoConpesTramiteVFCuerpo" xml:space="preserve">
+    <value>¿Está seguro de continuar?</value>
+  </data>
+</root>

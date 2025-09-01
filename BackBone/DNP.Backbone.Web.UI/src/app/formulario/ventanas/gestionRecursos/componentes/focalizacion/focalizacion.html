@@ -1,0 +1,151 @@
+﻿<style>
+    .uLabelDetalle_FP {
+        color: #004884 !important;
+        font-family: 'Work Sans';
+        letter-spacing: 0px;
+        font-size: 12px;
+    }
+
+    .uLabelCampo_fp {
+        color: #004884 !important;
+        font-family: 'Work Sans';
+        letter-spacing: 0px;
+        font-weight: 600;
+        font-size: 16px;
+    }
+
+    .btn-primary,
+    .btn-primary:hover,
+    .btn-primary:active,
+    .btn-primary:visited {
+        background-color: #8064A2 !important;
+    }
+</style>
+<div class="col-md-12" ng-init="vm.init();">
+    <div class="row">
+        <div class="col-md-12">
+            <form id="PoliticasTFuentesForm" name="politicasTFuentesForm" novalidate>
+                <div class="row" style="width: 100%;">
+                    <div class="form-group" style="margin-left: 20PX;">
+                        <div class="tab-content">
+                            <div class="ui-accordion-container hidden" id="accordion-focalizaciongrcapitulo1">
+                                <span class="hidden" id="id-capitulo-focalizaciongrcapitulo1"></span>
+
+                                <div ng-repeat="politicafuente in vm.PoliticasTFuentes.FuentesFinanciacion" ng-init="politicastfuentesIndex = $index">
+                                    <div class="row">
+                                        <div class="alert panel-heading row ui-accordion-header" style="border-color: #E6EFFD; border-left-color: #004884; height: 50px;">
+                                            <button ng-click="ocultarCrucePolitica();vm.changeArrow('PoliticaTFuentes');" type="button" data-toggle="collapse" data-target="#PoliticaTFuentes{{politicafuente.EntidadId}}">
+                                                <span class="d-inline-block" id="alert-focalizaciongrcapitulo1-{{politicafuente.FuenteId}}"></span>
+                                                <span class="textLeftDNP" style="font-size: 20px;">{{politicafuente.EntidadCorta}}</span>
+                                                <span id="arrow-PoliticaTFuentes" class="glyphicon glyphicon-chevron-up pull-right" data-toggle="collapse" data-target="#PoliticaTFuentes{{politicafuente.EntidadId}}"></span>
+                                                
+                                                <span id="name-capitulo-PoliticaTFuentes"></span>
+                                                <span class="hidden" id="id-seccioncapitulo-PoliticaTFuentes"></span>
+                                         </button>
+
+                                            <!--<span class="label label-primary pull-left" style="width: 22px; height: 50px; margin-top: -0px;">&nbsp;</span>
+                                        -->
+                                            <!--<button ng-click="ocultarCrucePolitica();vm.changeArrow('PoliticaTFuentes');" class="btn btn-link pull-left " type="button" data-toggle="collapse" style="font-size: 20px;" data-target="#PoliticaTFuentes{{politicafuente.EntidadId}}">
+                                            {{politicafuente.EntidadCorta}}
+                                        </button>
+                                        <span id="arrow-PoliticaTFuentes" class="glyphicon glyphicon-chevron-up pull-right" data-toggle="collapse" data-target="#PoliticaTFuentes{{politicafuente.EntidadId}}"> </span>
+                                        <span class="buttonbar pull-right">
+                                            <img id="u9_imgG{{politicafuente.EntidadId}}" class="img" src="Img/u9.svg" style="display:none;">&nbsp;&nbsp;
+                                            <img id="u11_imgG{{politicafuente.EntidadCorta}}" class="img" src="Img/u11.svg" style="display:none;">&nbsp;&nbsp;
+                                        </span>-->
+                                        </div>
+                                        <br />
+                                        <div class="collapse" id="PoliticaTFuentes{{politicafuente.EntidadId}}" style="width:100%;margin-left:1px;">
+                                            <label class="col-md-6 col-form-label" style="text-align:left"><span class="uLabelCampo">Tabla de Resumen</span></label>
+                                            <div class="row">
+                                                <div class="col-md-12" style="text-align:left">
+                                                    <label id="labelId{{politicafuente.EntidadId}}" for="entidad" class="col-md-12 col-form-label">{{politicafuente.Texto}}</label>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12" style="text-align:left">
+                                                        <label class="col-md-12 col-form-label" style="text-align:left">
+                                                            <span class="col-md-12 col-form-label">
+                                                                * El acceso a los datos de "Cruce Políticas" se activará cuando estén diligenciados los datos de todas las políticas reflejados en la columna "Categoría"
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="row" style="width: 100%; margin-left: 30px;">
+
+                                                    <table class="TableDNP" style="width:95%">
+
+                                                        <thead>
+                                                            <tr style="text-align:center;">
+                                                                <th style="width:5%;" class="columAcc">&nbsp;</th>
+                                                                <th style="width:42%;" class="textLeftDNP"> <label>Política</label></th>
+                                                                <th style="width:11%;" class="textLeftDNP"> <label>Categoría</label></th>
+                                                                <th style="width:11%;" class="textLeftDNP"> <label>Indicador</label></th>
+                                                                <th style="width:20%;" class="textLeftDNP"> <label>Cruce Políticas</label></th>
+                                                                <th style="width:2%;" class="columAcc"></th>
+                                                            </tr>
+
+                                                        </thead>
+                                                        <tbody ng-repeat="politicas in politicafuente.Politicas" data-attribute="{{ politicas.PoliticaId }}" ng-init="politicafuenteIndex = $index">
+                                                            <tr>
+
+                                                                <td style="width: 5%; text-align: left;">
+                                                                    <div id="focalizaciongrcapitulo1-POLITICA-{{politicafuente.FuenteId}}-{{politicas.PoliticaId}}" class="hidden iconoErrorDNP"></div>
+                                                                </td>
+                                                                <td style="width: 42%; text-align: left;"><span class="textRightDNP">{{politicas.Politica}}</span></td>
+                                                                <td style="width: 11%;  text-align: left;"><span class="textRightDNP"><a id="idCategoria-{{politicafuente.FuenteId}}-{{politicas.PoliticaId}}" ng-click="scrollToCPP('secCategoriaProductosPolitica', 'PoliticaTFuentes' + politicafuente.EntidadId, politicas.PoliticaId, politicafuente.FuenteId, $event)" class="textRightDNP "> VER DATOS </a></span></td>
+                                                                <td style="width: 11%; text-align: left;"><span class="textRightDNP"><a ng-click="scrollTo('secIndicadoresPolitica', 'PoliticaTFuentes' + politicafuente.EntidadId, politicas.PoliticaId, $event)" ng-class="politicas.PoliticaId != 4 && politicas.PoliticaId != 7 ? 'disablegrid':''">VER DATOS</a></span></td>
+                                                                <td style="width: 20%; text-align: left;"><span class="textRightDNP"><a id="idCruce-{{politicafuente.FuenteId}}-{{politicas.PoliticaId}}" ng-click="scrollToCrucePolitica('secPoliticaCrucePolitica', 'PoliticaTFuentes' + politicafuente.EntidadId, politicas.PoliticaId, politicafuente.FuenteId)" ng-class="politicas.CrucePolitica == 0 ? 'disablegrid' : ''" class="textRightDNP ">VER DATOS</a></span></td>
+                                                                <td style="width: 2%; text-align: left;"></td>
+
+
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <br />
+                                                </div>
+                                                <div class="row dContedorPolitica"></div>
+                                                <!--<div ng-if="$index === 0" class="row">-->
+                                                <!--<div class="row dContedorPolitica">
+                                                <div ng-if="vm.muestraCategoriaProductosPolitica" id="contenedorCategoriaProductosPolitica" class="tab-pane cont col-md-12" style=" padding-left: 10px !important; padding-top: 20px !important; border: 1px solid #e6effd; width: 96%; font-size: 12pt; margin: 10px 0 0 50px;">
+                                                    <categoria-productos-politica></categoria-productos-politica>
+                                                </div>
+                                                <div ng-if="vm.muestraIndicadorPolitica" id="contenedorIndicadoresPolitica" class="tab-pane cont col-md-12" style="padding-left: 10px !important; padding-top: 20px !important; border: 1px solid #e6effd; width: 96%; font-size: 12pt; margin: 10px 0 0 50px;">
+                                                    <indicadores-politica></indicadores-politica>
+                                                </div>
+                                            </div>-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!--AVM-->
+        <!--<div ng-if="vm.muestraIndicadorPolitica" id="contenedorIndicadoresPolitica" class="tab-pane cont col-md-12" style="padding-left: 0 !important;
+    padding-top: 20px !important; border: 1px solid #e6effd; width: 85vw; font-size: 12pt; visibility:hidden">
+         <indicadores-politica></indicadores-politica>
+     </div>-->
+        <!--Politicas Cruce Politicas-->
+        <!--<div ng-if="vm.muestraPliticaCrucePolitica" id="contenedorPoliticasCrucePolitica" class="tab-pane cont col-md-12" style="padding-left: 0 !important;
+    padding-top: 20px !important; border: 1px solid #e6effd; width: 85vw; font-size: 12pt; visibility:hidden">
+         <politica-cruce-politica></politica-cruce-politica>
+     </div>-->
+        <!--<div ng-if="vm.muestraCategoriaProductosPolitica" id="contenedorCategoriaProductosPolitica" class="tab-pane cont col-md-12">
+        <categoria-productos-politica></categoria-productos-politica>
+    </div>-->
+
+        <div class="hidden">
+            <categoria-productos-politica guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                          notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                          notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"></categoria-productos-politica>
+            <politica-cruce-politica guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                     notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                     notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"
+                                     notificarrefresco="vm.notificarRefresco(handler, nombreComponente)"></politica-cruce-politica>
+        </div>
+
+    </div>
+</div>

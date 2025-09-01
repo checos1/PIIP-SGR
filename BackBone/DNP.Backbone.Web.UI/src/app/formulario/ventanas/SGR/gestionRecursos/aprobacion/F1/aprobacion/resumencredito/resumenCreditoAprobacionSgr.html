@@ -1,0 +1,99 @@
+﻿<div class="container-fluid inbox" ng-init="vm.init();">
+    <div class="row">
+        <div class="col-md-12 pt-3" style="text-align:left">
+            <div ng-repeat="ent in vm.data" class="mt-5 py-3">
+
+                <table class="TableDNP mb-3" width="92%">
+                    <thead style="background: none !important">
+                        <tr style="background: rgba(249, 252, 253, 1);">
+                            <th class="textLeftDNP px-3">
+                                <span class="NomItemAccordDNP">Tipo entidad que aprueba: </span>
+                                <span style="color: #4B4B4B; font-weight: normal">
+                                    {{ ent.EntidadTipo }}
+                                </span>
+                                <span class="NomItemAccordDNP">Entidad: </span>
+                                <span style="color: #4B4B4B; font-weight: normal ">
+                                    {{ ent.Entidad }}
+                                </span>
+                                <span class="NomItemAccordDNP">Estado de aprobación: </span>
+                                <span style="color: #4B4B4B; font-weight: normal ">
+                                    {{ ent.EstadoInstancia }}
+                                </span>
+                                <span class="NomItemAccordDNP">Fecha de Aprobación: </span>
+                                <span style="color: #4B4B4B; font-weight: normal " ng-show="ent.EstadoInstancia == 'Aprobado'">
+                                        {{ ent.FechaAprobacion }}                                    
+                                </span>
+                            </th>
+                        </tr>
+                    </thead>
+                </table>
+                <div ng-repeat="grupo in ent.Grupos" class="mb-4">
+                    <!-- CABECERA DE GRUPO -->
+                    <table class="TableDNP mb-3" width="92%">
+                        <thead style="background-color: #FFFFFF">
+                            <tr>
+                                <th class="textLeftDNP px-3" style="border-color: #FFFFFF">
+                                    <span class="NomItemAccordDNP">Etapa:</span>
+                                    <span style="color: #4B4B4B; font-weight: normal ">
+                                        {{ grupo.Etapa }}
+                                    </span>
+
+                                    <span class="NomItemAccordDNP">Entidad que solicita:</span>
+                                    <span style="color: #4B4B4B; font-weight: normal ">
+                                        {{ grupo.EntidadSolicita }}, {{ grupo.TipoEntidadSolicita }}
+                                    </span>
+                                    <span class="NomItemAccordDNP">Tipo recurso:</span>
+                                    <span style="color: #4B4B4B; font-weight: normal ">
+                                        {{ grupo.TipoRecurso }}
+                                    </span>
+                                    <span class="NomItemAccordDNP">Bienio solicitado:</span>
+                                    <span style="color: #4B4B4B; font-weight: normal ">
+                                        {{ grupo.BienioSolicitado }}
+                                    </span>
+                                </th>
+                            </tr>
+                        </thead>
+                    </table>
+
+                    <!-- DETALLES YA AGRUPADOS -->
+                    <table class="TableDNP mb-5" width="100%">
+                        <thead>
+                            <tr>
+                                <th class="columAcc" style="width:1%"></th>
+                                <th class="textRightDNP" style="width:14%">Valor solicitado $</th>
+                                <th class="textLeftDNP" style="width:12%">Bienio aprobado</th>
+                                <th class="textRightDNP" style="width:14%">Valor crédito aprobado $</th>
+                                <th class="textRightDNP" style="width:14%">Costo financiero $</th>
+                                <th class="textRightDNP" style="width:16%">Servicio a la deuda $</th>
+                                <th class="textRightDNP" style="width:14%">Costo patrimonio $</th>
+                                <th class="textRightDNP" style="width:14%">Valor a financiar $</th>
+                                <th class="columAcc" style="width:1%"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="det in grupo.Detalles">
+                                <td></td>
+                                <td class="textRightDNP">{{ det.ValorSolicitado | currency:'$':0 }}</td>
+                                <td class="textLeftDNP">{{ det.Bienio }}</td>
+                                <td class="textRightDNP">{{ det.ValorCreditoAprobado | currency:'$':0 }}</td>
+                                <td class="textRightDNP">{{ det.CostoFinanciero | currency:'$':0 }}</td>
+                                <td class="textRightDNP">{{ det.ValorCreditoAprobado + det.CostoFinanciero | currency:'$':0 }}</td>
+                                <td class="textRightDNP">{{ det.PatrimonioAutonomo | currency:'$':0 }}</td>
+                                <td class="textRightDNP">{{ det.ValorSolicitado + det.PatrimonioAutonomo  + det.CostoFinanciero | currency:'$':0 }}</td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+ 
+</div>
+<style>
+    .editInputDNP {
+        text-align: right !important;
+        padding-right: 5px;
+    }
+</style>

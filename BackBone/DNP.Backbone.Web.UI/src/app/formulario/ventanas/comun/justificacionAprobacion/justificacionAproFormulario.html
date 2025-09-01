@@ -1,0 +1,407 @@
+﻿
+<div style="background-color:white;padding-top:2rem;padding-bottom:0px !important;max-width:auto !important;" ng-init="vm.initJustificacionFormulario()">
+    <div class="row">
+        <table class="TableDNP" style="width: 97%;">
+            <tbody>
+                <tr>
+                    <td>
+                        <span class="NomItemAccordDNP" style="padding:0 20px;">Justificación del proyecto</span>
+                        <div style="width: !important 8%; vertical-align: bottom;">
+                            <button class="btnaccion btntablednp collapsed"
+                                    type="button" data-toggle="collapse"
+                                    ng-click="vm.mostrarOcultarPreguntasProyecto('justificacionproyectos')"
+                                    data-target="#justificacionproyectos">
+                                <img id="icojustificacionproyectos" src="Img/btnMas.svg" class="" style="">
+                            </button>
+                            <div style="width: !important 95%; text-align: left;">
+                                <span class="errores-contenedor" style="display:none;" id="error-button-proyecto-justificacionproyectos">
+                                    <span class="img iconadverdnp"><img src="Img/u4630.svg"> </span>
+                                    <span class="messagealerttableDNP" id="error-txt-button-proyecto-justificacionproyectos">{{vm.error.Mensaje}}</span>
+                                </span>
+                            </div>
+                        </div>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="7">
+                        <div class="collapse" id="justificacionproyectos" style="margin-top: -20px; margin-left: -10px;">
+                            <div class="LineaEncabezadodivDNP"></div>
+                            <h3 class="row tituloEncabezadodivDNP">
+                                <div class="col-md-3 form-group text-left NomItemAccordDNP">Proyectos</div>
+                                <br />
+                            </h3>
+                            <div style="width:99%; text-align:left">
+                                <div ng-repeat="objPreguntaProyecto in vm.listaPreguntasProyectos">
+                                    <table class="TableDNP" style="text-align:center; width: 100%;">
+                                        <thead>
+                                            <tr>
+                                                <td>
+                                                    <span style="padding-left: 3rem;" class="NomItemAccordDNP">BPIN: </span><span class="InfoItemAccordDNP ng-binding">{{objPreguntaProyecto.BPIN}}</span>
+                                                    <span class="NomItemAccordDNP">Proyecto: </span>
+                                                    <span id="nombreProyectoJustifica-{{objPreguntaProyecto.ProyectoId}}" class="InfoItemAccordDNP ng-binding  proyecto-nombreFP">{{objPreguntaProyecto.NombreCorto}}</span>
+                                                    <a id="btnVerMasNombreJustifica-{{objPreguntaProyecto.ProyectoId}}" ng-if="objPreguntaProyecto.NombreProyecto !== objPreguntaProyecto.NombreCorto" ng-click="vm.verNombreCompleto('nombreProyectoJustifica-'+ objPreguntaProyecto.ProyectoId, objPreguntaProyecto.ProyectoId)">
+                                                        Ver mas
+                                                    </a>
+                                                    <span class="NomItemAccordDNP">Operación: </span><span class="InfoItemAccordDNP ng-binding">{{objPreguntaProyecto.Operacion}}</span>
+                                                    <div style="width: !important 8%; vertical-align: bottom;">
+                                                        <button class="btnaccion btntablednp collapsed"
+                                                                type="button" data-toggle="collapse"
+                                                                ng-click="vm.mostrarOcultarPreguntasDeCadaProyecto('justifica-'+objPreguntaProyecto.ProyectoId)"
+                                                                data-target="#justifica-{{objPreguntaProyecto.ProyectoId}}">
+                                                            <img id="icojustifica-{{objPreguntaProyecto.ProyectoId}}" src="Img/btnMas.svg" class="" style="">
+                                                        </button>
+                                                        <div style="width: !important 95%; text-align: left;">
+                                                            <span class="errores-contenedor" style="display:none;" id="error-button-proyecto-{{objPreguntaProyecto.ProyectoId}}">
+                                                                <span class="img iconadverdnp"><img src="Img/u4630.svg"> </span>
+                                                                <span class="messagealerttableDNP" id="error-txt-button-proyecto-'{{objPreguntaProyecto.ProyectoId}}">{{vm.error.Mensaje}}</span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="collapse" id="justifica-{{objPreguntaProyecto.ProyectoId}}">
+                                            <tr>
+                                                <td>
+                                                    <div class="LineaEncabezadodivDNP"></div>
+                                                    <h3 class="row tituloEncabezadodivDNP">
+                                                        <div class="col-md-10 form-group text-left NomItemAccordDNP">Cuestionario de preguntas para trámites presupuestales</div>
+                                                        <br />
+                                                    </h3>
+                                                </td>
+                                            </tr>
+                                            <tr ng-repeat="ListaPaso in objPreguntaProyecto.ListaJustificacionPaso">
+                                                <td style="padding-left:3rem;">
+                                                    <div class="uLabelCampoAzul">{{ListaPaso.Paso}}&nbsp;&nbsp;<img src="Img/u32.svg" ng-click="vm.abrirMensajeInformacion()" /></div>
+                                                    <br /><br />
+                                                    <label for="respuesta" class="uLabelCampoNegro" style="text-align:left">{{vm.Usuario }} </label>
+                                                    <br /><br />
+                                                          <div ng-repeat="PreguntaProyecto in ListaPaso.justificaciones">
+                                                              <div class="col-md-12" align="left">
+                                                                  <span id="justificacionjustificacion-{{PreguntaProyecto.JustificacionPreguntaId}}" class="hidden text-left color-red"></span>
+                                                                  <div class="row">
+                                                                      <div class="col-md-12 DetacolumnDNP">
+                                                                          <span class="detapregun">{{PreguntaProyecto.JustificacionPregunta}} </span>
+
+                                                                      </div>
+                                                                      <div class="col-md-12 DetacolumnDNP">
+                                                                          <span class="notapregun"></span>
+                                                                      </div>
+                                                                  </div>
+                                                                  <div class="row">
+                                                                      <div class="col-md-12">
+                                                                          <div id="u5226_div" class="divPanelPregRespDNP" style="">
+                                                                              <div class="respAdon">
+                                                                                  <span style="vertical-align: middle; display: table-cell;">/R</span>
+                                                                              </div>
+                                                                              <div class="textAreDivRes">
+                                                                                  <textarea rows="3"
+                                                                                            id="pregunta"
+                                                                                            name="pregunta"
+                                                                                            ng-model="vm.pregunta.JustificacionRespuesta[PreguntaProyecto.JustificacionPreguntaId]"
+                                                                                            ng-value="PreguntaProyecto.JustificacionRespuesta"
+                                                                                            minlength="1"
+                                                                                            maxlength="5000"
+                                                                                            ng-disabled="vm.disabled"
+                                                                                            class="uTextAreaSinBorde text-justificado"></textarea>
+                                                                              </div>
+                                                                          </div>
+                                                                      </div>
+                                                                  </div>
+                                                              </div>
+                                                          </div>
+                                                </td>
+                                            </tr>
+                                            <!--<tr ng-repeat="PreguntaProyecto in objPreguntaProyecto.listaJustificacionProyecto">
+                                                <td style="padding-left:3rem;">
+                                                    <div class="col-md-12" align="left">
+                                                        <span id="justificacionjustificacion-{{PreguntaProyecto.JustificacionPreguntaId}}" class="hidden text-left color-red"></span>
+                                                        <div class="row">
+                                                            <div class="col-md-12 DetacolumnDNP">
+                                                                <span class="detapregun">{{PreguntaProyecto.JustificacionPregunta}} </span>
+
+                                                            </div>
+                                                            <div class="col-md-12 DetacolumnDNP">
+                                                                <span class="notapregun"></span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div id="u5226_div" class="divPanelPregRespDNP" style="">
+                                                                    <div class="respAdon">
+                                                                        <span style="vertical-align: middle; display: table-cell;">/R</span>
+                                                                    </div>
+                                                                    <div class="textAreDivRes">
+                                                                        <textarea rows="3"
+                                                                                  id="pregunta"
+                                                                                  name="pregunta"
+                                                                                  ng-model="vm.pregunta.JustificacionRespuesta[PreguntaProyecto.JustificacionPreguntaId]"
+                                                                                  ng-value="PreguntaProyecto.JustificacionRespuesta"
+                                                                                  minlength="1"
+                                                                                  maxlength="5000"
+                                                                                  ng-disabled="vm.disabled"
+                                                                                  class="uTextAreaSinBorde text-justificado"></textarea>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>-->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+
+                </tr>
+            </tbody>
+            <tfoot>
+
+            </tfoot>
+        </table>
+        <br />
+        <table class="TableDNP" style="width: 97%;">
+            <tbody>
+                
+                <tr>
+                    <td>
+                        
+                        <span class="NomItemAccordDNP" style="padding:0 20px;">Justificación del trámite</span>
+                        <div style="width: !important 8%; vertical-align: bottom;">
+                            <button class="btnaccion btntablednp collapsed"
+                                    type="button" data-toggle="collapse"
+                                    ng-click="vm.mostrarOcultarPreguntasTramite('justificaciontramites')"
+                                    data-target="#justificaciontramites">
+                                <img id="icojustificaciontramites" src="Img/btnMas.svg" class="" style="">
+                                <span class="d-inline-block" id="alert-Justificaciondet"></span>
+                            </button>
+                            <div style="width: !important 95%; text-align: left;">
+                                <span class="errores-contenedor" style="display:none;" id="error-button-proyecto-justificaciontramites">
+                                    <span class="img iconadverdnp"><img src="Img/u4630.svg"> </span>
+                                    <span class="messagealerttableDNP" id="error-txt-button-proyecto-justificaciontramites">{{vm.error.Mensaje}}</span>
+                                </span>
+                            </div>
+                        </div>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="7">
+                        <div class="collapse" id="justificaciontramites" style="margin-top: -20px; margin-left: -10px;padding-left:3rem;">
+                            <div class="LineaEncabezadodivDNP"></div>
+                            <h3 class="row tituloEncabezadodivDNP">
+                                <div class="col-md-10 form-group text-left NomItemAccordDNP">Preguntas y respuestas desde el formulario actual</div>
+                                <br />
+                            </h3>
+                            <div style="width:99%; text-align:left;padding:2rem;">
+                                <div class="row" style="width:100%;">
+                                    <div style="text-align: left;" class="col-md-8">
+                                        <span class="uLabelCampo">Preguntas relacionadas</span>
+                                    </div>
+                                    <div style="text-align: right;" class="col-md-4">
+                                        <div class="col-md-12 form-group text-right" style="padding-right:2rem;">
+
+                                            <button ng-if="vm.habilitaBotones" id="EditarJustificacion"
+                                                    class=" btneditarDNP"
+                                                    type="button"
+                                                    tooltip-placement="top"
+                                                    uib-tooltip="Clic para editar la información"
+                                                    ng-click="vm.ActivarEditar()">
+                                                EDITAR
+                                            </button>
+                                            &nbsp;
+
+                                            <button  ng-if="vm.habilitaBotones"  id="GuardarJustificacion"
+                                                    type="submit" class="{{vm.disabled?'  btnguardarDisabledDNP':'  btnguardarDNP'}}"
+                                                    tooltip-placement="top"
+                                                    uib-tooltip="Guardar modificación"
+                                                    ng-click="vm.registrorespuesta(vm.pregunta)"
+                                                    ng-disabled="vm.disabledJustificacion">
+                                                GUARDAR
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br /><br />
+                                <div>
+                                    <div class="uLabelCampoAzul"> Rol Presupuesto&nbsp;&nbsp;<img src="Img/u32.svg" ng-click="vm.abrirMensajeInformacion()" /></div>
+                                    <br /><br />
+                                    <label for="respuesta" class="uLabelCampoNegro" style="text-align:left">{{vm.Usuario }} </label>
+                                    <br /><br />
+                                </div>
+                                <div id="VFO005-pregunta-error" class="hidden uMensajeError"></div>
+                                <div class="row" id="preguntasJustificacion" ng-repeat="pregunta in vm.Justificaciones">
+
+                                    <div class="col-md-12" align="left" style="padding-bottom:2rem;">
+                                        <span id="VFO005-{{pregunta.JustificacionPreguntaId}}" class="hidden text-left color-red"></span>
+                                        <div class="row">
+                                            <div class="col-md-12 DetacolumnDNP">
+                                                <span class="detapregun">{{pregunta.JustificacionPregunta}} </span>
+
+                                            </div>
+                                            <div class="col-md-12 DetacolumnDNP">
+                                                <span class="uLabelCampoNegro">Justifique su respuesta*  </span><span class="notapregun">(Máximo 5.000 caracteres)</span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div id="u5226_div" class="divPanelPregRespDNP" style="">
+                                                    <div class="respAdon">
+                                                        <span style="vertical-align: middle; display: table-cell;">/R</span>
+                                                    </div>
+                                                    <div class="textAreDivRes">
+                                                        <textarea rows="3"
+                                                                  id="pregunta"
+                                                                  name="pregunta"
+                                                                  ng-model="vm.pregunta.JustificacionRespuesta[pregunta.JustificacionPreguntaId]"
+                                                                  ng-value="pregunta.JustificacionRespuesta"
+                                                                  minlength="1"
+                                                                  maxlength="5000"
+                                                                  ng-disabled="vm.disabledJustificacion"
+                                                                  class="uTextAreaSinBorde text-justificado"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                            </div>
+                        </div>
+                    </td>
+
+                </tr>
+            </tbody>
+            <tfoot>
+
+            </tfoot>
+        </table>
+    </div>
+  
+</div>
+
+
+<!--<div ng-init="vm.initJustificacion();">
+  <div class="row">
+    <div class="row" style="margin-left: 20px">
+        <form id="preguntasForm" name="preguntasForm" novalidate>
+            <div class="row" style="width: 100%">
+                <div style="text-align: left" class="col-md-8">
+                </div>
+                <div style="text-align: right" class="col-md-4">
+                    <div class="col-md-12 form-group text-right"
+                         style="padding-right: 2rem">
+                        <button id="EditarJ"
+                                has-claim has-opciones="['tramite:justificacionAclaracionDeLeyendaEditar']"
+                                class="btneditarDNP"
+                                type="button"
+                                tooltip-placement="top"
+                                uib-tooltip="Activar Editar"
+                                ng-click="$ctrl.ActivarEditar(false)">
+                            EDITAR
+                        </button>
+                        &nbsp;
+
+                        <button id="Guardar"
+                                has-claim has-opciones="['tramite:justificacionAclaracionDeLeyendaEditar']"
+                                type="submit"
+                                class="{{$ctrl.esEdicion?'  btnguardarDNP':'  btnguardarDisabledDNP'}}"
+                                tooltip-placement="top"
+                                uib-tooltip="Guardar modificación"
+                                ng-disabled="!$ctrl.esEdicion"
+                                ng-click="$ctrl.guardar()">
+                            GUARDAR
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <br />
+
+            <strong>1. Tipo de modificación*</strong>
+            <br />
+            <br />
+            <div id="mensajesAlertaTipoModificacion" style="text-align: start;" ng-if="$ctrl.errorTipoModificacion">
+                <span id="mensajeAlertaTipoModificacion" class="img iconadverdnp"> <img src="Img/u4630.svg" /> </span>
+                Campo obligatorio
+            </div>
+            <div>
+                <input type="checkbox"
+                       id="errorAritmetico"
+                       name="errorAritmetico"
+                       ng-model="$ctrl.errorAritmetico"
+                       ng-disabled="!$ctrl.esEdicion" />
+                <label for="errorAritmetico">Error aritmético</label>
+                <input type="checkbox"
+                       id="errorTranscripcion"
+                       name="errorTranscripcion"
+                       ng-model="$ctrl.errorTranscripcion"
+                       ng-disabled="!$ctrl.esEdicion"
+                       style="margin-left: 2rem;" />
+                <label for="errorTranscripcion">Error de transcripción</label>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-12 DetacolumnDNP">
+                    <span class="detapregun">
+                        Sustento de la modificación*
+                    </span>
+                    <span class="notapregun">(Máximo 5.000 caracteres)</span>
+                    &nbsp;
+                </div>
+            </div>
+            <div class="row">
+                <div id="mensajesAlertaSustentoModificacion"
+                     class="col-md-12"
+                     ng-if="$ctrl.errorSustentoModificacion">
+                    <span id="mensajeAlertaSustentoModificacion" class="img iconadverdnp"> <img src="Img/u4630.svg" /> </span>
+                    Campo obligatorio
+                </div>
+                <div class="col-md-12"
+                     style="
+              padding-bottom: 55px !important;
+              padding-right: 4rem !important;
+            ">
+                    <div id="u5226_div"
+                         class="divPanelPregRespDNP"
+                         style="width: 100% !important">
+                        <div class="respAdon">
+                            <span style="
+                    vertical-align: middle;
+                    display: table-cell;
+                    font-weight: 400;
+                    font-style: normal;
+                    font-size: 20px;
+                  ">R/</span>
+                        </div>
+
+                        <div class="textAreDivRes" style="width: 70% !important">
+                            <textarea rows="3"
+                                      id="sustentoModificacion"
+                                      name="sustentoModificacion"
+                                      ng-model="$ctrl.sustentoModificacion"
+                                      placeholder="Maximo 5.000 caracteres"
+                                      minlength="1"
+                                      maxlength="5000"
+                                      class="textareObservaDNP"
+                                      ng-disabled="!$ctrl.esEdicion">
+                </textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="justificacionjustificacion-pregunta-error"
+                 class="hidden uMensajeError"></div>
+            <div id="justificacionjustificacionmo-modificacion-error" class="hidden uMensajeError"></div>
+            <div id="justificacionjustificacionmo-justificacion-error" class="hidden uMensajeError"></div>
+            <div id="justificacionjustificacionmo-campos-error" class="hidden uMensajeError"></div>
+        </form>
+      <br /><br />
+    </div>
+  </div>
+</div>-->

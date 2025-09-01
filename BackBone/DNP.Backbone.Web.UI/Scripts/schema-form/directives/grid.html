@@ -1,0 +1,109 @@
+<div ng-controller="gridController as vm" class="grid-backbone no-grid-filter" ng-class="{'grilla-preguntas' : vm.isPreguntas() === true, 'grilla-patron': vm.isPreguntas() === false }">
+    <div ng-if="(form.habilitarInsertarRegistro === true) || (form.habilitarInsertarRegistro === false && form.data.length > 0)">
+        <div class="breadcrumb-header">
+            <div class="titlebar">
+                <span uib-tooltip="{{form.tooltip}}">{{form.title}}</span>
+                <span class="buttonbar pull-right">
+                    <button ng-if="form.habilitarAddRequisito && vm.isPreguntas()" type="button" class="btn btn-default btn-md" data-dismiss="modal" id="btnInsertarRegistro" ng-click="vm.abrirModalPreguntas()">
+                        Add Requisito
+                    </button>
+                    <button type="button" class="btn btn-default btn-md" tooltip-placement="top" uib-tooltip="Adicionar Columna" ng-click="vm.abrirModalAdicionarColumnas()" tabindex="0">
+                        Mostrar m&aacute;s columnas
+                    </button>
+                    <button type="button" ng-show="vm.filtroHabilitado" class="btn btn-default btn-md" ng-click="vm.conmutadorFiltro()" tooltip-placement="auto" uib-tooltip="Filtro">Filtro</button>
+                    <!--<button ng-if="form.habilitarInsertarRegistro" type="button" class="btn btn-default btn-md" data-dismiss="modal" id="btnInsertarRegistro" ng-click="vm.nuevoRegistro()"
+            ng-disabled="vm.deshabilitadoPorAdicion || vm.opciones.deshabilitarControles">
+        {{'InsertarRegistro'| language}}
+    </button>-->
+                    <button ng-if="form.habilitarInsertarRegistro" type="button" class="btn btn-default btn-md" data-dismiss="modal" id="btnInsertarRegistro" ng-click="vm.abrirModalNuevosItens()"
+                            ng-disabled="vm.deshabilitadoPorAdicion || vm.opciones.deshabilitarControles">
+                        {{'InsertarRegistro'| language}}
+                    </button>
+
+                    <a href="" ng-hide="vm.obtenerOcultarExportar()" download target="_blank" ng-click="vm.downloadPdf()" tooltip-placement="auto" uib-tooltip="Exportar PDF" class="btn btn-default btn-md btnRedondo">PDF</a>
+                    <a href="" ng-hide="vm.obtenerOcultarExportar()" download target="_blank" tooltip-placement="auto" uib-tooltip="Exportar XLS" class="btn btn-default btn-md btnRedondo">XLS</a>
+                    <a href="" ng-click="vm.verLog()" tooltip-placement="auto" uib-tooltip="Ver log de la instancia"><img src="/Img/iconsgrid/iconAccionCalendar.svg" alt="Ver log de la instancia" /></a>
+                </span>
+            </div>
+
+
+        </div>
+        <!--INICIO FILTRO-->
+        <div class="filtro" ng-if="vm.mostrarFiltro">
+            <div class="clearfix">
+                <div class="row">
+                    <div class="col-md-10">
+                        <div ng-repeat="columna in vm.columnasComFiltro" class="col-md-4">
+                            <input type="text" id="{{vm.obtenerNombreGrilla() + '_' + columna.name + '_filter'}}" class="form-control" placeholder="{{columna.displayName}}" />
+                        </div>
+                    </div>
+
+                    <div class="col-md-2 text-right">
+                        <button type="button" class="btn btn-filtro" ng-click="vm.buscar()" tooltip-placement="auto" uib-tooltip="Buscar">Buscar</button>
+                        <button type="button" class="btn btn-filtro" ng-click="vm.limpiarCamposFiltro()" tooltip-placement="auto" uib-tooltip="Limpiar">Limpiar</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!--FIM FILTRO-->
+        <div class="borderTop4" ng-if="!vm.habilitarEdicion() && !mostrarDivPaginacion" ui-i18n="{{form.lang}}">
+            <div id="item.id" ui-grid="form" ui-grid-edit ui-grid-expandable ui-grid-save-state ui-grid-move-columns ui-grid-draggable-rows ui-grid-resize-columns ui-grid-exporter ui-grid-pinning>
+                <div class="text-center intro-help no-result-watermark"
+                     id="panelMensajeError"
+                     ng-show="vm.filasFiltradas <= 0"
+                     ng-class="{'top-31': !vm.grid.habilitarFiltrado, 'min-mh': vm.grid.habilitarFiltrado}">
+                    <!-- ReSharper disable Html.PathError -->
+                    <img src="img/image-help.png" alt="Sin resultados" />
+                    <h2>{{ 'NoResultadosBusqueda' |language}}</h2>
+                    <h3>{{ 'SeleccioneFiltrosMensaje'|language}}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="borderTop4" ng-if="!vm.habilitarEdicion() && mostrarDivPaginacion" ui-i18n="{{form.lang}}">
+            <div id="item.id" ui-grid="form" ui-grid-edit ui-grid-expandable ui-grid-pagination ui-grid-save-state ui-grid-move-columns ui-grid-draggable-rows ui-grid-resize-columns ui-grid-exporter ui-grid-pagination="" ui-grid-pinning>
+                <div class="text-center intro-help no-result-watermark"
+                     id="panelMensajeError"
+                     ng-show="vm.filasFiltradas <= 0"
+                     ng-class="{'top-31': !vm.grid.habilitarFiltrado, 'min-mh': vm.grid.habilitarFiltrado}">
+                    <!-- ReSharper disable Html.PathError -->
+                    <img src="img/image-help.png" alt="Sin resultados" />
+                    <h2>{{ 'NoResultadosBusqueda' |language}}</h2>
+                    <h3>{{ 'SeleccioneFiltrosMensaje'|language}}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="borderTop4" ng-if="vm.habilitarEdicion() && !mostrarDivPaginacion" ui-i18n="{{form.lang}}">
+            <div id="item.id" ui-grid="form" ui-grid-edit ui-grid-expandable ui-grid-save-state ui-grid-cellnav ui-grid-move-columns ui-grid-draggable-rows ui-grid-resize-columns ui-grid-exporter ui-grid-pinning>
+                <div class="text-center intro-help no-result-watermark"
+                     id="panelMensajeError"
+                     ng-show="vm.filasFiltradas <= 0"
+                     ng-class="{'top-31': !vm.grid.habilitarFiltrado, 'min-mh': vm.grid.habilitarFiltrado}">
+                    <!-- ReSharper disable Html.PathError -->
+                    <img src="img/image-help.png" alt="Sin resultados" />
+                    <h2>{{ 'NoResultadosBusqueda' |language}}</h2>
+                    <h3>{{ 'SeleccioneFiltrosMensaje'|language}}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="borderTop4" ng-if="vm.habilitarEdicion() && mostrarDivPaginacion" ui-i18n="{{form.lang}}">
+            <div id="item.id" ng-class="{'no-cabecera': !vm.tieneCabecera}" ui-grid-pagination ui-grid-expandable ui-grid="form" ui-grid-edit ui-grid-save-state ui-grid-move-columns ui-grid-draggable-rows ui-grid-resize-columns ui-grid-exporter ui-grid-pinning>
+                <div class="text-center intro-help no-result-watermark"
+                     id="panelMensajeError"
+                     ng-show="vm.filasFiltradas <= 0"
+                     ng-class="{'top-31': !vm.grid.habilitarFiltrado, 'min-mh': vm.grid.habilitarFiltrado}">
+                    <!-- ReSharper disable Html.PathError -->
+                    <img src="img/image-help.png" alt="Sin resultados" />
+                    <h2>{{ 'NoResultadosBusqueda' |language}}</h2>
+                    <h3>{{ 'SeleccioneFiltrosMensaje'|language}}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="text-center" ng-show="vm.grid.habilitarPaginacion" id="listaPaginado">
+            <!--<ul uib-pagination previous-text="Anterior" next-text="Siguiente" items-per-page="form.numeroPorPagina" total-items="form.totalDeItems"
+                ng-model="form.paginationCurrentPage" max-size="vm.maximoPaginas" class="pagination-sm"
+                boundary-link-numbers="true" rotate="false"></ul>-->
+        </div>
+        <span class="help-block" sf-message="(form.key[0]!==form.description)?form.description:''"></span>
+    </div>
+</div>

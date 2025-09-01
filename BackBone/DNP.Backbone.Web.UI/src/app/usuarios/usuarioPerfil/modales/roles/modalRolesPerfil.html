@@ -1,0 +1,16 @@
+﻿<modal-dialog cerrar="vm.cerrar">
+
+    <div class="row col-md-12">
+        <div class="titlebarmodal fndAzul">
+            <span>ROLES DEL PERFIL - <span style="color: #03B4D5">{{vm.nombrePerfil}}</span></span>
+        </div>
+    </div>
+
+    <div class="row">
+        <tabla-entidad opciones="vm.opciones"
+                       definicion-columna-datos="vm.columnDefs"
+                       datos="vm.datos">
+        </tabla-entidad>
+    </div>
+
+</modal-dialog>

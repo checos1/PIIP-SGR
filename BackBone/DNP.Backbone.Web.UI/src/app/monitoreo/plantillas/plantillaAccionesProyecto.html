@@ -1,0 +1,11 @@
+﻿<div class="text-center acciones-proyectos">
+    <button class="btnaccion" tooltip-placement="auto" ng-class=" { 'disabled': !grid.appScope.vm.proyectoTieneAlerta(row.entity.ProyectoId) }"  
+        ng-disabled="!grid.appScope.vm.proyectoTieneAlerta(row.entity.ProyectoId)" 
+        uib-tooltip="Alertas" 
+        ng-click="grid.appScope.vm.abrirModalListaAlertas(row.entity)">
+        <span><img class="grid-icon-accion"  src="Img/iconsgrid/iconAccionAlertas.png" /></span>
+    </button>
+    <a href="" ng-click="grid.appScope.vm.abreReporte(row.entity.ProyectoId,row.entity.CodigoBpin,row.entity.ProyectoNombre)" class="btnaccion" tooltip-placement="Auto" uib-tooltip="Ver Reportes">
+        <span><img class="grid-icon-accion"  src="Img/iconsgrid/iconAccionReportes.png" /></span>
+    </a>
+</div>

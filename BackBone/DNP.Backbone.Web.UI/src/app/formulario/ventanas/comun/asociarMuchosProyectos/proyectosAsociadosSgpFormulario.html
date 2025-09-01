@@ -1,0 +1,22 @@
+﻿<div ng-init="vm.init()">
+    <div class="row" style="margin-left: 0px; margin-right: 0px;padding-bottom:1rem">  
+    </div>
+    <div class="row" style="margin-left: 0px; margin-right: 0px;padding-bottom:1rem">
+        <detalle-proyectos-asociados-sgp-formulario tramiteid="{{vm.tramiteid}}"
+                                             tipotramiteid="{{vm.tipotramiteid}}"
+                                             actualizacomponentes="vm.actualizacomponentes"
+                                             actualizadetalle="{{vm.actualizadetalle}}"
+                                             idflujo="{{vm.idFlujo}}"
+                                             deshabilitar="{{vm.deshabilitar}}"
+                                             rolanalista="{{vm.rolanalista}}"
+                                             callback="vm.notificarGuardado()"
+                                             guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                             notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                             accesskey="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)"
+                                             notificacioncambios="vm.notificacionCambiosAjustes(handler, nombreComponente)"
+                                             nombrecomponentepaso="{{vm.nombreComponente}}"
+                                             guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                             unsolotipooperacion="{{vm.unsolotipooperacion}}">
+        </detalle-proyectos-asociados-sgp-formulario>
+    </div>
+</div>

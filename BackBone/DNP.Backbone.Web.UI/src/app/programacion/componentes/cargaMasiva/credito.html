@@ -1,0 +1,128 @@
+﻿<div class="container-fluid inbox" ng-init="vm.init();">
+
+    <br />
+    <!--<span class="buttonbar pull-right">
+        <button type="button" class=" btneditarDNP">
+            EDITAR
+        </button>
+
+        <button type="button" class="  btnguardarDNP">
+            GUARDAR
+        </button>
+        <button type="button" class="  btnguardarDisabledDNP" disabled>
+            GUARDAR
+        </button>
+    </span>
+
+    <br />-->
+
+    <div class="" style="height:20px">
+    </div>
+
+    <table class="TableDNP">
+        <thead>
+            <tr>
+                <th class="columAcc"></th>
+                <th class="textLeftDNP">Código/Estado</th>
+                <th class="textLeftDNP">Crédito</th>
+                <th class="textLeftDNP">Entidad</th>
+                <th class="textRightDNP">Monto $</th>
+                <th class="textRightDNP">Vigencia</th>
+                <th class="textLeftDNP">Tipo</th>
+                <th class="columAcc"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="credito in vm.listaCreditos">
+                <td></td>
+                <td>{{credito.Codigo}}/{{credito.NombreEstadoCredito}}</td>
+                <td>{{credito.NombreCredito}}</td>
+                <td>{{credito.Entidad}}</td>
+                <td class="textRightDNP">{{credito.Monto | number:2}}</td>
+                <td class="textRightDNP">{{credito.Vigencia}}</td>
+                <td>{{credito.TipoCredito}}</td>
+                <td></td>
+            </tr>
+            <!--<tr>
+                <td></td>
+                <td class="textRightDNP">33699</td>
+                <td>El trozo de texto estándar de Lorem Ipsum usado desde el año 1500 es reproducido debajo para aquellos interesados. </td>
+                <td></td>
+            </tr>-->
+
+        </tbody>
+        <!--<tfoot>
+            <tr>
+                <td></td>
+                <td class="textRightDNP">Sum</td>
+                <td>$180</td>
+            </tr>
+        </tfoot>-->
+    </table>
+
+
+    <div class="row">
+        <div class="col-md-12 DetacolumnDNP">
+            <span>
+                Archivo plantilla carga masiva <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg">
+            </span>
+            <button type="button" class="btn btn-link btn-md buttonhiperDNP" ng-click="vm.descargarPlantila()">
+                DESCARGAR PLANTILLA
+            </button>
+        </div>
+    </div>
+
+    <div class="row" ng-if="vm.MostrarErrores == true">
+
+        <div class="col-md-12 DetacolumnDNP">
+            <span style="color:red">
+                Errores carga masiva <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg">
+            </span>
+            <button type="button" class="btn btn-link btn-md buttonhiperDNP" ng-click="vm.exportarCreditoCargaMasivaExcelErrores()">
+                DESCARGAR ARCHIVO DE ERRORES
+            </button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8">
+            <div class="divpanelcargarchivoDNP" style="">
+
+                <button class="btncargarch" type="button" uib-tooltip="Editar" ng-click="vm.adjuntarArchivo()">
+                    EXAMINAR
+                </button>
+                <input type="file" style="display:none" id="filecreditoCargaMasiva" name='filescreditoCargaMasiva[]' onchange="angular.element(this).scope().filecreditoCargaMasivaNameChanged(this)" accept=".xlsx, .xls, .csv" multiple />
+                <input type="search" style="display:none" id="creditoCargaMasivanombrearchivo" ng-model="vm.nombrearchivo" class="form-control InputSearchDNP " placeholder="" ng-change="ChangeCreditoCargaMasivaSet()">
+                <span>{{vm.nombrearchivo}}</span>
+                <button class="btncancearch" type="button" uib-tooltip="Cancelar" ng-click="vm.limpiarArchivo()">
+                    X
+                </button>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <span class="buttonbar pull-right">
+                <button id="btnCreditoCargaMasivaValidarArchivo" type="button" class="btn btnguardarDNP" tooltip-placement="top" uib-tooltip="Editar" tabindex="0" ng-click="vm.validarArchivo()">
+                    VALIDAR
+                </button>
+                <button id="btnCreditoCargaMasivaLimpiarArchivo" type="button" class="btn btnguardarDNP" tooltip-placement="top" uib-tooltip="Cancelar" tabindex="0" ng-click="vm.limpiarArchivo()">
+                    CANCELAR
+                </button>
+                <button id="btnCreditoCargaMasivaArchivoSeleccionado" class="btn btnguardarDNP" type="button" tooltip-placement="top" uib-tooltip="Guardar" tabindex="0" ng-click="vm.RegistrarCargaMasivaCreditos()">
+                    CARGAR
+                </button>
+            </span>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 DetacolumnDNP">
+            <span class="detapregun">
+                Nota:
+            </span>
+            <span class="notapregun">
+                Los datos cargados previamente en las entidades se reescribiran si se realiza una carga masiva
+            </span>
+        </div>
+    </div>
+</div>

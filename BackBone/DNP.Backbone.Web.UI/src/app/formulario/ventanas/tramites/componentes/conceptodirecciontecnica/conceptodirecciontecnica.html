@@ -1,0 +1,74 @@
+﻿<div class="col-md-12" ng-init="vm.init();">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="titlebar">
+                <span>Concepto Técnico</span>
+            </div>
+        </div>
+    </div>
+    <form id="preguntasLiderForm" name="preguntasLiderForm" novalidate>
+        <div style="min-height:600px;overflow:scroll;">
+            <div class="row" style="width:100%;">
+                <div class="form-group">
+                    <div ng-repeat="pregunta in vm.ConceptoDireccionTecnicaTramite">
+                        <div class="row">
+                            <div class="col-md-1">
+                                &nbsp;
+                            </div>
+                            <div class="col-md-7">
+                                <span class="uLabelDetalle">{{pregunta.Pregunta}}</span>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="col-md-2 form-check" ng-repeat="opciones in pregunta.OpcionesRespuesta">
+                                    <input type="radio" ng-model="pregunta.Respuesta" name="radio{{pregunta.PreguntaId}}"  value="{{opciones.OpcionId}}"> {{opciones.ValorOpcion}}
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                &nbsp;
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1">
+                            &nbsp;
+                        </div>
+                        <div class="col-md-1">
+                            <span class="uLabelDetalle">Concepto</span>
+                        </div>
+                        <div class="col-md-9">
+                            <p>
+                                <textarea
+                                          id="observacion" 
+                                          name="observacion"
+                                          placeholder="(Exponer argumentos que sustentan la respuesta seleccionada)" 
+                                          ng-model="vm.ConceptoDireccionTecnicaTramite[0].ObservacionPregunta" 
+                                          ng-value="vm.ConceptoDireccionTecnicaTramite[0].ObservacionPregunta" 
+                                          ng-required="commentBox.textRequired" 
+                                          cols="80" 
+                                          rows="10"
+                                          minlength="1"
+                                          maxlength="1000"
+                                          class="form-control ">
+                                </textarea>
+                            </p>
+                        </div>
+                        <div class="col-md-1">
+                            &nbsp;
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            &nbsp;
+                        </div>
+                        <div class="col-md-4" style="text-align:left">
+                            <button id="btnEnviar" class="btn btn-default btn-md" type="submit" ng-click="vm.GuardarPreguntasConceptoDireccionTecnica(vm.ConceptoDireccionTecnicaTramite)">Aceptar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

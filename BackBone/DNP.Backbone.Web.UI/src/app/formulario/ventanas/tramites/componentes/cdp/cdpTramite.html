@@ -1,0 +1,83 @@
+﻿<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/danialfarid-angular-file-upload/12.2.13/ng-file-upload.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.5/xlsx.full.min.js"></script>
+
+<div class="row" ng-init="vm.inicializar()">
+    <div class="col-md-12  form-group" style="padding-bottom:1em;text-align:end;">
+        <span class="buttonbar ">
+
+            <button type="button" class="btn btn-default btn-md btnFiltroHeader" tooltip-placement="top" uib-tooltip="Guardar modificación" ng-click="vm.actualizarCDP()" tabindex="0" ng-show="vm.seleccionProyectos">
+                Guardar modificación
+            </button>
+        </span>
+    </div>
+    <div class="col-md-12 grid-proyectos " style="padding-top: 2em;">
+        <div ui-grid="vm.gridCDPGR" ng-style="vm.getTableHeightCDPGR()"></div>
+    </div>
+    <div class="col-md-12  form-group" style="padding-bottom:1em;text-align:end;">
+        <span class="buttonbar ">
+
+            <button type="button" class="btn btn-default btn-md btnFiltroHeader" tooltip-placement="top" uib-tooltip="Agregar CDP" ng-click="vm.addFilaCDP()" tabindex="0" ng-show="vm.seleccionProyectos">
+                +
+            </button>
+        </span>
+    </div>
+
+
+
+    <div class="col-md-12  form-group">
+        <p style="display: grid; text-align: left; margin-top: 2em;">
+            <span style="font-weight:400;">
+                Para realizar carga masiva descargue la plantilla en Excel, diligencie los datos sin editar el formato y guarde. Cargue nuevamente la plantilla, valídela y adiciónela. La carga se reflejará en la tabla junto con otras cargas individuales o masivas que haya incluido.
+            </span>
+            <br />
+            <span style="font-weight:400;">
+                Para los valores de las celdas tipo número utilice el formato "General" en el Excel y punto (.) como separador de miles. &nbsp;&nbsp;&nbsp;
+                <button type="button" class="btn btn-default btncol" ng-click="vm.exportExcel()"><span class="glyphicon glyphicon-download-alt">&nbsp;</span>Descargar plantilla</button>
+            </span>
+        </p>
+    </div>
+    <div class="col-md-12  form-group">
+        <p style="display: grid; text-align: left; margin-top: 2em;margin-bottom:1em;">
+            <span style="font-weight:400;">
+                Tipo y tamaño de archivo permitido: Excel, hasta 2MB
+            </span>
+        </p>
+    </div>
+    <div class="col-md-12  form-group">
+        <div class="col-md-8  file-drop-zone" file-dropzone files-to-upload="files" valida-nombre-archivo="validaNombreArchivo" data="nombreArchivo">
+            Drop Files Here
+            <div ng-repeat="file in files"><span>Nombre archivo:</span><span class="uLabelDetalle">{{file.nombreArchivo}}</span></div>
+
+        </div>
+
+        <div class="col-md-4"></div>
+    </div>
+
+
+    <div class="col-md-12  form-group" style="padding-bottom:1em;">
+        <div class="col-md-2">
+            <span class="buttonbar pull-left">
+                <button type="button" class="btn btn-default btn-md btnFiltroHeader" tooltip-placement="top" ng-click="vm.limpiarArchivo()" uib-tooltip="Eliminar archivo de caja" tabindex="0" ng-show="vm.seleccionProyectos">
+                    Limpiar
+                </button>
+
+            </span>
+        </div>
+        <div class="col-md-3">
+            <div class="upload-btn-wrapper pull-left">
+                <button class="btn btn-default btn-md btnFiltroHeader" ng-show="vm.seleccionProyectos">Seleccionar un archivo</button>
+                <input type="file" onchange="angular.element(this).scope().SelectFile(event)" file-model-no-preview="data.file" id="control" ng-show="vm.seleccionProyectos" />
+            </div>
+        </div>
+        <div class="col-md-3">
+            <span class="buttonbar pull-left">
+                <button type="button" class="btn btn-default btn-md btnFiltroHeader" tooltip-placement="top" ng-click="vm.archivoSeleccionado()" uib-tooltip="Procesar archivo" tabindex="0" ng-show="vm.seleccionProyectos">
+                    Agregar datos a Tabla
+                </button>
+
+            </span>
+        </div>
+        <div class="col-md-4">
+        </div>
+    </div>
+</div>

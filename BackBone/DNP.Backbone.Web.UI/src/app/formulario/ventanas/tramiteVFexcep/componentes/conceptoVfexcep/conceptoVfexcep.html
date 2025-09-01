@@ -1,0 +1,37 @@
+﻿
+<div ng-init="vm.init();">
+    <div class="ui-accordion-container " id="accordion-solicitarconceptoelaborarconcep">
+        <div class="alert panel-heading row ui-accordion-header">
+            <button type="button" ng-disabled="vm.conceptoDeshabilitado" data-toggle="collapse" data-target="#solicitarconceptoelaborarconcep" ng-click="vm.changeArrow('solicitarconceptoelaborarconcep')">
+                <span class="d-inline-block" id="alert-solicitarconceptodatosiniciales"></span>
+                <span id="name-capitulo-solicitarconceptoelaborarconcep"></span>
+                <span class="hidden" id="id-capitulo-solicitarconceptoelaborarconcep"></span>
+                <span class="hidden" id="id-capitulo-solicitarconceptodatosiniciales"></span>
+                <span class="hidden" id="id-capitulo-solicitarconceptocuerpo"></span>
+                <span class="hidden" id="id-capitulo-solicitarconceptodatosdespedida"></span>
+                <span id="arrow-solicitarconceptoelaborarconcep" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#solicitarconceptoelaborarconcep"></span>
+            </button>
+        </div>
+        <div class="collapse" id="solicitarconceptoelaborarconcep">
+            <div class="row m-0 mb-3">
+                <br>
+                <div class="col-md-12 ">
+                    <elaborar-concepto-vfexcp tipotramiteid="{{vm.tipotramiteid}}"
+                                         tramiteid="{{vm.tramiteid}}"
+                                         nivel="{{vm.nivel}}"
+                                         rol="{{vm.rol}}"
+                                         section="{{vm.section}}"
+                                         nombrecomponentepaso="{{vm.nombreComponenteHijo}}"
+                                         rolanalista ="{{vm.rolAnalista}}"
+                                         guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                         notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                         notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)">
+                    </elaborar-concepto-vfexcp>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+

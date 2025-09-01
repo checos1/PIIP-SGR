@@ -1,0 +1,26 @@
+﻿<section>
+	<div class="container-fluid inbox" ng-init="vm.init();">
+		<div class="tab-content">
+			<div class="ui-accordion-container hidden" id="accordion-desagregaredtdesagregarcap">
+				<div class="alert panel-heading row ui-accordion-header">
+					<button type="button" data-toggle="collapse" data-target="#desagregaredtdesagregarcap-1" ng-click="vm.changeArrow('desagregaredtdesagregarcap-1')">
+						<span class="d-inline-block" id="alert-desagregaredtdesagregarcap-1"></span>
+						<span id="name-capitulo-desagregaredtdesagregarcap"></span>
+						<span class="hidden" id="id-capitulo-desagregaredtdesagregarcap"></span>
+						<span id="arrow-desagregaredtdesagregarcap-1" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#desagregaredtdesagregarcap-1"></span>
+					</button>
+				</div>
+				<div class="collapse" id="desagregaredtdesagregarcap-1">
+					<div class="row m-0 mb-3">
+						<desagregar-edt-cap bpin="{{vm.globalVariables.bpin}}"
+											guardadoevent="vm.guardadoevent(nombreComponenteHijo)"
+											notificacioncambios="vm.notificacionCambiosCapitulosExternos(handler,nombreComponente)" 
+											notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+											notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)">
+						</desagregar-edt-cap>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

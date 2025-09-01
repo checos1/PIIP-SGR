@@ -1,0 +1,29 @@
+﻿<section>
+    <div class="container-fluid inbox" ng-init="vm.init();">
+        <div class="tab-content">
+            <div class="row" style="margin-left: 0px; margin-right: 0px;padding-bottom:1rem">
+                <div class="alert panel-heading row ui-accordion-header" style="">
+
+                    <button class="button" type="button" data-toggle="collapse" data-target="#seleccionarProyecto" ng-click="vm.changeArrow('seleccionarProyecto')">
+                        <span class="d-inline-block" id="alert-asociarproyectoseleccionproyec"></span> Selección del Proyecto
+                        <span class="hidden" id="id-capitulo-asociarproyectoseleccionproyec"></span>
+                        <span id="arrow-seleccionarProyecto" class="glyphicon glyphicon-chevron-down pull-right" data-toggle="collapse" data-target="#seleccionarProyecto"></span>
+                    </button>
+
+                </div>
+                <div class="collapse" id="seleccionarProyecto" style="padding-right: 15px; padding-left: 0px; margin-left: -15px;">
+                    <div class="row" style="margin-left:20px">
+                        <seleccion-proyectosal tramiteid="{{vm.tramiteid}}"
+                                               guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                               notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                               notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"
+                                               callback="vm.deshabilitarBotonDevolverAsociarProyectoVF()">
+
+                        </seleccion-proyectosal>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>

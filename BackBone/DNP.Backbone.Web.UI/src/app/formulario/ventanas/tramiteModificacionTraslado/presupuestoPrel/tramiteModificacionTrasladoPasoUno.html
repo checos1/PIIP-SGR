@@ -1,0 +1,39 @@
+﻿<section class="ventana-ajsutes mt-4" >
+    <div class="row m-0" ng-init="vm.initProgramacion()">
+        <div class="form-group">
+            <div class="tab-content">
+                <div class="tab-pane active cont col-md-12 p-0" id="dproyecto">
+                    <asociar-proyecto-tr tipotramiteid="{{vm.tramiteDetail.tipoTramiteId}}"
+                                         tramiteid="{{vm.tramiteDetail.tramiteId}}"
+                                         deshabilitar="{{vm.deshabilitar}}"
+                                         rolanalista="{{vm.rolAnalista}}"
+                                         actualizacomponentes="vm.actualizacomponentes"
+                                         callback="vm.notificarGuardado()"
+                                         modificodatos="vm.modificoDatos"
+                                         guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                         notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                         notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)"
+                                         notificacioncambios="vm.notificacionCambiosAjustes(handler, nombreComponente)">
+
+                    </asociar-proyecto-tr>
+                </div>
+                <div class="tab-pane  cont col-md-12 p-0" id="dinformacionpresupuestal">
+                    <informacion-presupuestal-tr tipotramiteid="{{vm.tramiteDetail.tipoTramiteId}}"
+                                                 tramiteid="{{vm.tramiteDetail.tramiteId}}"
+                                                 actualizacomponentes="{{vm.actualizacomponentes}}"
+                                                 rolanalista="{{vm.rolAnalista}}"
+                                                 deshabilitar="{{vm.deshabilitar}}"
+                                                 callback="vm.notificarGuardado()"
+                                                 section="Traslado Presupuesto Paso1"
+                                                 modificodatos="vm.modificoDatos"
+                                                 guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                                 notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                                 notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente, handlerCapitulos)"
+                                                 notificacioncambios="vm.notificacionCambios(handler, nombreComponente)">
+                    </informacion-presupuestal-tr>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>

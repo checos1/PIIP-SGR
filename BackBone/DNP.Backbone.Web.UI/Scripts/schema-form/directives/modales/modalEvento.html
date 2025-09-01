@@ -1,0 +1,97 @@
+﻿
+<div id="ModalEvento" class="modal-save config-wbs modal-dashboard modal-class-popup">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="vm.cancelar()">
+            ×
+        </button>
+    </div>
+
+    <div class="modal-body p-1">
+        <div class="my-n5 row">
+            <div class="col-md-12 p-0">
+                <form class="form-horizontal" ng-if="!vm.form" name="vm.FormCondicion" ng-submit="vm.adicionarEvento(vm.FormCondicion.$valid)" novalidate>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <br />
+                            <div ng-if="vm.url" class="div-iframe">
+                                <iframe class="iframe-backbone" frameborder="0" allowfullscreen ng-src="{{ vm.url }}" title="Evento Botón Custom" sandbox="allow-same-origin allow-scripts"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div ng-if="vm.form" class="previsualizar-form">
+
+                    <div id="encabezadoPreview" class="container-fluid wbs encabezado-preview" ng-if="vm.formEncabezado !== null">
+                        <div class="panel-group" id="accordion">
+                            <div class="panel panel-default min-width24">
+                                <div class="panel-default wbs">
+
+                                    <div class="panel-title">
+                                        <button class="accordian-button" ng-click="vm.encabezadoColapsado = !vm.encabezadoColapsado"
+                                                ng-class="{ 'collapsed' : !vm.encabezadoColapsado }">
+                                            <div class="accordian-arrow">
+                                                <i class="icon-less" aria-hidden="true"></i>
+                                                <i class="icon-add" aria-hidden="true"></i>
+                                            </div>
+                                        </button>
+                                        <span class="label-value bpin ng-binding" tooltip-placement="" uib-tooltip=""><b>ENCABEZADO</b> </span>
+                                    </div>
+                                    <div class="panel-collapse abrir header-form" ng-class="{ 'collapse' : !vm.encabezadoColapsado }">
+                                        <form name="formularioEncabezado"
+                                              sf-schema="vm.schemaEncabezado"
+                                              sf-form="vm.formEncabezado"
+                                              sf-model="vm.modelEncabezado"></form>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="cuerpoPreview" class="body-form">
+                        <div class="container-form-shadow">
+                            <form name="formulario"
+                                  sf-schema="vm.schema"
+                                  sf-form="vm.form"
+                                  sf-model="vm.model"></form>
+                        </div>
+                    </div>
+
+                    <div id="piePaginaPreview" class="footer-form" ng-if="vm.formPie !== null">
+                        <div>
+                            <form name="formularioPie"
+                                  sf-schema="vm.schemaPie"
+                                  sf-form="vm.formPie"
+                                  sf-model="vm.modelPie"></form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="pull-right top15">
+                    <button class="btn btn-primary" type="button" ng-click="vm.cancelar()">CERRAR</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function cerrarModal(retorno) {
+        $('#modal-componente').modal('toggle');
+		swal('', "Cuestionario guardado satisfactoriamente", 'success');
+        retorno();
+    }
+    window.addEventListener("message", function (event) {
+        if (event.data == "cerrarModal"); {
+            cerrarModal(function retorno() {
+                $('#modal-componente').modal('toggle');
+            });
+        }
+    });
+</script>

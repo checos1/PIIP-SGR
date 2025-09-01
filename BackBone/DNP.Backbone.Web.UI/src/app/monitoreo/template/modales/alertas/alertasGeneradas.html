@@ -1,0 +1,36 @@
+﻿<div id="modalCrearAlertaConfiguracion" class="container-fluid inbox alerta-container-form" ng-init="vm.init()">
+    <div class="header-modal-alerta text-right">
+        <button type="button" class="btn btn-sm btn-primary btnCloseModal" ng-click="vm.cerrar()">x</button>
+    </div>
+
+    <div class="container-modal-alerta-generadas">
+        <div class="titlebarmodal">
+            <span>ALERTAS </span>
+            <span class="buttonbar pull-right">
+            </span>
+        </div>
+        <div class="cuerpo-modal-alerta-generadas form-group clearfix">
+            <div class="items-alertas-generadas">
+                <div class="row" ng-repeat="alerta in vm.listaAlertas">
+                    <div class="col-md-12 alert" ng-class="vm.obtnerClassePorClassificacion(alerta.Classificacion)" role="alert">
+                        <p> {{ alerta.Mensaje }} </p>
+                    </div>
+                </div>
+                <div class="row" ng-if="!vm.listaAlertas.length && !vm.cargandoAlertas">
+                    <div class="col-md-12 alert" role="alert">
+                        <p>Este proyecto no tiene alertas</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer fixed">
+        <div class="row">
+            <div class="col-md-12 padding-right-off">
+                <button id="botonCerrar" type="button" ng-click="vm.cerrar()" tabindex="0" class="btn btn-sm btn-primary" uib-tooltip="Cerrar">Cerrar</button>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,83 @@
+﻿
+<div ng-init="vm.init();">
+    <form class="formCenter" id="generalesForm" name="generalesForm" novalidate>
+        <div style="padding-top:50px;">
+            <span class="buttonbar pull-right">
+                <button id="EditarG"
+                        type="button"
+                        class="btneditarDNP"
+                        tooltip-placement="top"
+                        uib-tooltip="Editar"
+                        tabindex="0"
+                        ng-click="vm.ActivarEditar()"
+                        ng-disabled="vm.disabled ">
+                    EDITAR
+                </button>
+                &nbsp;
+                <button id="GuardarG"
+                        type="submit"
+                        class="{{vm.activar ? 'btnguardarDisabledDNP' : 'btnguardarDNP'}}"
+                        tooltip-placement="top"
+                        uib-tooltip="Guardar"
+                        ng-click="vm.Guardar()"
+                        ng-disabled="vm.activar">
+                    GUARDAR
+                </button>
+            </span>
+        </div>
+        <div id="PRIPRIPRE" class="hidden mb-3 ml-5 errorSeccionInformacionGeneralViabilidad" style="text-align: left; font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans'; font-size: 12px; font-style: normal; color: #A80521;"></div>
+        <div class="row">
+            &nbsp;
+        </div>
+        <div class="row">
+            <div class="col-md-12" style="margin-bottom: 5px;">
+                <span class="labelQuestions" style="padding-left: 5px;">¿Decide priorizar el proyecto de inversión conforme la metodología de priorización correspondiente?*</span>
+            </div>
+        </div>
+        <div class="col-md-12" style="text-align: left;">
+            <div id="PreguntaObligatoria" class="hidden" style="text-align: left;">
+                <img class="" src="Img/u4630.svg">
+                <span class="messagealerttableDNP" style="text-align: left;font-family: 'Work Sans'; font-size: 14px; font-style: normal;">Campo obligatorio.</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-3 form-check" style="text-align: left; padding-left: 6px;">
+                    <input type="radio" id="radio1" ng-disabled="vm.activar" name="optradio" ng-model="vm.PriorizionProyectoDetalle.Priorizado" value="true" ng-value="true" ng-change="vm.solicitaConceptoChange()">
+                    <label for="radio1" style="padding-right: 78px;">
+                        Si
+                    </label>
+                    <input type="radio" id="radio2" ng-disabled="vm.activar" name="optradio" ng-model="vm.PriorizionProyectoDetalle.Priorizado" value="false" ng-value="false" ng-change="vm.solicitaConceptoChange()">
+                    <label for="radio2">
+                        No
+                    </label>
+                </div>
+            </div>
+        </div>
+        <!--Sesión Espacio Formulario-->
+        <div class="col-md-12">
+            <div class="col-md-6">
+                &nbsp;
+            </div>
+            <div class="col-md-6">
+                &nbsp;
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="col-md-6">
+                &nbsp;
+            </div>
+            <div class="col-md-6">
+                &nbsp;
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="col-md-6">
+                &nbsp;
+            </div>
+            <div class="col-md-6">
+                &nbsp;
+            </div>
+        </div>
+    </form>
+</div>

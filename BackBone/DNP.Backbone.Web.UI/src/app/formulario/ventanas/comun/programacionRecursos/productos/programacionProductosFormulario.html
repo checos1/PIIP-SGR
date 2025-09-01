@@ -1,0 +1,88 @@
+﻿<section>
+    <div class="container-fluid inbox" ng-init="vm.init();">
+        <div>
+            <div style="text-align: left;">
+                <h3 class="row" style="padding-left: 2rem; padding-right: 2rem; text-align: left; color: #004884">
+                    &nbsp;&nbsp;Listado de productos
+                    <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg" ng-click="vm.abrirTooltip()">
+                </h3>
+            </div>
+            <div class="tab-container col-md-12" style="width:100%;">
+                <span ng-if="vm.habilitaBotones" class="buttonbar pull-right">
+                    <button type="button" class="btneditarDNP" tooltip-placement="top" ng-click="vm.EAjCT ? vm.CancelarValores(productos) : vm.EditarValores(productos)" uib-tooltip="{{vm.EAjCT ? 'CANCELAR' : 'EDITAR'}}">
+                        {{vm.EAjCT ? 'CANCELAR' : 'EDITAR'}}
+                    </button>
+                    <button ng-disabled="!vm.EAjCT" type="button" class="{{vm.EAjCT ? 'btnguardarDNP' : 'btnguardarDisabledDNP'}}" tooltip-placement="top" uib-tooltip="Guardar" tabindex="0" ng-click="vm.GuardarValores(productos)">
+                        GUARDAR
+                    </button>
+                </span>
+                <div style="text-align: left; width: 100%">
+                    <div class="row col-md-12">
+                        <div class="alert panel-heading">
+                            <br />
+                            <div id="{{vm.nombreComponente}}-error1" class="hidden uMensajeError"></div>
+                            <div id="{{vm.nombreComponente}}-error2" class="hidden uMensajeError"></div>
+                            <div id="{{vm.nombreComponente}}-error3" class="hidden uMensajeError"></div>
+                            <div id="{{vm.nombreComponente}}-error4" class="hidden uMensajeError"></div>
+                            <br />
+                            <table class="TableDNP">
+                                <tbody ng-repeat="dataproductos in productos.Productos" ng-init="productosindex = $index">
+                                    <tr style="background-color: rgba(249, 252, 253, 1)">
+                                        <td class="columAcc" style="width:4%">
+                                            <span id="{{vm.nombreComponente}}-{{dataproductos.ProductCatalogId}}" class="hidden uMensajeError"></span>
+                                        </td>
+                                        <td colspan="3" class="textLeftDNP">
+                                            <span class="encabezadoTitulos">Producto: </span>
+                                            <span class="encabezadoInfo">{{dataproductos.NombreProducto}}</span>
+                                            <span class="encabezadoTitulos"> Indicador principal: </span>
+                                            <span class="encabezadoInfo"> {{dataproductos.indicador}} </span>
+                                            <span class="encabezadoTitulos">Unidad de  medida: </span>
+                                            <span class="encabezadoInfo">{{dataproductos.unidadMedida}}</span>
+                                        </td>
+                                        <td class="columAcc" style="width:4%"></td>
+                                    <tr>
+                                        <td rowspan="2" class="columAcc" style="width:4%"></td>
+                                        <td style="width:12%"><br /><input type="text" class="editReferenciaDNP" style="width: 100%; font-weight: bold; color: #004884; border: 0px solid rgba(0, 72, 132, 1) !important" disabled value="Meta" /></td>
+                                        <td style="text-align: right; width:40%"> <span class="encabezadoTitulos">En solicitud </span><br /><div class="blockReferenciaDNP">{{vm.ConvertirNumero(dataproductos.MetaSolicitada)}}</div></td>
+                                        <td ng-if="!vm.EAjCT" style="text-align: right; width:40%"> <span class="encabezadoTitulos">En programación </span><br /><div class="blockReferenciaDNP">{{vm.ConvertirNumero(dataproductos.MetaProgramada)}}</div></td>
+
+                                        <td ng-if="vm.EAjCT" class="textRightDNP">
+                                            <span class="encabezadoTitulos" style="text-align: right; width:40%">En programación </span><br />
+                                            <input id="input-ProgMeta" type="number" string-to-number min="0.00"
+                                                   ng-readonly="!vm.EAjCT"
+                                                   ng-keypress="vm.validateFormat($event)"
+                                                   ng-keyup="vm.validarTamanio($event)"
+                                                   ng-blur="vm.actualizaFila($event, productos,'MetaProgramada', productosindex)"
+                                                   ng-value="dataproductos.MetaProgramada"
+                                                   ng-model="productos.Productos[productosindex].MetaProgramada"
+                                                   required class="form-control editInputDNP" style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px; background-color:white" />
+                                        </td>
+                                        <td rowspan="2" class="columAcc" style="width:4%"></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width:12%"><input type="text" class="editReferenciaDNP" style="width: 100%; font-weight: bold; color: #004884; border: 0px solid rgba(0, 72, 132, 1) !important" disabled value="Recursos" /></td>
+                                        <td style="text-align: right; width:40%"> <div class="blockReferenciaDNP">{{vm.ConvertirNumero(dataproductos.RecursoSolicitado)}}</div></td>
+                                        <td ng-if="!vm.EAjCT" style="text-align: right; width:40%"> <div class="blockReferenciaDNP">{{vm.ConvertirNumero(dataproductos.RecursoProgramado)}}</div></td>
+
+                                        <td ng-if="vm.EAjCT" class="textRightDNP">
+                                            <input id="input-ProgRecurso" type="number" string-to-number min="0.00"
+                                                   ng-readonly="!vm.EAjCT"
+                                                   ng-keypress="vm.validateFormat($event)"
+                                                   ng-keyup="vm.validarTamanio($event)"
+                                                   ng-blur="vm.actualizaFila($event, productos,'RecursoProgramado', productosindex)"
+                                                   ng-value="dataproductos.RecursoProgramado"
+                                                   ng-model="productos.Productos[productosindex].RecursoProgramado"
+                                                   required class="form-control editInputDNP" style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px; background-color:white" />
+                                        </td>
+                                    </tr>
+                                    <tr style="height:40px"></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>

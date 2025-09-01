@@ -1,0 +1,268 @@
+﻿<div ng-init="vm.init();">
+    <div class="dashboard">
+
+        <div id="proyectos" class="project">
+            <div id="{{vm.nombreComponente}}-mensaje-error" style="padding-left: 0.5rem;" class="col-md-12 hidden uMensajeError"></div>
+
+            <!--Ejecutor Propuesto Asociado-->
+            <!--<div class="container-fluid">
+                <div class="col-md-14" style="padding-left: 0; text-align: left;">
+                    <span class="TituloPincFormularioDNP" style="padding-left:0rem;">Interventor(es) propuesto(s) asociado(s)</span>
+                </div>
+
+                <table class="TableDNP">
+                    <thead>
+                        <tr>
+                            <th class="textRightDNP" style="display:none;">Id</th>
+                            <th class="textRightDNP">Nit</th>
+                            <th class="textLeftDNP">Entidad</th>
+                            <th class="textLeftDNP">Tipo Entidad</th>-->
+                            <!--<th class="columAcc"></th>-->
+                        <!--</tr>
+                    </thead>
+                    <tbody class="table">
+                        <tr ng-repeat="objInterventorP in vm.listaIinterventorAsociadosP" style="width:99%" ng-init="objInterventorPIndex = $index">
+                            <td class="textLeftDNP" style="display:none;"><span>{{objInterventorP.Id}} </span></td>
+                            <td class="textLeftDNP"><span>{{objInterventorP.NitEjecutor}} </span></td>
+                            <td class="textLeftDNP"><span>{{objInterventorP.NombreEntidad}}</span></td>
+                            <td class="textLeftDNP"><span>{{objInterventorP.TipoEntidad}}</span></td>-->
+                            <!--<td>
+                        <button class="btn" id="btnEliminar" style="padding-top: 1px; background: #fff;" uib-tooltip="Eliminar asociación" ng-disabled="vm.disabled" ng-click="vm.eliminarEjecutor(objEjecutor)">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="28" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                                <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                            </svg>
+                        </button>
+                    </td>-->
+                        <!--</tr>
+                    </tbody>
+                </table>
+            </div>-->
+
+            <div style="padding-top:50px;">
+                <span class="buttonbar pull-right">
+                    <button id="EditarI"
+                            type="button"
+                            class="btneditarDNP"
+                            tooltip-placement="top"
+                            uib-tooltip="Editar"
+                            tabindex="0"
+                            ng-click="vm.ActivarEditar()"
+                            ng-disabled="vm.disabled">
+                        EDITAR
+                    </button>
+                    &nbsp;
+                    <button id="GuardarI"
+                            type="submit"
+                            class="{{(vm.activar && !vm.eliminacionPendiente) ? 'btnguardarDisabledDNP' : 'btnguardarDNP'}}"
+                            tooltip-placement="top"
+                            uib-tooltip="Guardar"
+                            ng-click="vm.Guardar()"
+                            ng-disabled="vm.activar && !vm.eliminacionPendiente">
+                        GUARDAR
+                    </button>
+                </span>
+            </div>
+
+            <div style="max-width: 85%; margin: 0 auto;">
+            <div class="row">
+                &nbsp;
+            </div>
+            <div class="row">
+                <div class="col-md-12" style="margin-bottom: 5px;">
+                    <span class="d-inline-block errorpregDatosPre2 ml-4" id="alert-sgrejecutordesignacionentinterventorregistrodesignacioninterventor"></span>
+                    <span class="messagealerttableDNP" style="padding-left: 5px; display:flex;" id="APRINTsgrejecutordesignacionentinterventorregistrodesignacioninterventor"></span>
+                    <span class="labelQuestions" style="padding-left: 5px;">1.¿El proyecto se aprobó con interventoría?*</span>
+                </div>
+            </div>
+            <div class="col-md-12" style="text-align: left;">
+                <div id="PreguntaObligatoria1" class="hidden" style="text-align: left;">
+                    <img class="" src="Img/u4630.svg">
+                    <span class="messagealerttableDNP" style="text-align: left;font-family: 'Work Sans'; font-size: 14px; font-style: normal;">
+                        Campo obligatorio.
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-3 form-check" style="text-align: left; padding-left: 6px;">
+                        <input type="radio" id="radio1" ng-disabled="vm.activar || (vm.listaInterventorAsociadosD && vm.listaInterventorAsociadosD.length > 0)" name="optradio" ng-model="vm.AprobacionInterventoria" 
+                               ng-value="true" value = "true" ng-change="vm.SolicitaAprobacionChange()">
+                        <label for="radio1" style="padding-right: 78px;">
+                            Si
+                        </label>
+                        <input type="radio" id="radio2" ng-disabled="vm.activar || (vm.listaInterventorAsociadosD && vm.listaInterventorAsociadosD.length > 0)" name="optradio" ng-model="vm.AprobacionInterventoria" 
+                               ng-value="false" value = "false" ng-change="vm.SolicitaAprobacionChange()">
+                        <label for="radio2">
+                            No
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                &nbsp;
+            </div>
+            <div class="row">
+                <div class="col-md-12" style="margin-bottom: 5px;">
+                    <span class="labelQuestions" style="padding-left: 5px;">¿La entidad que contratará la interventoría es la misma entidad ejecutora?</span>
+                </div>
+            </div>
+            <div class="col-md-12" style="text-align: left;">
+                <div id="PreguntaObligatoria2" class="hidden" style="text-align: left;">
+                    <img class="" src="Img/u4630.svg">
+                    <span class="messagealerttableDNP" style="text-align: left;font-family: 'Work Sans'; font-size: 14px; font-style: normal;">
+                        Campo obligatorio.
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-3 form-check" style="text-align: left; padding-left: 6px;">
+                        <input type="radio" id="radio3" ng-disabled="vm.activar2 || (vm.listaInterventorAsociadosD && vm.listaInterventorAsociadosD.length > 0)" name="optradio1" ng-model="vm.EntidadInterventoria" 
+                               ng-value="true" value = "true" ng-change="vm.EntidadInterventoraChange()">
+                        <label for="radio3" style="padding-right: 78px;">
+                            Si
+                        </label>
+                        <input type="radio" id="radio4" ng-disabled="vm.activar2 || (vm.listaInterventorAsociadosD && vm.listaInterventorAsociadosD.length > 0)" name="optradio1" ng-model="vm.EntidadInterventoria" 
+                               ng-value="false" value = "false" ng-change="vm.EntidadInterventoraChange()">
+                        <label for="radio4">
+                            No
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <!--inicio filtro-->
+            <br />
+            <div class="row panelbuscadorDNP">
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="labelbuscadorDNP"><span>NIT</span></div>
+                        <input type="text" ng-model="vm.interventorFiltro.nitI" name="txtNITI" id="txtNitI" ng-disabled="vm.activar2" />
+                    </div>
+                    <div class="col-md-4 SelectBuscadorDNP">
+                        <div class="labelbuscadorDNP"> <span>Tipo Entidad</span></div>
+                        <select class="form-control selectDNP" chosen options="vm.listaTipoEntidadesI" ng-model="vm.interventorFiltro.tipoEntidadIdI"
+                                ng-options="x.Id as x.Name for x in vm.listaTipoEntidadesI" name="ddlTipoEntidadI" id="ddlTipoEntidadI" ng-disabled="vm.activar2" no-results-text="No hay ningún resultado para su búsqueda"
+                                placeholder-text-single="Seleccione..." ng-change="vm.changeEntidad()">
+                            <option value="0" selected>Seleccione...</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4 SelectBuscadorDNP">
+                        <div class="labelbuscadorDNP"> <span>Entidad</span></div>
+                        <select class="form-control selectDNP" chosen options="vm.listaFiltroEntidadesI" ng-model="vm.interventorFiltro.entidadIdI"
+                                ng-options="x.IdEjecutor as x.Name for x in vm.listaFiltroEntidadesI" name="ddlEntidadI" id="ddlEntidadI" ng-disabled="vm.activar2" no-results-text="No hay ningún resultado para su búsqueda"
+                                placeholder-text-single="Seleccione...">
+                            <option value="0" selected>Seleccione...</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 pull-left text-left" ng-if="vm.BusquedaRealizada">
+                        <span class="spanresultadobusquedaDNP pull-left" ng-if="vm.cantidadDeProyectos > 0">
+
+                        </span>
+                        <span class="hidden" style="text-align: left; font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans'; font-size: 12px; font-style: normal; color: #A80521;" ng-if="vm.cantidadDeProyectos == 0">
+                            No se encontraron resultados.
+                        </span>
+                    </div>
+                    <div class="col-md-6 pull-right text-right">
+                        <span class="pull-right">
+                            <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Limpiar" ng-click="vm.restablecerBusqueda()">
+                                <span> <img id="icoLimpiarBusqueda" class="icoBusquedasDNP" src="Img/IcolimpiarBusqD.svg"></span>
+                            </button>
+                            <button type="button" ng-disabled="vm.activar2" ng-show="vm.showBtn" class=" btnBuscarDNP " tooltip-class="customClass" uib-tooltip="Buscar" ng-click="vm.buscar()">
+                                BUSCAR
+                            </button>
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+            <br />
+            <!--Inicio Nueva Grilla-->
+            <div class="container-fluid" ng-if="vm.BusquedaRealizada">
+                <div class="col-md-10" style="padding-left: 0; text-align: left;">
+                    <span class="uLabelCampoNegro" style="padding-left:0rem;">Se encontraron ({{vm.cantidadDeProyectos}}) resultados.</span>
+                </div>
+                <div class="col-md-2" style="padding-top: 2rem; text-align: right;">
+                    <span class="uLabelCampoNegro" style="padding-left:0rem;">Total:&nbsp;&nbsp;{{vm.totalRegistros}} </span>
+                </div>
+
+                <table class="TableDNP" id="tbtEjecutores">
+                    <thead>
+                        <tr>
+                            <th class="textRightDNP" style="display:none;">Id</th>
+                            <th class="textRightDNP">Nit</th>
+                            <th class="textLeftDNP">Tipo Entidad</th>
+                            <th class="textLeftDNP">Entidad</th>
+                            <th class="columAcc"></th>
+
+                        </tr>
+                    </thead>
+                    <tbody class="table">
+                        <tr ng-repeat="objEjecutorI in vm.listaEjecutoresI" style="width:99%" ng-init="objEjecutorIIndex = $index">
+                            <td class="textLeftDNP" style="display:none;"><span>{{objEjecutorI.Id}} </span></td>
+                            <td class="textLeftDNP"><span>{{objEjecutorI.Nit}} </span></td>
+                            <td class="textLeftDNP"><span style="color:#36C;">{{objEjecutorI.TipoEntidad}}</span></td>
+                            <td class="textLeftDNP"><span style="color:#36C;">{{objEjecutorI.Entidad}}</span></td>
+                            <td><input type="radio" id="idEjecutor" name="radio" value="{{objEjecutorI.Id}}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-12" style="padding-top: 4rem;" ng-if="vm.BusquedaRealizada">
+                <span class="buttonbar pull-right" style="padding-top: 2rem;">
+                    <a ng-click="vm.onClickCancelar()" style="padding-right:15px;font-weight:600" ng-disabled="vm.dsblBtn" ng-show="vm.mostrarBt">
+                        <span class="uLabelCampo_fp1" style="text-decoration: underline;color: #36C" id="btnCancelar">CANCELAR</span>
+                    </a>
+                    <a ng-disabled="vm.dsblBtn" ng-click="vm.onClickAsociar()" style="font-weight:600" ng-show="vm.showBtn">
+                        <span class="uLabelCampo_fp1" style="text-decoration: underline;color: #36C" id="btnAsociarI">ASOCIAR</span>
+                    </a>
+                </span>
+            </div>
+            <!--Fin Nueva Grilla-->
+            </div>
+            
+            <br />
+            <!--Ejecutor Designado Asociado-->
+            <div class="container-fluid">
+                <div class="col-md-10" style="padding-left: 0; text-align: left;">
+                    <span class="uLabelCampoNegro" style="padding-left:0rem;">Interventor(es) designado(s) asociado(s)</span>
+                </div>
+
+                <table class="TableDNP">
+                    <thead>
+                        <tr>
+                            <th class="textRightDNP" style="display:none;">Id</th>
+                            <th class="textRightDNP">Nit</th>
+                            <th class="textLeftDNP">Entidad</th>
+                            <th class="textLeftDNP">Tipo Entidad</th>
+                            <th class="columAcc"></th>
+
+                        </tr>
+                    </thead>
+                    <tbody class="table">
+                        <tr ng-repeat="objInterventorD in vm.listaInterventorAsociadosD" style="width:99%" ng-init="objInterventorDIndex = $index">
+                            <td class="textLeftDNP" style="display:none;"><span>{{objInterventorD.Id}} </span></td>
+                            <td class="textLeftDNP"><span>{{objInterventorD.NitEjecutor}} </span></td>
+                            <td class="textLeftDNP"><span>{{objInterventorD.NombreEntidad}}</span></td>
+                            <td class="textLeftDNP"><span>{{objInterventorD.TipoEntidad}}</span></td>
+                            <td>
+                                <button class="btn" id="btnEliminarI" style="padding-top: 1px; background: #fff;" uib-tooltip="Eliminar asociación" ng-disabled="vm.activar" ng-click="vm.eliminarEjecutor(objInterventorD)">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="28" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                                        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                                    </svg>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <link href="/Content/ui-gridConsolaDNP.css" rel="stylesheet" />
+</div>

@@ -1,0 +1,95 @@
+﻿<div style="margin-left:29px;" class="container-fluid inbox" ng-init="vm.init();">
+    <div>
+        <div class="row" style="color: #004884">
+            <h3 class="row" style="padding-left: 2rem; padding-right: 2rem; text-align: left; color: #004884">&nbsp;&nbsp;Proyectos asociados <img id="u1276_img" class="imgTituloAccion " src="Img/u1275.svg" ng-click="vm.abrirMensajeInformacion()"></h3>
+            <div id="IPF001-error" class="hidden uMensajeError"></div>
+            <div id="IPF002-error" class="hidden uMensajeError"></div>
+            <div id="IPF003-error" class="hidden uMensajeError"></div>
+            <div id="IPF004-error" class="hidden uMensajeError"></div>
+            <br />
+            <div ng-repeat="asociados in datos.ProyectosAsociados" ng-init="proyectosasociadosIndex = $index">
+                <div class="row">
+                    <div class="" style="padding: 0 !important; width: 99%;">
+                        <div class="alert panel-heading">
+                            <div class="card card-body pull-left  divAccordionDNP" style="max-height:280px;">
+                                <div class="line-clamp">
+                                    <p class="col-md-11" style="line-height: 1.1; margin-left: 55px">
+                                        <span class="NomItemAccordDNP">Código BPIN:</span>
+                                        <span class="InfoItemAccordDNP">{{asociados.CodigoBpin}}. </span>
+                                        <span class="NomItemAccordDNP">Nombre proyecto:</span>
+                                        <span class="InfoItemAccordDNP">{{asociados.NombreProyecto | limitTo: 80}} <span ng-if="asociados.NombreProyecto.length > 80">...</span>  <button ng-if="asociados.NombreProyecto.length > 80" type="button" class="btn btn-link btn-md buttonhiperDNP" tooltip-placement="top" uib-tooltip="ver más" tabindex="0" ng-click="vm.ObjetoVerMas(asociados)" data="{{asociados.NombreProyecto}}">Ver más</button>.</span>
+                                        <span class="NomItemAccordDNP">Entidad financiadora:</span>
+                                        <span class="InfoItemAccordDNP">{{asociados.EntidadFinanciadora}}.</span>
+                                        <span class="NomItemAccordDNP">Sector:</span>
+                                        <span class="InfoItemAccordDNP">{{asociados.NombreSector}}.</span>
+                                        <span class="NomItemAccordDNP">Tipo proyecto:</span>
+                                        <span class="InfoItemAccordDNP">{{asociados.TipoProyecto}}.</span>
+                                        <span class="NomItemAccordDNP">Código presupuestal:</span>
+                                        <span class="InfoItemAccordDNP">{{asociados.CodigoPresupuestal}}.</span>
+                                        <span class="NomItemAccordDNP">Vigencia inicial:</span>
+                                        <span class="InfoItemAccordDNP">{{asociados.VigenciaInicial}}.</span>
+                                        <span class="NomItemAccordDNP">Vigencia final:</span>
+                                        <span class="InfoItemAccordDNP">{{asociados.VigenciaFinal}}.</span>
+                                        <br />
+                                        <table class="col-md-11" style="margin-left: 55px;">
+                                            <thead>
+                                                <tr>
+                                                    <td class="textRightDNP" style="width: 5%;"></td>
+                                                    <td class="textRightDNP" style="width: 10%;">Recursos Distribuidos $</td>
+                                                    <td class="textRightDNP" style="width: 10%;">Recursos asignados $</td>
+                                                    <td class="textRightDNP" style="width: 10%;">Monto hacienda $</td>
+                                                    <td class="textRightDNP" style="width: 10%;">Recursos vigentes $</td>
+                                                    <td class="textRightDNP" style="width: 10%;">Vigencias futuras $</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Nación</td>
+                                                    <td><b><input type="text" class="textRightDNP form-control editInputDNP" style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: bold; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px" disabled value="{{vm.ConvertirNumero(asociados.TDistribucionCuotaNacion)}}" /></b></td>
+                                                    <td><b><input type="text" class="textRightDNP form-control editInputDNP" style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: bold; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px" disabled value="{{vm.ConvertirNumero(asociados.TRecursosAsignadosNacion)}}" /></b></td>
+                                                    <td><b><input type="text" class="textRightDNP form-control editInputDNP" style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: bold; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px" disabled value="{{vm.ConvertirNumero(asociados.TMontoHaciendaNacion)}}" /></b></td>
+                                                    <td><b><input type="text" class="textRightDNP form-control editInputDNP" style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: bold; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px" disabled value="{{vm.ConvertirNumero(asociados.TRecursosVigentesNacion)}}" /></b></td>
+                                                    <td><b><input type="text" class="textRightDNP form-control editInputDNP" style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: bold; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px" disabled value="{{vm.ConvertirNumero(asociados.TVigenciasFuturasNacion)}}" /></b></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Propios</td>
+                                                    <td><b><input type="text" class="textRightDNP form-control editInputDNP" style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: bold; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px" disabled value="{{vm.ConvertirNumero(asociados.TDistribucionCuotaPropios)}}" /></b></td>
+                                                    <td><b><input type="text" class="textRightDNP form-control editInputDNP" style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: bold; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px" disabled value="{{vm.ConvertirNumero(asociados.TRecursosAsignadosPropios)}}" /></b></td>
+                                                    <td><b><input type="text" class="textRightDNP form-control editInputDNP" style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: bold; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px" disabled value="{{vm.ConvertirNumero(asociados.TMontoHaciendaPropios)}}" /></b></td>
+                                                    <td><b><input type="text" class="textRightDNP form-control editInputDNP" style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: bold; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px" disabled value="{{vm.ConvertirNumero(asociados.TRecursosVigentesPropios)}}" /></b></td>
+                                                    <td><b><input type="text" class="textRightDNP form-control editInputDNP" style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: bold; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px" disabled value="{{vm.ConvertirNumero(asociados.TVigenciasFuturasPropios)}}" /></b></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </p>
+                                </div>
+                                <p class="panelbtnalertAcordnp col-md-11">
+                                    <span id="IPF001-{{asociados.TramiteProyectoId}}" class="hidden uMensajeError"></span>
+                                    <button class="btnaccion btnAccordionDNP" type="button" data-toggle="collapse" data-target="#asociados-{{proyectosasociadosIndex}}-{{asociados.ProyectoId}}" ng-click="vm.changeBotonAsociados(asociados)" data="{{asociados}}">
+                                        <img ng-show="asociados.LabelBoton == '+'" src="Img/btnMas.svg">
+                                        <img ng-show="asociados.LabelBoton == '-'" src="Img/btnMenos.svg">
+                                    </button>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapse" id="asociados-{{proyectosasociadosIndex}}-{{asociados.ProyectoId}}">
+                    <div class="LineaEncabezadodivDNP"></div>
+                    <h3 class="row tituloEncabezadodivDNP">
+                        Detalle de políticas
+                    </h3>
+                    <detalle-politica-formulario tramiteproyectoid="{{vm.TramiteProyectoId}}"
+                                                 proyectoid="{{asociados.ProyectoId}}"
+                                                 codigobpin="{{asociados.CodigoBpin}}"
+                                                 origen="{{vm.section}}"
+                                                 calendariopoliticastransversales="{{vm.calendariopoliticastransversales}}"
+                                                 modificardistribucion="vm.modificardistribucion"
+                                                 guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                                 callback="vm.callback()">
+                    </detalle-politica-formulario>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

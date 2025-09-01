@@ -1,0 +1,105 @@
+﻿<div id="notificaciones-mantenimiento" class="container-fluid" ng-init="vm.init();">
+    <div class="div-escopo">
+        <!-- #region breadcrumb -->
+        <nav class="breadcrumb">
+            <a href="/">
+                <span class="breadcrumb-item active">
+                    <i class="fa fa-home" aria-hidden="true"></i> Inicio
+                </span>
+            </a>
+            /
+            <a href="/Notificaciones/Mantenimiento">
+                <span class="breadcrumb-item">Mantenimiento de notificaciones</span>
+            </a>
+        </nav>
+        <!-- #endregion breadcrumb -->
+        <!-- #region Título e accíon -->
+        <div class="titulo-e-accion">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="titulo">
+                        <span>Mantenimiento de Notificaciones </span>
+                        <span class="button-bar">
+                            <a href="javascript:void(0)" class="btn btn-default btn-md btnFiltroHeader btnRedondo pr-4 pl-4" ng-click="vm.crearNotificacion()" tooltip-placement="auto" uib-tooltip="Crear Notificaciones">
+                                Crear Notificaciones
+                            </a>
+                            <a href="javascript:void(0)" class="btn btn-default btn-md btnFiltroHeader btnRedondo pr-4 pl-4" ng-click="vm.conmutadorFiltro()" tooltip-placement="auto" uib-tooltip="Filtro">
+                                Filtro
+                            </a>
+                            <a id="aDescargaPdf" href="" download target="_blank" class="btn btn-default btn-md btnFiltroHeader btnRedondo" ng-click="vm.aDescargaPdf_onClick($event, $event.target)" tooltip-placement="auto" uib-tooltip="Exportar PDF">
+                                PDF
+                            </a>
+                            <a id="aDescargaPdf" href="" download target="_blank" class="btn btn-default btn-md btnFiltroHeader btnRedondo" ng-click="vm.downloadExcel()" tooltip-placement="auto" uib-tooltip="Exportar XLS">
+                                XLS
+                            </a>
+                            <!--<a href="" download target="_blank" ng-click="vm.downloadExcel()" tooltip-placement="auto" uib-tooltip="Exportar XLS"><img src="/Img/btn/btnExportXLS.png" alt="XLS" /></a>-->
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- #endregion -->
+        <!-- #region Tabs -->
+        <div class="form-group clearfix filtro-sem-tabla">
+            
+            <div class="filtro" ng-if="vm.mostrarFiltro">
+                <div class="clearfix">
+                    <div class="row">
+                        <div class="col-md-10">
+                            <div class="col-md-3 ">
+                                <input type="text" ng-model="vm.filtro.NombreNotificacionFiltro" class="form-control" placeholder="Nombre notificacion" />
+                            </div>
+                            <div class="col-md-3 ">
+                                <!--<input type="text" ng-model="vm.filtro.FechaInicioFiltro" class="form-control" placeholder="Fecha inicio" />-->
+                                <div class="input-group">
+                                    <span class="input-group-btn" placeholder="Fecha Inicio">
+                                        <button class="btn btn-default" type="button"></button>
+                                    </span>
+                                    <input type="date" ng-model="vm.filtro.FechaInicioFiltro" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-3 ">
+                                <div class="input-group">
+                                    <span class="input-group-btn" placeholder="Fecha Inicio">
+                                        <button class="btn btn-default" type="button"></button>
+                                    </span>
+                                    <input type="date" ng-model="vm.filtro.FechaFinFiltro" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-3 ">
+                                <select name="select" ng-model="vm.filtro.TipoFiltro" class="form-control">
+                                    <option selected></option>
+                                    <option value="1" class="select-text-green">No Prioritario</option>
+                                    <option value="2" class="select-text-yellow">Prioritario</option>
+                                    <option value="3" class="select-text-red">Urgente</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-2 text-right">
+                            <button type="button" class="btn btn-filtro" ng-click="vm.filtrar()" tooltip-placement="auto" uib-tooltip="Buscar">Buscar</button>
+                            <button type="button" class="btn btn-filtro" ng-click="vm.limpiarCamposFiltro()" tooltip-placement="auto" uib-tooltip="Limpiar">Limpiar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--fim filtro-->
+        </div>
+        <!-- #endregion Tabs -->
+        <!-- #region Tabla -->
+        <div class="row">
+            <tabla-entidad opciones="vm.opciones"
+                           definicion-columna-datos="vm.columnDef"
+                           datos="vm.datos"
+                           accion1="vm.visualizarNotificacion($row)"
+                           accion2="vm.editarNotificacion($row)"
+                           accion3="vm.abrirModalEliminar($row)">
+            </tabla-entidad>
+        </div>
+        <!-- #endregion Tabla -->
+        <div class="row">
+            <button type="button" ng-if="vm.ExisteAccionesDevolver" class="btn btn-primary" ng-click="vm.seleccionarAccionDevolver()">Devolver anterior Paso</button>
+            <button type="button" class="btn btn-primary" ng-click="vm.guardarPrueba()">Ir Siguiente Proceso</button>
+        </div>
+    </div>
+</div>
+

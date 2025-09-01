@@ -1,0 +1,71 @@
+﻿<modal-dialog  txt-guardar="GUARDAR" cerrar="vm.cerrar" txt-cerrar="CANCELAR" guardar="vm.guardar" ng-init="vm.init()">
+	<form id="formAgregarLocalizacion" name="formAgregarLocalizacion">
+		<div class="titlebar marginb-15">
+			<span>Localización</span>
+		</div>
+		<div class="row">
+			<label for="entidad" class="form-label"><b>Los campos con asterisco(*) son obligatorios.</b></label>
+		</div>
+		<br />
+		<div class="row">
+			<div class="col-md-6">
+				<label for="entidad" class="form-label"><b>Departamento *</b></label>
+			</div>
+			<div class="col-md-6">
+				<select name="Departamento" class="form-control"
+						ng-options="Departamento as Departamento.Name for Departamento in vm.listaDepartamento track by Departamento.Name"
+						ng-model="vm.Departamento"
+						ng-required="true"
+						ng-change="vm.cambioDepartamento()"
+						tabindex="0">
+					<option value="" selected disabled>Seleccione Departamento</option>
+				</select>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<label for="entidad" class="form-label"><b>Municipio</b></label>
+			</div>
+			<div class="col-md-6">
+				<select id="chosenEntidades"
+						ng-model="vm.Municipio"
+						ng-options="municipio as municipio.Name for municipio in vm.listaMunicipios  track by municipio.Name"
+						class="form-control"
+						ng-change="vm.cambioMunicipio()"
+						tabindex="0">
+					<option value="" selected disabled>Seleccione un municipio</option>>
+				</select>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<label for="entidad" class="form-label"><b>Tipo agrupación</b></label>
+			</div>
+			<div class="col-md-6">
+				<select name="tipoAgrupacion" class="form-control"
+						ng-options="tipoAgrupacion as tipoAgrupacion.Name for tipoAgrupacion in vm.listaTipoAgrupaciones track by tipoAgrupacion.Name"
+						ng-model="vm.tipoAgrupacion"
+						ng-required="true"
+						ng-change="vm.obtenerAgrupaciones()"
+						tabindex="0">
+					<option value="" selected disabled>Seleccione tipo agrupación</option>
+				</select>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<label for="entidad" class="form-label"><b>Agrupación</b></label>
+			</div>
+			<div class="col-md-6">
+				<select name="Agrupacion" class="form-control"
+						ng-options="Agrupacion as Agrupacion.Name for Agrupacion in vm.listaAgrupaciones track by Agrupacion.Name"
+						ng-model="vm.Agrupaciones"
+						ng-required="true"
+						tabindex="0">
+					<option value="" selected disabled>Seleccione agrupación</option>
+				</select>
+			</div>
+		</div>
+	</form>
+</modal-dialog>
+

@@ -1,0 +1,37 @@
+﻿<section>
+    <div class="container-fluid inbox" ng-init="vm.init();">
+        <div class="tab-content">
+            <div class="row" style="margin-left: 0px; margin-right: 0px; padding-bottom: 1rem">
+
+                <div class="alert panel-heading row ui-accordion-header" style="">
+                    <button class="button" type="button" data-toggle="collapse" data-target="#soportedocumentopaso" ng-click="vm.changeArrow('soportedocumentopaso')">
+                        <span class="d-inline-block" id="alert-soportedocumentopaso"></span>
+                        <span id="name-capitulo-soportedocumentopaso"></span>
+                        <span class="hidden" id="id-capitulo-soportedocumentopaso"></span>
+                        <span id="arrow-soportedocumentopaso" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#soportedocumentopaso"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="soportedocumentopaso">
+                    <div class="row m-0 mb-3">
+                        <br>
+                        <div class="col-md-12 ">
+                            <archivos-formulario tipotramiteid="{{vm.tipotramiteid}}"
+                                                 tramiteid="{{vm.tramiteid}}"
+                                                 nivel="{{vm.nivel}}"
+                                                 rol="{{vm.rol}}"
+                                                 section="{{vm.section}}"
+                                                 nombrecomponentepaso="{{vm.nombreComponenteHijo}}"
+                                                 guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                                 notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                 notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)">
+                            </archivos-formulario>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+</section>

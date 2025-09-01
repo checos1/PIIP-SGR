@@ -1,0 +1,82 @@
+﻿<!-- ReSharper disable All -->
+
+<div class="container-fluid inbox">
+
+    <div class="panel_inicio">
+        <p class="title">Bienvenido a la Plataforma de Inversi&oacute;n P&uacute;blica de Colombia</p>
+        <p class="titlebold">Acceda a todos los proyectos de la inversi&oacute;n p&uacute;blica que cumplen el ciclo:</p>
+        
+        <div class="row">
+            <a class="sub-estados three" data-toggle="modal" data-target="#{{item.NivelId}}" tabindex="-1" role="dialog" title="{{item.Nombre}}" ng-repeat="item in vm.macroProcesos"><img src="img/{{item.Archivo}}.png" style="height:95%;width:95%"></a>
+        </div>
+        <div class="row">
+            <a class="bottom-banco-proyectos" data-toggle="modal" href="#modalBancoProyectos" tabindex="-1" role="dialog">BANCO DE PROYECTOS</a>
+        </div>
+
+
+
+        <!-- Modal Dinamico-->
+        <div class="modal fade" id="{{item.NivelId}}" tabindex="-1" role="dialog" aria-labelledby="{{item.NivelId}}Label" aria-hidden="true" ng-repeat="item in vm.macroProcesos">
+            <div class="modal-dialog modal-xl" role="document">
+                <div class="modal-content radius_10">
+                    <div class="modal-body radius_10">
+                        <img class="close" data-dismiss="modal" src="img/close.png">
+                        <div class="col-sm-6">
+                            <img src="img/Index{{item.Archivo}}.PNG" style="height:95%;width:95%">
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="modal_inicio_content" style="width:95%">
+                                <div class="col-sm-12">
+                                    <p ng-bind-html="item.Descripcion"></p>
+                                </div>
+                                <div class="col-sm-12" style="text-align:right">
+                                    <a class="active"><b>({{item.CantidadTotal}}) Procesos pendientes:</b></a>
+                                    <a class="link" ng-click="vm.link('/proyectos/'+item.Tipo)">({{item.CantidadProyecto}}) Proyectos</a>
+                                    <a class="link" ng-show="item.Tipo == 'ej'" ng-click="vm.link('/tramites/ej')"> | ({{item.CantidadTramite}}) Trámites</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Banco de Proyectos-->
+        <div class="modal fade" id="modalBancoProyectos" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content radius_10">
+                    <div class="modal-body radius_10">
+
+                        <img class="close" data-dismiss="modal" src="img/close.png">
+
+                        <div class="modal_inicio_logo">
+                            <p class="lines">Banco de proyectos</p>
+                        </div>
+
+                        <div class="modal_inicio_content">
+                            <h3>
+                                Descripción
+                            </h3>
+                            <p>
+                                El Banco Único de Proyectos de Inversión Pública es el conjunto de proyectos de inversión pública viables e identificados con un código BPIN que se encuentran registrados en la PIIP o la plataforma que haga sus veces.
+                            </p>
+                            <h3>
+                                En el banco el usuario podrá:
+                            </h3>
+                            <p>
+                                Encontrar los proyectos viables de su entidad, donde visualizará información general del proyecto como nombre, horizonte y estado en el que se encuentra, los soportes del proyecto y los subprocesos creados si cuenta con ellos.
+                            </p>
+                            <div class="links">
+                                <a class="active">Buscar en el banco:</a>
+                                <a class="link" ng-click="vm.link('/bancoproyectos/proyectos')">Proyectos</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

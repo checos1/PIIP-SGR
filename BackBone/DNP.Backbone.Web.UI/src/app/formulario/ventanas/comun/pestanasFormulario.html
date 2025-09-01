@@ -1,0 +1,84 @@
+﻿<div class="pestanas" ng-show="vm.Pestanas.length > 0" ng-init="vm.initPestana()">
+
+    <div class="tab-container-general col-md-11">
+        <div class="imgPermisos">
+            <img class="grid-icon-accion" src="{{vm.ImagenPermiso}}" />
+        </div>
+        <ul class="nav nav-tabs list-unstyled">
+            <li ng-repeat="pestana in vm.Pestanas" id="pestana-{{pestana.NombrePestana | lowercase }}">
+                <div style="float: left;">
+                    <a data-target="#d{{pestana.NombrePestana | lowercase }}" data-toggle="tab" ng-click="vm.cargaNombreSeccion(pestana.NombrePestana | lowercase )">
+                        <span id="alert-{{pestana.NombrePestana | lowercase }}" class="d-inline-block"></span>
+                        <b>
+                            {{pestana.Nombre}}&nbsp;
+                            <img class="imgLunasPestana" id="imgPorcentaje-{{pestana.NombrePestana}}" src="{{pestana.Imagen}}" />
+                        </b>
+                    </a>
+                </div>
+            </li>
+        </ul>
+       
+    </div>
+    <div class="col-md-1 divValidar">
+        <button ng-if="vm.VerValidar" ng-click="vm.validarFormulario()" class="btnValidar">Validar</button>
+    </div>
+    <div class="col-md-11">
+        <div id="MensajeSubpaso" class="hidden" style="padding-top: 7px;">            
+            <span class="concepto-preliminar-contenedor" id="msgSubPaso" style="text-align: left;font-family: 'Work Sans'; font-size: 16px; font-style: normal;"></span>
+        </div>
+    </div>
+    <div class="col-md-1 divValidar">
+        <button type="button" ng-if="vm.mostrarBtnEnviarSubpaso" ng-click="vm.enviarSubPaso()" class="btn-enviarSubpaso btn-success-enviarSubpaso" ng-disabled="vm.deshabilitaEnviarSubPaso">Enviar</button>
+    </div>
+</div>
+<style>
+    .concepto-preliminar-contenedor {
+        align-self: initial;
+        position: initial;
+        background-color: rgba(249, 252, 253, 1);
+        width: 100%;
+        box-sizing: border-box;
+        border-width: 2px;
+        border-style: solid;
+        border-color: rgba(230, 239, 253, 1);
+        border-radius: 0px;
+        color: #004884;
+        font-weight: 600;
+        font-style: normal;
+        display: flex;
+        text-align: left;
+        font-family: 'Work Sans SemiBold Roman', 'Work Sans Roman', 'Work Sans', sans-serif;
+        font-size: 16px;
+        justify-content: center;         
+    }
+
+    .concepto-detalle-contenedor {
+        position: absolute;
+        background-color: rgba(249, 252, 253, 1);
+        width: 100%;
+        height: 85px;
+        box-sizing: border-box;
+        border-width: 2px;
+        border-style: solid;
+        border-color: rgba(230, 239, 253, 1);
+        border-radius: 0px;
+        padding: 0px 10px 0px 60px;
+        align-self: center;
+        display: flex;
+        align-items: center;
+    }
+        
+    /* El contenedor trazaSubpasos ocupa el 100% y alinea su contenido a la derecha */
+    .trazaSubpasos .boton {
+        cursor: pointer;
+        display: none;
+    }
+
+        /* Opcional: para que la imagen se comporte correctamente */
+        .trazaSubpasos img {
+            height: 20px;
+            width: 20px;
+            color: rgba(0, 72, 132, 1);
+            margin-left: 5px;
+        }
+</style>

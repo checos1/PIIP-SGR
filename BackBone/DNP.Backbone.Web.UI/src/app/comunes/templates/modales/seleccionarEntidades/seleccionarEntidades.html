@@ -1,0 +1,27 @@
+﻿<div>
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="vm.cancelar()" uib-tooltip="Cancelar">&times;</button>
+        <h3 class="modal-title">{{ 'TextoCrearTarea' | language }}</h3>
+    </div>
+    <div class="modal-grid">
+        <div class="modal-body" ui-i18n="{{vm.lang}}">
+            <!-- ReSharper disable Html.TagNotResolved -->
+            <div class="table-top border-grid grid-icon" ui-grid="vm.gridEntidades" ui-grid-resize-columns ui-grid-pagination="" style="height:450px;">
+                <div class="text-center intro-help no-result-watermark" ng-show="!vm.filasFiltradas">
+                    <!-- ReSharper disable Html.PathError -->
+                    <img src="img/image-help.png" alt="Sin resultados" />
+                    <h2>{{ 'TextoNoResultadosBusqueda' | language }}</h2>
+                    <h3>{{ 'TextoSeleccioneFiltrosMensaje' | language }}</h3>
+                </div>
+            </div>
+            <div class="text-center" ng-show="vm.filasFiltradas">
+                <ul uib-pagination previous-text="Anterior" next-text="Siguiente" items-per-page="vm.numeroPorPagina"
+                    total-items="vm.gridEntidades.totalItems" ng-model="vm.gridEntidades.paginationCurrentPage"
+                    max-size="vm.maximoPaginas" class="pagination-sm" boundary-link-numbers="true" rotate="false"></ul>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button id="boton-cancelar-condicion-enrutamiento" class="btn btn-primary" type="button" ng-click="vm.cancelar()" uib-tooltip="Cancelar">{{ 'Cancelar' | language }}</button>
+    </div>
+</div>

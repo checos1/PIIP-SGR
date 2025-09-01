@@ -1,0 +1,234 @@
+﻿<div class="container-fluid inbox">
+
+    <br />
+    <div class="row">
+        <div class="fechas">
+            <div class="col-md-2">
+                <label for="fechaInicio">Fecha Inicio</label>
+                <input type="date" class="form-control" name="fechaInicio" id="fechaInicio" ng-model="vm.FechaInicio" placeholder="Fecha Inicio" ng-disabled="vm.activar">
+            </div>
+            <div class="col-md-2 padding-off" role="timer">
+                <label for="fechaInicioTime">Hora Inicio</label>
+                <input type="time" class="form-control" name="fechaInicioTime" id="fechaInicioTime" ng-model="vm.HoraInicio" placeholder="Hora Inicio" ng-disabled="vm.activar">
+            </div>
+            <div class="col-md-2">
+                <label for="fechaFin">Fecha Fin</label>
+                <input type="date" class="form-control" name="fechaFin" id="fechaFin" ng-model="vm.FechaFin" placeholder="Fecha/Hora Fin" ng-disabled="vm.activar">
+            </div>
+            <div class="col-md-2 padding-off" role="timer">
+                <label for="fechaFinTime">Hora Final</label>
+                <input type="time" class="form-control" name="fechaFinTime" id="fechaFinTime" ng-model="vm.HoraFin" placeholder="Hora Inicio" ng-disabled="vm.activar">
+            </div>
+        </div>
+        <div class="col-md-4 pull-right text-right">
+            <span class="pull-right">
+                <button type="button" class="{{vm.activar ? 'btnguardarDisabledDNP' : 'btnguardarDNP'}}" uib-tooltip="Aplicar" ng-disabled="vm.activar" ng-click="vm.aplicar()">
+                    APLICAR
+                </button>
+            </span>
+        </div>
+        <br />
+        <br />
+        <br />
+        <div class="row">
+            <span class="buttonbar pull-right" style="margin-right:2.1em">
+                <button id="EditarG"
+                        type="button"
+                        class="btneditarDNP"
+                        tooltip-placement="top"
+                        uib-tooltip="Editar"
+                        tabindex="0"
+                        ng-click="vm.ActivarEditar()"
+                        ng-disabled="vm.disabled">
+                    {{vm.editar}}
+                </button>
+                &nbsp;
+                <button id="GuardarG"
+                        type="submit"
+                        class="{{vm.activar ? 'btnguardarDisabledDNP' : 'btnguardarDNP'}}"
+                        tooltip-placement="top"
+                        uib-tooltip="Guardar"
+                        ng-click="vm.GuardarProgramacion()"
+                        ng-disabled="vm.activar">
+                    GUARDAR
+                </button>
+            </span>
+        </div>
+    </div>
+    <br />
+
+    <section id="SelectExam" class="SelectExam">
+        <div class="row">
+            <div class="col-md-12 ">
+                <table class="TableDNP no-border">
+                    <thead>
+                        <tr>
+                            <th class="columAcc"> </th>
+                            <th class="textLeftDNP">Paso </th>
+                            <th class="textLeftDNP">Sección </th>
+                            <th class="textLeftDNP">Fecha Inicio </th>
+                            <th class="textLeftDNP">Fecha Fin </th>
+                            <th class="columAcc"></th>
+                        </tr>
+                    </thead>
+                    <tbody ng-repeat="objCalendario in vm.listaCalendario" ng-init="rowIndexCal = $index">
+                        <tr class="bottontransDNP">
+                            <td class="columAcc textdespleDNP">
+                                <button ng-show="!vm.activar" class="btnaccion btnAccordionDNP" type="button" data-toggle="collapse" data-target="#ind{{objCalendario.CalendarioId}}" ng-click="vm.AbrilNivel(objCalendario.CalendarioId)">
+                                    <img id="icoObjet{{objCalendario.CalendarioId}}" src="Img/btnMas.svg">
+                                </button>
+                            </td>
+                            <td class="textLeftDNP">{{objCalendario.NombrePaso}}</td>
+                            <td class="textLeftDNP">{{objCalendario.NombreSeccion}}</td>
+                            <td class="textLeftDNP">
+                                <input type="datetime-local" class="form-control" name="fechaDesde_{{objCalendario.CalendarioId}}" id="fechaDesde_{{objCalendario.CalendarioId}}" ng-model="objCalendario.FechaDesde" value="{{objCalendario.FechaDesde}}" placeholder="Fecha Desde" onkeydown="return false" ng-disabled="vm.activar">
+                            </td>
+                            <td class="textLeftDNP">
+                                <input type="datetime-local" class="form-control" name="fechaHasta_{{objCalendario.CalendarioId}}" id="fechaHasta_{{objCalendario.CalendarioId}}" ng-model="objCalendario.FechaHasta" value="{{objCalendario.FechaHasta}}" placeholder="Fecha Hasta" onkeydown="return false" ng-disabled="vm.activar">
+                            </td>
+                            <td class="textCenterDNP">
+                            </td>
+                        </tr>
+                        <tr class="filaAnidada">
+                            <td colspan="1">
+                            </td>
+                        </tr>
+                        <tr class="no-border collapse alert panel-heading" id="ind{{objCalendario.CalendarioId}}">
+                            <td colspan="8" class="p-0">
+                                <div class="LineaEncabezado2tabDNP"></div>
+                                <h3 class="row tituloEncabezadotabDNP">
+                                    Excepciones
+                                </h3>
+                                <br />
+                                <br />
+
+                                <div class="row panelbuscadorDNP collapse in" id="IdPanelBuscador">
+                                    <div class="row">
+                                        <div class="col-md-12 SelectBuscadorDNP">
+                                            <div class="labelbuscadorDNP"> <span>Sector</span></div>
+                                            <select class="form-control selectDNP" 
+                                                    ng-model="vm.listaExcepcionesValor.SectorId[objCalendario.CalendarioId]" 
+                                                    name="ddlSectorCalendario_{{objCalendario.CalendarioId}}" 
+                                                    id="ddlSectorCalendario_{{objCalendario.CalendarioId}}" 
+                                                    ng-change="vm.changeSector(objCalendario.CalendarioId)">
+                                                <option value="" selected="selected">Seleccione el sector</option>
+                                                <option ng-repeat="sector in vm.listaSectores" ng-value="{{sector.id}}">{{sector.Code}} - {{sector.name}}</option>
+                                            </select>
+                                        </div>                                        
+                                    </div>
+                                    <br />
+                                    <div class="row">
+                                        <div class="col-md-12 SelectBuscadorDNP">
+                                            <div class="labelbuscadorDNP"> <span>Entidad</span></div>
+                                            <div class="containerchek" style="height: 100px; overflow-y: scroll;">
+                                                <ul>
+                                                    <li>
+                                                        <input type="checkbox"
+                                                               id="chkEntidadTodas_{{objCalendario.CalendarioId}}"
+                                                               name="chkEntidadTodas_{{objCalendario.CalendarioId}}"
+                                                               ng-model="vm.IsChecked"
+                                                               ng-click="vm.SeleccionarTodasEntidades(vm.IsChecked)">
+                                                        <label for="chkEntidadTodas_{{objCalendario.CalendarioId}}">Todas las entidades </label>
+                                                    </li>
+                                                    <li ng-repeat="entidad in vm.listaEntidades">
+                                                        <input type="checkbox"
+                                                               id="chkEntidadCalendario_{{entidad.Id}}"
+                                                               name="chkEntidadCalendario_{{entidad.Id}}"
+                                                               ng-model="vm.listaExcepcionesValor.EntidadId[entidad.Id]"
+                                                               ng-click="vm.ChangeEntidad(vm.listaExcepcionesValor.EntidadId[entidad.Id])">
+                                                        <label for="chkEntidadCalendario_{{entidad.Id}}">{{entidad.Entidad}}</label>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <br />
+                                <div class="row">
+                                    <div class="col-md-6 pull-right text-right">
+                                        <span class="pull-right">
+                                            <a ng-click="vm.Cancelar()"><span class="uLabelCampo_fp1" style="color: #36C;">CANCELAR</span></a>
+                                        </span>
+                                        <span class="pull-right">
+                                            <a style="margin-right: 1rem;" ng-click="vm.AgregarExcepcion(objCalendario.CalendarioId)"><span class="uLabelCampo_fp1" style="color: #36C;">AGREGAR</span></a>
+                                        </span>
+                                    </div>
+                                </div>
+                                <br />
+                                <br />
+                                <div class="row">
+                                    <span class="buttonbar pull-right" style="margin-right:1em">
+                                        <button id="EditarGExc"
+                                                type="button"
+                                                class="btneditarDNP"
+                                                tooltip-placement="top"
+                                                uib-tooltip="Editar"
+                                                tabindex="0"
+                                                ng-click="vm.ActivarEditarExcepcion()"
+                                                ng-disabled="vm.disabledExcepcion">
+                                            {{vm.editarExcepcion}}
+                                        </button>
+                                        &nbsp;
+                                        <button id="GuardarGExc"
+                                                type="submit"
+                                                class="{{vm.activarExcepcion ? 'btnguardarDisabledDNP' : 'btnguardarDNP'}}"
+                                                tooltip-placement="top"
+                                                uib-tooltip="Guardar"
+                                                ng-click="vm.GuardarExcepcion(objCalendario.CalendarioId)"
+                                                ng-disabled="vm.activarExcepcion">
+                                            GUARDAR
+                                        </button>
+                                    </span>
+                                </div>
+                                <div class="row detalletableanidnp">
+                                    <span class="TituloPincFormularioDNP">
+                                        Listado de excepciones
+                                    </span>
+                                </div>
+                                <div class="row">
+                                    <div class="alert panel-heading">
+                                        <table class="TableDNP">
+                                            <thead>
+                                                <tr>
+                                                    <th class="columAcc"></th>
+                                                    <th class="textLeftDNP"><span class="uLabelCampo">Sector/Entidad</span></th>
+                                                    <th class="textLeftDNP">Fecha Incio </th>
+                                                    <th class="textLeftDNP">Fecha Fin</th>
+                                                    <th class="columAcc"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody ng-repeat="excepcion in objCalendario.Excepciones" ng-init="rowIndexExc = $index">
+                                                <tr>
+                                                    <td></td>
+                                                    <td class="textLeftDNP">
+                                                        {{excepcion.Sector}} / {{excepcion.CodigoEntidad}} - {{excepcion.Entidad}}
+                                                        <br />
+                                                        <span id="msgError_{{objCalendario.CalendarioId}}_{{rowIndexExc}}" class="messagealerttableDNP"></span>
+                                                    </td>
+                                                    <td class="textLeftDNP">
+                                                        <input type="datetime-local" class="form-control" name="fechaDesdeExc_{{objCalendario.CalendarioId}}" id="fechaDesdeExc_{{objCalendario.CalendarioId}}" value="{{excepcion.FechaDesde}}" ng-model="excepcion.FechaDesde" placeholder="Fecha Desde" ng-disabled="vm.activarExcepcion" onkeydown="return false">
+                                                    </td>
+                                                    <td class="textLeftDNP">
+                                                        <input type="datetime-local" class="form-control" name="fechaHastaExc_{{objCalendario.CalendarioId}}" id="fechaHastaExc_{{objCalendario.CalendarioId}}" value="{{excepcion.FechaHasta}}" ng-model="excepcion.FechaHasta" placeholder="Fecha Hasta" ng-disabled="vm.activarExcepcion" onkeydown="return false">
+                                                    </td>
+                                                    <td class="textLeftDNP">
+                                                        <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Eliminar">
+                                                            <span ng-if="vm.activarExcepcion == true"><img style="width: 20px;height:20px" src="Img/IcoDeleteD.svg"></span>
+                                                            <span ng-if="vm.activarExcepcion == false"><img style="width: 20px;height:20px" src="Img/IcoDelete.svg" ng-click="vm.EliminarExcepcion(rowIndexCal, excepcion.CodigoEntidad)"></span>
+                                                        </button>
+                                                    </td>
+                                                    <td></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</div>

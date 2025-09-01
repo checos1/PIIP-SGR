@@ -1,0 +1,23 @@
+﻿<modal-dialog cerrar="vm.cerrar" ng-init="vm.init()" guardar="vm.guardar">
+    <div id="configurarMensageModal" class="div-escopo">
+        <div class="row ">
+            <div class="col-md-12">
+                <div class="titulo-modal">
+                    <span>Configurar Mensaje - <span class="tipo-entidad-cor">{{vm.tipoEntidad}}</span></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12 col-md-12">
+                <span class="form-control rounded-right-2">Capítulo: {{vm.capitulo}}</span>
+            </div>
+            <div class="col-xs-12 col-md-12" ng-if="vm.gridOptions.data.length">
+                <div class="ui-grid grid-configurar-mensaje" ui-grid="vm.gridOptions" ui-grid-selection ui-grid-pinning ui-grid-resize-columns ui-grid-pagination></div>
+            </div>
+            <div ng-if="!vm.gridOptions.data.length" class="text-center col-xs-12 col-md-12 p-3">
+                <h3> No hay ningún resultado para su búsqueda</h3>
+            </div>
+        </div>
+    </div>
+</modal-dialog>

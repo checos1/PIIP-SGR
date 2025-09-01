@@ -1,0 +1,22 @@
+<!-- ReSharper disable All -->
+
+<div class="container-fluid inbox">
+    <nav class="breadcrumb">
+        <!-- ReSharper disable UnknownCssClass -->
+        <a href="/">
+            <span class="breadcrumb-item active">
+                <i class="fa fa-home" aria-hidden="true"></i> Inicio
+            </span>
+        </a>
+        /
+        <span class="breadcrumb-item active">Nueva Tabla</span>
+    </nav>
+    <tabla-entidad 
+        opciones="vm.opciones" 
+        definicion-columna-datos="vm.columnDef" 
+        datos="vm.datos" 
+        accion1="vm.accionTeste1($row)" 
+        accion2="vm.accionTeste2($row)" 
+        accion3="vm.accionTeste3($row)">
+    </tabla-entidad>
+</div>

@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DNP.ServiciosTransaccional.Persistencia.ModeloSGR.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <Function Name="uspPostCambioEstadoProyectoSgr" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="BPIN" Type="nvarchar" Mode="In" />
+          <Parameter Name="NivelId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="FlujoId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="Usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostGeneraBpinSgr" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="ProyectoId" Type="numeric" Mode="In" />
+          <Parameter Name="Exitoso" Type="bit" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostIniciarFlujoSgr" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="BPIN" Type="nvarchar" Mode="In" />
+          <Parameter Name="NivelId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="FlujoId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="Usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <EntityContainer Name="DNPServiciosTransaccionalPersistenciaModeloSGRStoreContainer" />
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DNP.ServiciosTransaccional.Persistencia.ModeloSGR" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="MGAWebContextoSGR" annotation:LazyLoadingEnabled="true" >
+          <FunctionImport Name="uspPostCambioEstadoProyectoSgr">
+            <Parameter Name="BPIN" Mode="In" Type="String" />
+            <Parameter Name="NivelId" Mode="In" Type="Guid" />
+            <Parameter Name="FlujoId" Mode="In" Type="Guid" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostGeneraBpinSgr">
+            <Parameter Name="ProyectoId" Mode="In" Type="Decimal" />
+            <Parameter Name="Exitoso" Mode="InOut" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostIniciarFlujoSgr">
+            <Parameter Name="BPIN" Mode="In" Type="String" />
+            <Parameter Name="NivelId" Mode="In" Type="Guid" />
+            <Parameter Name="FlujoId" Mode="In" Type="Guid" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DNPServiciosTransaccionalPersistenciaModeloSGRStoreContainer" CdmEntityContainer="MGAWebContextoSGR" >
+          <FunctionImportMapping FunctionImportName="uspPostCambioEstadoProyectoSgr" FunctionName="DNP.ServiciosTransaccional.Persistencia.ModeloSGR.Store.uspPostCambioEstadoProyectoSgr" />
+          <FunctionImportMapping FunctionImportName="uspPostGeneraBpinSgr" FunctionName="DNP.ServiciosTransaccional.Persistencia.ModeloSGR.Store.uspPostGeneraBpinSgr" />
+          <FunctionImportMapping FunctionImportName="uspPostIniciarFlujoSgr" FunctionName="DNP.ServiciosTransaccional.Persistencia.ModeloSGR.Store.uspPostIniciarFlujoSgr" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="false" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

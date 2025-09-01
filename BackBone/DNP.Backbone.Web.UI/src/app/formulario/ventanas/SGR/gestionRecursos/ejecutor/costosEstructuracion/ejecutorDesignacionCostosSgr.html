@@ -1,0 +1,62 @@
+﻿<div ng-init="vm.init();">
+    <div class="ui-accordion-container " id="accordion-sgrejecutordesignacioncostosgiroreconocimiento">
+        <div class="alert panel-heading row ui-accordion-header">
+            <button type="button" data-toggle="collapse" data-target="#sgrejecutordesignacioncostosgiroreconocimiento" ng-click="vm.changeArrow('sgrejecutordesignacioncostosgiroreconocimiento')">
+                <span class="d-inline-block" id="alert-sgrejecutordesignacioncostosgiroreconocimiento"></span>
+                <span id="name-capitulo-sgrejecutordesignacioncostosgiroreconocimiento"></span>
+                <span class="hidden" id="id-capitulo-sgrejecutordesignacioncostosgiroreconocimiento"></span>
+                <span id="arrow-sgrejecutordesignacioncostosgiroreconocimiento" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#sgrejecutordesignacioncostosgiroreconocimiento"></span>
+            </button>
+        </div>
+        <div class="collapse" id="sgrejecutordesignacioncostosgiroreconocimiento">
+            <div class="row m-0 mb-3">
+                <div class="col-md-12 ">
+                    <giro-reconocimiento-sgr guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                             notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                             notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente,handlerCapitulos)">
+                    </giro-reconocimiento-sgr>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ui-accordion-container " id="accordion-sgrejecutordesignacioncostosreconocimientocostos">
+        <div class="alert panel-heading row ui-accordion-header">
+            <button type="button" data-toggle="collapse" data-target="#sgrejecutordesignacioncostosreconocimientocostos" ng-click="vm.changeArrow('sgrejecutordesignacioncostosreconocimientocostos')">
+                <span class="d-inline-block" id="alert-sgrejecutordesignacioncostosreconocimientocostos"></span>
+                <span id="name-capitulo-sgrejecutordesignacioncostosreconocimientocostos"></span>
+                <span class="hidden" id="id-capitulo-sgrejecutordesignacioncostosreconocimientocostos"></span>
+                <span id="arrow-sgrejecutordesignacioncostosreconocimientocostos" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#sgrejecutordesignacioncostosreconocimientocostos"></span>
+            </button>
+        </div>
+        <div class="collapse" id="sgrejecutordesignacioncostosreconocimientocostos">
+            <div class="row m-0 mb-3">
+                <div class="col-md-12 ">
+                    <reconocimiento-costos-sgr guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                               notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                               notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente,handlerCapitulos)">
+                    </reconocimiento-costos-sgr>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ui-accordion-container " id="accordion-sgrejecutordesignacioncostosvalorestructuracion">
+        <div class="alert panel-heading row ui-accordion-header">
+            <button type="button" data-toggle="collapse" data-target="#sgrejecutordesignacioncostosvalorestructuracion" ng-click="vm.changeArrow('sgrejecutordesignacioncostosvalorestructuracion')">
+                <span class="d-inline-block" id="alert-sgrejecutordesignacioncostosvalorestructuracion"></span>
+                <span id="name-capitulo-sgrejecutordesignacioncostosvalorestructuracion"></span>
+                <span class="hidden" id="id-capitulo-sgrejecutordesignacioncostosvalorestructuracion"></span>
+                <span id="arrow-sgrejecutordesignacioncostosvalorestructuracion" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#sgrejecutordesignacioncostosvalorestructuracion"></span>
+            </button>
+        </div>
+        <div class="collapse" id="sgrejecutordesignacioncostosvalorestructuracion">
+            <div class="row m-0 mb-3">
+                <div class="col-md-12 ">
+                    <valor-estructuracion-sgr guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                              notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                              notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente,handlerCapitulos)">
+                    </valor-estructuracion-sgr>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

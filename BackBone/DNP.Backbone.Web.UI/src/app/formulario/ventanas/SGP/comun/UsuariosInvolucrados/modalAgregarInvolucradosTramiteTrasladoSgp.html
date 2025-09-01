@@ -1,0 +1,56 @@
+﻿<div ng-init="vm.init();">
+    <div class="modal-header">
+        <button type='button' class='swal2-close closemodalDNP' aria-label='Close this dialog' data-dismiss="modal" ng-click="vm.cerrar()">×</button>
+        <h3 class="modal-title TituloModal1DNP" id="modal-title">Agregar Involucrado</h3>
+    </div>
+    <div class="modal-body" style="overflow: visible">
+        <div style="padding:40px 25px">
+
+            <div class="row">
+                <div class="col-md-12 pb-5">
+                    <label for="selectCategoria" class="form-label"><b>Funcionario:</b></label>
+                    <div class="SelectBuscadorDNP" style="width: auto;">
+                        <select class="form-control selectDNP" chosen options="vm.usuariosInvolucrados" ng-model="vm.model.UsuarioSeleccionado"
+                                ng-options="x.IdUsuarioDNP as (x.NombreUsuario + ' - ' + x.Correo) for x in vm.usuariosInvolucrados track by x.IdUsuarioDNP"
+                                name="ddlUsuarioInvolucradoSgr" id="ddlUsuarioInvolucradoSgr"
+                                placeholder-text-single="Seleccione..."
+                                no-results-text="No hay ningún resultado para su búsqueda"
+                                ng-change="vm.setAreaDependencia()"
+                                required>
+                            <option value="" selected>Seleccione...</option>
+                        </select>
+                    </div>
+                    <div id="NombreObligatorio" class="hidden">
+                        <img class="" src="Img/u4630.svg">
+                        <span class="messagealerttableDNP" style="text-align: left;font-family: 'Work Sans'; font-size: 14px; font-style: normal;">Campo obligatorio. Debe seleccionar un usuario.</span>
+                    </div>
+                </div>
+                <div class="col-md-12">
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <label for="selectSubcategoria" class="form-label"><b>Área / dependencia del funcionario:</b></label>
+                    <input type="text"
+                           class="form-control editInputDNP"
+                            maxlength="100"
+                           ng-model="vm.model.Area"
+                           value="{{vm.model.Area}}"
+                           ng-disabled="vm.disabledArea" />
+                    <div id="AreaObligatoria" class="hidden">
+                        <img class="" src="Img/u4630.svg">
+                        <span class="messagealerttableDNP" style="text-align: left;font-family: 'Work Sans'; font-size: 14px; font-style: normal;">Campo obligatorio y mayor a 5 caracteres</span>
+                    </div>
+                </div>
+                <div class="col-md-12">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer textCenterDNP">
+        <button class="btn btn-default btn-md" type="button" ng-click="vm.cerrar()">Cancelar</button>
+        <button class="btn btn-default btn-md" type="button" ng-click="vm.guardar()">Aceptar</button>
+    </div>
+</div>

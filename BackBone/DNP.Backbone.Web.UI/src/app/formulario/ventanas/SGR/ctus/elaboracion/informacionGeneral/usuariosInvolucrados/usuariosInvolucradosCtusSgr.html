@@ -1,0 +1,22 @@
+﻿
+<div ng-init="vm.init();">
+    <div class="row m-0 mb-3">
+        <br>
+        <div class="col-md-12 ">
+            <div class="row">
+                <div class="col-md-12" style="margin-bottom: -36px;">
+                    <span class="d-inline-block errorpregDatosPre2 ml-4" id="alert-sgrctuselaboracioninfogeneralusuariosinvolucrados"></span>
+                    <span class="messagealerttableDNP" style="padding-left: 5px; display:flex;" id="SGRERRSECsgrctuselaboracioninfogeneralusuariosinvolucrados"></span>
+                </div>
+            </div>
+            <usuarios-involucrados-formulario-sgr objetonegocioid="{{vm.IdObjetoNegocio}}"
+                                                  ProyectoId="{{vm.IdObjetoNegocio}}"
+                                                  tipoconceptoviabilidadid="{{vm.tipoConceptoViabilidadId}}"
+                                                  nombrecomponentepaso="{{vm.nombreComponenteHijo}}"
+                                                  guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                                  notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                  notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)">
+            </usuarios-involucrados-formulario-sgr>
+        </div>
+    </div>
+</div>

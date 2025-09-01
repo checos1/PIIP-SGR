@@ -1,0 +1,102 @@
+
+[
+    {
+        "GrupoId" : 1,
+        "GrupoNombre" : "Decreto de Liquidación",
+        "Subgrupo": [
+            {
+                "Id": 1,
+                "TipoMontoId": 1,
+                "TipoEntidadClave" : "Nacional",
+                "FechaCarga": "2020-10-19 19:04:00.000",
+                "Credito" : 10000.00,
+                "ContraCredito": 10203.00303948
+            },
+            {
+                "Id": 2,
+                "TipoMontoId": 1,
+                "TipoEntidadClave": "Nacional",
+                "FechaCarga": "2020-10-19 19:04:00.000",
+                "Credito": 24545465.00,
+                "ContraCredito": 798283746.00303948
+            },
+            {
+                "Id": 3,
+                "TipoMontoId": 1,
+                "TipoEntidadClave": "Nacional",
+                "FechaCarga": "2020-10-19 19:04:00.000",
+                "Credito": 128744.00,
+                "ContraCredito": 1234.00303948
+            }
+        ]
+    },
+
+    {
+        "GrupoId" : 2,
+        "GrupoNombre" : "Decreto de Aplaziamiento",
+        "Subgrupo" : [
+
+            {
+                "Id": 4,
+                "TipoMontoId": 2,
+                "TipoEntidadClave": "Nacional",
+                "FechaCarga": "2020-10-19 19:04:00.000",
+                "Credito": 8.00,
+                "ContraCredito": 0.00303948
+            },
+            {
+                "Id": 5,
+                "TipoMontoId": 2,
+                "TipoEntidadClave": "Nacional",
+                "FechaCarga": "2020-10-19 19:04:00.000",
+                "Credito": 0.00,
+                "ContraCredito": 0.00303948
+            }
+        ]
+    },
+
+    {
+        "GrupoId": 3,
+        "GrupoNombre": "Desaplaziamiento",
+        "Subgrupo" :[
+            {
+                "Id": 6,
+                "TipoMontoId": 3,
+                "TipoEntidadClave": "Nacional",
+                "FechaCarga": "2020-10-19 19:04:00.000",
+                "Credito": 0.00,
+                "ContraCredito": 0.00303948
+            }
+        ]
+    },
+
+    {
+        "GrupoId": 4,
+        "GrupoNombre": "Ajuste de Decreto",
+        "Subgrupo": [
+            {
+                "Id": 7,
+                "TipoMontoId": 4,
+                "TipoEntidadClave": "Nacional",
+                "FechaCarga": "2020-10-19 19:04:00.000",
+                "Credito": 1.00,
+                "ContraCredito": 2384.00303948
+            }
+        ]
+    },
+
+    {
+        "GrupoId": 5,
+        "GrupoNombre": "Redección",
+        "Subgrupo": [
+            {
+                "Id": 8,
+                "TipoMontoId": 5,
+                "TipoEntidadClave": "Nacional",
+                "FechaCarga": "2020-10-19 19:04:00.000",
+                "Credito": 5.00,
+                "ContraCredito": 1.00303948
+            }
+        ]
+    }
+]

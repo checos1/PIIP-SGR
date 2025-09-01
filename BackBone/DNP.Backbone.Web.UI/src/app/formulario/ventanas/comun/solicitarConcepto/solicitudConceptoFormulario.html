@@ -1,0 +1,277 @@
+﻿
+<div style="background-color:white;padding-top:2rem;padding-bottom:0px !important;max-width:auto !important;" ng-init="vm.initConcepto()">
+    <div class="row" style="margin-left:2rem;">
+        <div class="row" ng-if="!vm.editarConcepto">
+            <div class="col-md-12" style="display:inline-flex;" ">
+                <span style="color: #004884; font-size: 24px; font-weight: 400;">Solicitar concepto técnico</span>
+                <div ng-click="vm.abrirTooltip()" style="padding-top: 0.2rem; padding-left: 1rem;">
+                    <svg class="mi-card__tooltip-icon" xmlns="http://www.w3.org/2000/svg" width="17.037" height="17.037" viewBox="0 0 17.037 17.037">
+                        <g id="Grupo_5110" data-name="Grupo 5110" transform="translate(0 0)">
+                            <path id="Caminho_9243" data-name="Caminho 9243" d="M8.552,0A8.552,8.552,0,0,0,0,8.485a8.609,8.609,0,0,0,8.552,8.552A8.519,8.519,0,0,0,8.552,0Zm0,14.542a1,1,0,1,1,1-1A1,1,0,0,1,8.552,14.542Zm1.769-6.136A2.663,2.663,0,0,0,9.55,10.22v.262a1,1,0,0,1-2,0V10.22A4.614,4.614,0,0,1,9.141,6.8,1,1,0,1,0,7.554,5.99a1,1,0,0,1-2,0,2.995,2.995,0,1,1,4.764,2.416Z" transform="translate(0 0)" fill="#36c"></path>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <div class="row" ng-if="!vm.editarConcepto" style="padding-top:2rem;width:100%;">
+            <div id="{{vm.nombreComponente}}-pregunta-error" class="hidden uMensajeError"></div>
+            <div class="col-md-4">
+                <!--<div id="solicitarconceptoelaborarconcepto-pregunta-error" class="hidden uMensajeError"></div>-->
+                <!--has-claim has-opciones="['TramitesVigenciaFutura:AccionesPasoTres']"-->
+                <span class="uLabelCampoNegro">Dirección DNP </span>
+            </div>
+            <div class="col-md-4">
+                <!--<div id="solicitarconceptoelaborarconcepto-pregunta-error" class="hidden uMensajeError"></div>-->
+                <!--has-claim has-opciones="['TramitesVigenciaFutura:AccionesPasoTres']"-->
+                <span class="uLabelCampoNegro">Subdirección DNP</span>
+            </div>
+            <div class="col-md-4">
+                <!--<div id="solicitarconceptoelaborarconcepto-pregunta-error" class="hidden uMensajeError"></div>-->
+                <!--has-claim has-opciones="['TramitesVigenciaFutura:AccionesPasoTres']"-->
+                <span class="uLabelCampoNegro">Usuario </span>
+            </div>
+            <div class="col-md-4" style="padding-top:1.5rem;" ng-disabled="true">
+                <!--has-claim has-opciones="['TramitesVigenciaFutura:AccionesPasoTres']"-->
+                <select name="ddlDireccionTecnica" id="ddlDireccionTecnica" class="form-control"
+                        ng-model="vm.filtro.direccionestecnica" ng-disabled="vm.btnenviadisabled"
+                        ng-change="vm.cargarsubdirecciontecnica(vm.filtro.direccionestecnica)">
+                    <option value="" selected>Seleccione...</option>
+                    <option ng-repeat="direccionestecnica in vm.direcciontecnicas" ng-value="direccionestecnica.EntityTypeCatalogOptionId">{{ direccionestecnica.Name }} </option>
+                </select>
+            </div>
+            <div class="col-md-4" style="padding-top:1.5rem;" ng-disabled="true">
+                <!--has-claim has-opciones="['TramitesVigenciaFutura:AccionesPasoTres']"-->
+                <select name="ddlSubdireccionTecnica" id="ddlSubdireccionTecnica" class="form-control"
+                        ng-model="vm.filtro.subdireccionestecnica" ng-disabled="vm.btnenviadisabled"
+                        ng-change="vm.cargaranalistas(vm.filtro.subdireccionestecnica)">
+                    <option value="" selected>Seleccione una SubDirección Técnica</option>
+                    <option ng-repeat="subdireccionestecnica in vm.subdireccionestecnicas" ng-value="subdireccionestecnica.EntityTypeCatalogOptionId">{{ subdireccionestecnica.Name }} </option>
+                </select>
+            </div>
+            <div class="col-md-4" style="padding-top:1.5rem;" ng-disabled="true">
+                <!--has-claim has-opciones="['TramitesVigenciaFutura:AccionesPasoTres']"-->
+                <select name="ddlAnalista" ng-disabled="vm.btnenviadisabled" id="ddlAnalista" class="form-control"
+                        ng-model="vm.filtro.analista" style="padding-top:1rem;"
+                        ng-change="vm.cambiarEstadoListasSeleccionadas(vm.filtro.analista)">
+                    <option value="" selected>Seleccione</option>
+                    <option ng-repeat="analista in vm.analistas" ng-value="analista.IdUsuarioDnp">{{ analista.Nombre }} </option>
+                </select>
+            </div>
+            <div ng-if="vm.habilitaBotones" class="col-md-12" style="padding-top:1.5rem;">
+                <span class="buttonbar  pull-right ">
+                    <!--has-claim has-opciones="['TramitesVigenciaFutura:AccionesPasoTres']"-->
+                    <button type="button" ng-disabled="vm.btnenviadisabled || !vm.estadoListasSeleccionadas" class="btn btn-default btn-md" tooltip-placement="top" uib-tooltip="Solicitar concepto técnico" ng-click="vm.solicitar()"
+                            tabindex="0">
+                        Solicitar
+                    </button>
+                </span>
+            </div>
+        </div>
+        <br />
+        <br />
+        <div class="row" ng-if="!vm.editarConcepto">
+            <div class="col-md-12" ng-repeat="objArchivo in vm.listaConceptos" style="width:99%" ng-init="objArchivoIndex = $index">
+                <div class="row" style="padding-bottom:4rem;padding-top:2rem; display:inline-flex;width:100%;">
+                    <div class="col-md-9" style="display:inline-flex">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <span style="color: #004884; font-size: 24px; font-weight: 400;padding-bottom:4rem;">Concepto técnico {{objArchivo.numero}}</span>
+                            </div>
+                            <div class="col-md-12" style="padding-top:2rem;">
+                                <span class="uLabelCampoNegro">Enviado a: {{objArchivo.correo}}, fecha de envío de solicitud {{objArchivo.fecha}}. Entrega de concepto: {{objArchivo.estado}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3" ng-if="objArchivo.botonVisible">
+                        <span class="buttonbar pull-right">
+                            <!--has-claim has-opciones="['TramitesVigenciaFutura:AccionesPasoTres']"-->
+                            <button type="button" style="border-color: #36C !important;" class="btn btn-blanco btn-md btn-blanco" tooltip-placement="top" uib-tooltip="Recuperar solicitud concepto" ng-click="vm.onRecuperar(objArchivo)"
+                                    tabindex="0">
+                                Recuperar
+                            </button>
+                        </span>
+                    </div>
+                   
+                </div>
+                <div class="row">
+                    <div class="col-md-12" style="width:100%;">
+                        <table class="TableDNP">
+                            <thead>
+                                <tr>
+                                    <th class="columAcc"></th>
+                                    <th class="textLeftDNP">ID / BPIN  /  estado / Sector</th>
+                                    <th class="textLeftDNP">Nombre del proyecto</th>
+                                    <th class="textLeftDNP">Macroproceso / Proceso / estado / Fecha inicio</th>
+                                    <th class="textLeftDNP">Paso actual / fecha inicio</th>
+                                    <th class="columAcc"></th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="width:99%">
+                                    <td></td>
+                                    <td class="textLeftDNP">
+                                        <span>{{objArchivo.DatosConceptoPorInstanacia.ProyectoId}} </span><br />
+                                        <span>{{objArchivo.DatosConceptoPorInstanacia.BPIN}} </span><br />
+                                        <span>{{objArchivo.DatosConceptoPorInstanacia.EstadoProyecto}} </span><br />
+                                        <span>{{objArchivo.DatosConceptoPorInstanacia.Sector}} </span>
+                                    </td>
+                                    <td class="textLeftDNP">
+                                        <span>{{objArchivo.DatosConceptoPorInstanacia.NombreProyecto}} </span>
+                                    </td>
+                                    <td class="textLeftDNP">
+                                        <span>{{objArchivo.DatosConceptoPorInstanacia.MacroProceso}} </span><br />
+                                        <span style="color:#36C; text-decoration: underline;">{{objArchivo.DatosConceptoPorInstanacia.Proceso}} </span><br />
+                                        <span>{{objArchivo.DatosConceptoPorInstanacia.EstadoProceso}} </span><br />
+                                        <span>{{objArchivo.DatosConceptoPorInstanacia.FechaInicioProceso}} </span>
+                                    </td>
+                                    <td class="textLeftDNP">
+                                        <span>{{objArchivo.DatosConceptoPorInstanacia.NombrePaso}} </span><br />
+                                        <span>{{objArchivo.DatosConceptoPorInstanacia.FechaInicioPaso}} </span><br />
+                                        <span>{{objArchivo.DatosConceptoPorInstanacia.EntidadDestino}} </span>
+                                    </td>
+
+                                    <td class="textLeftDNP"> </td>
+
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-md-12" ng-if="objArchivo.tieneConcepto" ng-repeat="objConcepto in objArchivo.listaRespuestas" style="width:99%" ng-init="objConceptoIndex = $index + 1">
+                    <div class="row ng-scope" style="padding-bottom:2rem;">
+                        <div class="col-md-12 DetacolumnDNP">
+                            <span class="detapregun">{{objConceptoIndex}}. {{objConcepto.Pregunta}} *&nbsp; </span>
+                            <span class="notapregun">(Máximo 5.000 caracteres)</span>
+                        </div>
+                    </div>
+                    <div class="row ng-scope" ng-if="objConcepto.EsPreguntaAbierta === 2" style="padding-bottom:2rem;">
+                        <div class="col-md-2 form-check" ng-repeat="opciones in objConcepto.OpcionesRespuesta">
+                            <input disabled="disabled" type="radio" class="form-check"
+                                   ng-model="objConcepto.Respuesta"
+                                   ng-checked="objConcepto.Respuesta.toString() === opciones.OpcionId.toString() ? true : false"> {{opciones.ValorOpcion}}
+                        </div>
+                        <div class="col-md-10">
+
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div id="u5226_div" class="divPanelPregRespDNP" style="">
+                            <div class="respAdon">
+                                <span style="vertical-align: middle; display: table-cell;">Justificación</span>
+                            </div>
+                            <div class="textAreDivRes">
+                                <textarea rows="3"
+                                          id="pregunta"
+                                          name="observacion"
+                                          ng-model="objConcepto.ObservacionPregunta"
+                                          ng-value="objConcepto.ObservacionPregunta"
+                                          minlength="1"
+                                          maxlength="5000"
+                                          disabled="disabled"
+                                          class="uTextAreaSinBorde text-justificado"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="row" ng-if="vm.editarConcepto">
+            <div class="col-md-12" ng-repeat="objConceptoArchivo in vm.listaConceptosRespuestaEditar" style="width:99%" ng-init="objConceptoArchivoIndex = $index">
+                <div class="col-md-12" style="display:inline-flex; ">
+                    <span style="color: #004884; font-size: 24px; font-weight: 400;">Usted ha recibido una solicitud de concepto técnico </span>
+                    <div ng-click="vm.abrirTooltip()" style="padding-top: 0.8rem; padding-left: 1rem;">
+                        <svg class="mi-card__tooltip-icon" xmlns="http://www.w3.org/2000/svg" width="17.037" height="17.037" viewBox="0 0 17.037 17.037">
+                            <g id="Grupo_5110" data-name="Grupo 5110" transform="translate(0 0)">
+                                <path id="Caminho_9243" data-name="Caminho 9243" d="M8.552,0A8.552,8.552,0,0,0,0,8.485a8.609,8.609,0,0,0,8.552,8.552A8.519,8.519,0,0,0,8.552,0Zm0,14.542a1,1,0,1,1,1-1A1,1,0,0,1,8.552,14.542Zm1.769-6.136A2.663,2.663,0,0,0,9.55,10.22v.262a1,1,0,0,1-2,0V10.22A4.614,4.614,0,0,1,9.141,6.8,1,1,0,1,0,7.554,5.99a1,1,0,0,1-2,0,2.995,2.995,0,1,1,4.764,2.416Z" transform="translate(0 0)" fill="#36c"></path>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12" style="padding-top: 2rem; margin-left: 1rem;">
+                        <span class="uLabelCampoNegro">
+                            Enviado por {{
+objConceptoArchivo.correoUsuarioQueEnvia
+                            }}, fecha de envío de solicitud {{objConceptoArchivo.fecha}}.
+                        </span>
+                    </div>
+                    <div class="col-md-12" style="padding-top: 2rem; margin-left: 1rem;">
+                        <span class="uLabelCampoNegro">Este es el único espacio de este formulario donde usted puede editar el contenido. Por favor diligencie, guarde y envíe.</span>
+                    </div>
+                </div>
+                <div class="row" style=" padding-top: 2rem;padding-bottom:2rem;">
+                    <div class="col-md-7" style="margin-left: 1rem; padding-top: 2rem;"><span style="color: #004884;font-size: 24px;font-weight: 400;padding-top: 2rem; ">Responda las siguientes preguntas</span></div>
+                    <div class="col-md-4" style="margin-right: 0rem; padding-top: 2rem;">
+                        <span class="buttonbar pull-right">
+                            <button ng-disabled="vm.habilitarEnviar" type="button" class="btn btn-default btn-md ng-binding" tooltip-placement="top" uib-tooltip="Enviar solicitud concepto" ng-click="vm.onEnviar(objConceptoArchivo.idUsuarioDNP, objConceptoArchivo.idUsuarioDNPQueEnvia)"
+                                    tabindex="0">
+                                Enviar
+                            </button>
+                        </span>
+                        <span class="buttonbar pull-right">
+                            <button ng-disabled="vm.habilitarGuardar" type="button" class="btn btn-default btn-md ng-binding" tooltip-placement="top" uib-tooltip="Guardar solicitud concepto" ng-click="vm.onGuardar()"
+                                    tabindex="0">
+                                Guardar
+                            </button>
+                        </span>
+                        <span class="buttonbar pull-right">
+                            <button ng-if="vm.habilitarEditar" type="button" class="btn btn-default btn-md ng-binding" tooltip-placement="top" uib-tooltip="Editar solicitud concepto" ng-click="vm.onEditar()"
+                                    tabindex="0">
+                                Editar
+                            </button>
+                        </span>
+                        <span class="buttonbar pull-right">
+                            <button ng-if="vm.habilitarCancelar" type="button" class="btn btn-default btn-md ng-binding" tooltip-placement="top" uib-tooltip="Cancelar edición concepto" ng-click="vm.onCancelar()"
+                                    tabindex="0">
+                                Cancelar
+                            </button>
+                        </span>
+                    </div>
+
+                </div>
+                <div class="col-md-12" ng-repeat="objConcepto in objConceptoArchivo.listaRespuestas" style="width:99%" ng-init="objConceptoIndex = $index + 1">
+                    <div class="row" style="padding-bottom:4rem;width:100%;">
+                        <div class="col-md-12">
+                            <span style="font-weight: 700;">{{objConceptoIndex}}. {{objConcepto.Pregunta}}</span><span style="font-weight: 700;">(Máximo 5.000 caracteres)</span>
+                        </div>
+                        <div class="col-md-12" ng-if="objConcepto.EsPreguntaAbierta === 2" style="padding-top:3rem;padding-bottom:2rem;">
+                            <div class="row">
+                                <div class="col-md-2 form-check" ng-repeat="opciones in objConcepto.OpcionesRespuesta">
+                                    <input ng-disabled="vm.diligencia" type="radio" class="form-check"
+                                           name="radio{{objConcepto.CuestionarioProyectoId}}{{objConcepto.PreguntaId}}"
+                                           ng-model="objConcepto.Respuesta" value="{{opciones.OpcionId}}"
+                                           ng-checked="objConcepto.Respuesta === opciones.OpcionId.toString() ? true : false"> {{opciones.ValorOpcion}}
+                                </div>
+                                <div class="col-md-10"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div id="u5226_div" class="divPanelPregRespDNP" style="">
+                                <div class="respAdon">
+                                    <span style="vertical-align: middle; display: table-cell;">Justificación</span>
+                                </div>
+                                <div class="textAreDivRes">
+                                    <textarea ng-disabled="vm.diligencia" rows="3"
+                                              id="objConcepto.PreguntaId"
+                                              name="observacion"
+                                              ng-model="objConcepto.ObservacionPregunta"
+                                              ng-value="objConcepto.ObservacionPregunta"
+                                              minlength="1"
+                                              maxlength="5000"
+                                              class="uTextAreaSinBorde text-justificado"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+

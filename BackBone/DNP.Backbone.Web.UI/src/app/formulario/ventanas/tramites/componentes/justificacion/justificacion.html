@@ -1,0 +1,45 @@
+﻿<div class="tab-content" style=" height:300px; overflow: scroll;" ng-init="vm.obtener();">
+
+
+    <div id="justificacion" class="collapsed panel-body">
+
+        <form id="preguntasForm" name="preguntasForm" novalidate>
+            <div class="row">
+                <button class="btn btn-outline-secondary pull-right"
+                        has-claim has-opciones="['Tramites:RegistrarRespuesta']" 
+                        type="submit"
+                        ng-click="vm.registrorespuesta(vm.pregunta)" ng-show="!vm.elaboracionConcepto && !vm.aprobacionEntidad">
+                    GUARDAR MODIFICACIÓN
+                </button>
+            </div>
+            <div class="row">
+                <div class="alert panel-heading ">
+                    <!--<button class="btn btn-link pull-left " type="button" data-toggle="collapse" data-target="#preguntasJustificacion">
+                        {{vm.tipoJustificacion}}
+                    </button>-->
+                    <span class="glyphicon glyphicon-chevron-up pull-right" data-toggle="collapse" data-target="#preguntasJustificacion"> </span>
+                </div>
+            </div>
+            <br /><br />
+            <div class="row" id="preguntasJustificacion">
+                <div class="mb-3 row" ng-repeat="pregunta in vm.Justificaciones">
+
+                    <label for="respuesta" class="col-md-5 col-form-label" style="text-align:left">{{pregunta.JustificacionPregunta}}</label>
+
+                    <div class="col-md-7 form-group ">
+                        <textarea rows="3"
+                                  id="pregunta"
+                                  name="pregunta"
+                                  placeholder="Maximo 5.000 caracteres"
+                                  ng-model="vm.pregunta.JustificacionRespuesta[pregunta.JustificacionPreguntaId]"
+                                  ng-value="pregunta.JustificacionRespuesta"
+                                  minlength="1"
+                                  maxlength="5000"
+                                  class="form-control " ng-required="true"></textarea>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>

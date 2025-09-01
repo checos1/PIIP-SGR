@@ -1,0 +1,39 @@
+﻿<div class="container-fluid wbs">
+    <!--barra titulo-->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="titlebar">
+                <span>Proyecto </span>
+                <span class="buttonbar pull-right">
+                    <button type="button" class="btn btn-default btn-md" ng-hide="vm.filtrosWBS === null || vm.filtrosWBS.length === 0" ng-class='vm.mostrarFiltros ? "btn btn-primary" : "btn btn-default"' ng-click="vm.mostrarONoMostrarFiltros()" tooltip-placement="auto" uib-tooltip="Filtro">Filtro</button>
+                    <a href="" ng-click="vm.verLog()" tooltip-placement="auto" uib-tooltip="Ver log de la instancia"><img src="/Img/iconsgrid/iconAccionCalendar.svg" alt="Ver log de la instancia" /></a>
+                    <a href="" download target="_blank" ng-click="vm.downloadPdf()" tooltip-placement="auto" uib-tooltip="Exportar PDF" class="btn btn-default btn-md btnRedondo">PDF</a>
+                    <a href="" download target="_blank" tooltip-placement="auto" uib-tooltip="Exportar XLS" class="btn btn-default btn-md btnRedondo">XLS</a>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row filtro bottom15 border-bottom-line" ng-show="vm.mostrarFiltros">
+        <div class="col-md-10">
+            <div ng-repeat="f in vm.filtrosWBS">
+                <div class="col-md-3">
+                    <select class="form-control" ng-model="f.valorSeleccionado" ng-options="x for x in f.valores">
+                        <option value="" selected>{{f.nombre}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2 text-right">
+            <button type="button" class="btn btn-filtro" ng-click="vm.buscar()" tooltip-placement="auto" uib-tooltip="Buscar">Buscar</button>
+            <button type="button" class="btn btn-filtro" ng-click="vm.limpiarCamposFiltro()" tooltip-placement="auto" uib-tooltip="Limpiar">Limpiar</button>
+        </div>
+    </div>
+
+    <!--accordion-->
+    <div class="panel-group" id="accordion">
+        <div class="panel panel-default min-width24">
+            <jerarquia-wbs modelo="vm.modelo.propiedades" datos="vm.datos" datos-master="vm.datos" schema="vm.schema" id-padre="0" opciones="vm.opciones"></jerarquia-wbs>
+        </div>
+    </div>
+</div>

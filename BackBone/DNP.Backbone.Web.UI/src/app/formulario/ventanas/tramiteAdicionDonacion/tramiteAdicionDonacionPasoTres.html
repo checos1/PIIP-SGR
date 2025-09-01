@@ -1,0 +1,72 @@
+﻿<section>
+    <div class="container-fluid inbox" ng-init="vm.init();">
+        <br />
+        <div>
+            <div class="row">
+                <div class="row" style="padding-left: 3rem;padding-right: 2rem;">
+                    <div class="form-group" style=" padding-top: 2rem;width:90%;">
+
+
+                        <div class="tab-content">
+
+                            <div class="tab-pane   cont col-md-12 p-0" id="dproyecto">
+                                <proyectos-tad-paso-tres tramiteid="{{vm.tramiteDetail.tramiteId}}"
+                                               tipotramiteid="{{vm.tramiteDetail.tipoTramiteId}}"	
+                                                         callback="vm.notificarGuardado()"
+                                               guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                               notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                               notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)"
+                                               notificacioncambios="vm.notificacionCambiosAjustes(handler, nombreComponente)">
+                                </proyectos-tad-paso-tres>
+                            </div>
+                            <div class="tab-pane  cont col-md-12 p-0" id="dinformacionpresupuestal">
+                                <informacion-presupuestal-tad-paso-tres tipotramiteid="{{vm.tramiteDetail.tipoTramiteId}}" 
+                                                                        tramiteid="{{vm.tramiteDetail.tramiteId}}"
+                                                                        rolanalista ="{{vm.rolAnalista}}"
+                                                              callback="vm.notificarGuardado()"
+                                                              guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                                              notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                                              notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)"
+                                                              notificacioncambios="vm.notificacionCambiosAjustes(handler, nombreComponente)">
+
+                                </informacion-presupuestal-tad-paso-tres>
+                            </div>
+                            <div class="tab-pane  cont col-md-12 p-0" id="djustificacion">
+                                <justificacion-tad-paso-tres tipotramiteid="{{vm.tramiteDetail.tipoTramiteId}}" tramiteid="{{vm.tramiteDetail.tramiteId}}"
+                                                   callback="vm.notificarGuardado()"
+                                                    idnivel="{{vm.IdNivel}}"
+                                                   guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                                   notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                                   notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)"
+                                                   notificacioncambios="vm.notificacionCambiosAjustes(handler, nombreComponente)">
+
+
+                                </justificacion-tad-paso-tres>
+
+                            </div>
+                            <div class="tab-pane  cont col-md-12 p-0" id="dconceptos">
+                                <concepto-tad tipotramiteid="{{vm.tramiteDetail.tipoTramiteId}}"
+                                                        tramiteid="{{vm.tramiteDetail.tramiteId}}"
+                                                        nivel="{{vm.IdNivel}}"
+                                                        rol="{{vm.IdRol}}"
+                                                        rolanalista="{{vm.rolAnalista}}"
+                                                        deshabilitar="vm.deshabilitar"
+                                                        muestracapitulospaso3="{{vm.muestracapitulospaso3}}"
+                                                        section="{{vm.section}}"
+                                                        callback="vm.notificarGuardado(botonDevolver, botonSiguiente, ocultarDevolver)"
+                                                        guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                                        notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                                        notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)"
+                                                        notificacioncambios="vm.notificacionCambiosAjustes(handler, nombreComponente)">
+                                </concepto-tad>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

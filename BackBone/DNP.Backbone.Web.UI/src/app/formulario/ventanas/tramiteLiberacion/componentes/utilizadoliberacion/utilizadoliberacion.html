@@ -1,0 +1,307 @@
+﻿<div style="margin-left:20px;" class="container-fluid inbox" ng-init="vm.init();">
+    <div ng-if="datos == null">
+        <div class="col-md-12" style="padding-bottom: 55px !important;padding-right: 4rem !important">
+            <div id="u5227_div" class="divPanelPregRespDNP" style="width: 100% !important">
+                <div class="respAdon" style="width: 100% !important">
+                    <span style="vertical-align: middle; display: table-cell;font-style: normal; font-size: 15px; color:black">No se han activado los datos para este proceso. Para hacerlo, incluya datos de fecha y autorización en cada trámite del cápitulo "Seleccionar Vigencias Futuras"</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-if="datos != null && datos.HabilitaValoresSolicitados == false">
+        <div class="col-md-12" style="padding-bottom: 55px !important;padding-right: 4rem !important">
+            <div id="u5227_div" class="divPanelPregRespDNP" style="width: 100% !important">
+                <div class="respAdon" style="width: 100% !important">
+                    <span style="vertical-align: middle; display: table-cell;font-style: normal; font-size: 15px; color:black">No se han activado los datos para este proceso. Para hacerlo, incluya datos de fecha y autorización en cada trámite del cápitulo "Seleccionar Vigencias Futuras"</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-if="datos != null && datos.HabilitaValoresSolicitados == true">
+        <div class="respAdon" style="width: 100% !important">
+            <span style="vertical-align: middle; display: table-cell;font-style: normal; font-size: 15px; color:black">La visualización de los trámites depende de la inclusión de la fecha y código de autorización por trámite en el aplicativo "Autorización MINHACIENDA"</span>
+        </div>
+        <div ng-repeat="tramite in datos.TramitesALiberar" ng-init="tramitesdovfIndex = $index">
+            <div class="row" style="color: #004884">
+                <div class="" style="padding: 0 !important">
+                    <div class="alert panel-heading" style="height: 50px;">
+                        <div class="card card-body pull-left  divAccordionDNP" style="max-height:250px;">
+                            <p style="line-height: 1.1; margin-left: 55px">
+                                <span style="font-weight: 500; font-style: normal; font-size: 16px; color: #004884"><strong>Código proceso: </strong></span> {{tramite.CodigoProceso}}. <span style="font-weight: 500; font-style: normal; font-size: 16px; color: #004884"><strong>Nombre proceso: </strong></span> {{tramite.NombreProceso}}.
+                                <span style="font-weight: 500; font-style: normal; font-size: 16px; color: #004884"><strong>Fecha: </strong></span> {{vm.convertToDate(tramite.Fecha) | date: 'dd/MM/yyyy'}}.
+                                <span style="font-weight: 500; font-style: normal; font-size: 16px; color: #004884"><strong>Objeto: </strong></span> {{tramite.Objeto | limitTo: 110}} <span ng-if="tramite.Objeto.length > 110">...</span>  <button ng-if="tramite.Objeto.length > 110" type="button" style="color: #3366CC;line-height:20px " class="btn btn-link btn-md  buttonhiper" tooltip-placement="top" uib-tooltip="ver más" tabindex="0" ng-click="vm.ObjetoVerMas(tramite)" data="{{tramite.objeto}}">Ver más</button>
+                                <span style="font-weight: 500; font-style: normal; font-size: 16px; color: #004884"><strong>Fecha autorización: </strong></span> {{tramite.FechaAutorizacion == null ? 'Pendiente' : vm.convertToDate(tramite.FechaAutorizacion) | date: 'dd/MM/yyyy'}}. <span style="font-weight: 500; font-style: normal; font-size: 16px; color: #004884"><strong>Código autorización: </strong></span> {{tramite.CodigoAutorizacion == '0' ? 'Pendiente' : tramite.CodigoAutorizacion}}.
+                            </p>
+
+                            <p style="padding: 0px; margin-bottom: 0px;">
+                                <button class="btnaccion btnAccordionDNP" type="button" data-toggle="collapse" data-target="#altrautilvf{{tramite.LiberacionVigenciasFuturasId}}" ng-click="vm.changeBoton(tramite)" data="{{tramite}}">
+
+                                    <img ng-show="tramite.LabelBoton == '+'" src="Img/btnMas.svg">
+                                    <img ng-show="tramite.LabelBoton == '-'" src="Img/btnMenos.svg">
+                                </button>
+
+                                <span id="objetivoutilvf-{{tramite.LiberacionVigenciasFuturasId}}" class="img iconadverdnp hidden" style="margin-left:0px">   <img src="Img/u4630.svg"> </span>
+
+                            </p>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="collapse" id="altrautilvf{{tramite.LiberacionVigenciasFuturasId}}">
+                        <br />
+                        <br />
+                        <!--<div class="LineaEncabezadodivDNP"></div>-->
+                        <!--<h3 class="row tituloEncabezadodivDNP">Valores vigencia futura</h3>-->
+                        <h2 class="row" style="padding-left: 0rem; padding-right: 2rem; text-align: left; color: #004884">&nbsp;&nbsp;Valores vigencia futura <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg" ng-click="vm.abrirMensajeInformacion()"></h2>
+                    
+                        <div ng-if="!tramite.EsConstante" class="row col-md-11">
+                            <div class="col-md-11" ng-if="vm.habilitaBotones">
+                                <span class="buttonbar pull-right">
+                                    <button type="button" class="btneditarDNP" tooltip-placement="top" ng-click="tramite.EditarTramiteLiberacion ? vm.Cancelar(tramite) : vm.Editar(tramite)" uib-tooltip="{{tramite.EditarTramiteLiberacion ? 'CANCELAR' : 'EDITAR'}}">
+                                        {{tramite.EditarTramiteLiberacion ? 'CANCELAR' : 'EDITAR'}}
+                                    </button>
+                                    <button ng-disabled="!tramite.EditarTramiteLiberacion" type="button" class="{{tramite.EditarTramiteLiberacion ? 'btnguardarDNP' : 'btnguardarDisabledDNP'}}" tooltip-placement="top" uib-tooltip="Guardar" tabindex="0" ng-click="vm.Guardar(tramite)">
+                                        GUARDAR
+                                    </button>
+                                </span>
+                            </div>
+                            <br />
+                            <br />
+                            <div class="alert panel-heading">
+                                <table class="TableDNP">
+                                    <thead>
+                                        <tr>
+                                            <th class="columAcc"></th>
+                                            <th class="textRightDNP">Vigencia</th>
+                                            <th class="textRightDNP">Autorizados nación $</th>
+                                            <th class="textRightDNP">Autorizados propios $</th>
+                                            <th class="textRightDNP">Utilizados nación corrientes $</th>
+                                            <th class="textRightDNP">Utilizados propios corrientes $</th>
+                                            <th class="columAcc"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="corrientes in tramite.ValoresCorrientesAutorizaLiberacion" ng-init="corrientesindex = $index">
+                                            <td></td>
+                                            <td class="textRightDNP">{{corrientes.Vigencia}}</td>
+                                            <td class="textRightDNP">{{vm.ConvertirNumero(corrientes.AprobadoNacion)}}</td>
+                                            <td class="textRightDNP">{{vm.ConvertirNumero(corrientes.AprobadoPropios)}}</td>
+                                            <td ng-if="!tramite.EditarTramiteLiberacion" class="textRightDNP">{{vm.ConvertirNumero(corrientes.UtilizadoNacion)}}</td>
+                                            <td ng-if="tramite.EditarTramiteLiberacion && corrientes.Vigencia < vm.vigenciaActual" class="textRightDNP">{{vm.ConvertirNumero(corrientes.UtilizadoNacion)}}</td>
+                                            <td ng-if="tramite.EditarTramiteLiberacion && corrientes.Vigencia >= vm.vigenciaActual" class="textRightDNP">
+                                                <input id="input-UtilizadoNacion" type="number" string-to-number min="0.00"
+                                                       ng-keypress="vm.validateFormat($event)"
+                                                       ng-keyup="vm.validarTamanio($event)"
+                                                       ng-blur="vm.actualizaFila($event, tramite)"
+                                                       ng-value="corrientes.UtilizadoNacion"
+                                                       ng-model="datos.TramitesALiberar[tramitesdovfIndex].ValoresCorrientesAutorizaLiberacion[corrientesindex].UtilizadoNacion"
+                                                       required class="form-control editInputDNP" style="text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px; background-color: white" />
+                                            </td>
+                                            <td ng-if="!tramite.EditarTramiteLiberacion" class="textRightDNP">{{vm.ConvertirNumero(corrientes.UtilizadoPropios)}}</td>
+                                            <td ng-if="tramite.EditarTramiteLiberacion && corrientes.Vigencia < vm.vigenciaActual" class="textRightDNP">{{vm.ConvertirNumero(corrientes.UtilizadoPropios)}}</td>
+                                            <td ng-if="tramite.EditarTramiteLiberacion && corrientes.Vigencia >= vm.vigenciaActual" class="textRightDNP">
+                                                <input id="input-UtilizadoPropios" type="number" string-to-number min="0.00"
+                                                       ng-keypress="vm.validateFormat($event)"
+                                                       ng-keyup="vm.validarTamanio($event)"
+                                                       ng-blur="vm.actualizaFila($event, tramite)"
+                                                       ng-value="corrientes.UtilizadoPropios"
+                                                       ng-model="datos.TramitesALiberar[tramitesdovfIndex].ValoresCorrientesAutorizaLiberacion[corrientesindex].UtilizadoPropios"
+                                                       required class="form-control editInputDNP" style="text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px; background-color: white" />
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td class="columAcc icontotaldnp"><span></span></td>
+                                            <td class="textLeftDNP">
+                                                <b>TOTAL</b>
+                                            </td>
+                                            <td class="textRightDNP"><div><b>{{vm.ConvertirNumero(tramite.TotalCorrientesAutorizadosNacion)}}</b></div></td>
+                                            <td class="textRightDNP"><div><b>{{vm.ConvertirNumero(tramite.TotalCorrientesAutorizadosPropios)}}</b></div></td>
+                                            <td class="textRightDNP"><div><b>{{vm.ConvertirNumero(tramite.TotalCorrientesUtilizadosNacion)}}</b></div></td>
+                                            <td class="textRightDNP"><div><b>{{vm.ConvertirNumero(tramite.TotalCorrientesUtilizadosPropios)}}</b></div></td>
+                                            <td></td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                                <div class="col-md-12">
+                                    <div id="validacion-VATL004-valoresutilizados" class="hidden text-left color-red"></div>
+                                    <archivos-formulario indiceTabla ="{{tramitesIndex}}"
+                                        tipotramiteid="{{vm.tipotramiteid}}"
+                                        tramiteid="{{vm.tramiteid}}"
+                                        nivel="{{vm.nivel}}"
+                                        rol="da595aa3-cf59-46d3-a22a-0d96da5c7371"
+                                        section="{{vm.nombreComponente}}"
+                                        nombrecomponentepaso="{{vm.nombreComponente}}"
+                                        guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                        notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                        notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)">
+                                    </archivos-formulario>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div ng-if="tramite.EsConstante" class="row col-md-11">
+
+                            <div class="tab-container col-md-12" style="width: 100%; text-align: left">
+                                <ul class="nav nav-tabs">
+                                    <li id="liConstantesduvf" class="nav-item" ng-class="{active : 1===1}">
+                                        <a href="" class="nav-link" data-target="#tabConstantesduvf" data-toggle="tab">
+                                            <b>
+                                                <span id="utilizados-liberacion-vigencia-futura-constante" class="img iconadverdnp hidden" style="margin-left:0px">   <img src="Img/u4630.svg"> </span>
+                                                Valores constantes
+                                            </b>
+                                        </a>
+                                    </li>
+                                    <li id="liCorrientesduvg" class="nav-item">
+                                        <a href="" class="nav-link" data-target="#tabCorrienteduvf" data-toggle="tab">
+                                            <span id="utilizados-liberacion-vigencia-futura-corriente" class="img iconadverdnp hidden" style="margin-left:0px">   <img src="Img/u4630.svg"> </span>
+                                            <b>Valores corrientes</b>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="tab-content">
+                                <div class="tab-pane active cont col-md-12" style="padding-left:0 !important;padding-top:20px !important; padding-bottom:0" id="tabConstantesduvf">
+                                    <div style="width: 90% !important">
+                                        <div class="col-md-2"><h4 class="textRightDNP">Año base</h4></div><div class="col-md-2 divInfoPendienteDNP" style="width:120px"><span class="textLeftDNP" style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 500; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px"><b>{{tramite.AnioBase}}</b></span></div><div class="col-md-8"><span style="vertical-align: middle; display: table-cell;font-style: normal; font-size: 15px; color:black"> Los valores utilizados no pueden ser superiores a los autorizados</span></div> 
+                                    </div>
+                                    <div class="col-md-11" ng-if="vm.habilitaBotones">
+                                        <span class="buttonbar pull-right">
+                                            <button type="button" class="btneditarDNP" tooltip-placement="top" ng-click="tramite.EditarTramiteLiberacion ? vm.Cancelar(tramite) : vm.Editar(tramite)" uib-tooltip="{{tramite.EditarTramiteLiberacion ? 'CANCELAR' : 'EDITAR'}}">
+                                                {{tramite.EditarTramiteLiberacion ? 'CANCELAR' : 'EDITAR'}}
+                                            </button>
+                                            <button ng-disabled="!tramite.EditarTramiteLiberacion" type="button" class="{{tramite.EditarTramiteLiberacion ? 'btnguardarDNP' : 'btnguardarDisabledDNP'}}" tooltip-placement="top" uib-tooltip="Guardar" tabindex="0" ng-click="vm.Guardar(tramite)">
+                                                GUARDAR
+                                            </button>
+                                        </span>
+                                    </div>
+                                    <br />
+                                    <br />
+                                    <table class="TableDNP">
+                                        <thead>
+                                            <tr>
+                                                <th class="columAcc"></th>
+                                                <th class="textRightDNP">Vigencia</th>
+                                                <th class="textRightDNP">Deflactor</th>
+                                                <th class="textRightDNP">Autorizados nación $</th>
+                                                <th class="textRightDNP">Autorizados propios $</th>
+                                                <th class="textRightDNP">Utilizados nación constantes $</th>
+                                                <th class="textRightDNP">Utilizados propios constantes $</th>
+                                                <th class="columAcc"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="constantes in tramite.ValoresConstantesAutorizaLiberacion" ng-init="constantesindex = $index">
+                                                <td></td>
+                                                <td class="textRightDNP">{{constantes.Vigencia}}</td>
+                                                <td class="textRightDNP">{{constantes.Deflactor}}</td>
+                                                <td class="textRightDNP">{{vm.ConvertirNumero(constantes.AprobadoConstanteNacion)}}</td>
+                                                <td class="textRightDNP">{{vm.ConvertirNumero(constantes.AprobadoConstantePropios)}}</td>
+                                                <td ng-if="!tramite.EditarTramiteLiberacion" class="textRightDNP">{{vm.ConvertirNumero(constantes.UtilizadoConstanteNacion)}}</td>
+                                                <td ng-if="tramite.EditarTramiteLiberacion && constantes.Vigencia < vm.vigenciaActual" class="textRightDNP">{{vm.ConvertirNumero(constantes.UtilizadoConstanteNacion)}}</td>
+                                                <td ng-if="tramite.EditarTramiteLiberacion && constantes.Vigencia >= vm.vigenciaActual" class="textRightDNP">
+                                                    <input id="input-UtilizadoConstanteNacion" type="number" string-to-number min="0.00"
+                                                           ng-keypress="vm.validateFormat($event)"
+                                                           ng-keyup="vm.validarTamanio($event)"
+                                                           ng-blur="vm.actualizaFila($event, tramite)"
+                                                           ng-value="constantes.UtilizadoConstanteNacion"
+                                                           ng-model="datos.TramitesALiberar[tramitesdovfIndex].ValoresConstantesAutorizaLiberacion[constantesindex].UtilizadoConstanteNacion"
+                                                           required class="form-control editInputDNP" style="text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px; background-color: white" />
+                                                </td>
+                                                <td ng-if="!tramite.EditarTramiteLiberacion" class="textRightDNP">{{vm.ConvertirNumero(constantes.UtilizadoConstantePropios)}}</td>
+                                                <td ng-if="tramite.EditarTramiteLiberacion && constantes.Vigencia < vm.vigenciaActual" class="textRightDNP">{{vm.ConvertirNumero(constantes.UtilizadoConstantePropios)}}</td>
+                                                <td ng-if="tramite.EditarTramiteLiberacion && constantes.Vigencia >= vm.vigenciaActual" class="textRightDNP">
+                                                    <input ng-if="constantes.Vigencia >= vm.vigenciaActual" id="input-UtilizadoConstantePropios" type="number" string-to-number min="0.00"
+                                                           ng-keypress="vm.validateFormat($event)"
+                                                           ng-keyup="vm.validarTamanio($event)"
+                                                           ng-blur="vm.actualizaFila($event, tramite)"
+                                                           ng-value="constantes.UtilizadoConstantePropios"
+                                                           ng-model="datos.TramitesALiberar[tramitesdovfIndex].ValoresConstantesAutorizaLiberacion[constantesindex].UtilizadoConstantePropios"
+                                                           required class="form-control editInputDNP" style="text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px; background-color: white" />
+                                                </td>
+                                                <td></td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td class="columAcc icontotaldnp"><span></span></td>
+                                                <td class="columAcc icontotaldnp"><span></span></td>
+                                                <td class="textLeftDNP">
+                                                    <b>TOTAL</b>
+                                                </td>
+                                                <td class="textRightDNP"><div><b>{{vm.ConvertirNumero(tramite.TotalConstantesAutorizadosNacion)}}</b></div></td>
+                                                <td class="textRightDNP"><div><b>{{vm.ConvertirNumero(tramite.TotalConstantesAutorizadosPropios)}}</b></div></td>
+                                                <td class="textRightDNP"><div><b>{{vm.ConvertirNumero(tramite.TotalConstantesUtilizadosNacion)}}</b></div></td>
+                                                <td class="textRightDNP"><div><b>{{vm.ConvertirNumero(tramite.TotalConstantesUtilizadosPropios)}}</b></div></td>
+                                                <td></td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+
+                                <div class="tab-pane cont col-md-12" style="padding-left:0 !important;padding-top:20px !important; padding-bottom:0" id="tabCorrienteduvf">
+                                    <table class="TableDNP">
+                                        <thead>
+                                            <tr>
+                                                <th class="columAcc"></th>
+                                                <th class="textRightDNP">Vigencia</th>
+                                                <th class="textRightDNP">Autorizados nación $</th>
+                                                <th class="textRightDNP">Autorizados propios $</th>
+                                                <th class="textRightDNP">Utilizados nación corrientes $</th>
+                                                <th class="textRightDNP">Utilizados propios corrientes $</th>
+                                                <th class="columAcc"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="constantescorrientes in tramite.ValoresConstantesAutorizaLiberacion" ng-init="constantescorrientesindex = $index">
+                                                <td></td>
+                                                <td class="textRightDNP">{{constantescorrientes.Vigencia}}</td>
+                                                <td class="textRightDNP">{{vm.ConvertirNumero(constantescorrientes.AprobadoCorrienteNacion)}}</td>
+                                                <td class="textRightDNP">{{vm.ConvertirNumero(constantescorrientes.AprobadoCorrientePropios)}}</td>
+                                                <td class="textRightDNP">{{vm.getCorrientesNacion(constantescorrientes)}}</td>
+                                                <td class="textRightDNP">{{vm.getCorrientesPropios(constantescorrientes)}}</td>
+                                                <td></td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td class="columAcc icontotaldnp"><span></span></td>
+                                                <td class="textLeftDNP">
+                                                    <b>TOTAL</b>
+                                                </td>
+                                                <td class="textRightDNP"><div><b>{{vm.ConvertirNumero(tramite.TotalConstantesCorrientesAutorizadosNacion)}}</b></div></td>
+                                                <td class="textRightDNP"><div><b>{{vm.ConvertirNumero(tramite.TotalConstantesCorrientesAutorizadosPropios)}}</b></div></td>
+                                                <td class="textRightDNP"><div><b>{{vm.getTotal(tramite)}}</b></div></td>
+                                                <td class="textRightDNP"><div><b>{{vm.getTotal2(tramite)}}</b></div></td>
+                                                <td></td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="alert panel-heading">
+                                <div class="col-md-12">
+                                    <div id="validacion-VATL004-valoresutilizados" class="hidden text-left color-red"></div>
+                                    <archivos-formulario indiceTabla="ulvf{{tramite.LiberacionVigenciasFuturasId}}"
+                                                         tipotramiteid="{{vm.tipotramiteid}}"
+                                                         tramiteid="{{vm.tramiteid}}"
+                                                         nivel="{{vm.nivel}}"
+                                                         rol="da595aa3-cf59-46d3-a22a-0d96da5c7371"
+                                                         section="{{vm.nombreComponente}}"
+                                                         nombrecomponentepaso="{{vm.nombreComponente}}"
+                                                         guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                                         notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                         notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)">
+                                    </archivos-formulario>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

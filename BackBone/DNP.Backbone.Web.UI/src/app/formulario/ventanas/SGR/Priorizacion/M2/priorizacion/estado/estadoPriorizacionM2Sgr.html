@@ -1,0 +1,39 @@
+﻿
+<div class="container-fluid inbox" ng-init="vm.init();">
+    <br /><br />
+    <div class="row">
+        <div class="col-md-12" style="text-align:left">
+            <div ng-repeat="fila in vm.Fuentes">
+                <div class="row">
+                    <span class="NomItemAccordDNP">Etapa: </span>{{fila.Etapa}} <span class="NomItemAccordDNP">, {{fila.TipoEntidad}}: </span>{{fila.ETFuente}} {{fila.ETPadre}}
+                    <br /><br />
+                    <table class="TableDNP" width="92%">
+                        <thead>
+                            <tr>
+                                <th class="columAcc" style="width:2%"></th>
+                                <th class="textLeftDNP" style="width:20%">Tipo recurso</th>
+                                <th class="textLeftDNP" style="width:20%">Metodología de Priorización</th>
+                                <th class="textLeftDNP" style="width:20%">Entidad que prioriza</th>
+                                <th class="textRightDNP" style="width:16%">Valor solicitado</th>
+                                <th class="textLeftDNP" style="width:18%">Estado de priorización</th>
+                                <th class="columAcc" style="width:2%"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="filaMet in vm.Metodologias" ng-if="fila.EtapaId===filaMet.EtapaId && fila.FuenteId===filaMet.FuenteId && fila.ResourceTypeId===filaMet.ResourceTypeId">
+                                <td></td>
+                                <td><span class="InfoItemAccordDNP">{{filaMet.TipoRecurso}}</span></td>
+                                <td><span class="InfoItemAccordDNP">{{filaMet.Metodologia}}</span></td>
+                                <td><span class="InfoItemAccordDNP">{{filaMet.EntidadPrioriza}}</span></td>
+                                <td class="textRightDNP"><input type="text" class="form-control editInputDNP" disabled value={{vm.ConvertirNumero(filaMet.Valor)}} /></td>
+                                <td><span class="InfoItemAccordDNP">{{filaMet.SubEstado}}</span></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br /><br />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

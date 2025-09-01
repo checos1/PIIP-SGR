@@ -1,0 +1,113 @@
+﻿@using DNP.Backbone.Dominio.Dto.Consola;
+@model ConsolaTramiteDto
+@{
+    Layout = null;
+    ViewBag.Title = "TramitesPDF";
+}
+<html>
+<head>
+    @Html.Partial("_IncludeEstilosRelatorios")
+</head>
+<body class="pdf">
+    @Html.Partial("_CabecalhoRelatorio", "Informe de Trámites")
+
+    <div class="mt-5">
+        @if (Model.ListaGrupoTramiteEntidad == null)
+        {
+            <table class="table table-sm table-borderless">
+                <thead>
+                    <tr>
+                        <th class="text-center">
+                            No hubo registros para los filtros seleccionados.
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+        }
+        else
+        {
+            foreach (var grupo in Model.ListaGrupoTramiteEntidad)
+            {
+                <div>
+                    <div>
+                        <table class="table table-sm table-borderless">
+                            <tr>
+                                <td><b>Tipo Entidade:</b> @grupo.GrupoTramites.FirstOrDefault().NombreTipoEntidad </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                foreach (var grpTramites in grupo.GrupoTramites)
+                {
+                    <div>
+                        <div >
+                            <table class="table">
+                                <tr>
+                                    <td><b>Sector:</b> <span class="agr-blue">@grpTramites.NombreSector</span> - <b>Nombre Entidad:</b> <span class="agr-black">@grpTramites.NombreEntidad </span></td>
+                                </tr>
+                                <tr>
+                                    <td><b class="blue">Tramite</b> - <b>@grpTramites.NombreTipoTramite</b></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div id="containerbody">
+                        <table class="table  table-borderless border-table">
+                            <thead>
+                                <tr>
+                                    @foreach (var columna in Model.ColumnasVisibles)
+                                    {
+                                        if (columna.ToLower().Contains("descripcion"))
+                                        {
+                                            <th>Descripcion</th>
+                                        }
+                                        if (columna.ToLower().Contains("fecha"))
+                                        {
+                                            <th>Fecha</th>
+                                        }
+                                        if (columna.ToLower().Contains("entidad"))
+                                        {
+                                            <th>Entidad</th>
+                                        }
+                                        if (columna.Contains("NombreFlujo") || columna.Contains("accionFlujo"))
+                                        {
+                                            <th>Nombre/Accion Flujo</th>
+                                        }
+                                    }
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var tramite in grpTramites.ListaTramites)
+                                {
+                                <tr>
+                                    @foreach (var columna in Model.ColumnasVisibles)
+                                    {
+                                        if (columna.ToLower().Contains("descripcion"))
+                                        {
+                                            <td>@tramite.Descripcion</td>
+                                        }
+                                        else if (columna.ToLower().Contains("fecha"))
+                                        {
+                                            <td>@tramite.FechaCreacion.ToString()</td>
+                                        }
+                                        else if (columna.ToLower().Contains("entidad"))
+                                        {
+                                            <td>@grupo.NombreEntidad</td>
+                                        }
+                                        else if (columna.Contains("NombreFlujo") || columna.Contains("accionFlujo"))
+                                        {
+                                            <td>@tramite.NombreTipoTramite / @tramite.NombreAccion</td>
+                                        }
+                                    }
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+            }
+        }
+    </div>
+</body>
+</html>
+

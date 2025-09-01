@@ -1,0 +1,24 @@
+﻿<section ng-init="vm.obtener();">
+    <div id="SGRERRSEC{{vm.nombreComponente}}" class="hidden mb-3 ml-5 errorSeccionDelegarViabilidadPrevios" style="text-align: left; font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans'; font-size: 12px; font-style: normal; color: #A80521;"></div>
+    <div class="container-fluid inbox">
+        <div class="tab-content">
+            <div class="ui-accordion-container">
+                <div class="alert panel-heading row ui-accordion-header">
+                    <button type="button" data-toggle="collapse" data-target="#sgrviabilidadpreviosejecutorejecutorpropuesto" ng-click="vm.changeArrow('sgrviabilidadpreviosejecutorejecutorpropuesto')">
+                        <span class="d-inline-block" id="alert-sgrviabilidadpreviosejecutorejecutorpropuesto"></span>
+                        <span id="name-capitulo-sgrviabilidadpreviosejecutorejecutorpropuesto"></span>
+                        <span class="hidden" id="id-capitulo-sgrviabilidadpreviosejecutorejecutorpropuesto"></span>
+                        <span id="arrow-sgrviabilidadpreviosejecutorejecutorpropuesto" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#sgrviabilidadpreviosejecutorejecutorpropuesto"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="sgrviabilidadpreviosejecutorejecutorpropuesto">
+                    <ejecutor-pro-sgr guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                      notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                      notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"
+                                      notificacioninicio="vm.notificacionInicioHijos(handlerInicio, nombreComponente)">
+                    </ejecutor-pro-sgr>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

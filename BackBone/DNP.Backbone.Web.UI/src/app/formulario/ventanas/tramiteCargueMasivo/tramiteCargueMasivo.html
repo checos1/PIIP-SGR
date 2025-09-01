@@ -1,0 +1,23 @@
+﻿<section>
+    <div class="container-fluid inbox" ng-init="vm.init();">
+        <br />
+        <div>
+            <div class="row">
+                <div class="row" style="padding-left: 3rem;padding-right:15px;">
+                    <div class="form-group" style=" padding-top: 2rem;width:100%;">
+                        <div class="tab-content">
+                            <div class="tab-pane  cont col-md-12 p-0" id="dseleccionarcargue">
+                                <seleccionar-cargue callback="vm.notificarGuardado()"
+                                                     guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                                     notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                                     notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)"
+                                                     notificacioncambios="vm.notificacionCambiosAjustes(handler, nombreComponente)">
+                                </seleccionar-cargue>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+    </div>
+</section>

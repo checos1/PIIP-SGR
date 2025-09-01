@@ -1,0 +1,17 @@
+﻿<div ng-class="{ 'my-css-class': grid.appScope.rowFormatter( row ) }">
+    <div ng-if="!row.entity.editable" ng-repeat="(colRenderIndex, col) in colContainer.renderedColumns track by col.colDef.name" class="ui-grid-cell" ng-class="{ 'ui-grid-row-header-cell': col.isRowHeader }" ui-grid-cell></div>
+    <div ng-if="row.entity.editable">
+        <!-- ReSharper disable Html.TagNotResolved -->
+        <crear-Modificar-Configuracion 
+                                       creando-Configuracion-Nacional = "row.entity.abrirEditarConfiguracionNacional"
+                                       creando-Configuracion-Territorial = "row.entity.abrirEditarConfiguracionTerritorial",
+                                       tipo-Entidad = "grid.appScope.vm.tipoEntidad"
+                                       retorno-Cancelar = "grid.appScope.vm.retornoCancelar()"
+                                       retorno-Guardar = "grid.appScope.vm.retornoGuardar()"
+                                       entidades-Territoriales = "grid.appScope.vm.entidadesTerritoriales"
+                                       sectores-Nacionales = "grid.appScope.vm.sectoresNacionales"
+                                       roles-Nacionales = "grid.appScope.vm.rolesNacionales"
+                                       configuracion-En-Edicion= "row.entity"
+                                       />
+    </div>
+</div>

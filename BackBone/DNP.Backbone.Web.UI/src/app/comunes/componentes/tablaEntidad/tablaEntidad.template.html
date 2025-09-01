@@ -1,0 +1,274 @@
+<div class="tabla">
+
+    <div class="form-group clearfix mt-3">
+        <div class="row" ng-if="vm.opciones.cambiarTipoEntidadFiltro">
+            <div class="col-md-12 radio radio-primary">
+                <ul class="nav nav-tabs tabsFiltro">
+                    <li ng-repeat="entidad in vm.tiposEntidad" ng-class="{'active' : vm.tipoEntidadSeleccionada === entidad.clave }">
+                        <a data-toggle="tab" ng-click="vm.cambiarFiltroEntidad(entidad.clave)">
+                            {{entidad.nombre}}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-md-12">
+            <div class="container-table" ui-i18n="{{vm.lang}}" ng-if="vm.hayResultados">
+
+                <!--id="uigprojecto"-->
+                <div ng-if="vm.opciones.BanderaTabla == null">
+                    <div ng-if="vm.opciones.nivelJerarquico && vm.datos" class="clearfix grid-icon"
+                         ui-grid="vm.gridOptions" ui-grid-resize-columns ui-grid-pagination ui-grid-expandable>
+                    </div>
+
+                    <div ng-if="!vm.opciones.nivelJerarquico && vm.datos" class="clearfix grid-icon" id="uigprojecto"
+                         ui-grid="vm.gridOptions" ui-grid-resize-columns ui-grid-pagination>
+                    </div>
+                </div>
+
+                <!--<div ng-if="vm.opciones.BanderaTabla == 1" class="row" style="margin-left:0px;margin-right:0px">
+
+                    <div class="row">
+                        <div class="col-md-12">-->
+                            <!--<div class="col-md-6">
+                <p class="mis-procesos-titulo-totales">Proyectos / {{vm.tipoEntidad}}. Total: {{ vm.cantidadDeProyectos }}</p>
+            </div>-->
+                            <!--<div class="row rowbotonesicoDNP" style="margin-right: 20px;">
+
+                                <div class="col-md-12 text-right nopadding">
+                                    <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Limpiar" ng-click="vm.restablecerBusqueda()">
+                                        <span> <img id="icoLimpiarBusqueda" class="icoBusquedasDNP" src="Img/IcolimpiarBusqD.svg"></span>
+                                    </button>
+                                    <button tooltip-class="customClass" uib-tooltip="Buscar" class="btnicobuscarDNP" type="button" data-toggle="collapse" data-target="#IdPanelBuscador" ng-click="vm.conmutadorFiltro()">
+                                        <span> <img id="arrow-IdPanelBuscador" class="icoBusquedas2DNP glyphicon-chevron-down-busqDNP" src="Img/IcoBusqUp.svg" data-toggle="collapse" data-target="#IdPanelBuscador"></span>
+                                    </button>
+                                    <button class="btnaccion" ng-click="vm.downloadPdf()">
+                                        <span> <img class="icoBusquedasDNP" src="Img/etapas/u1089.svg"></span>
+                                    </button>
+                                    <button class="btnaccion" ng-click="vm.downloadExcel()">
+                                        <span> <img class="icoBusquedasDNP" src="Img/etapas/u1090.svg"></span>
+                                    </button>
+                                </div>
+                            </div>-->
+                            <!--<span class="buttonbar pull-right">
+                <img src="Img/etapas/u702.svg" class="imgMisProcesosAcciones" ng-click="vm.conmutadorFiltro()" uib-tooltip="Filtro" />
+                <img src="Img/etapas/u1089.svg" class="imgMisProcesosAcciones" ng-click="vm.downloadPdf()" uib-tooltip="Exportar PDF" />
+                <img src="Img/etapas/u1090.svg" class="imgMisProcesosAcciones" ng-click="vm.downloadExcel()" uib-tooltip="Exportar XLS" />
+            </span>-->
+                        <!--</div>
+                    </div>
+
+                    <div class="" style="padding: 0 !important" ng-repeat="entidad in vm.datos | orderBy:'agrupadorEntidad'">
+                        <div class="alert panel-headingAccDNP">
+                            <div class="card card-body pull-left  divAccordionDNP">
+                                <span class="uLabelCampo">{{entidad.agrupadorEntidad}}</span> - {{entidad.entidad}}
+                                <p class="panelbtnalertAcordnp">
+                                    <button class="btnaccion btnAccordionDNP" type="button" data-toggle="collapse" data-target="#obj_{{entidad.idEntidad}}" ng-click="vm.AbrilNivel(entidad.idEntidad)">
+                                        <img ng-show="entidad.estadoEntidad == '+'" src="Img/btnMas.svg">
+                                        <img ng-show="entidad.estadoEntidad == '-'" src="Img/btnMenos.svg">
+                                    </button>
+                                </p>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="collapse" id="obj_{{entidad.idEntidad}}" style="margin-top: -20px;">
+                            <div class="LineaEncabezadodivDNP"></div>
+                            <div class="row">
+                                <h3 class="tituloEncabezadodivDNP">
+                                    Usuarios: {{entidad.subGridOptions.data.length}}
+                                </h3>
+                            </div>
+
+                            <div class="row" style="margin: 0px 0px 0px 0px;">
+                                <div class="col-md-12 ">
+
+                                    <table class="TableDNP">
+                                        <thead>
+                                            <tr>
+                                                <th class="columAcc"></th>
+                                                <th class="textLeftDNP">NOMBRE</th>
+                                                <th class="textLeftDNP">ID USUARIO DNP</th>
+                                                <th class="textLeftDNP">ESTADO</th>
+                                                <th class="columAcc"></th>
+                                                <th class="columAcc"></th>
+                                                <th class="columAcc"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="datos in entidad.subGridOptions.data ">
+                                                <td></td>
+                                                <td class="textLeftDNP">
+                                                    {{datos.Nombre}}
+                                                </td>
+                                                <td class="textLeftDNP">{{datos.IdUsuarioDNP}}</td>
+                                                <td class="textCenterDNP">
+                                                    <label class="switchDNP">
+                                                        <input type="checkbox" ng-checked="datos.Activo" ng-click="vm.cambiarEstadoUsuarioIndex(datos)">
+                                                        <span class="slider round"></span>
+                                                    </label>
+                                                </td>
+                                                <td class="textCenterDNP">
+                                                    <button ng-if="vm.consultarPermisoIndex(datos.IdEntidad,'Usuarios:Editar')" class="btnaccion" tooltip-class="customClass" uib-tooltip="Editar Usuario" ng-click="vm.abrirModalEditarIndex(datos)">
+                                                        <span> <img src="Img/IcoEdit.svg"></span>
+                                                    </button>
+                                                </td>
+                                                <td class="textCenterDNP">
+                                                    <button ng-if="vm.consultarPermisoIndex(datos.IdEntidad,'Usuarios:Eliminar')" class="btnaccion" tooltip-class="customClass" uib-tooltip="Eliminar Usuario" ng-click="vm.abrirModalEliminarIndex(datos)">
+                                                        <span> <img src="Img/IcoDelete.svg"></span>
+                                                    </button>
+                                                </td>
+                                                <td class="textCenterDNP">
+                                                    <button ng-if="vm.consultarPermisoIndex(datos.IdEntidad,'Usuarios:ListarPerfiles')" class="btnaccion" tooltip-class="customClass" uib-tooltip="Ver Perfiles" ng-click="vm.accederPantallaPerfilesUsuarioIndex(datos)">
+                                                        <span> <img src="Img/IcoView.svg"></span>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>-->
+
+                <!--<div ng-if="vm.opciones.BanderaTabla == 2" class="row" style="margin-left:0px;margin-right:0px">
+
+                    <div class="row">
+                        <div class="col-md-12">-->
+                            <!--<div class="col-md-6">
+                <p class="mis-procesos-titulo-totales">Proyectos / {{vm.tipoEntidad}}. Total: {{ vm.cantidadDeProyectos }}</p>
+            </div>-->
+                            <!--<div class="row rowbotonesicoDNP" style="margin-right: 20px;">
+
+                                <div class="col-md-12 text-right nopadding">
+                                    <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Limpiar" ng-click="vm.restablecerBusqueda()">
+                                        <span> <img id="icoLimpiarBusqueda" class="icoBusquedasDNP" src="Img/IcolimpiarBusqD.svg"></span>
+                                    </button>
+                                    <button tooltip-class="customClass" uib-tooltip="Buscar" class="btnicobuscarDNP" type="button" data-toggle="collapse" data-target="#IdPanelBuscador" ng-click="vm.conmutadorFiltro()">
+                                        <span> <img id="arrow-IdPanelBuscador" class="icoBusquedas2DNP glyphicon-chevron-down-busqDNP" src="Img/IcoBusqUp.svg" data-toggle="collapse" data-target="#IdPanelBuscador"></span>
+                                    </button>
+                                    <button class="btnaccion" ng-click="vm.downloadPdf()">
+                                        <span> <img class="icoBusquedasDNP" src="Img/etapas/u1089.svg"></span>
+                                    </button>
+                                    <button class="btnaccion" ng-click="vm.downloadExcel()">
+                                        <span> <img class="icoBusquedasDNP" src="Img/etapas/u1090.svg"></span>
+                                    </button>
+                                </div>
+                            </div>-->
+                            <!--<span class="buttonbar pull-right">
+                <img src="Img/etapas/u702.svg" class="imgMisProcesosAcciones" ng-click="vm.conmutadorFiltro()" uib-tooltip="Filtro" />
+                <img src="Img/etapas/u1089.svg" class="imgMisProcesosAcciones" ng-click="vm.downloadPdf()" uib-tooltip="Exportar PDF" />
+                <img src="Img/etapas/u1090.svg" class="imgMisProcesosAcciones" ng-click="vm.downloadExcel()" uib-tooltip="Exportar XLS" />
+            </span>-->
+                        <!--</div>
+                    </div>
+                    <div class="" style="padding: 0 !important" ng-repeat="entidad in vm.datos | orderBy:'agrupadorEntidad'">
+                        <div class="alert panel-headingAccDNP">
+                            <div class="card card-body pull-left  divAccordionDNP">
+                                <span class="uLabelCampo">{{entidad.agrupadorEntidad}}</span> - {{entidad.entidad}}
+                                <p class="panelbtnalertAcordnp">
+                                    <button class="btnaccion btnAccordionDNP" type="button" data-toggle="collapse" data-target="#obj_{{entidad.idEntidad}}" ng-click="vm.AbrilNivel(entidad.idEntidad)">
+                                        <img ng-show="entidad.estadoEntidad == '+'" src="Img/btnMas.svg">
+                                        <img ng-show="entidad.estadoEntidad == '-'" src="Img/btnMenos.svg">
+                                    </button>
+                                </p>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="collapse" id="obj_{{entidad.idEntidad}}" style="margin-top: -20px;">
+                            <div class="LineaEncabezadodivDNP"></div>
+                            <div class="row">
+                                <h3 class="tituloEncabezadodivDNP">
+                                    Perfiles: {{entidad.subGridOptions.data.length}}
+                                </h3>
+                            </div>
+
+                            <div class="row" style="margin: 0px 0px 0px 0px;">
+                                <div class="col-md-12 ">
+
+                                    <table class="TableDNP">
+                                        <thead>
+                                            <tr>
+                                                <th class="columAcc"></th>
+                                                <th class="textLeftDNP">PERFIL</th>
+                                                <th class="textLeftDNP">SUB-ENTIDAD</th>
+                                                <th class="textLeftDNP">ESTADO</th>
+                                                <th class="columAcc"></th>
+                                                <th class="columAcc"></th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="datos in entidad.subGridOptions.data ">
+                                                <td></td>
+                                                <td class="textLeftDNP">
+                                                    {{datos.Nombre}}
+                                                </td>
+                                                <td class="textLeftDNP">{{datos.NombreSubEntidad}}</td>
+                                                <td class="textCenterDNP">
+                                                    <label class="switchDNP">
+                                                        <input type="checkbox" ng-checked="datos.Activo" ng-click="vm.cambiarEstadoUsuarioIndexPerfil(datos)">
+                                                        <span class="slider round"></span>
+                                                    </label>
+                                                </td>
+                                                <td class="textCenterDNP">
+                                                    <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Editar Usuario" ng-click="vm.abrirModalRolesIndexPerfil(datos)">
+                                                        <span> <img src="Img/IcoEdit.svg"></span>
+                                                    </button>
+                                                </td>
+                                                <td class="textCenterDNP">
+                                                    <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Eliminar Usuario" ng-click="vm.abrirModalProyectosIndexPerfil(datos)">
+                                                        <span> <img src="Img/IcoDelete.svg"></span>
+                                                    </button>
+                                                </td>
+
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>-->
+
+
+            </div>
+
+            <!--<div ng-if="!vm.hayResultados" class="text-center intro-help min-mh no-result-watermark" ng-class="{'modal-tamanho-tabla': vm.opciones.tablaDeModal}">
+                <h3>{{ 'No hay resultados para su búsqueda' }} </h3>
+            </div>
+
+            <div ng-if="vm.hayResultadoParaTipoEntidad" class="text-center intro-help  min-mh no-result-watermark">
+                <h3>
+                    {{ 'No hay ningún resultado para su búsqueda por el tipo de entidad' }} {{ vm.tipoEntidad }}
+                </h3>
+            </div>-->
+        </div>
+    </div>
+</div>
+
+<!--<div class="row">
+    <div class="col-xs-12">
+        <div class="clearfix grid-icon" id="uigconsolaalertas" ui-grid="vm.gridOptions"
+             ui-grid-resize-columns ui-grid-pagination>
+        </div>
+    </div>
+</div>
+<div ng-if="vm.mostrarMensaje" ng-cloak>
+    <div class="text-center intro-help no-result-watermark">
+        <h2 id="idLabelMensajeResultados">{{vm.Mensaje}}</h2>
+    </div>
+</div>-->
+<style>
+    .TableDNP tr {
+        display: revert !important;
+        width: 100%;
+    }
+</style>

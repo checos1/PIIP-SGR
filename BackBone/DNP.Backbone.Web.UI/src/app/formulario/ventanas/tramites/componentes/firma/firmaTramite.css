@@ -1,0 +1,424 @@
+﻿
+
+
+.uTituloSeccion {
+    border-width: 0px;
+    word-wrap: break-word;
+    text-transform: none;
+    text-align: center;
+    border-width: 0px;
+    position: absolute;
+    left: 75px;
+    top: 229px;
+    width: 356px;
+    height: 41px;
+    display: flex;
+    font-family: 'Montserrat Bold', 'Montserrat Regular', 'Montserrat';
+    font-weight: 700;
+    font-style: normal;
+    font-size: 20px;
+    color: #004884;
+}
+
+
+.uTopDetalleSeccion {
+    border-width: 0px;
+    position: absolute;
+    left: 75px;
+    top: 292px;
+    width: 1132px;
+    height: 42px;
+    display: flex;
+    color: #004884;
+    line-height: 25px;   
+}
+
+.uDetalleSeccion {
+    /*width: 1132px;*/
+    /*height: 42px;*/
+    background: inherit;
+    background-color: rgba(230, 239, 253, 1);
+    box-sizing: border-box;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(205, 216, 254, 1);
+    border-radius: 5px;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    color: #004884;
+    line-height: 25px;
+}
+
+.uLabelCampo {
+    color: #004884 !important;
+    font-family: Montserrat SemiBold;
+    letter-spacing: 0px;  
+    font-weight: 600;
+}
+
+.uLabelDetalle {
+    color: #004884 !important;
+    font-family: Montserrat;
+    letter-spacing: 0px;
+    font-weight: 500;
+}
+
+.uTopCombos {
+    border-width: 0px;
+    position: absolute;
+    left: 75px;
+    top: 350px;
+    width: 1132px;
+    height: 42px;
+    display: flex;
+    color: #004884;
+    line-height: 25px;
+}
+
+
+
+.uTopVistas {
+    border-width: 0px;
+    position: absolute;
+    /*left: 75px;*/
+    top: 200px;
+    width: 1132px;
+    display: flex;
+    color: #004884;
+    line-height: 25px;
+    height: 550px;
+}
+
+.nav-tabs {
+    border-bottom: none !important;
+}
+
+.tab-container {
+    background: transparent;
+    margin: 0;
+    padding: 0;
+    max-height: 40px;
+}
+
+    .tab-container ul.nav-tabs {
+        margin: 0;
+        list-style-type: none;
+        line-height: 40px;
+        max-height: 40px;
+        /* overflow: hidden;*/
+        display: inline-block;
+        display: -webkit-flex;
+        display: flex;
+        padding-right: 20px;
+        /* border-bottom: 5px solid #f7f7f7;*/
+    }
+
+        .tab-container ul.nav-tabs > li {
+            /*margin: 5px -14px 0;*/
+            /* -moz-border-radius-topleft: 28px 145px;
+            -webkit-border-top-left-radius: 28px 145px;
+            border-top-left-radius: 28px 145px;
+            -moz-border-radius-topright: 28px 145px;
+            -webkit-border-top-right-radius: 28px 145px;
+            border-top-right-radius: 28px 145px;*/
+            padding: 0 30px 0 25px;
+            height: 40px;
+            background: transparent;
+            position: relative;
+            /* -moz-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+            -webkit-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);*/
+            /*width: 200px;*/
+            /*max-width: 200px;*/
+            min-width: 100px;
+            /*border: 1px solid #aaa;*/
+            border-bottom: 2px solid #aaa;
+        }
+            /*.tab-container ul.nav-tabs > li:active {
+                background-color: rgba(230, 239, 253, 1);
+                border-bottom: 2px solid #3f73e2;
+            }*/
+
+
+            .tab-container ul.nav-tabs > li:first-child {
+                margin-left: 0;
+            }
+
+            .tab-container ul.nav-tabs > li:last-of-type {
+                margin-right: 0;
+            }
+
+            .tab-container ul.nav-tabs > li > a {
+                display: block;
+                max-width: 100%;
+                text-decoration: none;
+                color: #222;
+                padding: 3px 7px;
+            }
+
+                .tab-container ul.nav-tabs > li > a span {
+                    overflow: hidden;
+                    white-space: nowrap;
+                    display: block;
+                }
+
+                .tab-container ul.nav-tabs > li > a:focus, .tab-container ul.nav-tabs > li > a:hover {
+                    background-color: transparent;
+                    border-color: transparent;
+                }
+
+                .tab-container ul.nav-tabs > li > a .glyphicon-remove {
+                    color: #777;
+                    display: inline-block;
+                    padding: 3px;
+                    font-size: 10px;
+                    position: absolute;
+                    z-index: 10;
+                    top: 7px;
+                    right: -10px;
+                    -moz-border-radius: 50%;
+                    -webkit-border-radius: 50%;
+                    border-radius: 50%;
+                }
+
+                    .tab-container ul.nav-tabs > li > a .glyphicon-remove:hover {
+                        background: #d39ea3;
+                        color: white;
+                        -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.25);
+                        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.25);
+                        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.25);
+                        text-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
+                    }
+
+            .tab-container ul.nav-tabs > li.active {
+                z-index: 2;
+                background-image: -moz-linear-gradient(rgba(230, 239, 253, 1), rgba(230, 239, 253, 1) 30px);
+                background-image: -webkit-linear-gradient(rgba(230, 239, 253, 1), rgba(230, 239, 253, 1) 30px);
+                background-image: linear-gradient(rgba(230, 239, 253, 1), rgba(230, 239, 253, 1) 30px);
+                border-bottom: 2px solid #3f73e2;
+            }
+
+                .tab-container ul.nav-tabs > li.active > a {
+                    background-color: transparent;
+                    border-color: transparent;
+                    border-bottom-color: transparent;
+                }
+
+                    .tab-container ul.nav-tabs > li.active > a:focus, .tab-container ul.nav-tabs > li.active > a:hover {
+                        background-color: transparent;
+                        border-color: transparent;
+                        border-bottom-color: transparent;
+                    }
+
+        .tab-container ul.nav-tabs .btn {
+            float: left;
+            height: 20px;
+            width: 35px;
+            min-width: 35px;
+            max-width: 35px;
+            margin: 10px 0 0 0;
+            border-color: #71a0c9;
+            outline: none;
+            -moz-transform: skew(30deg);
+            -ms-transform: skew(30deg);
+            -webkit-transform: skew(30deg);
+            transform: skew(30deg);
+        }
+
+            .tab-container ul.nav-tabs .btn.btn-default {
+                background: #c3d5e6;
+            }
+
+                .tab-container ul.nav-tabs .btn.btn-default:hover {
+                    background: #d2deeb;
+                }
+
+                .tab-container ul.nav-tabs .btn.btn-default:active {
+                    background: #9cb5cc;
+                }
+
+    .tab-container .tab-pane {
+        padding: 60px 10px;
+        text-align: center;
+    }
+
+        .tab-container .tab-pane.active {
+            /*  border-top: 1px solid #ddd;*/
+        }
+
+.btnAdionar {
+    z-index: 3;
+    text-align: center;
+    right: 15px;
+    font-size: 25px;
+    padding: 1px 6px;
+    background: #1b4ace;
+    color: #fff;
+    border-radius: 25px;
+    position: absolute;
+    font-weight: 700;
+    top: 20px;
+}
+
+.btnRegresar {
+    font-size: 42px;
+    padding: 0 10px 0 0;
+    color: #fff;
+    position: relative;
+    font-weight: 700;
+    top: 0px;
+    height: 100%;
+    width: 100%;
+}
+
+
+.file-drop-zone {
+    border: 2px dashed #bbb;
+    border-radius: 5px;
+    padding: 25px;
+    text-align: center;
+    font: 20pt bold;
+    color: #bbb;
+    margin-bottom: 20px;
+}
+.file-drop-zone-over {
+    border: 2px dashed #ddd;
+    border-radius: 5px;
+    padding: 25px;
+    text-align: center;
+    font: 20pt bold;
+    color: #bbb;
+    margin-bottom: 20px;
+}
+
+
+.ui-grid-pager-panel {
+    position: relative !important;
+}
+
+.grid, .ui-grid {
+    height: auto;
+}
+
+.ng-isolate-scope {
+    height: auto !important;
+    #overflow: scroll;
+}
+
+.ui-grid-canvas {
+    width: auto;
+    height: auto !important;
+}
+
+.ui-grid-viewport {
+    height: auto !important;
+    overflow-x: scroll !important;
+    overflow-y: scroll !important;
+}
+
+.ui-grid-pager-container, .ui-grid-pager-count-container {
+    padding-top: 5px;
+}
+
+div.scroll_vertical {
+    height: 114px;
+    width: 114px;
+    overflow: auto;
+    border: 1px solid #666;
+    background-color: #ccc;
+    padding: 8px;
+}
+.linea {
+    border-top: 1px solid black;
+    height: 2px;
+    max-width: 200px;
+    padding: 0;
+    margin: 20px auto 0 auto;
+}
+
+.ui-grid-row, .ui-grid-cell {
+    height: auto !important;
+}
+
+.sinborde {
+    border: 0;
+}
+
+.text-justificado{
+    text-align: justify;
+}
+
+.col-texto {
+    text-align: justify;
+}
+
+.col-numcorto {
+    text-align: center;
+}
+
+.col-valor {
+    text-align: right;
+}
+
+.col-font{
+    font-weight : 700;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+
+}
+
+.upload-btn-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.btn-seleccionar-archivo {
+    border-radius: 50px;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    background: #36C !important;
+    color: #fff !important;
+    text-transform: uppercase;
+    padding-right: 28px;
+    padding-left: 28px;
+    font-size: .7em;
+    font-weight: normal;
+}
+
+.upload-btn-wrapper input[type=file] {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+}
+
+.disablegrid {
+    pointer-events: none;
+    opacity: 0.4;
+}
+
+.wrapper {
+    cursor: not-allowed;
+}
+
+.grid2 .ui-grid-header-cell {
+    height: 60px;
+}
+
+.negrita {
+    font-weight: 700;
+}
+
+.bordesencillo{
+    border : 1px solid;
+    border-color:black;
+}
+
+.input-carta {
+    background-color: #c7d3ffad;
+    color: #69697e;
+    border: 0;
+    height: 3rem;
+}

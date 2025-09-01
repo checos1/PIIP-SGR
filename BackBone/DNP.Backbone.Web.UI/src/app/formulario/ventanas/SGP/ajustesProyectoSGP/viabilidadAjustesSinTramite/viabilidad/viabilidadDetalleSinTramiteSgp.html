@@ -1,0 +1,23 @@
+﻿<section ng-init="vm.obtener();">
+    <div id="SGRERRSEC{{vm.nombreComponente}}" class="hidden mb-3 ml-5 errorSeccionViabilidad" style="text-align: left; font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans'; font-size: 12px; font-style: normal; color: #A80521;"></div>
+    <div class="container-fluid inbox">
+        <div class="tab-content">
+            <div class="ui-accordion-container">
+                <div class="alert panel-heading row ui-accordion-header">
+                    <button type="button" data-toggle="collapse" data-target="#sgpviabilidadcuestionarioviabilidadsintramitesgp" ng-click="vm.changeArrow('sgpviabilidadcuestionarioviabilidadsintramitesgp')">
+                        <span class="d-inline-block" id="alert-sgpviabilidadcuestionarioviabilidadsintramitesgp"></span>
+                        <span id="name-capitulo-sgpviabilidadcuestionarioviabilidadsintramitesgp"></span>
+                        <span class="hidden" id="id-capitulo-sgpviabilidadcuestionarioviabilidadsintramitesgp"></span>
+                        <span id="arrow-sgpviabilidadcuestionarioviabilidadsintramitesgp" class="glyphicon glyphicon-chevron-up pull-right" data-toggle="collapse" data-target="#sgpviabilidadcuestionarioviabilidadsintramitesgp"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="sgpviabilidadcuestionarioviabilidadsintramitesgp">
+                    <cuestionario-viabilidad-sin-tramite-sgp guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                                 notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                 notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)">
+                    </cuestionario-viabilidad-sin-tramite-sgp>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

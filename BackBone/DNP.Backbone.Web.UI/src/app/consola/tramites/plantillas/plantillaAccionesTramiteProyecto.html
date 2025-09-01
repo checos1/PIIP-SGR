@@ -1,0 +1,16 @@
+﻿<div class="text-center">
+    <button has-claim has-opciones="['Tramites:CrearProcesoAjuste']" id="btnActualizaProyecto_{{row.entity.ProyectoId}}" class="btnaccion" tooltip-placement="Auto"
+            uib-tooltip="Crear proceso de ajuste del proyecto con trámite presupuestal"
+            ng-click="grid.appScope.btnIniciarInstanciaProyecto_onClick($event, $event.target)">
+        <span><img class="grid-icon-accion" src="Img/CrearInstancia.svg"></span>
+    </button>
+    <button has-claim has-opciones="['Tramites:EliminarProyecto']" id="btnEliminaProyecto_{{row.entity.ProyectoId}}" class="btnaccion" ng-click="grid.appScope.btnEliminarProyectoTramite_onClick($event, $event.target)"
+            tooltip-placement="auto" uib-tooltip="Eliminar proyecto del trámite">
+        <span><img class="grid-icon-accion" src="Img/Eliminar.svg" /></span>
+    </button>
+    <button has-claim has-opciones="['Tramites:AsociarRequisitos']" class="btnaccion" ng-click="grid.appScope.btnIniciarRequisitos_onClick($event, $event.target)" tooltip-placement="auto" uib-tooltip="Asociar requisitos">
+        <span><img class="grid-icon-accion" src="Img/Requisitos.svg" /></span>
+    </button>
+
+
+</div> 

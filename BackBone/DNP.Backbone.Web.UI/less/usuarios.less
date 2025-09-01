@@ -1,0 +1,231 @@
+﻿.div-escopo {
+
+    .user-infos {
+
+        .row {
+            padding-left: 15px;
+            margin-bottom: 15px;
+
+            div:first-child {
+                padding-left: 0px !important;
+            }
+
+            .input-group {
+                border-radius: 8px;
+                height: 62px !important;
+
+                &.shadow {
+                    box-shadow: inset 0px 0px 0px rgba(0, 0, 0, 0.02), 0px 1px 2px rgba(0, 0, 0, 0.05);
+                    -webkit-box-shadow: inset 0px 0px 0px rgba(0, 0, 0, 0.02), 0px 1px 2px rgba(0, 0, 0, 0.05);
+                }
+
+                .input-group-addon {
+                    width: auto !important;
+                    max-width: 80px !important;
+                    height: 62px;
+                    padding: 8px;
+                    padding-top: 25px;
+                    background-color: #fff;
+                    font-size: 12px;
+                    font-weight: 200;
+                    border: 1px solid #dde3eb;
+                    border-right: 2px solid #eeeeeead;
+                    border-radius: 8px;
+                    border-bottom-right-radius: 0px;
+                    border-top-right-radius: 0px;
+                }
+
+                .form-control {
+
+                    &:first-child {
+                        margin-left: 0px;
+                    }
+
+                    display: inline !important;
+                    font-size: 22px;
+                    border-radius: 8px;
+                    border-bottom-left-radius: 0px;
+                    border-top-left-radius: 0px;
+                    color: #bcbec2;
+                    background: #fff;
+                    height: 62px !important;
+                }
+            }
+        }
+    }
+}
+
+.btn-add-rol {
+    height: 46px;
+}
+
+#modalInvitarUsuario {
+    #formInvitarUsuario {
+        .form-group>label {
+            display: block;
+        }
+
+        .checkboxes-modulos {
+            input[type="checkbox"] {
+                margin-right: 5px;
+
+                &#moduloBackBone {
+                    margin-left: 25px;
+                }
+            }
+
+            label {
+                font-size: 18px;
+                margin-right: 20px;
+            }
+        }
+    }
+}
+
+.modal-proyecto-perfil {
+    .modal-dialog {
+        margin-top: 3%;
+
+        @media (min-width: 992px) {
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+
+    .modal-body {
+        height: auto;
+        max-height: 400px;
+
+        .titlebarmodal {
+            span {
+                font-size: 17px;
+            }
+        }
+
+        .row {
+            label {
+                font-weight: bold;
+                padding-left: 7px;
+            }
+
+            label~input {
+                margin-top: 5px;
+            }
+        }
+    }
+
+    button[class*="btn-sm btn-"] {
+        border-radius: 6px;
+        min-width: 110px;
+        padding: 7px;
+    }
+}
+
+.roles-modal {
+    .modal-dialog {
+        margin-top: 30px;
+    }
+}
+
+.grid-rol {
+    height: auto;
+    max-height: 150px;
+}
+
+​​​​​​​ .btn-add-rol {
+    height: 45px;
+    margin-top: 0.5px;
+    width: 200%;
+}
+
+
+/**************
+Switch estados.
+****************/
+#usuarios {
+
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 40px;
+        height: 24px;
+        top: 10px;
+        zoom: 60%
+    }
+
+    /* Hide default HTML checkbox */
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        /* cor de fundo inativa*/
+        background-color: #e0b9b9;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: -18px;
+        bottom: 4px;
+        /*bot�o inativo*/
+        background-color: #d13838;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+    input:checked+.slider:before {
+        /*cor de fundo ativa*/
+        background-color: #008265;
+        left: 8px;
+    }
+
+    input:checked+.slider {
+        /*cor de fundo ativa*/
+        background-color: #99cdc1;
+    }
+
+    input:checked+.slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+    }
+
+    .slider.round {
+        border-radius: 34px;
+        height: 12px;
+    }
+
+    .slider.round:before {
+        border-radius: 50%;
+        bottom: 0px;
+        top: -8px;
+    }
+
+}
+
+// grid en la modal de proyectos del perfil de usuario
+.grid-proyecto-usuario{
+    height: auto;
+    max-height: 150px;
+}
+
+#guardar-usuario-perfil-modal .modal-body {
+    height: 380px;
+}
+
+#guardar-usuario-perfil-modal .chosen-container .chosen-results {
+    max-height: 167px;
+}

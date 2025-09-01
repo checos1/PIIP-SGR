@@ -1,0 +1,234 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Modelo.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Proyecto">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="1500" Nullable="false" />
+          <Property Name="Object" Type="nvarchar" MaxLength="500" />
+          <Property Name="ProjectTypeId" Type="int" />
+          <Property Name="ProcessId" Type="int" Nullable="false" />
+          <Property Name="SectorId" Type="int" Nullable="false" />
+          <Property Name="PhaseId" Type="int" />
+          <Property Name="EntityTypeId" Type="int" />
+          <Property Name="EntityId" Type="int" />
+          <Property Name="BankTypeId" Type="int" />
+          <Property Name="AdministrativeSectorId" Type="int" />
+          <Property Name="NationalEntityId" Type="int" />
+          <Property Name="ResourceTypeId" Type="int" />
+          <Property Name="ParticipantsCoordination" Type="nvarchar" MaxLength="2500" />
+          <Property Name="AffectedPeople" Type="int" />
+          <Property Name="AffectedPeopleSource" Type="nvarchar" MaxLength="500" />
+          <Property Name="ObjectivePeople" Type="int" />
+          <Property Name="ObjectivePeopleSource" Type="nvarchar" MaxLength="500" />
+          <Property Name="BenefitCostEvaluation" Type="bit" />
+          <Property Name="CostEfficiencyEvaluation" Type="bit" />
+          <Property Name="MultiCriteriaEvaluation" Type="bit" />
+          <Property Name="BPIN" Type="nvarchar" MaxLength="100" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="ProjectSite" Type="nvarchar" MaxLength="2083" />
+          <Property Name="Description" Type="nvarchar" MaxLength="50" />
+          <Property Name="PeriodZero" Type="int" />
+          <Property Name="Localization" Type="nvarchar" MaxLength="500" />
+          <Property Name="OpportunityInterestRate" Type="float" />
+          <Property Name="OpportunityRateDescription" Type="nvarchar" MaxLength="2000" />
+          <Property Name="ObjectivePeoplePopulationType" Type="int" />
+          <Property Name="AffectedPeoplePopulationType" Type="int" />
+          <Property Name="OCAD" Type="nvarchar" MaxLength="200" />
+          <Property Name="Formulator" Type="nvarchar" MaxLength="100" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="IsRejected" Type="bit" />
+          <Property Name="IsCapture" Type="bit" />
+          <Property Name="Created" Type="datetime" />
+          <Property Name="Modified" Type="datetime" />
+          <Property Name="SpecificExpenseTypeId" Type="int" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="100" />
+          <Property Name="MGAProjectId" Type="int" />
+          <Property Name="VersionType" Type="int" />
+          <Property Name="VersionCreatedDate" Type="datetime" />
+          <Property Name="IsBaseProject" Type="bit" Nullable="false" />
+          <Property Name="BaseProjectId" Type="int" />
+          <Property Name="IdProjectMGA" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="IsViabled" Type="int" />
+          <Property Name="isInitiativeForPeace" Type="bit" />
+          <Property Name="isInitiativeForPeaceFromBaseProject" Type="bit" />
+          <Property Name="CRTypeId" Type="int" />
+          <Property Name="PorCerrar" Type="bit" Nullable="false" />
+          <Property Name="ExpenseTypeId" Type="int" />
+          <Property Name="FinancingSubProgramId" Type="int" />
+          <Property Name="ValorTotal" Type="decimal" Precision="38" Scale="2" />
+          <Property Name="VigenciaDesde" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="VigenciaHasta" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="ModeloStoreContainer">
+          <EntitySet Name="Proyecto" EntityType="Self.Proyecto" Schema="Proyectos" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Modelo" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="MGAWebContexto" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Proyecto" EntityType="Modelo.Proyecto" />
+        </EntityContainer>
+        <EntityType Name="Proyecto">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="1500" FixedLength="false" Unicode="true" />
+          <Property Name="Object" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ProjectTypeId" Type="Int32" />
+          <Property Name="ProcessId" Type="Int32" Nullable="false" />
+          <Property Name="SectorId" Type="Int32" Nullable="false" />
+          <Property Name="PhaseId" Type="Int32" />
+          <Property Name="EntityTypeId" Type="Int32" />
+          <Property Name="EntityId" Type="Int32" />
+          <Property Name="BankTypeId" Type="Int32" />
+          <Property Name="AdministrativeSectorId" Type="Int32" />
+          <Property Name="NationalEntityId" Type="Int32" />
+          <Property Name="ResourceTypeId" Type="Int32" />
+          <Property Name="ParticipantsCoordination" Type="String" MaxLength="2500" FixedLength="false" Unicode="true" />
+          <Property Name="AffectedPeople" Type="Int32" />
+          <Property Name="AffectedPeopleSource" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ObjectivePeople" Type="Int32" />
+          <Property Name="ObjectivePeopleSource" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="BenefitCostEvaluation" Type="Boolean" />
+          <Property Name="CostEfficiencyEvaluation" Type="Boolean" />
+          <Property Name="MultiCriteriaEvaluation" Type="Boolean" />
+          <Property Name="BPIN" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="ProjectSite" Type="String" MaxLength="2083" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PeriodZero" Type="Int32" />
+          <Property Name="Localization" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="OpportunityInterestRate" Type="Double" />
+          <Property Name="OpportunityRateDescription" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="ObjectivePeoplePopulationType" Type="Int32" />
+          <Property Name="AffectedPeoplePopulationType" Type="Int32" />
+          <Property Name="OCAD" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Formulator" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="IsRejected" Type="Boolean" />
+          <Property Name="IsCapture" Type="Boolean" />
+          <Property Name="Created" Type="DateTime" Precision="3" />
+          <Property Name="Modified" Type="DateTime" Precision="3" />
+          <Property Name="SpecificExpenseTypeId" Type="Int32" />
+          <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MGAProjectId" Type="Int32" />
+          <Property Name="VersionType" Type="Int32" />
+          <Property Name="VersionCreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="IsBaseProject" Type="Boolean" Nullable="false" />
+          <Property Name="BaseProjectId" Type="Int32" />
+          <Property Name="IdProjectMGA" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="IsViabled" Type="Int32" />
+          <Property Name="isInitiativeForPeace" Type="Boolean" />
+          <Property Name="isInitiativeForPeaceFromBaseProject" Type="Boolean" />
+          <Property Name="CRTypeId" Type="Int32" />
+          <Property Name="PorCerrar" Type="Boolean" Nullable="false" />
+          <Property Name="ExpenseTypeId" Type="Int32" />
+          <Property Name="FinancingSubProgramId" Type="Int32" />
+          <Property Name="ValorTotal" Type="Decimal" Precision="38" Scale="2" />
+          <Property Name="VigenciaDesde" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="VigenciaHasta" Type="DateTime" Nullable="false" Precision="7" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModeloStoreContainer" CdmEntityContainer="MGAWebContexto">
+          <EntitySetMapping Name="Proyecto">
+            <EntityTypeMapping TypeName="Modelo.Proyecto">
+              <MappingFragment StoreEntitySet="Proyecto">
+                <ScalarProperty Name="VigenciaHasta" ColumnName="VigenciaHasta" />
+                <ScalarProperty Name="VigenciaDesde" ColumnName="VigenciaDesde" />
+                <ScalarProperty Name="ValorTotal" ColumnName="ValorTotal" />
+                <ScalarProperty Name="FinancingSubProgramId" ColumnName="FinancingSubProgramId" />
+                <ScalarProperty Name="ExpenseTypeId" ColumnName="ExpenseTypeId" />
+                <ScalarProperty Name="PorCerrar" ColumnName="PorCerrar" />
+                <ScalarProperty Name="CRTypeId" ColumnName="CRTypeId" />
+                <ScalarProperty Name="isInitiativeForPeaceFromBaseProject" ColumnName="isInitiativeForPeaceFromBaseProject" />
+                <ScalarProperty Name="isInitiativeForPeace" ColumnName="isInitiativeForPeace" />
+                <ScalarProperty Name="IsViabled" ColumnName="IsViabled" />
+                <ScalarProperty Name="IdProjectMGA" ColumnName="IdProjectMGA" />
+                <ScalarProperty Name="BaseProjectId" ColumnName="BaseProjectId" />
+                <ScalarProperty Name="IsBaseProject" ColumnName="IsBaseProject" />
+                <ScalarProperty Name="VersionCreatedDate" ColumnName="VersionCreatedDate" />
+                <ScalarProperty Name="VersionType" ColumnName="VersionType" />
+                <ScalarProperty Name="MGAProjectId" ColumnName="MGAProjectId" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="SpecificExpenseTypeId" ColumnName="SpecificExpenseTypeId" />
+                <ScalarProperty Name="Modified" ColumnName="Modified" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="IsCapture" ColumnName="IsCapture" />
+                <ScalarProperty Name="IsRejected" ColumnName="IsRejected" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Formulator" ColumnName="Formulator" />
+                <ScalarProperty Name="OCAD" ColumnName="OCAD" />
+                <ScalarProperty Name="AffectedPeoplePopulationType" ColumnName="AffectedPeoplePopulationType" />
+                <ScalarProperty Name="ObjectivePeoplePopulationType" ColumnName="ObjectivePeoplePopulationType" />
+                <ScalarProperty Name="OpportunityRateDescription" ColumnName="OpportunityRateDescription" />
+                <ScalarProperty Name="OpportunityInterestRate" ColumnName="OpportunityInterestRate" />
+                <ScalarProperty Name="Localization" ColumnName="Localization" />
+                <ScalarProperty Name="PeriodZero" ColumnName="PeriodZero" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ProjectSite" ColumnName="ProjectSite" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="BPIN" ColumnName="BPIN" />
+                <ScalarProperty Name="MultiCriteriaEvaluation" ColumnName="MultiCriteriaEvaluation" />
+                <ScalarProperty Name="CostEfficiencyEvaluation" ColumnName="CostEfficiencyEvaluation" />
+                <ScalarProperty Name="BenefitCostEvaluation" ColumnName="BenefitCostEvaluation" />
+                <ScalarProperty Name="ObjectivePeopleSource" ColumnName="ObjectivePeopleSource" />
+                <ScalarProperty Name="ObjectivePeople" ColumnName="ObjectivePeople" />
+                <ScalarProperty Name="AffectedPeopleSource" ColumnName="AffectedPeopleSource" />
+                <ScalarProperty Name="AffectedPeople" ColumnName="AffectedPeople" />
+                <ScalarProperty Name="ParticipantsCoordination" ColumnName="ParticipantsCoordination" />
+                <ScalarProperty Name="ResourceTypeId" ColumnName="ResourceTypeId" />
+                <ScalarProperty Name="NationalEntityId" ColumnName="NationalEntityId" />
+                <ScalarProperty Name="AdministrativeSectorId" ColumnName="AdministrativeSectorId" />
+                <ScalarProperty Name="BankTypeId" ColumnName="BankTypeId" />
+                <ScalarProperty Name="EntityId" ColumnName="EntityId" />
+                <ScalarProperty Name="EntityTypeId" ColumnName="EntityTypeId" />
+                <ScalarProperty Name="PhaseId" ColumnName="PhaseId" />
+                <ScalarProperty Name="SectorId" ColumnName="SectorId" />
+                <ScalarProperty Name="ProcessId" ColumnName="ProcessId" />
+                <ScalarProperty Name="ProjectTypeId" ColumnName="ProjectTypeId" />
+                <ScalarProperty Name="Object" ColumnName="Object" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,157 @@
+﻿@using DNP.Backbone.Dominio.Dto.Inbox;
+@model InboxDto
+@{
+    Layout = null;
+    ViewBag.Title = "ProyectosPDF";
+}
+<html>
+<head>
+    @Html.Partial("_IncludeEstilosRelatorios")
+</head>
+<body class="pdf">
+    @Html.Partial("_CabecalhoRelatorio", "Informe de Proyectos")
+
+    <div class="mt-5">
+        @if (Model.GruposEntidades == null)
+        {
+            <table class="table table-sm table-borderless">
+                <thead>
+                    <tr>
+                        <th class="text-center">
+                            No hubo registros para los filtros seleccionados.
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+        }
+        else
+        {
+            foreach (var entidades in Model.GruposEntidades)
+            {
+                <div>
+                    <div class="marginTop10">
+                        <table class="table table-sm table-borderless">
+                            <tr>
+                                <td><b>Tipo Entidad:</b> @entidades.TipoEntidad </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                foreach (var grpProyectos in entidades.ListaEntidades)
+                {
+                    <div>
+                        <div class="marginTop10">
+                            <table class="table">
+                                <tr>
+                                    <td><b>Sector:</b> <span class="agr-blue"> @grpProyectos.ObjetosNegocio.FirstOrDefault().SectorNombre </span> - <b>Nombre Entidad</b> <span class="agr-black">@grpProyectos.NombreEntidad </span></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div id="containerbody">
+                        <table class="table  table-borderless border-table">
+                            <thead>
+                                <tr>
+                                    @foreach (var columna in Model.ColumnasVisibles)
+                                    {
+                                        if (columna.Equals("ProyectoId"))
+                                        {
+                                            <th>ID</th>
+                                        }
+                                        if (columna.Equals("IdObjetoNegocio"))
+                                        {
+                                            <th>BPIN</th>
+                                        }
+                                        if (columna.Equals("EstadoProyecto"))
+                                        {
+                                            <th>Estado</th>
+                                        }
+                                        if (columna.Equals("NombreObjetoNegocio"))
+                                        {
+                                            <th>Nombre del proyecto</th>
+                                        }
+                                        if (columna.Equals("NombreFlujo"))
+                                        {
+                                            <th>Proceso </th>
+                                        }
+                                        if (columna.Equals("CodigoProceso"))
+                                        {
+                                            <th>Código</th>
+                                        }
+                                        if (columna.Equals("EstadoInstancia"))
+                                        {
+                                            <th>Estado del proceso</th>
+                                        }
+                                        if (columna.Equals("FechaCreacion"))
+                                        {
+                                            <th>Fecha de inició del proceso</th>
+                                        }
+                                        if (columna.Equals("NombreAccion"))
+                                        {
+                                            <th>Paso actual</th>
+                                        }
+                                        if (columna.Equals("FechaPaso"))
+                                        {
+                                            <th>Fecha de inició del paso</th>
+                                        }
+                                    }
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var proyectos in grpProyectos.ObjetosNegocio)
+                                {
+                                <tr>
+                                    @foreach (var columna in Model.ColumnasVisibles)
+                                    {
+                                        if (columna.Equals("ProyectoId"))
+                                        {
+                                            <td>@proyectos.ProyectoId</td>
+                                        }
+                                        else if (columna.Equals("IdObjetoNegocio"))
+                                        {
+                                            <td>@proyectos.IdObjetoNegocio</td>
+                                        }
+                                        else if (columna.Equals("EstadoProyecto"))
+                                        {
+                                            <td>@proyectos.EstadoProyecto</td>
+                                        }
+                                        else if (columna.Equals("NombreObjetoNegocio"))
+                                        {
+                                            <td>@proyectos.NombreObjetoNegocio</td>
+                                        }
+                                        else if (columna.Equals("NombreFlujo"))
+                                        {
+                                            <td>@proyectos.NombreFlujo</td>
+                                        }
+                                        else if (columna.Equals("CodigoProceso"))
+                                        {
+                                            <td>@proyectos.CodigoProceso</td>
+                                        }
+                                        else if (columna.Equals("EstadoInstancia"))
+                                        {
+                                            <td>@proyectos.EstadoInstancia</td>
+                                        }
+                                        else if (columna.Equals("FechaCreacion"))
+                                        {
+                                            <td>@proyectos.FechaCreacion</td>
+                                        }
+                                        else if (columna.Equals("NombreAccion"))
+                                        {
+                                            <td>@proyectos.NombreAccion</td>
+                                        }
+                                        else if (columna.Equals("FechaPaso"))
+                                        {
+                                            <td>@proyectos.FechaPaso</td>
+                                        }
+                                    }
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+            }
+        }
+    </div>
+</body>
+</html>

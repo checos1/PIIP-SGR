@@ -1,0 +1,55 @@
+﻿<div ng-init="vm.init();">
+    <div id="SGRERRSEC{{vm.nombreComponente}}" class="hidden mb-3 ml-5 errorSeccionPriorizacion" style="text-align: left; font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans'; font-size: 12px; font-style: normal; color: #A80521;"></div>
+
+    <div class="ui-accordion-container hidden" id="accordion-sgrpriorizacionm1priorizacionregistropriorizacion">
+        <div class="alert panel-heading row ui-accordion-header">
+            <button type="button" data-toggle="collapse" data-target="#sgrpriorizacionm1priorizacionregistropriorizacion" ng-click="vm.changeArrow('sgrpriorizacionm1priorizacionregistropriorizacion')">
+                <span class="d-inline-block" id="alert-sgrpriorizacionm1priorizacionregistropriorizacion"></span>
+                <span id="name-capitulo-sgrpriorizacionm1priorizacionregistropriorizacion"></span>
+                <span class="hidden" id="id-capitulo-sgrpriorizacionm1priorizacionregistropriorizacion"></span>
+                <span id="arrow-sgrpriorizacionm1priorizacionregistropriorizacion" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#sgrpriorizacionm1priorizacionregistropriorizacion"></span>
+            </button>
+        </div>
+        <div class="collapse" id="sgrpriorizacionm1priorizacionregistropriorizacion">
+            <div class="row m-0 mb-3">
+                <div class="col-md-12 ">
+                    <registro-priorizacion-sgr callback="vm.notificarGuardado()"
+                                             guardadocomponent="vm.guardadohijos(nombreComponenteHijo)"
+                                              guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                             notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                             notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"
+                                             notificarrefresco="vm.notificarRefresco(handler, nombreComponente)"
+                                             notificacioncambios="vm.notificacionCambiosCapitulosExternos(handler, nombreComponente)">
+                    </registro-priorizacion-sgr>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ui-accordion-container hidden" id="accordion-sgrpriorizacionm1priorizacionestadopriorizacion">
+        <div class="alert panel-heading row ui-accordion-header">
+            <button type="button" data-toggle="collapse" data-target="#sgrpriorizacionm1priorizacionestadopriorizacion" ng-click="vm.changeArrow('sgrpriorizacionm1priorizacionestadopriorizacion')">
+                <span class="d-inline-block" id="alert-sgrpriorizacionm1priorizacionestadopriorizacion"></span>
+                <span id="name-capitulo-sgrpriorizacionm1priorizacionestadopriorizacion"></span>
+                <span class="hidden" id="id-capitulo-sgrpriorizacionm1priorizacionestadopriorizacion"></span>
+                <span id="arrow-sgrpriorizacionm1priorizacionestadopriorizacion" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#sgrpriorizacionm1priorizacionestadopriorizacion"></span>
+            </button>
+        </div>
+        <div class="collapse" id="sgrpriorizacionm1priorizacionestadopriorizacion">
+            <div class="row m-0 mb-3">
+                <div class="col-md-12 ">
+                    <estado-priorizacion-sgr callback="vm.notificarGuardado()"
+                                             guardadocomponent="vm.guardadohijos(nombreComponenteHijo)"
+                                             notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                             notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"
+                                             notificarrefresco="vm.notificarRefresco(handler, nombreComponente)"
+                                             notificacioncambios="vm.notificacionCambiosCapitulosExternos(handler, nombreComponente)">
+                    </estado-priorizacion-sgr>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

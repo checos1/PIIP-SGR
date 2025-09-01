@@ -1,0 +1,94 @@
+﻿<div class="container-fluid inbox" ng-init="vm.init();">
+
+    <div class="div-escopo">
+        <!-- #region breadcrumb -->
+        <nav class="breadcrumb">
+            <a href="/">
+                <span class="breadcrumb-item">
+                    <i class="fa fa-home" aria-hidden="true"></i> Inicio
+                </span>
+            </a>
+            /
+            <span class="breadcrumb-item active">Administración perfiles</span>
+        </nav>
+        <!-- #endregion breadcrumb -->
+
+        <div class="dashboard">
+
+            <!-- #region Título e accíon -->
+            <div class="titulo-e-accion">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="titlebar">
+                            <span>Administración <i>/ Perfiles</i> </span>
+                            <span class="buttonbar pull-right">
+                                <button has-claim has-opciones="['Perfiles:Crear']" type="button" class="btn btn-default btn-md btnFiltroHeader" tooltip-placement="top" uib-tooltip="Crear Perfil" 
+                                        ng-click="vm.abrirModalCrearEditar()" tabindex="0">
+                                    Crear Perfil
+                                </button>
+                                <button type="button" class="btn btn-default btn-md btnFiltroHeader" ng-click="vm.conmutadorFiltro()" 
+                                    tooltip-placement="auto" uib-tooltip="Filtro">
+                                    Filtro
+                                </button>
+                                <a href="" download target="_blank" class="btn btn-default btn-md btnFiltroHeader btnRedondo" ng-click="vm.downloadPdf()" 
+                                    tooltip-placement="auto" uib-tooltip="Exportar PDF">
+                                    PDF
+                                </a>
+                                <a href="" download target="_blank" class="btn btn-default btn-md btnFiltroHeader btnRedondo" ng-click="vm.downloadExcel()" 
+                                    tooltip-placement="auto" uib-tooltip="Exportar XLS">
+                                    XLS
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- #endregion -->
+
+            <!-- #region Tabs -->
+            <div class="form-group clearfix filtro-sem-tabla">
+                <div class="row">
+                    <div class="col-md-12 radio radio-primary">
+                        <ul class="nav nav-tabs tabsFiltro">
+                            <li class="active">
+                                <a data-toggle="tab">                                
+                                    Perfiles del sistema
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--inicio filtro-->
+            <div class="filtro" ng-if="vm.mostrarFiltro">
+                <div class="clearfix">
+                    <div class="row">
+                        <div class="col-md-10 padding-off">
+                            <input type="text" ng-model="vm.perfilFiltro" name="txtPerfil" id="txtPerfil" class="form-control" placeholder="Perfil o Rol" />
+                        </div>
+                        <div class="col-md-2 text-right padding-off">
+                            <button type="button" class="btn btn-filtro" ng-click="vm.buscar()" tooltip-placement="auto" uib-tooltip="Buscar">Buscar</button>
+                            <button type="button" class="btn btn-filtro" ng-click="vm.limpiarCamposFiltro()" tooltip-placement="auto" uib-tooltip="Limpiar">Limpiar</button>
+                        </div>
+                    </div>
+                </div>
+                <!--fim filtro-->
+            </div>
+            <!-- #endregion Tabs -->
+            
+            <!-- #region Tabla -->
+            <div class="row">
+                <tabla-entidad opciones="vm.opciones"
+                            definicion-columna-datos="vm.columnDef"
+                            datos="vm.datos"
+                            accion1="vm.abrirModalCrearEditar($row)"
+                            accion2="vm.abrirModalEliminar($row)">
+
+                </tabla-entidad>
+            </div>
+            <!-- #endregion Tabla -->
+
+        </div>
+    </div>
+
+</div>

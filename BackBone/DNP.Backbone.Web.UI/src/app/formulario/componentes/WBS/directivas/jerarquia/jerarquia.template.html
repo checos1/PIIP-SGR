@@ -1,0 +1,299 @@
+﻿<form class="nopadding" name="vm.form_{{vm.idPadre}}">
+    <div ng-if="vm.datos !== undefined">
+        <div class="panel-default bottom15" ng-if="vm.modelo !== undefined && vm.modelo.length>0">
+            <button class="accordian-button" ng-click="vm.datos.colapsarPanelWBS = !vm.datos.colapsarPanelWBS" ng-class="{ 'collapsed' : vm.datos.colapsarPanelWBS }">
+                <div class="accordian-arrow">
+                    <i class="icon-less" aria-hidden="true"></i>
+                    <i class="icon-add" aria-hidden="true"></i>
+                </div>
+            </button>
+            <span class="titulo-jerarquia" ng-repeat="propiedad in vm.modelo">
+                <div class="value-group">
+                    <span ng-if="propiedad.visible && propiedad.tipo !== 'array' && vm.datos !== undefined">
+                        <span class="label-value bpin text-uppercase" ng-attr-tooltip-placement="{{ propiedad.ToolTip ? 'bottom' : '' }}"
+                              ng-attr-uib-tooltip="{{ propiedad.ToolTip ? propiedad.ToolTip : '' }}">{{propiedad.encabezado || propiedad.propiedad}}:</span>
+                        <input ng-if="propiedad.editar"
+                               class="form-inline"
+                               ng-model="vm.datos[propiedad.propiedad]"
+                               required
+                               ng-disabled="vm.opciones.deshabilitarControles" />
+                        <span class="value bpin" ng-if="!propiedad.editar">{{vm.datos[propiedad.propiedad]}}</span>
+                    </span>
+                </div>
+            </span>
+        </div>
+
+        <div id="wbs-{{vm.idPadre}}" class="panel-collapse abrir" ng-class="{ 'collapse' : vm.datos.colapsarPanelWBS }">
+            <div class="panel-body">
+                <div ng-if="vm.modelo !== undefined && vm.modelo.length>0" ng-repeat="propiedad in vm.modelo">
+                    <jerarquia-wbs modelo="propiedad"
+                                   datos="vm.datos"
+                                   datos-master="vm.datosMaster"
+                                   schema="vm.schema"
+                                   id-padre="{{vm.idPadre}}"
+                                   ng-if="propiedad.visible && propiedad.tipo === 'array' && vm.templatesServicio.tieneHijosTipoArray(propiedad)"
+                                   opciones="vm.opciones"></jerarquia-wbs>
+                </div>
+            </div>
+        </div>
+
+        <div ng-if="vm.modelo !== undefined && vm.templatesServicio.tieneHijosTipoArray(vm.modelo)">
+            <!--Adicionar sin datos-->
+            <fieldset ng-if="!vm.datos[vm.modelo.propiedad] && vm.modelo.adicionar">
+                <legend class="nobottom">
+                    <span class="label-value-blue " ng-attr-tooltip-placement="{{ item.ToolTip ? 'bottom' : '' }}"
+                          ng-attr-uib-tooltip="{{ vm.modelo.ToolTip ? vm.modelo.ToolTip : '' }}">{{vm.modelo.encabezado || vm.modelo.propiedad}}: </span>
+                    <button class="icon-add wbs-add"
+                            aria-hidden="true"
+                            tooltip-placement="top"
+                            uib-tooltip="{{ 'Adicionar' | language }}"
+                            ng-if="vm.modelo.adicionar"
+                            ng-click="vm.mostrarAdicionar()"
+                            ng-disabled="vm.opciones.deshabilitarControles" />
+                    <span class="pull-right">
+                        <span class="right" ng-if="valores.totalizar" ng-repeat="(propiedad, valores) in vm.propiedadesTotalizarJerarquia | orderObjectBy:'propiedad':false">
+                            <span class="total-label"> {{valores.propiedadAMostrar}} Total: </span>
+                            <span class="total-value" ng-if="valores.tipo === 'number'"> {{valores.total | number : 2}}</span>
+                            <span class="total-value" ng-if="valores.tipo !== 'number'"> {{valores.total}}</span>
+                        </span>
+                    </span>
+                </legend>
+                <!--ADICIONAR-->
+                <adicionar-wbs modelo="vm.modelo" datos="vm.datos" id-padre="vm.idPadre"></adicionar-wbs>
+                <!--FIN ADICIONAR-->
+            </fieldset>
+            <fieldset ng-if="vm.datos[vm.modelo.propiedad].mostrarAdicionarSinDatos && !vm.datos[vm.modelo.propiedad].mostrarAdicionar && vm.datos[vm.modelo.propiedad]">
+                <legend>
+                    <span class="label-value-blue " ng-attr-tooltip-placement="{{ item.ToolTip ? 'bottom' : '' }}"
+                          ng-attr-uib-tooltip="{{ vm.modelo.ToolTip ? vm.modelo.ToolTip : '' }}">{{vm.modelo.encabezado || vm.modelo.propiedad}}: </span>
+                    <button class="icon-add wbs-add"
+                            aria-hidden="true"
+                            tooltip-placement="top"
+                            uib-tooltip="{{ 'Adicionar' | language }}"
+                            ng-if="vm.modelo.adicionar"
+                            ng-click="vm.mostrarAdicionar()"
+                            ng-disabled="vm.opciones.deshabilitarControles" />
+                    <span class="pull-right">
+                        <span class="right" ng-if="valores.totalizar" ng-repeat="(propiedad, valores) in vm.propiedadesTotalizarJerarquia | orderObjectBy:'propiedad':false">
+                            <span class="total-label"> {{valores.propiedadAMostrar}} Total: </span>
+                            <span class="total-value" ng-if="valores.tipo === 'number'"> {{valores.total | number : 2}}</span>
+                            <span class="total-value" ng-if="valores.tipo !== 'number'"> {{valores.total}}</span>
+                        </span>
+                    </span>
+                </legend>
+                <!--ADICIONAR-->
+                <adicionar-wbs modelo="vm.modelo" datos="vm.datos" id-padre="vm.idPadre"></adicionar-wbs>
+                <!--FIN ADICIONAR-->
+            </fieldset>
+            <!--Fin Adicionar sin datos-->
+            <fieldset ng-if="vm.datos[vm.modelo.propiedad]">
+                <legend ng-if="vm.existeHijosConFiltro(vm.datos[vm.modelo.propiedad])">
+                    <span class="label-value-blue " ng-attr-tooltip-placement="{{ item.ToolTip ? 'bottom' : '' }}"
+                          ng-attr-uib-tooltip="{{ vm.modelo.ToolTip ? vm.modelo.ToolTip : '' }}">{{vm.modelo.encabezado || vm.modelo.propiedad}}: </span>
+                    <button class="icon-add wbs-add"
+                            aria-hidden="true"
+                            tooltip-placement="top"
+                            uib-tooltip="{{ 'Adicionar' | language }}"
+                            ng-if="vm.modelo.adicionar"
+                            ng-click="vm.mostrarAdicionar()"
+                            ng-disabled="vm.opciones.deshabilitarControles" />
+                    <span class="pull-right">
+                        <span class="right" ng-if="valores.totalizar" ng-repeat="(propiedad, valores) in vm.propiedadesTotalizarJerarquia | orderObjectBy:'propiedad':false">
+                            <span class="total-label"> {{valores.propiedadAMostrar}} Total: </span>
+                            <span class="total-value" ng-if="valores.tipo === 'number'"> {{valores.total | number : 2}}</span>
+                            <span class="total-value" ng-if="valores.tipo !== 'number'"> {{valores.total}}</span>
+                        </span>
+                    </span>
+                </legend>
+                <!--ADICIONAR-->
+                <adicionar-wbs modelo="vm.modelo" datos="vm.datos" id-padre="vm.idPadre"></adicionar-wbs>
+                <!--FIN ADICIONAR-->
+                <ul ng-if="vm.pibot(vm.modelo, vm.modelo.propiedad)" class="pibot-tab">
+                    <!--<li ng-repeat="dato in vm.datos[vm.modelo.propiedad]" class="{{dato.colapsarPanelWBS ? 'active' : ''}}" ng-click="vm.colapsarPanelWBS(dato, vm.datos[vm.modelo.propiedad])">-->
+                    <li ng-repeat="dato in vm.datos[vm.modelo.propiedad]"  ng-if="vm.filtrar(dato)" class="{{vm.determinaFocoPibot(dato) ? 'active' : ''}}" ng-click="vm.colapsarPanelWBS(dato, vm.datos[vm.modelo.propiedad])">
+                        <div ng-repeat="item in vm.modelo.items">
+                            <span ng-if="item.visible && item.pibot && item.tipo !== 'array'">
+                                <span class="label-value item-tabs" ng-attr-tooltip-placement="{{ item.ToolTip ? 'bottom' : '' }}"
+                                      ng-attr-uib-tooltip="{{ item.ToolTip ? item.ToolTip : '' }}">{{item.encabezado || item.propiedad}}: </span>
+                                <input class="form-inline text-right"
+                                       ng-if="item.editar && item.tipo === 'number'"
+                                       ng-model="dato[item.propiedad]"
+                                       ng-change="vm.totalizar()"
+                                       ng-disabled="vm.opciones.deshabilitarControles"
+                                       required />
+                                <input class="form-inline"
+                                       ng-if="item.editar && item.tipo !== 'number'"
+                                       ng-model="dato[item.propiedad]"
+                                       ng-change="vm.totalizar()"
+                                       ng-disabled="vm.opciones.deshabilitarControles"
+                                       required />
+                                <span class="value item-tabs" ng-if="!item.editar && item.tipo === 'number'">{{dato[item.propiedad] | number : 2 }}</span>
+                                <span class="value item-tabs" ng-if="!item.editar && (item.tipo !== 'number')">{{dato[item.propiedad]}}</span>
+                                <button class="btnaccion" uib-tooltip="{{ 'Eliminar' | language }}"
+                                        type="button"
+                                        ng-if="vm.modelo.eliminar"
+                                        ng-click="vm.eliminarDato(dato, vm.modelo.propiedad)"
+                                        ng-disabled="vm.opciones.deshabilitarControles">
+                                    <span><img src="Img/iconsgrid/iconAccionEliminar.png" /></span>
+                                </button>
+                            </span>
+                        </div>
+                    </li>
+                </ul>
+                <!--TABS CONTENT-->
+                <div class="{{vm.pibot(vm.modelo) ? 'pibot' : ''}}" ng-repeat="dato in vm.datos[vm.modelo.propiedad]">
+                    <ul class="list-unstyled" ng-if="vm.filtrar(dato)">
+                        <li>
+                            <div id="grupo-{{vm.idPadre}}" ng-if="!vm.pibot(vm.modelo)" class="panel-group">
+                                <div class="panel-heading">
+                                    <div class="panel-title">
+                                        <button class="accordian-button" ng-click="dato.colapsarPanelWBS = !dato.colapsarPanelWBS" ng-class="{ 'collapsed' : dato.colapsarPanelWBS }">
+                                            <div class="accordian-arrow">
+                                                <i class="icon-add" aria-hidden="true"></i>
+                                                <i class="icon-less" aria-hidden="true"></i>
+                                            </div>
+                                        </button>
+                                        <div ng-class="vm.modelo.columna  ? '' : 'flex-fill'">
+                                            <span class="titulo-jerarquia inline-flex" ng-repeat="item in vm.modelo.items">
+                                                <span ng-if="item.visible && item.tipo !== 'array'">
+                                                    <span class="label-value-blue " ng-attr-tooltip-placement="{{ item.ToolTip ? 'bottom' : '' }}"
+                                                          ng-attr-uib-tooltip="{{ item.ToolTip ? item.ToolTip : '' }}">{{item.encabezado || item.propiedad}}: </span>
+                                                    <input class="form-inline text-right"
+                                                           ng-if="item.editar && item.tipo === 'number'"
+                                                           ng-model="dato[item.propiedad]"
+                                                           ng-change="vm.totalizar()"
+                                                           ng-disabled="vm.opciones.deshabilitarControles"
+                                                           required />
+                                                    <input class="form-inline"
+                                                           ng-if="item.editar && item.tipo !== 'number'"
+                                                           ng-model="dato[item.propiedad]"
+                                                           ng-change="vm.totalizar()"
+                                                           ng-disabled="vm.opciones.deshabilitarControles"
+                                                           required />
+                                                    <span class="value" ng-if="!item.editar && item.tipo === 'number'">{{dato[item.propiedad] | number : 2 }}</span>
+                                                    <span class="value" ng-if="!item.editar && (item.tipo !== 'number')">{{dato[item.propiedad]}}</span>
+                                                </span>
+                                            </span>
+                                        </div>
+                                        <button uib-tooltip="{{ 'Eliminar' | language }}"
+                                                class="btnaccion"
+                                                type="button"
+                                                ng-if="vm.modelo.eliminar"
+                                                ng-click="vm.eliminarDato(dato, vm.modelo.propiedad)"
+                                                ng-disabled="vm.opciones.deshabilitarControles">
+                                            <span><img src="Img/iconsgrid/iconAccionEliminar.png" /></span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="w-{{vm.idPadre}}-{{vm.modelo.propiedad}}-{{$index}}" class="panel-collapse abrir" ng-class="{ 'collapse' : (vm.pibot(vm.modelo) ? !dato.colapsarPanelWBS : dato.colapsarPanelWBS) }">
+                                <div class="cuerpo-jerarquia panel-body">
+                                    <div class="flex-fill" ng-if="vm.pibot(vm.modelo)">
+                                        <span class="titulo-jerarquia flex-inline padding-top-left font12" ng-repeat="item in vm.modelo.items">
+                                            <span ng-if="item.visible && !item.pibot && item.tipo !== 'array'">
+                                                <span class="label-value-blue">{{item.encabezado || item.propiedad}}: </span>
+                                                <input class="form-inline text-right"
+                                                       ng-if="item.editar && item.tipo === 'number'"
+                                                       ng-model="dato[item.propiedad]"
+                                                       ng-change="vm.totalizar()"
+                                                       ng-disabled="vm.opciones.deshabilitarControles"
+                                                       required />
+                                                <input class="form-inline"
+                                                       ng-if="item.editar && item.tipo !== 'number'"
+                                                       ng-model="dato[item.propiedad]"
+                                                       ng-change="vm.totalizar()"
+                                                       ng-disabled="vm.opciones.deshabilitarControles"
+                                                       required />
+                                                <span class="value" ng-if="!item.editar && item.tipo === 'number'">{{dato[item.propiedad] | number : 2 }}</span>
+                                                <span class="value" ng-if="!item.editar && (item.tipo !== 'number')">{{dato[item.propiedad]}}</span>
+                                            </span>
+                                        </span>
+                                    </div>
+                                    <span ng-repeat="item in vm.modelo.items">
+                                        <jerarquia-wbs class="padding-top-left" modelo="item"
+                                                       datos="dato"
+                                                       datos-master="vm.datosMaster"
+                                                       schema="vm.schema"
+                                                       id-padre="{{vm.idPadre}}-{{vm.modelo.propiedad}}-{{$parent.$parent.$index}}"
+                                                       ng-if="item.visible && item.tipo === 'array' && vm.templatesServicio.tieneHijosTipoArray(item)"
+                                                       opciones="vm.opciones"></jerarquia-wbs>
+                                        <tabla-wbs ng-if="item.visible && item.tipo === 'array' && !vm.templatesServicio.tieneHijosTipoArray(item)"
+                                                   modelo="item"
+                                                   datos="dato"
+                                                   datos-master="vm.datosMaster"
+                                                   schema="vm.schema"
+                                                   opciones="vm.opciones"
+                                                   inserir-primeiro-filho="false"
+                                                   nivel-desglose="0"></tabla-wbs>
+                                    </span>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</form>
+
+
+<div ng-if="vm.datos === undefined">
+    <div class="panel-default" ng-if="vm.modelo !== undefined && vm.modelo.length>0">
+        <button data-toggle="collapse" data-parent="#accordion" data-target="#wbs-{{vm.idPadre}}" class="collapsed accordian-button">
+            <div class="accordian-arrow">
+                <i class="icon-less" aria-hidden="true"></i><i class="icon-add wbs-add" aria-hidden="true"></i>
+            </div>
+        </button>
+        <span ng-if="vm.modelo !== undefined && vm.modelo.length>0" ng-repeat="propiedad in vm.modelo">
+            <span ng-if="propiedad.tipo !== 'array' && propiedad.visible" data-toggle="tooltip" title="{{dato[item.propiedad]}}"><strong>{{propiedad.propiedad}}</strong> - </span>
+        </span>
+    </div>
+    <div id="wbs-{{vm.idPadre}}" class="panel-collapse collapse abrir">
+        <div class="panel-body">
+            <div ng-if="vm.modelo !== undefined && vm.modelo.length>0" ng-repeat="propiedad in vm.modelo">
+                <jerarquia-wbs modelo="propiedad"
+                               id-padre="{{vm.idPadre}}"
+                               datos-master="vm.datosMaster"
+                               schema="vm.schema"
+                               ng-if="propiedad.visible && propiedad.tipo === 'array' && vm.templatesServicio.tieneHijosTipoArray(propiedad)"
+                               opciones="vm.opciones"></jerarquia-wbs>
+            </div>
+        </div>
+    </div>
+    <div ng-if="vm.templatesServicio.tieneHijosTipoArray(vm.modelo)">
+        <ul class="list-unstyled">
+            <li>
+                <div id="grupo-{{vm.idPadre}}" class="panel-group">
+                    <div class="">
+                        <div class="panel-title">
+                            <button class="collapsed accordian-button" role="button" data-toggle="collapse" data-parent="grupo-{{vm.idPadre}}" data-target="#{{vm.idPadre}}-{{vm.modelo.propiedad}}" aria-expanded="false" aria-controls="{{vm.idPadre}}-{{vm.modelo.propiedad}}">
+                                <div class="accordian-arrow">
+                                    <i class="icon-less" aria-hidden="true"></i>
+                                    <i class="icon-add" aria-hidden="true"></i>
+                                </div>
+                            </button>
+                            <span ng-repeat="item in vm.modelo.items">
+                                <span ng-if="item.visible && item.tipo !== 'array'"><strong> {{item.propiedad}}</strong> - </span>
+                            </span>
+                        </div>
+                    </div>
+                    <div id="{{vm.idPadre}}-{{vm.modelo.propiedad}}" class="panel-collapse collapse abrir" role="tabpanel" aria-labelledby="headingOne">
+                        <div class="panel-body">
+                            <span ng-repeat="item in vm.modelo.items">
+                                <jerarquia-wbs modelo="item"
+                                               datos="dato"
+                                               id-padre="{{vm.idPadre}}-{{vm.modelo.propiedad}}"
+                                               ng-if="item.visible && item.tipo === 'array' && vm.templatesServicio.tieneHijosTipoArray(item)"
+                                               opciones="vm.opciones"></jerarquia-wbs>
+                                <tabla-wbs modelo="item" datos="dato"
+                                           inserir-primeiro-filho="false"
+                                           nivel-desglose="0"
+                                           ng-if="item.visible && item.tipo === 'array' && !vm.templatesServicio.tieneHijosTipoArray(item)"></tabla-wbs>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,5 @@
+﻿<div espacio-blanco-directive>
+    <div class="form-group schema-form-{{form.type}} {{form.htmlClass}}" uib-tooltip="{{form.tooltip}}" ng-class="{'has-error': form.disableErrorState !== true && hasError(), 'has-success': form.disableSuccessState !== true && hasSuccess(), 'has-feedback': form.feedback !== false }">
+        <p class="big-label" id="{{form.id}}">{{form.label}}<input class="text-center" ng-model="$$value$$" readonly tooltip-placement="bottom" uib-tooltip="{{$$value$$}}" /></p>
+    </div>
+</div>

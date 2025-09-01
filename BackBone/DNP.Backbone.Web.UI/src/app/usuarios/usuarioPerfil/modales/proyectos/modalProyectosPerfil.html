@@ -1,0 +1,56 @@
+﻿<modal-dialog cerrar="vm.cerrar" guardar="vm.guardar">
+
+    <div class="row ">
+        <div class="col-md-12">
+            <div class="titulo-modal">
+                <!-- // titulo de modal -->
+                <span>PROYECTOS ASIGNADOS - <span style="color: #03B4D5">{{vm.nombrePerfil}}</span></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- // has-claim -->
+    <div has-claim has-entidades="[vm.idEntidad]" has-opciones="['Usuarios:AddProyectosPerfil']">
+        
+        <!-- // entidad -->
+        <div class="row">
+            <div class="col-md-12">
+                <label>Entidad</label>
+                <input type="text" ng-model="vm.entidad" name="txtEntidad" id="txtEntidad" class="form-control" placeholder="Entidad" disabled="disabled" />
+            </div>
+        </div>
+
+        <!-- // proyecto -->
+        <div class="row mt-3">
+            <div class="col-md-10 pr-0">
+                <select  
+                    chosen options="vm.listaProyectos"
+                    ng-model="vm.idProyecto"
+                    ng-options="x.ProyectoId as x.ProyectoBpin for x in vm.listaProyectos"
+                    no-results-text="No hay ningún resultado para su búsqueda"
+                    placeholder-text-single="Proyectos"
+                    class="form-control">
+                    <option value="" selected>Opciones</option>
+                </select>
+    
+            </div>
+
+            <!-- // botón añadir -->
+            <div class="col-md-2 mt-0">
+                <button type="button" class="btn btn-sm btn-success" ng-click="vm.addProyecto()" tooltip-placement="auto" uib-tooltip="Add Proyecto">Add Proyecto</button>
+            </div>
+
+        </div>
+
+        <!-- // grid -->
+        <div class="row">
+            <div class="col-md-12 mt-2 ">
+                <div class="clearfix grid-proyecto-usuario"
+                     ui-grid="vm.gridOptions">
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</modal-dialog>

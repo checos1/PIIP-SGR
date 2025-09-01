@@ -1,0 +1,91 @@
+// Color Picker
+
+@black: #000;
+@white: #FFF;
+@white-light: #f3f4f5;
+@white-dark: #eff0f1;
+@green-lemon: #86bc25;
+@blue: #00A3DF;
+@blue-dark: #3266CC;
+@blue-tree: #f8faff;
+@blue-form: #EDEDEF;
+@blue-finish: #1757a7;
+@blue-other: #358280;
+@red: #B81B27;
+@gray-ultra-light: #F0F0F0;
+@gray-light: #F9F9F9;
+@gray-dark: #2C2C2C;
+@gray: #555454;
+@gray-text: #46484D;
+@gray-borders: #e5e5e3;
+@gray-borders-hover: #dcdcdc;
+@gray-background: #E1E7F0;
+@gray-background-light: #eaeff5;
+@gray-label: #E0E0DD;
+@gray-placeholder: #757575;
+@green: #5cb85c;
+@green-dark: #439243;
+@orange: #f39335;
+@yellow: #B88A00;
+@gray-table-striped: #fdfdfd;
+@shadow-header: 0px 3px 4px 0px rgba(196,196,196,0.5);
+@gray-expire: #757575;
+@gray-disable: #949494;
+@green-dark: #439243;
+@green-light: #e3f4d3;
+@red-light: #ff5b5c;
+@gray-hover: #eeeeee;
+@blue-dark-light: #5399B3;
+@danger: #cf3f1d;
+@warning: #cf8020;
+@success: #008265;
+
+// Font Style
+
+@font-stack: 'Roboto', sans-serif;
+
+
+
+// Font Weight
+
+.semibold {
+    font-family: @font-stack;
+    font-weight: 600;
+    font-style: normal;
+}
+
+.regular {
+    font-family: @font-stack;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.light {
+    font-family: @font-stack;
+    font-weight: 300;
+    font-style: normal;
+}
+
+
+// Some Effects
+
+.transition-all (@transition: all 0s ease) {
+    -webkit-transition: @transition;
+    -moz-transition: @transition;
+    -ms-transition: @transition;
+    -o-transition: @transition;
+    transition: @transition;
+}
+
+.rounded-corners (@radius: 0px) {
+    -webkit-border-radius: @radius;
+    -moz-border-radius: @radius;
+    -ms-border-radius: @radius;
+    -o-border-radius: @radius;
+    border-radius: @radius;
+}
+
+.box-shadow (@shadow: 0 0 0 0 rgba(0,0,0,0)) {
+    -webkit-box-shadow: @shadow;
+    box-shadow: @shadow;
+}

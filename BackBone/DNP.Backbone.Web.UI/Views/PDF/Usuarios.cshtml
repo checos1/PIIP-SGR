@@ -1,0 +1,98 @@
+﻿@using DNP.Backbone.Dominio.Dto.AutorizacionNegocio;
+@model List<UsuarioReportesDto>
+@{
+    Layout = null;
+    ViewBag.Title = "UsuariosPDF";
+}
+<html>
+<head>
+    @Html.Partial("_IncludeEstilosRelatorios")
+</head>
+<body class="pdf">
+    @Html.Partial("_CabecalhoRelatorio", "Informe de Usuarios")
+
+    <div class="mt-5">
+        @if (Model == null || Model.Count == 0)
+        {
+            <table class="table table-sm table-borderless">
+                <thead>
+                    <tr>
+                        <th class="text-center">
+                            No hubo registros para los filtros seleccionados.
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+        }
+        else
+        {
+            <div>
+                <table class="table">
+                    @foreach (var entidade in Model.Select(m => new { m.AgrupadorNombreEntidad, m.NombreEntidad}).Distinct())
+                    {
+                        <tr>
+                            <td><b>Sector:</b> <span class="agr-blue">@entidade.AgrupadorNombreEntidad</span></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b>Nombre Entidad:</b>
+                                <span class="agr-blue">@entidade.NombreEntidad</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+
+                                <div id="containerbody">
+                                    <table class="table  table-borderless border-table">
+                                        <thead>
+                                            <tr>
+                                                <th style="width:30% !important;">NOMBRE</th>
+                                                <th style="width:10% !important;">TIPO</th>
+                                                <th style="width:20% !important;">IDENTIFICACIÓN</th>
+                                                <th style="width:10px !important;">CORREO</th>
+                                                <th style="width:30% !important;">PERFIL</th>
+                                                <th style="width:10px !important;">ESTADO USUARIO</th>
+                                                <th style="width:10px !important;">ESTADO PERFIL</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var entidadeUsuario in Model.Where(ua => ua.NombreEntidad == @entidade.NombreEntidad))
+                                            {
+                                                <tr>
+                                                    <td>@entidadeUsuario.NombreUsuario</td>
+                                                    <td>@entidadeUsuario.TipoIdentificacion</td>
+                                                    <td>@entidadeUsuario.Identificacion</td>
+                                                    <td>@entidadeUsuario.Correo</td>
+                                                    <td>@entidadeUsuario.Perfil</td>
+                                                    @if (@entidadeUsuario.Activo == "true")
+                                                    {
+                                                        <td>Activo</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td>Inactivo</td>
+                                                    }
+                                                    @if (@entidadeUsuario.ActivoUsuarioPerfil == "true")
+                                                    {
+                                                        <td>Activo</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td>Inactivo</td>
+                                                    }
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        }
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,55 @@
+﻿<section ng-init="vm.init();">
+    <div id="SGRERRSEC{{vm.nombreComponente}}" class="hidden mb-3 ml-5 errorSeccionInformacionGeneralViabilidad" style="text-align: left; font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans'; font-size: 12px; font-style: normal; color: #A80521;"></div>
+    <div class="container-fluid inbox">
+        <div class="tab-content">
+            <div class="ui-accordion-container">
+                <div class="alert panel-heading row ui-accordion-header">
+                    <button type="button" data-toggle="collapse" data-target="#sgrctuselaboracioninfogeneralinfobasica" ng-click="vm.changeArrow('sgrctuselaboracioninfogeneralinfobasica')">
+                        <span class="d-inline-block" id="alert-sgrctuselaboracioninfogeneralinfobasica"></span>
+                        <span id="name-capitulo-sgrctuselaboracioninfogeneralinfobasica"></span>
+                        <span class="hidden" id="id-capitulo-sgrctuselaboracioninfogeneralinfobasica"></span>
+                        <span id="arrow-sgrctuselaboracioninfogeneralinfobasica" class="glyphicon glyphicon-chevron-up pull-right" data-toggle="collapse" data-target="#sgrctuselaboracioninfogeneralinfobasica"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="sgrctuselaboracioninfogeneralinfobasica">
+                    <informacion-basica-ctus-sgr guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                                       notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                       notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)">
+                    </informacion-basica-ctus-sgr>
+                </div>
+            </div>
+            <div class="ui-accordion-container">
+                <div class="alert panel-heading row ui-accordion-header">
+                    <button type="button" data-toggle="collapse" data-target="#sgrctuselaboracioninfogeneralconceptospreviosemitidos" ng-click="vm.changeArrow('sgrctuselaboracioninfogeneralconceptospreviosemitidos')">
+                        <span class="d-inline-block" id="alert-sgrctuselaboracioninfogeneralconceptospreviosemitidos"></span>
+                        <span id="name-capitulo-sgrctuselaboracioninfogeneralconceptospreviosemitidos"></span>
+                        <span class="hidden" id="id-capitulo-sgrctuselaboracioninfogeneralconceptospreviosemitidos"></span>
+                        <span id="arrow-sgrctuselaboracioninfogeneralconceptospreviosemitidos" class="glyphicon glyphicon-chevron-up pull-right" data-toggle="collapse" data-target="#sgrctuselaboracioninfogeneralconceptospreviosemitidos"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="sgrctuselaboracioninfogeneralconceptospreviosemitidos">
+                    <conceptos-previos-emitidos-ctus-sgr guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                                               notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                               notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"></conceptos-previos-emitidos-ctus-sgr>
+                </div>
+            </div>
+            <div class="ui-accordion-container">
+                <div class="alert panel-heading row ui-accordion-header">
+                    <button type="button" data-toggle="collapse" data-target="#sgrctuselaboracioninfogeneralusuariosinvolucrados" ng-click="vm.changeArrow('sgrctuselaboracioninfogeneralusuariosinvolucrados')">
+                        <span class="d-inline-block" id="alert-sgrctuselaboracioninfogeneralusuariosinvolucrados"></span>
+                        <span id="name-capitulo-sgrctuselaboracioninfogeneralusuariosinvolucrados"></span>
+                        <span class="hidden" id="id-capitulo-sgrctuselaboracioninfogeneralusuariosinvolucrados"></span>
+                        <span id="arrow-sgrctuselaboracioninfogeneralusuariosinvolucrados" class="glyphicon glyphicon-chevron-up pull-right" data-toggle="collapse" data-target="#sgrctuselaboracioninfogeneralusuariosinvolucrados"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="sgrctuselaboracioninfogeneralusuariosinvolucrados">
+
+                    <usuarios-involucrados-ctus-sgr guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                                    notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                    notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)">
+                    </usuarios-involucrados-ctus-sgr>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

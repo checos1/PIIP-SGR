@@ -1,0 +1,596 @@
+﻿<section>
+    <div class="container-fluid inbox" style="height: 100px; padding-left: 20px;" ng-init="vm.init();">
+        <br />
+        <div class="col-md-10">
+            <span ng-if="vm.listaResumen == ''">
+                No hay información de resumen de valores reprogramados por vigencia y producto.
+            </span>
+        </div>
+        <div ng-if="vm.listaResumen != ''">
+            <div style="text-align: left;">
+                <h3 class="row" style="padding-left: 2rem; padding-right: 2rem; text-align: left; color: #004884">&nbsp;&nbsp;Tabla resumen</h3>
+            </div>
+            <br />
+            <div class="row">
+                <div class="" style="padding: 0 !important">
+                    <div class="alert panel-heading">
+                        <p class="col-md-12">
+                            <span class="NomItemAccordDNP">Código proceso:</span>
+                            <span class="InfoItemAccordDNP">{{vm.listaResumen.CodigoProceso}}. </span>
+                            <span class="NomItemAccordDNP">Fecha autorización:</span>
+                            <span class="InfoItemAccordDNP">{{vm.listaResumen.FechaAutorizacion}}.</span>
+                            <span class="NomItemAccordDNP">Código autorización:</span>
+                            <span class="InfoItemAccordDNP">{{vm.listaResumen.CodigoAutorizacion}}.</span>
+                        </p>
+                        <br />
+                    </div>
+                </div>
+            </div>
+            <!--Inicio información vigencia-->
+            <div class="tab-container col-md-12" style="width:100%;">
+                <div class="row" ng-repeat="objResumen in vm.listaResumen.ResumenTramite">
+                    <div style="padding: 1em;" class="row" ng-if="vm.EsConstante">
+                        <div class="col-md-12">
+                            <div class="col-md-2">
+                                <div id="u5751" class="ax_default box_1" style="border: none !important; background: none !important;">
+                                    <div id="u5751_text" class="text">
+                                        <p><span style="color:black">Año base</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div id="u5751" class="ax_default box_1">
+                                    <div id="u5751_text" class="text ">
+                                        <p style="text-align: center;"><span>{{objResumen.AnioBase}}</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div style="padding: 1em;" ng-show="vm.EsConstante">
+                        <ul class="nav nav-tabs">
+                            <li id="liPreinversion" ng-class="{active : 1 === vm.TipoValor}">
+                                <a href="" ng-click="vm.mostrarTab(1)" data-toggle="tab">
+                                    <img class="img-advertencia mr-2" src="Img/u11.svg" ng-if="vm.errores.preinversion" />
+                                    <b>Valores constantes</b>
+                                </a>
+                            </li>
+                            <li id="liInversion" ng-class="{active : 2 === vm.TipoValor}">
+                                <a href="" ng-click="vm.mostrarTab(2)" data-toggle="tab">
+                                    <img class="img-advertencia mr-2" src="Img/u11.svg" ng-if="vm.errores.inversion" />
+                                    <b>Valores corrientes</b>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="row col-md-12" style="padding-left: 3em;">
+                            <br>
+                            <div class="alert panel-heading">
+                                <!--Inicio información valores corrientes-->
+                                <table class="TableDNP" ng-if="!vm.EsConstante">
+                                    <thead>
+                                        <tr>
+                                            <th class="columAcc" style="width:4%"></th>
+                                            <th class="textleftDNP" style="width:10%">Vigencia</th>
+                                            <th class="textleftDNP" style="width:14%">Tipo de recurso</th>
+                                            <th class="textRightDNP" style="width:17%">Autorizado $</th>
+                                            <th class="textRightDNP" style="width:17%">Utilizado $</th>
+                                            <th class="textRightDNP" style="width:17%">Reprogramado $</th>
+                                            <th class="textRightDNP" style="width:17%">Modificado $ <br /> (cálculo automático)</th>
+                                            <th class="columAcc" style="width:4%"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody ng-repeat="objVigencias in objResumen.Valores">
+                                        <tr>
+                                            <td rowspan="2"><span id="IPF001-{{objVigencias.Vigencia}}" class="hidden text-left color-red"></span></td>
+                                            <td rowspan="2" class="textleftDNP"><span>{{objVigencias.Vigencia}}</span></td>
+                                            <td class="textleftDNP"><span>Nación</span></td>
+                                            <td class="textRightDNP"><div class="blockReferenciaDNP">{{(objVigencias.AutorizadoNacion !== null) ? (objVigencias.AutorizadoNacion | number) : 0}}</div></td>
+                                            <td class="textRightDNP"><div class="blockReferenciaDNP">{{(objVigencias.UtilizadoNacion !== null) ? (objVigencias.UtilizadoNacion | number) : 0}}</div></td>
+                                            <td class="textRightDNP"><div class="blockReferenciaDNP">{{(objVigencias.ReprogramadoNacion !== null) ? (objVigencias.ReprogramadoNacion | number) : 0}}</div></td>
+                                            <td class="textRightDNP"><div class="blockReferenciaDNP">{{(objVigencias.ModificadoNacion !== null) ? (objVigencias.ModificadoNacion | number) : 0}}</div></td>
+                                            <td rowspan="2">&nbsp;</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="textleftDNP"><span>Propios</span></td>
+                                            <td class="textRightDNP"><div class="blockReferenciaDNP">{{(objVigencias.AutorizadoPropios !== null) ? (objVigencias.AutorizadoPropios | number) : 0}}</div></td>
+                                            <td class="textRightDNP"><div class="blockReferenciaDNP">{{(objVigencias.UtilizadoPropios !== null) ? (objVigencias.UtilizadoPropios | number) : 0}}</div></td>
+                                            <td class="textRightDNP"><div class="blockReferenciaDNP">{{(objVigencias.ReprogramadoPropios !== null) ? (objVigencias.ReprogramadoPropios | number) : 0}}</div></td>
+                                            <td class="textRightDNP"><div class="blockReferenciaDNP">{{(objVigencias.ModificadoPropios !== null) ? (objVigencias.ModificadoPropios | number) : 0}}</div></td>
+                                            <td rowspan="2"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <!--Fin información valores corrientes-->
+                                <br />
+                                <!--Inicio información totales valores corrientes-->
+                                <table class="TableDNP" ng-if="!vm.EsConstante">
+                                    <tbody>
+                                        <tr>
+                                            <td rowspan="2" style="width:4%">&nbsp;</td>
+                                            <td rowspan="2" style="width:10%">&nbsp;</td>
+                                            <td class="textleftDNP" style="width:14%"><span>Nación</span></td>
+                                            <td class="textRightDNP" style="width:17%"><div class="blockReferenciaDNP">{{(vm.sumAutorizadoNacionConstanteVig !== null) ? (vm.sumAutorizadoNacionConstanteVig | number) : 0}}</div></td>
+                                            <td class="textRightDNP" style="width:17%"><div class="blockReferenciaDNP">{{(vm.sumUtilizadoNacionConstanteVig !== null) ? (vm.sumUtilizadoNacionConstanteVig | number) : 0}}</div></td>
+                                            <td class="textRightDNP" style="width:17%"><div class="blockReferenciaDNP">{{(vm.sumReprogramadoNacionConstanteVig !== null) ? (vm.sumReprogramadoNacionConstanteVig | number) : 0}}</div></td>
+                                            <td class="textRightDNP" style="width:17%"><div class="blockReferenciaDNP">{{(vm.sumModificadoNacionConstanteVig !== null) ? (vm.sumModificadoNacionConstanteVig | number) : 0}}</div></td>
+                                            <td rowspan="2" class="columAcc" style="width:4%"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="textleftDNP"><span>Propios</span></td>
+                                            <td class="textRightDNP"><div class="blockReferenciaDNP">{{(vm.sumAutorizadoPropiosConstanteVig !== null) ? (vm.sumAutorizadoPropiosConstanteVig | number) : 0}}</div></td>
+                                            <td class="textRightDNP"><div class="blockReferenciaDNP">{{(vm.sumUtilizadoPropiosConstanteVig !== null) ? (vm.sumUtilizadoPropiosConstanteVig | number) : 0}}</div></td>
+                                            <td class="textRightDNP"><div class="blockReferenciaDNP">{{(vm.sumReprogramadoPropiosConstanteVig !== null) ? (vm.sumReprogramadoPropiosConstanteVig | number) : 0}}</div></td>
+                                            <td class="textRightDNP"><div class="blockReferenciaDNP">{{(vm.sumModificadoPropiosConstanteVig !== null) ? (vm.sumModificadoPropiosConstanteVig | number) : 0}}</div></td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td class="textleftDNP"><b>=</b></td>
+                                            <td class="textleftDNP"><b>Total</b></td>
+                                            <td class="textleftDNP">&nbsp;</td>
+                                            <td class="textRightDNP"><div class="blockReferenciaDNP">{{(vm.totalAutorizadoNacionPropiosConstanteVig !== null) ? (vm.totalAutorizadoNacionPropiosConstanteVig | number) : 0}}</div></td>
+                                            <td class="textRightDNP"><div class="blockReferenciaDNP">{{(vm.totalUtilizadoNacionPropiosConstanteVig !== null) ? (vm.totalUtilizadoNacionPropiosConstanteVig | number) : 0}}</div></td>
+                                            <td class="textRightDNP"><div class="blockReferenciaDNP">{{(vm.totalReprogramadoNacionPropiosConstanteVig !== null) ? (vm.totalReprogramadoNacionPropiosConstanteVig | number) : 0}}</div></td>
+                                            <td class="textRightDNP"><div class="blockReferenciaDNP">{{(vm.totalModificadoNacionPropiosConstanteVig !== null) ? (vm.totalModificadoNacionPropiosConstanteVig | number) : 0}}</div></td>
+                                            <td class="columAcc"></td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                            <!--Fin información totales valores corrientes-->
+                            <!--Inicio información valores constante-->
+                            <div ng-if="vm.EsConstante">
+                                <table class="TableDNP">
+                                    <thead>
+                                        <tr>
+                                            <th class="columAcc" style="width:4%"></th>
+                                            <th class="textleftDNP" style="width:8%">Vigencia</th>
+                                            <th class="textleftDNP" style="width:8%">Deflactor</th>
+                                            <th class="textleftDNP" style="width:12%">Tipo de recurso</th>
+                                            <th class="textRightDNP" style="width:16%">Autorizado $</th>
+                                            <th class="textRightDNP" style="width:16%">Utilizado $</th>
+                                            <th class="textRightDNP" style="width:16%">Reprogramado $</th>
+                                            <th class="textRightDNP" style="width:16%">Modificado $ <br /> (cálculo automático)</th>
+                                            <th class="columAcc" style="width:4%"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody ng-repeat="objVigencias in objResumen.Valores" ng-show="vm.mostrarConstanteVig">
+                                        <tr>
+                                            <td rowspan="2"><span id="IPF001-{{objVigencias.Vigencia}}" class="hidden text-left color-red"></span></td>
+                                            <td rowspan="2" class="textleftDNP"><span>{{objVigencias.Vigencia}}</span></td>
+                                            <td rowspan="2" class="textleftDNP"><span>{{objVigencias.Deflactor}}</span></td>
+                                            <td class="textleftDNP"><span>Nación</span></td>
+                                            <td class="textRightDNP"><div class="blockReferenciaDNP">{{(objVigencias.AutorizadoNacion !== null) ? (objVigencias.AutorizadoNacion | number) : 0}}</div></td>
+                                            <td class="textRightDNP"><div class="blockReferenciaDNP">{{(objVigencias.UtilizadoNacion !== null) ? (objVigencias.UtilizadoNacion | number) : 0}}</div></td>
+                                            <td class="textRightDNP"><div class="blockReferenciaDNP">{{(objVigencias.ReprogramadoNacion !== null) ? (objVigencias.ReprogramadoNacion | number) : 0}}</div></td>
+                                            <td class="textRightDNP"><div class="blockReferenciaDNP">{{(objVigencias.ModificadoNacion !== null) ? (objVigencias.ModificadoNacion | number) : 0}}</div></td>
+                                            <td rowspan="2">&nbsp;</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="textleftDNP"><span>Propios</span></td>
+                                            <td class="textRightDNP"><div class="blockReferenciaDNP">{{(objVigencias.AutorizadoPropios !== null) ? (objVigencias.AutorizadoPropios | number) : 0}}</div></td>
+                                            <td class="textRightDNP"><div class="blockReferenciaDNP">{{(objVigencias.UtilizadoPropios !== null) ? (objVigencias.UtilizadoPropios | number) : 0}}</div></td>
+                                            <td class="textRightDNP"><div class="blockReferenciaDNP">{{(objVigencias.ReprogramadoPropios !== null) ? (objVigencias.ReprogramadoPropios | number) : 0}}</div></td>
+                                            <td class="textRightDNP"><div class="blockReferenciaDNP">{{(objVigencias.ModificadoPropios !== null) ? (objVigencias.ModificadoPropios | number) : 0}}</div></td>
+                                            <td rowspan="2"></td>
+                                        </tr>
+                                    </tbody>
+                                    <tbody ng-repeat="objValoresCorrientes in objResumen.ValoresCorrientes" ng-show="vm.mostrarCorrienteVig">
+                                        <tr>
+                                            <td rowspan="2"><span id="IPF001-{{objValoresCorrientes.Vigencia}}" class="hidden text-left color-red"></span></td>
+                                            <td rowspan="2" class="textleftDNP"><span>{{objValoresCorrientes.Vigencia}}</span></td>
+                                            <td rowspan="2" class="textleftDNP"><span>{{objValoresCorrientes.Deflactor}}</span></td>
+                                            <td class="textleftDNP"><span>Nación</span></td>
+                                            <td class="textRightDNP"><div class="blockReferenciaDNP">{{(objValoresCorrientes.AutorizadoNacion !== null) ? (objValoresCorrientes.AutorizadoNacion | number) : 0}}</div></td>
+                                            <td class="textRightDNP"><div class="blockReferenciaDNP">{{(objValoresCorrientes.UtilizadoNacion !== null) ? (objValoresCorrientes.UtilizadoNacion | number) : 0}}</div></td>
+                                            <td class="textRightDNP"><div class="blockReferenciaDNP">{{(objValoresCorrientes.ReprogramadoNacion !== null) ? (objValoresCorrientes.ReprogramadoNacion | number) : 0}}</div></td>
+                                            <td class="textRightDNP"><div class="blockReferenciaDNP">{{(objValoresCorrientes.ModificadoNacion !== null) ? (objValoresCorrientes.ModificadoNacion | number) : 0}}</div></td>
+                                            <td rowspan="2">&nbsp;</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="textleftDNP"><span>Propios</span></td>
+                                            <td class="textRightDNP"><div class="blockReferenciaDNP">{{(objValoresCorrientes.AutorizadoPropios !== null) ? (objValoresCorrientes.AutorizadoPropios | number) : 0}}</div></td>
+                                            <td class="textRightDNP"><div class="blockReferenciaDNP">{{(objValoresCorrientes.UtilizadoPropios !== null) ? (objValoresCorrientes.UtilizadoPropios | number) : 0}}</div></td>
+                                            <td class="textRightDNP"><div class="blockReferenciaDNP">{{(objValoresCorrientes.ReprogramadoPropios !== null) ? (objValoresCorrientes.ReprogramadoPropios | number) : 0}}</div></td>
+                                            <td class="textRightDNP"><div class="blockReferenciaDNP">{{(objValoresCorrientes.ModificadoPropios !== null) ? (objValoresCorrientes.ModificadoPropios | number) : 0}}</div></td>
+                                            <td rowspan="2"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <br />
+
+                                <!--Inicio información totales valores constantes-->
+                                <table class="TableDNP">
+                                    <tbody ng-show="vm.mostrarConstanteVig">
+                                        <tr>
+                                            <td rowspan="2" style="width:4%">&nbsp;</td>
+                                            <td rowspan="2" style="width:8%">&nbsp;</td>
+                                            <td rowspan="2" style="width:8%">&nbsp;</td>
+                                            <td class="textleftDNP" style="width:12%"><span>Nación</span></td>
+                                            <td class="textRightDNP" style="width:16%"><div class="blockReferenciaDNP">{{(vm.sumAutorizadoNacionConstanteVig !== null) ? (vm.sumAutorizadoNacionConstanteVig | number) : 0}}</div></td>
+                                            <td class="textRightDNP" style="width:16%"><div class="blockReferenciaDNP">{{(vm.sumUtilizadoNacionConstanteVig !== null) ? (vm.sumUtilizadoNacionConstanteVig | number) : 0}}</div></td>
+                                            <td class="textRightDNP" style="width:16%"><div class="blockReferenciaDNP">{{(vm.sumReprogramadoNacionConstanteVig !== null) ? (vm.sumReprogramadoNacionConstanteVig | number) : 0}}</div></td>
+                                            <td class="textRightDNP" style="width:16%"><div class="blockReferenciaDNP">{{(vm.sumModificadoNacionConstanteVig !== null) ? (vm.sumModificadoNacionConstanteVig | number) : 0}}</div></td>
+                                            <td rowspan="2" class="columAcc" style="width:4%"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="textleftDNP"><span>Propios</span></td>
+                                            <td class="textRightDNP"><div class="blockReferenciaDNP">{{(vm.sumAutorizadoPropiosConstanteVig !== null) ? (vm.sumAutorizadoPropiosConstanteVig | number) : 0}}</div></td>
+                                            <td class="textRightDNP"><div class="blockReferenciaDNP">{{(vm.sumUtilizadoPropiosConstanteVig !== null) ? (vm.sumUtilizadoPropiosConstanteVig | number) : 0}}</div></td>
+                                            <td class="textRightDNP"><div class="blockReferenciaDNP">{{(vm.sumReprogramadoPropiosConstanteVig !== null) ? (vm.sumReprogramadoPropiosConstanteVig | number) : 0}}</div></td>
+                                            <td class="textRightDNP"><div class="blockReferenciaDNP">{{(vm.sumModificadoPropiosConstanteVig !== null) ? (vm.sumModificadoPropiosConstanteVig | number) : 0}}</div></td>
+                                        </tr>
+                                    </tbody>
+                                    <tbody ng-show="vm.mostrarCorrienteVig">
+                                        <tr>
+                                            <td rowspan="2" style="width:4%">&nbsp;</td>
+                                            <td rowspan="2" style="width:8%">&nbsp;</td>
+                                            <td rowspan="2" style="width:8%">&nbsp;</td>
+                                            <td class="textleftDNP" style="width:12%"><span>Nación</span></td>
+                                            <td class="textRightDNP" style="width:16%"><div class="blockReferenciaDNP">{{(vm.sumAutorizadoNacionCorrienteVig !== null) ? (vm.sumAutorizadoNacionCorrienteVig | number) : 0}}</div></td>
+                                            <td class="textRightDNP" style="width:16%"><div class="blockReferenciaDNP">{{(vm.sumUtilizadoNacionCorrienteVig !== null) ? (vm.sumUtilizadoNacionCorrienteVig | number) : 0}}</div></td>
+                                            <td class="textRightDNP" style="width:16%"><div class="blockReferenciaDNP">{{(vm.sumReprogramadoNacionCorrienteVig !== null) ? (vm.sumReprogramadoNacionCorrienteVig | number) : 0}}</div></td>
+                                            <td class="textRightDNP" style="width:16%"><div class="blockReferenciaDNP">{{(vm.sumModificadoNacionCorrienteVig !== null) ? (vm.sumModificadoNacionCorrienteVig | number) : 0}}</div></td>
+                                            <td rowspan="2" class="columAcc" style="width:4%"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="textleftDNP"><span>Propios</span></td>
+                                            <td class="textRightDNP"><div class="blockReferenciaDNP">{{(vm.sumAutorizadoPropiosCorrienteVig !== null) ? (vm.sumAutorizadoPropiosCorrienteVig | number) : 0}}</div></td>
+                                            <td class="textRightDNP"><div class="blockReferenciaDNP">{{(vm.sumUtilizadoPropiosCorrienteVig !== null) ? (vm.sumUtilizadoPropiosCorrienteVig | number) : 0}}</div></td>
+                                            <td class="textRightDNP"><div class="blockReferenciaDNP">{{(vm.sumReprogramadoPropiosCorrienteVig !== null) ? (vm.sumReprogramadoPropiosCorrienteVig | number) : 0}}</div></td>
+                                            <td class="textRightDNP"><div class="blockReferenciaDNP">{{(vm.sumModificadoPropiosCorrienteVig !== null) ? (vm.sumModificadoPropiosCorrienteVig | number) : 0}}</div></td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot ng-show="vm.mostrarConstanteVig">
+                                        <tr>
+                                            <td class="textleftDNP"><b>=</b></td>
+                                            <td class="textleftDNP"><b>Total</b></td>
+                                            <td class="textleftDNP">&nbsp;</td>
+                                            <td class="textleftDNP">&nbsp;</td>
+                                            <td class="textRightDNP"><div class="blockReferenciaDNP">{{(vm.totalAutorizadoNacionPropiosConstanteVig !== null) ? (vm.totalAutorizadoNacionPropiosConstanteVig | number) : 0}}</div></td>
+                                            <td class="textRightDNP"><div class="blockReferenciaDNP">{{(vm.totalUtilizadoNacionPropiosConstanteVig !== null) ? (vm.totalUtilizadoNacionPropiosConstanteVig | number) : 0}}</div></td>
+                                            <td class="textRightDNP"><div class="blockReferenciaDNP">{{(vm.totalReprogramadoNacionPropiosConstanteVig !== null) ? (vm.totalReprogramadoNacionPropiosConstanteVig | number) : 0}}</div></td>
+                                            <td class="textRightDNP"><div class="blockReferenciaDNP">{{(vm.totalModificadoNacionPropiosConstanteVig !== null) ? (vm.totalModificadoNacionPropiosConstanteVig | number) : 0}}</div></td>
+                                            <td class="columAcc"></td>
+                                        </tr>
+                                    </tfoot>
+                                    <tfoot ng-show="vm.mostrarCorrienteVig">
+                                        <tr>
+                                            <td class="textleftDNP"><b>=</b></td>
+                                            <td class="textleftDNP"><b>Total</b></td>
+                                            <td class="textleftDNP">&nbsp;</td>
+                                            <td class="textleftDNP">&nbsp;</td>
+                                            <td class="textRightDNP"><div class="blockReferenciaDNP">{{(vm.totalAutorizadoNacionPropiosCorrienteVig !== null) ? (vm.totalAutorizadoNacionPropiosCorrienteVig | number) : 0}}</div></td>
+                                            <td class="textRightDNP"><div class="blockReferenciaDNP">{{(vm.totalUtilizadoNacionPropiosCorrienteVig !== null) ? (vm.totalUtilizadoNacionPropiosCorrienteVig | number) : 0}}</div></td>
+                                            <td class="textRightDNP"><div class="blockReferenciaDNP">{{(vm.totalReprogramadoNacionPropiosCorrienteVig !== null) ? (vm.totalReprogramadoNacionPropiosCorrienteVig | number) : 0}}</div></td>
+                                            <td class="textRightDNP"><div class="blockReferenciaDNP">{{(vm.totalModificadoNacionPropiosCorrienteVig !== null) ? (vm.totalModificadoNacionPropiosCorrienteVig | number) : 0}}</div></td>
+                                            <td class="columAcc"></td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                                <!--Fin información totales valores constantes-->
+                            </div>
+                            <!--Fin información valores constante-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Fin información vigencia-->
+            <br />
+            <br />
+            <div class="row" ng-repeat="objObjetivos in vm.listaResumen.Objetivos" ng-init="rowIndexObj = $index">
+                <div class="row">
+                    <div class="col-md-12 ">
+                        <br />
+                        <span class="TituloPincFormularioDNP">
+                            Objetivo {{rowIndexObj + 1}}
+                        </span>
+                    </div>
+                    <div class="col-md-12 ">
+                        <span style="font-family: 'Work Sans  Roman', 'Work Sans Regular Roman', 'Work Sans'; color: #4B4B4B; font-size:16px;">
+                            {{objObjetivos.ObjetivoEspecifico  | limitTo: 110}}<span style="margin-left:0px" ng-if="objObjetivos.ObjetivoEspecifico.length > 110">...</span>
+                            <button ng-if="objObjetivos.ObjetivoEspecifico.length > 110" type="button" class="btn btn-link btn-md buttonhiperDNP"
+                                    tooltip-placement="top" uib-tooltip="ver más" tabindex="0" data-titlevalue="Objetivo" data-textvalue="{{objObjetivos.ObjetivoEspecifico}}"
+                                    data-toggle="modal" data-target="#IPModalVermas" ng-click="vm.verMas($event)">
+                                VER MÁS
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <br />
+                <!--Inicio información productos-->
+                <div class="row" ng-repeat="objProducto in objObjetivos.Productos" ng-init="rowIndexProd = $index">
+                    <section id="SelectExam" class="SelectExam">
+                        <div class="alert panel-headingAcc2DNP">
+                            <div class="card card-body pull-left bordesencillo" style="background:white !important">
+                                <div class="col-md-12">
+                                    <span class="encabezadoTitulos" style="font-size: 16px; margin-left: 5px !important; ">Producto {{rowIndexProd + 1}}. </span>
+                                    <span style="font-family: 'Work Sans  Roman', 'Work Sans Regular Roman', 'Work Sans'; font-size: 16px; color: #4B4B4B; margin-left: 5px !important; ">
+                                        {{objProducto.NombreProducto  | limitTo: 80}}<span style="margin-left:0px" ng-if="objProducto.NombreProducto.length > 80">...</span>
+                                        <button ng-if="objProducto.NombreProducto.length > 80" type="button" class="btn btn-link btn-md buttonhiperDNP"
+                                                tooltip-placement="top" uib-tooltip="ver más" tabindex="0" data-titlevalue="Producto" data-textvalue="{{objProducto.NombreProducto}}"
+                                                data-toggle="modal" data-target="#IPModalVermas" ng-click="vm.verMas($event)">
+                                            VER MÁS
+                                        </button>
+                                    </span>
+                                    <span class="encabezadoTitulos" style="font-size: 16px; margin-left: 5px !important; ">Etapa. </span>
+                                    <span style="font-family: 'Work Sans  Roman', 'Work Sans Regular Roman', 'Work Sans'; font-size: 16px; color: #4B4B4B; margin-left: 5px !important;">{{objProducto.Etapa}}</span>
+                                </div>
+                                <p class="panelbtnalertAcordnp">
+                                    <button class="btnaccion btnAccordionDNP" type="button" data-toggle="collapse" data-target="#prod{{rowIndexObj}}_{{rowIndexProd}}" ng-click="vm.AbrilNivel('Objet' + objProducto.ProductoId)">
+                                        <img id="icoObjet{{objProducto.ProductoId}}" src="Img/btnMas.svg">
+                                    </button>
+                                </p>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="collapse" id="prod{{rowIndexObj}}_{{rowIndexProd}}">
+                            <div class="LineaEncabezado2divDNP"></div>
+                            <h3 class="row tituloEncabezadodiv2DNP">Detalle producto</h3>
+                            <div>
+                                <div class="alert panel-headingAcc2DNP">
+                                    <div class="card card-body pull-left bordesencillo" style="background:none !important">
+                                        <div class="row">
+                                            <div class="row" ng-repeat="objResumenProducto in vm.listaResumen.ResumenTramite">
+                                                <div style="padding: 2em;" class="col-md-12" ng-show="vm.EsConstante">
+                                                    <div class="col-md-2">
+                                                        <div id="u5751" class="ax_default box_1" style="border: none !important; background:none !important;">
+                                                            <div id="u5751_text" style="text-align:center; color:black">
+                                                                <b>Año base</b>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div id="u5751" class="ax_default box_1">
+                                                            <div id="u5751_text" class="text ">
+                                                                <p style="text-align: left;"><span>{{objResumenProducto.AnioBase}}</span></p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br />
+                                            <div style="padding: 2em;" class="tab-container col-md-8 textLeftDNP" ng-show="vm.EsConstante">
+                                                <ul id="lstEtapas" class="nav nav-tabs tabsCostosAct">
+                                                    <li id="liPreinversion" ng-class="{active : 1 === vm.TipoValorProducto}">
+                                                        <a href="" ng-click="vm.mostrarTabProducto(1)" data-toggle="tab">
+                                                            <img class="img-advertencia mr-2" src="Img/u11.svg" ng-if="vm.errores.preinversion" />
+                                                            <b>Valores constantes</b>
+                                                        </a>
+                                                    </li>
+                                                    <li id="liInversion" ng-class="{active : 2 === vm.TipoValorProducto}">
+                                                        <a href="" ng-click="vm.mostrarTabProducto(2)" data-toggle="tab">
+                                                            <img class="img-advertencia mr-2" src="Img/u11.svg" ng-if="vm.errores.inversion" />
+                                                            <b>Valores corrientes</b>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                                <br />
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="row col-md-12" style="padding-left: 3em;">
+                                                <br>
+                                                <div class="alert panel-heading" ng-if="!vm.EsConstante">
+                                                    <!--Inicio información valores corrientes-->
+                                                    <table class="TableDNP">
+                                                        <thead>
+                                                            <tr>
+                                                                <th class="columAcc" style="width:4%"></th>
+                                                                <th class="textleftDNP" style="width:10%">Vigencia</th>
+                                                                <th class="textleftDNP" style="width:14%">Tipo recurso</th>
+                                                                <th class="textRightDNP" style="width:34%">Utilizado $</th>
+                                                                <th class="textRightDNP" style="width:34%">Reprogramado $</th>
+                                                                <th class="columAcc" style="width:4%"></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody ng-repeat="objValoresProducto in objProducto.Valores">
+                                                            <tr>
+                                                                <td rowspan="2"></td>
+                                                                <td rowspan="2" class="textleftDNP">{{objValoresProducto.Vigencia}}</td>
+                                                                <td class="textleftDNP">Nación</td>
+                                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{(objValoresProducto.UtilizadoNacion !== null) ? (objValoresProducto.UtilizadoNacion | number) : 0}}</div></td>
+                                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{(objValoresProducto.ReprogramadoNacion !== null) ? (objValoresProducto.ReprogramadoNacion | number) : 0}}</div></td>
+                                                                <td rowspan="2"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="textleftDNP">Propios</td>
+                                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{(objValoresProducto.UtilizadoPropios !== null) ? (objValoresProducto.UtilizadoPropios | number) : 0}}</div></td>
+                                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{(objValoresProducto.ReprogramadoPropios !== null) ? (objValoresProducto.ReprogramadoPropios | number) : 0}}</div></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <!--Fin información valores corrientes-->
+                                                    <br />
+                                                    <!--Inicio información totales valores corrientes-->
+                                                    <table class="TableDNP">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td rowspan="2" style="width:4%">&nbsp;</td>
+                                                                <td rowspan="2" style="width:10%">&nbsp;</td>
+                                                                <td class="textleftDNP" style="width:14%"><span>Nación</span></td>
+                                                                <td class="textRightDNP" style="width:34%"><div class="blockReferenciaDNP">{{(objProducto.TotalUtilizadoCorrienteNacion !== null) ? (objProducto.TotalUtilizadoCorrienteNacion | number) : 0}}</div></td>
+                                                                <td class="textRightDNP" style="width:34%"><div class="blockReferenciaDNP">{{(objProducto.TotalReprogramadoCorrienteNacion !== null) ? (objProducto.TotalReprogramadoCorrienteNacion | number) : 0}}</div></td>
+                                                                <td rowspan="2" class="columAcc" style="width:4%"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="textleftDNP"><span>Propios</span></td>
+                                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{(objProducto.TotalUtilizadoCorrientePropios !== null) ? (objProducto.TotalUtilizadoCorrientePropios | number) : 0}}</div></td>
+                                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{(objProducto.TotalReprogramadoCorrientePropios !== null) ? (objProducto.TotalReprogramadoCorrientePropios | number) : 0}}</div></td>
+                                                            </tr>
+                                                        </tbody>
+                                                        <tfoot>
+                                                            <tr>
+                                                                <td class="textleftDNP"><b>=</b></td>
+                                                                <td class="textleftDNP"><b>Total</b></td>
+                                                                <td class="textleftDNP">&nbsp;</td>
+                                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{(objProducto.TotalUtilizadoCorriente !== null) ? (objProducto.TotalUtilizadoCorriente | number) : 0}}</div></td>
+                                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{(objProducto.TotalReprogramadoCorriente !== null) ? (objProducto.TotalReprogramadoCorriente | number) : 0}}</div></td>
+                                                                <td class="columAcc"></td>
+                                                            </tr>
+                                                        </tfoot>
+                                                    </table>
+                                                    <!--Fin información totales valores corrientes-->
+                                                </div>
+
+                                                <div ng-if="vm.EsConstante">
+                                                    <!--Inicio información valores constantes-->
+                                                    <table class="TableDNP" ng-show="vm.mostrarConstanteProducto">
+                                                        <thead>
+                                                            <tr>
+                                                                <th class="columAcc" style="width:4%"></th>
+                                                                <th class="textleftDNP" style="width:8%">Vigencia</th>
+                                                                <th class="textleftDNP" style="width:8%">Deflactor</th>
+                                                                <th class="textleftDNP" style="width:12%">Tipo recurso</th>
+                                                                <th class="textRightDNP" style="width:32%">Utilizado $</th>
+                                                                <th class="textRightDNP" style="width:32%">Reprogramado $</th>
+                                                                <th class="columAcc" style="width:4%"></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody ng-repeat="objValoresProducto in objProducto.Valores">
+                                                            <tr>
+                                                                <td rowspan="2"></td>
+                                                                <td rowspan="2" class="textleftDNP">{{objValoresProducto.Vigencia}}</td>
+                                                                <td rowspan="2" class="textleftDNP">{{objValoresProducto.Deflactor}}</td>
+                                                                <td class="textleftDNP">Nación</td>
+                                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{(objValoresProducto.UtilizadoNacion !== null) ? (objValoresProducto.UtilizadoNacion | number) : 0}}</div></td>
+                                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{(objValoresProducto.ReprogramadoNacion !== null) ? (objValoresProducto.ReprogramadoNacion | number) : 0}}</div></td>
+                                                                <td rowspan="2"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="textleftDNP">Propios</td>
+                                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{(objValoresProducto.UtilizadoPropios !== null) ? (objValoresProducto.UtilizadoPropios | number) : 0}}</div></td>
+                                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{(objValoresProducto.ReprogramadoPropios !== null) ? (objValoresProducto.ReprogramadoPropios | number) : 0}}</div></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+
+                                                    <table class="TableDNP" ng-show="vm.mostrarCorrienteProducto">
+                                                        <thead>
+                                                            <tr>
+                                                                <th class="columAcc" style="width:4%"></th>
+                                                                <th class="textleftDNP" style="width:8%">Vigencia</th>
+                                                                <th class="textleftDNP" style="width:8%">Deflactor</th>
+                                                                <th class="textleftDNP" style="width:12%">Tipo recurso</th>
+                                                                <th class="textRightDNP" style="width:32%">Utilizado $</th>
+                                                                <th class="textRightDNP" style="width:32%">Reprogramado $</th>
+                                                                <th class="columAcc" style="width:4%"></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody ng-repeat="objValoresProductoCorriente in objProducto.ValoresCorrientes">
+                                                            <tr>
+                                                                <td rowspan="2"></td>
+                                                                <td rowspan="2" class="textleftDNP">{{objValoresProductoCorriente.Vigencia}}</td>
+                                                                <td rowspan="2" class="textleftDNP">{{objValoresProductoCorriente.Deflactor}}</td>
+                                                                <td class="textleftDNP">Nación</td>
+                                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{(objValoresProductoCorriente.UtilizadoNacion !== null) ? (objValoresProductoCorriente.UtilizadoNacion | number) : 0}}</div></td>
+                                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{(objValoresProductoCorriente.ReprogramadoNacion !== null) ? (objValoresProductoCorriente.ReprogramadoNacion | number) : 0}}</div></td>
+                                                                <td rowspan="2"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="textleftDNP">Propios</td>
+                                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{(objValoresProductoCorriente.UtilizadoPropios !== null) ? (objValoresProductoCorriente.UtilizadoPropios | number) : 0}}</div></td>
+                                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{(objValoresProductoCorriente.ReprogramadoPropios !== null) ? (objValoresProductoCorriente.ReprogramadoPropios | number) : 0}}</div></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <!--Fin información valores constantes-->
+                                                    <br />
+                                                    <!--Inicio información totales valores constantes-->
+                                                    <table class="TableDNP" ng-show="vm.mostrarConstanteProducto">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td rowspan="2" style="width:4%">&nbsp;</td>
+                                                                <td rowspan="2" style="width:8%">&nbsp;</td>
+                                                                <td rowspan="2" style="width:8%">&nbsp;</td>
+                                                                <td class="textleftDNP" style="width:12%"><span>Nación</span></td>
+                                                                <td class="textRightDNP" style="width:32%"><div class="blockReferenciaDNP">{{(objProducto.TotalUtilizadoConstanteNacion !== null) ? (objProducto.TotalUtilizadoConstanteNacion | number) : 0}}</div></td>
+                                                                <td class="textRightDNP" style="width:32%"><div class="blockReferenciaDNP">{{(objProducto.TotalReprogramadoConstanteNacion !== null) ? (objProducto.TotalReprogramadoConstanteNacion | number) : 0}}</div></td>
+                                                                <td rowspan="2" class="columAcc" style="width:4%"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="textleftDNP"><span>Propios</span></td>
+                                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{(objProducto.TotalUtilizadoConstantePropios !== null) ? (objProducto.TotalUtilizadoConstantePropios | number) : 0}}</div></td>
+                                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{(objProducto.TotalReprogramadoConstantePropios !== null) ? (objProducto.TotalReprogramadoConstantePropios | number) : 0}}</div></td>
+                                                            </tr>
+                                                        </tbody>
+                                                        <tfoot>
+                                                            <tr>
+                                                                <td class="textleftDNP"><b>=</b></td>
+                                                                <td class="textleftDNP"><b>Total</b></td>
+                                                                <td class="textleftDNP">&nbsp;</td>
+                                                                <td class="textleftDNP">&nbsp;</td>
+                                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{(objProducto.TotalUtilizadoConstante !== null) ? (objProducto.TotalUtilizadoConstante | number) : 0}}</div></td>
+                                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{(objProducto.TotalReprogramadoConstante !== null) ? (objProducto.TotalReprogramadoConstante | number) : 0}}</div></td>
+                                                                <td class="columAcc"></td>
+                                                            </tr>
+                                                        </tfoot>
+                                                    </table>
+                                                    <table class="TableDNP" ng-show="vm.mostrarCorrienteProducto">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td rowspan="2" style="width:4%">&nbsp;</td>
+                                                                <td rowspan="2" style="width:8%">&nbsp;</td>
+                                                                <td rowspan="2" style="width:8%">&nbsp;</td>
+                                                                <td class="textleftDNP" style="width:12%"><span>Nación</span></td>
+                                                                <td class="textRightDNP" style="width:32%"><div class="blockReferenciaDNP">{{(objProducto.TotalUtilizadoCorrienteNacion !== null) ? (objProducto.TotalUtilizadoCorrienteNacion | number) : 0}}</div></td>
+                                                                <td class="textRightDNP" style="width:32%"><div class="blockReferenciaDNP">{{(objProducto.TotalReprogramadoCorrienteNacion !== null) ? (objProducto.TotalReprogramadoCorrienteNacion | number) : 0}}</div></td>
+                                                                <td rowspan="2" class="columAcc" style="width:4%"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="textleftDNP"><span>Propios</span></td>
+                                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{(objProducto.TotalUtilizadoCorrientePropios !== null) ? (objProducto.TotalUtilizadoCorrientePropios | number) : 0}}</div></td>
+                                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{(objProducto.TotalReprogramadoCorrientePropios !== null) ? (objProducto.TotalReprogramadoCorrientePropios | number) : 0}}</div></td>
+                                                            </tr>
+                                                        </tbody>
+                                                        <tfoot>
+                                                            <tr>
+                                                                <td class="textleftDNP"><b>=</b></td>
+                                                                <td class="textleftDNP"><b>Total</b></td>
+                                                                <td class="textleftDNP">&nbsp;</td>
+                                                                <td class="textleftDNP">&nbsp;</td>
+                                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{(objProducto.TotalUtilizadoCorriente !== null) ? (objProducto.TotalUtilizadoCorriente | number) : 0}}</div></td>
+                                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{(objProducto.TotalReprogramadoCorriente !== null) ? (objProducto.TotalReprogramadoCorriente | number) : 0}}</div></td>
+                                                                <td class="columAcc"></td>
+                                                            </tr>
+                                                        </tfoot>
+                                                    </table>
+                                                    <!--Fin información totales valores constantes-->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <!--Fin información productos-->
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="modal " id="IPModalVermas" tabindex="-1" role="dialog" aria-labelledby="IPModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content modal-contentDNP">
+            <div class="modal-header">
+
+                <button type='button' class='swal2-close closemodalDNP' aria-label='Close this dialog' data-dismiss="modal">×</button>
+                <h3 class="modal-title TituloModal1DNP" id="modal-title"><span id="modal-titlevalue"></span></h3>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <textarea id="modal-textvalue" class="form-control " rows="10" cols="50" disabled="disabled"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer textCenterDNP">
+                <button class="btnguardarDNP" data-dismiss="modal" type="button">ACEPTAR</button>
+            </div>
+        </div>
+    </div>
+</div>

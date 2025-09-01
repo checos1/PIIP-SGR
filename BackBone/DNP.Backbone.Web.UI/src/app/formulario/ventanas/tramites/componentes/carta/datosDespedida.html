@@ -1,0 +1,145 @@
+﻿
+<script src="../../../../../Scripts/ui-grid.auto-resize.min.js"></script>
+
+
+<button id="divdatosdespedida" class="accordiondatos" style="display:flex;" ng-click="vm.abrirpaneldespedida()">
+
+
+    <img class="img" style="text-align:left;" src="Img/lineavertical.png" />
+
+
+    <p style="padding-top:1rem;padding-left:2rem;width:95%;">
+        <span class="headline-s font-azul">Datos Despedida </span>
+    </p>
+
+
+    <img id="u4_imgdatosdespedida" class="img" style="text-align:right;margin-top:3rem" src="Img/iconsmenu/u4.svg">
+
+
+</button>
+<div id="paneldatosdespedida" class="paneldatos" style="background-color:white">
+    <form name="datosdespedida" ng-submit="vm.guardarConceptoDatosDespedida(vm.CartaDatosDespedida)">
+
+        <div class="col-md-12  field " ng-init="vm.init();" style="padding-bottom:2rem;">
+            <div class="row" style="padding-top:5rem;">
+                <div class="col-md-3">
+                    <span class="label">Palabra o frase de despedida *</span>
+                    <div style="padding-top:1rem;">
+                        <input type="text" class="input caja_full" style="width:100%;" name="frasedespedida"  ng-model="vm.CartaDatosDespedida.Tramite[0].PalabraFraseDespedida" required />
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="padding-top:2rem;">
+                <div class="col-md-3">
+                    <span class="label">Remitente en DNP Departamento Nacional de Planeación *</span>
+                    <div style="padding-top:2rem;">
+                        <input type="text" name="remitentednp" class="input caja_full" style="width:250%;" ng-model="vm.CartaDatosDespedida.Tramite[0].RemitenteDNP" required />
+                    </div>
+                </div>
+            </div>
+            <div>
+                <h1></h1>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <span class="label">Copiar a: </span>
+                </div>
+            </div>
+            <div ng-repeat="obj in vm.CartaDatosDespedida.Tramite[0].Copiar">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <span class="label">Entidad</span>
+                                <div style="padding-top:1rem;">
+
+                                    <input ng-class="obj.Bloquear == 1? 'disablegrid':''" id="{{'CopiarEntidad'+$index}}" type="text" name="Copiarentidaddinamic" class="input caja_full" style="width:100%;" ng-model="obj.CopiarEntidad" ng-value="obj.CopiarEntidad" required />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <span class="label">Servidor</span>
+                                <div style="padding-top:1rem;">
+                                    <input ng-class="obj.Bloquear == 1? 'disablegrid':''" id="{{'CopiarServidor'+$index}}" type="text" name="CopiaServidordinamic" class="input caja_full" style="width:100%;" ng-model="obj.CopiarServidor" ng-value="obj.CopiarServidor" required />
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-md-6"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" tyle="padding-top:3rem;">
+                <div class="col-md-12">
+                    <div class="pull-right">
+                        <div>
+                            <h1></h1>
+                        </div>
+                        <a href ng-click="vm.Add( )" tooltip-placement="top" uib-tooltip="Agregar una nueva Entidad y Servidor">
+                            Agregar +
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+            <!--<div class="row" style="padding-top:2rem;">
+                <div class="col-md-3">
+                    <span class="label">Preparó: </span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-5">
+                    <span class="label">Entidad</span>
+                    <div style="padding-top:1rem;">
+                        <input type="text" name="preparoentidad" class="input fondo_violeta caja_full" ng-readonly="true" ng-model="vm.carta.ListaCartaSecciones[0].ListaCartaCampos[5].DatoValor" required />
+                    </div>
+
+                </div>
+                <div class="col-md-5">
+                    <span class="label">Colaborador</span>
+                    <div style="padding-top:1rem;">
+                        <input type="text" name="preparocolaborador" class="input fondo_violeta caja_full" ng-readonly="true" ng-model="vm.carta.ListaCartaSecciones[0].ListaCartaCampos[6].DatoValor" required />
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="padding-top:2rem;">
+                <div class="col-md-3">
+                    <span class="label">Revisó: </span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-5">
+                    <span class="label">Entidad</span>
+                    <div style="padding-top:1rem;">
+                        <input type="text" name="revisoentidad" class="input fondo_violeta caja_full" ng-readonly="true" ng-model="vm.carta.ListaCartaSecciones[0].ListaCartaCampos[6].DatoValor" required />
+                    </div>
+                </div>
+
+                <div class="col-md-5">
+                    <span class="label">Colaborador</span>
+                    <div style="padding-top:1rem;">
+                        <input type="text" name="revisocolaborador" class="input fondo_violeta caja_full" ng-readonly="true" ng-model="vm.carta.ListaCartaSecciones[0].ListaCartaCampos[7].DatoValor" required />
+                    </div>
+                </div>
+            </div>-->
+            <div>
+                <h1></h1>
+            </div>
+            <div class="row" tyle="padding-top:3rem;">
+                <div class="col-md-12">
+                    <span class="buttonbar pull-right">
+                        <button type="submit" class="btn btn-default btn-md" tooltip-placement="top" uib-tooltip="Guardar datos despedida"
+                                tabindex="0">
+                            Guardar
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </form>
+
+</div>
+

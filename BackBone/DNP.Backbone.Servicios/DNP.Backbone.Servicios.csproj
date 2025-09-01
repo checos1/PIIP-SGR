@@ -1,0 +1,416 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{20EBE01C-501D-407F-B49B-6104F00EAA06}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DNP.Backbone.Servicios</RootNamespace>
+    <AssemblyName>DNP.Backbone.Servicios</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <LangVersion>7.2</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>7.2</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DEV|AnyCPU'">
+    <OutputPath>bin\DEV\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <LangVersion>7.2</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'QA|AnyCPU'">
+    <OutputPath>bin\QA\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <LangVersion>7.2</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'UAT|AnyCPU'">
+    <OutputPath>bin\UAT\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <LangVersion>7.2</LangVersion>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Local|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Local\</OutputPath>
+    <DefineConstants>CODE_ANALYSIS;DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <LangVersion>7.2</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DevNT|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\DevNT\</OutputPath>
+    <DefineConstants>CODE_ANALYSIS;CODE_ANALYSIS;DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <LangVersion>7.2</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'UatNT|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\UatNT\</OutputPath>
+    <DefineConstants>CODE_ANALYSIS;CODE_ANALYSIS;CODE_ANALYSIS;DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <LangVersion>7.2</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'PRO|AnyCPU'">
+    <OutputPath>bin\PRO\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.2</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Cap|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Cap\</OutputPath>
+    <DefineConstants>CODE_ANALYSIS;CODE_ANALYSIS;DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'QA2|AnyCPU'">
+    <OutputPath>bin\QA2\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'QA3|AnyCPU'">
+    <OutputPath>bin\QA3\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'QA4|AnyCPU'">
+    <OutputPath>bin\QA4\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'UATSGR|AnyCPU'">
+    <OutputPath>bin\UATSGR\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="FluentValidation, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.9.2.0\lib\net461\FluentValidation.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=1.2.0.246, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpZipLib.1.2.0\lib\net45\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Clients.ActiveDirectory, Version=5.2.8.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Clients.ActiveDirectory.5.2.8\lib\net45\Microsoft.IdentityModel.Clients.ActiveDirectory.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Client.Policy, Version=16.1.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SharePointOnline.CSOM.16.1.20720.12000\lib\net45\Microsoft.Office.Client.Policy.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Client.TranslationServices, Version=16.1.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SharePointOnline.CSOM.16.1.20720.12000\lib\net45\Microsoft.Office.Client.TranslationServices.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.SharePoint.Tools, Version=16.1.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SharePointOnline.CSOM.16.1.20720.12000\lib\net45\Microsoft.Office.SharePoint.Tools.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Online.SharePoint.Client.Tenant, Version=16.1.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SharePointOnline.CSOM.16.1.20720.12000\lib\net45\Microsoft.Online.SharePoint.Client.Tenant.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.PowerBI.Api, Version=3.15.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.PowerBI.Api.3.15.0\lib\netstandard2.0\Microsoft.PowerBI.Api.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ProjectServer.Client, Version=16.1.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SharePointOnline.CSOM.16.1.20720.12000\lib\net45\Microsoft.ProjectServer.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Rest.ClientRuntime, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Rest.ClientRuntime.2.3.21\lib\net461\Microsoft.Rest.ClientRuntime.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SharePoint.Client, Version=16.1.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SharePointOnline.CSOM.16.1.20720.12000\lib\net45\Microsoft.SharePoint.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SharePoint.Client.DocumentManagement, Version=16.1.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SharePointOnline.CSOM.16.1.20720.12000\lib\net45\Microsoft.SharePoint.Client.DocumentManagement.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SharePoint.Client.Publishing, Version=16.1.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SharePointOnline.CSOM.16.1.20720.12000\lib\net45\Microsoft.SharePoint.Client.Publishing.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SharePoint.Client.Runtime, Version=16.1.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SharePointOnline.CSOM.16.1.20720.12000\lib\net45\Microsoft.SharePoint.Client.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SharePoint.Client.Runtime.Windows, Version=16.1.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SharePointOnline.CSOM.16.1.20720.12000\lib\net45\Microsoft.SharePoint.Client.Runtime.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SharePoint.Client.Search, Version=16.1.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SharePointOnline.CSOM.16.1.20720.12000\lib\net45\Microsoft.SharePoint.Client.Search.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SharePoint.Client.Search.Applications, Version=16.1.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SharePointOnline.CSOM.16.1.20720.12000\lib\net45\Microsoft.SharePoint.Client.Search.Applications.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SharePoint.Client.Taxonomy, Version=16.1.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SharePointOnline.CSOM.16.1.20720.12000\lib\net45\Microsoft.SharePoint.Client.Taxonomy.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SharePoint.Client.UserProfiles, Version=16.1.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SharePointOnline.CSOM.16.1.20720.12000\lib\net45\Microsoft.SharePoint.Client.UserProfiles.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SharePoint.Client.WorkflowServices, Version=16.1.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SharePointOnline.CSOM.16.1.20720.12000\lib\net45\Microsoft.SharePoint.Client.WorkflowServices.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.IO, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.4.3.0\lib\net462\System.IO.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http, Version=4.1.1.3, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Http.4.3.4\lib\net46\System.Net.Http.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Extensions, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Http.Formatting.Extension.5.2.3.0\lib\System.Net.Http.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Http.Formatting.Extension.5.2.3.0\lib\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives, Version=4.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Http.Formatting.Extension.5.2.3.0\lib\System.Net.Http.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Runtime, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.4.3.0\lib\net462\System.Runtime.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net463\System.Security.Cryptography.Algorithms.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Cng, Version=4.3.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Cng.4.7.0\lib\net47\System.Security.Cryptography.Cng.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Implementaciones\Administracion\AdministrarDocumentoServicio.cs" />
+    <Compile Include="Implementaciones\Administracion\EjecutorServicio.cs" />
+    <Compile Include="Implementaciones\Auditoria\AuditoriaServicios.cs" />
+    <Compile Include="Implementaciones\AutorizacionNegocio\AutorizacionServicios.cs" />
+    <Compile Include="Implementaciones\BackboneServicios.cs" />
+    <Compile Include="Implementaciones\Cache\CacheEntidadesNegocioServicios.cs" />
+    <Compile Include="Implementaciones\Catalogos\CatalogoServicio.cs" />
+    <Compile Include="Implementaciones\CentroAyuda\CentroAyudaServicio.cs" />
+    <Compile Include="Implementaciones\ClienteHttpServicios.cs" />
+    <Compile Include="Implementaciones\Consola\ConsolaProyectosServicio.cs" />
+    <Compile Include="Implementaciones\Consola\ConsolaTramiteServicios.cs" />
+    <Compile Include="Implementaciones\Fichas\FichasServicios.cs" />
+    <Compile Include="Implementaciones\Flujos\FlujoServicios.cs" />
+    <Compile Include="Implementaciones\Focalizacion\CategoriaProductosPoliticaServicio.cs" />
+    <Compile Include="Implementaciones\Focalizacion\IndicadoresPoliticaServicio.cs" />
+    <Compile Include="Implementaciones\Focalizacion\PoliticasCrucePoliticasServicio.cs" />
+    <Compile Include="Implementaciones\Focalizacion\PoliticasTransversalesFuentesServicio.cs" />
+    <Compile Include="Implementaciones\FuenteFinanciacion\DatosAdicionalesServicio.cs" />
+    <Compile Include="Implementaciones\FuenteFinanciacion\FuenteFinanciacionServicio.cs" />
+    <Compile Include="Implementaciones\FuenteFinanciacion\FuentesAprobacionServicio.cs" />
+    <Compile Include="Implementaciones\FuenteFinanciacion\ProgramarSolicitadoServicio.cs" />
+    <Compile Include="Implementaciones\Identidad\IdentidadServicios.cs" />
+    <Compile Include="Implementaciones\Inbox\InboxServicios.cs" />
+    <Compile Include="Implementaciones\ManejadorArchivos\ManejadorArchivosServicios.cs" />
+    <Compile Include="Implementaciones\MensajesMantenimiento\MensajeMantenimientoServicio.cs" />
+    <Compile Include="Implementaciones\ModificacionLey\ModificacionLeyServicios.cs" />
+    <Compile Include="Implementaciones\Monitoreo\AlertasGeneradasServicios.cs" />
+    <Compile Include="Implementaciones\Nivel\NivelServicios.cs" />
+    <Compile Include="Implementaciones\PowerBI\EmbedConfigServicios.cs" />
+    <Compile Include="Implementaciones\PowerBI\EmbedServicios.cs" />
+    <Compile Include="Implementaciones\Monitoreo\AlertasConfigServicios.cs" />
+    <Compile Include="Implementaciones\Monitoreo\MapColumnasServicios.cs" />
+    <Compile Include="Implementaciones\Preguntas\PreguntasPersonalizadasServicios.cs" />
+    <Compile Include="Implementaciones\Priorizacion\PriorizacionServicios.cs" />
+    <Compile Include="Implementaciones\Programacion\ProgramacionServicios.cs" />
+    <Compile Include="Implementaciones\Proyectos\ProyectoServicios.cs" />
+    <Compile Include="Implementaciones\ReportesPIIP\ReportesPIIPServicio.cs" />
+    <Compile Include="Implementaciones\SeguimientoControl\ProgramarProductosServicio.cs" />
+    <Compile Include="Implementaciones\SeguimientoControl\ProgramarActividadesServicio.cs" />
+    <Compile Include="Implementaciones\SeguimientoControl\GestionSeguimientoServicio.cs" />
+    <Compile Include="Implementaciones\SeguimientoControl\DesagregarEdtServicio.cs" />
+    <Compile Include="Implementaciones\SeguimientoControl\ReporteAvanceRegionalizacionServicio.cs" />
+    <Compile Include="Implementaciones\SeguimientoControl\ReporteAvanceProductoServicio.cs" />
+    <Compile Include="Implementaciones\ServiciosNegocio\ServiciosNegocioServicios.cs" />
+    <Compile Include="Implementaciones\SGP\AdministradorEntidad\AdministradorEntidadSgpServicios.cs" />
+    <Compile Include="Implementaciones\SGP\SGPPreguntasPersonalizadasServicios.cs" />
+    <Compile Include="Implementaciones\SGP\SGPServicios.cs" />
+    <Compile Include="Implementaciones\SGP\SGPTramiteServicios.cs" />
+    <Compile Include="Implementaciones\SGP\Tramite\SGPTramiteProyectoServicios.cs" />
+    <Compile Include="Implementaciones\SGR\SGRCtusServicios.cs" />
+    <Compile Include="Implementaciones\SGP\SGPViabilidadServicios.cs" />
+    <Compile Include="Implementaciones\SGR\SGRViabilidadServicios.cs" />
+    <Compile Include="Implementaciones\SGR\SGRServicios.cs" />
+    <Compile Include="Implementaciones\TramiteIncorporacion\TramiteIncorporacionServicio.cs" />
+    <Compile Include="Implementaciones\TramitesDistribucion\TramitesDistribucionServicios.cs" />
+    <Compile Include="Implementaciones\Tramites\TramiteServicios.cs" />
+    <Compile Include="Implementaciones\Transversal\DocumentoSoporteServicios.cs" />
+    <Compile Include="Implementaciones\UsuarioNotificacion\MensajeNotificacionServicio.cs" />
+    <Compile Include="Implementaciones\UsuarioNotificacion\UsuarioNotificacionConfigServicio.cs" />
+    <Compile Include="Interfaces\Administracion\IAdministrarDocumentoServicio.cs" />
+    <Compile Include="Interfaces\Administracion\IEjecutorServicio.cs" />
+    <Compile Include="Interfaces\Autorizacion\IAutorizacionServicios.cs" />
+    <Compile Include="Interfaces\Auditoria\IAuditoriaServicios.cs" />
+    <Compile Include="Interfaces\Catalogos\ICatalogoServicio.cs" />
+    <Compile Include="Interfaces\CentroAyuda\ICentroAyudaServicio.cs" />
+    <Compile Include="Interfaces\Consola\IConsolaProyectosServicio.cs" />
+    <Compile Include="Interfaces\Consola\IConsolaTramiteServicios.cs" />
+    <Compile Include="Interfaces\Fichas\IFichasServicios.cs" />
+    <Compile Include="Interfaces\Focalizacion\ICategoriaProductosPoliticaServicios.cs" />
+    <Compile Include="Interfaces\Focalizacion\IIndicadoresPolitica.cs" />
+    <Compile Include="Interfaces\Focalizacion\IPoliticasTransversalesCrucePoliticasServicios.cs" />
+    <Compile Include="Interfaces\Focalizacion\IPoliticasTransversalesFuentesServicios.cs" />
+    <Compile Include="Interfaces\FuenteFinanciacion\IDatosAdicionalesServicios.cs" />
+    <Compile Include="Interfaces\FuenteFinanciacion\IFuenteFinanciacionServicios.cs" />
+    <Compile Include="Interfaces\FuenteFinanciacion\IFuentesAprobacionServicio.cs" />
+    <Compile Include="Interfaces\FuenteFinanciacion\IProgramarSolicitadoServicio.cs" />
+    <Compile Include="Interfaces\IBackboneServicios.cs" />
+    <Compile Include="Interfaces\Cache\ICacheEntidadesNegocioServicios.cs" />
+    <Compile Include="Interfaces\Flujos\IFlujoServicios.cs" />
+    <Compile Include="Interfaces\IClienteHttpServicios.cs" />
+    <Compile Include="Interfaces\Identidad\IIdentidadServicios.cs" />
+    <Compile Include="Interfaces\Inbox\IInboxServicios.cs" />
+    <Compile Include="Interfaces\ManejadorArchivos\IManejadorArchivosServicios.cs" />
+    <Compile Include="Interfaces\MensajesMantenimiento\IMensajeMantenimientoServicio.cs" />
+    <Compile Include="Interfaces\ModificacionLey\IModificacionLeyServicios.cs" />
+    <Compile Include="Interfaces\Monitoreo\IAlertasConfigServicios.cs" />
+    <Compile Include="Interfaces\Monitoreo\IAlertasGeneradasServicios.cs" />
+    <Compile Include="Interfaces\Nivel\INivelServicios.cs" />
+    <Compile Include="Interfaces\PowerBI\IEmbedConfigServicios.cs" />
+    <Compile Include="Interfaces\PowerBI\IEmbedServicios.cs" />
+    <Compile Include="Interfaces\Monitoreo\IMapColumnasServicios.cs" />
+    <Compile Include="Interfaces\Preguntas\IPreguntasPersonalizadasServicios.cs" />
+    <Compile Include="Interfaces\Priorizacion\IPriorizacionServicios.cs" />
+    <Compile Include="Interfaces\Programacion\IProgramacionServicios.cs" />
+    <Compile Include="Interfaces\Proyectos\IProyectoServicios.cs" />
+    <Compile Include="Interfaces\ReportesPIIP\IReportesPIIPServicio.cs" />
+    <Compile Include="Interfaces\SeguimientoControl\IProgramarProductosServicio.cs" />
+    <Compile Include="Interfaces\SeguimientoControl\IProgramarActividadesServicio.cs" />
+    <Compile Include="Interfaces\SeguimientoControl\IGestionProyectoServicio.cs" />
+    <Compile Include="Interfaces\SeguimientoControl\IDesagregarEdtServicio.cs" />
+    <Compile Include="Interfaces\SeguimientoControl\IReporteAvanceRegionalizacionServicio.cs" />
+    <Compile Include="Interfaces\SeguimientoControl\IReporteAvanceProductoServicio.cs" />
+    <Compile Include="Interfaces\ServiciosNegocio\IServiciosNegocioServicios.cs" />
+    <Compile Include="Interfaces\SGP\AdministradorEntidad\IAdministradorEntidadSgpServicios.cs" />
+    <Compile Include="Interfaces\SGP\ISGPPreguntasPersonalizadasServicios.cs" />
+    <Compile Include="Interfaces\SGP\ISGPServicios.cs" />
+    <Compile Include="Interfaces\SGP\ISGPTramiteServicios.cs" />
+    <Compile Include="Interfaces\SGP\Tramite\ISGPTramiteProyectoServicios.cs" />
+    <Compile Include="Interfaces\SGR\ISGRCtusServicios.cs" />
+    <Compile Include="Interfaces\SGP\ISGPViabilidadServicios.cs" />
+    <Compile Include="Interfaces\SGR\ISGRViabilidadServicios.cs" />
+    <Compile Include="Interfaces\SGR\ISGRServicios.cs" />
+    <Compile Include="Interfaces\TramiteIncorporacion\ITramiteIncorporacionServicios.cs" />
+    <Compile Include="Interfaces\TramitesDistribucion\ITramitesDistribucionServicios.cs" />
+    <Compile Include="Interfaces\Tramites\ITramiteServicios.cs" />
+    <Compile Include="Interfaces\Transversal\IDocumentoSoporteServicios.cs" />
+    <Compile Include="Interfaces\UsuarioNotificacion\IMensajeNotificacionServicio.cs" />
+    <Compile Include="Interfaces\UsuarioNotificacion\IUsuarioNotificacionConfigServicio.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Validadores\AlertasCondigValidator.cs" />
+    <Compile Include="Validadores\AlertasReglasValidator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DNP.Backbone.Comunes\DNP.Backbone.Comunes.csproj">
+      <Project>{87a20ff9-1b43-4d3d-88ca-6fa9d92e882d}</Project>
+      <Name>DNP.Backbone.Comunes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DNP.Backbone.Dominio\DNP.Backbone.Dominio.csproj">
+      <Project>{ac3d2df0-c366-4029-b8e0-99e3ecc9d4fd}</Project>
+      <Name>DNP.Backbone.Dominio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DNP.Backbone.Persistencia\DNP.Backbone.Persistencia.csproj">
+      <Project>{e5ed36d3-f939-495e-bc87-ef5a9c395aa0}</Project>
+      <Name>DNP.Backbone.Persistencia</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

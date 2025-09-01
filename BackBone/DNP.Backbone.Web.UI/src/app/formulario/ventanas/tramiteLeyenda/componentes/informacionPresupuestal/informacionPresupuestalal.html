@@ -1,0 +1,27 @@
+﻿<section>
+    <div class="container-fluid inbox" ng-init="vm.init();">
+        <div class="tab-content">
+            <div class="row" style="margin-left: 0px; margin-right: 0px;padding-bottom:1rem">
+                <div class="alert panel-heading row ui-accordion-header" style="">
+
+                    <button class="button" type="button" data-toggle="collapse" data-target="#solicitudmodificacion" ng-click="vm.changeArrow('solicitudmodificacion')">
+                        <span class="d-inline-block" id="alert-informacionpresupuestalsolicitudmodifi"></span> Solicitud de modificación
+                        <span class="hidden" id="id-capitulo-informacionpresupuestalsolicitudmodifi"></span>
+                        <span id="arrow-solicitudmodificacion" class="glyphicon glyphicon-chevron-down pull-right" data-toggle="collapse" data-target="#solicitudmodificacion"></span>
+                    </button>
+
+                </div>
+                <div class="collapse" id="solicitudmodificacion" style="padding-right: 15px; padding-left: 0px; margin-left: -15px;">
+                    <div class="row" style="margin-left:20px" ng-if="!vm.mostrar">
+                        <solicitud-modificacional tramiteid="{{vm.tramiteid}}" 
+                                                  guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                                  notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                  notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"
+                                                  callback="vm.deshabilitarBotonDevolver()">
+                        </solicitud-modificacional>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

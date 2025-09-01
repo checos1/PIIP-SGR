@@ -1,0 +1,58 @@
+﻿<style>
+    .niveles-opciones-container {
+        height: 120px;
+        overflow: auto;
+    }
+</style>
+
+<div class="modal-header" ng-init="vm.init()">
+    <button type='button' class='swal2-close closemodalDNP' aria-label='Cierra modal de actividades' data-dismiss="modal" ng-click="vm.cerrar()">×</button>
+    <h3 class="modal-title TituloModal1DNP" id="modal-title">Agregar actividad del {{vm.Nivel.NivelPadre}} de producto {{vm.NivelCaracteristicas.ProductoInx}}</h3>
+    <h4 class="TituloModal2DNP">{{vm.Nivel.Producto.NombreProducto}}</h4>
+</div>
+<div class="modal-body">
+    <section ng-if="vm.NivelActual.length >= 0">
+        <strong>Actividades - Unidad de medida:</strong>
+        <div class="niveles-opciones-container">
+            <div ng-repeat="opcNivel in vm.NivelActual">
+                <label for="chkNivel_{{opcNivel.ProductId}}_{{opcNivel.DeliverableCatalogId}}">
+                    <input id="chkNivel_{{opcNivel.ProductId}}_{{opcNivel.DeliverableCatalogId}}"
+                           type="checkbox"
+                           ng-disabled="opcNivel.Disabled"
+                           ng-model="opcNivel.Selected" />
+                    {{opcNivel.NombreEntregable}} - {{opcNivel.UnidadMedida}}
+                </label>
+            </div>
+        </div>
+
+        <div class="entregable-personalizado mt-4 mb-3" ng-if="vm.NuevoEntregableEnabled">
+            <label for="chkNivel_nuevo">
+                <input id="chkNivel_nuevo" type="checkbox" ng-model="vm.NuevoEntregable">
+                <span class="circle"></span><span class="check"></span>
+                Crear nueva actividad
+            </label>
+            <div class="mt-3" ng-if="vm.NuevoEntregable">
+                <div class="mb-3">
+                    <div><strong>Nombre de la nueva actividad </strong> (Mínimo 20 caracteres - Máximo 200 caracteres)</div>
+                    <textarea class="w-100" maxlength="200" ng-model="vm.NombreEntregableNuevo"></textarea>
+                </div>
+                <div class="unidad-medida">
+                    <strong class="mb-1">Unidad de medida</strong>
+                    <select name="selUnidadMedida" id="selUnidadMedida" ng-model="vm.unidadMedidaId" ng-required="true" class="form-control">
+                        <option value="" disabled selected hidden>Seleccione</option>
+                        <option ng-repeat="unidad in vm.UnidadesMedida" ng-value="unidad.Id">{{ unidad.Text }} </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--<section ng-if="vm.NivelActual.length <= 0">
+        <div>
+            <h3>No hay actividades en el catálogo</h3>
+        </div>
+    </section>-->
+</div>
+<div class="modal-footer textCenterDNP">
+    <button class="btneditarDNP" type="button" ng-click="vm.cerrar()">Cancelar</button>
+    <button ng-if="vm.NivelActual.length >= 0" class="btnguardarDNP" type="button" ng-click="vm.guardar()">Agregar</button>
+</div>

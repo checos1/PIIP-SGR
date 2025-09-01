@@ -1,0 +1,143 @@
+﻿<div id="crearActualizarMensaje" class="container-fluid inbox mensaje-container-form" ng-init="vm.init()">
+    <mesaje-disclaimer class="pre"
+        type="vm.disclaimer.type" 
+        template="vm.disclaimer.template"
+        show="vm.disclaimer.show"
+        pre-visualizacion="vm.disclaimer.preVisualizacion">
+    </mesaje-disclaimer>
+
+    <div class="container-mensaje">
+        <nav class="breadcrumb">
+            <a href="/">
+                <span class="breadcrumb-item active">
+                    <i class="fa fa-home" aria-hidden="true"></i> Inicio
+                </span>
+            </a>
+            /
+            <span class="breadcrumb-item">Mensajes</span>
+            /
+            <span class="breadcrumb-item active">Mantenimiento</span>
+        </nav>
+        <div class="titlebarmodal">
+            <span class="buttonbar pull-left" role="header">
+                <button class="btnaccion" ng-click="vm.volver()" tooltip-placement="Auto" uib-tooltip="Volver">
+                    <span><img src="Img/btn/btnVolver.png"></span>
+                </button>
+            </span>
+            <span>MANTENIMIENTO DE MENSAJES</span>
+            <span class="buttonbar pull-right">
+                <button class="btn btn-sm btn-primary" tooltip-placement="top" ng-click="vm.preVisualizarMensaje()" 
+                    uib-tooltip="Pre-visualizar mensaje">
+                    Previsualizar
+                </button>
+                <button class="btn btn-sm btn-success" tooltip-placement="top" ng-click="vm.guardar()" 
+                    uib-tooltip="Adicionar nueva mensaje">
+                    Guardar
+                </button>
+            </span>
+        </div>
+
+        <div class="cuerpo-mensaje form-group clearfix">
+            <div class="row">
+                <div class="col-md-5">
+                    <select class="form-control" ng-model="vm.model.TipoEntidad" ng-change="vm.cambiarTipoEntidad()">
+                        <option value="" disabled selected hidden>Tipo Entidad</option>
+                        <option ng-repeat="tipo in vm.tiposEntidades" ng-value="tipo.clave" ng-selected="tipo.nombre == vm.model.TipoEntidad">{{ tipo.nombre }} </option>
+                    </select>
+                </div>
+                <div class="col-md-5 padding-left-off">
+                    <select id="chosenEntidades" chosen multiple
+                        options="vm.entidades"
+                        ng-model="vm.model.Entidades"
+                        ng-options="entidad as entidad.NombreEntidad for entidad in vm.entidades track by entidad.Id"
+                        no-results-text="No hay ningún resultado para su búsqueda"
+                        placeholder-text-multiple="Entidades"
+                        ng-disabled="!vm.entidades.length || !vm.tieneEntidades">
+                    </select>
+                </div>
+                <div class="col-md-2 padding-left-off">
+                    <select class="form-control" ng-model="vm.model.EstadoMensaje">
+                        <option value="" disabled selected hidden>Estado Mensaje</option>
+                        <option ng-repeat="estado in vm.estadosMensaje" ng-value="{{ estado.valor }}">{{ estado.descricion }} </option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">
+                    <input type="text" class="form-control" ng-model="vm.model.NombreMensaje" placeholder="Nombre Mensaje"/> 
+                </div>
+                <div class="col-md-2 padding-off" role="fecha">
+                    <input type="date" class="form-control" name="fechaInicio" id="fechaInicio" ng-model="vm.model.FechaCreacionInicio" placeholder="Fecha Inicio">
+                </div>
+                <div class="col-md-1 padding-off" role="time">
+                    <input type="time" class="form-control" name="fechaInicioTime" id="fechaInicioTime" ng-model="vm.model.FechaCreacionInicio" placeholder="Hora Inicio">
+                </div>
+                <div class="col-md-1 padding-off" role="hasta">
+                    <p style="text-align: center; margin-top: 8px;">hasta</p>
+                </div>
+                <div class="col-md-2 padding-off" role="fecha">
+                    <input type="date" class="form-control" name="fechaFin" id="fechaFin" ng-model="vm.model.FechaCreacionFin" placeholder="Fecha/Hora Fin">
+                </div>
+                <div class="col-md-1 padding-off" role="time">
+                    <input type="time" class="form-control" name="fechaFinTime" id="fechaFinTime" ng-model="vm.model.FechaCreacionFin" placeholder="Hora Inicio">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-9">
+                    <div id="editor"></div>
+                    <br/>
+                </div>
+                <div class="col-md-3 padding-left-off">
+                    <div class="container-input-box">
+                        <div class="radio">
+                            <label class="label-radio">
+                                <input class="form-control radio-success" type="radio" ng-model="vm.model.TipoMensaje"
+                                    name="rdTipoAlerta" checked="checked" ng-value="1">
+                                <span class="circle border border-success"></span>
+                                <span class="check check-success"></span>
+                                <p class="text-success"> Popup </p>
+                            </label>
+                            <label class="label-radio">
+                                <input class="form-control radio-warning" type="radio" ng-model="vm.model.TipoMensaje"
+                                    name="rdTipoAlerta" checked="checked" ng-value="2">
+                                <span class="circle border border-warning"></span>
+                                <span class="check check-warning"></span>
+                                <p class="text-warning"> Disclaimer </p>
+                            </label>
+                        </div>
+                        <div class="checkbox-input-box">
+                            <input class="" type="checkbox" id="restrigirAcesso" ng-model="vm.model.RestringeAcesso">
+                            <label class="checkox-inline text-danger" for="restrigirAcesso" role="checkbox"> Restringir Accesso </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="input-group-dropdown">
+                        <span class="btn btn-group group-left" role="group" type="button">Rol</span>
+                        <select class="form-control group-right" role="group" ng-model="vm.roleSeleccionada">
+                            <option value="" disabled selected hidden>Selecione una role...</option>
+                            <option ng-repeat="role in vm.roles" ng-value="role">{{ role.NombreRol }} </option>
+                        </select>
+                    </div>
+                    <button class="btn btn-sm btn-success pull-right" tooltip-placement="top" ng-click="vm.adicionarRole(vm.roleSeleccionada)" uib-tooltip="Adicionar nueva role">
+                        Add Rol
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-12">
+                    <div class="container-table" ui-i18n="{{vm.lang}}" ng-if="vm.model.Roles.length">
+                        <div class="clearfix grid-icon" ui-grid="vm.gridOptions" 
+                            ui-grid-resize-columns ui-grid-pagination></div>
+                    </div>
+        
+                    <div ng-if="!vm.model.Roles.length" class="text-center">
+                        <h3>No se agregaron roles</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

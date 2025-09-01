@@ -1,0 +1,126 @@
+﻿<div class="container-fluid inbox">
+    <div ng-init="cargarDatosCtrl.eventos.init();" id="cargarDatos" class="cargaDatos-style">
+
+        <nav class="breadcrumb">
+            <!-- ReSharper disable UnknownCssClass -->
+            <a href="/">
+                <span class="breadcrumb-item active">
+                    <i class="fa fa-home" aria-hidden="true"></i> Inicio
+                </span>
+            </a>
+            /
+            <span class="breadcrumb-item active">Administración cargues</span>
+        </nav>
+        
+        <div class="dashboard">
+            <div id="proyectos" class="project">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="titlebar">
+                            <span>Administración <i>/ Cargar datos</i></span>
+                            <span class="buttonbar pull-right">
+                                <!-- <button type="button" class="btn btn-default btn-md" tooltip-placement="top"
+                                    uib-tooltip="Adicionar Columna" tabindex="0">
+                                    Adicionar columna <i class="fa fa-plus-circle"></i>
+                                </button> -->
+                                <button id="btnFiltro" type="button" class="btn btn-default btn-md btnFiltroHeader" tooltip-placement="auto" uib-tooltip="Filtro" ng-click="cargarDatosCtrl.eventos.btnMostrarFiltro_onClick($event)">
+                                    Filtro 
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+        
+                <!--Inicio de tabs-->
+                <div class="form-group clearfix">
+        
+                    <div class="row">
+                        <div class="col-sm-12 tabs radio radio-primary">
+                            <ul class="nav nav-tabs tabsFiltro">
+                                <li tabindex="0" class="{{$index == 0 ? 'active' : ''}}"
+                                    ng-repeat="tipo in cargarDatosCtrl.controles.tiposEntidadLista">
+                                        <a data-toggle="tab"
+                                            ng-if="tipo.habilitado"
+                                            ng-click="cargarDatosCtrl.funciones.establecerTipoEntidadFiltro(tipo.clave); cargarDatosCtrl.funciones.obtenerMontoTipoEntidad(tipo.clave);">
+                                            {{tipo.nombre}}
+                                        </a>
+
+                                        <a ng-if="!tipo.habilitado" class="disabled">{{tipo.nombre}}</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+        
+                    <!--inicio filtro-->
+                    <div class="filtro" ng-if="cargarDatosCtrl.controles.mostrarFiltro">
+                        <div class="clearfix">
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <div class="row">
+                                        <!-- filtro por tipo de recurso -->
+                                        <div class="col-md-4">
+                                            <select name="cmbTipoRecursoFiltro" id="cmbTipoRecursoFiltro" ng-options="tipoRecurso.Id as tipoRecurso.Nombre for tipoRecurso in cargarDatosCtrl.controles.filtros.tipoRecursoLista track by tipoRecurso.Id" 
+                                                    ng-model="cargarDatosCtrl.modelo.filtros.tipoRecursoId" class="form-control">
+                                                    <option value="" selected>Tipo de recurso</option>
+                                            </select>
+                                        </div>
+
+                                        <!-- // inicio filtro por fecha -->
+                                        <div class="col-md-4">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">Fecha Desde</span>
+                                                </div>
+                                                <input id="dtFechaInicioFiltro" name="dtFechaInicioFiltro" ng-model="cargarDatosCtrl.modelo.filtros.fechaInicio" type="date" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">Fecha Hasta</span>
+                                                </div>
+                                                <input id="dtFechaFinFiltro" name="dtFechaInicioFiltro" ng-model="cargarDatosCtrl.modelo.filtros.fechaTermino" type="date" class="form-control">
+                                            </div>
+                                        </div>
+                                        <!-- // fin: filtro por fecha -->
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-md-2 text-right">
+                                    <button id="btnAccionFiltrar" type="button" class="btn btn-filtro" tooltip-placement="auto" uib-tooltip="Buscar" ng-click="cargarDatosCtrl.eventos.btnAccionFiltrar_onClick($event)">
+                                        Buscar
+                                    </button>
+                                    <button id="btnLimpiarFiltro" type="button" class="btn btn-filtro" tooltip-placement="auto" uib-tooltip="Limpiar" ng-click="cargarDatosCtrl.eventos.btnLimpiarFiltro_onClick($event)">
+                                        Limpiar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--fim filtro-->
+                </div>
+                <!--Fin de tabs-->
+        
+                <!-- // tabla -->
+                <div class="row grid-cargaDatosEntidad">
+                    <div class="col-md-12">
+                        <div class="container-table">
+
+                            <div class="clearfix grid-icon" 
+                                 ui-grid="cargarDatosCtrl.controles.grid.options" ui-grid-resize-columns ui-grid-pinning ui-grid-pagination
+                                 ui-grid-expandable>
+                            </div>
+
+                            <!-- <div ng-if="vm.filasFiltradas" class="clearfix grid-icon" id="uigrdCargarDatos" ui-grid="vm.gridOptions"
+                                    ui-grid-resize-columns ui-grid-pagination ui-grid-expandable>
+                                </div> -->
+                        </div>
+                    </div>
+                </div>
+                <!-- // fin: tabla -->
+            </div>
+        </div>
+
+    </div>
+</div>

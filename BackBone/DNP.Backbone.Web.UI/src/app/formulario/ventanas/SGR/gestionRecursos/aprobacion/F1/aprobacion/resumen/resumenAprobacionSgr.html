@@ -1,0 +1,89 @@
+﻿<div class="container-fluid inbox" ng-init="vm.init();">
+    <div class="row">
+        <div class="col-md-12 pt-3" style="text-align:left">
+            <div ng-repeat="item in vm.data" class="mt-5 py-3">
+                <table class="TableDNP mb-3" width="92%">                    
+                    <thead style="background: none !important">
+                        <tr style="background: rgba(249, 252, 253, 1);">
+                            <th class="textLeftDNP px-3">
+                                <span class="NomItemAccordDNP">Tipo entidad que aprueba: </span>
+                                <span style="color: #4B4B4B; font-weight: normal">
+                                    {{ item.EntidadApruebaTipo }}
+                                </span>
+
+                                <span class="NomItemAccordDNP">Entidad: </span> 
+                                <span style="color: #4B4B4B; font-weight: normal ">
+                                    {{ item.EntidadApruebaNombre }}
+                                </span>
+                                <span class="NomItemAccordDNP">Estado de aprobación: </span> 
+                                <span style="color: #4B4B4B; font-weight: normal ">
+                                    {{ item.EstadoAprobacion }}
+                                </span>
+                                <span class="NomItemAccordDNP">Fecha de aprobación: </span> 
+                                <span style="color: #4B4B4B; font-weight: normal ">
+                                    {{ item.FechaAprobacion }}
+                                </span>
+                            </th>
+                        </tr>
+                    </thead>                
+                </table>
+                <table class="TableDNP mb-5" width="92%">
+                    <thead style="background: none !important">
+                        <tr style="background: rgba(249, 252, 253, 1);">
+                            <th class="columAcc" style="width:2%"></th>
+                            <th class="textLeftDNP " style="width:58%">
+                                <span class="NomItemAccordDNP">Etapa/Entidad que solicita/Tipo recurso/Bienio solicitado</span>
+                            </th>
+                            <th class="textRightDNP" style="width:15%">
+                                <span class="NomItemAccordDNP">
+                                    Valor solicitado
+                                </span>
+                            </th>
+                            <th class="textLeftDNP" style="width:8%">
+                                <span class="NomItemAccordDNP">
+                                    Vigencias futuras
+                                </span>
+                            </th>
+
+                            <th class="textRightDNP" style="width:15%">
+                                <span class="NomItemAccordDNP">
+                                    Valor aprobado
+                                </span>
+                            </th>
+
+                            <!--<th class="textRightDNP" style="width:12%">
+                                <span class="NomItemAccordDNP">
+                                    Valor sin crédito
+                                </span>
+                            </th>-->
+
+                            <th class="columAcc" style="width:2%"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="detalle in item.Detalles">
+                            <td></td>
+                            <td class="textLeftDNP">
+                                {{ detalle.Etapa }} / {{ detalle.Entidad }} / {{ detalle.TipoRecurso }} / {{ detalle.Bienio }}
+                            </td>
+                            <td class="textRightDNP">
+                                {{ detalle.ValorSolicitado | currency:'$':2 }}
+                            </td>
+                            <td class="textLeftDNP">
+                                {{ detalle.VigenciaFutura }}
+                            </td>
+
+                            <td class="textRightDNP">
+                                {{ detalle.ValorAprobado | currency:'$':2 }}
+                            </td>
+                            <!--<td class="textRightDNP">
+                                {{ detalle.ValorDiferencia | currency:'$':2 }}
+                            </td>-->
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

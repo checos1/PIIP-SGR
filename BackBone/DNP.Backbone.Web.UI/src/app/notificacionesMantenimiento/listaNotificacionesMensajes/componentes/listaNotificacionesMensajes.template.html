@@ -1,0 +1,123 @@
+﻿<div class="dashboard">
+    <div id="proyectos" class="project">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="titlebar">
+                    <span>Notificaciones</span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row rowbotonesicoDNP">
+
+                    <div class="col-md-12 text-right nopadding">
+                        <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Limpiar" ng-click="vm.limpiarCamposFiltro()">
+                            <span> <img id="icoLimpiarBusqueda" class="icoBusquedasDNP" src="Img/IcolimpiarBusqD.svg"></span>
+                        </button>
+                        <button tooltip-class="customClass" uib-tooltip="Buscar" class="btnicobuscarDNP" type="button" data-toggle="collapse" ng-click="vm.mostrarOcultarFiltro()">
+                            <span> <img id="arrow-IdPanelBuscador" class="icoBusquedas2DNP glyphicon-chevron-down-busqDNP" src="Img/IcoBusqUp.svg" data-toggle="collapse" data-target="#IdPanelBuscador"></span>
+                        </button>
+                        <button class="btnaccion" ng-click="vm.exportarPdf()">
+                            <span> <img class="icoBusquedasDNP" src="Img/etapas/u1089.svg"></span>
+                        </button>
+                        <button class="btnaccion" ng-click="vm.btnExcel_OnClick($event, $event.target)">
+                            <span> <img class="icoBusquedasDNP" src="Img/etapas/u1090.svg"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+
+        <!--inicio filtro  -->
+        <div class="row panelbuscadorDNP collapse" id="IdPanelBuscador" ng-if="vm.mostrarFiltro">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="labelbuscadorDNP"> <span>Estado</span></div>
+                    <select class="form-control selectDNP" ng-model="vm.filtro.estado">
+                        <option value="" selected>Seleccione...</option>
+                        <option>Leída</option>
+                        <option>No Leída</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <div class="labelbuscadorDNP"> <span>Mensaje</span></div>
+                    <input type="text" class="form-control InputBuscadorDNP" ng-model="vm.filtro.notificacion" name="txtMensaje" id="txtMensaje" />
+                </div>
+                <div class="col-md-4">
+                    <div class="labelbuscadorDNP"> <span>Fecha</span></div>
+                    <div id="anioFinalErrorVFO" class="hidden text-left color-red"></div>
+                    <input type="date" class="form-control InputBuscadorDNP" ng-model="vm.filtro.fecha" name="txtFecha" id="txtFecha" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 pull-left text-left" ng-if="vm.BusquedaRealizada">
+                    <span class="spanresultadobusquedaDNP pull-left" ng-if="vm.gridOptions.data.length > 0">
+                        Se encontraron ({{vm.gridOptions.data.length}}) resultados.
+                    </span>
+                    <span class="spanresultadobusqueda2DNP pull-left" style="margin-top: 0px;" ng-if="vm.gridOptions.data.length == 0">
+                        No se encontraron resultados.
+                    </span>
+                </div>
+                <div class="col-md-6 pull-right text-right">
+                    <span class="pull-right">
+                        <button type="button" class=" btnBuscarDNP " tooltip-class="customClass" uib-tooltip="Buscar" ng-click="vm.buscar()">
+                            BUSCAR
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <br />
+        <!--fim filtro-->
+
+        <div ng-if="vm.hayRegistros" class="row">
+            <div class="col-md-12">
+                <div class="container-table" ui-i18n="{{vm.lang}}">
+                    <div class="row" style="margin: 0px 0px 0px 0px;">
+                        <div class="col-md-12 ">
+
+                            <table class="TableDNP">
+                                <thead>
+                                    <tr>
+                                        <th class="columAcc"></th>
+                                        <th class="textLeftDNP">Estado</th>
+                                        <th class="textLeftDNP">Notificacion</th>
+                                        <th class="textLeftDNP">Fecha</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="datos in vm.gridOptions.data | orderBy:'estado'">
+                                        <td></td>
+                                        <td class="textLeftDNP">
+                                            {{datos.estado}}
+                                        </td>
+                                        <td class="textLeftDNP">
+                                            <a href="#" ng-click="vm.mostrarModalDetalle(datos)">
+                                                {{datos.notificacion}}
+                                            </a>
+                                        </td>
+                                        <td class="textLeftDNP">
+                                            {{datos.fecha}}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+
+                    <div class="text-center intro-help min-mh no-result-watermark" ng-if="vm.estaBuscando">
+                        <h4>{{ 'Buscando resultados'}}</h4>
+                    </div>
+
+                    <div class="text-center intro-help min-mh no-result-watermark" ng-if="!vm.hayRegistros">
+                        <h4>{{ 'No hay ningún resultado para su búsqueda' }}</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

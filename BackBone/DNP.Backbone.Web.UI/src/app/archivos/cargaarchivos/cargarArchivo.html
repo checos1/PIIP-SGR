@@ -1,0 +1,54 @@
+<div class="row">
+    <div class="col-md-2">
+        <div class="row">
+            <div class="col-md-12">
+                <label style="display: block;">Tipo de archivo:</label>
+                <!--<select id="tipoArchivo" chosen
+                        ng-model="vm.tipoArchivo"
+                        ng-options="x.Id as x.Name for x in listTipoArchivo"
+                        no-results-text="No hay ningún resultado para su búsqueda"
+                        placeholder-text-single="Seleccione"
+                        class="form-control">
+                </select>-->
+                <select   ng-model="vm.tipoArchivo" style="width:65%;height: 30px;" >
+                    <option ng-repeat="option in vm.listTipoArchivo" value="{{option.Id}}">{{option.Name}} </option>
+                </select>
+            </div>
+        </div>
+        <div class="row" ng-show="vm.noJefePlaneacion">
+            <div class="col-md-12">
+                <input type="text" readonly class="form-control" placeholder="Selecione un archivo"  ng-value="vm.filename">
+            </div>
+        </div>
+        <div class="row" ng-show="vm.noJefePlaneacion">
+            <div class="col-md-12">
+                <input type="file" style="display:none" id="file" name='files[]' onchange="angular.element(this).scope().fileNameChanged(this)" accept="{{vm.modelo.ext}}" multiple />
+                <button ng-click="vm.adjuntarArchivo()" has-claim has-opciones="['Tramites:CargarArchivos']" class="btn btn-sm btn-primary" ng-show="vm.noJefePlaneacion">CARGAR ARCHIVOS</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-10 " style="padding-right:0px;padding-left:0px">
+        <div class="row grid-proyectosArchivos" style="width:100%">
+            <div class="" style="width:100%">
+                <div class="container-table" ui-i18n="{{vm.lang}}" style="width:100%">
+                    <div class="grid" id="uigprojectoArchivo" ui-grid="vm.gridOptions"  ui-grid-resize-columns style="width:100%">
+                    </div>
+                    <div class="text-center intro-help min-mh no-result-watermark" ng-if="!vm.filasFiltradas" style="width:100%">
+                        <h4>{{ 'Buscando resultados'}}</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+
+ .ui-grid-render-container-body .ui-grid-header-viewport {
+        width: 100%;
+    }
+    .consola-proyectos .grid {
+        width: 100% !important;
+        height: 400px !important;
+    }
+</style>

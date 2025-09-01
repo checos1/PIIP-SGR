@@ -1,0 +1,70 @@
+﻿<section>
+    <div class="container-fluid inbox" ng-init="vm.init();">
+        <br />
+        <div>
+            <div class="row">
+                <div class="row" style="padding-left: 3rem;padding-right: 2rem;">
+                    <div class="form-group" style=" padding-top: 2rem;width:90%;">
+
+
+                        <div class="tab-content">
+                            <div class="tab-pane active cont col-md-12" style="padding-left:0 !important;padding-top:20px !important" id="dasociarproyecto">
+                                <span id="name-capitulo-dasociarproyecto"></span>
+                                <span class="hidden" id="id-capitulo-datosgeneraleshorizonte"></span>
+                                <asociar-proyectovf tramiteid="{{vm.tramiteDetail.tramiteId}}"
+                                                    callback="vm.notificarGuardado()"
+                                                    guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                                    notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                                    notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)"
+                                                    notificacioncambios="vm.notificacionCambiosAjustes(handler, nombreComponente)">
+                                </asociar-proyectovf>
+                            </div>
+                            <div class="tab-pane cont col-md-12" style="padding-left:0 !important;padding-top:20px !important" id="dinformacionpresupuestal">
+                                <informacion-presupuestal tipotramiteid="{{vm.tramiteDetail.tipoTramiteId}}" tramiteid="{{vm.tramiteDetail.tramiteId}}"
+                                                          callback="vm.notificarGuardado()"
+                                                          guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                                          notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                                          notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)"
+                                                          notificacioncambios="vm.notificacionCambiosAjustes(handler, nombreComponente)">
+
+                                </informacion-presupuestal>
+                            </div>
+                            <div class="tab-pane cont col-md-12" style="padding-left:0 !important;padding-top:20px !important" id="djustificacion">
+                                <justificacionvf tipotramiteid="{{vm.tramiteDetail.tipoTramiteId}}" tramiteid="{{vm.tramiteDetail.tramiteId}}"
+                                                 callback="vm.notificarGuardado()"
+                                                 guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                                 notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                                 notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)"
+                                                 notificacioncambios="vm.notificacionCambiosAjustes(handler, nombreComponente)">
+
+
+                                </justificacionvf>
+
+                            </div>
+                            <div class="tab-pane cont col-md-12" style="padding-left:0 !important;padding-top:20px !important" id="ddocumentossoporte">
+                                <documento-soportevf tipotramiteid="{{vm.tramiteDetail.tipoTramiteId}}" tramiteid="{{vm.tramiteDetail.tramiteId}}"
+                                                     callback="vm.notificarGuardado()"
+                                                     guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                                     notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                                     notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)"
+                                                     notificacioncambios="vm.notificacionCambiosAjustes(handler, nombreComponente)">
+                                </documento-soportevf>
+                            </div>
+                            <div class="tab-pane cont col-md-12" style="padding-left:0 !important;padding-top:20px !important" id="dsolicitarconcepto">
+                                <conceptovf tipotramiteid="{{vm.tramiteDetail.tipoTramiteId}}" tramiteid="{{vm.tramiteDetail.tramiteId}}" rolanalista ="{{vm.rolAnalista}}"
+                                            callback="vm.notificarGuardado(botonDevolver, botonSiguiente, ocultarDevolver)"
+                                            guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                            notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                            notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)"
+                                            notificacioncambios="vm.notificacionCambiosAjustes(handler, nombreComponente)">
+                                </conceptovf>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

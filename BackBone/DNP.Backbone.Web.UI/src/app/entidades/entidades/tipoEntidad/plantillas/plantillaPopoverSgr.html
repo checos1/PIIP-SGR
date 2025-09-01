@@ -1,0 +1,26 @@
+﻿<div class="text-center mt-3 ">
+    <a href="#" popover-placement="bottom" uib-popover-template="grid.appScope.vm.popOverOptions.templateUrl" popover-trigger="outsideClick"
+       ng-if="grid.appScope.vm.consultarPermiso(row.entity.IdEntidad, 'Entidades:CrearSub') ||
+        grid.appScope.vm.consultarPermiso(row.entity.IdEntidad, 'Entidades:CrearSub') ||
+        grid.appScope.vm.consultarPermiso(row.entity.IdEntidad, 'Entidades:EditarMatrizFlujos') ||
+        grid.appScope.vm.consultarPermiso(row.entity.IdEntidad, 'Entidades:Inflexibilidad') ||
+        grid.appScope.vm.consultarPermiso(row.entity.IdEntidad, 'Entidades:Editar') ||
+        grid.appScope.vm.consultarPermiso(row.entity.IdEntidad, 'Entidades:Eliminar') ||
+        grid.appScope.vm.consultarPermiso(row.entity.IdEntidad, 'Entidades:Adherencia') ||
+        grid.appScope.vm.consultarPermiso(row.entity.IdEntidad, 'Entidades:Delegados')">
+        <i class="fa fa-ellipsis-v fa-2x" aria-hidden="true"></i>
+    </a>
+</div>
+
+<script type="text/ng-template" id="popover.html">
+    <div class="popover-sgr">
+        <a ng-if="grid.appScope.vm.consultarPermiso(row.entity.IdEntidad, 'Entidades:CrearSub')" href="#" class="list-group-item" ng-click="grid.appScope.vm.accionCrearSubEntidade({$row: row.entity})">Crear sub-entidad</a>
+        <a ng-if="grid.appScope.vm.consultarPermiso(row.entity.IdEntidad, 'Entidades:EditarMatrizFlujos')" href="#" class="list-group-item" ng-click="grid.appScope.vm.accionFlujosViabilidad({$row: row.entity})">Flujos y Viabilidad</a>
+        <a ng-if="grid.appScope.vm.consultarPermiso(row.entity.IdEntidad, 'Entidades:Inflexibilidad')" href="#" class="list-group-item" ng-click="grid.appScope.vm.accionInflexibilidades({$row: row.entity})">Inflexibilidades</a>
+        <a ng-if="grid.appScope.vm.consultarPermiso(row.entity.IdEntidad, 'Entidades:Editar')" href="#" class="list-group-item" ng-click="grid.appScope.vm.accionEditar({$row: row.entity})">Editar</a>
+        <a ng-if="grid.appScope.vm.consultarPermiso(row.entity.IdEntidad, 'Entidades:Eliminar')" href="#" class="list-group-item" ng-click="grid.appScope.vm.accionEliminar({$row: row.entity})">Eliminar</a>
+        <a ng-if="grid.appScope.vm.consultarPermiso(row.entity.IdEntidad, 'Entidades:Adherencia')" href="#" class="list-group-item" ng-click="grid.appScope.vm.accionAdherencia({$row: row.entity})">Adherencia</a>
+        <a ng-if="grid.appScope.vm.consultarPermiso(row.entity.IdEntidad, 'Entidades:Delegados')" href="#" class="list-group-item" ng-click="grid.appScope.vm.accionDelegado({$row: row.entity})">Delegado</a>
+    </div>
+</script>
+

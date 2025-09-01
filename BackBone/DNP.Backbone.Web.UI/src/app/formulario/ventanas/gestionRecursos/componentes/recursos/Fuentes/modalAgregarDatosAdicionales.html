@@ -1,0 +1,97 @@
+﻿<modal-dialog cerrar="vm.cerrar" guardar="vm.guardar" txt-guardar="GUARDAR" ng-init="vm.init()">
+
+    <form id="formAgregarFuente" name="formAgregarFuente" style="background-color:white!important">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="textLeftDNP">
+                    <span class="text-left ui-seccion-title" style="font-size:20px"><b>Datos adicionales del financiador</b></span>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div style="background-color:white!important">
+            <div class="row">
+                <table class="TableDNP" style="width:100%">
+                    <thead>
+                        <tr style="text-align:center;">
+                            <th class="columAcc"></th>
+                            <th style="width:35%;" class="textLeftDNP"><label>Fuente de la Financiación</label></th>
+                            <th style="width:20%;" class="textLeftDNP"><label>Codigo </label></th>
+                            <th style="width:35%;" class="textLeftDNP"><label>Nombre </label></th>
+                            <th style="width:5%;"  class="columAcc"></th>
+                        </tr>
+                    </thead>
+                    <tbody ng-repeat="objdatos in vm.listaDatosAdicionales">
+                        <tr>
+                            <td></td>
+                            <td style="width: !important 8%; text-align: left; vertical-align: middle;">
+                                <label>{{objdatos.tipoCofinanciador}}</label>
+                            </td>
+                            <td style="width: !important 8%; text-align: left; vertical-align: middle;">
+                                <label>{{objdatos.codigo}}</label>
+                            </td>
+                            <td style="width: !important 8%; text-align: left; vertical-align: middle;">
+                                <label>{{objdatos.codigoCofinanciador}}</label>
+                            </td>
+                            <td>
+                                <button type="submit"
+                                        class="btnaccion"
+                                        title=""Eliminar cofinanciador"
+                                        ng-click="vm.eliminarDatoAdicional(objdatos.cofinanciadorId)"">
+                                    <span><img src="Img/u928.svg"></span>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="7" style="text-align: right;">
+                                <a ng-click="vm.adicionarDato()">AGREGAR</a>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <div class="row">
+                <table class="TableDNP" style="width:95%" id="tblAdicionarDato" ng-if="vm.tblAdicionarDato">
+                    <tbody>
+                        <tr>
+                            <td style="width:20%;">
+                                <select id="selTipoCofinanciador" class="form-control" ng-model="vm.model.idtipoCofinanciador" ng-required="true" ng-change="vm.cambioTipo()" style="position:relative;">
+                                    <option value="" disabled selected>Seleccione uno.</option>
+                                    <option ng-repeat="tipoCofinanciador in vm.listaTipoCofinanciador" ng-value="tipoCofinanciador.Id"> {{ tipoCofinanciador.Name }} </option>
+                                </select>
+                            </td>
+                            <td style="width:40%; text-align:center;">
+                                <select id="selFondo" class="form-control" ng-if="vm.fondoVisible" ng-change="vm.cambioFondo()" ng-model="vm.model.idFondo" style="position:relative;">
+                                    <option value="" disabled selected>Seleccione uno.</option>
+                                    <option ng-repeat="fondo in vm.listaFondos" ng-value="fondo.Id"> {{ fondo.Code }} </option>
+                                </select>
+
+                                <div class="input-group mb-3" ng-if="vm.proyectoVisible" style="top:10px">
+                                    <input type="number" id="textBpinBusqueda" ng-model="vm.model.BpinBusqueda" class="form-control" placeholder="Buscar proyecto por Bpin" aria-label="Buscar proyecto por Bpin" aria-describedby="basic-addon2">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary" type="button" ng-click="vm.buscarProyecto()">Buscar</button>
+                                    </div>
+                                </div>
+
+                                <select chosen options="vm.listaRubro" id="selRubro" class="form-control" name="selRubro" ng-if="vm.rubroVisible" style="position:relative;"
+                                        ng-model="vm.model.idRubro"
+                                        ng-options="x.Rubro as x.Rubro for x in vm.listaRubro"
+                                        no-results-text="No hay ningún Rubro para su búsqueda" placeholder-text-single="Opciones"
+                                        ng-change="vm.cambioRubro()"
+                                        required>
+                                </select>
+
+                                <input id="textPrivado" class="form-control" ng-if="vm.privadoVisible" ng-model="vm.model.NombrePrivado" />
+                            </td>
+                            <td style="width:30%; text-align:center;"> <textarea id="textNombre" class="form-control" ng-model="vm.model.Nombre" disabled></textarea></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </form>
+</modal-dialog>
+

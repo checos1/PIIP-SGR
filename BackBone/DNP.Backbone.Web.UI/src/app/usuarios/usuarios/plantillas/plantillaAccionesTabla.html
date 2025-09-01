@@ -1,0 +1,12 @@
+<div class="text-center">
+    <button ng-if="grid.appScope.vm.accion5({entidad: row.entity.IdEntidad, opcion: 'Usuarios:Editar'})" class="btnaccion" ng-click="grid.appScope.vm.accion1({$row: row.entity})" tooltip-placement="Auto" uib-tooltip="Editar Usuario">
+        <span><img class="grid-icon-accion"  src="Img/iconsgrid/iconAccionEditar.png"></span>
+    </button>
+
+    <button ng-if="grid.appScope.vm.accion5({entidad: row.entity.IdEntidad, opcion: 'Usuarios:Eliminar'})" class="btnaccion" ng-click="grid.appScope.vm.accion2({$row: row.entity})" tooltip-placement="Auto" uib-tooltip="Eliminar Usuario">
+        <span><img class="grid-icon-accion"  src="Img/iconsgrid/iconAccionEliminar.png"></span>
+    </button>
+    <button ng-if="grid.appScope.vm.accion5({entidad: row.entity.IdEntidad, opcion: 'Usuarios:ListarPerfiles'})" class="btnaccion" ng-click="grid.appScope.vm.accion3({$row: row.entity})" tooltip-placement="Auto" uib-tooltip="Ver Perfiles">
+        <span><img class="grid-icon-accion"  src="Img/iconsgrid/iconAccionUsuario.png"></span>
+    </button>
+</div>

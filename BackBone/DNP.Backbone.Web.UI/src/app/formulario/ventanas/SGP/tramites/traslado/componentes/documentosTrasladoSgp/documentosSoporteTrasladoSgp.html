@@ -1,0 +1,43 @@
+﻿
+<div ng-init="vm.init();">                                                     
+    <div class="ui-accordion-container " id="accordion-soportestramitesgpdocumentotramitesgp">
+        <div class="alert panel-heading row ui-accordion-header">
+            <button type="button" data-toggle="collapse" data-target="#soportestramitesgpdocumentotramitesgp" ng-click="vm.changeArrow('soportestramitesgpdocumentotramitesgp')">
+                <span class="d-inline-block" id="alert-soportestramitesgpdocumentotramitesgp"></span>
+                <span id="name-capitulo-soportestramitesgpdocumentotramitesgp"></span>
+                <span class="hidden" id="id-capitulo-soportestramitesgpdocumentotramitesgp"></span>
+                <span id="arrow-soportestramitesgpdocumentotramitesgp" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#soportestramitesgpdocumentotramitesgp"></span>
+            </button>
+        </div>
+        <div class="collapse" id="soportestramitesgpdocumentotramitesgp">
+            <div class="row m-0 mb-3">
+                <br>
+                <div class="col-md-12 ">                   
+                    <archivos-formulario-sgp tipotramiteid="{{vm.tipotramiteid}}"
+                                             tramiteid="{{vm.tramiteid}}"
+                                             nivel="{{vm.nivel}}"
+                                             rol="{{vm.rol}}"
+                                             section="{{vm.section}}"
+                                             objetonegocioid="{{vm.IdObjetoNegocio}}"
+                                             nombrecomponentepaso="{{vm.nombreComponenteHijo}}"
+                                             guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                             notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                             notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)">
+                    </archivos-formulario-sgp>
+                    <!--<archivos-formulario tipotramiteid="{{vm.tipotramiteid}}"
+                                         tramiteid="{{vm.tramiteid}}"
+                                         nivel="{{vm.nivel}}"
+                                         rol="{{vm.rol}}"
+                                         section="{{vm.section}}"
+                                         nombrecomponentepaso="{{vm.nombreComponenteHijo}}"
+                                         guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                         notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                         notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)">
+                    </archivos-formulario>-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

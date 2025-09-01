@@ -1,0 +1,48 @@
+﻿<section>
+    <div class="container-fluid inbox" ng-init="vm.initInformacionPresupuestal();">
+        <div class="tab-content">
+            <div class="ui-accordion-container" id="accordion-{{vm.nombreComponenteHijo}}">
+                <div class="alert panel-heading row ui-accordion-header" style="border-color: #E6EFFD; border-left-color: #004884; height: 50px;">
+                    <button type="button" data-toggle="collapse" data-target="#rinformacionpresupuestal"  ng-click="vm.changeArrow(vm.nombreComponenteHijo)">
+                        <span id="arrow-{{vm.nombreComponenteHijo}}" class="glyphicon glyphicon-chevron-up pull-right"
+                              data-toggle="collapse"
+                              data-target="#rinformacionpresupuestal"></span>
+                        <span class="d-inline-block" id="alert-{{vm.nombreComponenteHijo}}"></span>
+                        <span id="name-capitulo-{{vm.nombreComponenteHijo}}"></span>
+                        <span class="hidden" id="id-capitulo-{{vm.nombreComponenteHijo}}"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="rinformacionpresupuestal" style="width: 100%;">
+                    <div ng-if="!vm.mostrarinformacionpresupuestal">
+                        <informacion-presupuestal-formulario tipotramiteid="{{vm.tipotramiteid}}"
+                                                             tramiteid="{{vm.tramiteid}}"
+                                                             actualizacomponentes ="{{vm.actualizacomponentes}}"
+                                                             nivel="{{vm.nivel}}"
+                                                             vm.nombrecomponentepaso="{{vm.nombrecomponentehijo}}"
+                                                             guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                                             notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                             notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"
+                                                             callback="vm.callback()">
+                        </informacion-presupuestal-formulario>
+                    </div>
+                    <div ng-if="vm.mostrarinformacionpresupuestal">
+                        <informacion-presupuestal-apro-formulario tipotramiteid="{{vm.tipotramiteid}}"
+                                                                  tramiteid="{{vm.tramiteid}}"
+                                                                  nivel="{{vm.nivel}}"
+                                                                  rolanalista ="{{vm.rolanalista}}"
+                                                                  deshabilitar="{{vm.deshabilitar}}"
+                                                                  vm.nombrecomponentepaso="{{vm.nombrecomponentehijo}}"
+                                                                  guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                                                  notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                                  notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"
+                                                                  callback="vm.callback()">
+                        </informacion-presupuestal-apro-formulario>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

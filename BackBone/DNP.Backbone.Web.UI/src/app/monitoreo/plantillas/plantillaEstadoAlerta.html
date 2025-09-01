@@ -1,0 +1,6 @@
+﻿<div class="ui-grid-cell-contents ng-binding ng-scope">
+    <div class="switch__container">
+        <input type="checkbox" id="estadoalerta-{{row.entity.Id}}" class="switch-input" ng-model="row.entity.Estado" ng-click="grid.appScope.vm.cambiarEstadoAlerta(row.entity)">
+        <label class="switch-label" for="estadoalerta-{{row.entity.Id}}"><span class="activo">Activo</span><span class="inactivo">Inactivo</span></label>
+    </div>
+</div>

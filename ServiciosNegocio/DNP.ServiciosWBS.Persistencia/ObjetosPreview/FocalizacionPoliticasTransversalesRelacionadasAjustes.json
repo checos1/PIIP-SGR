@@ -1,0 +1,72 @@
+{
+    "ProyectoId": 21888,
+    "BPIN": "2017011000151",
+    "Vigencias_Politicas_Cuantifica_Beneficiarios": [
+        {
+            "Año": 2021,
+            "PoliticasPrincipales": [
+                {
+                    "CuantificaBeneficiariosPPrincipal": 1,
+                    "PoliticaPrincipalId": 1234,
+                    "PoliticaPrincipal": "GRUPOS ETNICOS - INDIGENAS-AJUSTES",
+                    "PeriodoProyectoId": 1,
+                    "PoliticasRelacionadas": [
+                        {
+                            "FocalizacionPoliticaId": 5,
+                            "PoliticaRelacionadaId": 1235,
+                            "PoliticaRelacionada": "EQUIDAD DE LA MUJER AJUSTES",
+                            "Localizacion": [
+                                {
+                                    "DepartmentId": 3,
+                                    "Departamento": "Antioquia",
+                                    "BeneficiariosPoliticaPrincipalVigente_Firme": 16,
+                                    "BeneficiariosPoliticaPrincipalVigente_Ajuste": 16,
+                                    "RecursosPoliticaPrincipalVigente_Firme": 5000000.0,
+                                    "RecursosPoliticaPrincipalVigente_Ajuste": 5000000.0,
+                                    "BeneficiariosPoliticaRelacionadaVigente_Firme": 3,
+                                    "BeneficiariosPoliticaRelacionadaVigente_Ajuste": 3,
+                                    "RecursosPoliticaRelacionada_Firme": 0.0,
+                                    "RecursosPoliticaRelacionada_Ajuste": 0.0
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "Vigencias_Politicas_No_Cuantifica_Beneficiarios": [
+        {
+            "Año": 2022,
+            "PoliticasPrincipales": [
+                {
+                    "CuantificaBeneficiariosPPrincipal": 1,
+                    "PoliticaPrincipalId": 1235,
+                    "PoliticaPrincipal": "EQUIDAD DE LA MUJER",
+                    "PeriodoProyectoId": 1,
+                    "PoliticasRelacionadas": [
+                        {
+                            "FocalizacionPoliticaId": 5,
+                            "PoliticaRelacionadaId": 1234,
+                            "PoliticaRelacionada": "GRUPOS ETNICOS - INDIGENAS AJUSTES",
+                            "Localizacion": [
+                                {
+                                    "DepartmentId": 3,
+                                    "Departamento": "Antioquia",
+                                    "BeneficiariosPoliticaPrincipalVigente_Firme": null,
+                                    "BeneficiariosPoliticaPrincipalVigente_Ajuste": null,
+                                    "RecursosPoliticaPrincipalVigente_Firme": 5000000.0,
+                                    "RecursosPoliticaPrincipalVigente_Ajuste":5000000.0,
+                                    "BeneficiariosPoliticaRelacionadaVigente_Firme": null,
+                                    "BeneficiariosPoliticaRelacionadaVigente_Ajuste": null,
+                                    "RecursosPoliticaRelacionada_Firme": 0.0,
+                                    "RecursosPoliticaRelacionada_Ajuste": 0.0
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

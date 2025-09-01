@@ -1,0 +1,450 @@
+﻿#entidad-nacional,
+#carga-datos,
+#entidad-territorial {
+    .agr {
+        padding-top: 9px
+    }
+
+    .ui-grid-row div[role=row] {
+        min-height: 41px;
+    }
+
+    .ui-grid-cell-contents {
+        padding-top: 11px;
+    }
+}
+
+#carga-datos-modal {
+    .btn-file {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .btn-file input[type=file] {
+        position: absolute;
+        top: 0;
+        right: 0;
+        min-width: 100%;
+        min-height: 100%;
+        font-size: 100px;
+        text-align: right;
+        filter: alpha(opacity=0);
+        opacity: 0;
+        outline: none;
+        background: white;
+        cursor: inherit;
+        display: block;
+    }
+}
+
+.popover-sgr {
+    margin: -10px -15px;
+
+    .list-group-item {
+        border: 0px !important;
+    }
+}
+
+.entidad-modal,
+.entidad-modal-adherencia,
+.entidad-modal-subEntidad,
+.entidad-modal-flujos,
+.entidad-modal-delegado,
+.entidad-modal-crearEditarModal,
+.entidad-modal-consultar-pagos {
+
+    .modal-lg {
+        @media (min-width: 992px) {
+            width: 1170px !important;
+        }
+    }
+
+    .modal-dialog {
+        margin-top: 7%;
+
+        @media (min-width: 768px) {
+            width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+
+    .modal-content {
+        -webkit-border-radius: 7px !important;
+        -moz-border-radius: 7px !important;
+        border-radius: 7px !important;
+    }
+
+    .modal-footer {
+        padding-top: 25px;
+        padding-bottom: 25px;
+        padding-right: 45px;
+        border-bottom-left-radius: 7px !important;
+        border-bottom-right-radius: 7px !important;
+    }
+
+    .modal-body {
+        /*padding: 0px !important;*/
+        .container-modal-adherencia,
+        .container-modal-subEntidad,
+        .container-modal-flujos,
+        .container-modal-delegado,
+        .container-modal-entidad,
+        .container-modal-consultar-pagos {
+            padding: 29px;
+            background: #edf5fd;
+            font-weight: bold;
+            font-size: 16px;
+            height: auto;
+            max-height: 440px;
+            padding-right: 45px;
+            padding-bottom: 0px !important;
+            padding-left: 75px;
+            border-top-right-radius: 7px !important;
+            border-top-left-radius: 7px !important;
+
+            .cuerpo-modal-adherencia,
+            .cuerpo-modal-subEntidad,
+            .cuerpo-modal-flujos,
+            .cuerpo-modal-delegado,
+            .cuerpo-modal-entidad,
+            .cuerpo-modal-consultar-pagos {
+                padding-top: 10px;
+                padding-bottom: 20px;
+                overflow-y: hidden;
+                overflow-x: hidden;
+                padding-right: 1.8px;
+
+                div[role="columna-md-sx"].col-md-3 {
+                    @media (min-width: 992px) {
+                        width: 20.83% !important;
+                    }
+                }
+
+                div[role="columna-md"].col-md-3 {
+                    @media (min-width: 992px) {
+                        width: 21.03% !important;
+                    }
+                }
+
+                .items-adherencia,
+                .items-flujos,
+                .items-delegado,
+                .items-pagamentos {
+                    max-height: 200px;
+                    min-height: 45px;
+                    height: auto;
+                    overflow: hidden;
+                    margin-bottom: 5px;
+
+                    @media (min-height: 200px) {
+                        overflow-y: auto;
+                        margin-right: -6px;
+                    }
+                }
+            }
+
+            .titlebar {
+                .buttonbar {
+                    position: inherit;
+                }
+            }
+
+            .padding-left-off {
+                padding-left: 0px;
+            }
+
+            .padding-right-off {
+                padding-right: 0px !important;
+            }
+
+            .padding-off {
+                padding-right: 0px;
+                padding-left: 0px;
+            }
+
+            input[type="text"]:disabled,
+            select:disabled {
+                color: #b7b7b7;
+            }
+
+            input:disabled {
+                background-color: white;
+            }
+        }
+
+        .input-group {
+            .input-group-btn {
+                width: auto;
+
+                .btn-default,
+                .btn-default:hover {
+                    color: #a4a6ac !important;
+                    background-color: white !important;
+                    height: 32px;
+                    margin-top: 1.5px;
+                }
+            }
+        }
+
+        .header-modal {
+            display: flow-root;
+            padding: 20px;
+            padding-right: 35px;
+        }
+
+        button[class*="btn-sm btn-"] {
+            border-radius: 6px;
+            min-width: 110px;
+            padding: 7px;
+        }
+
+        .buttonbar {
+            padding-right: 45px;
+            padding-left: 25px;
+            margin-top: -15px;
+        }
+
+        .titlebarmodal {
+            span.title,
+            span.subtitle {
+                font-size: 15px;
+            }
+
+            span.title {
+                padding-right: 0px;
+            }
+
+            span.subtitle {
+                color: #03b4d5;
+                padding-right: 20px !important;
+            }
+        }
+    }
+}
+
+.entidad-modal-subEntidad,
+.entidad-modal-crearEditarModal {
+    .modal-lg {
+        @media (min-width: 992px) {
+            width: 950px !important;
+        }
+    }
+
+    .modal-body {
+        .container-modal-subEntidad,
+        .container-modal-entidad {
+            .cuerpo-modal-subEntidad,
+            .cuerpo-modal-entidad {
+                padding-right: 0px;
+            }
+        }
+    }
+}
+
+.entidad-modal-flujos {
+    .modal-footer {
+        padding-right: 60px;
+    }
+
+    .modal-body {
+        .container-modal-flujos {
+            padding-right: 60px !important;
+
+            .cuerpo-modal-flujos {
+                .items-flujos {
+                    max-height: 150px;
+
+                    @media (min-height: 150px) {
+                        overflow-y: auto;
+                        margin-right: -6px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.entidad-modal-delegado {
+    .modal-lg {
+        @media (min-width: 992px) {
+            width: 1460px !important;
+        }
+    }
+
+    .modal-body {
+        .container-modal-delegado {
+            padding-left: 30px;
+            padding-right: 30px;
+
+            .titlebarmodal {
+                margin-left: 50px;
+                width: 95.3%;
+            }
+        }
+    }
+}
+
+.entidad-modal-consultar-pagos {
+    .modal-lg {
+        @media (min-width: 992px) {
+            width: 1070px !important;
+        }
+    }
+
+    .modal-body {
+        .container-modal-consultar-pagos {
+            padding-right: 30px;
+        }
+    }
+}
+
+.nav-tabs {
+    li {
+        margin-bottom: 5px !important;
+    }
+}
+
+.nav-tabs {
+    li {
+        .label-tabs {
+            background-color: transparent;
+            cursor: pointer;
+            color: #555454 !important;
+            font-weight: 800;
+            font-size: 15px;
+            padding: 5px 30px 10px 0;
+            width: 30%;
+        }
+    }
+}
+
+.cargaDatos-style {
+    .grid1603209364558 .ui-grid-row, .grid1603209364558 .ui-grid-cell, .grid1603209364558 .ui-grid-cell .ui-grid-vertical-bar {
+        height: 40px !important;
+    }
+}
+
+
+/*Colocar identificação para não ficar genérico*/
+/*.ui-grid .ui-grid-row .ui-grid-cell {
+    padding: 5px, 10px !important;
+    height: 50px !important;
+}*/
+
+.badge-pill {
+    padding-right: .6em;
+    padding-left: .6em;
+    border-radius: 10rem;
+}
+
+.badge-success {
+    color: #fff;
+    background-color: @success
+}
+
+.badge-danger {
+    color: #fff;
+    background-color: @danger;
+}
+
+.badge-warning {
+    color: #fff;
+    background-color: @warning
+}
+
+.badge-info {
+    color: #fff;
+    background-color: @blue-dark;
+}
+
+.cell-content-template {
+    vertical-align: middle;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.cell-text-template {
+    font-size: 13px;
+    padding: 5px;
+    font-weight: 600;
+}
+
+.cell-text-enphasis-template {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.cell-text-red {
+    color: @red
+}
+
+.modal-text-enphasis {
+    font-weight: 700;
+    color: #069FCA;
+}
+
+.intercambio-entidad {
+    .input-group-text {
+        font-size: unset !important;
+    }
+}
+
+.intercambio-entidad {
+    .modal-header {
+        background-color: transparent !important;
+        height: unset !important;
+    }
+}
+
+.proyecto-entidad {
+    .ui-grid .ui-grid-row .ui-grid-cell {
+        padding: 5px, 10px !important;
+        height: 50px !important;
+    }
+}
+
+.btn-span {
+    cursor: pointer
+}
+
+.btn-span:active {
+    border-color: #adadad;
+    background-image: none;
+    outline: 0;
+    -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+    color: #333;
+    background-color: #e6e6e6;
+    /* box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125); */
+    /*    color: lime*/
+}
+/* links ativos */
+
+.nombre-apllido {
+    overflow:hidden;
+}
+
+.filtro-entidades {
+    .chosen-container {
+        border-radius: 5px;
+        border: none;
+        height: 37px !important;
+        cursor: text;
+        margin-top: 12px;
+        border-bottom: 1px solid #ddd;
+        text-indent: 0;
+    }
+}
+
+/*#entidad-nacional #entidad-nacional-container #entidad-nacional-content .ui-grid,
+#entidad-nacional #entidad-nacional-container #entidad-nacional-content .ui-grid-viewport {
+    height: 310px;
+}*/
+
+#entidad-nacional #entidad-nacional-container #entidad-nacional-content .ui-grid-viewport .ui-grid-viewport {
+    height: auto;
+}
+
+#entidad-nacional #entidad-nacional-container #entidad-nacional-content .ui-grid-viewport .ui-grid-viewport .ui-grid-canvas .ui-grid-row .expandableRow .ui-grid {
+    height: auto;
+}

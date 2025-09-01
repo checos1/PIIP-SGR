@@ -1,0 +1,234 @@
+﻿
+
+.headline-m {
+    font-family: 'Montserrat', 'Montserrat Regular', 'Montserrat';
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 30px
+}
+
+.headline-s {
+    font-family: 'Montserrat', 'Montserrat Regular', 'Montserrat';
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 27px
+}
+
+.headline-xsb {
+    font-family: 'Montserrat', 'Montserrat Regular', 'Montserrat';
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.font-azul {
+    color: #004884;
+}
+
+.font-gris {
+    color: #4B4B4B;
+}
+
+
+.guion_accordion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cuadrado_accordion_cerrado {
+    width: 20px;
+    height: 20px;
+    background-color: #004884;
+    color: white;
+    margin-top: 1rem;
+    margin-right: 1rem;
+    border-radius: 30%;
+}
+
+.cuadrado_accordion_abierto {
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    color: #004884;
+    margin-top: 1rem;
+    margin-right: 1rem;
+    border-radius: 30%;
+}
+
+.input.ng-touched.ng-invalid {
+    background-color: white;
+    border-color: red;
+}
+
+.select.ng-touched.ng-invalid {
+    background-color: white;
+    border-color: red;
+}
+
+.input {
+    border-radius: 6px;
+    border: solid 1px #c7d3ffad;
+    height: 35px;
+    padding: 3px 10px 3px 10px;
+    font-family: "Work Sans Medium Roman","Work Sans Regular Roman","Work Sans";
+    font-weight: 500;
+    font-style: normal;
+    font-size: 16px;
+    letter-spacing: normal;
+    color: #4b4b4b;
+}
+
+.option {
+    font-family: "Work Sans Roman","Work Sans Regular Roman","Work Sans";
+    font-weight: 400;
+    font-style: normal;
+    font-size: 16px;
+    color: #4b4b4b;
+}
+
+.select {
+    position: absolute;
+    /*left: 0px;*/
+    top: 0px;
+    /* width: 552px;*/
+    height: 35px;
+    padding: 3px 10px 3px 10px;
+    font-family: "Work Sans Roman","Work Sans Regular Roman","Work Sans";
+    font-weight: 400;
+    font-style: normal;
+    font-size: 16px;
+    letter-spacing: normal;
+    color: #4b4b4b;
+    vertical-align: error: none;
+    text-align: left;
+    text-transform: none;
+    background-color: transparent;
+    border-radius: 6px;
+    border: solid 1px #c7d3ffad;
+}
+
+.fondo_violeta {
+    background-color: #c7d3ffad;
+}
+
+.label {
+    font-family: "Work Sans Medium Roman","Work Sans Regular Roman","Work Sans";
+    font-weight: 600;
+    font-style: normal;
+    font-size: 16px;
+    color: #004884;
+}
+
+.caja_full {
+    width: 100%;
+    margin-right: 5%;
+}
+
+.font_error {
+    color: red;
+    font-size: 12px;
+}
+
+.accordiondatos {
+    cursor: pointer;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    transition: 0.4s;
+    background-color: white;
+    box-sizing: border-box;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(205, 216, 254, 1);
+    border-radius: 5px;
+    image-orientation: unset;
+}
+
+.paneldatos {
+    left: 0px;
+    top: 10px;
+    width: 100%;
+    background: inherit;
+    background-color: rgba(253, 253, 253, 1);
+    box-sizing: border-box;
+    border-radius: 5px;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    font-size: 16px;
+    text-align: left;
+    line-height: 26px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    padding-bottom: 2rem;
+}
+
+/**componentes especificos*/
+#u4_imgdatosiniciales {
+    float: right;
+    margin-left: 5px;
+    width: 15px;
+    height: 10px;
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+#u4_imgdatosdespedida {
+    float: right;
+    margin-left: 5px;
+    width: 15px;
+    height: 10px;
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+#u4_imgcuerpoconcepto {
+    float: right;
+    margin-left: 5px;
+    width: 15px;
+    height: 10px;
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+.d-inline-block {
+    display: inline-block !important;
+}
+
+.ico-advertencia {
+    background-image: url('../../../Img/u143.svg');
+    background-repeat: no-repeat;
+    width: 13px;
+    height: 12px;
+}
+
+.imgPermisos {
+    display: inline-flex;
+    width: 50px;
+    text-align: center;
+}
+
+.color-red {
+    font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 12px;
+    color: #A80521;
+}
+
+.img-advertencia {
+    border-width: 0px;
+    width: 13px;
+    height: 12px;
+    margin-bottom: 0.25rem !important
+}

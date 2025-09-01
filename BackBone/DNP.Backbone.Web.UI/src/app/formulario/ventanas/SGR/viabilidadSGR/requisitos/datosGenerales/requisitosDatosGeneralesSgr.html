@@ -1,0 +1,81 @@
+﻿<div ng-init="vm.init();">
+    <div id="SGRERRSEC{{vm.nombreComponente}}" class="hidden mb-3 ml-5 errorSeccionRequisitosGenerales" style="text-align: left; font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans'; font-size: 12px; font-style: normal; color: #A80521;"></div>
+    <div class="ui-accordion-container hidden" id="accordion-sgrviabilidadrequisitosdatosgeneralesdatosinicialesverificacion">
+        <div class="alert panel-heading row ui-accordion-header">
+            <button type="button" data-toggle="collapse" data-target="#sgrviabilidadrequisitosdatosgeneralesdatosinicialesverificacion" ng-click="vm.changeArrow('sgrviabilidadrequisitosdatosgeneralesdatosinicialesverificacion')">
+                <span class="d-inline-block" id="alert-sgrviabilidadrequisitosdatosgeneralesdatosinicialesverificacion"></span>
+                <span id="name-capitulo-sgrviabilidadrequisitosdatosgeneralesdatosinicialesverificacion"></span>
+                <span class="hidden" id="id-capitulo-sgrviabilidadrequisitosdatosgeneralesdatosinicialesverificacion"></span>
+                <span id="arrow-sgrviabilidadrequisitosdatosgeneralesdatosinicialesverificacion" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#sgrviabilidadrequisitosdatosgeneralesdatosinicialesverificacion"></span>
+            </button>
+        </div>
+        <div class="collapse" id="sgrviabilidadrequisitosdatosgeneralesdatosinicialesverificacion">
+            <div class="row m-0 mb-3">
+                <div class="col-md-12 ">
+                    <datos-iniciales-sgr callback="vm.notificarGuardado()"
+                                         guardadocomponent="vm.guardadohijos(nombreComponenteHijo)"
+                                         notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                         notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"
+                                         notificarrefresco="vm.notificarRefresco(handler, nombreComponente)"
+                                         notificacioncambios="vm.notificacionCambiosCapitulosExternos(handler, nombreComponente)">
+                    </datos-iniciales-sgr>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ui-accordion-container " id="accordion-sgrviabilidadrequisitosdatosgeneralesdatosadicionalesverificacion">
+        <div class="alert panel-heading row ui-accordion-header">
+            <button type="button" data-toggle="collapse" data-target="#sgrviabilidadrequisitosdatosgeneralesdatosadicionalesverificacion" ng-click="vm.changeArrow('sgrviabilidadrequisitosdatosgeneralesdatosadicionalesverificacion')">
+                <span class="d-inline-block" id="alert-sgrviabilidadrequisitosdatosgeneralesdatosadicionalesverificacion"></span>
+                <span id="name-capitulo-sgrviabilidadrequisitosdatosgeneralesdatosadicionalesverificacion"></span>
+                <span class="hidden" id="id-capitulo-sgrviabilidadrequisitosdatosgeneralesdatosadicionalesverificacion"></span>
+                <span id="arrow-sgrviabilidadrequisitosdatosgeneralesdatosadicionalesverificacion" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#sgrviabilidadrequisitosdatosgeneralesdatosadicionalesverificacion"></span>
+            </button>
+        </div>
+        <div class="collapse" id="sgrviabilidadrequisitosdatosgeneralesdatosadicionalesverificacion">
+            <div class="row m-0 mb-3">
+                <div class="col-md-12 ">
+                    <datos-adicionales-sgr callback="vm.notificarGuardado()"
+                                           guardadocomponent="vm.guardadohijos(nombreComponenteHijo)"
+                                           notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                           notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"
+                                           notificarrefresco="vm.notificarRefresco(handler, nombreComponente)"
+                                           notificacioncambios="vm.notificacionCambiosCapitulosExternos(handler, nombreComponente)"
+                                           notificacioninicio="vm.notificacionInicioHijos(handlerInicio, nombreComponente)">
+                    </datos-adicionales-sgr>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="ui-accordion-container " id="accordion-sgrviabilidadrequisitosdatosgeneralesagregarsectores">
+        <div class="alert panel-heading row ui-accordion-header">
+            <button type="button" data-toggle="collapse" data-target="#sgrviabilidadrequisitosdatosgeneralesagregarsectores" ng-click="vm.changeArrow('sgrviabilidadrequisitosdatosgeneralesagregarsectores')">
+                <span class="d-inline-block" id="alert-sgrviabilidadrequisitosdatosgeneralesagregarsectores"></span>
+                <span id="name-capitulo-sgrviabilidadrequisitosdatosgeneralesagregarsectores"></span>
+                <span class="hidden" id="id-capitulo-sgrviabilidadrequisitosdatosgeneralesagregarsectores"></span>
+                <span id="arrow-sgrviabilidadrequisitosdatosgeneralesagregarsectores" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#sgrviabilidadrequisitosdatosgeneralesagregarsectores"></span>
+            </button>
+        </div>
+        <div class="collapse" id="sgrviabilidadrequisitosdatosgeneralesagregarsectores">
+            <div class="row m-0 mb-3">
+                <div class="col-md-12 ">
+                    <agregar-sectores-sgr callback="vm.notificarGuardado()"
+                                          guardadocomponent="vm.guardadohijos(nombreComponenteHijo)"
+                                          notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                          notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"
+                                          notificarrefresco="vm.notificarRefresco(handler, nombreComponente)"
+                                          notificacioncambios="vm.notificacionCambiosCapitulosExternos(handler, nombreComponente)"
+                                          notificacioninicio="vm.notificacionInicioHijos(handlerInicio, nombreComponente)">
+                    </agregar-sectores-sgr>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,41 @@
+﻿<section ng-init="vm.init();">
+    <div id="SGRERRSEC{{vm.nombreComponente}}" class="hidden mb-3 ml-5 errorSeccionInformacionGeneralViabilidad" style="text-align: left; font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans'; font-size: 12px; font-style: normal; color: #A80521;"></div>
+    <div class="container-fluid inbox">
+        <div class="tab-content">
+            <div class="ui-accordion-container">
+                <div class="alert panel-heading row ui-accordion-header">
+                    <button type="button" data-toggle="collapse" data-target="#sgpviabilidadviabilidadInformacionBasicausuariosinvolucradossintramitesgp" ng-click="vm.changeArrow('sgpviabilidadviabilidadInformacionBasicausuariosinvolucradossintramitesgp')">
+                        <span class="d-inline-block" id="alert-sgpviabilidadviabilidadInformacionBasicausuariosinvolucradossintramitesgp"></span>
+                        <span id="name-capitulo-sgpviabilidadviabilidadInformacionBasicausuariosinvolucradossintramitesgp"></span>
+                        <span class="hidden" id="id-capitulo-sgpviabilidadviabilidadInformacionBasicausuariosinvolucradossintramitesgp"></span>
+                        <span id="arrow-sgpviabilidadviabilidadInformacionBasicausuariosinvolucradossintramitesgp" class="glyphicon glyphicon-chevron-up pull-right" data-toggle="collapse" data-target="#sgpviabilidadviabilidadInformacionBasicausuariosinvolucradossintramitesgp"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="sgpviabilidadviabilidadInformacionBasicausuariosinvolucradossintramitesgp">
+                    <usuarios-involucrados-sin-tramite-sgp tipoconceptoid="{{vm.tipoConceptoId}}"
+                                                           guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                                           notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                           notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)">
+                    </usuarios-involucrados-sin-tramite-sgp>
+                </div>
+            </div>
+            <div id="SGRERRVIABSECT{{vm.nombreComponente}}" class="hidden mb-3 ml-5 errorSeccionInformacionGeneralViabilidad" style="text-align: left; font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans'; font-size: 12px; font-style: normal; color: #A80521;"></div>
+            <div class="ui-accordion-container">
+                <div class="alert panel-heading row ui-accordion-header">
+                    <button type="button" data-toggle="collapse" data-target="#sgpviabilidadviabilidadInformacionBasicaviabilidadsectorialsintramitesgp" ng-click="vm.changeArrow('sgpviabilidadviabilidadInformacionBasicaviabilidadsectorialsintramitesgp')">
+                        <span class="d-inline-block" id="alert-sgpviabilidadviabilidadInformacionBasicaviabilidadsectorialsintramitesgp"></span>
+                        <span id="name-capitulo-sgpviabilidadviabilidadInformacionBasicaviabilidadsectorialsintramitesgp"></span>
+                        <span class="hidden" id="id-capitulo-sgpviabilidadviabilidadInformacionBasicaviabilidadsectorialsintramitesgp"></span>
+                        <span id="arrow-sgpviabilidadviabilidadInformacionBasicaviabilidadsectorialsintramitesgp" class="glyphicon glyphicon-chevron-up pull-right" data-toggle="collapse" data-target="#sgpviabilidadviabilidadInformacionBasicaviabilidadsectorialsintramitesgp"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="sgpviabilidadviabilidadInformacionBasicaviabilidadsectorialsintramitesgp">
+                    <viabilidad-sectorial-sin-tramite-sgp guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                              notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                              notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)">
+                    </viabilidad-sectorial-sin-tramite-sgp>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

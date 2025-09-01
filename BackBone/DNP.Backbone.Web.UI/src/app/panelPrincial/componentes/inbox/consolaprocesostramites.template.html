@@ -1,0 +1,332 @@
+﻿<div class="dashboard">
+
+    <!-- <div id="proyectos" class="project"> -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="titlebar">
+                <span>Consola de procesos </span>
+
+                <!--<span class="buttonbar pull-right">
+
+                    <button type="button" class="btn btn-default btn-md btnFiltroHeader" tooltip-placement="top"
+                            uib-tooltip="Adicionar Columna" ng-click="vm.abrirModalAdicionarColumnas()" tabindex="0">
+                        Adicionar columna
+                    </button>
+                    <button type="button" class="btn btn-default btn-md btnFiltroHeader" ng-click="vm.conmutadorFiltro()"
+                            tooltip-placement="auto" uib-tooltip="Filtro">
+                        Filtro
+                    </button>
+
+                    <a href="" download target="_blank" class="btn btn-default btn-md btnFiltroHeader btnRedondo"
+                       ng-click="vm.downloadPdf()" tooltip-placement="auto" uib-tooltip="Exportar PDF">
+                        PDF
+                    </a>
+                    <a href="" download target="_blank" class="btn btn-default btn-md btnFiltroHeader btnRedondo"
+                       ng-click="vm.downloadExcel()" tooltip-placement="auto" uib-tooltip="Exportar XLS">
+                        XLS
+                    </a>
+
+                </span>-->
+            </div>
+        </div>
+    </div>
+
+
+    <!--<div class="row">
+        <div class="col-md-6">
+
+            <div class="btn-group btn-group-toggle btnsFiltrosAgrupados" data-toggle="buttons">
+                <label class="btn btn-secondary">
+                    <a href="/consolaprocesos/proyectos">Proyectos</a>
+                </label>
+                <label class="btn btn-secondary active">
+                    <a>Trámites</a>
+                </label>
+            </div>&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+    </div>-->
+    <div class="content-macroprocesos-consola">
+        <div class="accion-sin-seleccion">
+            <a href="/consolaprocesos/proyectos">
+                <div class="div-accion-sin-seleccion">
+                    <label style="position: absolute; top: 50%; left: 50%; cursor: pointer; transform: translate(-50%, -50%)">Proyectos</label>
+                </div>
+            </a>
+        </div>
+        <div class="accion-seleccionada" style="left:130px">
+            <a href="/consolaprocesos/tramites">
+                <div class="div-accion-seleccionada">
+                    <label style="position: absolute; top: 50%; left: 50%; cursor:pointer; transform: translate(-50%, -50%)">Trámites</label>
+                </div>
+            </a>
+        </div>
+        <div class="accion-sin-seleccion" style="left:240px">
+            <a href="/consolaprocesos/programacion">
+                <div class="div-accion-sin-seleccion">
+                    <label style="position: absolute; top: 50%; left: 50%; cursor:pointer; transform: translate(-50%, -50%)">Programación</label>
+                </div>
+            </a>
+        </div>
+
+    </div>
+    <!--inicio tabs-->
+    <div class="form-group clearfix">
+        <div class="row">
+            <div class="col-sm-12 tabs radio radio-primary">
+                <ul class="nav nav-tabs tabsFiltro">
+                    <li tabindex="0" class="{{$index == 0 ? 'active' : ''}}"
+                        ng-repeat="tipo in vm.listaTipoEntidad">
+                        <a data-toggle="tab" ng-click="vm.cambioTipoEntidad(tipo.Nombre)"
+                           ng-disabled="{{tipo.Deshabilitado}}" ng-if="!tipo.Deshabilitado"
+                           llamar-funcion-con-tecla="vm.cambioTipoEntidad(tipo.Nombre)">
+                            {{tipo.Descripcion}}
+                        </a>
+                        <a ng-if="tipo.Deshabilitado" class="disabled" disabled>{{tipo.Descripcion}}</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-6">
+                    <p class="mis-procesos-titulo-totales">Trámites / {{vm.tipoEntidad}}. Total: {{ vm.cantidadDeTramites }}</p>
+                </div>
+                <span class="buttonbar pull-right">
+                    <div class="row rowbotonesicoDNP">
+                        <div class="col-md-12 text-right nopadding">
+                            <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Limpiar" ng-click="vm.restablecerBusqueda()">
+                                <span> <img id="icoLimpiarBusqueda" class="icoBusquedasDNP" src="Img/IcolimpiarBusqD.svg"></span>
+                            </button>
+                            <button tooltip-class="customClass" uib-tooltip="Buscar" class="btnicobuscarDNP" type="button" data-toggle="collapse" data-target="#IdPanelBuscador" ng-click="vm.conmutadorFiltro()">
+                                <span> <img id="arrow-IdPanelBuscador" class="icoBusquedas2DNP glyphicon-chevron-down-busqDNP" src="Img/IcoBusqUp.svg" data-toggle="collapse" data-target="#IdPanelBuscador"></span>
+                            </button>
+                            <button class="btnaccion" ng-click="vm.downloadPdf()">
+                                <span> <img class="icoBusquedasDNP" src="Img/etapas/u1089.svg"></span>
+                            </button>
+                            <button class="btnaccion" ng-click="vm.downloadExcel()">
+                                <span> <img class="icoBusquedasDNP" src="Img/etapas/u1090.svg"></span>
+                            </button>
+                        </div>
+                    </div>
+                </span>
+            </div>
+        </div>
+        <!--inicio filtro-->
+        <br />
+        <div class="row panelbuscadorDNP" id="IdPanelBuscador">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="labelbuscadorDNP"> <span>Sector proyecto</span></div>
+                    <select class="form-control selectDNP" ng-model="vm.tramiteFiltro.sectorId.valor" ng-change="vm.listarFiltroEntidadesProyecto()"
+                            ng-options="x.Id as x.Name for x in vm.listaFiltroSectores" name="ddlSector" id="ddlSector">
+                        <option value="" selected>Seleccione...</option>
+                    </select>
+                </div>
+                <div class="col-md-5 SelectBuscadorDNP">
+                    <div class="labelbuscadorDNP"> <span>Entidad</span></div>
+                    <select class="form-control selectDNP" chosen options="vm.ListaEntidadesProyectos" ng-model="vm.tramiteFiltro.entidadProyectoId.valor"
+                            ng-options="x.Id as x.Nombre for x in vm.ListaEntidadesProyectos" name="ddlEntidadProyecto" id="ddlEntidadProyecto" no-results-text="No hay ningún resultado para su búsqueda"
+                            placeholder-text-single="Entidades">
+                        <option value="" selected>Seleccione...</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <div class="labelbuscadorDNP"> <span>Vigencia</span></div>
+                    <select class="form-control selectDNP" ng-model="vm.tramiteFiltro.vigencia.valor"
+                            ng-options="x as x for x in vm.listaFiltroVigencias" name="ddlVigenciasProyecto" id="ddlVigenciasProyecto">
+                        <option value="" selected>Seleccione...</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="labelbuscadorDNP"> <span>Código proceso</span></div>
+                    <input type="text" ng-model="vm.tramiteFiltro.numeroTramite.valor" name="txtIdentificador"
+                           id="txtIdentificador" class="form-control InputBuscadorDNP" />
+                </div>
+                <div class="col-md-2">
+                    <div class="labelbuscadorDNP"> <span>Subproceso</span></div>
+                    <select class="form-control selectDNP" ng-model="vm.tramiteFiltro.flujoId.valor" ng-change="vm.listarFiltroAcciones()"
+                            ng-options="x.Id as x.Nombre for x in vm.listaFiltroFlujos"
+                            name="ddlEstadoDelProyecto" id="ddlEstadoDelProyecto">
+                        <option value="" selected>Seleccione...</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <div class="labelbuscadorDNP"> <span>Paso actual</span></div>
+                    <select class="form-control selectDNP" ng-model="vm.tramiteFiltro.accionId.valor"
+                            ng-options="x.Id as x.Nombre for x in vm.listaFiltroAccion"
+                            name="ddlPasoActual" id="ddlPasoActual">
+                        <option value="" selected>Seleccione...</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <div class="labelbuscadorDNP"> <span>Estado subproceso</span></div>
+                    <select class="form-control selectDNP" ng-model="vm.tramiteFiltro.estadoInstanciaId.valor"
+                            ng-options="x.Id as x.Estado for x in vm.listaFiltroEstadoInstancias" name="ddlEstado"
+                            id="ddlEstado">
+                        <option value="" selected>Seleccione...</option>
+                    </select>
+                </div>
+                <div class="col-md-4 SelectBuscadorDNP">
+                    <div class="labelbuscadorDNP"> <span>Entidad encargada de paso actual</span></div>
+                    <select class="form-control selectDNP" chosen options="vm.listaFiltroEntidades" ng-model="vm.tramiteFiltro.entidadId.valor"
+                            ng-options="x.EntityTypeCatalogOptionId as x.Nombre for x in vm.listaFiltroEntidades" name="ddlEntidad" id="ddlEntidad" no-results-text="No hay ningún resultado para su búsqueda"
+                            placeholder-text-single="Entidades">
+                        <option value="" selected>Seleccione...</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 pull-left text-left" ng-if="vm.BusquedaRealizada">
+                    <span class="spanresultadobusquedaDNP pull-left" ng-if="vm.cantidadDeTramites > 0">
+                        Se encontraron ({{vm.cantidadDeTramites}}) resultados.
+                    </span>
+                    <span class="spanresultadobusqueda2DNP pull-left" style="margin-top: 0px;" ng-if="vm.cantidadDeTramites == 0">
+                        No se encontraron resultados.
+                    </span>
+                </div>
+                <div class="col-md-6 pull-right text-right">
+                    <span class="pull-right">
+                        <button type="button" class=" btnBuscarDNP " tooltip-class="customClass" uib-tooltip="Buscar" ng-click="vm.buscar()">
+                            BUSCAR
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <!--fim filtro-->
+    </div>
+    <!--fim tabs-->
+    <!--inicio grid-->
+    <!--<div class="row grid-proyectos">
+        <div class="col-md-12">
+            <div class="container-table" ui-i18n="{{vm.lang}}">
+
+                <div ng-if="vm.filasFiltradas" class="clearfix grid-icon" id="uigprojecto" ui-grid="vm.gridOptions"
+                     ui-grid-resize-columns ui-grid-pagination ui-grid-expandable>
+                </div>
+
+                <div class="text-center intro-help  min-mh no-result-watermark"
+                     ng-if="!vm.tipoEntidad && !vm.filasFiltradas">
+                    <h4>{{ 'Buscando resultados' }} </h4>
+                </div>
+
+                <div class="text-center intro-help  min-mh no-result-watermark"
+                     ng-if="vm.tipoEntidad && !vm.filasFiltradas">
+                    <h4>
+                        {{ 'No hay ningún resultado para su búsqueda por el tipo de entidad' }} {{ vm.tipoEntidad }}
+                    </h4>
+                </div>
+            </div>
+        </div>
+        <div ng-if="vm.mostrarMensajeProyectos" ng-cloak>
+            <div class="text-center intro-help no-result-watermark">
+                <img src="Img/image-help.png" alt="Sin resultados">
+                <h2 id="idLabelMensajeResultados">{{vm.Mensaje}}</h2>
+            </div>
+        </div>
+    </div>-->
+    <!-- </div> -->
+    <!--Inicio Nueva Grilla-->
+    <div class="row">
+        <div class="" style="padding: 0 !important" ng-repeat="entidad in vm.listaEntidadesGeneral">
+            <div class="alert panel-headingAccDNP">
+                <div class="card card-body pull-left  divAccordionDNP">
+                    <span class="uLabelCampo">{{entidad.sector}}</span> - {{entidad.entidad}}
+                    <p class="panelbtnalertAcordnp">
+                        <button class="btnaccion btnAccordionDNP" type="button" data-toggle="collapse" data-target="#obj_{{entidad.entidadId}}" ng-click="vm.AbrilNivel(entidad.entidadId)">
+                            <img ng-show="entidad.estadoEntidad == '+'" src="Img/btnMas.svg">
+                            <img ng-show="entidad.estadoEntidad == '-'" src="Img/btnMenos.svg">
+                        </button>
+                    </p>
+                </div>
+            </div>
+            <br />
+            <div class="collapse" id="obj_{{entidad.entidadId}}" style="margin-top: -20px;">
+                <div class="LineaEncabezadodivDNP"></div>
+                <div class="row">
+                    <h3 class="tituloEncabezadodivDNP">
+                        Trámites: {{entidad.subGridOptions.data.length}}
+                    </h3>
+                </div>
+
+                <div class="row" style="margin: 0px 0px 0px 0px;">
+                    <div class="col-md-12 ">
+
+                        <table class="TableDNP">
+                            <thead>
+                                <tr>
+                                    <th class="columAcc"></th>
+                                    <th class="textLeftDNP">Código proceso / Sub proceso / Tipo</th>
+                                    <th class="textLeftDNP">Estado / Fecha inicio</th>
+                                    <th class="textLeftDNP">Paso actual / Fecha inicio / Entidad</th>
+                                    <th class="columAcc"></th>
+                                    <th class="columAcc"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="datos in entidad.subGridOptions.data | orderBy:['-fechaPaso','-fecha']">
+                                    <td></td>
+                                    <td class="textLeftDNP" style="max-width:250px">
+                                        <a href="#" ng-click="vm.consultarAccion(datos.IdInstancia, datos.NombreObjetoNegocio, datos.IdObjetoNegocio, datos.entidadId, datos.NombreFlujo, datos)">
+                                            <p style="margin:0">
+                                                {{datos.numeroTramite}}
+                                            </p>
+                                            <p style="margin:0">
+                                                {{datos.NombreFlujo}}
+                                            </p>
+                                            <p style="margin:0">
+                                                {{datos.tipoTramite}}
+                                            </p>
+                                        </a>
+                                    </td>
+                                    <td class="textLeftDNP">
+                                        <p style=" margin: 0">
+                                            {{datos.estadoTramite}}
+                                        </p>
+                                        <p style="margin: 0; font-weight: 600">
+                                            {{datos.fecha | date:'dd-MM-yyyy HH:mm:ss'}}
+                                        </p>
+                                    </td>
+                                    <td class="textLeftDNP">
+                                        <p style="margin: 0">
+                                            {{datos.NombreAccion}} <br />
+                                        </p>
+                                        <p style="margin:0; font-weight:600">
+                                            {{datos.fechaPaso | date:'dd-MM-yyyy HH:mm:ss'}}
+                                        </p>
+                                        <p style="margin:0">
+                                            {{datos.entidadDestino}}
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <a>
+                                            <img src="Img/etapas/u1760.svg" uib-tooltip="Ver historial" ng-click="vm.abrirLogInstancias(datos)" />
+                                        </a>
+                                    </td>
+                                    <td ng-if="!datos.permiteEliminar">
+                                        <a>
+                                            <img src="Img/etapas/u1756.svg" uib-tooltip="Eliminar" />
+                                        </a>
+                                    </td>
+                                    <td ng-if="datos.permiteEliminar">
+                                        <a>
+                                            <img src="Img/IcoDelete.svg" uib-tooltip="Eliminar" ng-click="vm.detenerTramite(datos)" />
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!--Fin Nueva Grilla-->
+
+</div>
+<link href="/Content/ui-gridConsolaDNP.css" rel="stylesheet" />

@@ -1,0 +1,306 @@
+﻿<div id="panelcuerpoconcepto" class="paneldatos" style="background-color: white; overflow-y: scroll;">
+    <form name="cuerpoconcepto" ng-submit="vm.guardarCuerpoConcepto()">
+
+        <div class="col-md-8" style="display:inline-flex;">
+            <span class="textRightDNP" style="font-weight: 400 !important;">&nbsp;</span>
+        </div>
+        <div style="text-align: right;" class="col-md-4">
+            <div class="col-md-12 form-group text-right" style="padding-right:2rem;">
+                <!--<button id="Editar"-->
+                <button ng-if="vm.habilitaBotones" id="Editar" name="Editar"
+                        type="button" class="btneditarDNP"
+                        tooltip-placement="top"
+                        uib-tooltip="Clic para editar la información"
+                        ng-click="vm.ActivarEditar()">
+                    {{vm.Editar}}
+                </button>
+                &nbsp;
+                <!--<button id="Guardar"-->
+                <button ng-if="vm.habilitaBotones" id="Guardar"
+                        type="submit" ng-class="vm.getEstiloBtnGuardar()"
+                        tooltip-placement="top"
+                        uib-tooltip="Guardar"
+                        ng-disabled="vm.disabled"
+                        tabindex="0">
+                    GUARDAR
+                </button>
+            </div>
+        </div>
+
+        <div class="col-md-12  field " ng-init="vm.init();" style="padding-bottom:2rem;">
+
+            <div class="text-left" style="padding-top: 3rem;"> <span style="color: #004884; font-size: 24px; font-weight: 400;">Texto 1: </span> </div>
+            <div class="row" style="padding-top:1rem;">
+                <div class="col-md-6" style="padding-right: 3px; padding-left: 3px;">
+                    <div style="padding-top:2rem;">
+                        <input type="text" name="entidadTramite" class="form-control" ng-readonly="false" ng-model="vm.carta.ListaCartaSecciones[0].ListaCartaCampos[0].DatoValor" required ng-disabled="vm.disabled" />
+                    </div>
+                    <span class="error font_error" data-ng-show="cuerpoconcepto.entidadTramite.$error.required">Texto obligatorio!</span>
+                </div>
+
+                <div class="col-md-4" style="padding-right: 3px; padding-left: 3px;">
+                    <div style="padding-top:2rem;">
+                        <input type="text" name="nombreentidad" class="form-control" style="font-size: 85%" ng-readonly="true" ng-model="vm.carta.Entidad" />
+                    </div>
+                </div>
+                <div class="col-md-1" style="padding-right: 3px; padding-left: 3px;">
+                    <div style="padding-top:2rem;">
+                        <input type="text" name="fechaRadicado" class="form-control" ng-readonly="false" style="font-size: 85%" ng-model="vm.carta.ListaCartaSecciones[0].ListaCartaCampos[1].DatoValor" required ng-disabled="vm.disabled" />
+                    </div>
+                    <span class="error font_error" data-ng-show="cuerpoconcepto.fecha.$error.required">Texto obligatorio!</span>
+                </div>
+                <div class="col-md-1" style="padding-right: 3px; padding-left: 3px;">
+                    <div style="padding-top:2rem;">
+                        <input type="text" name="valorFecha" class="form-control" style="font-size: 85%" ng-readonly="true" ng-model="vm.fechaRadicado" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="padding-top:1rem;">
+                <div class="col-md-2" style="padding-right: 3px; padding-left: 3px;">
+                    <div style="padding-top:1rem;">
+                        <input type="text" name="numeroRadicado" class="form-control" ng-readonly="false" ng-model="vm.carta.ListaCartaSecciones[0].ListaCartaCampos[2].DatoValor" required ng-disabled="vm.disabled" />
+                    </div>
+                    <span class="error font_error" data-ng-show="cuerpoconcepto.ciudad.$error.required">Texto obligatorio!</span>
+                </div>
+                <div class="col-md-4" style="padding-right: 3px; padding-left: 3px;">
+                    <div style="padding-top:1rem;">
+                        <input type="text" name="valorradicado" class="form-control" style="font-size: 85%" ng-readonly="true" ng-model="vm.numeroRadicado" />
+                    </div>
+                </div>
+                <div class="col-md-6" style="padding-right: 3px; padding-left: 3px;">
+                    <div style="padding-top:1rem;">
+                        <input type="text" name="concepto" class="form-control" ng-readonly="false" ng-model="vm.carta.ListaCartaSecciones[0].ListaCartaCampos[3].DatoValor" required ng-disabled="vm.disabled" />
+                    </div>
+                    <span class="error font_error" data-ng-show="cuerpoconcepto.fecha.$error.required">Texto obligatorio!</span>
+                </div>
+            </div>
+
+            <div class="row" style="padding-top:1rem;">
+                <div class="col-md-2" style="padding-right: 3px; padding-left: 3px;">
+                    <div style="padding-top:1rem;">
+                        <input type="text" name="conceptoValor" class="form-control" ng-readonly="true" ng-model="vm.conceptoValor" required />
+                    </div>
+                </div>
+                <div class="col-md-10" style="padding-right: 3px; padding-left: 3px;">
+                    <div style="padding-top:1rem;">
+                        <input type="text" name="recursos" class="form-control" ng-readonly="false" ng-model="vm.carta.ListaCartaSecciones[0].ListaCartaCampos[4].DatoValor" ng-disabled="vm.disabled" />
+                    </div>
+                    <span class="error font_error" data-ng-show="cuerpoconcepto.recursos.$error.required">Texto obligatorio!</span>
+                </div>
+                <!--<div class="col-md-5" style="padding-top:1rem; padding-right: 3px; padding-left: 3px;">
+                    <div style="padding-top:1rem;" class="form-control">
+                        <label name="recursosValor">{{vm.totalContra | currency}}</label>
+                    </div>
+                </div>-->
+            </div>
+
+            <div class="row" style="padding-top:1rem;">
+                <div class="col-md-8" style="padding-right: 3px; padding-left: 3px;">
+                    <div style="padding-top:1rem;">
+                        <input type="text" name="tipoRecurso" class="form-control" ng-readonly="false" ng-model="vm.carta.ListaCartaSecciones[0].ListaCartaCampos[5].DatoValor" required ng-disabled="vm.disabled" />
+                    </div>
+                    <span class="error font_error" data-ng-show="cuerpoconcepto.ciudad.$error.required">Texto obligatorio!</span>
+                </div>
+                <div class="col-md-4" style="padding-right: 3px; padding-left: 3px;">
+                    <div style="padding-top:1rem;">
+                        <input type="text" name="tipoRecursoValor" class="form-control" ng-readonly="true" ng-model="vm.tipoRecurso" required />
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="padding-top:1rem;">
+                <div class="col-md-6" style="padding-right: 3px; padding-left: 3px;">
+                    <div style="padding-top:1rem;">
+                        <input type="text" name="proyectos" class="form-control" ng-readonly="false" ng-model="vm.carta.ListaCartaSecciones[0].ListaCartaCampos[6].DatoValor" required ng-disabled="vm.disabled" />
+                    </div>
+                    <span class="error font_error" data-ng-show="cuerpoconcepto.ciudad.$error.required">Texto obligatorio!</span>
+                </div>
+            </div>
+
+            <!--SECCION PROGRAMAS-->
+            <div class="row" style="padding-top: 3rem; margin-left: 3px; list-style: none;">
+                <div class="col-md-12 row" list-style: none;">
+                    <div class="col-md-12 bordesencillo" style="font-size: 12px; border-top: 2px solid; border-left: 2px solid; border-right: 2px solid; border-color: rgb(255 255 255);">
+                        <div class="row" style="background-color: #eee;">
+                            <div class="col-md-3" style="padding: 0 !important; display: list-item; height: 45px; border-color: rgb(255 255 255);">
+                                <div class="text-left" style="margin-left: 15px;"> <label style="font-weight: 700; color: black;">Sección</label> </div>
+                            </div>
+                            <div class="col-md-1 " style="padding: 0 !important; display: list-item; height: 45px; border-left: 2px solid; border-color: rgb(255 255 255);">
+                                <div class="text-left" style="margin-left: 15px;"> <label>{{vm.datosAutContraCredito.entidadId}}</label> </div>
+                            </div>
+                            <div class="col-md-8 " style="padding: 0 !important; display: list-item; height: 45px; border-left: 2px solid; border-color: rgb(255 255 255);">
+                                <div class="text-left" style="margin-left: 15px; margin-right: 5px;"> <label>{{vm.datosAutContraCredito.entidad}}</label> </div>
+                            </div>
+                        </div>
+
+                        <div ng-repeat="n in vm.proyectosContraCredito">
+                            <div class="row" style="background-color: #eee; list-style: none;">
+                                <div class="col-md-3" style="padding: 0 !important; display: list-item; height: 45px; border-top: 2px solid; border-bottom: 2px solid; border-color: rgb(255 255 255);">
+                                    <div class="text-left" style="margin-left: 15px;"> <label style="font-weight: 700; color: black;">{{n.item}}. Programa</label> </div>
+                                </div>
+                                <div class="col-md-1" style="padding: 0 !important; display: list-item; height: 45px; border-top: 2px solid; border-left: 2px solid; border-bottom: 2px solid; border-color: rgb(255 255 255); ">
+                                    <div class="text-left" style="margin-left: 15px;"> <label>{{n.programaCodigo}}</label> </div>
+                                </div>
+                                <div class="col-md-8" style="padding: 0 !important; display: list-item; height: 45px; border-top: 2px solid; border-left: 2px solid; border-bottom: 2px solid; border-color: rgb(255 255 255);">
+                                    <div class="text-left" style="margin-left: 15px; margin-right: 5px;"> <label>{{n.programa}}</label> </div>
+                                </div>
+                            </div>
+
+                            <div class="row" style="background-color: #eee; list-style: none;">
+                                <div class="col-md-3" style="padding: 0 !important; display: list-item; height: 45px; border-bottom: 2px solid; border-color: rgb(255 255 255);">
+                                    <div class="text-left" style="margin-left: 15px;"> <label style="font-weight: 700; color: black;">a. Subprograma</label> </div>
+                                </div>
+                                <div class="col-md-1" style="padding: 0 !important; display: list-item; height: 45px; border-left: 2px solid; border-bottom: 2px solid; border-color: rgb(255 255 255); ">
+                                    <div class="text-left" style="margin-left: 15px;"> <label>{{n.subProgramaCodigo}}</label> </div>
+                                </div>
+                                <div class="col-md-8" style="padding: 0 !important; display: list-item; height: 45px; border-left: 2px solid; border-bottom: 2px solid; border-color: rgb(255 255 255);">
+                                    <div class="text-left" style="margin-left: 15px; margin-right: 5px;"> <label>{{n.subPrograma}}</label> </div>
+                                </div>
+                            </div>
+
+                            <div class="row" style="background-color: #eee; list-style: none;">
+                                <div class="col-md-3" style="padding: 0 !important;">
+                                    <div class="text-left" style="margin-left: 15px;"> <label style="font-weight: 700; color: black;">Proyecto</label> </div>
+                                </div>
+                                <div class="col-md-1" ng-style="vm.getProgramaHeight()" style="padding: 0 !important; border-left: 2px solid; border-color: rgb(255 255 255);">
+                                    <div class="text-left" style="margin-left: 15px;"> <label>{{n.codigoPresupuestal}}</label> </div>
+                                </div>
+                                <div class="col-md-8" style="padding: 0 !important">
+                                    <div style="border-left: 2px solid; border-bottom: 2px solid; border-color: rgb(255 255 255);">
+                                        <div class="row text-left " style="margin-left: 15px; margin-right: 5px;"> <label>{{n.nombreProyecto}}</label> </div>
+                                    </div>
+                                    <!---Valores Constantes--->
+                                    <div ng-If="vm.mostrarConstantes">
+                                        <div class="col-md-12" style="padding: 0 !important; border-top: 2px solid; border-left: 2px solid; border-color: rgb(255 255 255); ">
+                                            <div class="row text-left " style="margin-left: 15px; margin-right: 5px;"> <label>Valores Constantes</label> </div>
+                                        </div>
+                                        <div class="col-md-4" style="padding: 0 !important; border-left: 2px solid; border-bottom: 2px solid; border-color: rgb(255 255 255);">
+                                            <div class="row text-left" style="margin-left: 15px; color: black;"> <label style="font-weight: 700;">Vigencia</label> </div>
+                                        </div>
+                                        <div class="col-md-4" style="padding: 0 !important; border-left: 2px solid; border-bottom: 2px solid; border-color: rgb(255 255 255);">
+                                            <div class="row text-left" style="margin-left: 15px; color: black;"> <label style="font-weight: 700;">Recursos</label> </div>
+                                        </div>
+                                        <div class="col-md-4" style="padding: 0 !important; border-left: 2px solid; border-bottom: 2px solid; border-color: rgb(255 255 255);">
+                                            <div class="row text-left" style="margin-left: 15px; color: black;"> <label style="font-weight: 700;">Valor </label> </div>
+                                        </div>
+                                        <div ng-repeat="m in vm.proyectosValoresContraCredito">
+                                            <div class="col-md-4" style="padding: 0 !important; border-left: 2px solid; border-color: rgb(255 255 255); ">
+                                                <div class="row text-left" style="margin-left: 15px;"> <label>{{m.vigencia}}</label> </div>
+                                                <div class="row text-left" style="margin-left: 15px;"> <label>{{m.vigencia}}</label> </div>
+                                            </div>
+                                            <div class="col-md-4" style="padding: 0 !important; border-left: 2px solid; border-color: rgb(255 255 255);">
+                                                <div class="row text-left" style="margin-left: 15px;"> <label>Nación </label> </div>
+                                                <div class="row text-left" style="margin-left: 15px;"> <label>Propios </label> </div>
+                                            </div>
+                                            <div class="col-md-4" style="padding: 0 !important; border-left: 2px solid; border-color: rgb(255 255 255);">
+                                                <div class="row text-left" style="margin-left: 15px;"> <label>{{m.valorConstantaNacion | currency}}</label> </div>
+                                                <div class="row text-left" style="margin-left: 15px;"> <label>{{m.valorConstantePropios | currency}}</label> </div>
+                                            </div>
+                                        </div>
+                                        <br />
+                                    </div>
+
+                                    <!---Valores Corrientes--->
+                                    <div style="padding: 0 !important; border-left: 2px solid; border-color: rgb(255 255 255);">
+                                        <div class="row text-left " style="margin-left: 15px; margin-right: 5px;"> <label>Valores Corrientes</label> </div>
+                                    </div>
+                                    <div class="col-md-4" style="padding: 0 !important; border-left: 2px solid; border-bottom: 2px solid; border-color: rgb(255 255 255);">
+                                        <div class="row text-left" style="margin-left: 15px; color: black;"> <label style="font-weight: 700;">Vigencia</label> </div>
+                                    </div>
+                                    <div class="col-md-4" style="padding: 0 !important; border-left: 2px solid; border-bottom: 2px solid; border-color: rgb(255 255 255);">
+                                        <div class="row text-left" style="margin-left: 15px; color: black;"> <label style="font-weight: 700;">Recursos</label> </div>
+                                    </div>
+                                    <div class="col-md-4" style="padding: 0 !important; border-left: 2px solid; border-bottom: 2px solid; border-color: rgb(255 255 255);">
+                                        <div class="row text-left" style="margin-left: 15px; color: black;"> <label style="font-weight: 700;">Valor </label> </div>
+                                    </div>
+                                    <div ng-repeat="m in vm.proyectosValoresContraCredito">
+
+                                        <div class="col-md-4" style="padding: 0 !important; border-left: 2px solid; border-color: rgb(255 255 255);">
+                                            <div class="row text-left" style="margin-left: 15px;"> <label>{{m.vigencia}}</label> </div>
+                                            <div class="row text-left" style="margin-left: 15px;"> <label>{{m.vigencia}}</label> </div>
+                                        </div>
+                                        <div class="col-md-4" style="padding: 0 !important; border-left: 2px solid; border-color: rgb(255 255 255);">
+                                            <div class="row text-left" style="margin-left: 15px;"> <label>Nación </label> </div>
+                                            <div class="row text-left" style="margin-left: 15px;"> <label>Propios </label> </div>
+                                        </div>
+                                        <div class="col-md-4" style="padding: 0 !important; border-left: 2px solid; border-color: rgb(255 255 255);">
+                                            <div class="row text-left" style="margin-left: 15px;"> <label>{{m.valorNacionContra | currency}}</label> </div>
+                                            <div class="row text-left" style="margin-left: 15px;"> <label>{{m.valorPropiosContra | currency}}</label> </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            >
+
+                            <!--{{n.programaCodigo}}-->
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+
+            <!--TEXTO 2-->
+            <div class="text-left" style="padding-top: 3rem; padding-bottom: 2rem;"> <span style="color: #004884; font-size: 24px; font-weight: 400;">Texto 2: </span> </div>
+            <div class="row" style="padding-top:1rem;" ng-If="!vm.disabled">
+                <div text-angular="text-angular" name="texto2" ng-model="vm.carta.ListaCartaSecciones[0].ListaCartaCampos[7].DatoValor" ta-disabled='disabled' style="display: inline-block;"></div>
+            </div>
+            <div class="row" style="padding-top: 1rem;" ng-If="vm.disabled">
+                <div class="col-md-12 bordesencillo" id="texto2"></div>
+            </div>
+
+            <!--TEXTO 3-->
+            <!--<div class="text-left" style="padding-top: 3rem; padding-bottom: 2rem;"> <span style="color: #004884; font-size: 24px; font-weight: 400;">Texto 3: </span> </div>
+
+            <div class="row" style="padding-top:1rem;" ng-If="!vm.disabled">
+                <div class="col-md-6" style="padding-right: 3px; padding-left: 3px;">
+                    <div style="padding-top:1rem;">
+                        <input type="text" name="tipoRecurso" class="form-control" ng-readonly="false" ng-model="vm.carta.ListaCartaSecciones[0].ListaCartaCampos[8].DatoValor" required ng-disabled="vm.disabled" />
+                    </div>
+                    <span class="error font_error" data-ng-show="cuerpoconcepto.ciudad.$error.required">Texto obligatorio!</span>
+                </div>
+                <div class="col-md-6" style="padding-right: 3px; padding-left: 3px;">
+                    <div style="padding-top:1rem;">
+                        <input type="text" name="tipoRecursoValor" class="form-control" ng-readonly="true" ng-model="vm.fechaRadicado" required />
+                    </div>
+                </div>
+            </div>-->
+            <!--<div class="row" style="padding-top:1rem;" ng-If="!vm.disabled">
+                <textarea class="form-control" style="resize: none;" ng-model="vm.carta.ListaCartaSecciones[0].ListaCartaCampos[8].DatoValor"></textarea>
+            </div>-->
+            <!--<div class="row" style="padding-top: 1rem; border: 2px;" ng-If="vm.disabled">
+                <div class="col-md-12 bordesencillo" id="texto3"></div>
+            </div>-->
+
+            <!--TEXTO 3-->
+            <div class="text-left" style="padding-top: 3rem; padding-bottom: 2rem;"> <span style="color: #004884; font-size: 24px; font-weight: 400;">Texto 3: </span> </div>
+            <div class="row" style="padding-top:1rem;" ng-If="!vm.disabled">
+                <text-angular ng-model="vm.carta.ListaCartaSecciones[0].ListaCartaCampos[8].DatoValor" ng-disabled="vm.disabled"></text-angular>
+            </div>
+            <div class="row" style="padding-top: 1rem; border: 2px;" ng-If="vm.disabled">
+                <div class="col-md-12 bordesencillo" id="texto3"></div>
+            </div>
+            <!--<div class="row">
+                <div class="col-md-11 text-left" style="padding-top: 3rem; padding-bottom: 2rem;"> <label class="form-control" style="background-color: #eee;">Las actividades contempladas en el cronograma de contratación de las vigencias futuras se realizarán hasta el, {{vm.fechaFinalVFO}} </label> </div>
+            </div>-->
+            <!--<div class="row" tyle="padding-top:3rem;">
+                <div class="col-md-12">
+                    <span class="buttonbar pull-right">
+                        <button type="submit" class="btn btn-default btn-md" tooltip-placement="top" uib-tooltip="Guardar datos iniciales"
+                                tabindex="0">
+                            Guardar
+                        </button>
+                    </span>
+                </div>
+            </div>-->
+        </div>
+    </form>
+</div>
+
+
+<!--<link rel='stylesheet' href='../../../../../../../Scripts/textangular/textAngular.min.css'>-->
+<script src='../../../../../../../Scripts/textangular/textAngular-rangy.min.js'></script>
+<script src='../../../../../../../Scripts/textangular/textAngular-sanitize.min.js'></script>
+<script src='../../../../../../../Scripts/textangular/textAngular.min.js'></script>

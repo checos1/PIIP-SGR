@@ -1,0 +1,72 @@
+﻿
+<div ng-init="vm.init();">
+    <div class="ui-accordion-container " id="accordion-sgrviabilidadpreviosrecursosfuentessgr">
+        <div class="alert panel-heading row ui-accordion-header">
+            <button type="button" data-toggle="collapse" data-target="#sgrviabilidadpreviosrecursosfuentessgr" ng-click="vm.changeArrow('sgrviabilidadpreviosrecursosfuentessgr')">
+                <span class="d-inline-block" id="alert-sgrviabilidadpreviosrecursosfuentessgr"></span>
+                <span id="name-capitulo-sgrviabilidadpreviosrecursosfuentessgr"></span>
+                <span class="hidden" id="id-capitulo-sgrviabilidadpreviosrecursosfuentessgr"></span>
+                <span id="arrow-sgrviabilidadpreviosrecursosfuentessgr" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#sgrviabilidadpreviosrecursosfuentessgr"></span>
+            </button>
+        </div>
+        <div class="collapse" id="sgrviabilidadpreviosrecursosfuentessgr">
+            <div class="row m-0 mb-3">
+                <div class="col-md-12 ">
+                    <fuentes-sgr callback="vm.notificarGuardado()"
+                                 guardadocomponent="vm.guardado(nombreComponenteHijo)"
+                                 notificacionestado="vm.notificacionEstado(nombreComponente,esValido)"
+                                 notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente,handlerCapitulos)"
+                                 notificacioncambios="vm.notificacionCambiosCapitulosExternos(handler, nombreComponente)"
+                                 notificacioninicio="vm.notificacionInicioHijos(handlerInicio, nombreComponente)">
+                    </fuentes-sgr>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ui-accordion-container " id="accordion-sgrviabilidadpreviosrecursosfuentesnosgr">
+        <div class="alert panel-heading row ui-accordion-header">
+            <button type="button" data-toggle="collapse" data-target="#sgrviabilidadpreviosrecursosfuentesnosgr" ng-click="vm.changeArrow('sgrviabilidadpreviosrecursosfuentesnosgr')">
+                <span class="d-inline-block" id="alert-sgrviabilidadpreviosrecursosfuentesnosgr"></span>
+                <span id="name-capitulo-sgrviabilidadpreviosrecursosfuentesnosgr"></span>
+                <span class="hidden" id="id-capitulo-sgrviabilidadpreviosrecursosfuentesnosgr"></span>
+                <span id="arrow-sgrviabilidadpreviosrecursosfuentesnosgr" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#sgrviabilidadpreviosrecursosfuentesnosgr"></span>
+            </button>
+        </div>
+        <div class="collapse" id="sgrviabilidadpreviosrecursosfuentesnosgr">
+            <div class="row m-0 mb-3">
+                <div class="col-md-12 ">
+                    <fuentes-no-sgr callback="vm.notificarGuardado()"
+                                    guardadocomponent="vm.guardado(nombreComponenteHijo)"
+                                    notificacionestado="vm.notificacionEstado(nombreComponente,esValido)"
+                                    notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente,handlerCapitulos)"
+                                    notificacioncambios="vm.notificacionCambiosCapitulosExternos(handler, nombreComponente)"
+                                    notificacioninicio="vm.notificacionInicioHijos(handlerInicio, nombreComponente)">
+                    </fuentes-no-sgr>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ui-accordion-container " id="accordion-sgrviabilidadpreviosrecursosresumencostos">
+        <div class="alert panel-heading row ui-accordion-header">
+            <button type="button" data-toggle="collapse" data-target="#sgrviabilidadpreviosrecursosresumencostos" ng-click="vm.changeArrow('sgrviabilidadpreviosrecursosresumencostos')">
+                <span class="d-inline-block" id="alert-sgrviabilidadpreviosrecursosresumencostos"></span>
+                <span id="name-capitulo-sgrviabilidadpreviosrecursosresumencostos"></span>
+                <span class="hidden" id="id-capitulo-sgrviabilidadpreviosrecursosresumencostos"></span>
+                <span id="arrow-sgrviabilidadpreviosrecursosresumencostos" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#sgrviabilidadpreviosrecursosresumencostos"></span>
+            </button>
+        </div>
+        <div class="collapse" id="sgrviabilidadpreviosrecursosresumencostos">
+            <div class="row m-0 mb-3">
+                <div class="col-md-12 ">
+                    <resumen-fuentes-costos-sgr callback="vm.notificarGuardado()"
+                                                guardadocomponent="vm.guardado(nombreComponenteHijo)"
+                                                notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                                notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)"
+                                                notificacioncambios="vm.notificacionCambiosCapitulosExternos(handler, nombreComponente)"
+                                                 notificacioninicio="vm.notificacionInicioHijos(handlerInicio, nombreComponente)">
+                    </resumen-fuentes-costos-sgr>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

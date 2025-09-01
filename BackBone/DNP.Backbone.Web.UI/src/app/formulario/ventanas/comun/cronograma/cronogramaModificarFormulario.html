@@ -1,0 +1,628 @@
+﻿<style>
+    textarea {
+        resize: none;
+        width: 100%;
+    }
+
+    input[type="file"] {
+        display: inline;
+    }
+
+    .agregar-actividad {
+        display: block;
+        text-align: end;
+    }
+
+    .button-cancelar-disabled {
+        border-radius: 50px;
+        -moz-border-radius: 50px;
+        -webkit-border-radius: 50px;
+        background: #cecece !important;
+        border-color: transparent;
+        color: #fff !important;
+        text-transform: uppercase;
+        padding-right: 28px;
+        padding-left: 28px;
+        font-size: 16px;
+        font-weight: 500 !important;
+        padding: 2px !important;
+        font-family: "Work Sans Medium Roman", "Work Sans Regular Roman", "Work Sans";
+        font-style: normal;
+        font-size: 14px !important;
+        padding: 0px;
+        border-radius: 5px;
+        width: 25px;
+        height: 100%;
+        position: relative;
+        min-height: 1px;
+        float: right;
+    }
+
+    .dropdown-menu {
+        left: -88px;
+    }
+
+    .borrar-fecha {
+        text-align: center;
+        font-size: 17px;
+        display: block;
+    }
+</style>
+<section>
+    <div class="container-fluid inbox" ng-init="$ctrl.init();">
+        <div class="col-md-12 mt-3 mb-3">
+            <div class="row">
+                <div id="modalidades" class="col-md-5">
+                    <div class="col-md-12 DetacolumnDNP" style="text-align: start">
+                        <span>
+                            Modalidad de contratación:
+                            <label id="Modalidad"></label>
+                            <!--<img
+                              id="u1275_img"
+                              class="imgTituloAccion"
+                              src="Img/u1275.svg"
+                              ng-click="$ctrl.infoModalidades()"
+                            />-->
+                        </span>
+                    </div>
+
+                    <!--<select
+                      class="form-control selectDNP "
+                      name="vModalidad"
+                      id="vModalidad"
+                      ng-model="$ctrl.modalidadContratacionSeleccionada"
+                      ng-value="$ctrl.modalidadContratacionSeleccionada"
+                      ng-change="$ctrl.cambiarModalidad($ctrl.modalidadContratacionSeleccionada)"
+                    >
+                      <option value="0" selected ng-if="$ctrl.valorOriginal == 0">
+                        Seleccione
+                      </option>
+                      <option
+                        ng-repeat="option in $ctrl.modalidadesContratacion"
+                        value="{{option.Id}}"
+                      >
+                        {{option.Nombre}}
+                      </option>
+                    </select>-->
+                </div>
+                <div id="actividades" class="actividades" ng-if="$ctrl.verActividades">
+                    <!--<div >
+
+                        <div id="precontractual" style="padding: 0 !important">
+                            <div class="alert panel-headingAccDNP">
+                                <div class="card card-body pull-left divAccordionDNP">
+                                    <span class="uLabelCampo">Etapa precontractual</span>
+                                    <p class="panelbtnalertAcordnp">
+                                        <button class="btnaccion btnAccordionDNP"
+                                                type="button"
+                                                data-toggle="collapse"
+                                                data-target="#obj1"
+                                                ng-click="$ctrl.togglePrecontractual()">
+                                            <img ng-show="$ctrl.togglePre == '-'"
+                                                 src="Img/btnMas.svg" />
+                                            <img ng-show="$ctrl.togglePre == '+'"
+                                                 src="Img/btnMenos.svg" />
+                                        </button>
+                                    </p>
+
+                                    <div id="objetivo-1"></div>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="collapse" id="obj1">
+                                <div class="LineaEncabezadodivDNP" style="margin-top:-5px"></div>
+                                <h3 class="row tituloEncabezadodivDNP">
+                                    Actividades
+                                    <span class="buttonbar pull-right">
+                                        <button ng-if="$ctrl.editarPrecontractual"
+                                                type="button"
+                                                class="btneditarDNP"
+                                                tooltip-placement="top"
+                                                uib-tooltip="Editar"
+                                                tabindex="0"
+                                                ng-click="$ctrl.HabilitaEditarPrecontractual(false)">
+                                            EDITAR
+                                        </button>
+                                        <button ng-if="!$ctrl.editarPrecontractual"
+                                                type="button"
+                                                class="btneditarDNP"
+                                                tooltip-placement="top"
+                                                uib-tooltip="Cancelar"
+                                                tabindex="0"
+                                                ng-click="$ctrl.cancelarPrecontractual()">
+                                            CANCELAR
+                                        </button>
+                                        <button ng-disabled="$ctrl.editarPrecontractual"
+                                                ng-class="{'btnguardarDisabledDNP': $ctrl.editarPrecontractual, 'btnguardarDNP': !$ctrl.editarPrecontractual}"
+                                                type="button"
+                                                tooltip-placement="top"
+                                                uib-tooltip="Guardar"
+                                                tabindex="0"
+                                                ng-click="$ctrl.guardarPrecontractual()">
+                                            GUARDAR
+                                        </button>
+                                    </span>
+                                </h3>
+                                <table class="TableDNP">
+                                    <thead>
+                                        <tr>
+                                            <th class="columAcc"></th>
+                                            <th class="textLeftDNP" style="width: 65%">Actividad</th>
+                                            <th class="textLeftDNP" style="width: 15%">
+                                                Fecha estimada inicio (mes/año)
+                                            </th>
+                                            <th class="textLeftDNP" style="width: 15%">
+                                                Fecha estimada fin (mes/año)
+                                            </th>
+                                            <th class="columAcc"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="actividad in $ctrl.actividadesPrecontractuales">
+                                            <td>
+                                                <img id="errorFilaPre{{$index}}"
+                                                     style="display: none"
+                                                     class="iconoErrorDNP"
+                                                     src="Img/u4630.svg" />
+                                            </td>
+                                            <td>
+                                                <textarea class="form-control editInputDNP"
+                                                          placeholder="Máximo 500 caracteres"
+                                                          ng-value="actividad.Actividad"
+                                                          ng-model="actividad.Actividad"
+                                                          id="actividadPre{{$index}}"
+                                                          cols="80"
+                                                          rows="2"
+                                                          minlength="1"
+                                                          maxlength="500" style="height: 50px !important;"
+                                                          readonly></textarea>
+                                            </td>
+                                            <td>-->
+                    <!-- <input
+                      class="form-control editInputDNP"
+                      type="date"
+                      id="fechaInicialPre{{$index}}"
+                      name="trip-start"
+                      ng-model="actividad.FechaInicial"
+                      ng-disabled="$ctrl.editarPrecontractual"
+                    /> -->
+                    <!--<div class="dropdown">
+                                      <button class="dropdown-toggle"
+                                              style="
+                      background-color: white;
+                      width: 100%;
+                      border: none;
+                    "
+                                              id="dropdown{{$index}}"
+                                              role="button"
+                                              data-toggle="dropdown"
+                                              data-target="dropdown{{$index}}"
+                                              ng-disabled="$ctrl.editarPrecontractual">
+                                          <div id="fechaInicialPre{{$index}}">
+                                              <p ng-if="!actividad.FechaInicial"
+                                                 style="
+                          width: 80%;
+                          display: inline-block;
+                          text-align: center;
+                        ">
+                                                  MM/AAAA
+                                              </p>
+                                              <p style="
+                          width: 80%;
+                          display: inline-block;
+                          text-align: center;
+                        ">
+                                                  {{ actividad.FechaInicial| date:'MM/yyyy' }}
+                                              </p>
+                                              <span style="display: inline-block">
+                                                  <i class="glyphicon glyphicon-calendar"></i>
+                                              </span>
+                                          </div>
+                                      </button>
+                                      <ul class="dropdown-menu"
+                                          role="menu"
+                                          aria-labelledby="dLabel">
+                                          <datetimepicker data-ng-model="actividad.FechaInicial"
+                                                          data-datetimepicker-config="{ dropdownSelector: '#dropdown',startView: 'month', minView: 'month' }"></datetimepicker>
+                                          <a class="borrar-fecha"
+                                             href="#"
+                                             ng-click="actividad.FechaInicial = null">Borrar</a>
+                                      </ul>
+                                  </div>
+                              </td>
+
+                              <td>-->
+                    <!-- <input
+                      class="form-control editInputDNP"
+                      type="date"
+                      id="fechaFinalPre{{$index}}"
+                      name="trip-start"
+                      ng-model="actividad.FechaFinal"
+                      ng-disabled="$ctrl.editarPrecontractual"
+                    /> -->
+                    <!--<div class="dropdown">
+                                                    <button class="dropdown-toggle"
+                                                            style="
+                                    background-color: white;
+                                    width: 100%;
+                                    border: none;
+                                  "
+                                                            id="dropdown{{$index}}"
+                                                            role="button"
+                                                            data-toggle="dropdown"
+                                                            data-target="dropdown{{$index}}"
+                                                            ng-disabled="$ctrl.editarPrecontractual">
+                                                        <div id="fechaFinalPre{{$index}}">
+                                                            <p ng-if="!actividad.FechaFinal"
+                                                               style="
+                                        width: 80%;
+                                        display: inline-block;
+                                        text-align: center;
+                                      ">
+                                                                MM/AAAA
+                                                            </p>
+                                                            <p style="
+                                        width: 80%;
+                                        display: inline-block;
+                                        text-align: center;
+                                      ">
+                                                                {{ actividad.FechaFinal| date:'MM/yyyy' }}
+                                                            </p>
+                                                            <span style="display: inline-block">
+                                                                <i class="glyphicon glyphicon-calendar"></i>
+                                                            </span>
+                                                        </div>
+                                                    </button>
+                                                    <ul class="dropdown-menu"
+                                                        role="menu"
+                                                        aria-labelledby="dLabel">
+                                                        <datetimepicker data-ng-model="actividad.FechaFinal"
+                                                                        data-datetimepicker-config="{ dropdownSelector: '#dropdown',startView: 'month', minView: 'month' }"></datetimepicker>
+                                                        <a class="borrar-fecha"
+                                                           href="#"
+                                                           ng-click="actividad.FechaFinal = null">Borrar</a>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div id="mensajesAlertaPrecontractual" style="text-align: start">
+                            <span id="mensajeAlertaPrecontractual"
+                                  class="img iconadverdnp"
+                                  ng-if="$ctrl.mensajesErrorPre.length > 0">
+                                <img src="Img/u4630.svg" />
+                            </span>
+                            <p id="mensajeAlertaPrecontractual"
+                               class="messagealerttableDNP"
+                               ng-repeat="mensaje in $ctrl.mensajesErrorPre">
+                                {{mensaje}}
+                            </p>
+                        </div>
+                    </div>-->
+                    <!-- Contractual -->
+                    <div>
+                        <div id="contractual" style="padding: 0 !important">
+                            <div class="col-md-12" style="display:inline-flex;">
+                                <span style="color: #004884; font-size: 24px; font-weight: 400;">Etapa contractual - actividades</span>
+
+                                <div ng-click="vm.abrirTooltipCont()" style="padding-left: 1rem; padding-top: 1rem; ">
+                                    <svg class="mi-card__tooltip-icon" xmlns="http://www.w3.org/2000/svg" width="17.037" height="17.037" viewBox="0 0 17.037 17.037">
+                                        <g id="Grupo_5110" data-name="Grupo 5110" transform="translate(0 0)">
+                                            <path id="Caminho_9243" data-name="Caminho 9243" d="M8.552,0A8.552,8.552,0,0,0,0,8.485a8.609,8.609,0,0,0,8.552,8.552A8.519,8.519,0,0,0,8.552,0Zm0,14.542a1,1,0,1,1,1-1A1,1,0,0,1,8.552,14.542Zm1.769-6.136A2.663,2.663,0,0,0,9.55,10.22v.262a1,1,0,0,1-2,0V10.22A4.614,4.614,0,0,1,9.141,6.8,1,1,0,1,0,7.554,5.99a1,1,0,0,1-2,0,2.995,2.995,0,1,1,4.764,2.416Z" transform="translate(0 0)" fill="#36c"></path>
+                                        </g>
+                                    </svg>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <br />
+
+                        <div>
+                            <div style="margin-top:-5px">
+                                <span class="buttonbar pull-right">
+                                    <button ng-if="$ctrl.editarContractual"
+                                            type="button"
+                                            class="btneditarDNP"
+                                            tooltip-placement="top"
+                                            uib-tooltip="Editar"
+                                            tabindex="0"
+                                            ng-click="$ctrl.HabilitaEditarContractual(false)">
+                                        EDITAR
+                                    </button>
+                                    <button ng-if="!$ctrl.editarContractual"
+                                            type="button"
+                                            class="btneditarDNP"
+                                            tooltip-placement="top"
+                                            uib-tooltip="Cancelar"
+                                            tabindex="0"
+                                            ng-click="$ctrl.cancelarContractual(false)">
+                                        CANCELAR
+                                    </button>
+                                    <button ng-disabled="$ctrl.editarContractual"
+                                            ng-class="{'btnguardarDisabledDNP': $ctrl.editarContractual, 'btnguardarDNP': !$ctrl.editarContractual}"
+                                            type="button"
+                                            tooltip-placement="top"
+                                            uib-tooltip="Guardar"
+                                            tabindex="0"
+                                            ng-click="$ctrl.guardarContractual()">
+                                        GUARDAR
+                                    </button>
+                                </span>
+                            </div>
+                            <div class="col-md-12" style="display:inline-flex;">
+                                <span>Las actividades cumplen con  parámetros  de redacción.</span>
+                            </div>
+                            <table class="TableDNP">
+                                <thead>
+                                    <tr>
+                                        <th class="columAcc"></th>
+                                        <th class="textLeftDNP" style="width: 65%">Actividad</th>
+                                        <th class="textLeftDNP" style="width: 15%">
+                                            Fecha estimada inicio (mes/año)
+                                        </th>
+                                        <th class="textLeftDNP" style="width: 15%">
+                                            Fecha estimada fin (mes/año)
+                                        </th>
+                                        <th class="columAcc"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="actividad in $ctrl.actividadesContractuales">
+                                        <td>
+                                            <img id="errorFilaCon{{$index}}"
+                                                 style="display: none"
+                                                 class="iconoErrorDNP"
+                                                 src="Img/u4630.svg" />
+                                        </td>
+                                        <td>
+                                            <textarea class="form-control editInputDNP"
+                                                      placeholder="Máximo 500 caracteres"
+                                                      ng-value="actividad.Actividad"
+                                                      ng-model="actividad.Actividad"
+                                                      id="actividadCon{{$index}}"
+                                                      cols="80"
+                                                      rows="2"
+                                                      minlength="1"
+                                                      maxlength="500" style="height: 50px !important;"
+                                                      ng-disabled="$ctrl.editarContractual"></textarea>
+                                        </td>
+                                        <td>
+                                            <!-- <input
+                                              class="form-control editInputDNP"
+                                              type="date"
+                                              id="fechaInicialCon{{$index}}"
+                                              name="trip-start"
+                                              ng-model="actividad.FechaInicial"
+                                              ng-disabled="$ctrl.editarContractual"
+                                            /> -->
+                                            <div class="dropdown">
+                                                <button class="dropdown-toggle"
+                                                        style="
+                            background-color: white;
+                            width: 100%;
+                            border: none;
+                          "
+                                                        id="dropdownCon{{$index}}"
+                                                        role="button"
+                                                        data-toggle="dropdown"
+                                                        data-target="dropdownCon{{$index}}"
+                                                        ng-disabled="$ctrl.editarContractual">
+                                                    <div id="fechaInicialCon{{$index}}">
+                                                        <p ng-if="!actividad.FechaInicial"
+                                                           style="
+                                width: 80%;
+                                display: inline-block;
+                                text-align: center;
+                              ">
+                                                            MM/AAAA
+                                                        </p>
+                                                        <p style="
+                                width: 80%;
+                                display: inline-block;
+                                text-align: center;
+                              ">
+                                                            {{ actividad.FechaInicial| date:'MM/yyyy' }}
+                                                        </p>
+                                                        <span style="display: inline-block">
+                                                            <i class="glyphicon glyphicon-calendar"></i>
+                                                        </span>
+                                                    </div>
+                                                </button>
+                                                <ul class="dropdown-menu"
+                                                    role="menu"
+                                                    aria-labelledby="dLabel">
+                                                    <datetimepicker data-ng-model="actividad.FechaInicial"
+                                                                    data-datetimepicker-config="{ dropdownSelector: '#dropdown',startView: 'month', minView: 'month' }"></datetimepicker>
+                                                    <a class="borrar-fecha"
+                                                       href="#"
+                                                       ng-click="actividad.FechaInicial = null">Borrar</a>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <!-- <input
+                                              class="form-control editInputDNP"
+                                              type="date"
+                                              id="fechaFinalCon{{$index}}"
+                                              name="trip-start"
+                                              ng-model="actividad.FechaFinal"
+                                              ng-disabled="$ctrl.editarContractual"
+                                            /> -->
+                                            <div class="dropdown">
+                                                <button class="dropdown-toggle"
+                                                        style="
+                            background-color: white;
+                            width: 100%;
+                            border: none;
+                          "
+                                                        id="dropdownCon{{$index}}"
+                                                        role="button"
+                                                        data-toggle="dropdown"
+                                                        data-target="dropdownCon{{$index}}"
+                                                        ng-disabled="$ctrl.editarContractual">
+                                                    <div id="fechaFinalCon{{$index}}">
+                                                        <p ng-if="!actividad.FechaFinal"
+                                                           style="
+                                width: 80%;
+                                display: inline-block;
+                                text-align: center;
+                              ">
+                                                            MM/AAAA
+                                                        </p>
+                                                        <p style="
+                                width: 80%;
+                                display: inline-block;
+                                text-align: center;
+                              ">
+                                                            {{ actividad.FechaFinal| date:'MM/yyyy' }}
+                                                        </p>
+                                                        <span style="display: inline-block">
+                                                            <i class="glyphicon glyphicon-calendar"></i>
+                                                        </span>
+                                                    </div>
+                                                </button>
+                                                <ul class="dropdown-menu"
+                                                    role="menu"
+                                                    aria-labelledby="dLabel">
+                                                    <datetimepicker data-ng-model="actividad.FechaFinal"
+                                                                    data-datetimepicker-config="{ dropdownSelector: '#dropdown',startView: 'month', minView: 'month' }"></datetimepicker>
+                                                    <a class="borrar-fecha"
+                                                       href="#"
+                                                       ng-click="actividad.FechaFinal = null">Borrar</a>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                        <td class="textCenterDNP">
+                                            <button class="btnaccion"
+                                                    tooltip-class="customClass"
+                                                    uib-tooltip="Eliminar Registro"
+                                                    ng-click="$ctrl.eliminarRegistro($index)"
+                                                    ng-if="!$ctrl.editarContractual">
+                                                <span> <img src="Img/IcoDelete.svg" /></span>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <a class="agregar-actividad"
+                               ng-click="$ctrl.agregarActividad()"
+                               ng-hide="$ctrl.editarContractual"
+                               style="text-align: right !important">AGREGAR ACTIVIDAD</a>
+                        </div>
+                        <div id="mensajesAlertaContractual" style="text-align: start">
+                            <span id="mensajeAlertaContractual"
+                                  class="img iconadverdnp"
+                                  ng-if="$ctrl.mensajesErrorCon.length > 0">
+                                <img src="Img/u4630.svg" />
+                            </span>
+                            <p id="mensajeAlertaContractual"
+                               class="messagealerttableDNP"
+                               ng-repeat="mensaje in $ctrl.mensajesErrorCon">
+                                {{mensaje}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- //archivo -->
+        <div class="importar-archivo" ng-if="$ctrl.verActividades">
+            <div class="row">
+                <div class="col-md-12 DetacolumnDNP" style="text-align: start">
+                    <span>
+                        Archivo plantilla carga masiva
+                        <img id="u1275_img"
+                             class="imgTituloAccion"
+                             src="Img/u1275.svg"
+                             ng-click="$ctrl.infoPlantilla()" />
+                    </span>
+                    <button type="button"
+                            class="btn btn-link btn-md buttonhiperDNP"
+                            ng-click="$ctrl.descargarPlantilla()">
+                        DESCARGAR PLANTILLA
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="divpanelcargarchivoDNP">
+                        <label for="subirArchivoRepro"
+                               class="btncargarch"
+                               uib-tooltip="Editar">
+                            EXAMINAR
+                            <!-- <button class="btncargarch" type="button" uib-tooltip="Editar">
+                            </button> -->
+                        </label>
+                        <input type="file"
+                               style="opacity: 0"
+                               id="subirArchivoRepro"
+                               name="subirArchivoRepro"
+                               ng-model="$ctrl.files"
+                               ng-change="$ctrl.importarArchivo(event)"
+                               accept=".csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" />
+
+                        <span ng-if="$ctrl.files.length>0" style="width: auto">{{$ctrl.files[0].name}}</span>
+                        <button ng-disabled="!$ctrl.esArchivoValido"
+                                ng-class="{'button-cancelar-disabled': !$ctrl.esArchivoValido, 'btncancearch': $ctrl.esArchivoValido}"
+                                type="button"
+                                uib-tooltip="Cancelar"
+                                ng-click="$ctrl.limpiarArchivo()">
+                            X
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <span class="buttonbar pull-right">
+                        <button ng-disabled="!$ctrl.files.length > 0"
+                                type="button"
+                                ng-class="{'btnguardarDisabledDNP': !$ctrl.files.length > 0 || $ctrl.esArchivoValido, 'btnguardarDNP': $ctrl.files.length > 0 || !$ctrl.esArchivoValido}"
+                                tooltip-placement="top"
+                                uib-tooltip="Editar"
+                                tabindex="0"
+                                ng-click="$ctrl.validarArchivo()">
+                            VALIDAR
+                        </button>
+                        <button ng-disabled="!$ctrl.esArchivoValido"
+                                type="button"
+                                ng-class="{'btnguardarDisabledDNP': !$ctrl.esArchivoValido, 'btnguardarDNP': $ctrl.esArchivoValido}"
+                                tooltip-placement="top"
+                                uib-tooltip="Cancelar"
+                                tabindex="0"
+                                ng-click="$ctrl.limpiarArchivo()">
+                            CANCELAR
+                        </button>
+                        <button ng-disabled="!$ctrl.esArchivoValido"
+                                ng-class="{'btnguardarDisabledDNP': !$ctrl.esArchivoValido, 'btnguardarDNP': $ctrl.esArchivoValido}"
+                                type="button"
+                                tooltip-placement="top"
+                                uib-tooltip="Cargar"
+                                tabindex="0"
+                                ng-click="$ctrl.cargarArchivo()">
+                            CARGAR
+                        </button>
+                    </span>
+                </div>
+            </div>
+            <div id="mensajesAlertaArchivos" style="text-align: start">
+                <span id="mensajeAlertaArchivo"
+                      class="img iconadverdnp"
+                      ng-if="$ctrl.mensajesErrorArchivo.length > 0">
+                    <img src="Img/u4630.svg" />
+                </span>
+                <p id="mensajeAlertaArchivo"
+                   class="messagealerttableDNP"
+                   ng-repeat="mensaje in $ctrl.mensajesErrorArchivo">
+                    {{mensaje}}
+                </p>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+<link href="/Content/ui-gridDNP.css" rel="stylesheet" />
+

@@ -1,0 +1,20 @@
+﻿<div class="row">
+    <div id="dvBotones" class="col-md-12" ng-show="vm.modelo.nombreAccion != ''">
+        <div class="col-xs-1 divAccionPasoDevolver">
+            <button ng-disabled="vm.modelo.ocultarDevolver || vm.estado == 'Ejecutada'" class="btnAccionPaso btnDevolver" ng-click="vm.seleccionarAccionDevolver()">DEVOLVER</button>
+        </div>
+        <div class="col-xs-10 uTituloAccion">
+            {{vm.modelo.nombreAccion}}  <img class="imgTituloAccion" src="Img/u4.svg" ng-click="vm.abrirMensajeInformacion()" />
+            <span class="pull-right">
+                <span class="DetalleFormularioDNP" style="color: #ffffff" has-claim has-opciones="['viabilidad:botones']">
+                    Revisión: {{vm.revisiones}}
+                </span>
+                <img class="imgViabilidad" ng-src="Img/etapas/u1089.svg" uib-tooltip="PDF" ng-click="vm.descargarFicha()" has-claim has-opciones="['viabilidad:botones']" />
+                <img class="imgViabilidad" ng-src="Img/etapas/u1759.svg" uib-tooltip="Historial de observaciones generales" ng-click="vm.verLog()" />
+            </span>
+        </div>
+        <div class="col-xs-1 divAccionPasoSiguiente">
+            <button class="btnAccionPaso btnSiguiente" ng-click="vm.guardarAccion()" ng-disabled="vm.modelo.disabled">{{vm.modelo.nombreAccionSiguiente}}</button>
+        </div>
+    </div>
+</div>

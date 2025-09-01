@@ -1,0 +1,559 @@
+﻿<style>
+    .d-none {
+        display: none;
+    }
+
+    .content-title {
+        padding-left: 50px;
+    }
+
+    .content-ayuda {
+        font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif;
+        font-weight: 500;
+        font-style: normal;
+        font-size: 14px;
+        color: #4B4B4B;
+    }
+
+    .requiere-niveles {
+        padding: 3px 10px;
+        font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif;
+        font-weight: 500;
+        font-size: 16px;
+        color: #004884;
+        text-align: left;
+        background-color: rgba(230, 239, 253, 1);
+    }
+
+    .objetivo-header {
+        background-color: rgba(249, 252, 253, 1);
+        box-sizing: border-box;
+        border-width: 2px;
+        border-style: solid;
+        border-color: rgba(230, 239, 253, 1);
+        padding: 25px 10px 25px 55px;
+    }
+
+    .objetivo-header {
+        text-align: left;
+    }
+
+        .objetivo-header h4.header-titulo {
+            color: #004884;
+            font-family: 'Work Sans SemiBold Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            margin: 0
+        }
+
+        .objetivo-header p.header-content {
+            font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif;
+            font-weight: 400;
+            font-size: 16px;
+            color: #4B4B4B;
+            margin: 0;
+        }
+
+    .objetivo-productos .divAccordionDNP {
+        border-top: 0;
+        max-height: fit-content;
+    }
+
+    .productos-nivel-1 .LineaEncabezadodivDNP {
+        margin-left: 15px;
+    }
+
+    .ico-check {
+        color: #004884;
+    }
+
+    .f-16 {
+        font-size: 16px;
+    }
+
+    .font-total {
+        font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif;
+        font-weight: 400;
+        color: #4B4B4B;
+    }
+
+    .font-Actividades {
+        font-family: 'Work Sans Medium', 'Work Sans Regular Roman', 'Work Sans', sans-serif;
+        font-weight: 500;
+        font-style: normal;
+        font-size: 16px;
+        color: #004884;
+        line-height: 22px;
+        margin-left: 97px !important;
+    }
+
+    .list-Actividades {
+        background-color: white;
+        box-sizing: border-box;
+        border-width: 2px;
+        border-style: solid;
+        border-color: rgba(230, 239, 253, 1);
+        border-radius: 0px;
+        font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif;
+        font-style: normal;
+        margin-left: 54px;
+        margin-right: 10px;
+    }
+
+    .progProd-list-Actividades-simples {
+        background-color: white;
+        box-sizing: border-box;
+        border-width: 2px;
+        border-style: solid;
+        border-color: rgba(230, 239, 253, 1);
+        border-radius: 0px;
+        font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif;
+        font-style: normal;
+    }
+
+    .divisor-Actividades {
+        border-width: 0px;
+        position: absolute;
+        left: 56px;
+        top: 12px;
+        width: 29px;
+        height: 17px;
+        background: inherit;
+        background-color: rgba(255, 255, 255, 1);
+        box-sizing: border-box;
+        border-width: 2px;
+        border-style: solid;
+        border-color: rgba(51, 102, 204, 1);
+        border-top: 0px;
+        border-right: 0px;
+        border-radius: 0px;
+        border-top-left-radius: 0px;
+        border-bottom-right-radius: 0px;
+        -moz-box-shadow: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
+
+    .contenedor-Actividades {
+        position: relative;
+    }
+
+    /* Modificaciones estructura */
+    .productos-nivel-1 .tituloEncabezadodivDNP {
+        margin-left: 95px !important;
+        width: auto !important;
+    }
+
+    .productos-nivel-1-content .panel-headingAcc2DNP {
+        height: auto !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+
+    .productos-nivel-1-content .LineaEncabezado2divDNP {
+        margin-top: 0px !important;
+        margin-left: 16px !important;
+        width: 145px !important;
+    }
+
+    .productos-nivel-1-content .LineaEncabezado3divDNP {
+        margin-top: 0px !important;
+        margin-left: 16px !important;
+        width: 190px !important;
+    }
+
+    .productos-nivel-1-content .LineaEncabezado4divDNP {
+        margin-top: 0px !important;
+        margin-left: 16px !important;
+        width: 240px !important;
+    }
+
+    .productos-nivel-1-content .tituloEncabezadodiv2DNP {
+        margin-left: 145px !important;
+        width: auto !important;
+    }
+
+    .productos-nivel-1-content .tituloEncabezadodiv3DNP {
+        margin-left: 205px !important;
+        width: auto !important;
+    }
+
+    .productos-nivel-1-content .tituloEncabezadodiv4DNP {
+        margin-left: 255px !important;
+        width: auto !important;
+    }
+
+    .productos-nivel-1 .btneditarDNP {
+        width: auto !important;
+    }
+
+    .nivel-sin-actividad {
+        height: 130px;
+        background-color: rgba(249, 252, 253, 1);
+        border-width: 2px;
+        border-style: solid;
+        border-color: rgba(230, 239, 253, 1);
+        border-radius: 0px;
+        -moz-box-shadow: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 14px;
+        color: #4B4B4B;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .title-actividades {
+        margin-bottom: 20px;
+    }
+
+    .align-selft-center {
+        align-self: center;
+    }
+
+    .d-flex {
+        display: flex;
+    }
+
+    .detalle-nivel-1 {
+        margin-left: 55px;
+    }
+
+        .detalle-nivel-1 > span {
+            margin-left: 0;
+        }
+
+    .detalle-nivel {
+        margin-left: 55px;
+    }
+
+        .detalle-nivel > span {
+            margin-left: 0;
+        }
+
+    .panelbtnalertAcordnp {
+        display: inline-flex;
+        margin: 10px;
+    }
+
+    .errores-contenedor {
+        margin: 15px 0 0 5px;
+    }
+
+    .detalle-actividad-cell {
+        height: 70px;
+        overflow-y: auto;
+    }
+
+    .actividad-width-80 {
+        width: 100px;
+    }
+
+    .actividad-width-180 {
+        width: 180px;
+    }
+
+    .actividad-width-90 {
+        width: 120px;
+    }
+</style>
+
+<section class="container-fluid inbox" ng-init="vm.init();">
+    <!--<h3 class="text-left ui-seccion-title mb-5">Desglose de actividades <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg" ng-click="vm.abrirMensajeQueEsEsto()"></h3>-->
+    <br />
+    <div class="objetivos-container">
+
+        <div class="pr-3" ng-repeat="objetivos in vm.listadoObjProdNiveles.Objetivos" ng-init="objetivoIndex = $index+1">
+            <div class="mb-4">
+                <!-- Objetivos-->
+                <div class="objetivo-header">
+
+                    <h4 class="header-titulo">
+                        <span ng-if="objetivos.presentaError">
+                            <img class="img img-advertencia" src="Img/u11.svg" />
+                        </span>
+                        Objetivo {{objetivoIndex}}
+                    </h4>
+                    <p class="header-content">
+                        <span ng-if="objetivos.VerMas == 0">{{objetivos.Objetivo}} <a ng-click="vm.verNombreCompleto(objetivos.ObjetivoEspecificoId,objetivos.VerMas,1)"> ...VER MÁS</a></span>
+                        <span ng-if="objetivos.VerMas == 1">{{objetivos.ObjetivoEspecifico}} <a ng-click="vm.verNombreCompleto(objetivos.ObjetivoEspecificoId,objetivos.VerMas,1)"> ...VER MENOS</a></span>
+                        <span ng-if="objetivos.VerMas == 2"> {{objetivos.ObjetivoEspecifico}}</span>
+                    </p>
+                </div>
+                <!-- Productos-->
+                <div class="objetivo-productos" ng-repeat="productos in objetivos.Productos" ng-init="productoIndex = $index+1">
+                    <div class="card card-body divAccordionDNP">
+                        <div class="content-title">
+                            <div class="mb-2">
+                                <span ng-if="productos.presentaError">
+                                    <img class="img img-advertencia" src="Img/u11.svg" />
+                                </span>
+                                <span class="uLabelCampo">Producto {{objetivoIndex}}.{{productoIndex}}</span>
+
+                                <p class="header-content">
+                                    <span ng-if="productos.VerMas == 0">{{productos.Producto}} <a ng-click="vm.verNombreCompleto(productos.ProductoId,productos.VerMas,0)"> ...VER MÁS</a></span>
+                                    <span ng-if="productos.VerMas == 1">{{productos.NombreProducto}} <a ng-click="vm.verNombreCompleto(productos.ProductoId,productos.VerMas,0)"> ...VER MENOS</a></span>
+                                    <span ng-if="productos.VerMas == 2"> {{productos.NombreProducto}}</span>
+                                </p>
+
+                                <!--<span id="progProd-producto-nombre-{{productoIndex}}-min"> {{vm.CortarTexto(productos.NombreProducto, 200)}}</span>
+                                <span class="hidden" id="progProd-producto-nombre-{{productoIndex}}-max"> {{productos.NombreProducto}}</span>
+                                <a id="progProd-producto-nombre-{{productoIndex}}-val"
+                                   ng-if="vm.ContarTexto(productos.NombreProducto) > 90"
+                                   ng-click="vm.verNombreCompleto('progProd-producto-nombre-', productoIndex)">VER MÁS</a>-->
+
+
+                            </div>
+                            <div class="mb-2">
+                                <span class="uLabelCampo">Etapa: </span>
+                                <span>{{productos.Etapa}}</span>
+
+                                <span class="uLabelCampo">Costo total del producto: </span>
+                                <span>{{productos.CostoProducto | currency:"$"}}</span>
+
+                                <span class="uLabelCampo">Costo unitario: </span>
+                                <span>{{productos.CostoUnitario | currency:"$"}}</span>
+
+                                <span class="uLabelCampo">Duración promedio en meses: </span>
+                                <span>{{productos.DuracionPromedio}}</span>
+
+                                <span class="uLabelCampo">Fecha inicio: </span>
+                                <span>{{productos.FechaInicio | date:"dd/MM/yyyy"}}</span>
+
+                                <span class="uLabelCampo">Fecha fin: </span>
+                                <span>{{productos.FechaFin | date:"dd/MM/yyyy"}}</span>
+
+                            </div>
+                        </div>
+                        <div class="panelbtnalertAcordnp">
+                            <button id="button-{{productos.IdCompuesto}}"
+                                    class="btnaccion btnAccordionDNP"
+                                    type="button"
+                                    data-toggle="collapse"
+                                    data-target="#progProd-productos-nivel-1-{{productos.ProductoId}}"
+                                    ng-click="vm.abrilNivel('progProd-'+productos.ProductoId)">
+                                <img src="Img/btnMas.svg" id="progProd-{{productos.ProductoId}}-mas">
+                                <img class="hidden" src="Img/btnMenos.svg" id="progProd-{{productos.ProductoId}}-menos">
+                            </button>
+                            <span class="errores-contenedor d-none" id="error-button-progProd-{{productos.ProductoId}}">
+                                <span class="img iconadverdnp"><img src="Img/u4630.svg"> </span>
+                                <span class="messagealerttableDNP" id="error-button-progProd-{{productos.ProductoId}}-txt"></span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Nivel 1 - Desplegado -->
+                    <div class="collapse productos-nivel-1" id="progProd-productos-nivel-1-{{productos.ProductoId}}">
+                        <div class="LineaEncabezadodivDNP mt-0"></div>
+                        <div class="inlineBlock">
+                            <div class="tituloEncabezadodivDNP">
+                                Indicador principal:
+                                <span id="progProd-objetivo-producto-indicador-{{productoIndex}}-min" class="ml-4 font-total">{{vm.CortarTexto(productos.IndicadorPrincipal, 200)}}</span>
+                                <span id="progProd-objetivo-producto-indicador-{{productoIndex}}-max" class="ml-4 font-total hidden">{{productos.IndicadorPrincipal}}</span>
+
+                                Unidad de medida:
+                                <span id="progProd-objetivo-producto-indicador-{{productoIndex}}-min" class="ml-4 font-total">{{productos.UnidadMedidaIndicadorPrincipal}}</span>
+
+                                Meta total indicador principal:
+                                <span id="progProd-objetivo-producto-indicador-{{productoIndex}}-min" class="ml-4 font-total">{{productos.MetaTotalIndicadorPrincipal | number:4}}</span>
+
+                                Es acumulativo:
+                                <span id="progProd-objetivo-producto-indicador-{{productoIndex}}-min" class="ml-4 font-total">{{productos.EsAcumulativoIndicadorPrincipal? "Si":"No"}}</span>
+
+                                Fecha inicio:
+                                <span id="progProd-objetivo-producto-indicador-{{productoIndex}}-min" class="ml-4 font-total">{{productos.FechaInicio | date:"dd/MM/yyyy"}}</span>
+
+                                Fecha fin:
+                                <span id="progProd-objetivo-producto-indicador-{{productoIndex}}-min" class="ml-4 font-total">{{productos.FechaFin | date:"dd/MM/yyyy"}}</span>
+                               
+                                <a id="progProd-objetivo-producto-indicador-{{productoIndex}}-val"
+                                   ng-if="vm.ContarTexto(productos.IndicadorPrincipal) > 90"
+                                   ng-click="vm.verNombreCompleto('progProd-objetivo-producto-indicador-', productoIndex)">VER MÁS</a>
+                                <div ng-if="vm.disabled == false">
+                                    <div class="row" ng-if="productos.FechaInicio != null && productos.FechaFin != null">
+                                        <span class="buttonbar pull-right">
+                                            <button type="button"
+                                                    class="btneditarDNP"
+                                                    tooltip-placement="top"
+                                                    ng-click="productos.HabilitaEditar ? vm.Cancelar(productos) : vm.habilitaEditar(productos)"
+                                                    uib-tooltip="{{productos.HabilitaEditar ? 'CANCELAR' : 'EDITAR'}}">
+                                                {{productos.HabilitaEditar ? 'CANCELAR' : 'EDITAR'}}
+                                            </button>
+                                            <button type="submit"
+                                                    ng-disabled="!productos.HabilitaEditar"
+                                                    id="GuardarPreguntasgrillaProdCap-{{productos.ProductoId}}"
+                                                    class="btnguardarDisabledDNP"
+                                                    tooltip-placement="top"
+                                                    uib-tooltip="Guardar modificación"
+                                                    ng-click="vm.Guardar(productos,objetivos.ObjetivoEspecificoId)">
+                                                GUARDAR
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" ng-if="productos.FechaInicio == null && productos.FechaFin == null">
+                            <br />
+                            <br />
+                            <div class="col-md-2 ">&nbsp;</div>
+                            <div class="col-md-8">
+                                <span class="TituloPincFormularioDNP">
+                                    La programación de cantidades de la meta del indicador de producto por mes, se habilitará cuando se realice la programación de actividades del producto.
+                                </span>
+                            </div>
+                            <div class="col-md-2 ">&nbsp;</div>
+                            <br />
+                            <br />
+                        </div>
+                        <div class="row" ng-if="productos.FechaInicio != null && productos.FechaFin != null">
+                            <div class="alert panel-heading">
+                                <div class="tab-container col-md-12" style="width:100%;">
+                                    <ul class="nav nav-tabs">
+                                        <li ng-repeat="fechaVigencia in productos.Vigencias" ng-show="$index%4 === 0" id="liDgenerales" ng-class="{active : $index === vm.pagina}" class="nav-item">
+                                            <a href="" class="nav-link" ng-click="vm.cambiarPagina($index)" data-toggle="tab" data-target="#tabAjustadospp{{productos.ProductoId}}">
+                                                <b>{{fechaVigencia.Vigencia}}-{{productos.Vigencias[$index+3].Vigencia? productos.Vigencias[$index+3].Vigencia:(productos.Vigencias[$index+2].Vigencia? productos.Vigencias[$index+2].Vigencia: (productos.Vigencias[$index+1].Vigencia? productos.Vigencias[$index+1].Vigencia: fechaVigencia.Vigencia))}}</b>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <br>
+                                <div class="tab-content">
+                                    <div class="tab-pane active cont col-md-12" style="padding-left:0 !important;padding-top:20px !important" id="tabAjustadospp{{productos.ProductoId}}">
+                                        <table ng-repeat="Vigencias in productos.Vigencias | limitTo:1" class="TableDNP" ng-init="indexVigencias = $index">
+                                            <thead>
+                                                <tr>
+                                                    <th class="columAcc" style="width: 5%;"></th>
+                                                    <th class="textLeftDNP" style="width: 25%;">Mes</th>
+                                                    <th class="textRightDNP" style="width: 17%;">{{productos.Vigencias[vm.pagina].Vigencia}}</th>
+                                                    <th ng-if="productos.Vigencias[vm.pagina + 1]" class="textRightDNP" style="width: 17%;">{{productos.Vigencias[vm.pagina + 1].Vigencia}}</th>
+                                                    <th ng-if="productos.Vigencias[vm.pagina + 2]" class="textRightDNP" style="width: 17%;">{{productos.Vigencias[vm.pagina + 2].Vigencia}}</th>
+                                                    <th ng-if="productos.Vigencias[vm.pagina + 3]" class="textRightDNP" style="width: 17%;">{{productos.Vigencias[vm.pagina + 3].Vigencia}}</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="ProgramacionSeguimientoPeriodosValores in Vigencias.Meses" ng-init="indexEntregables = $index">
+                                                    <td><img class="img-advertencia hidden" src="Img/u11.svg" id=alert-{{productos.ProductoId}}{{programacionSeguimientoPeriodosValores.IdPeriodosPeriodicidad}}></td>
+                                                    <td class="textLeftDNP">
+                                                        {{ProgramacionSeguimientoPeriodosValores.NombreMes}}
+                                                    </td>
+                                                    <td class="textRightDNP">
+                                                        <div ng-if="!productos.HabilitaEditar">{{productos.Vigencias[vm.pagina].Meses[$index].CantidadProgramada | number:4}}</div>
+                                                        <input type="number" string-to-number min="0.0000"
+                                                               ng-if="productos.HabilitaEditar"
+                                                               ng-readonly="productos.Vigencias[vm.pagina].Vigencia < vm.vigenciaActual"
+                                                               ng-value="productos.Vigencias[vm.pagina].Meses[$index].CantidadProgramada"
+                                                               ng-model="productos.Vigencias[vm.pagina].Meses[$index].CantidadProgramada"
+                                                               ng-blur="vm.recorrerObjetivosNumber($event, productos,productos.Vigencias[vm.pagina].Vigencia,productos.Vigencias[vm.pagina].Pagina)"
+                                                               ng-keypress="vm.validateFormat($event)"
+                                                               ng-keyup="vm.validarTamanio($event)" />
+                                                    </td>
+                                                    <td ng-if="productos.Vigencias[vm.pagina + 1]" class="textRightDNP">
+
+                                                        <div ng-if="!productos.HabilitaEditar">{{productos.Vigencias[vm.pagina+1].Meses[$index].CantidadProgramada  | number:4}}</div>
+                                                        <input type="number" string-to-number min="0.0000"
+                                                               ng-if="productos.HabilitaEditar"
+                                                               ng-value="productos.Vigencias[vm.pagina+1].Meses[$index].CantidadProgramada"
+                                                               ng-model="productos.Vigencias[vm.pagina+1].Meses[$index].CantidadProgramada"
+                                                               ng-blur="vm.recorrerObjetivosNumber($event, productos,productos.Vigencias[vm.pagina].Vigencia,productos.Vigencias[vm.pagina].Pagina)"
+                                                               ng-keypress="vm.validateFormat($event)"
+                                                               ng-keyup="vm.validarTamanio($event)" />
+                                                    </td>
+
+                                                    <td ng-if="productos.Vigencias[vm.pagina + 2]" class="textRightDNP">
+                                                        <div ng-if="!productos.HabilitaEditar">{{productos.Vigencias[vm.pagina+2].Meses[$index].CantidadProgramada  | number:4}}</div>
+                                                        <input type="number" string-to-number min="0.0000"
+                                                               ng-if="productos.HabilitaEditar"
+                                                               ng-value="productos.Vigencias[vm.pagina+2].Meses[$index].CantidadProgramada"
+                                                               ng-model="productos.Vigencias[vm.pagina+2].Meses[$index].CantidadProgramada"
+                                                               ng-blur="vm.recorrerObjetivosNumber($event, productos,productos.Vigencias[vm.pagina].Vigencia,productos.Vigencias[vm.pagina].Pagina)"
+                                                               ng-keypress="vm.validateFormat($event)"
+                                                               ng-keyup="vm.validarTamanio($event)" />
+                                                    </td>
+
+                                                    <td ng-if="productos.Vigencias[vm.pagina + 3]" class="textRightDNP">
+                                                        <div ng-if="!productos.HabilitaEditar">{{productos.Vigencias[vm.pagina+3].Meses[$index].CantidadProgramada  | number:4}}</div>
+                                                        <input type="number" string-to-number min="0.0000"
+                                                               ng-if="productos.HabilitaEditar"
+                                                               ng-value="productos.Vigencias[vm.pagina+3].Meses[$index].CantidadProgramada"
+                                                               ng-model="productos.Vigencias[vm.pagina+3].Meses[$index].CantidadProgramada"
+                                                               ng-blur="vm.recorrerObjetivosNumber($event, productos,productos.Vigencias[vm.pagina].Vigencia,productos.Vigencias[vm.pagina].Pagina)"
+                                                               ng-keypress="vm.validateFormat($event)"
+                                                               ng-keyup="vm.validarTamanio($event)" />
+                                                    </td>
+                                                </tr>
+
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <td class="columAcc icontotaldnp">
+                                                        <img id="imgcptjpp{{objetivos.ObjetivoEspecificoId}}{{productos.ProductoId}}" class="iconoErrorDNP" src="Img/u4630.svg" style="display:none;">
+                                                        <div id="icocptjpp{{objetivos.ObjetivoEspecificoId}}{{productos.ProductoId}}" class="hidden iconoErrorDNP"></div>
+                                                    </td>
+                                                    <td class="textLeftDNP">Cantidades programadas</td>
+                                                    <td class="textRightDNP">
+                                                        <div id="total{{objetivos.ObjetivoEspecificoId}}{{productos.ProductoId}}{{productos.Vigencias[vm.pagina].Vigencia}}" ng-if="productos.UnidadMedidaIndicadorId != 15" class="blockReferenciaDNP">
+                                                            {{productos.Vigencias[vm.pagina].TotalCantidadProgramada  | number:4}}
+                                                        </div>
+                                                        <div ng-if="productos.UnidadMedidaIndicadorId == 15" class="blockReferenciaDNP">N/A</div>
+                                                    </td>
+                                                    <td class="textRightDNP">
+                                                        <div id="total{{objetivos.ObjetivoEspecificoId}}{{productos.ProductoId}}{{productos.Vigencias[vm.pagina + 1].Vigencia}}" ng-if="productos.UnidadMedidaIndicadorId != 15" class="blockReferenciaDNP">{{productos.Vigencias[vm.pagina + 1].TotalCantidadProgramada  | number:4}}</div>
+                                                        <div ng-if="productos.UnidadMedidaIndicadorId == 15" class="blockReferenciaDNP">N/A</div>
+                                                    </td>
+                                                    <td class="textRightDNP">
+                                                        <div id="total{{objetivos.ObjetivoEspecificoId}}{{productos.ProductoId}}{{productos.Vigencias[vm.pagina + 2].Vigencia}}" ng-if="productos.UnidadMedidaIndicadorId != 15" class="blockReferenciaDNP">{{productos.Vigencias[vm.pagina + 2].TotalCantidadProgramada  | number:4}}</div>
+                                                        <div ng-if="productos.UnidadMedidaIndicadorId == 15" class="blockReferenciaDNP">N/A</div>
+                                                    </td>
+                                                    <td class="textRightDNP">
+                                                        <div id="total{{objetivos.ObjetivoEspecificoId}}{{productos.ProductoId}}{{productos.Vigencias[vm.pagina + 3].Vigencia}}" ng-if="productos.UnidadMedidaIndicadorId != 15" class="blockReferenciaDNP">{{productos.Vigencias[vm.pagina + 3].TotalCantidadProgramada  | number:4}}</div>
+                                                        <div ng-if="productos.UnidadMedidaIndicadorId == 15" class="blockReferenciaDNP">N/A</div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="columAcc icontotaldnp"></td>
+                                                    <td class="textLeftDNP">Meta total a programar</td>
+                                                    <td class="textRightDNP"><div class="blockReferenciaDNP">{{productos.Vigencias[vm.pagina].Meses[$index].MetaTotalProgramar | number:4}}</div></td>
+                                                    <td class="textRightDNP"><div class="blockReferenciaDNP">{{productos.Vigencias[vm.pagina + 1].Meses[$index].MetaTotalProgramar | number:4}}</div></td>
+                                                    <td class="textRightDNP"><div class="blockReferenciaDNP">{{productos.Vigencias[vm.pagina + 2].Meses[$index].MetaTotalProgramar | number:4}}</div></td>
+                                                    <td class="textRightDNP"><div class="blockReferenciaDNP">{{productos.Vigencias[vm.pagina + 3].Meses[$index].MetaTotalProgramar | number:4}}</div></td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="6">
+                                                        <div ng-if="productos.VerErrormsn == 0"  class=" text-left color-red">
+                                                            <img class="img img-advertencia" src="Img/u11.svg" />
+                                                            <span >{{productos.MensajeE}} <a ng-click="vm.verNombreCompleto(productos.ProductoId,productos.VerErrormsn,2)"> ...VER MÁS</a></span>
+                                                        </div>
+                                                        <div ng-if="productos.VerErrormsn == 1"  class=" text-left color-red">
+                                                            <img class="img img-advertencia" src="Img/u11.svg" />
+                                                            <span >{{productos.MensajeError}} <a ng-click="vm.verNombreCompleto(productos.ProductoId,productos.VerErrormsn,2)"> ...VER MENOS</a></span>
+                                                        </div>
+                                                        <div ng-if="productos.VerErrormsn == 2" class=" text-left color-red">
+                                                            <img class="img img-advertencia" src="Img/u11.svg" />
+                                                            <span >{{productos.MensajeError}} <a ng-click="vm.verNombreCompleto(productos.ProductoId,productos.VerErrormsn,2)"></a></span>
+                                                        </div>
+                                                        <!--<div id="errortottalpp{{objetivos.ObjetivoEspecificoId}}{{productos.ProductoId}}" class=" text-left color-red">
+                                                            <img class="img img-advertencia" src="Img/u11.svg" />
+                                                            <span id="errortottalmsnpp{{objetivos.ObjetivoEspecificoId}}{{productos.ProductoId}}"></span>
+                                                        </div>-->
+                                                    </td>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                        <br />
+                                        <br />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,18 @@
+﻿<div grid="grid" class="ui-grid-draggable-row" draggable="true" ng-class="{ 'my-css-class': grid.appScope.rowFormatter( row ) }">
+        <div ng-if="!row.entity.editable" ng-repeat="(colRenderIndex, col) in colContainer.renderedColumns track by col.colDef.name"
+             class="ui-grid-cell" ng-class="{ 'ui-grid-row-header-cell': col.isRowHeader, 'custom': true }" uib-tooltip="{{col.colDef.cellTooltip}}" tooltip-placement="top-left" ui-grid-cell></div>
+        <div ng-if="row.entity.editable" uib-tooltip="{{col.colDef.cellTooltip}}">
+            <!-- ReSharper disable Html.TagNotResolved -->
+            <modificar-Fila-Previsualizar col-container="colContainer"
+                                          fila-A-Editar="row.entity"
+                                          grilla="row.entity.grid"
+                                          scope-Papa="row.entity.scopePapa"
+                                          inline="row.entity.inline"
+                                          nueva-Grid="grid.appScope.vm.grid.data"
+                                          grilla-Actualizar="grid"
+                                          row-Key="row.entity.$$hashKey"
+                                          retorno-Guardar="grid.appScope.vm.finalizarEditar()"
+                                          retorno-Cancelar="grid.appScope.vm.cancelarEditar()">
+            </modificar-Fila-Previsualizar>
+        </div>
+</div>

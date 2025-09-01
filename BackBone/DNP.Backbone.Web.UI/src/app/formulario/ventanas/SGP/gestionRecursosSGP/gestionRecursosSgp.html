@@ -1,0 +1,58 @@
+﻿<section>
+    <div class="container-fluid inbox" ng-init="vm.init();">
+        <br />
+        <div>
+            <div class="row">
+                <div class="row" style="padding-left: 3rem;padding-right: 2rem;">
+                    <div class="form-group" style=" padding-top: 2rem;width:90%;">
+
+
+                        <div class="tab-content">
+                            <div class="tab-pane   cont col-md-12 p-0" id="dsgpsolicitudrecursosdatosgenerales">
+                                <datosgenerales-sgp callback="vm.notificarGuardado()"
+                                                    guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                                    notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                                    notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente, handlerCapitulos)">
+                                </datosgenerales-sgp>
+                            </div>
+                            <div class="tab-pane  cont col-md-12 p-0" id="dsgprecursos">
+                                <recursos-sgp callback="vm.notificarGuardado()"
+                                              guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                              notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                              notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente, handlerCapitulos)"
+                                              notificacioncambios="vm.notificacionCambiosgr(handler,nombreComponente)">
+                                </recursos-sgp>
+                            </div>
+                            <div class="tab-pane  cont col-md-12 p-0" id="dsgpsolicitudrecursosfocalizacion">
+                                <focalizacion-sgp callback="vm.notificarGuardado()"
+                                                          guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                                          notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                                          notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente, handlerCapitulos)"
+                                                          notificacioncambios="vm.notificacionCambiosgr(handler,nombreComponente)">
+                                </focalizacion-sgp>
+                            </div>
+                            <div class="tab-pane  cont col-md-12 p-0" id="dsgpgraprobaciondefinitivausuarios">
+                                <informacion-general-usuarios-involucrados-sgp callback="vm.notificarGuardado()"
+                                                                               guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                                                               notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                                                               notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente, handlerCapitulos)"
+                                                                               notificacioncambios="vm.notificacionCambioSgr(handler, nombreComponente)">
+                                </informacion-general-usuarios-involucrados-sgp>
+                            </div>
+                            <div class="tab-pane  cont col-md-12 p-0" id="dsgpgraprobaciondefinitiva">
+                                <enviar-programacion-sgp callback="vm.notificarGuardado()"
+                                                         guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                                         notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                                         notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente, handlerCapitulos)"
+                                                         notificacioncambios="vm.notificacionCambioSgr(handler, nombreComponente)">
+                                </enviar-programacion-sgp>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

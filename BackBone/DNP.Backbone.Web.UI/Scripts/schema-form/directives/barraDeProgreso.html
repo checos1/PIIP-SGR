@@ -1,0 +1,8 @@
+﻿<div class="item" ng-if="item.visible" barradeprogreso>
+    <label>{{form.etiqueta}}</label>
+    <div class="progress" style="width:{{calcularTamano(item.tamano)}}%">
+        <div id="form.id" aria-valuenow="{{porcentaje}}" aria-valuemin="{{form.valorMinimo}}" aria-valuemax="{{valorMaximo}}" ng-attr-style="width:{{porcentaje}}%" class="progress-bar progress-bar-striped active" role="progressbar">
+            {{calcularPorcentaje(model, schema) + "% Completado"}}
+        </div>
+    </div>
+</div>

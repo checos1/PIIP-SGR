@@ -1,0 +1,29 @@
+﻿<div ng-init="vm.init();">
+    <div class="ui-accordion-container" id="accordion-sgrejecutordesignacionsoportealojararchivo">
+        <div class="alert panel-heading row ui-accordion-header">
+            <button type="button" data-toggle="collapse" data-target="#sgrejecutordesignacionsoportealojararchivo" ng-click="vm.changeArrow('sgrejecutordesignacionsoportealojararchivo')">
+                <span class="d-inline-block" id="alert-sgrejecutordesignacionsoportealojararchivo"></span>
+                <span id="name-capitulo-sgrejecutordesignacionsoportealojararchivo"></span>
+                <span class="hidden" id="id-capitulo-sgrejecutordesignacionsoportealojararchivo"></span>
+                <span id="arrow-sgrejecutordesignacionsoportealojararchivo" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#sgrejecutordesignacionsoportealojararchivo"></span>
+            </button>
+        </div>
+        <div class="collapse" id="sgrejecutordesignacionsoportealojararchivo">
+            <div class="row m-0 mb-3 pt-2">
+                <div class="col-md-12 ">
+                    <archivos-formulario-trv tipotramiteid="{{vm.tipotramiteid}}"
+                                             tramiteid="{{vm.tramiteid}}"
+                                             nivel="{{vm.nivel}}"
+                                             rol="{{vm.rol}}"
+                                             section="{{vm.section}}"
+                                             objetonegocioid="{{vm.IdObjetoNegocio}}"
+                                             nombrecomponentepaso="{{vm.nombreComponenteHijo}}"
+                                             guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                             notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                             notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)">
+                    </archivos-formulario-trv>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

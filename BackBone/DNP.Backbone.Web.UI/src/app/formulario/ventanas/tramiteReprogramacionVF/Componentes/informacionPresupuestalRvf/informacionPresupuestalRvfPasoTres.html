@@ -1,0 +1,35 @@
+﻿<section>
+    <div class="container-fluid inbox" ng-init="vm.init();">
+        <div class="tab-content">
+            <div class="ui-accordion-container" id="accordion-informacionpresupuestalresumenreprogramacion">
+                <div class="alert panel-heading row ui-accordion-header" style="">
+                    <button class="button" type="button" data-toggle="collapse" data-target="#informacionpresupuestalresumenreprogramacion" ng-click="vm.changeArrow('informacionpresupuestalreprogramacionporvigencia')">
+                        <span class="d-inline-block" id="alert-informacionpresupuestalresumenreprogramacion"></span>
+                        <span id="name-capitulo-informacionpresupuestalresumenreprogramacion"></span>
+                        <span class="hidden" id="id-capitulo-informacionpresupuestalresumenreprogramacion"></span>
+                        <span id="arrow-informacionpresupuestalresumenreprogramacion" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#informacionpresupuestalreprogramacionporvigencia"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="informacionpresupuestalresumenreprogramacion" style="padding-right: 15px; padding-left: 0px; margin-left: -15px;">
+                    <div class="row" style="margin-left:20px" ng-if="!vm.mostrar">
+                        <resumen-reprogramacion-vf-formulario tramiteid="{{vm.tramiteid}}" 
+                                                              tipotramiteid="{{vm.tipotramiteid}}"
+                                                              rolanalista="{{vm.rolanalista}}"
+                                                              mostrar="{{'contractual'}}"
+                                                              guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                                              notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                              notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)">
+                        </resumen-reprogramacion-vf-formulario>
+                    </div>
+                </div>
+            </div>
+
+         
+
+           
+
+         
+
+        </div>
+    </div>
+</section>

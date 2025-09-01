@@ -1,0 +1,55 @@
+﻿@using DNP.Backbone.Comunes.Dto;
+@model List<AlertasConfigDto>
+@{
+    Layout = null;
+    ViewBag.Title = "AlertasConfigPDF";
+}
+<html>
+<head>
+    @Html.Partial("_IncludeEstilosRelatorios")
+</head>
+<body class="pdf">
+    @Html.Partial("_CabecalhoRelatorio", "Informe del Config. de Alertas")
+
+    <div class="mt-5">
+        @if (Model == null || Model.Count == 0)
+        {
+            <table class="table table-sm table-borderless">
+                <thead>
+                    <tr>
+                        <th class="text-left">
+                            No hubo registros para los filtros seleccionados.
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+        }
+        else
+        {
+            <div id="containerbody">
+                <table class="table  table-borderless border-table">
+                    <thead>
+                        <tr>
+                            <th>Nombre De La Alerta</th>
+                            <th>Tipo</th>
+                            <th>Mensaje de La alerta</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var alerta in Model)
+                        {
+                            <tr>
+                                <td>@alerta.NombreAlerta</td>
+                                <td>@alerta.TipoAlertaDescripcion</td>
+                                <td>@alerta.MensajeAlerta</td>
+                                <td>@alerta.EstadoDescripcion</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </div>
+</body>
+</html>

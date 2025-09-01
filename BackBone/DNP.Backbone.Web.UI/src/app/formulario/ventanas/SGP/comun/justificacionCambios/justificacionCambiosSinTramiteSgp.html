@@ -1,0 +1,69 @@
+﻿<section>
+    <div class="container-fluid inbox" ng-init="vm.init();">
+        <div class="ui-accordion-container" ng-repeat="capitulo in vm.capitulosModificados">
+            <div class="alert panel-heading row ui-accordion-header">
+                <button type="button" data-toggle="collapse" data-target="#{{capitulo.NombreModificado}}" ng-click="vm.changeArrow(capitulo.NombreModificado)">
+                    <span class="d-inline-block" id="alert-{{capitulo.NombreModificado}}"></span> {{capitulo.Seccion}} - {{capitulo.Capitulo}}
+                    <span id="arrow-{{capitulo.NombreModificado}}" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#{{capitulo.NombreModificado}}"></span>
+                </button>
+            </div>
+            <div class="collapse" id="{{capitulo.NombreModificado}}">
+                <div class="row m-0" ng-switch="capitulo.NombreModificado">
+                    <input type="hidden" id="seccion-capitulo-{{capitulo.NombreModificado}}" value="{{capitulo.SeccionCapituloId}}" />
+                    <datosgeneralessgphorizontesintramitesgp ng-switch-when="datosgeneraleshorizonte"
+                                            justificacioncapitulo="{{capitulo.Justificacion}}"
+                                            notificacioncambios="vm.notificacionCambiosCapitulos(handler, nombreComponente)"
+                                            notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                            notificacionvalidacion="vm.notificacionValidacionHijos(handler,capitulo.NombreModificado)"></datosgeneralessgphorizontesintramitesgp>
+
+                    <datosgeneralessgpbeneficiariostotalessintramitesgp ng-switch-when="datosgeneralesbeneficiarios"
+                                                                        justificacioncapitulo="{{capitulo.Justificacion}}"
+                                                                        notificacioncambios="vm.notificacionCambiosCapitulos(handler, nombreComponente)"
+                                                                        notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                                        notificacionvalidacion="vm.notificacionValidacionHijos(handler,capitulo.NombreModificado)"></datosgeneralessgpbeneficiariostotalessintramitesgp>
+
+                    <recursossgpfuentesdefinancsintramite ng-switch-when="recursosfuentesdefinanc"
+                                                             justificacioncapitulo="{{capitulo.Justificacion}}"
+                                                             notificacioncambios="vm.notificacionCambiosCapitulos(handler, nombreComponente)"
+                                                             notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                             notificacionvalidacion="vm.notificacionValidacionHijos(handler,capitulo.NombreModificado)"></recursossgpfuentesdefinancsintramite>
+
+                    <datosgeneralessgpindicadoresdeprsintramitesgp ng-switch-when="datosgeneralesindicadoresdepr"
+                                                                   justificacioncapitulo="{{capitulo.Justificacion}}"
+                                                                   notificacioncambios="vm.notificacionCambiosCapitulos(handler, nombreComponente)"
+                                                                   notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                                   notificacionvalidacion="vm.notificacionValidacionHijos(handler,capitulo.NombreModificado)"></datosgeneralessgpindicadoresdeprsintramitesgp>
+
+                    <recursossgpcostosdelasactisintramitesgp ng-switch-when="recursoscostosdelasacti"
+                                                             justificacioncapitulo="{{capitulo.Justificacion}}"
+                                                             notificacioncambios="vm.notificacionCambiosCapitulos(handler, nombreComponente)"
+                                                             notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                             notificacionvalidacion="vm.notificacionValidacionHijos(handler,capitulo.NombreModificado)">
+                    </recursossgpcostosdelasactisintramitesgp>
+
+                    <datosgeneralessgplocalizacionessintramitesgp ng-switch-when="datosgeneraleslocalizaciones"
+                                                                  justificacioncapitulo="{{capitulo.Justificacion}}"
+                                                                  notificacioncambios="vm.notificacionCambiosCapitulos(handler, nombreComponente)"
+                                                                  notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                                  notificacionvalidacion="vm.notificacionValidacionHijos(handler,nombreComponente)"
+                                                                  guardadoevent="vm.guardado(nombreComponenteHijo)">
+                    </datosgeneralessgplocalizacionessintramitesgp>
+
+                    <recursossgpregionalizacionsintramitesgp ng-switch-when="recursosregionalizacion"
+                                                             justificacioncapitulo="{{capitulo.Justificacion}}"
+                                                             notificacioncambios="vm.notificacionCambiosCapitulos(handler, nombreComponente)"
+                                                             notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                             notificacionvalidacion="vm.notificacionValidacionHijos(handler,capitulo.NombreModificado)">
+                    </recursossgpregionalizacionsintramitesgp>
+                    <focalizacionpolsgpcategoriapoliticassintramitesgp ng-switch-when="focalizacioncategoriaspolit"
+                                                             justificacioncapitulo="{{capitulo.Justificacion}}"
+                                                             notificacioncambios="vm.notificacionCambiosCapitulos(handler, nombreComponente)"
+                                                             notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                             notificacionvalidacion="vm.notificacionValidacionHijos(handler,capitulo.NombreModificado)">
+                    </focalizacionpolsgpcategoriapoliticassintramitesgp>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

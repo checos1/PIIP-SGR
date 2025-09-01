@@ -1,0 +1,9 @@
+﻿<div ng-if="form.visible === true" ng-controller="PowerBIController as vm">
+    <div class="text-center intro-help" id="panelMensajeError" ng-show="vm.configuracion === null">
+        <!-- ReSharper disable Html.PathError -->
+        <img src="img/image-help.png" alt="Sin resultados" />
+        <h2>{{ 'NoResultadosBusqueda' |language}}</h2>
+        <h3>{{ 'SeleccioneFiltrosMensaje'|language}}</h3>
+    </div>
+    <powerbi-embed opciones="vm.configuracion.embedConfig" filtro="vm.configuracion.embedFiltro" type="vm.configuracion.embedType" style="background:white"></powerbi-embed>
+</div>

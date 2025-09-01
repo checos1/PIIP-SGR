@@ -1,0 +1,11 @@
+﻿<div>
+    <div style="height: 10px">&nbsp;</div>
+    <form name="inputForm" ng-class="{true: 'has-error'}[MODEL_COL_FIELD == null && grid.appScope.vm.faltanDatosCategoria]">
+        <select class="form-control" id="col{{$index}}" ng-class="'colt' + col.uid" ng-disabled="row.entity.DeshabilitarEdicion" ui-grid-edit-dropdown ng-model="MODEL_COL_FIELD" ng-options="categoria.Id as categoria.TipoDeCategoria for categoria in col.colDef.editDropdownOptionsArray" ng-required="true">
+            <option value="" selected>Seleccione Categoría</option>
+        </select>
+        <!--<div href="#" data-toggle="tooltip" data-placement="top" ng-show="!inputForm.$valid  && grid.appScope.vm.faltanDatosCategoria">
+            <span class="error">Campo requerido</span>
+        </div>-->
+    </form>
+</div>

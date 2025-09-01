@@ -1,0 +1,173 @@
+﻿<style>
+    .uLabelDetalle_FP {
+        color: #004884 !important;
+        font-family: 'Work Sans';
+        letter-spacing: 0px;
+        font-size: 16px;
+    }
+
+    .uLabelCampo_fp {
+        color: #004884 !important;
+        font-family: 'Work Sans';
+        letter-spacing: 0px;
+        font-weight: 600;
+        font-size: 16px;
+    }
+
+    .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+        background-color: #8064A2 !important;
+    }
+</style>
+<div ng-init="vm.init();">
+    <form id="informacionPresupuestalForm" name="informacionPresupuestalForm" novalidate>
+        <div ng-if="vm.EsConstante" class="col-md-12">
+            <div class="col-md-2" style="margin-top: 15px; text-align: left; height: 50px">
+                <span class="uLabelCampo_fp">Año base</span>
+            </div>
+            <div class="col-md-2" style="text-align:left">
+                <table class="table-white">
+                    <thead>
+                        <tr style="text-align:center;" class="utitulo-grilla">
+                            <td style="width: 15%; text-align: center; height: 50px "><label class="col-form-label"><span class="uLabelCampo_fp">{{vm.informacionPresupuestal.AnoBase}}</span></label></td>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <div class="col-md-9" style="text-align:left">
+                &nbsp;
+            </div>
+        </div>
+        <br />
+        <div class="col-md-12" style="text-align:left">
+            <span class="uLabelDetalle_FP">{{vm.informacionPresupuestal.labeltable}}</span>
+        </div>
+        <br />
+        <table class="TableDNP no-border">
+            <thead>
+                <tr ng-if="vm.EsConstante" style="text-align:center;">
+                    <th scope="col"><span class="uLabelCampo_fp">&nbsp;</span></th>
+                    <th scope="col" style="text-align:right"><span class="uLabelCampo_fp">Vigencia</span></th>
+                    <th scope="col" style="text-align:right"><span class="uLabelCampo_fp">Valor deflactor</span></th>
+                    <th scope="col" style="text-align:right"><span class="uLabelCampo_fp">Valor constante solicitud Nación $</span></th>
+                    <th scope="col" style="text-align:right"><span class="uLabelCampo_fp">Valor constante solicitud Propios $</span></th>
+                    <th scope="col" style="text-align:right"><span class="uLabelCampo_fp">Valor corriente solicitud Nación $</span></th>
+                    <th scope="col" style="text-align:right"><span class="uLabelCampo_fp">Valor corriente solicitud Propios $</span></th>
+                    <th scope="col"><span class="uLabelCampo_fp">&nbsp;</span></th>
+                </tr>
+                <tr ng-if="!vm.EsConstante" style="text-align:center;">
+                    <th scope="col"><span class="uLabelCampo_fp">&nbsp;</span></th>
+                    <th scope="col" style="text-align:right"><span class="uLabelCampo_fp">Vigencia</span></th>
+                    <th scope="col" style="text-align:right"><span class="uLabelCampo_fp">Valor corriente solicitud Nación $</span></th>
+                    <th scope="col" style="text-align:right"><span class="uLabelCampo_fp">Valor corriente solicitud Propios $</span></th>
+                    <th scope="col"><span class="uLabelCampo_fp">&nbsp;</span></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="valor in vm.informacionPresupuestal.ResumensolicitadoFuentesVigenciaFutura" ng-init="valorIndex = $index">
+                    <td ng-if="valor.Vigencia != 'Total'" style="text-align: right; height: 50px"><span class="uLabelDetalle_FP"></span></td>
+                    <td ng-if="valor.Vigencia != 'Total'" style="text-align: right"><span class="uLabelDetalle_FP">{{valor.Vigencia}}</span></td>
+                    <td ng-if="vm.EsConstante && valor.Vigencia != 'Total'" style="text-align: right"><span class="uLabelDetalle_FP">{{vm.informacionPresupuestal.ProyectoId == '-' ? valor.Deflactor : vm.ConvertirNumero4(valor.Deflactor)}}</span></td>
+                    <td ng-if="vm.EsConstante && valor.Vigencia != 'Total'" style="text-align: right"><span class="uLabelDetalle_FP">{{vm.informacionPresupuestal.ProyectoId == '-' ? valor.ValorFuentesNacion : vm.ConvertirNumero(valor.ValorFuentesNacion)}}</span></td>
+                    <td ng-if="vm.EsConstante && valor.Vigencia != 'Total'" style="text-align: right"><span class="uLabelDetalle_FP">{{vm.informacionPresupuestal.ProyectoId == '-' ? valor.ValorFuentesPropios : vm.ConvertirNumero(valor.ValorFuentesPropios)}}</span></td>
+                    <td ng-if="valor.Vigencia != 'Total'" style="text-align: right"><span class="uLabelDetalle_FP">{{vm.informacionPresupuestal.ProyectoId == '-' ? valor.NacionCorriente : vm.ConvertirNumero(valor.NacionCorriente)}}</span></td>
+                    <td ng-if="valor.Vigencia != 'Total'" style="text-align: right"><span class="uLabelDetalle_FP">{{vm.informacionPresupuestal.ProyectoId == '-' ? valor.PropiosCorriente : vm.ConvertirNumero(valor.PropiosCorriente)}}</span></td>
+                    <td ng-if="valor.Vigencia != 'Total'" style="text-align: right; height: 50px"><span class="uLabelDetalle_FP"></span></td>
+
+                    <td ng-if="valor.Vigencia == 'Total'"><span class="uLabelCampo_fp"> = </span></td>
+                    <td ng-if="valor.Vigencia == 'Total'" style="text-align: right"><span class="uLabelCampo_fp">{{valor.Vigencia}}</span></td>
+                    <td ng-if="vm.EsConstante && valor.Vigencia == 'Total'" style="text-align: right"><span class="uLabelCampo_fp">{{valor.Deflactor}}</span></td>
+                    <td ng-if="vm.EsConstante && valor.Vigencia == 'Total'" style="text-align: right"><span class="uLabelCampo_fp">{{vm.informacionPresupuestal.ProyectoId == '-' ? valor.ValorFuentesNacion : vm.ConvertirNumero(valor.ValorFuentesNacion)}}</span></td>
+                    <td ng-if="vm.EsConstante && valor.Vigencia == 'Total'" style="text-align: right"><span class="uLabelCampo_fp">{{vm.informacionPresupuestal.ProyectoId == '-' ? valor.ValorFuentesPropios : vm.ConvertirNumero(valor.ValorFuentesPropios)}}</span></td>
+                    <td ng-if="valor.Vigencia == 'Total'" style="text-align: right"><span class="uLabelCampo_fp">{{vm.informacionPresupuestal.ProyectoId == '-' ? valor.NacionCorriente : vm.ConvertirNumero(valor.NacionCorriente)}}</span></td>
+                    <td ng-if="valor.Vigencia == 'Total'" style="text-align: right"><span class="uLabelCampo_fp">{{vm.informacionPresupuestal.ProyectoId == '-' ? valor.PropiosCorriente : vm.ConvertirNumero(valor.PropiosCorriente)}}</span></td>
+                    <td ng-if="valor.Vigencia == 'Total'"><span class="uLabelCampo_fp"></span></td>
+                </tr>
+            </tbody>
+        </table>
+        <div ng-repeat="objetivo in vm.informacionPresupuestal.DetalleProductosVigenciaFutura" ng-init="objetivoIndex = $index">
+            <br />
+            <div class="col-md-12" style="text-align:left">
+                <span class="uLabelCampo_fp">{{objetivo.NumeroObjetivo}} </span>
+            </div>
+            <br />
+            <div class="col-md-12" style="text-align:left">
+                <span class="uLabelDetalle_FP">{{objetivo.ObjetivoEspecifico}} </span>
+            </div>
+            <br />
+            <div ng-repeat="producto in objetivo.Productos" ng-init="productoIndex = $index">
+                <div class="row" style="color: #004884">
+                    <div class="" style="padding: 0 !important">
+                        <div class="alert panel-heading" style="height: 50px;">
+                            <div class="card card-body pull-left  divAccordionDNP" style="line-height:22px;">
+                                <div class="col-md-12">
+                                    <div class="col-md-1" style="text-align:left">
+                                        <p style="padding: 0px; margin-bottom: 0px;">
+                                            <button class="btnaccion btnAccordionDNP" type="button" data-toggle="collapse" data-target="#loc{{objetivo.ObjetivoEspecificoId}}{{producto.ProductoId}}" ng-click="vm.BtnObjetivos(objetivo.ObjetivoEspecificoId + '' + producto.ProductoId)">
+                                                <img id="img{{objetivo.ObjetivoEspecificoId}}{{producto.ProductoId}}" src="Img/btnMas.svg">
+                                            </button>
+                                        </p>
+                                    </div>
+                                    <div class="col-md-5" style="text-align:left">
+                                        <p style="color: #4B4B4B;">
+                                            <span class="uLabelCampo_fp">{{producto.NumeroProducto}} </span><span class="uLabelDetalle_FP">{{producto.NombreProducto}}</span>
+                                        </p>
+                                    </div>
+                                    <div ng-if="vm.EsConstante" class="col-md-3" style="text-align: right">
+                                        <span class="uLabelCampo">Total valores constantes</span>
+                                        <div><span class="uLabelDetalle_FP">{{vm.informacionPresupuestal.ProyectoId == '-' ? producto.TotalValores : vm.ConvertirNumero(producto.TotalValores)}}</span></div>
+                                    </div>
+                                    <div ng-if="!vm.EsConstante" class="col-md-3" style="text-align: right">
+                                        <span class="uLabelCampo">&nbsp;</span>
+                                        <div><span class="uLabelDetalle_FP">&nbsp;</span></div>
+                                    </div>
+                                    <div class="col-md-3" style="text-align:right">
+                                        <span class="uLabelCampo">Total valores corrientes</span>
+                                        <div><span class="uLabelDetalle_FP">{{vm.informacionPresupuestal.ProyectoId == '-' ? producto.TotalValoresCorrientes : vm.ConvertirNumero(producto.TotalValoresCorrientes)}}</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapse" id="loc{{objetivo.ObjetivoEspecificoId}}{{producto.ProductoId}}" style="padding-left: 40px !important; padding-top: 0 !important">
+                    <br />
+                    <div class="LineaEncabezadodivDNP" style="margin-left:15px; margin-top:-19px"></div>
+                    <h3 class="row tituloEncabezadodivDNP">{{producto.labelEncabezado}}</h3>
+                    <div class="col-md-12" style="text-align:left">
+                        <span class="uLabelDetalle_FP">{{vm.informacionPresupuestal.labeltable}}</span>
+                    </div>
+                    <div class="card card-body pull-left col-md-12 ">
+                        <table class="TableDNP no-border">
+                            <thead>
+                                <tr>
+                                    <th scope="col"><span class="uLabelCampo_fp">&nbsp;</span></th>
+                                    <th scope="col" style="text-align:right"><span class="uLabelCampo_fp">Vigencia</span></th>
+                                    <th ng-if="vm.EsConstante" scope="col" style="text-align:right"><span class="uLabelCampo_fp">Vigencias futuras solicitadas valores constantes $</span></th>
+                                    <th scope="col" style="text-align:right"><span class="uLabelCampo_fp">Vigencias futuras solicitadas valores corrientes $</span></th>
+                                    <th scope="col"><span class="uLabelCampo_fp">&nbsp;</span></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="valorProducto in producto.Vigencias" ng-init="valorProductoIndex = $index">
+                                    <td ng-if="valorProducto.Vigencia != 'Total por valores'">&nbsp;</td>
+                                    <td ng-if="valorProducto.Vigencia != 'Total por valores'" style="text-align:right"><span class="uLabelDetalle_FP">{{valorProducto.Vigencia}}</span></td>
+                                    <td ng-if="vm.EsConstante && valorProducto.Vigencia != 'Total por valores'" style="text-align:right"><span class="uLabelDetalle_FP">{{vm.informacionPresupuestal.ProyectoId == '-' ? valorProducto.ValorSolicitado : vm.ConvertirNumero(valorProducto.ValorSolicitado)}}</span></td>
+                                    <td ng-if="valorProducto.Vigencia != 'Total por valores'" style="text-align:right"><span class="uLabelDetalle_FP">{{vm.informacionPresupuestal.ProyectoId == '-' ? valorProducto.ValorSolicitadoCorriente : vm.ConvertirNumero(valorProducto.ValorSolicitadoCorriente)}}</span></td>
+                                    <td ng-if="valorProducto.Vigencia != 'Total por valores'">&nbsp;</td>
+
+                                    <td ng-if="valorProducto.Vigencia == 'Total por valores'"><span class="uLabelCampo_fp"> = </span></td>
+                                    <td ng-if="valorProducto.Vigencia == 'Total por valores'" style="text-align:right"><span class="uLabelCampo_fp">Total por valores</span></td>
+                                    <td ng-if="vm.EsConstante && valorProducto.Vigencia == 'Total por valores'" style="text-align:right"><span class="uLabelCampo_fp">{{vm.informacionPresupuestal.ProyectoId == '-' ? valorProducto.ValorSolicitado : vm.ConvertirNumero(valorProducto.ValorSolicitado)}}</span></td>
+                                    <td ng-if="valorProducto.Vigencia == 'Total por valores'" style="text-align:right"><span class="uLabelCampo_fp">{{vm.informacionPresupuestal.ProyectoId == '-' ? valorProducto.ValorSolicitadoCorriente : vm.ConvertirNumero(valorProducto.ValorSolicitadoCorriente)}}</span></td>
+                                    <td ng-if="valorProducto.Vigencia == 'Total por valores'"><span class="uLabelCampo_fp"></span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <br />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+    </form>
+</div>

@@ -1,0 +1,287 @@
+﻿<div id="usuarios" class="container-fluid inbox" ng-init="vm.init();">
+    <div class="div-escopo">
+
+        <!-- #region breadcrumb -->
+        <nav class="breadcrumb">
+            <a href="/">
+                <span class="breadcrumb-item">
+                    <i class="fa fa-home" aria-hidden="true"></i> Inicio
+                </span>
+            </a>
+            /
+            <span class="breadcrumb-item active">Administración usuarios</span>
+        </nav>
+        <!-- #endregion breadcrumb -->
+
+        <div class="dashboard">
+
+            <!-- #region Título e accíon -->
+            <div class="row">
+                <div class="col-md-12">
+
+                    <div class="titlebar">
+                        <span>Administración Usuarios</span>
+                        <span class="buttonbar pull-right" style="padding: 0px 15px 5px 5px !important;">
+                            <button has-claim has-opciones="['Usuarios:Invitar']" type="button" class="btn btn-default btn-md btnFiltroHeader" ng-click="vm.abrirModalTipoInvitacionUsuario()"
+                                    tooltip-placement="auto" uib-tooltip="Invitar Usuario">
+                                + usuario
+                            </button>
+                            <!--<button type="button" class="btn btn-default btn-md btnFiltroHeader" ng-click="vm.conmutadorFiltro()"
+                                    tooltip-placement="auto" uib-tooltip="Filtro">
+                                Filtro
+                            </button>
+                            <a href="" download class="btn btn-default btn-md btnFiltroHeader btnRedondo" target="_blank"
+                               ng-click="vm.downloadPdf()" tooltip-placement="auto" uib-tooltip="Exportar PDF">
+                                PDF
+                            </a>
+                            <a href="" download class="btn btn-default btn-md btnFiltroHeader btnRedondo" target="_blank"
+                               ng-click="vm.downloadExcel()" tooltip-placement="auto" uib-tooltip="Exportar XLS">
+                                XLS
+                            </a>-->
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- #endregion -->
+            <!-- #region Tabs -->
+            <div class="form-group clearfix filtro-sem-tabla">
+                <!--<div class="row">
+                    <div class="radio radio-primary">
+                        <ul class="nav nav-tabs ml-0">
+                            <li class="active">
+                                <a data-toggle="tab">
+                                    <div class="upper-selection"></div>
+                                    <span>Roles del sistema</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>-->
+                <!--fim filtro-->
+            </div>
+            <!-- #endregion Tabs -->
+            <!-- #region Tabla -->
+
+
+            <div class="row">
+                <tabla-entidad opciones="vm.opciones" definicion-columna-datos="vm.columnDefs" datos="vm.datos"
+                               accion1="vm.abrirModalEditar($row)"
+                               accion2="vm.abrirModalEliminar($row)"
+                               accion3="vm.accederPantallaPerfilesUsuario($row)"
+                               accion4="vm.cambiarEstadoUsuario($row)"
+                               accion5="vm.consultarPermiso(entidad, opcion)">
+                </tabla-entidad>
+            </div>
+
+            <div class="row">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <!--<div class="col-md-6">
+                            <p class="mis-procesos-titulo-totales">Proyectos / {{vm.tipoEntidad}}. Total: {{ vm.cantidadDeProyectos }}</p>
+                        </div>-->
+                        <div class="row rowbotonesicoDNP" style="margin-right: 20px;">
+
+                            <div class="col-md-12 text-right nopadding">
+                                <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Limpiar" ng-click="vm.limpiarCamposFiltro()">
+                                    <span> <img id="icoLimpiarBusqueda" class="icoBusquedasDNP" src="Img/IcolimpiarBusqD.svg"></span>
+                                </button>
+                                <button tooltip-class="customClass" uib-tooltip="Buscar" class="btnicobuscarDNP" type="button" data-toggle="collapse" data-target="#IdPanelBuscador" ng-click="vm.conmutadorFiltro()">
+                                    <span> <img id="arrow-IdPanelBuscador" class="icoBusquedas2DNP glyphicon-chevron-down-busqDNP" src="Img/IcoBusqUp.svg" data-toggle="collapse" data-target="#IdPanelBuscador"></span>
+                                </button>
+                                <button class="btnaccion" ng-click="vm.downloadPdf()" title="Descargar formato PDF">
+                                    <span> <img class="icoBusquedasDNP" src="Img/etapas/u1089.svg"></span>
+                                </button>
+                                <button class="btnaccion" ng-click="vm.downloadExcel()" title="Descargar formato Excel">
+                                    <span> <img class="icoBusquedasDNP" src="Img/etapas/u1090.svg"></span>
+                                </button>
+                            </div>
+                        </div>
+                        <!--<span class="buttonbar pull-right">
+                            <img src="Img/etapas/u702.svg" class="imgMisProcesosAcciones" ng-click="vm.conmutadorFiltro()" uib-tooltip="Filtro" />
+                            <img src="Img/etapas/u1089.svg" class="imgMisProcesosAcciones" ng-click="vm.downloadPdf()" uib-tooltip="Exportar PDF" />
+                            <img src="Img/etapas/u1090.svg" class="imgMisProcesosAcciones" ng-click="vm.downloadExcel()" uib-tooltip="Exportar XLS" />
+                        </span>-->
+                    </div>
+                </div>
+
+                <!--inicio filtro-->
+                <div class="filtro panelbuscadorDNP" style="margin-right: 15px; margin-left: 15px;" ng-if="vm.mostrarFiltro">
+                    <div class="clearfix">
+
+                        <div class="row">
+                            <div class="col-md-6 SelectBuscadorDNP">
+                                <div class="labelbuscadorDNP"> <span>Entidad</span></div>
+                                <select chosen options="vm.filtros.catalogos.entidades"
+                                        ng-model="vm.filtros.idEntidad"
+                                        ng-options="x.Id as x.Nombre for x in vm.filtros.catalogos.entidades"
+                                        name="ddlEntidad"
+                                        id="ddlEntidad"
+                                        no-results-text="No hay ningún resultado para su búsqueda"
+                                        placeholder-text-single="Opciones"
+                                        class="form-control selectDNP">
+                                    <option value="" selected>Seleccione...</option>
+                                </select>
+                            </div>
+
+                            <!-- Rol -->
+                            <div class="col-md-4 SelectBuscadorDNP">
+                                <div class="labelbuscadorDNP SelectBuscadorDNP"> <span>Perfil</span></div>
+                                <select chosen options="vm.listaPerfilesBackbone"
+                                         name="ddlPerfil"
+                                        id="ddlPerfil"
+                                        ng-model="vm.filtros.idPerfilBackbone"
+                                        ng-options="x.IdPerfil as x.NombrePerfil for x in vm.listaPerfilesBackbone"
+                                        no-results-text="No hay ningún resultado para su búsqueda" 
+                                        placeholder-text-single="Opciones"
+                                        class="form-control selectDNP"
+                                        required>
+                                </select>
+                            </div>
+
+                        </div>
+                      
+                        <div class="row">
+                            <br/>
+                            <!-- Cuenta del usuario -->
+                            <div class="col-md-3" SelectBuscadorDNP>
+                                <div class="labelbuscadorDNP"> <span>Nombre de usuario </span></div>
+                                <input type="text" name="txtNombreUsuario" id="txtNombreUsuario" class="form-control InputBuscadorDNP" placeholder="Nombre" ng-model="vm.filtros.nombreUsuario" />
+                            </div>
+
+                            <!-- cuenta de usuario -->
+                            <div class="col-md-3 SelectBuscadorDNP">
+                                <div class="labelbuscadorDNP"> <span>Correo de usuario</span></div>
+                                <input type="text" name="txtCuentaUsuario" id="txtCuentaUsuario" class="form-control InputBuscadorDNP" placeholder="Correo de usuario" ng-model="vm.filtros.cuentaUsuario" />
+
+                            </div>
+
+                            <!-- Numero de documento -->
+                            <div class="col-md-3">
+                                <div class="labelbuscadorDNP"> <span>Numero de documento</span></div>
+                                <input type="text" name="txtNumeroDocumento" id="txtNumeroDocumento" class="form-control InputBuscadorDNP" placeholder="NumeroDocumento" ng-model="vm.filtros.numeroDocumento" />
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 pull-left text-left" ng-if="vm.BusquedaRealizada">
+                                <span class="spanresultadobusquedaDNP pull-left" ng-if="vm.cantidadDeUsuarios > 0">
+                                    Se encontraron ({{vm.cantidadDeUsuarios}}) resultados.
+                                </span>
+                                <span class="spanresultadobusqueda2DNP pull-left" style="margin-top: 0px;" ng-if="vm.cantidadDeUsuarios == 0">
+                                    No se encontraron resultados.
+                                </span>
+                            </div>
+                            <!--<div class="col-md-6 pull-right text-right">
+                                <span class="pull-right">
+                                    <button type="button" class="btn btn-filtro" ng-click="vm.filtrar()" tooltip-placement="auto" uib-tooltip="Buscar">Buscar</button>
+                                    <button type="button" class="btn btn-filtro" ng-click="vm.limpiarCamposFiltro()" tooltip-placement="auto" uib-tooltip="Limpiar">Limpiar</button>
+                                </span>
+                            </div>-->
+                            <div class="col-md-6 pull-right text-right">
+                                <span class="pull-right">
+                                    <button type="button" class=" btnBuscarDNP " tooltip-class="customClass" uib-tooltip="Buscar" ng-click="vm.filtrar()">
+                                        BUSCAR
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="" style="padding: 0 !important" ng-repeat="entidad in vm.datos | orderBy:'agrupadorEntidad'">
+
+                    <div class="alert panel-headingAccDNP">
+                        <div class="card card-body pull-left  divAccordionDNP">
+                            <span class="uLabelCampo">{{entidad.agrupadorEntidad}}</span> - {{entidad.entidad}}
+                            <p class="panelbtnalertAcordnp">
+                                <button class="btnaccion btnAccordionDNP" type="button" data-toggle="collapse" data-target="#obj_{{entidad.IdEntidad}}" ng-click="vm.AbrilNivel(entidad.IdEntidad)">
+                                    <img ng-show="entidad.estadoEntidad == '+'" src="Img/btnMas.svg">
+                                    <img ng-show="entidad.estadoEntidad == '-'" src="Img/btnMenos.svg">
+                                </button>
+                            </p>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="collapse" id="obj_{{entidad.IdEntidad}}" style="margin-top: -20px;">
+                        <div class="LineaEncabezadodivDNP"></div>
+                        <div class="row">
+                            <h3 class="tituloEncabezadodivDNP">
+                                Usuarios: {{entidad.subGridOptions.data.length}}
+                            </h3>
+                        </div>
+
+                        <div class="row" style="margin: 0px 0px 0px 0px;">
+                            <div class="col-md-12 ">
+
+                                <table class="TableDNP">
+                                    <thead>
+                                        <tr>
+                                            <th class="columAcc"></th>
+                                            <th class="textLeftDNP">Nombres y apellidos</th>
+                                            <th class="textLeftDNP">ID USUARIO DNP</th>
+                                            <th class="textLeftDNP">Correo electrónico</th>
+                                            <th class="columAcc"></th>
+                                            <th class="columAcc"></th>
+                                            <th class="columAcc"></th>
+                                            <th class="columAcc"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="datos in entidad.subGridOptions.data ">
+
+                                            <td></td>
+                                            <td class="textLeftDNP">
+                                                {{datos.Nombre.split(':').join(' ')}}
+                                            </td>
+                                            <td class="textLeftDNP">{{datos.IdUsuarioDNP}}</td>
+                                            <td class="textLeftDNP">{{datos.Correo}}</td>
+                                            <td class="textCenterDNP">
+                                                <label class="switchDNP">
+                                                    <input type="checkbox" ng-checked="datos.Activo" ng-model="datos.Activo" ng-click="vm.cambiarEstadoUsuario(datos)">
+                                                    <span class="slider round"></span>
+                                                </label>
+                                            </td>
+                                            <td class="textCenterDNP">
+                                                <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Editar Usuario" ng-click="vm.abrirModalEditar(datos)">
+                                                    <span> <img src="Img/IcoEditUsuario.svg"></span>
+                                                </button>
+                                            </td>
+                                            <td class="textCenterDNP">
+                                                <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Ver perfiles usuario" ng-click="vm.abrirModalPerfilesUsario(datos)">
+                                                    <span> <img style="width: 22px; height: 22px" src="Img/IcoPerfilesUsuario.svg"></span>
+                                                </button>
+                                            </td>
+                                            <td class="textCenterDNP">
+                                                <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Ver roles por perfiles" ng-click="vm.abrirModalRolesXPerfil(datos)">
+                                                    <span> <img style="width: 20px; height: 20px " src="Img/IcoRolesPerfil.svg"></span>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- #endregion Tabla -->
+        </div>
+    </div>
+</div>
+
+<style>
+    .consola-modal-soportesDNP .modal-content {
+        min-height: 540px;
+    }
+</style>

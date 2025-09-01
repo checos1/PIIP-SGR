@@ -1,0 +1,124 @@
+﻿
+<!--<button id="divasociaciarproyecto" class="accordiondatos" ng-init="vm.inicaliazarAsociacion()" style="display:flex;width:100%;" ng-click="vm.abrirpanelseleccion()">
+
+
+    <img class="img" style="text-align:left;" src="Img/lineavertical.png" />
+
+
+    <p style="padding-top:1rem;padding-left:2rem;width:95%;">
+        <span class="headline-s font-azul">Selección del proyecto </span>
+    </p>
+
+
+    <img id="u4_imgcargaarchivo" class="img" style="text-align:right;margin-top:3rem" src="Img/iconsmenu/u4.svg">
+
+
+</button>-->
+
+<div ng-init="vm.inicaliazarAsociacion()" style="padding-right: 15px; padding-left: 0px; margin-left: -15px;">
+
+    <buscar-proyectovf callback="vm.deshabilitarBotonDevolverSeccionProyecto()" 
+                        guardadoevent="vm.guardado(nombreComponenteHijo)" >
+
+    </buscar-proyectovf>
+
+
+
+    <div class="row">
+
+        <div class="col-md-12" style="padding-top:2rem;">
+            <div id="asociarproyectoasociarproyecto-proyecto-error" class="hidden uMensajeError"></div>
+            <span class="uLabelCampoNegro" style="padding-left:0rem;">{{vm.titulogrilla}}</span>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="tab-pane active cont col-md-12" style="padding-top:20px !important" id="dasocarProyecto">
+
+        </div>
+    </div>
+    <!--<div class="row">
+        <div class="col-md-12" style="padding-top:2rem;">
+            <span style="color:#004884;font-weight: 600;">Entidad:&nbsp;</span><span class="uLabelCampoNegro">{{vm.entidad}}&nbsp;</span>
+            <span style="color:#004884;font-weight: 600;">Sector:&nbsp;</span><span class="uLabelCampoNegro">{{vm.sector}}&nbsp;</span>
+            <span style="color:#004884;font-weight: 600;">Código BPIN:&nbsp;</span><span class="uLabelCampoNegro">{{vm.BPIN}}&nbsp;</span>
+            <span style="color:#004884;font-weight: 600;">Proyecto:&nbsp;</span><span class="uLabelCampoNegro">{{vm.proyecto}}&nbsp;</span>
+            <span style="color:#004884;font-weight: 600;">Vigencia inicial:&nbsp;</span><span class="uLabelCampoNegro">{{vm.vigenciaInicial}}&nbsp;</span>
+            <span style="color:#004884;font-weight: 600;">Vigencia final:&nbsp;</span><span class="uLabelCampoNegro">{{vm.vigenciaFinal}}</span>
+        </div>
+
+    </div>-->
+    <!--<div class="row" style="padding-top:2rem;">
+        <div class="col-md-12" style="padding-top:0.2rem;">
+            <div class="row">
+                <div class="filtro filtro-entidades" stye="background-color: #f5f5f5;">
+                    <div class="clearfix">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-xs-3" style="text-align:left">
+                                    <span style="color:#004884;font-weight: 600;">Tipo recurso</span>
+                                </div>
+                                <div class="col-md-2" style="text-align:left;">
+                                    <span style="color:#004884;font-weight: 600;">Aprobación inicial&nbsp;$ </span>
+                                </div>
+                                <div class="col-md-2" style="text-align:left;">
+                                    <span style="color:#004884;font-weight: 600;">Aprobación vigente&nbsp;$</span>
+                                </div>
+                                <div class="col-xs-2" style="text-align: left;">
+                                    <span style="color:#004884;font-weight: 600;">Valor disponible&nbsp;$</span>
+                                </div>
+                                <div class="col-xs-2" style="text-align: left;">
+                                    <span style="color:#004884;font-weight: 600;">Vigencias futuras&nbsp;$</span>
+                                </div>
+                                <div class="col-xs-1" style="text-align: left;">
+                                    <span></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div ng-repeat="objValor in vm.listaValores" style="width:99%" ng-init="objValorIndex = $index">
+                    <div class="col-md-12 form-group text-right" style="padding-right:2rem;">
+                        <div class="col-md-12">
+                            <div class="col-md-3" style="text-align:left">
+                                <label style="font-size: 12px; font-family: 'Work Sans';">{{objValor.tipoRecurso}}</label>
+                            </div>
+                            <div class="col-md-2" style="text-align:left">
+                                <label style="font-size: 12px; font-family: 'Work Sans'; color: mediumblue">{{objValor.aprobacionInicial}}</label>
+                            </div>
+                            <div class="col-md-2" style="text-align:left">
+                                <label style="font-size: 12px; font-family: 'Work Sans'; color: mediumblue">{{objValor.aprobacionVigente}}</label>
+                            </div>
+                            <div class="col-md-2" style="text-align:left">
+                                <label style="font-size: 12px; font-family: 'Work Sans'; color: mediumblue">{{objValor.valorDispinible}}</label>
+                            </div>
+                            <div class="col-md-2" style="text-align:left">
+                                <label style="font-size: 12px; font-family: 'Work Sans'; color: mediumblue">{{objValor.vigenciasFuturas}}</label>
+                            </div>
+                            <div class="col-md-1" style="text-align:left">
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>-->
+    <div class="row" style="padding-top:2rem;">
+        <div class="col-md-8"></div>
+        <div class="col-md-2">
+            <span class="buttonbar pull-right" ng-if="$sessionStorage.BPIN!=''">
+                <a ng-click="vm.crearAjuste()" has-claim has-opciones="['TramitesVigenciaFutura:AccionesPasoUno']"><span class="uLabelCampo_fp1" style="text-decoration:underline">CREAR AJUSTE</span></a>
+            </span>
+        </div>
+        <div class="col-md-2">
+            <span class="buttonbar pull-right" ng-if="$sessionStorage.BPIN!=''">
+                <a ng-click="vm.eliminarAsociacion()" has-claim has-opciones="['TramitesVigenciaFutura:AccionesPasoUno']"><span class="uLabelCampo_fp1" style="text-decoration:underline">ELIMINAR ASOCIACIÓN</span></a>
+            </span>
+        </div>
+    </div>
+</div>

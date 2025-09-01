@@ -1,0 +1,56 @@
+﻿<section ng-init="vm.init();">
+
+    <div id="SGRERRSEC{{vm.nombreComponente}}" class="hidden mb-3 ml-5 errorSeccionInformacionGeneralViabilidad" style="text-align: left; font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans'; font-size: 12px; font-style: normal; color: #A80521;">rrrrr</div>
+    <div class="container-fluid inbox">
+        <div class="tab-content">
+            <div class="ui-accordion-container">
+                <div class="alert panel-heading row ui-accordion-header">
+                    <button type="button" data-toggle="collapse" data-target="#sgrviabilidadinformaciongeneralinformacionbasica" ng-click="vm.changeArrow('sgrviabilidadinformaciongeneralinformacionbasica')">
+                        <span class="d-inline-block" id="alert-sgrviabilidadinformaciongeneralinformacionbasica"></span>
+                        <span id="name-capitulo-sgrviabilidadinformaciongeneralinformacionbasica"></span>
+                        <span class="hidden" id="id-capitulo-sgrviabilidadinformaciongeneralinformacionbasica"></span>
+                        <span id="arrow-sgrviabilidadinformaciongeneralinformacionbasica" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#sgrviabilidadinformaciongeneralinformacionbasica"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="sgrviabilidadinformaciongeneralinformacionbasica">
+                    <informacion-basica-viabilidad-sgr guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                                       notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                       notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)">
+                    </informacion-basica-viabilidad-sgr>
+                </div>
+            </div>
+            <div class="ui-accordion-container">
+                <div class="alert panel-heading row ui-accordion-header">
+                    <button type="button" data-toggle="collapse" data-target="#sgrviabilidadinformaciongeneralconceptospreviosemitidos" ng-click="vm.changeArrow('sgrviabilidadinformaciongeneralconceptospreviosemitidos')">
+                        <span class="d-inline-block" id="alert-sgrviabilidadinformaciongeneralconceptospreviosemitidos"></span>
+                        <span id="name-capitulo-sgrviabilidadinformaciongeneralconceptospreviosemitidos"></span>
+                        <span class="hidden" id="id-capitulo-sgrviabilidadinformaciongeneralconceptospreviosemitidos"></span>
+                        <span id="arrow-sgrviabilidadinformaciongeneralconceptospreviosemitidos" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#sgrviabilidadinformaciongeneralconceptospreviosemitidos"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="sgrviabilidadinformaciongeneralconceptospreviosemitidos">
+                    <conceptos-previos-emitidos-viabilidad-sgr guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                                               notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                               notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"></conceptos-previos-emitidos-viabilidad-sgr>
+                </div>
+            </div>
+            <div class="ui-accordion-container">
+                <div class="alert panel-heading row ui-accordion-header">
+                    <button type="button" data-toggle="collapse" data-target="#sgrviabilidadinformaciongeneralusuariosinvolucrados" ng-click="vm.changeArrow('sgrviabilidadinformaciongeneralusuariosinvolucrados')">
+                        <span class="d-inline-block" id="alert-sgrviabilidadinformaciongeneralusuariosinvolucrados"></span>
+                        <span id="name-capitulo-sgrviabilidadinformaciongeneralusuariosinvolucrados"></span>
+                        <span class="hidden" id="id-capitulo-sgrviabilidadinformaciongeneralusuariosinvolucrados"></span>
+                        <span id="arrow-sgrviabilidadinformaciongeneralusuariosinvolucrados" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#sgrviabilidadinformaciongeneralusuariosinvolucrados"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="sgrviabilidadinformaciongeneralusuariosinvolucrados">
+
+                    <usuarios-involucrados-viabilidad-sgr guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                                          notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                          notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)">
+                    </usuarios-involucrados-viabilidad-sgr>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

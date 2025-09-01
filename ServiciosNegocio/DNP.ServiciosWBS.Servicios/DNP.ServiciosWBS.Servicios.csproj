@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{600D9DA1-E31B-475C-AE02-E6D6419E66E8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DNP.ServiciosWBS.Servicios</RootNamespace>
+    <AssemblyName>DNP.ServiciosWBS.Servicios</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Dev|AnyCPU'">
+    <OutputPath>bin\Dev\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'QA|AnyCPU'">
+    <OutputPath>bin\QA\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'UAT|AnyCPU'">
+    <OutputPath>bin\UAT\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Local|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Local\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DevNT|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\DevNT\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'UatNT|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\UatNT\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'QA2|AnyCPU'">
+    <OutputPath>bin\QA2\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'QA3|AnyCPU'">
+    <OutputPath>bin\QA3\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'QA4|AnyCPU'">
+    <OutputPath>bin\QA4\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'SGR|AnyCPU'">
+    <OutputPath>bin\SGR\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'UATSGR|AnyCPU'">
+    <OutputPath>bin\UATSGR\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Implementaciones\AjusteFocalizacionPoliticasTransversalesAsociacionIndicadoresServicios.cs" />
+    <Compile Include="Implementaciones\AjustesCuantificacionBeneficiarioServicios.cs" />
+    <Compile Include="Implementaciones\AjustesPoliticasTransversalesMetasServicios.cs" />
+    <Compile Include="Implementaciones\AjustesPoliticaTransversalBeneficiarioServicios.cs" />
+    <Compile Include="Implementaciones\AjusteRegionalizacionMetasyRecursosServicios.cs" />
+    <Compile Include="Implementaciones\AjustesPoliticaTransversalCategoriaServicios.cs" />
+    <Compile Include="Implementaciones\AjustesRegionalizaFuentesServicios.cs" />
+    <Compile Include="Implementaciones\AjustesUbicacionServicios.cs" />
+    <Compile Include="Implementaciones\CadenaValorServicios.cs" />
+    <Compile Include="Implementaciones\CostosEntregablesServicios.cs" />
+    <Compile Include="Implementaciones\CartaConceptoDatosDespediaServicios.cs" />
+    <Compile Include="Implementaciones\DesagregarRegionalizacionServicios.cs" />
+    <Compile Include="Implementaciones\DiligenciarFuentesServicios.cs" />
+    <Compile Include="Implementaciones\CuantificacionBeneficiarioServicios.cs" />
+    <Compile Include="Implementaciones\FocalizacionCuantificacionLocalizacionServicios.cs" />
+    <Compile Include="Implementaciones\FocalizacionPoliticasTransversalesAsociacionIndicadoresServicios.cs" />
+    <Compile Include="Implementaciones\FocalizacionPoliticasTransversalesFuentesServicios .cs" />
+    <Compile Include="Implementaciones\FocalizacionPoliticasTransversalesMetasServicios.cs" />
+    <Compile Include="Implementaciones\FocalizacionPoliticasTransversalesRelacionadasAjustesServicios.cs" />
+    <Compile Include="Implementaciones\FocalizacionPoliticasTransversalesRelacionadasServicios.cs" />
+    <Compile Include="Implementaciones\FocalizacionPoliticasTransversalesServicios.cs" />
+    <Compile Include="Implementaciones\AjusteDiligenciarFuentesFinanciacionServicios.cs" />
+    <Compile Include="Implementaciones\IncluirPoliticasServicios.cs" />
+    <Compile Include="Implementaciones\PoliticasTransversalesCrucePoliticasServicios.cs" />
+    <Compile Include="Implementaciones\PoliticaTransversalBeneficiarioServicios.cs" />
+    <Compile Include="Implementaciones\CostosActividadesServicios.cs" />
+    <Compile Include="Implementaciones\RegionalizacionMetasyRecursosServicios.cs" />
+    <Compile Include="Implementaciones\LocalizacionServicios.cs" />
+    <Compile Include="Implementaciones\PoliticaTransversalCategoriaServicios.cs" />
+    <Compile Include="Implementaciones\RegionalizaFuentesServicio.cs" />
+    <Compile Include="Implementaciones\TramitesDistribucionesAnterioresServicios.cs" />
+    <Compile Include="Implementaciones\ValidarViabilidadCompletarInfoServicios.cs" />
+    <Compile Include="Implementaciones\FocalizacionServicios.cs" />
+    <Compile Include="Implementaciones\CuantificacionLocalizacionServicios.cs" />
+    <Compile Include="Implementaciones\GenerarEtapaCadenaValor.cs" />
+    <Compile Include="Implementaciones\IndicadorProductoAgregarServicios.cs" />
+    <Compile Include="Implementaciones\ProductosServicio.cs" />
+    <Compile Include="Implementaciones\RegionalizacionIndicadorAgregarServicios.cs" />
+    <Compile Include="Implementaciones\RegionalizacionIndicadoresServicios.cs" />
+    <Compile Include="Implementaciones\FocalizacionProyectoServicios.cs" />
+    <Compile Include="Implementaciones\RegionalizacionProyectoServicios.cs" />
+    <Compile Include="Implementaciones\ServicioBase.cs" />
+    <Compile Include="Implementaciones\Transversales\AuditoriaServicios.cs" />
+    <Compile Include="Interfaces\IAjusteFocalizacionPoliticasTransversalesAsociacionIndicadoresServicios.cs" />
+    <Compile Include="Interfaces\IAjusteRegionalizacionMetasyRecursosServicios.cs" />
+    <Compile Include="Interfaces\IAjustesCuantificacionBeneficiarioServicios.cs" />
+    <Compile Include="Interfaces\IAjustesPoliticasTransversalesMetasServicios.cs" />
+    <Compile Include="Interfaces\IAjustesPoliticaTransversalBeneficiarioServicios.cs" />
+    <Compile Include="Interfaces\IAjustesPoliticaTransversalCategoriaServicios.cs" />
+    <Compile Include="Interfaces\IAjustesRegionalizaFuentesServicios.cs" />
+    <Compile Include="Interfaces\IAjustesUbicacionServicios.cs" />
+    <Compile Include="Interfaces\IPoliticasTransversalesCrucePoliticasServicios.cs" />
+    <Compile Include="Interfaces\ICostosEntregablesServicios.cs" />
+    <Compile Include="Interfaces\ICartaCuerpoDatosDespedidaServicios.cs" />
+    <Compile Include="Interfaces\IDesagregarRegionalizacionServicios.cs" />
+    <Compile Include="Interfaces\IFocalizacionPoliticasTransversalesAsociacionIndicadoresServicios.cs" />
+    <Compile Include="Interfaces\IFocalizacionPoliticasTransversalesFuentesServicios .cs" />
+    <Compile Include="Interfaces\IFocalizacionPoliticasTransversalesRelacionadasAjustesServicios.cs" />
+    <Compile Include="Interfaces\IFocalizacionPoliticasTransversalesRelacionadasServicios.cs" />
+    <Compile Include="Interfaces\IAjusteDiligenciarFuentesFinanciacionServicios.cs" />
+    <Compile Include="Interfaces\IIncluirPoliticasServicios.cs" />
+    <Compile Include="Interfaces\ICadenaValorServicios.cs" />
+    <Compile Include="Interfaces\IDiligenciarFuentes.cs" />
+    <Compile Include="Interfaces\ICuantificacionBeneficiarioServicios.cs" />
+    <Compile Include="Interfaces\IFocalizacionCuantificacionLocalizacionServicios.cs" />
+    <Compile Include="Interfaces\IFocalizacionPoliticasTransversalesMetasServicios.cs" />
+    <Compile Include="Interfaces\IFocalizacionPoliticasTransversalesServicios.cs" />
+    <Compile Include="Interfaces\IPoliticaTransversalBeneficiarioServicios.cs" />
+    <Compile Include="Interfaces\IRegionalizacionMetasyRecursosServicios.cs" />
+    <Compile Include="Interfaces\ILocalizacionServicios.cs" />
+    <Compile Include="Interfaces\IPoliticaTransversalCategoriaServicios.cs" />
+    <Compile Include="Interfaces\ICostosActividadesServicios.cs" />
+    <Compile Include="Interfaces\IRegionalizaFuentesServicio.cs" />
+    <Compile Include="Interfaces\ITramitesDistribucionesAnterioresServicios.cs" />
+    <Compile Include="Interfaces\IValidarViabilidadCompletarInfoServicios.cs" />
+    <Compile Include="Interfaces\IFocalizacionServicios.cs" />
+    <Compile Include="Interfaces\ICuantificacionLocalizacionServicios.cs" />
+    <Compile Include="Interfaces\IIndicadorProductoAgregarServicios.cs" />
+    <Compile Include="Interfaces\IProductosServicio.cs" />
+    <Compile Include="Interfaces\IFocalizacionProyectoServicios.cs" />
+    <Compile Include="Interfaces\IRegionalizacionIndicadorAgregarServicios.cs" />
+    <Compile Include="Interfaces\IRegionalizacionIndicadoresServicios.cs" />
+    <Compile Include="Interfaces\IRegionalizacionProyectoServicios.cs" />
+    <Compile Include="Interfaces\Transversales\IAuditoriaServicios.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DNP.ServiciosNegocio.Comunes\DNP.ServiciosNegocio.Comunes.csproj">
+      <Project>{B20F5062-15B9-49E4-88C5-79F109F947EF}</Project>
+      <Name>DNP.ServiciosNegocio.Comunes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DNP.ServiciosNegocio.Dominio\DNP.ServiciosNegocio.Dominio.csproj">
+      <Project>{694221D1-E217-4D2E-87E3-B196C4C6BE94}</Project>
+      <Name>DNP.ServiciosNegocio.Dominio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DNP.ServiciosWBS.Persistencia\DNP.ServiciosWBS.Persistencia.csproj">
+      <Project>{DBE1BC0F-E99D-4F10-85FA-59A9D6E95793}</Project>
+      <Name>DNP.ServiciosWBS.Persistencia</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

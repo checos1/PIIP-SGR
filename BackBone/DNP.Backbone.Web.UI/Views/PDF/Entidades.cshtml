@@ -1,0 +1,85 @@
+﻿@using DNP.Backbone.Dominio.Dto;
+@model List<DNP.Backbone.Dominio.Dto.AutorizacionNegocio.EntidadFiltroDto>
+@{
+    Layout = null;
+    ViewBag.Title = "EntidadesPDF";
+}
+<html>
+<head>
+    @Html.Partial("_IncludeEstilosRelatorios")
+    <style>
+        body.pdf table table td,
+        body.pdf table table th {
+            padding-left: 30px;
+        }
+    </style>
+</head>
+<body class="pdf">
+    @Html.Partial("_CabecalhoRelatorio", "Informe del entidades")
+
+    <div class="mt-5">
+        @if (Model == null)
+        {
+            <table class="table table-sm table-borderless">
+                <thead>
+                    <tr>
+                        <th class="text-left">
+                            No hubo registros para los filtros seleccionados.
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+        }
+        else
+        {
+            <div id="containerbody">
+                <table class="table  table-borderless border-table">
+                    <thead>
+                        <tr>
+                            <th width="200">Entidades</th>
+                            <th width="40">Tipo Entidad</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var entidad in Model)
+                        {
+                            <tr>
+                                @if (entidad.CabezaSector)
+                                {
+                                    <td>@entidad.NombreCompleto - Cabeza Sector</td>
+                                }
+                                else
+                                {
+                                    <td>@entidad.NombreCompleto</td>
+                                }
+                                <td width="40">@entidad.TipoEntidad</td>
+                            </tr>
+
+                            if (entidad.TieneHijo)
+                            {
+                                <tr>
+                                    <td colspan="2">
+                                        <table>
+                                            <tbody>
+                                                <tr>
+                                                    <th colspan="2" width="200">Sub-Entidades</th>
+                                                </tr>
+                                                @foreach (var subEntidad in entidad.SubEntidades)
+                                                {
+                                                    <tr>
+                                                        <td colspan="2">@subEntidad.AgrupadorEntidad - @subEntidad.Entidad</td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </div>
+</body>
+</html>

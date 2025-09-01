@@ -1,0 +1,95 @@
+@using  DNP.Backbone.Dominio.Dto.CentroAyuda;
+@model  List<AyudaTemaListaItemDto>
+@{
+    Layout = null;
+    ViewBag.Title = "Lista de Temario de Ayuda";
+
+    // constante: diccionario de datos para determinar la propiedad asociada a la columna
+    var columnaPropiedades = new Dictionary<String, String> {
+        { "Temas", "Nombre"},
+    };
+}
+
+<html>
+    <head>
+        @Html.Partial("_IncludeEstilosRelatorios")
+    </head>
+
+    <body class="pdf">
+        @Html.Partial("_CabecalhoRelatorio", "Informe de Temario de Ayuda")
+
+        <div class="mt-5">
+            @if (Model.Count == 0)
+            {
+
+                <table class="table table-sm table-borderless">
+                    <thead>
+                        <tr>
+                            <th class="text-center">
+                                No hubo registros para los filtros seleccionados.
+                            </th>
+                        </tr>
+                    </thead>
+                </table>
+            }
+            else
+            {
+
+                foreach (var tema in Model)
+                {
+                    <div>
+                        <div class="marginTop10">
+                            <table class="table">
+                                <tr>
+                                    <td><b>Tema principal:</b> <span class="agr-blue"> @tema.Nombre </span> </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div id="containerbody">
+                        <table class="table  table-borderless border-table">
+                            <thead>
+                                <tr>
+                                    @foreach (var columna in columnaPropiedades.Select(p => p.Key).ToList())
+                                    {
+                                        <th>@columna</th>
+                                    }
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var subTema in (tema.SubItems != null ? tema.SubItems : new List<AyudaTemaListaItemDto>()))
+                                {
+
+                                    var columnasValor = subTema.GetType().GetProperties()
+                                                                           .Select((p, index) => new
+                                                                           {
+                                                                               Index = index,
+                                                                               Propiedad = p.Name,
+                                                                               Valor = p.GetValue(subTema)
+                                                                           }).ToList();
+
+                                    var columnasPropiedadesLista = columnaPropiedades.Select(p => p.Value).ToList();
+                                    columnasValor = columnasValor.Where(p => columnasPropiedadesLista.Contains(p.Propiedad)).Select(p => new
+                                    {
+                                        Index = columnasPropiedadesLista.IndexOf(p.Propiedad),
+                                        p.Propiedad,
+                                        p.Valor
+                                    }).OrderBy(p => p.Index).ToList();
+
+                                    <tr>
+                                        @foreach (var columna in columnasValor)
+                                        {
+                                            <td>@columna.Valor</td>
+
+                                        }
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+            }
+        </div>
+    </body>
+</html>

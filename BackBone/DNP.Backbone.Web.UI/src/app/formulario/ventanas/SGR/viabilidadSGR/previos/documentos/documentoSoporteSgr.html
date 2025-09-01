@@ -1,0 +1,31 @@
+﻿
+<div ng-init="vm.init();">
+    <div class="ui-accordion-container " id="accordion-sgrviabilidadpreviossoportealojararchivo">
+        <div class="alert panel-heading row ui-accordion-header">
+            <button type="button" data-toggle="collapse" data-target="#sgrviabilidadpreviossoportealojararchivo" ng-click="vm.changeArrow('sgrviabilidadpreviossoportealojararchivo')">
+                <span class="d-inline-block" id="alert-sgrviabilidadpreviossoportealojararchivo"></span>
+                <span id="name-capitulo-sgrviabilidadpreviossoportealojararchivo"></span>
+                <span class="hidden" id="id-capitulo-sgrviabilidadpreviossoportealojararchivo"></span>
+                <span id="arrow-sgrviabilidadpreviossoportealojararchivo" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#sgrviabilidadpreviossoportealojararchivo"></span>
+            </button>
+        </div>
+        <div class="collapse" id="sgrviabilidadpreviossoportealojararchivo">
+            <div class="row m-0 mb-3">
+                <br>
+                <div class="col-md-12 ">
+                    <archivos-formulario-trv tipotramiteid="{{vm.tipotramiteid}}"
+                                         tramiteid="{{vm.tramiteid}}"
+                                         nivel="{{vm.nivel}}"
+                                         rol="{{vm.rol}}"
+                                         section="{{vm.section}}"
+                                         objetonegocioid="{{vm.IdObjetoNegocio}}"
+                                         nombrecomponentepaso="{{vm.nombreComponenteHijo}}"
+                                         guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                         notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                         notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)">
+                    </archivos-formulario-trv>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+﻿<section class="ventana-ajsutes mt-4">
+    <div class="row m-0" ng-init="vm.initProgramacion()">
+        <div class="form-group">
+            <div class="tab-content">
+                <div class="tab-pane active cont col-md-12 p-0" id="dproyecto">
+                    <asociar-proyecto-d-tr tipotramiteid="{{vm.tramiteDetail.tipoTramiteId}}"
+                                         tramiteid="{{vm.tramiteDetail.tramiteId}}"
+                                         deshabilitar="{{vm.deshabilitar}}"
+                                         rolanalista="{{vm.rolAnalista}}"
+                                         actualizacomponentes="vm.actualizacomponentes"
+                                         callback="vm.notificarGuardado()"
+                                         guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                         notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                         notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)"
+                                         notificacioncambios="vm.notificacionCambiosAjustes(handler, nombreComponente)">
+
+                    </asociar-proyecto-d-tr>
+                </div>
+                <div class="tab-pane  cont col-md-12 p-0" id="dinformacionpresupuestal">
+                    <informacion-presupuestal-d-tr tipotramiteid="{{vm.tramiteDetail.tipoTramiteId}}"
+                                                 tramiteid="{{vm.tramiteDetail.tramiteId}}"
+                                                 actualizacomponentes="{{vm.actualizacomponentes}}"
+                                                 rolanalista="{{vm.rolAnalista}}"
+                                                 deshabilitar="{{vm.deshabilitar}}"
+                                                 callback="vm.notificarGuardado()"
+                                                 guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                                 notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                                 notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente, handlerCapitulos)"
+                                                 notificacioncambios="vm.notificacionCambios(handler, nombreComponente)">
+                    </informacion-presupuestal-d-tr>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>

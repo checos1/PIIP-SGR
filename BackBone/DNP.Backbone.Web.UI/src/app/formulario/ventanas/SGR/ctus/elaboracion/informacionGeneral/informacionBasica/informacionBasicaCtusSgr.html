@@ -1,0 +1,546 @@
+﻿
+<div ng-init="vm.init();">
+    <form id="generalesForm" name="generalesForm" novalidate>
+        <br>
+        <span class="buttonbar pull-right">
+            <button has-opciones="['ctusElaboracionSGR:preguntasEditar']"
+                    id="EditarG"
+                    type="button"
+                    class="btneditarDNP"
+                    tooltip-placement="top"
+                    uib-tooltip="Editar"
+                    tabindex="0"
+                    ng-click="vm.ActivarEditar()"
+                    ng-disabled="vm.disabled"
+                    ng-if="vm.habilitaBotones">
+                EDITAR
+            </button>
+            &nbsp;
+            <button has-opciones="['ctusElaboracionSGR:preguntasGuardar']"
+                    id="GuardarG"
+                    type="submit"
+                    class="{{vm.activar ? 'btnguardarDisabledDNP' : 'btnguardarDNP'}}"
+                    tooltip-placement="top"
+                    uib-tooltip="Guardar"
+                    ng-click="vm.guardar(vm.PreguntasPersonalizadas)"
+                    ng-disabled="vm.activar"
+                    ng-if="vm.habilitaBotones">
+                GUARDAR
+            </button>
+        </span>
+        <br />
+        <br />
+        <div class="row my-5">
+            <div class="col-md-12" style="display: inline-flex;">
+                <span class="label" style="color: #004884; font-size: 24px; font-weight: 400;padding-left:0;"> 1. Información general del proyecto </span>
+                <div ng-click="vm.abrirTooltip()">
+                    <svg class="mi-card__tooltip-icon" xmlns="http://www.w3.org/2000/svg" width="17.037" height="17.037" viewBox="0 0 17.037 17.037">
+                        <g id="Grupo_5110" data-name="Grupo 5110" transform="translate(0 0)">
+                            <path id="Caminho_9243" data-name="Caminho 9243" d="M8.552,0A8.552,8.552,0,0,0,0,8.485a8.609,8.609,0,0,0,8.552,8.552A8.519,8.519,0,0,0,8.552,0Zm0,14.542a1,1,0,1,1,1-1A1,1,0,0,1,8.552,14.542Zm1.769-6.136A2.663,2.663,0,0,0,9.55,10.22v.262a1,1,0,0,1-2,0V10.22A4.614,4.614,0,0,1,9.141,6.8,1,1,0,1,0,7.554,5.99a1,1,0,0,1-2,0,2.995,2.995,0,1,1,4.764,2.416Z" transform="translate(0 0)" fill="#36c"></path>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-lg-4 col-sm-12 DetacolumnDNP">
+                <span class="detapregun ng-binding">1. Nombre del proyecto</span>
+            </div>
+            <div class="col-md-4 col-lg-4 col-sm-12 DetacolumnDNP">
+                <span>2. Código BPIN</span>
+            </div>
+            <div class="col-md-4 col-lg-4 col-sm-12 DetacolumnDNP">
+                <span>3. Número de revisión</span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 col-lg-4 col-sm-12 mb-5">
+                <div class="blockReferencia2DNP">
+                    <span style="font-family:'Work Sans  Roman', 'Work Sans Regular Roman', 'Work Sans';font-weight:400;color:#4B4B4B;">
+                        {{vm.data.Nombre}}
+                    </span>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-lg-4 col-sm-12 mb-5">
+                <div class="blockReferencia2DNP">
+                    <span style="font-family:'Work Sans  Roman', 'Work Sans Regular Roman', 'Work Sans';font-weight:400;color:#4B4B4B;">
+                        {{vm.data.CodigoBpin}}
+                    </span>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-lg-4 col-sm-12 mb-5">
+                <div class="blockReferencia2DNP">
+                    <span style="font-family:'Work Sans  Roman', 'Work Sans Regular Roman', 'Work Sans';font-weight:400;color:#4B4B4B;">
+                        {{vm.data.NumeroRevision}}
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 col-lg-4 col-sm-12 DetacolumnDNP">
+                <span>4. Categoría *</span>
+            </div>
+            <div class="col-md-4 col-lg-4 col-sm-12 DetacolumnDNP">
+                <span>5. Fase del proyecto</span>
+            </div>
+            <div class="col-md-4 col-lg-4 col-sm-12 DetacolumnDNP">
+                <span>6. Región SGR *</span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 col-lg-4 col-sm-12 mb-5">
+                <div class="blockReferencia2DNP">
+                    <div class="checkboxes-seleccion" style="text-align: left; font-family: 'Work Sans  Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 400; color: #4B4B4B;">
+                        <div ng-repeat="categoria in vm.listaCategoriasSgr">
+                            <input type="checkbox"
+                                   id="check-{{categoria.Id}}"
+                                   name="optcheckbox-{{categoria.Nombre}}"
+                                   ng-model="categoria.checked"
+                                   ng-disabled="vm.activar"
+                                   required>
+                            {{categoria.Nombre}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="padding-left: 0px;">
+                    <div id="categoriasProyecto-error" class="hidden uMensajeError" style="width: 100%; padding-left: 1.5rem;"><span style=" padding-left: 2rem;">Campo obligatorio</span></div>
+                    <span class="d-inline-block errorSeccionInformacionGeneralViabilidad" id="alert-sgrctuselaboracioninfogeneralinfobasicaERRINFGCAT"></span>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-lg-4 col-sm-12 mb-5">
+                <div class="blockReferencia2DNP">
+                    <span style="font-family:'Work Sans  Roman', 'Work Sans Regular Roman', 'Work Sans';font-weight:400;color:#4B4B4B;">
+                        {{vm.data.Fase}}
+                    </span>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-lg-4 col-sm-12 mb-5">
+                <div class="SelectBuscadorDNP" style="width: auto;height: 120px;background-color: rgba(246, 248, 249, 1);">
+                    <select class="form-control selectDNP" chosen options="vm.listaRegionesSgr" ng-model="vm.data.RegionSgrId"
+                            ng-options="x.Id as x.Nombre for x in vm.listaRegionesSgr"
+                            name="ddlRegionSgr" id="ddlRegionSgr"
+                            placeholder-text-single="Seleccione..."
+                            ng-disabled="vm.activar" required>
+                        <option value="0" selected>Seleccione...</option>
+                    </select>
+                </div>
+                <div class="row" style="padding-left: 0px;">
+                    <div id="regionSgr-error" class="hidden uMensajeError" style="width: 100%; padding-left: 1.5rem;"><span style=" padding-left: 2rem;">Campo obligatorio</span></div>
+                    <span class="d-inline-block errorSeccionInformacionGeneralViabilidad" id="alert-sgrctuselaboracioninfogeneralinfobasicaERRINFGREGSGR"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 col-lg-4 col-sm-12 DetacolumnDNP">
+                <span>7. Entidad que presenta el proyecto</span>
+            </div>
+            <div class="col-md-4 col-lg-4 col-sm-12 DetacolumnDNP">
+                <span>8. Ejecutor propuesto</span>
+            </div>
+            <div class="col-md-4 col-lg-4 col-sm-12 DetacolumnDNP">
+                <span>9. Departamento(s) en el/los que se ejecuta el proyecto</span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 col-lg-4 col-sm-12 mb-5">
+                <div class="blockReferencia2DNP">
+                    <span style="font-family:'Work Sans  Roman', 'Work Sans Regular Roman', 'Work Sans';font-weight:400;color:#4B4B4B;">
+                        {{vm.data.EntidadPresenta}}
+                    </span>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-lg-4 col-sm-12 mb-5">
+                <div class="blockReferencia2DNP">
+                    <span style="font-family:'Work Sans  Roman', 'Work Sans Regular Roman', 'Work Sans';font-weight:400;color:#4B4B4B;">
+                        {{vm.data.NombreEjecutor}}
+                    </span>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-lg-4 col-sm-12 mb-5">
+                <div class="blockReferencia2DNP">
+                    <span style="font-family:'Work Sans  Roman', 'Work Sans Regular Roman', 'Work Sans';font-weight:400;color:#4B4B4B;">
+                        {{vm.data.DepartamentoEjecuta}}
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 col-lg-4 col-sm-12 DetacolumnDNP">
+                <span>10. Municipio(s) en el/los que se ejecuta el proyecto</span>
+            </div>
+            <div class="col-md-4 col-lg-4 col-sm-12 DetacolumnDNP text-left">
+                <span>11. Sector de inversión en el que se clasifica el proyecto</span>
+            </div>
+            <div class="col-md-4 col-lg-4 col-sm-12 DetacolumnDNP text-left">
+                <span>12. Sector de inversión de apoyo 1</span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 col-lg-4 col-sm-12 mb-5">
+                <div class="blockReferencia2DNP">
+                    <span style="font-family:'Work Sans  Roman', 'Work Sans Regular Roman', 'Work Sans';font-weight:400;color:#4B4B4B;">
+                        {{vm.data.MunicipioEjecuta}}
+                    </span>
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-4 col-sm-12 mb-5">
+                <div class="blockReferencia2DNP">
+                    <span style="font-family:'Work Sans  Roman', 'Work Sans Regular Roman', 'Work Sans';font-weight:400;color:#4B4B4B;">
+                        {{vm.data.SectorInversion}}
+                    </span>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-lg-4 col-sm-12 mb-5">
+                <div class="SelectBuscadorDNP" style="width: auto;height: 120px;background-color: rgba(246, 248, 249, 1);">
+                    <select class="form-control selectDNP" chosen options="vm.listaSectoresApoyo" ng-model="vm.data.SectorApoyo1Id"
+                            ng-options="x.Id as x.Nombre for x in vm.listaSectoresApoyo"
+                            name="ddlSectoresApoyo1" id="ddlSectoresApoyo1"
+                            placeholder-text-single="Seleccione..." ng-disabled="vm.activar" required>
+                        <option value="0" selected>Seleccione...</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 col-lg-4 col-sm-12 DetacolumnDNP">
+                <span>13. Sector de inversión de apoyo 2</span>
+            </div>
+            <div class="col-md-4 col-lg-4 col-sm-12 DetacolumnDNP">
+                <span>14. Instancia de aprobación</span>
+            </div>
+            <div class="col-md-4 col-lg-4 col-sm-12 DetacolumnDNP">
+                <span>15. Tiempo de ejecución física y financiera (meses) *</span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 col-lg-4 col-sm-12 mb-5">
+                <div class="SelectBuscadorDNP" style="width: auto;height: 120px;background-color: rgba(246, 248, 249, 1);">
+                    <select class="form-control selectDNP" chosen options="vm.listaSectoresApoyo" ng-model="vm.data.SectorApoyo2Id"
+                            ng-options="x.Id as x.Nombre for x in vm.listaSectoresApoyo" name="ddlSectoresApoyo2" id="ddlSectoresApoyo2"
+                            placeholder-text-single="Seleccione..." ng-disabled="vm.activar" required>
+                        <option value="0" selected>Seleccione...</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-4 col-sm-12 mb-5">
+                <div class="blockReferencia2DNP">
+                    <span ng-bind-html="vm.data.InstanciaAprobacion" style="font-family:'Work Sans  Roman', 'Work Sans Regular Roman', 'Work Sans';font-weight:400;color:#4B4B4B;"></span>
+                    
+                </div>
+            </div>
+
+            <div class="col-md-4 col-lg-4 col-sm-12 mb-5">
+                <div class="blockReferencia2DNP">
+                    <span style="font-family:'Work Sans  Roman', 'Work Sans Regular Roman', 'Work Sans';font-weight:400;color:#4B4B4B;">
+                        {{vm.data.TiempoEjecucion}}
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 col-lg-4 col-sm-12 DetacolumnDNP">
+                <span>16. Proyecto tipo utilizado (cuando aplique)</span>
+            </div>
+            <div class="col-md-4 col-lg-4 col-sm-12 DetacolumnDNP">
+                <span>17. Valor reconocimiento costos de estructuración $ (cuando aplique)</span>
+            </div>
+            <div class="col-md-4 col-lg-4 col-sm-12 DetacolumnDNP">
+                <span>18. Valor reconocimiento costos de emisión de viabilidad $ (cuando aplique)</span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 col-lg-4 col-sm-12 mb-5">
+                <div class="blockReferencia2DNP">
+                    <span style="font-family:'Work Sans  Roman', 'Work Sans Regular Roman', 'Work Sans';font-weight:400;color:#4B4B4B;">
+                        {{vm.data.ProyectoTipo}}
+                    </span>
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-4 col-sm-12 mb-5">
+                <div class="blockReferencia2DNP">
+                    <span style="font-family:'Work Sans  Roman', 'Work Sans Regular Roman', 'Work Sans';font-weight:400;color:#4B4B4B;">
+                        {{vm.ConvertirNumero(vm.data.ValorEstructuracion)}}
+                    </span>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-lg-4 col-sm-12 mb-5">
+                <div class="blockReferencia2DNP">
+                    <span style="font-family:'Work Sans  Roman', 'Work Sans Regular Roman', 'Work Sans';font-weight:400;color:#4B4B4B;">
+                        {{vm.ConvertirNumero(vm.data.ValorEmision)}}
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 col-lg-4 col-sm-12 DetacolumnDNP">
+                <span>19. Valor interventoría $ (cuando aplique)</span>
+            </div>
+            <div class="col-md-4 col-lg-4 col-sm-12 DetacolumnDNP">
+                <span>20. Valor apoyo a la supervisión $ (cuando aplique)</span>
+            </div>
+            <div class="col-md-4 col-lg-4 col-sm-12 DetacolumnDNP">
+                <span>21. Objetivo general del proyecto (MGA)</span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 col-lg-4 col-sm-12 mb-5">
+                <div class="blockReferencia2DNP textRightDNP" style="width: auto;height: 120px; overflow: auto; height: 120px; background-color: rgba(246, 248, 249, 1);">
+                    <span style="font-family:'Work Sans  Roman', 'Work Sans Regular Roman', 'Work Sans';font-weight:400;color:#4B4B4B;">
+                        <input class="form-control editInputDNP" type="text"
+                               ng-model="vm.data.ValorInterventoria"
+                               ng-disabled="vm.activar"
+                               ng-keypress="vm.validateFormat($event)"
+                               ng-blur="vm.actualizainput($event)"
+                               required>
+                    </span>
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-4 col-sm-12 mb-5">
+                <div class="blockReferencia2DNP textRightDNP" style="width: auto;height: 120px; overflow: auto; height: 120px; background-color: rgba(246, 248, 249, 1);">
+                    <span style="font-family:'Work Sans  Roman', 'Work Sans Regular Roman', 'Work Sans';font-weight:400;color:#4B4B4B;">
+                        <input class="form-control editInputDNP" type="text"
+                               ng-model="vm.data.ValorApoyoSupervision"
+                               ng-disabled="vm.activar"
+                               ng-keypress="vm.validateFormat($event)"
+                               ng-blur="vm.actualizainput2($event)"
+                               required>
+                    </span>
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-4 col-sm-12 mb-5">
+                <div class="blockReferencia2DNP">
+                    <span style="font-family:'Work Sans  Roman', 'Work Sans Regular Roman', 'Work Sans';font-weight:400;color:#4B4B4B;">
+                        {{vm.data.ObjetivoGeneral}}
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 col-lg-4 col-sm-12 DetacolumnDNP">
+                <span>22. Descripción general</span>
+            </div>
+            <div class="col-md-4 col-lg-4 col-sm-12 DetacolumnDNP">
+                <span>23. Población afectada</span>
+            </div>
+            <div class="col-md-4 col-lg-4 col-sm-12 DetacolumnDNP">
+                <span>24. Población objetivo</span>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-4 col-lg-4 col-sm-12 mb-5">
+                <div class="blockReferencia2DNP">
+                    <span style="font-family:'Work Sans  Roman', 'Work Sans Regular Roman', 'Work Sans';font-weight:400;color:#4B4B4B;">
+                        {{vm.data.Alcance}}
+                    </span>
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-4 col-sm-12 mb-5">
+                <div class="blockReferencia2DNP">
+                    <span style="font-family:'Work Sans  Roman', 'Work Sans Regular Roman', 'Work Sans';font-weight:400;color:#4B4B4B;">
+                        {{vm.ConvertirNumero(vm.data.PoblacionAfectada, false)}}
+                    </span>
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-4 col-sm-12 mb-5">
+                <div class="blockReferencia2DNP">
+                    <span style="font-family:'Work Sans  Roman', 'Work Sans Regular Roman', 'Work Sans';font-weight:400;color:#4B4B4B;">
+                        {{vm.ConvertirNumero(vm.data.PoblacionObjetivo, false)}}
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            
+            <div class="col-md-4 col-lg-4 col-sm-12 DetacolumnDNP">
+                <span>25. Proyecto presentado por grupo étnico</span>
+            </div>
+            <div class="col-md-4 col-lg-4 col-sm-12 DetacolumnDNP">
+                <span>26. Localizado en jurisdicción de grupos étnicos</span>
+            </div>
+        </div>
+
+        <div class="row">
+            
+            <div class="col-md-4 col-lg-4 col-sm-12 mb-5">
+                <div class="blockReferencia2DNP">
+                    <div class="radio_opciones" style="text-align: left; font-family: 'Work Sans  Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 400; color: #4B4B4B;">
+                        <div ng-repeat="comunidad in vm.Comunidad">
+                            <input type="radio" name="Proyectopresentado"
+                                   ng-model="vm.data.ProyectoPresentadoComunidad"
+                                   ng-value="comunidad.Id"
+                                   ng-disabled="vm.activar"
+                                   ng-checked="vm.CheckLocalizacionPresentacion(comunidad.Id, vm.data.PresentadoComunidadIndigena, vm.data.PresentadoComunidadNarp, vm.data.PresentadoComunidadRrom)">
+                            {{comunidad.Nombre}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4 col-lg-4 col-sm-12 mb-5">
+                    <div class="blockReferencia2DNP">
+                        <div class="radio_opciones" style="text-align: left; font-family: 'Work Sans  Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 400; color: #4B4B4B;">
+                            <div ng-repeat="comunidad in vm.Comunidad">
+                                <input type="radio" name="Proyectolocalizacion"
+                                       ng-model="vm.data.ProyectoLocalizadoComunidad"
+                                       ng-value="comunidad.Id"
+                                       ng-disabled="vm.activar"
+                                       ng-checked="vm.CheckLocalizacionPresentacion(comunidad.Id, vm.data.PresentadoComunidadIndigena, vm.data.PresentadoComunidadNarp, vm.data.PresentadoComunidadRrom)">
+                                {{comunidad.Nombre}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row my-5">
+            <div class="col-md-12" style="display: inline-flex;">
+                <span class="label" style="color: #004884; font-size: 24px; font-weight: 400;padding-left:0;float:right;white-space:initial"> 2. Cumplimiento de la concordancia de fuente de financiación - Proyecto de Impacto Regional (Art.46 Ley 2056 de 2020)</span>
+                <div ng-click="vm.abrirTooltip()">
+                    <svg class="mi-card__tooltip-icon" xmlns="http://www.w3.org/2000/svg" width="17.037" height="17.037" viewBox="0 0 17.037 17.037">
+                        <g id="Grupo_5110" data-name="Grupo 5110" transform="translate(0 0)">
+                            <path id="Caminho_9243" data-name="Caminho 9243" d="M8.552,0A8.552,8.552,0,0,0,0,8.485a8.609,8.609,0,0,0,8.552,8.552A8.519,8.519,0,0,0,8.552,0Zm0,14.542a1,1,0,1,1,1-1A1,1,0,0,1,8.552,14.542Zm1.769-6.136A2.663,2.663,0,0,0,9.55,10.22v.262a1,1,0,0,1-2,0V10.22A4.614,4.614,0,0,1,9.141,6.8,1,1,0,1,0,7.554,5.99a1,1,0,0,1-2,0,2.995,2.995,0,1,1,4.764,2.416Z" transform="translate(0 0)" fill="#36c"></path>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 col-lg-4 col-sm-12 DetacolumnDNP">
+                <span>27. Alcance espacial *</span>
+            </div>
+            <div class="col-md-4 col-lg-4 col-sm-12 DetacolumnDNP">
+                <span>28. Población afectada *</span>
+            </div>
+            <div class="col-md-4 col-lg-4 col-sm-12 DetacolumnDNP">
+                <span>29. Responde a las necesidades socioculturales, económicas, o ambientales (aplica para...) *</span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 col-lg-4 col-sm-12 mb-5">
+                <div class="blockReferencia2DNP">
+                    <div class="radio_opciones" style="text-align: left; font-family: 'Work Sans  Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 400; color: #4B4B4B;">
+                        <div ng-repeat="lista in vm.listaCumple">
+                            <input type="radio" name="optradio26"
+                                   ng-model="vm.data.AlcanceEspacial"
+                                   ng-value="lista.Id"
+                                   ng-disabled="vm.activar"
+                                   required>
+                            {{lista.Nombre}}
+                        </div>
+                    </div>
+                    <div class="row" style="padding-left: 0px;">
+                        <div id="regionSgr-error" class="hidden uMensajeError" style="width: 100%; padding-left: 1.5rem;"><span style=" padding-left: 2rem;">Campo obligatorio</span></div>
+                        <span class="d-inline-block errorSeccionInformacionGeneralViabilidad" id="alert-sgrctuselaboracioninfogeneralinfobasicaERRINFGALCALESPA"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-lg-4 col-sm-12 mb-5">
+                <div class="blockReferencia2DNP">
+                    <div class="radio_opciones" style="text-align: left; font-family: 'Work Sans  Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 400; color: #4B4B4B;">
+                        <div ng-repeat="lista in vm.listaCumple">
+                            <input type="radio" name="optradio27"
+                                   ng-model="vm.data.Poblacion"
+                                   ng-value="lista.Id"
+                                   ng-disabled="vm.activar"
+                                   required>
+                            {{lista.Nombre}}
+                        </div>
+                    </div>
+                    <div class="row" style="padding-left: 0px;">
+                        <div id="regionSgr-error" class="hidden uMensajeError" style="width: 100%; padding-left: 1.5rem;"><span style=" padding-left: 2rem;">Campo obligatorio</span></div>
+                        <span class="d-inline-block errorSeccionInformacionGeneralViabilidad" id="alert-sgrctuselaboracioninfogeneralinfobasicaERRINFGALPOBAFE"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-lg-4 col-sm-12 mb-5">
+                <div class="blockReferencia2DNP">
+                    <div class="radio_opciones" style="text-align: left; font-family: 'Work Sans  Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 400; color: #4B4B4B;">
+                        <div ng-repeat="lista in vm.listaCumple">
+                            <input type="radio" name="optradio28"
+                                   ng-model="vm.data.NecesidadesSocioCulturales"
+                                   ng-value="lista.Id"
+                                   ng-disabled="vm.activar"
+                                   required>
+                            {{lista.Nombre}}
+                        </div>
+                    </div>
+                    <div class="row" style="padding-left: 0px;">
+                        <div id="regionSgr-error" class="hidden uMensajeError" style="width: 100%; padding-left: 1.5rem;"><span style=" padding-left: 2rem;">Campo obligatorio</span></div>
+                        <span class="d-inline-block errorSeccionInformacionGeneralViabilidad" id="alert-sgrctuselaboracioninfogeneralinfobasicaERRINFGALNECSOCI"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row my-5">
+            <div class="col-md-12" style="display: inline-flex;">
+                <span class="label" style="color: #004884; font-size: 24px; font-weight: 400;padding-left:0;"> 3. Normas y lineamientos adicionales</span>
+                <div ng-click="vm.abrirTooltip()">
+                    <svg class="mi-card__tooltip-icon" xmlns="http://www.w3.org/2000/svg" width="17.037" height="17.037" viewBox="0 0 17.037 17.037">
+                        <g id="Grupo_5110" data-name="Grupo 5110" transform="translate(0 0)">
+                            <path id="Caminho_9243" data-name="Caminho 9243" d="M8.552,0A8.552,8.552,0,0,0,0,8.485a8.609,8.609,0,0,0,8.552,8.552A8.519,8.519,0,0,0,8.552,0Zm0,14.542a1,1,0,1,1,1-1A1,1,0,0,1,8.552,14.542Zm1.769-6.136A2.663,2.663,0,0,0,9.55,10.22v.262a1,1,0,0,1-2,0V10.22A4.614,4.614,0,0,1,9.141,6.8,1,1,0,1,0,7.554,5.99a1,1,0,0,1-2,0,2.995,2.995,0,1,1,4.764,2.416Z" transform="translate(0 0)" fill="#36c"></path>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 col-lg-4 col-sm-12 DetacolumnDNP">
+                <span>30. Normas y lineamientos adicionales (incluir las que se consideren relevantes)</span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 col-lg-4 col-sm-12 mb-5">
+                <div class="blockReferencia2DNP">
+                    <div class="textAreDivRes" style="text-align: left; font-family: 'Work Sans  Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 400; color: #4B4B4B;">
+                        <textarea rows="3"
+                                  id="normasLineamientosAdicionales"
+                                  name="normasLineamientosAdicionales"
+                                  ng-model="vm.data.NormasLineamientosAdicionales"
+                                  placeholder="Máximo 5.000 caracteres"
+                                  minlength="1"
+                                  maxlength="5000"
+                                  ng-disabled="vm.activar"
+                                  class="textareObservaDNP"
+                                  style="width: 100%; resize: none"></textarea>
+                    </div>
+                    <div class="row" style="padding-left: 0px;">
+                        <div id="regionSgr-error" class="hidden uMensajeError" style="width: 100%; padding-left: 1.5rem;"><span style=" padding-left: 2rem;">Campo obligatorio</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

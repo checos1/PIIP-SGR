@@ -1,0 +1,106 @@
+﻿/*resoluções grid*/
+/*Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) {
+
+    div#grid-modal-tramite-en-programacion-container .ui-grid {
+        height: calc(45vh - 100px);
+    }
+
+    div#grid-modal-tramite-en-programacion .ui-grid-render-container-body .ui-grid-viewport {
+        height: 200px;
+    }
+}
+/* Medium devices (992px and up)*/
+@media (min-width: 992px) {
+
+       div#grid-modal-tramite-en-programacion-container .ui-grid {
+        height: calc(45vh - 100px);
+    }
+
+    div#grid-modal-tramite-en-programacion .ui-grid-render-container-body .ui-grid-viewport {
+        height: 200px;
+    }
+}
+/* Large  devices (desktops, 1280x720 and up)*/
+@media (min-width: 1280px) {
+
+    div#grid-modal-tramite-en-programacion-container .ui-grid {
+        height: calc(48vh - 100px);
+    }
+
+    div#grid-modal-tramite-en-programacion .ui-grid-render-container-body .ui-grid-viewport {
+        height: 228px;
+    }
+}
+/* Large devices (desktops, 1366x768 and up)*/
+@media (min-width: 1366px) {
+
+    div#grid-modal-tramite-en-programacion-container .ui-grid {
+        height: calc(55vh - 100px);
+    }
+
+    div#grid-modal-tramite-en-programacion .ui-grid-render-container-body .ui-grid-viewport {
+        height: 228px;
+    }
+}
+/* Extra Large devices (desktops, 1920x1080)*/
+@media (min-width: 1920px) {
+    div#grid-modal-tramite-en-programacion-container .ui-grid {
+        height: calc(50vh - 100px);
+    }
+
+    div#grid-modal-tramite-en-programacion .ui-grid-render-container-body .ui-grid-viewport {
+        height: 200px;
+    }
+}
+.grid-icon-accion {
+    width: 30px;
+    height: 30px;
+}
+
+.columna-estado {
+    padding: 3px;
+    padding-left: 9px;
+    padding-top: 0;
+
+    .background-estado {
+        padding: 3px 0px 3px 0px;
+        border-radius: 40px;
+        width: 18%;
+        min-width: 125px;
+        font-size: 13px;
+
+        &.inactivo {
+            background: #FBD5D5;
+            color: #981818;
+
+            .fa {
+                margin-right: 10px;
+                margin-left: 17px;
+                color: #F05252;
+            }
+        }
+
+        &.activo {
+            background: #BCF0DA;
+            color: #0A563C;
+
+            .fa {
+                margin-right: 10px;
+                margin-left: 17px;
+                color: #0E9F6E;
+            }
+        }
+
+        &.atencion {
+            background: #f3d6a3;
+            color: #be8b00;
+
+            .fa {
+                margin-right: 10px;
+                margin-left: 17px;
+                color: #cf7e1d;
+            }
+        }
+    }
+}

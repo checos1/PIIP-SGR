@@ -1,0 +1,100 @@
+﻿<div id="carga-datos" class="container-fluid" ng-init="vm.init();">
+    <div class="div-escopo">
+        <!-- #region breadcrumb -->
+        <nav class="breadcrumb">
+            <a href="/">
+                <span class="breadcrumb-item">
+                    <i class="fa fa-home" aria-hidden="true"></i> Inicio
+                </span>
+            </a>
+            /
+            <span class="breadcrumb-item active">Administración cargues</span>
+        </nav>
+        <!-- #endregion breadcrumb -->
+        <!-- #region Título e accíon -->
+        <div class="titulo-e-accion">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="titulo">
+                        <span>CARGA DATOS </span>
+                        <span class="button-bar">
+                            <button type="button" class="btn btn-primary btn-md btnSubirDatos" tooltip-placement="top" uib-tooltip="Cargar datos" ng-click="vm.abrirModalCrear()" tabindex="0">
+                                SUBIR DATOS
+                            </button>
+                            <button type="button" class="btn btn-default btn-md" ng-click="vm.conmutadorFiltro()" tooltip-placement="auto" uib-tooltip="Filtro">Filtro</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- #endregion -->
+        <!-- #region Tabs -->
+        <div class="form-group clearfix filtro-sem-tabla">
+            <!--inicio filtro-->
+            <div class="filtro" ng-if="vm.mostrarFiltro">
+                <div class="clearfix">
+                    <div class="row">
+                        <div class="col-md-10">
+                            <div class="row">
+                                <!-- filtro por tipo de recurso -->
+                                <div class="col-md-6">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">Tipo carga datos</span>
+                                        </div>
+                                        <select ng-model="vm.filtro.TipoCargaDatosId" class="form-control">
+                                            <option ng-repeat="tipo in vm.listaTipoCargaDatos" value="{{tipo.Id}}">
+                                                {{tipo.Nombre}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- // inicio filtro por fecha -->
+                                <!--<div class="col-md-4">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">Fecha Desde</span>
+                                        </div>
+                                        <input ng-model="vm.filtro.fechaInicio" type="date" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">Fecha Hasta</span>
+                                        </div>
+                                        <input ng-model="vm.filtro.fechaTermino" type="date" class="form-control">
+                                    </div>
+                                </div>-->
+                                <!-- // fin: filtro por fecha -->
+
+                            </div>
+                        </div>
+                        <div class="col-md-2 text-right">
+                            <button type="button" class="btn btn-filtro" ng-click="vm.filtrar()" tooltip-placement="auto" uib-tooltip="Buscar">Buscar</button>
+                            <button type="button" class="btn btn-filtro" ng-click="vm.limpiarCamposFiltro()" tooltip-placement="auto" uib-tooltip="Limpiar">Limpiar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--fim filtro-->
+        </div>
+        <!-- #endregion Tabs -->
+        <!-- #region Tabla -->
+        <div class="row">
+            <tabla-entidad opciones="vm.opciones"
+                           definicion-columna-datos="vm.columnDefs"
+                           datos="vm.datos"
+                           accion1="vm.abrirModalVerDatos($row)"
+                           accion2="vm.abrirModalEliminar($row)">
+            </tabla-entidad>
+        </div>
+        <!-- #endregion Tabla -->
+    </div>
+</div>
+
+
+
+
+

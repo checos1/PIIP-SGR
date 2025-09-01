@@ -1,0 +1,86 @@
+﻿<div id="secIndicadoresPolitica" style="margin: 0 0 0 15px;" ng-init="vm.init();">
+    <div ng-repeat="dat in datos" style="margin:30px 0 0 0;" data-attribute="{{ dat.PoliticaId }}" class="cDivMainIndPolitica">
+        <div ng-if="dat.Politica" class="row" style="width: 100%; text-align: left;">
+            <div class="titulos cTituloMain" style="display: inline-block; font-size: 15pt;">
+                {{ dat.Politica }}. <span class="titulosBold"> {{ dat.TipoIndicador }} </span>
+            </div>
+        </div>
+
+        <!--Link Retorno tabla resumen-->
+        <div ng-if="dat.Politica" class="row" style="width:100%;">
+            <div style="display: inline-block; float: right;" class="lnkTablaResumen">
+                <a ng-click="vm.retornar($event)" data-attribute="{{ vm.nombreElementoOrigen }}">IR A TABLA RESUMEN</a>
+            </div>
+        </div>
+
+        <!--Localización-->
+        <div id="dLocalizacion" ng-if="dat.Politica">
+            <div ng-repeat="loc in dat.Localizaciones" class="row" style="margin: 5px 0 0 0px; width: 100%;">
+                <div class="cContentMainDiv divAccordionDNP">
+                    <div style="padding: 0px 0 0 30px;">
+                        <div class="titleIP uLabelCampo" style="text-align: justify;">
+                            {{loc.titulo}}
+                        </div>
+                        <!--Categorias-->
+                        <div id="dCategoriasIP" style="text-align:justify">
+                            <span class="parrafos"><b>Categoría:</b>&nbsp;</span>
+                            <input type="hidden" value="{{dat.Categoria1}}" />
+                            <span class="parrafos">{{vm.recortarTexto(dat.Categoria1, 80)}}</span>
+                            <a data-toggle="modal" data-target="#IPModal" class="cVerMas"
+                               ng-if="dat.Categoria1 && dat.Categoria1.length > 80"
+                               ng-click="vm.verMasDescripcionCategoria($event, 'Categoria 1:')">VER_MÁS,</a>
+
+                            <span class="parrafos"><b>SubCategoria:</b>&nbsp;</span>
+                            <input type="hidden" value="{{dat.Categoria2}}" />
+                            <span class="parrafos">{{vm.recortarTexto(dat.Categoria2, 80)}}</span>
+                            <a data-toggle="modal" data-target="#IPModal" class="cVerMas"
+                               ng-if="dat.Categoria2 && dat.Categoria2.length > 80"
+                               ng-click="vm.verMasDescripcionCategoria($event, 'Categoria 2:')">VER_MÁS</a>
+                        </div>
+                    </div>
+                    <i ng-click="vm.activarDescripcionIndicador($event)" class="cBtnUpDown fa fa-plus-square fa-lg"></i>
+                    <div class="cConectorDiv" style="display:none">&nbsp;</div>
+                </div>
+                <!--Indicadores ODS/PND (o Plan Marco de Implementación)-->
+                <div class="dIndicadores" style="text-align: justify; display:none">
+                    <!--<i style="cursor: pointer; color: blue;" ng-click="vm.activarDescripcionIndicador($event)" class="fa fa-plus-square fa-lg"></i>-->
+                    <div>
+                        <div class="divNivel1">
+                            <div class="titleIP espacioTituloPrimerNivelIP" style=" font-weight:bold;">{{ dat.TipoIndicador }}</div>
+                        </div>
+                        <div style="margin: 10px 0 0 0; padding: 10px 10px 10px 10px;">
+                            <p class="parrafos" style="justify-content:space-between">
+                                {{dat.Indicador}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="cMensajeIndPolitica parrafos"></div>
+    <!-- Modal IP -->
+    <div class="modal fade" id="IPModal" tabindex="-1" role="dialog" aria-labelledby="IPModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="background: none !important;">
+                    <h5 class="modal-title titulos" id="IPModalTitle"></h5>
+                    <button type="button" style="margin: -30px 0 0 150px;color: #5179a0 !important;" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="background: none !important;">
+                    <div id="dModalIPContent" class="parrafos" 
+                         style="text-align:justify; overflow:auto; max-height:300px;"></div>
+                </div>
+                <div class="modal-footer" style="text-align: center !important;">
+                    <button type="button" style=" background: #3366CC !important;" class="btn btn-sm btn-success" uib-tooltip="Cerrar ventana"
+                            data-dismiss="modal" ng-click="vm.cerrarModal('IPModal')">
+                        Aceptar
+                    </button>
+                    <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

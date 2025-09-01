@@ -1,0 +1,211 @@
+<notificacion-cantidad-mis-procesos use-Html-Notification="true"></notificacion-cantidad-mis-procesos>
+<!--<notificacion-cantidad-proyectos use-Html-Notification="true"></notificacion-cantidad-proyectos>
+<notificacion-cantidad-tramites use-Html-Notification="true"></notificacion-cantidad-tramites>-->
+<!--DESARROLLO PRODUCTO 7-->
+<!--<div class="dropdown new-tar" ng-if="!vm.esTramite()">
+    <div class="dropdown-toggle" data-toggle="dropdown" ng-click="vm.mostrarFlujosDisponibles()" ng-if="vm.tienePermisos()">
+        <img src="/Img/iconsheader/iconHeaderTareas.png" tooltip-placement="auto" uib-tooltip="Crear tareas" />
+    </div>
+    <div class="dropdown-menu arrow_box padding5" role="menu" ng-if="vm.flujosAutorizados.length && !vm.esTramite()">-->
+<!--<button type="button" class="btn btn-primary btn-block btn-sm" tooltip-placement="auto" uib-tooltip="Crear Tarea" tabindex="0">
+    Crear Tarea
+</button>-->
+<!--<input type="text" class="form-control" placeholder="Búsqueda" ng-model="consulta">
+        <ul class="">
+            <li ng-repeat="flujoAutorizado in  vm.flujosAutorizados | filter:consulta" id="{{flujoAutorizado.IdOpcionDnp}}" ng-click="vm.mostrarModal(flujoAutorizado)">
+                <a href="#">{{flujoAutorizado.NombreOpcion}}</a>
+            </li>
+        </ul>
+
+    </div>
+</div>
+<div class="dropdown new-tar" ng-if="vm.esTramite()">-->
+<!--<div class="dropdown-toggle" data-toggle="dropdown" ng-click="vm.mostrarFlujosDisponibles()" ng-if="vm.tienePermisos()">
+    <img src="/Img/iconsheader/iconHeaderTareas.png" tooltip-placement="auto" uib-tooltip="Crear tareas" />
+</div>-->
+<!--<a uib-popover-template="vm.popOverOptionsCrearTramite.templateUrl"
+   popover-placement="bottom"
+   popover-is-open="vm.popOverOptionsCrearTramite.isOpen">
+    <img src="/Img/iconsheader/iconHeaderTareas.png" tooltip-placement="auto" uib-tooltip="Crear tareas" />
+</a>
+
+<script type="text/ng-template" id="myPopoverTemplate.html">
+
+    <div >
+        <div class="row">
+            <div class="col-md-12">
+                <div class="titulo-modal">
+                    <h4><b>DATOS DE LA SOLICITUD</b></h4>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="input-group mb-3">
+                    <select ng-model="vm.objSolicitud.codTramite" class="form-control rounded-right-2" placeholder="Tipo Tramite">
+                        <option value="" disabled selected>Tipo Tramite</option>
+                        <option ng-repeat="tipoTramite in vm.tramites" value="{{tipoTramite.id}}">
+                            {{tipoTramite.nombre}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="input-group mb-3">
+                    <select ng-model="vm.objSolicitud.codEntidade" class="form-control rounded-right-2" placeholder="Entidad">
+                        <option value="" disabled selected>Entidad</option>
+                        <option ng-repeat="entidad in vm.listaEntidades" value="{{entidad.id}}">
+                            {{entidad.nombre}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="input-group mb-3">
+                    <textarea placeholder="Descripcion de la solicitud" class="form-control" rows="4" ng-model="vm.objSolicitud.descripcion"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5"></div>
+            <div class="col-md-3">
+                <button type="button" ng-click="vm.cerrarTramite()" class="btn btn-sm btn-primary" tooltip-placement="auto" uib-tooltip="Cerrar" tabindex="0">
+                    Cerrar
+                </button>
+            </div>
+            <div class="col-md-3">
+                <button type="button" ng-click="vm.guardarSolicitud()" class="btn btn-sm btn-success" tooltip-placement="auto" uib-tooltip="Guardar" tabindex="1">
+                    Guardar
+                </button>
+            </div>
+        </div>
+    </div>
+
+</script>-->
+<!--DESARROLLO PRODUCTO 7-->
+<!-- Notificaciones Mensajes-->
+<div class="notificaciones">
+    <div class="dropdown notif">
+        <a class="dropdown-toggle" data-toggle="dropdown" tooltip-placement="auto" uib-tooltip="Notificaciones" href="/listaNotificacionesMensajes">
+            <img src="/Img/iconsheader/iconNotificaciones.svg" class="" alt="" />
+        </a>
+        <span ng-if="vm.tienesMensajes()" class="circle-noti circle-notificaciones">{{vm.cantidadDeMensajes}}</span>
+    </div>
+</div>
+
+<!-- Notificaciones -->
+<div class="notificaciones">
+    <div class="dropdown notif">
+        <a class="dropdown-toggle" data-toggle="dropdown" tooltip-placement="auto" uib-tooltip="Alertas">
+            <!--<img src="/Img/iconsheader/iconAlerta.png" />-->
+            <img src="/Img/iconsheader/Alerta.svg" />
+        </a>
+        <span ng-if="vm.tienesNotificaciones()" class="circle-noti circle-notificaciones">{{vm.cantidadDeNotificaciones}}</span>
+        <div class="dropdown-menu arrow_box padding5">
+            <ul class="scrollable">
+
+                <li ng-if="vm.tienesAlertas()">
+                    <p uib-tooltip="Click para ver" tooltip-placement="rigth" ng-click="vm.redireccionarUrl()">
+                        Tiene(s) <span style="color: red;">{{vm.cantidadDeAlertas}}</span> proyecto(s) con alerta(s)
+                    </p>
+                </li>
+                <li ng-if="!vm.tienesNotificaciones()">
+                    <span>No tienes notificaciones</span>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</div>
+
+<!-- Mensajes Mantenimiento -->
+<notificacion-cantidad-mensajes-mtto></notificacion-cantidad-mensajes-mtto>
+
+<!-- Ayuda -->
+<div class="dropdown notif ng-scope">
+    <a class="dropdown-toggle" data-toggle="dropdown" onclick="openNav()" tooltip-placement="auto" uib-tooltip="Centro de ayuda" aria-expanded="false">
+        <img src="/Img/iconsheader/iconAyuda.svg" id="centroAyudaIcon" alt="centro_ayuda">
+    </a>
+</div>
+
+<!-- Acceso rápido a Sistemas -->
+<!--<div class="notificaciones" id="seccAccesoRapidoSist">
+    <div class="dropdown mr-4">
+        <a class="dropdown-toggle" data-toggle="dropdown" tooltip-placement="auto" uib-tooltip="Acceso Rápido" aria-expanded="true">
+            <img src="/Img/iconsheader/iconCambiar.svg" tooltip-placement="auto">
+        </a>
+
+        <div class="dropdown-menu arrow_box accesso-rapido">
+            <div class="col-md-12 ">
+                <h4>Estás en PIIP</h4>
+            </div>
+            <div class="col-md-12 text-center">
+                <button type="button" ng-click="vm.cambiarModulos()" class="btn btn-primary btn-accesso-rapido">
+                    Ir a PIIP Configuración
+                </button>
+            </div>
+        </div>
+    </div>
+</div>-->
+
+
+<!--<div class="dropdown new-tar">
+    <div class="dropdown-toggle" data-toggle="dropdown" ng-click="vm.mostrarFlujosDisponibles()">
+        <img src="/Img/iconsheader/iconHeaderTareas.png" tooltip-placement="auto" uib-tooltip="Crear tareas" />
+    </div>
+    <div class="dropdown-menu arrow_box padding5" role="menu" ng-if="vm.flujosAutorizados.length && !vm.esTramite()">
+        <input type="text" class="form-control" placeholder="Búsqueda" ng-model="consulta">
+        <ul class="">
+            <li ng-repeat="flujoAutorizado in  vm.flujosAutorizados | filter:consulta" id="{{flujoAutorizado.IdOpcionDnp}}" ng-click="vm.mostrarModal(flujoAutorizado)">
+                <a href="#">{{flujoAutorizado.NombreOpcion}}</a>
+            </li>
+        </ul>
+
+    </div>
+    <div class="dropdown-menu arrow_box padding5" role="menu" ng-if="vm.esTramite()">
+        <button type="button" ng-click="vm.crearSolicitud()" class="btn btn-primary btn-block btn-sm" tooltip-placement="auto" uib-tooltip="Crear Solicitud" tabindex="0">
+            Crear Solicitud
+        </button>
+    </div>
+</div>-->
+<!-- CREAR TAREA
+
+<div class="notificaciones">
+    <div class="dropdown notif" style="margin-right: 1.5rem !important;">
+        <a class="dropdown-toggle" data-toggle="dropdown" tooltip-placement="auto" uib-tooltip="Mensajes" href="/listaNotificacionesMensajes">
+            <img src="/Img/iconsheader/iconHeaderNotifcaciones.png" class="" alt="" />
+        </a>
+        <span ng-if="vm.tienesMensajes()" class="circle-noti">{{vm.cantidadDeMensajes}}</span>
+    </div>
+</div>
+
+<div class="notificaciones">
+    <div class="dropdown notif" style="margin-right: 1.5rem !important;">
+        <a class="dropdown-toggle" data-toggle="dropdown" tooltip-placement="auto" uib-tooltip="Notificaciones">
+            <img src="/Img/iconsheader/iconHeaderNotifcaciones.png" class="" alt="" />
+        </a>
+        <span ng-if="vm.tienesNotificaciones()" class="circle-noti">{{vm.cantidadDeNotificaciones}}</span>
+        <div class="dropdown-menu arrow_box padding5">
+            <ul class="scrollable">
+                <li ng-if="vm.tienesAlertas()">
+                    <p uib-tooltip="Click para ver" tooltip-placement="rigth" ng-click="vm.redireccionarUrl()">
+                        Tiene(s) <span style="color: red;">{{vm.cantidadDeAlertas}}</span> proyecto(s) con alerta(s)
+                    </p>
+                </li>
+                <li ng-if="!vm.tienesNotificaciones()">
+                    <span>No tienes notificaciones</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div> -->
+<!-- AYUDA VERSION ANTERIOR
+
+<div class="notificaciones">
+    <div class="dropdown" style="margin-right: 1.5rem;">
+        <a class="dropdown-toggle" data-toggle="dropdown" onclick="openNav()" tooltip-placement="auto" uib-tooltip="Centro de Ayuda">
+            <img src="/Img/iconsheader/iconCentralAyuda_64x.png" id="centroAyudaIcon" class="" alt="centro_ayuda" style="width: 30px;" />
+        </a>
+    </div>
+</div -->

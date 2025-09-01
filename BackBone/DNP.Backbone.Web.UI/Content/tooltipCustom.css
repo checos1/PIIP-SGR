@@ -1,0 +1,70 @@
+﻿.wrapperTooltip {
+    color: #4B4B4B !important;
+    margin: 0 auto;
+    cursor:pointer;
+    padding: 15px 20px;
+    position: relative;
+    text-align: left !important;
+    -webkit-transform: translateZ(0); /* webkit flicker fix */
+    -webkit-font-smoothing: antialiased; /* webkit text rendering fix */
+}
+
+    .wrapperTooltip .tooltipInfo {
+        background: #f9fcfd !important;
+        bottom: 100% !important;
+        color: #4B4B4B !important;
+        display: block !important;
+        font-family: 'Work Sans SemiBold Roman', 'Work Sans Regular Roman', 'Work Sans';
+        font-size: 12px;
+        line-height: 5px !important;
+        margin-bottom: 5px !important;
+        opacity: 0 !important;
+        padding: 5px !important;
+        pointer-events: none;
+        position: absolute !important;
+        width: 400px !important;
+        border: 1px solid #cdd8fe !important;
+        border-radius: 5px !important;
+    }
+
+        .wrapperTooltip .tooltipInfo p {
+            margin:0px;
+            line-height:15px;
+        }
+        .wrapperTooltip .tooltipInfo img {
+            vertical-align: middle !important;
+        }
+
+        .wrapperTooltip .tooltipInfo .titleTooltip {
+            vertical-align: middle !important;
+            color: #3366CC !important;
+        }
+        /* This bridges the gap so you can mouse into the tooltip without it disappearing */
+        .wrapperTooltip .tooltipInfo:before {
+            bottom: -20px !important;
+            content: " " !important;
+            display: block !important;
+            height: 20px !important;
+            left: 0 !important;
+            position: absolute !important;
+            width: 100% !important;
+        }
+
+    .wrapperTooltip:hover .tooltipInfo {
+        opacity: 1 !important;
+        pointer-events: auto !important;
+        -webkit-transform: translateY(0px) !important;
+        -moz-transform: translateY(0px) !important;
+        -ms-transform: translateY(0px) !important;
+        -o-transform: translateY(0px) !important;
+        transform: translateY(0px) !important;
+    }
+
+/* IE can just show/hide with no transition */
+.lte8 .wrapperTooltip .tooltipInfo {
+    display: none !important;
+}
+
+.lte8 .wrapperTooltip:hover .tooltipInfo {
+    display: block !important;
+}

@@ -1,0 +1,15 @@
+﻿@model string
+@{
+    var caminho = AppDomain.CurrentDomain.BaseDirectory.ToString().Replace(@"\", @"/");
+    //var caminho = "D:/NT_PROJETOS/166_PIIP/PIIP-Source/BackBone/DNP.Backbone.Web.UI";
+}
+
+<div class="mb-3" id="header">
+    <div class="box-logo-left">
+        <img class="logo-relatorio" src="@caminho/Img/logos/header_logos_2022.png" />
+    </div>
+    @*<div class="box-logo-right">
+        <img class="logo-relatorio" src="@caminho/Img/rel_pdf/gobierno-de-colombia.jpg" />
+    </div>*@
+</div>
+<div class="titulo-relatorio">@Model</div>

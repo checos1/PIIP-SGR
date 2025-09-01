@@ -1,0 +1,52 @@
+﻿<section class="ventana-ajsutes mt-4" ng-init="vm.init()">
+    <div class="row m-0">
+        <div class="form-group">
+            <div class="tab-content">
+                <div class="tab-pane active cont col-md-12 p-0" id="dproyecto">
+                    <proyectos-rvf tramiteid="{{vm.tramiteDetail.tramiteId}}"
+                                   callback="vm.notificarGuardado()"
+                                   guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                   notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                   notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)"
+                                   notificacioncambios="vm.notificacionCambiosAjustes(handler, nombreComponente)">
+                    </proyectos-rvf>
+                </div>
+                <div class="tab-pane  cont col-md-12 p-0" id="dinformacionpresupuestal">
+                    <informacion-presupuestal-rvf tipotramiteid="{{vm.tramiteDetail.tipoTramiteId}}" tramiteid="{{vm.tramiteDetail.tramiteId}}"
+                                                  callback="vm.notificarGuardado()"
+                                                  guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                                  notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                                  notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)"
+                                                  notificacioncambios="vm.notificacionCambiosAjustes(handler, nombreComponente)">
+
+                    </informacion-presupuestal-rvf>
+                </div>
+                <div class="tab-pane  cont col-md-12 p-0" id="djustificacion">
+                    <justificacion-rvf tipotramiteid="{{vm.tramiteDetail.tipoTramiteId}}" tramiteid="{{vm.tramiteDetail.tramiteId}}"
+                                       callback="vm.notificarGuardado()"
+                                       guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                       notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                       notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)"
+                                       notificacioncambios="vm.notificacionCambiosAjustes(handler, nombreComponente)">
+
+
+                    </justificacion-rvf>
+
+                </div>
+                <div class="tab-pane  cont col-md-12 p-0" id="dsoporte">
+                    <soporte-rvf tipotramiteid="{{vm.tipoTramiteId}}"
+                                 tramiteid="{{vm.tramiteId}}"
+                                 nivel="{{vm.IdNivel}}"
+                                 rol="{{vm.IdRol}}"
+                                 section="{{vm.section}}"
+                                 callback="vm.notificarGuardado()"
+                                 guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                 notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                 notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)"
+                                 notificacioncambios="vm.notificacionCambiosAjustes(handler, nombreComponente)">
+                    </soporte-rvf>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,219 @@
+﻿<style>
+    .head {
+        border-left: 2px solid #3f73e2;
+        border-top: 2px solid #3f73e2;
+        padding-left: 40px;
+        height: auto;
+    }
+
+    .uLabelDetalle_FP {
+        color: #004884 !important;
+        font-family: 'Work Sans';
+        letter-spacing: 0px;
+        font-size: 16px;
+    }
+
+    .uLabelCampo_fp {
+        color: #004884 !important;
+        font-family: 'Work Sans';
+        letter-spacing: 0px;
+        font-weight: 500;
+        font-size: 16px;
+    }
+
+    .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+        background-color: #8064A2 !important;
+    }
+</style>
+<div id="secPoliticaCrucePolitica" ng-init="vm.init();">
+    <form id="PoliticaCrucePoliticaForm" name="PoliticaCrucePoliticalForm" novalidate>
+        <div class="col-md-12">
+
+            <div id="focalizaciongrcapitulo1-{{vm.IdFuente}}-pregunta-error" class="hidden uMensajeError"></div>
+            <div ng-repeat="crucepoliticas in vm.PoliticasTCrucePoliticas.PoliticaPrincipal" data-attribute="{{ crucepoliticas.PoliticaId }}" ng-init="crucepoliticasIndex = $index" class="cDivMainPolCrucPol">
+                <br />
+                <div ng-if="crucepoliticas.PoliticaId" class="row" style="width: 100%; text-align: left;">
+                    <div class="col-md-12">
+                        <div class="col-md-8 form-group text-left" style="padding-right:2rem;">
+                            <div class="titulos" style="display: inline-block; font-size: 15pt;">
+                                <div id="focalizaciongrcapitulo1-POLITICA-{{crucepoliticas.PoliticaId}}" class="hidden text-left color-red"></div>
+                                <span>{{crucepoliticas.Politica}}:</span>
+                                <span class="titulosBold"> Cruce políticas </span>
+                            </div>
+                        </div>
+                        <div class="col-md-4 form-group text-right" style="padding-right:2rem;">
+                            <button ng-if="!vm.soloLectura" id="EditarCruce"
+                                    type="button" class="btneditarDNP"
+                                    tooltip-placement="top"
+                                    uib-tooltip="Clic para editar la información"
+                                    ng-click="vm.ActivarEditar()">
+                                EDITAR
+                            </button>
+                            &nbsp;
+                            <button ng-if="!vm.soloLectura" id="Guardar"
+                                    type="submit"
+                                    class="{{vm.disabled ? 'btnguardarDisabledDNP' : 'btnguardarDNP'}}"
+                                    tooltip-placement="top"
+                                    uib-tooltip="Guardar modificación"
+                                    ng-disabled="vm.disabled"
+                                    ng-click="vm.actualizarCrucePolitica(vm.PoliticasTCrucePoliticas)">
+                                GUARDAR
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div id="dLocalizacion" ng-if="crucepoliticas.PoliticaId">
+                    <div ng-repeat="localizar in crucepoliticas.Localizaciones" ng-init="localizacionIndex = $index" class="row" style="margin: 5px 0 0 -15px; width: 100%;">
+                        <div style="border: 2px solid #f1f0f8; padding: 15px 15px 35px 15px; ">
+                            <div style="padding: 0px 0 0 30px;">
+
+                                <div class="titleIP" style="font-weight: bold; text-align: left;">
+                                    {{ localizar.Localizacion }}
+
+                                </div>
+
+                            </div>
+                            <i style="cursor: pointer; color: #3366cc; margin: 20px 0 0 -14px; float: left;" ng-click="vm.activarDescripcionCrucePolitica($event)" class="fa fa-plus-square fa-lg">
+                                <space id="focalizaciongrcapitulo1-LOCALIZACION-{{crucepoliticas.PoliticaId}}-{{vm.IdFuente}}-{{localizar.LocalizacionId}}" class="hidden text-left color-red"></space>
+                            </i>
+
+                            <div class="cConectorDiv" style="display:none">&nbsp;</div>
+                        </div>
+                        <div class="dcrucepolitica" style="text-align: justify; display:none">
+                            <div>
+                                <div class="divNivel1">
+                                    <div class="titleIP" style=" font-weight:bold;">Detalle Relación de recursos con otras políticas (pesos COP).</div>
+                                    <div class="col-md-12">
+                                        <div class="col-md-8 form-group text-left" style="padding-right:2rem;">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div ng-repeat="relacionarpolitica in localizar.RelacionPoliticas" ng-init="relacionarpoliticaIndex = $index" class="row" style="margin: 0px 0 0 0px; width: 100%;">
+                                    <div text-align: left;">
+
+                                        <span id="focalizaciongrcapitulo1-POLITICADETALLE-{{crucepoliticas.PoliticaId}}-{{vm.IdFuente}}-{{localizar.LocalizacionId}}-{{relacionarpolitica.PoliticaDependienteId}}" class="hidden text-left color-red"></span><span class="titleIP" style="font-weight: bold; font-size: 15pt;"> {{$index + 1}}.</span> <span class="titleIP" style="font-weight: bold; font-size: 15pt;">Política principal: </span> <span class="titulos" style="display: inline-block; font-size: 15pt;">{{ relacionarpolitica.TituloPoliticaPrincipal }}</span> <span class="titleIP" style="font-weight: bold; font-size: 15pt;">Política dependiente: </span><span class="titulos" style="display: inline-block; font-size: 15pt;">{{ relacionarpolitica.PoliticaDependiente }}</span>
+
+                                    </div>
+                                    <h3></h3>
+                                    <div class="row">
+                                        <div class="alert panel-heading">
+                                            <table class="TableDNP">
+                                                <thead>
+                                                    <tr style="text-align:center;">
+                                                        <th style="width:5%;" class="columAcc">&nbsp;</th>
+                                                        <th style="width:20%;" class="textLeftDNP"> <label>VIGENCIA</label></th>
+                                                        <th style="width:20%;" class="textLeftDNP"> <label>{{relacionarpolitica.TituloPoliticaPrincipal}}</label></th>
+                                                        <th style="width:20%;" class="textLeftDNP"> <label>{{relacionarpolitica.PoliticaDependiente}}</label></th>
+                                                        <th style="width:30%;" class="textLeftDNP"> <label>{{relacionarpolitica.PoliticaDependiente}} EN {{relacionarpolitica.TituloPoliticaPrincipal}}</label></th>
+                                                        <th style="width:2%;" class="columAcc"></th>
+                                                    </tr>
+
+                                                </thead>
+                                                <tbody>
+                                                    <tr class="uTexto-grilla ng-scope" ng-repeat="crucepoliticasvigencias in relacionarpolitica.CrucePoliticasVigencias" ng-init="crucepoliticasvigenciasIndex = $index">
+                                                        <td>
+                                                            <img id="img{{crucepoliticas.PoliticaId}}{{localizar.LocalizacionId}}{{relacionarpolitica.PoliticaDependienteId}}{{crucepoliticasvigencias.Vigencia}}" class="iconoErrorDNP" src="Img/u4630.svg" style="display:none;">
+                                                            <div id="focalizaciongrcapitulo1-VIGENCIA-{{crucepoliticas.PoliticaId}}-{{vm.IdFuente}}-{{localizar.LocalizacionId}}-{{relacionarpolitica.PoliticaDependienteId}}-{{crucepoliticasvigencias.Vigencia}}" class="hidden iconoErrorDNP"></div>
+                                                            <span ng-if="crucepoliticasvigencias.Vigencia == 'TOTAL'" style="margin-top: 55%;font-family: 'Work Sans SemiBold Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 600; font-style: normal; font-size: 30px; color: rgba(50, 102, 204, 0.996078431372549);">=</span>
+                                                        </td>
+                                                        <td ng-if="crucepoliticasvigencias.Vigencia != 'TOTAL'" class="textRightDNP"> <input type="text" class="form-control editInputDNP" disabled value="{{crucepoliticasvigencias.Vigencia}}" /></td>
+                                                        <td ng-if="crucepoliticasvigencias.Vigencia != 'TOTAL'" class="textRightDNP"> <input type="text" class="form-control editInputDNP" disabled value="{{vm.ConvertirNumero(crucepoliticasvigencias.ValorPoliticaPrincipal)}}" /></td>
+                                                        <td ng-if="crucepoliticasvigencias.Vigencia != 'TOTAL'" class="textRightDNP"> <input type="text" class="form-control editInputDNP" disabled value="{{vm.ConvertirNumero(crucepoliticasvigencias.ValorPoliticaDependiente)}}" /></td>
+                                                        <td ng-if="crucepoliticasvigencias.Vigencia != 'TOTAL'">
+
+                                                            <div ng-if="!vm.permiteEditar" id="idinputde-{{crucepoliticas.PoliticaId}}-{{vm.IdFuente}}-{{localizar.LocalizacionId}}-{{relacionarpolitica.PoliticaDependienteId}}-{{crucepoliticasvigencias.Vigencia}}">
+                                                                <input id="inputtxt{{crucepoliticas.PoliticaId}}{{localizar.LocalizacionId}}{{relacionarpolitica.PoliticaDependienteId}}{{crucepoliticasvigencias.Vigencia}}"
+                                                                       type="text" class="cInputTblDetalleCatBloq" disabled value="{{vm.ConvertirNumero(crucepoliticasvigencias.ValorCruceDependientePrincipal)}}" />
+                                                            </div>
+
+                                                            <input type="text" string-to-number min="0.00" class="form-control editInputDNP "
+                                                                   id="input{{crucepoliticas.PoliticaId}}{{localizar.LocalizacionId}}{{relacionarpolitica.PoliticaDependienteId}}{{crucepoliticasvigencias.Vigencia}}"
+                                                                   ng-if="vm.permiteEditar"
+                                                                   ng-value="crucepoliticasvigencias.ValorCruceDependientePrincipal"
+                                                                   ng-model=" vm.PoliticasTCrucePoliticas.PoliticaPrincipal[crucepoliticasIndex].Localizaciones[localizacionIndex].RelacionPoliticas[relacionarpoliticaIndex].CrucePoliticasVigencias[crucepoliticasvigenciasIndex].ValorCruceDependientePrincipal"
+                                                                   ng-keypress="vm.validateFormat($event)"
+                                                                   ng-keyup="vm.validarTamanio($event)"
+                                                                   ng-blur="vm.actualizaFila($event,crucepoliticas.PoliticaId + '' + localizar.LocalizacionId + '' + relacionarpolitica.PoliticaDependienteId,crucepoliticasIndex, localizacionIndex, relacionarpoliticaIndex)"
+                                                                   ng-disabled="vm.disabled" style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px" />
+
+                                                        </td>
+                                                        <td ng-if="crucepoliticasvigencias.Vigencia == 'TOTAL'"><span class="uLabelCampo_fp">TOTAL</span></td>
+                                                        <td ng-if="crucepoliticasvigencias.Vigencia == 'TOTAL'" style="text-align: right"><span class="uLabelCampo_fp">{{vm.ConvertirNumero(crucepoliticasvigencias.ValorPoliticaPrincipal)}}</span></td>
+                                                        <td ng-if="crucepoliticasvigencias.Vigencia == 'TOTAL'" style="text-align: right"><span class="uLabelCampo_fp">{{vm.ConvertirNumero(crucepoliticasvigencias.ValorPoliticaDependiente)}}</span></td>
+                                                        <td ng-if="crucepoliticasvigencias.Vigencia == 'TOTAL'" style="text-align: right">
+                                                            <span id="label{{crucepoliticas.PoliticaId}}{{localizar.LocalizacionId}}{{relacionarpolitica.PoliticaDependienteId}}" class="uLabelCampo_fp">
+                                                                {{vm.ConvertirNumero(crucepoliticasvigencias.ValorCruceDependientePrincipal)}}
+                                                            </span>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                    <div id="focalizacioncargamasiva">
+                                        <div class="row" style="text-align:left">
+                                            <div class="col-md-12 DetacolumnDNP">
+                                                <span>
+                                                    Archivo plantilla carga masiva <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg">
+                                                </span>
+                                                <button type="button" class="btn btn-link btn-md buttonhiperDNP" ng-click="vm.exportarFocalizacionExcel(crucepoliticas.PoliticaId, localizar.LocalizacionId, relacionarpolitica.PoliticaDependienteId)">
+                                                    DESCARGAR PLANTILLA
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <div class="divpanelcargarchivoDNP" style="">
+                                                    <button class="btncargarch" type="button" uib-tooltip="Editar" ng-click="vm.adjuntarArchivo(crucepoliticas.PoliticaId, vm.IdFuente, localizar.LocalizacionId, relacionarpolitica.PoliticaDependienteId)">
+                                                        EXAMINAR
+                                                    </button>
+                                                    <input type="file"
+                                                           style="display:none"
+                                                           id="filefocalizacion-{{crucepoliticas.PoliticaId}}-{{vm.IdFuente}}-{{localizar.LocalizacionId}}-{{relacionarpolitica.PoliticaDependienteId}}"
+                                                           name='filesfocalizacion[]'
+                                                           onchange="angular.element(this).scope().filefocalizacionNameChanged(this)"
+                                                           accept="{{vm.Focalizacion.ext}}" />
+                                                    <input type="search" style="display:none"
+                                                           id="nombrearchivo-{{crucepoliticas.PoliticaId}}-{{vm.IdFuente}}-{{localizar.LocalizacionId}}-{{relacionarpolitica.PoliticaDependienteId}}"
+                                                           ng-model="vm.nombrearchivo"
+                                                           class="form-control InputSearchDNP"
+                                                           placeholder="" ng-change="ChangeFocalizacionSet()">
+                                                    <span id="spNombrearchivo-{{crucepoliticas.PoliticaId}}-{{vm.IdFuente}}-{{localizar.LocalizacionId}}-{{relacionarpolitica.PoliticaDependienteId}}" style="font-size:12px"></span>
+                                                    <button class="btncancearch" type="button" uib-tooltip="Cancelar" ng-click="vm.limpiarArchivo(crucepoliticas.PoliticaId, vm.IdFuente, localizar.LocalizacionId, relacionarpolitica.PoliticaDependienteId)">
+                                                        X
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <span class="buttonbar pull-right">
+                                                    <button disabled="disabled" id="btnFocalizacionValidarArchivo-{{crucepoliticas.PoliticaId}}-{{vm.IdFuente}}-{{localizar.LocalizacionId}}-{{relacionarpolitica.PoliticaDependienteId}}" type="button" class="btn btnguardarDNP" tooltip-placement="top" uib-tooltip="Validar" tabindex="1" ng-click="vm.validarArchivo(crucepoliticas.PoliticaId, vm.IdFuente, localizar.LocalizacionId, relacionarpolitica.PoliticaDependienteId)">
+                                                        VALIDAR
+                                                    </button>
+                                                    <button disabled="disabled" id="btnFocalizacionLimpiarArchivo-{{crucepoliticas.PoliticaId}}-{{vm.IdFuente}}-{{localizar.LocalizacionId}}-{{relacionarpolitica.PoliticaDependienteId}}" type="button" class="btn btnguardarDNP" tooltip-placement="top" uib-tooltip="Cancelar" tabindex="2" ng-click="vm.limpiarArchivo(crucepoliticas.PoliticaId, vm.IdFuente, localizar.LocalizacionId, relacionarpolitica.PoliticaDependienteId)">
+                                                        CANCELAR
+                                                    </button>
+                                                    <button disabled="disabled" id="btnFocalizacionArchivoSeleccionado-{{crucepoliticas.PoliticaId}}-{{vm.IdFuente}}-{{localizar.LocalizacionId}}-{{relacionarpolitica.PoliticaDependienteId}}" class="btn btnguardarDNP" type="button" tooltip-placement="top" uib-tooltip="Cargar" tabindex="3" ng-click="vm.GuardarArchivoCruce(crucepoliticas.PoliticaId, vm.IdFuente, localizar.LocalizacionId, relacionarpolitica.PoliticaDependienteId)">
+                                                        CARGAR
+                                                    </button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <br />
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+

@@ -1,0 +1,192 @@
+﻿<section>
+    <div class="container-fluid inbox" ng-init="vm.init();" ng-if="vm.tramiteid!=''">
+        <div id="{{vm.nombreComponente}}-error" class="hidden uMensajeError"></div>
+        <!--<span id="IPF002-error" class="hidden uMensajeError"></span>-->
+        <div class="tab-content">
+                    <div class="row" style="margin-left:20px">
+                        <!--#region Buscar_Proyecto_Asociación  -->
+                        <div class="row" style="padding-top:2rem;">
+                            <div class="col-md-8" style="display:inline-flex;">
+                                <span style="color: #004884; font-size: 24px; font-weight: 400;">Proyecto asociado</span>
+                            </div>
+                            <div class="col-md-4" style="display:inline-flex;" ng-if="vm.proyectoId==0">
+                                <span class="textRightDNP" style="font-weight: 400 !important;">Buscar por BPIN o nombre del proyecto</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8" style="display:inline-flex;padding-top:2rem;">
+                                <div ng-if="vm.estadoAjusteCreado" class="divInfoAplicDNP">
+                                    <span>
+                                        <svg version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="20px" height="20px" xmlns="http://www.w3.org/2000/svg">
+                                            <g transform="matrix(1 0 0 1 -6 -147 )">
+                                                <path d="M 17.3039215686275 15.5269607843137  C 17.5326797385621 15.2982026143791  17.6470588235294 15.0245098039216  17.6470588235294 14.7058823529412  C 17.6470588235294 14.3790849673203  17.5326797385621 14.1013071895425  17.3039215686275 13.8725490196078  L 14.7549019607843 11.3235294117647  C 14.5261437908497 11.0947712418301  14.2483660130719 10.9803921568627  13.921568627451 10.9803921568627  C 13.578431372549 10.9803921568627  13.2843137254902 11.1111111111111  13.0392156862745 11.3725490196078  C 13.0637254901961 11.3970588235294  13.141339869281 11.4726307189542  13.2720588235294 11.5992647058824  C 13.4027777777778 11.7258986928105  13.4906045751634 11.8137254901961  13.5355392156863 11.8627450980392  C 13.5804738562092 11.9117647058824  13.6417483660131 11.9893790849673  13.719362745098 12.0955882352941  C 13.796977124183 12.2017973856209  13.8500816993464 12.3059640522876  13.8786764705882 12.4080882352941  C 13.9072712418301 12.5102124183007  13.921568627451 12.6225490196078  13.921568627451 12.7450980392157  C 13.921568627451 13.0718954248366  13.8071895424837 13.3496732026144  13.578431372549 13.578431372549  C 13.3496732026144 13.8071895424837  13.0718954248366 13.921568627451  12.7450980392157 13.921568627451  C 12.6225490196078 13.921568627451  12.5102124183007 13.9072712418301  12.4080882352941 13.8786764705882  C 12.3059640522876 13.8500816993464  12.2017973856209 13.796977124183  12.0955882352941 13.719362745098  C 11.9893790849673 13.6417483660131  11.9117647058824 13.5804738562091  11.8627450980392 13.5355392156863  C 11.8137254901961 13.4906045751634  11.7258986928105 13.4027777777778  11.5992647058824 13.2720588235294  C 11.4726307189542 13.141339869281  11.3970588235294 13.0637254901961  11.3725490196078 13.0392156862745  C 11.1029411764706 13.2924836601307  10.968137254902 13.5906862745098  10.968137254902 13.9338235294118  C 10.968137254902 14.2606209150327  11.0825163398693 14.5383986928105  11.3112745098039 14.7671568627451  L 13.8357843137255 17.3039215686275  C 14.0563725490196 17.5245098039216  14.3341503267974 17.6348039215686  14.6691176470588 17.6348039215686  C 14.9959150326797 17.6348039215686  15.2736928104575 17.5285947712418  15.5024509803922 17.3161764705882  L 17.3039215686275 15.5269607843137  Z M 8.62745098039216 6.96078431372549  C 8.89705882352941 6.70751633986928  9.03186274509804 6.4093137254902  9.03186274509804 6.06617647058824  C 9.03186274509804 5.73937908496732  8.91748366013072 5.46160130718954  8.68872549019608 5.2328431372549  L 6.16421568627451 2.69607843137255  C 5.93545751633987 2.46732026143791  5.65767973856209 2.35294117647059  5.33088235294118 2.35294117647059  C 5.01225490196078 2.35294117647059  4.73447712418301 2.46323529411765  4.49754901960784 2.68382352941176  L 2.69607843137255 4.47303921568627  C 2.46732026143791 4.70179738562091  2.35294117647059 4.97549019607843  2.35294117647059 5.29411764705882  C 2.35294117647059 5.62091503267974  2.46732026143791 5.89869281045751  2.69607843137255 6.12745098039216  L 5.24509803921569 8.67647058823529  C 5.4656862745098 8.89705882352941  5.74346405228758 9.00735294117647  6.07843137254902 9.00735294117647  C 6.42156862745098 9.00735294117647  6.7156862745098 8.88071895424837  6.96078431372549 8.62745098039216  C 6.93627450980392 8.60294117647059  6.85866013071896 8.52736928104575  6.72794117647059 8.40073529411765  C 6.59722222222222 8.27410130718954  6.5093954248366 8.18627450980392  6.46446078431373 8.13725490196078  C 6.41952614379085 8.08823529411765  6.35825163398693 8.01062091503268  6.28063725490196 7.90441176470588  C 6.20302287581699 7.79820261437908  6.14991830065359 7.69403594771242  6.12132352941177 7.59191176470588  C 6.09272875816994 7.48978758169935  6.07843137254902 7.37745098039216  6.07843137254902 7.25490196078431  C 6.07843137254902 6.9281045751634  6.19281045751634 6.65032679738562  6.42156862745098 6.42156862745098  C 6.65032679738562 6.19281045751634  6.9281045751634 6.07843137254902  7.25490196078431 6.07843137254902  C 7.37745098039216 6.07843137254902  7.48978758169935 6.09272875816993  7.59191176470588 6.12132352941176  C 7.69403594771242 6.14991830065359  7.79820261437909 6.20302287581699  7.90441176470588 6.28063725490196  C 8.01062091503268 6.35825163398693  8.08823529411765 6.41952614379085  8.13725490196078 6.46446078431373  C 8.18627450980392 6.5093954248366  8.27410130718954 6.59722222222222  8.40073529411765 6.72794117647059  C 8.52736928104575 6.85866013071895  8.60294117647059 6.93627450980392  8.62745098039216 6.96078431372549  Z M 18.9705882352941 12.2058823529412  C 19.656862745098 12.8921568627451  20 13.7254901960784  20 14.7058823529412  C 20 15.6862745098039  19.6527777777778 16.515522875817  18.9583333333333 17.1936274509804  L 17.156862745098 18.9828431372549  C 16.4787581699346 19.6609477124183  15.6495098039216 20  14.6691176470588 20  C 13.6805555555556 20  12.8472222222222 19.6527777777778  12.1691176470588 18.9583333333333  L 9.64460784313725 16.421568627451  C 8.96650326797386 15.7434640522876  8.62745098039216 14.9142156862745  8.62745098039216 13.9338235294118  C 8.62745098039216 12.9289215686275  8.98692810457516 12.0751633986928  9.70588235294118 11.3725490196078  L 8.62745098039216 10.2941176470588  C 7.92483660130719 11.0130718954248  7.07516339869281 11.3725490196078  6.07843137254902 11.3725490196078  C 5.09803921568627 11.3725490196078  4.26470588235294 11.0294117647059  3.57843137254902 10.343137254902  L 1.02941176470588 7.79411764705882  C 0.343137254901961 7.1078431372549  0 6.27450980392157  0 5.29411764705882  C 0 4.31372549019608  0.347222222222222 3.48447712418301  1.04166666666667 2.80637254901961  L 2.84313725490196 1.0171568627451  C 3.52124183006536 0.339052287581698  4.35049019607843 0  5.33088235294118 0  C 6.31944444444445 0  7.15277777777778 0.347222222222221  7.83088235294118 1.04166666666667  L 10.3553921568627 3.57843137254902  C 11.0334967320261 4.25653594771242  11.3725490196078 5.08578431372549  11.3725490196078 6.06617647058824  C 11.3725490196078 7.07107843137255  11.0130718954248 7.92483660130719  10.2941176470588 8.62745098039216  L 11.3725490196078 9.70588235294118  C 12.0751633986928 8.98692810457516  12.9248366013072 8.62745098039215  13.921568627451 8.62745098039216  C 14.9019607843137 8.62745098039215  15.7352941176471 8.97058823529412  16.421568627451 9.65686274509804  L 18.9705882352941 12.2058823529412  Z " fill-rule="nonzero" fill="#069169" stroke="none" transform="matrix(1 0 0 1 6 147 )" />
+                                            </g>
+                                        </svg>
+                                        {{vm.estadoTramite}}
+                                    </span>
+                                </div>
+                                <span ng-if="!vm.estadoAjusteCreado " class="label" style=" background-color: #e1dfdf; padding-left: 2rem; padding-right: 2rem; height: 40px; padding-top: 1rem; color: gray;"><img src="Img/sin_asociacion.svg" /> {{vm.estadoTramite}}</span>
+
+                                <div ng-click="vm.abrirTooltip()" style="padding-left: 1rem; padding-top: 1rem; ">
+                                    <svg class="mi-card__tooltip-icon" xmlns="http://www.w3.org/2000/svg" width="17.037" height="17.037" viewBox="0 0 17.037 17.037">
+                                        <g id="Grupo_5110" data-name="Grupo 5110" transform="translate(0 0)">
+                                            <path id="Caminho_9243" data-name="Caminho 9243" d="M8.552,0A8.552,8.552,0,0,0,0,8.485a8.609,8.609,0,0,0,8.552,8.552A8.519,8.519,0,0,0,8.552,0Zm0,14.542a1,1,0,1,1,1-1A1,1,0,0,1,8.552,14.542Zm1.769-6.136A2.663,2.663,0,0,0,9.55,10.22v.262a1,1,0,0,1-2,0V10.22A4.614,4.614,0,0,1,9.141,6.8,1,1,0,1,0,7.554,5.99a1,1,0,0,1-2,0,2.995,2.995,0,1,1,4.764,2.416Z" transform="translate(0 0)" fill="#36c"></path>
+                                        </g>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="col-md-4 pull-right" ng-if="vm.proyectoId==0">
+                                <div class="input-group ">
+                                    <input type="text" ng-model="vm.textoBuscar" style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-size: 16px; " class="form-control buscadorDNP" placeholder="Buscar">
+                                    <span class="input-group-addon imgTituloAccion" ng-click="vm.buscarProyecto()" style="padding: 8px 0px; width: 35px; background-color: rgba(51, 102, 204, 1);color:white">
+                                        <i class="fa fa-search "></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="filtro filtro-entidades" stye="background-color: #f5f5f5;" ng-if="vm.proyectoId==0">
+                            <div class="clearfix">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="col-xs-2" style="text-align:left">
+                                            <span style="color:#004884;font-weight: 600;">Código BPIN</span>
+                                        </div>
+                                        <div class="col-md-9" style="text-align:left;">
+                                            <span style="color:#004884;font-weight: 600;">Nombre del Proyecto</span>
+                                        </div>
+                                        <div class="col-xs-1" style="text-align: left;">
+                                            <span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" ng-if="vm.proyectoId==0">
+                            <div class="col-md-12 grid-proyectos ">
+                                <div ui-grid="vm.gridProyectos" ng-style="vm.getTableHeightProyectos()" ui-grid-selection ui-grid-pinning ui-grid-resize-columns></div>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top:2rem;" ng-if="vm.proyectoId==0">
+                            <div class="col-md-11" style="display:inline-flex;">
+
+                            </div>
+                            <div class="col-md-1" style="display:inline-flex;">
+                                <span class="buttonbar pull-right">
+                                    <a ng-click="vm.crearAsociacion()" has-claim has-opciones="['TramitesVigenciaFutura:AccionesPasoUno']"><span class="uLabelCampoNegro1" style="text-decoration: underline; color: #337ab7;">ASOCIAR</span></a>
+                                </span>
+                            </div>
+                        </div>
+                        <div></div>
+
+
+                        <div class="modal " id="IPModal" tabindex="-1" role="dialog" aria-labelledby="IPModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content modal-contentDNP">
+                                    <div class="modal-header">
+
+                                        <button type='button' class='swal2-close closemodalDNP' aria-label='Close this dialog' data-dismiss="modal">×</button>
+                                        <h3 class="modal-title TituloModal1DNP" id="modal-title">{{vm.tituloMensaje}} </h3>
+                                        <span class="TituloModal2DNP"> </span>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p class="descripcionbodyDNP">{{vm.mensaje}}</p>
+                                        <p>
+                                            <div class="col-md-12 DetacolumnDNP">
+                                                <span class="notapregun">(Máximo 8.000 caracteres)</span>
+                                            </div>
+
+                                            <textarea rows="3" id="observacion" class="uLabelCampoNegro"
+                                                      ng-model="vm.model.observacion" minlength="1" maxlength="5000"></textarea>
+
+
+                                        </p>
+                                    </div>
+                                    <div class="modal-footer textCenterDNP">
+                                        <button class="btneditarDNP" type="button" data-dismiss="modal">CANCELAR</button>
+                                        <button class="btnguardarDNP" type="button" ng-click="vm.aceptar()">ACEPTAR</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--#endregion -->
+                        <!--Datos del proyecto Asociado-->
+                        <form id="datosProyectoForm" name="datosProyectoForm" ng-if="vm.proyectoId!=0">
+                            <div><span class="uLabelCampo" style="color:#4B4B4B !important; ">Datos del proyecto asociado</span></div>
+                            <div id="panel">
+                                <br />
+                                <p>
+                                    <span class="encabezadoTitulos">Entidad: </span>
+                                    <span class="encabezadoInfo">{{vm.datosproyecto.NombreEntidad }}.</span>
+                                    <span class="encabezadoTitulos">Sector: </span>
+                                    <span class="encabezadoInfo">{{vm.datosproyecto.Sector}}.</span>
+                                    <span class="encabezadoTitulos">Código BPIN: </span>
+                                    <span class="encabezadoInfo">{{vm.datosproyecto.BPIN}}. </span>
+                                    <span class="encabezadoTitulos">Proyecto: </span>
+                                    <span class="encabezadoInfo">{{vm.datosproyecto.NombreProyecto}}. </span>
+                                    <span class="encabezadoTitulos">Código presupuestal: </span>
+                                    <span class="encabezadoInfo">{{vm.datosproyecto.CodigoPresupuestal}}. </span>
+                                    <span class="encabezadoTitulos">Vigencia inicial: </span>
+                                    <span class="encabezadoInfo">{{vm.datosproyecto.VigenciaInicial}}. </span>
+                                    <span class="encabezadoTitulos">Vigencia final: </span>
+                                    <span class="encabezadoInfo">{{vm.datosproyecto.VigenciaFinal}}. </span>
+                                </p>
+                                <br />
+                            </div>
+
+                            <table class="TableDNP" ng-if="vm.proyectoId!=0 && vm.tipotramiteid!=36">
+                                <thead>
+                                    <tr>
+                                        <!--<th class="columAcc"></th>-->
+                                        <th class="textLeftDNP">Tipo recurso</th>
+                                        <th class="textRightDNP">Aprobación inicial $</th>
+                                        <th class="textRightDNP">Aprobación vigente $</th>
+                                        <th class="textRightDNP">Valor disponible $</th>
+                                        <th class="textRightDNP">Vigencias futuras $</th>
+                                        <th class="columAcc"></th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="objValor in vm.datosproyecto.listavalores">
+
+                                        <!--<td></td>-->
+                                        <td>{{objValor.TipoRecurso}}</td>
+                                        <td> <input type="text" class="form-control editInputDNP textRightDNP" disabled value={{objValor.AprobacionInicial}} /></td>
+                                        <td> <input type="text" class="form-control editInputDNP textRightDNP" disabled value={{objValor.AprobacionVigente}} /></td>
+                                        <td> <input type="text" class="form-control editInputDNP textRightDNP" disabled value={{objValor.ValorDispinible}} /></td>
+                                        <td> <input type="text" class="form-control editInputDNP textRightDNP" disabled value={{objValor.VigenciasFuturas}} /></td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </form>
+                        <!--  -->
+                        <!--#region erroAsociarProyecto  -->
+                        <div class="row">
+                            <div class="col-md-12" style="padding-top:2rem;">
+                                <div id="asociarproyectoseleccionproyec-proyecto-error" class="hidden uMensajeError"></div>
+                                <span class="uLabelCampoNegro" style="padding-left:0rem;">{{vm.titulogrilla}}</span>
+                            </div>
+                        </div>
+                        <!--#endregion -->
+                        <!--#region Elminar_Asociación  -->
+                        <div class="row" style="padding-top:2rem;" ng-if="vm.proyectoId!=0 && vm.tipotramiteid!=36">
+                            <div class="col-md-8"></div>
+                            <div class="col-md-2"></div>
+                            <div class="col-md-2">
+                                <span class="buttonbar pull-right" ng-if="vm.estadoAjusteCreado">
+                                    <a ng-click="vm.eliminarAsociacion()" has-claim has-opciones="['TramitesVigenciaFutura:AccionesPasoUno']"><span class="uLabelCampoNegro1" style="text-decoration: underline; color: #337ab7;">ELIMINAR ASOCIACIÓN</span></a>
+                                </span>
+                            </div>
+                        </div>
+                        <!--#endregion -->
+
+
+
+                    </div>
+            </div>
+
+        </div>
+    </div>
+</section>

@@ -1,0 +1,57 @@
+﻿<div ng-init="vm.init()">
+    <form id="datosProyectoForm" name="datosProyectoForm">
+
+        <div><span class="uLabelCampo" style="color:#4B4B4B !important; ">Datos de la autorización del proyecto asociado</span></div>
+        <div id="panel">
+            <br />
+        </div>
+
+        <table class="TableDNP">
+            <thead>
+                <tr>
+                    <th class="columAcc" style="width:4%"></th>
+                    <th class="textLeftDNP" style="width:14%">Código proceso</th>
+                    <th class="textLeftDNP" style="width:25%">Objeto de la contratación</th>
+                    <th class="textLeftDNP" style="width:12%">Fecha autorización</th>
+                    <th class="textLeftDNP" style="width:14%">Código autorización</th>
+                    <th class="columAcc" style="width:4%"></th>
+
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td class="textleftDNP">
+                        <div class="blockReferenciaDNP">{{vm.listaValores.NumeroTramite }}</div>
+                    </td>
+                    <td class="textLeftDNP">
+                        <div class="blockReferenciaDNP" style="line-height: 25px; overflow-y: scroll; height: 50px; font-size: 16px ">{{vm.listaValores.Descripcion }}</div>
+                        <!--<div class="blockReferenciaDNP">{{vm.listaValores.Descripcion }}</div>-->
+                    </td>
+
+                    <td class="textLeftDNP">
+                        <div class="blockReferenciaDNP">{{vm.listaValores.FechaAutorizacion }}</div>
+                    </td>
+                    <td class="textLeftDNP">
+                        <div class="blockReferenciaDNP">{{vm.listaValores.CodigoAutorizacion }}</div>
+                    </td>
+
+                    <td>
+                        <button class="button-column-action trash"
+                                title="Eliminar la asociación"
+                                ng-click="vm.eliminarAsociacionA()"
+                                ng-if="vm.habilitaBotones">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="rgb(51, 102, 204)" class="bi bi-trash" viewBox="0 0 16 16">
+                                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                                <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                            </svg>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+    </form>
+</div>

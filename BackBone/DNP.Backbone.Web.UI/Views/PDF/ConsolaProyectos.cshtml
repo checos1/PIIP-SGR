@@ -1,0 +1,94 @@
+﻿@using DNP.Backbone.Dominio.Dto.Proyecto;
+@model ProyectoDto
+@{
+    Layout = null;
+    ViewBag.Title = "Consola Proyectos PDF";
+
+    // constante: Dicccionario de datos para determinar la propiedad asociada a la columna
+    var columnasPropiedades = new Dictionary<String, String> {
+        { "ID", "ProyectoId" },
+        { "BPIN", "IdObjetoNegocio" } ,
+        { "Estado", "EstadoProyecto" },
+        { "Nombre del proyecto", "NombreObjetoNegocio" },
+        { "Horizonte", "Horizonte" }
+    };
+}
+<html>
+<head>
+    @Html.Partial("_IncludeEstilosRelatorios")
+</head>
+<body class="pdf">
+    @Html.Partial("_CabecalhoRelatorio", "Informe de Proyectos")
+
+    <div class="mt-5">
+        @if (Model.GruposEntidades == null)
+        {
+            <table class="table table-sm table-borderless">
+                <thead>
+                    <tr>
+                        <th class="text-center">
+                            No hubo registros para los filtros seleccionados.
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+        }
+        else
+        {
+            foreach (var entidades in Model.GruposEntidades)
+            {
+                <div>
+                    <div class="marginTop10">
+                        <table class="table table-sm table-borderless">
+                            <tr>
+                                <td><b>Tipo Entidad:</b> @entidades.TipoEntidad </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                foreach (var grpProyectos in entidades.ListaEntidades)
+                {
+                    <div>
+                        <div class="marginTop10">
+                            <table class="table">
+                                <tr>
+                                    <td><b>Sector:</b> <span class="agr-blue"> @grpProyectos.ObjetosNegocio.FirstOrDefault().SectorNombre </span> - <b>Nombre Entidad</b> <span class="agr-black">@grpProyectos.NombreEntidad </span></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div id="containerbody">
+                        <table class="table  table-borderless border-table">
+                            <thead>
+                                <tr>
+                                    @foreach (var columna in columnasPropiedades)
+                                    {
+                                        <th>@columna.Key</th>
+                                    }
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var proyectos in grpProyectos.ObjetosNegocio)
+                                {
+                                    var columnasPropiedadesLista = columnasPropiedades.Where(p => Model.ColumnasVisibles.Contains(p.Key)).Select(p => p.Value).ToList();
+                                    var columnasValor = proyectos.GetType().GetProperties().Select( (p, index) => new {Index = index, Propiedad = p.Name, Valor = p.GetValue(proyectos) }).ToList();
+                                    columnasValor     = columnasValor.Where(p => columnasPropiedadesLista.Contains(p.Propiedad)).Select(p => new { 
+                                                                                                                                                    Index = columnasPropiedadesLista.IndexOf(p.Propiedad), p.Propiedad, p.Valor 
+                                                                                                                                        }).OrderBy(p => p.Index).ToList();
+                                <tr>
+                                    @foreach (var columna in columnasValor)
+                                    {
+                                            <td>@columna.Valor</td>
+                                      
+                                    }
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+            }
+        }
+    </div>
+</body>
+</html>

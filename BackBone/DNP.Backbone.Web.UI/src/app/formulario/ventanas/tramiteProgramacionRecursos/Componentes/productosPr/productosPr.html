@@ -1,0 +1,30 @@
+﻿<div ng-init="vm.init();">
+
+    <div class="ui-accordion-container " id="accordion-productosproductos">
+        <div class="alert panel-heading row ui-accordion-header">
+            <button type="button" data-toggle="collapse" data-target="#{{vm.nombreComponenteHijo}}" ng-click="vm.changeArrow(vm.nombreComponenteHijo)">
+                <span class="d-inline-block" id="alert-{{vm.nombreComponenteHijo}}"></span>
+                <span id="name-capitulo-{{vm.nombreComponenteHijo}}"></span>
+                <span class="hidden" id="id-capitulo-{{vm.nombreComponenteHijo}}"></span>
+                <span id="arrow-{{vm.nombreComponenteHijo}}" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#productosproductos"></span>
+            </button>
+        </div>
+        <div class="collapse" id="productosproductos">
+            <div class="row" style="padding-right: 15px; padding-left: 0px; margin-left: -15px;">
+                <br>
+                <programacion-productos-formulario nombrecomponentepaso="{{vm.nombrecomponentepaso}}"
+                                                   modificodatos="vm.modificoDatos"
+                                                   guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                                   notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                   notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"
+                                                   section="{{vm.section}}"
+                                                   modificardistribucionprod="vm.modificardistribucionprod"
+                                                   calendarioproductos="{{vm.calendarioproductos}}"
+                                                   modificoData="{{vm.modificoData}}">
+                </programacion-productos-formulario>
+            </div>
+        </div>
+    </div>
+
+
+</div>

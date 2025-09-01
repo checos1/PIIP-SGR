@@ -1,0 +1,24 @@
+﻿<div ng-if="vm.datos[vm.modelo.propiedad].mostrarAdicionar">
+    <ul class="list-unstyled">
+        <li>
+            <div id="grupo-{{vm.idPadre}}" class="panel-group">
+                <div class="panel-heading" style="border:1px solid #e5e5e3">
+                    <div class="panel-title">
+                        <div class="flex-fill">
+                            <div class="titulo-jerarquia flex-inline" ng-repeat="item in vm.modelo.items">
+                                <div ng-if="item.visible && item.tipo !== 'array'">
+                                    <span class="label-value">{{item.encabezado || item.propiedad}}:</span>
+                                    <input ng-model="vm.nuevaJerarquia[item.propiedad]" ng-disabled="!item.editar" class="form-inline" required />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="div-save-close">
+                            <button ng-if="vm.modelo.adicionar" ng-click="vm.guardarAdicionar()" class="btn btn-default wbs-btn icon-save" tooltip-placement="top" uib-tooltip="Guardar"></button>
+                            <button ng-if="vm.modelo.adicionar" ng-click="vm.cancelarAdicionar()" class="btn btn-default wbs-btn icon-close" tooltip-placement="top" uib-tooltip="Cancelar"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>

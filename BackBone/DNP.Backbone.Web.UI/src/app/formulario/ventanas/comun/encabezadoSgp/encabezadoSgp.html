@@ -1,0 +1,133 @@
+﻿<div class="row">
+    <div class="col-md-12">
+        <button class="accordion-SGP" type="button">
+            <div class="col-md-10">
+                <p ng-if="vm.mostrarLinea1" style="margin:0px 0px 0px !important">
+                    <span class="encabezadoTitulos">Proceso: </span>
+                    <span class="encabezadoInfo">{{vm.CodigoProceso}}</span>
+                    <span class="encabezadoTitulos"> Fecha: </span>
+                    <span class="encabezadoInfo"> {{vm.Fecha}}</span>
+                </p>
+                <p ng-if="vm.ProyectoId > 0" style="margin:0px 0px 0px !important">
+                    <span ng-if="vm.mostrarLinea2" class="encabezadoTitulos">ID: </span>
+                    <span ng-if="vm.mostrarLinea2" class="encabezadoInfo">{{vm.ProyectoId}}</span>
+                    <span ng-if="vm.mostrarLinea2" class="encabezadoTitulos"> BPIN: </span>
+                    <span ng-if="vm.mostrarLinea2" class="encabezadoInfo">{{vm.modelo.CodigoBPIN}}</span>
+                </p>
+            </div>
+            <div class="col-md-2">
+                <img id="u4_img_sgp" src="Img/iconsmenu/u4.svg" ng-if="vm.mostrarLinea3">
+                <img id="u4_img_sgp" src="Img/iconsmenu/u4.svg" ng-if="vm.mostrarLinea4">
+                <img id="u4_img_sgp" src="Img/iconsmenu/u4.svg" ng-if="vm.mostrarLinea5">
+            </div>
+
+        </button>
+
+        <div id="panel" class="panel" ng-if="vm.mostrarLinea3">
+            <p style="margin:10px !important">
+                <span class="encabezadoTitulos"> Nombre: </span>
+                <span class="encabezadoInfo">{{vm.modelo.Nombre}}</span>
+                <span class="encabezadoTitulos"> Entidad: </span>
+                <span class="encabezadoInfo">{{vm.modelo.EntidadPresenta}}</span>
+                <!--<span class="encabezadoTitulos"> Entidad o instancia a la que queda presentado: </span>
+                <span class="encabezadoInfo">{{vm.modelo.EntidadDestino}}</span>-->
+                <span class="encabezadoTitulos"> Estado: </span>
+                <span class="encabezadoInfo">{{vm.modelo.Estado}}</span>
+                <span class="encabezadoTitulos"> Vigencia inicial: </span>
+                <span class="encabezadoInfo">{{vm.modelo.VigenciaInicial}}</span>
+                <span class="encabezadoTitulos"> Vigencia final: </span>
+                <span class="encabezadoInfo">{{vm.modelo.VigenciaFinal}}</span>
+                <span class="encabezadoTitulos"> Valor total: </span>
+                <span class="encabezadoInfo">{{vm.modelo.ValorTotalSGP | currency}}</span>
+                <span ng-if="vm.mostrarValorAjuste" class="encabezadoTitulos"> Valor total ajuste: </span>
+                <span ng-if="vm.mostrarValorAjuste" class="encabezadoInfo">{{vm.modelo.ValorTotalAjuste | currency}}</span>
+                <br />
+                <a class="link pull-right" ng-click="vm.abrirModalDetalle()">VER MÁS</a>
+            </p>
+        </div>
+
+        <div id="panel" class="panel" ng-if="vm.mostrarLinea4">
+            <p style="margin: 10px !important; text-align: justify !important;">
+                <span class="encabezadoTitulos">Trámite: </span>
+                <span class="encabezadoInfo">{{vm.modelo.Tramite}}</span>
+                <span class="encabezadoTitulos"> Descripción: </span>
+                <span class="encabezadoInfo"> {{vm.modelo.Descripcion}}</span>
+                <br />
+                <a class="link pull-right" ng-click="vm.abrirModalDetalle()">VER MÁS</a>
+            </p>
+        </div>
+
+        <div id="panel" class="panel" ng-if="vm.mostrarLinea5">
+            <p style="margin:10px !important">
+                <span class="encabezadoTitulos"> Nombre: </span>
+                <span class="encabezadoInfo">{{vm.modelo.Nombre}}</span>
+                <span class="encabezadoTitulos"> Estado: </span>
+                <span class="encabezadoInfo">{{vm.modelo.Estado}}</span>
+                <span class="encabezadoTitulos"> Vigencia inicial: </span>
+                <span class="encabezadoInfo">{{vm.modelo.VigenciaInicial}}</span>
+                <span class="encabezadoTitulos"> Vigencia final: </span>
+                <span class="encabezadoInfo">{{vm.modelo.VigenciaFinal}}</span>
+                <span class="encabezadoTitulos"> Apropiación inicial: </span>
+                <span class="encabezadoInfo">{{vm.modelo.ValorTotalInversion | currency}}</span>
+                <span class="encabezadoTitulos"> Apropiación vigente: </span>
+                <span class="encabezadoInfo">{{vm.modelo.ValorVigente | currency}}</span>
+                <span class="encabezadoTitulos"> Apropiación vigente con trámite actual: </span>
+                <span class="encabezadoInfo">{{vm.modelo.ValorTotalPreInversion | currency}}</span>
+                <span class="encabezadoTitulos"> Valor total con trámite actual: </span>
+                <span class="encabezadoInfo">{{vm.modelo.ValorTotalOperacion | currency}}</span>
+                <br />
+                <a class="link pull-right" ng-click="vm.abrirModalDetalle()">VER MÁS</a>
+            </p>
+        </div>
+    </div>
+</div>
+<style>
+    .accordion-SGP {
+        cursor: pointer;
+        border: none;
+        width: 100%;
+        padding: 10px;
+        text-align: left;
+        font-size: 16px;
+        transition: 0.4s;
+        background-color: rgba(230, 239, 253, 1);
+        box-sizing: border-box;
+        border-width: 1px;
+        border-style: solid;
+        border-color: rgba(205, 216, 254, 1);
+        border-radius: 5px;
+        image-orientation: unset;
+    }
+
+
+    .panel {
+        margin-bottom: 5px;
+        background: inherit;
+        background-color: rgba(253, 253, 253, 1);
+        box-sizing: border-box;
+        border-width: 1px;
+        border-style: solid;
+        border-color: rgba(205, 216, 254, 1);
+        border-radius: 5px;
+        -moz-box-shadow: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        font-size: 16px;
+        text-align: left;
+        line-height: 26px;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.2s ease-out;
+    }
+
+    #u4_img_sgp {
+        margin-left: 5px;
+        width: 15px;
+        right: 10px;
+        position: absolute;
+        -webkit-transform: rotate(180deg);
+        -moz-transform: rotate(180deg);
+        -ms-transform: rotate(180deg);
+        transform: rotate(180deg);
+    }
+</style>

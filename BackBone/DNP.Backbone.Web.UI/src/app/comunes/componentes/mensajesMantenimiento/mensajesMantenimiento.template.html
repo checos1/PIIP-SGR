@@ -1,0 +1,10 @@
+<div class="container-mensajes-mantenimiento">
+    <div class="disclaimers" ng-repeat="disclaimer in vm.disclaimers">
+        <mesaje-disclaimer
+            type="disclaimer.type" 
+            template="disclaimer.template"
+            show="disclaimer.show"
+            restringe-acesso="disclaimer.restringeAcesso">
+        </mesaje-disclaimer>
+    </div>
+</div>

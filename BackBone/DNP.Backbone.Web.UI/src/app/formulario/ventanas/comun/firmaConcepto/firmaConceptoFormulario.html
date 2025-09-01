@@ -1,0 +1,91 @@
+﻿<div style="background-color:white;padding-top:2rem;padding-bottom:0px !important;max-width:auto !important;" ng-init="vm.initFirmaConcepto()">
+    <div class="row" style="padding-top: 2rem; padding-left: 0;">
+        <div class="col-md-12" style="display: inline-flex; padding-left: 0;">
+            <span class="label" style="color: #004884; font-size: 24px; font-weight: 400;padding-left:0;">Firma concepto técnico </span>
+            <div ng-click="vm.abrirTooltip()">
+                <svg class="mi-card__tooltip-icon" xmlns="http://www.w3.org/2000/svg" width="17.037" height="17.037" viewBox="0 0 17.037 17.037">
+                    <g id="Grupo_5110" data-name="Grupo 5110" transform="translate(0 0)">
+                        <path id="Caminho_9243" data-name="Caminho 9243" d="M8.552,0A8.552,8.552,0,0,0,0,8.485a8.609,8.609,0,0,0,8.552,8.552A8.519,8.519,0,0,0,8.552,0Zm0,14.542a1,1,0,1,1,1-1A1,1,0,0,1,8.552,14.542Zm1.769-6.136A2.663,2.663,0,0,0,9.55,10.22v.262a1,1,0,0,1-2,0V10.22A4.614,4.614,0,0,1,9.141,6.8,1,1,0,1,0,7.554,5.99a1,1,0,0,1-2,0,2.995,2.995,0,1,1,4.764,2.416Z" transform="translate(0 0)" fill="#36c"></path>
+                    </g>
+                </svg>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+
+    <!--<div class="col-md-12" style="display:inline-flex;padding-bottom:2rem;">
+        <span style="color: #004884; font-size: 24px; font-weight: 400;">Firma concepto para finalizar proceso</span>
+        <div ng-click="vm.abrirTooltip()" style="padding-top: 0.8rem; padding-left: 1rem;">
+            <svg class="mi-card__tooltip-icon" xmlns="http://www.w3.org/2000/svg" width="17.037" height="17.037" viewBox="0 0 17.037 17.037">
+                <g id="Grupo_5110" data-name="Grupo 5110" transform="translate(0 0)">
+                    <path id="Caminho_9243" data-name="Caminho 9243" d="M8.552,0A8.552,8.552,0,0,0,0,8.485a8.609,8.609,0,0,0,8.552,8.552A8.519,8.519,0,0,0,8.552,0Zm0,14.542a1,1,0,1,1,1-1A1,1,0,0,1,8.552,14.542Zm1.769-6.136A2.663,2.663,0,0,0,9.55,10.22v.262a1,1,0,0,1-2,0V10.22A4.614,4.614,0,0,1,9.141,6.8,1,1,0,1,0,7.554,5.99a1,1,0,0,1-2,0,2.995,2.995,0,1,1,4.764,2.416Z" transform="translate(0 0)" fill="#36c"></path>
+                </g>
+            </svg>
+        </div>
+
+    </div>-->
+
+    <br />
+    <div id="aprobacionfinalfirmaconceptote-archivo-error" class="hidden uMensajeError"></div>
+    <div class="row ng-scope" style="padding-top:2rem;">
+
+
+        <div class="row ng-scope">
+
+            <div class="col-md-7">
+                <span style="font-weight: bold; padding-left: 1.5rem">Cargar nueva firma</span>
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-3">
+                <span style="font-weight: bold;margin-left: 1.5rem;">Última firma cargada</span>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+        <div class="col-md-7" style="padding-top: 2rem;">
+            <div class="divpanelcargarchivoDNP" style="width:100% !important;">
+                <button class="btncargarch" ng-class="{'my-disable':vm.nombreArchivo !== undefined && vm.nombreArchivo !== ''}"
+                        type="button" uib-tooltip="Examinar" ng-click="vm.examinar()">
+                    EXAMINAR
+                </button>
+                <!--<input type="file" style="display:none" onchange="angular.element(this).scope().SelectFile(event)" file-model-no-preview="data.file" id="control" />-->
+                <input type="file" style="display:none" id="fileFirma" name='files[]' onchange="angular.element(this).scope().fileFirmaNameChanged(this)" multiple />
+                <input type="search" style="display:none" id="firmaNombreArchivo" ng-model="vm.nombreArchivo" class="form-control InputSearchDNP " placeholder="" ng-change="ChangeFirmaSet()">
+                <span>{{vm.nombreArchivo}}</span>
+                <button class="btncancearch" ng-class="{'my-disable':vm.nombreArchivo === undefined || vm.nombreArchivo === ''}"
+                        type="button" uib-tooltip="Cancelar" ng-click="vm.limpiarArchivo()">
+                    X
+                </button>
+            </div>
+            <div style="width:100% !important;">
+                <span style="font-weight: 500;">Para finalizar este formulario es necesario que su firma se visualice en el campo “Última firma cargada”, inclúyala o reemplácela, mediante “Examinar” y “Cargar”.</span>
+            </div>
+        </div>
+        <div class="col-md-1" style="padding-top: 2rem;">
+            <span class="buttonbar pull-center">
+                <button class="btn btnguardarDNP" ng-disabled="vm.desactivarGuardar" type="button" tooltip-placement="top" uib-tooltip="Guardar" tabindex="0" ng-click="vm.archivoSeleccionado()">
+                    CARGAR
+                </button>
+            </span>
+        </div>
+        <div class="col-md-3" style="padding-top: 2rem; padding-left:4rem;">
+            <div id="main" style="width:80%;margin-left:2rem !important;border:inset;height:15rem;">
+
+            </div>
+
+        </div>
+        <div class="col-md-1" style="padding-top: 2rem;">
+            <span class="buttonbar pull-center">
+                <button ng-disabled="!vm.boolExisteFirma"
+                        class="btn btnguardarDNP" type="button" tooltip-placement="top" uib-tooltip="Guardar" tabindex="0" ng-click="vm.borrarSeleccionado()">
+                    BORRAR
+                </button>
+            </span>
+        </div>
+    </div>
+    <div class="col-md-12" style="padding-top: 2rem;">
+        &nbsp;&nbsp;&nbsp;&nbsp;<div id="solicitarconceptodatosiniciales-pregunta-error-firma" class="hidden uMensajeError"></div>
+    </div>
+    <br />
+</div>

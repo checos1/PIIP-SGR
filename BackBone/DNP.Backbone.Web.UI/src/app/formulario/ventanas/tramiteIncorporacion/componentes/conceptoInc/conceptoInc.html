@@ -1,0 +1,70 @@
+﻿
+<div ng-init="vm.init();">
+    <div class="ui-accordion-container hidden" id="accordion-conceptossolicitarconsul">
+        <div class="alert panel-heading row ui-accordion-header" style="">
+            <button class="button" type="button" data-toggle="collapse" data-target="#conceptossolicitarconsul" ng-click="vm.changeArrow('conceptossolicitarconsul')">
+                <span class="d-inline-block" id="alert-conceptossolicitarconsul"></span>
+                <span id="name-capitulo-conceptossolicitarconsul"></span>
+                <span class="hidden" id="id-capitulo-conceptossolicitarconsul"></span>
+                <span id="arrow-conceptossolicitarconsul" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#conceptossolicitarconsul"></span>
+            </button>
+        </div>
+        <div class="collapse" id="conceptossolicitarconsul" style="padding-right: 15px; padding-left: 0px; margin-left: -15px;">
+            <div class="row" style="margin-left:20px" ng-if="!vm.mostrar">
+                <br>
+                <div class="col-md-12 ">
+                    <solicitud-Concepto-Formulario tipotramiteid="{{vm.tipotramiteid}}"
+                                                   tramiteid="{{vm.tramiteid}}"
+                                                   nivel="{{vm.nivel}}"
+                                                   rol="{{vm.rol}}"
+                                                   section="{{vm.section}}"
+                                                   nombrecomponentepaso="{{vm.nombreComponenteHijo}}"
+                                                   guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                                   notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                   notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"
+                                                   callback="vm.notificarGuardado(botonDevolver, botonSiguiente, ocultarDevolver)"
+                                                   deshabilitarconcepto="vm.deshabilitarConcepto(estado)"
+                                                   bpin="{{vm.bpin}}"
+                                                   deshabilitar="vm.deshabilitar">
+                    </solicitud-Concepto-Formulario>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="ui-accordion-container hidden" id="accordion-conceptoselaborarconcep">
+        <div class="alert panel-heading row ui-accordion-header" style="">
+            <button class="button" type="button" data-toggle="collapse" data-target="#conceptoselaborarconcep" ng-click="vm.changeArrow('conceptoselaborarconcep')">
+                <span class="d-inline-block" id="alert-conceptoselaborarconcep"></span>
+                <span id="name-capitulo-conceptoselaborarconcep"></span>
+                <span class="hidden" id="id-capitulo-conceptoselaborarconcep"></span>
+                <span class="hidden" id="id-capitulo-solicitarconceptoelaborarconcep"></span>
+                <span class="hidden" id="id-capitulo-solicitarconceptodatosiniciales"></span>
+                <span class="hidden" id="id-capitulo-solicitarconceptocuerpo"></span>
+                <span class="hidden" id="id-capitulo-solicitarconceptodatosdespedida"></span>
+                <span id="arrow-conceptoselaborarconcep" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#conceptoselaborarconcep"></span>
+            </button>
+        </div>
+        <div class="collapse" id="conceptoselaborarconcep" style="padding-right: 15px; padding-left: 0px; margin-left: -15px;">
+            <div class="row" style="margin-left:20px" ng-if="!vm.mostrar">
+                <elaborar-Concepto-inc tipotramiteid="{{vm.tipotramiteid}}"
+                                            tramiteid="{{vm.tramiteid}}"
+                                            nivel="{{vm.nivel}}"
+                                            rol="{{vm.rol}}"
+                                            section="{{vm.section}}"
+                                            deshabilitar="{{vm.deshabilitar}}"
+                                            nombrecomponentepaso="{{vm.nombreComponenteHijo}}"
+                                            rolanalista="{{vm.rolanalista}}"
+                                            guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                            notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                            notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)">
+                </elaborar-Concepto-inc>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+

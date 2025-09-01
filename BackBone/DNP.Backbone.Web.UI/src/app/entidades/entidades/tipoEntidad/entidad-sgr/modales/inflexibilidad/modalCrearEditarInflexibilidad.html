@@ -1,0 +1,59 @@
+﻿<modal-dialog cerrar="vm.cerrar" guardar="vm.guardarInflexibilidad">
+    <div class="row ">
+        <div class="col-md-12">
+            <div class="titulo-modal">
+                <span>{{vm.inflexibilidad.titulo }} - <span class="tipo-entidad-cor">SGR</span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text bg-light rounded-left-2">Nombre</span>
+                </div>
+                <input type="text" class="form-control rounded-right-2" ng-model="vm.inflexibilidad.nombreInflexibilidad">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text bg-light rounded-left-2">Tipo</span>
+                </div>
+                <select ng-model="vm.inflexibilidad.tipoInflexibilidad" class="form-control rounded-right-2" >
+                    <option ng-repeat="tipo in vm.inflexibilidad.listaTipoInflexibilidad" value="{{tipo.IdTipo}}">
+                        {{tipo.Nombre}}
+                    </option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text bg-light rounded-left-2">Valor total</span>
+                </div>
+                <input type="text" ng-model="vm.inflexibilidad.valorTotal" max="99999999" class="form-control rounded-right-2" ui-number-mask>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="input-group mb-4">
+                <div class="input-group-prepend">
+                    <span class="input-group-text bg-light rounded-left-2">Fecha ini</span>
+                </div>
+                <input ng-model="vm.inflexibilidad.fechaInicio" type="date" class="form-control rounded-right-2" />
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="input-group mb-4">
+                <div class="input-group-prepend">
+                    <span class="input-group-text bg-light rounded-left-2">Fecha fin</span>
+                </div>
+                <input ng-model="vm.inflexibilidad.fechaFin" type="date" class="form-control rounded-right-2" />
+            </div>
+        </div>
+    </div>
+
+</modal-dialog>

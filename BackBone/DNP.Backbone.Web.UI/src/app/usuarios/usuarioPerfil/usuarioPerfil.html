@@ -1,0 +1,179 @@
+﻿<div class="container-fluid" ng-init="vm.init();">
+
+    <div class="div-escopo">
+        <!-- #region breadcrumb -->
+        <nav class="breadcrumb">
+            <a href="/">
+                <span class="breadcrumb-item active">
+                    <i class="fa fa-home" aria-hidden="true"></i> Inicio
+                </span>
+            </a>
+            /
+            <span class="breadcrumb-item active">Usuarios</span>
+        </nav>
+        <!-- #endregion breadcrumb -->
+        <!-- #region Título e accíon -->
+        <div class="titulo-e-accion">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="titulo">
+                        <span>PERFIL DE USUARIO</span>
+                        <span has-claim has-opciones="['Usuarios:AsignarPerfiles']" ng-show="vm.isEdicion"
+                              class="button-bar">
+                            <button type="button" class="btn btn-primary btn-md" tooltip-placement="top"
+                                    uib-tooltip="Adicionar Perfiles" ng-click="vm.abrirModalCrearEditar()" tabindex="0">
+                                Adicionar Perfiles
+                            </button>
+                        </span>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- #endregion -->
+        <!-- #region Inputs -->
+        <div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="usuario"><b>Usuario</b></label>
+                        <input type="text" class="form-control" name="usuario" readonly
+                               ng-model="vm.perfilUsuario.usuario">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="nombre"><b>Nombre</b></label>
+                        <input type="text" class="form-control" name="nombre" readonly
+                               ng-model="vm.perfilUsuario.nombre">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="apellido"><b>Apellido</b></label>
+                        <input type="text" class="form-control" name="apellido" readonly
+                               ng-model="vm.perfilUsuario.apellido">
+                    </div>
+                </div>
+                <div class="col-md-3" ng-if="false">
+                    <div class="form-group">
+                        <label for="correo"><b>Correo</b></label>
+                        <input type="text" class="form-control" name="correo" readonly
+                               ng-model="vm.perfilUsuario.correo">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Eliminado hasta nueva definición -->
+            <div class="row" ng-if="false">
+                <div class="col-md-2">
+                    <div class="input-group shadow">
+                        <label class="input-group-addon" style="padding-top: 20px;">Tipo<br />Ident</label>
+                        <input type="text" class="form-control input-sm" name="tipoIdentificacion" readonly
+                               ng-model="vm.perfilUsuario.tipoIdentificacion">
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="input-group shadow">
+                        <label class="input-group-addon">Ident</label>
+                        <input type="text" class="form-control input-sm" name="identificacion" readonly
+                               ng-model="vm.perfilUsuario.identificacion">
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="input-group shadow">
+                        <label class="input-group-addon">Celular</label>
+                        <input type="text" class="form-control input-sm" name="celular" readonly
+                               ng-model="vm.perfilUsuario.celular">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="input-group shadow">
+                        <label class="input-group-addon">Dirección</label>
+                        <input type="text" class="form-control input-sm" name="direccion" readonly
+                               ng-model="vm.perfilUsuario.direccion">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- #endregion -->
+        <!-- #region Tabla -->
+        <hr />
+        <div class="row">
+            <tabla-entidad opciones="vm.opciones"
+                           perfilUsuario1="vm.opciones"
+                           definicion-columna-datos="vm.columnDef"
+                           datos="vm.datos"
+                           accion1="vm.abrirModalRoles($row)"
+                           accion2="vm.abrirModalProyectos($row)"
+                           accion3="vm.cambiarEstadoUsuario($row)">
+            </tabla-entidad>
+        </div>
+
+
+        <div class="row" >
+
+            
+            <div class="" style="padding: 0 !important" ng-repeat="entidad in vm.datos | orderBy:'agrupadorEntidad'">
+                <div class="alert panel-headingAccDNP">
+                    <div class="card card-body pull-left  divAccordionDNP">
+                        <span class="uLabelCampo">{{entidad.agrupadorEntidad}}</span> - {{entidad.entidad}}
+                        <p class="panelbtnalertAcordnp">
+                            <button class="btnaccion btnAccordionDNP" type="button" data-toggle="collapse" data-target="#obj_{{entidad.IdEntidad}}" ng-click="vm.AbrilNivel(entidad.IdEntidad)">
+                                <img ng-show="entidad.estadoEntidad == '+'" src="Img/btnMas.svg">
+                                <img ng-show="entidad.estadoEntidad == '-'" src="Img/btnMenos.svg">
+                            </button>
+                        </p>
+                    </div>
+                </div>
+                <br />
+                <div class="collapse" id="obj_{{entidad.IdEntidad}}" style="margin-top: -20px;">
+                    <div class="LineaEncabezadodivDNP"></div>
+                    <div class="row">
+                        <h3 class="tituloEncabezadodivDNP">
+                            Perfiles: {{entidad.subGridOptions.data.length}}
+                        </h3>
+                    </div>
+
+                    <div class="row" style="margin: 0px 0px 0px 0px;">
+                        <div class="col-md-12 ">
+
+                            <table class="TableDNP">
+                                <thead>
+                                    <tr>
+                                        <th class="columAcc"></th>
+                                        <th class="textLeftDNP">PERFIL</th>
+                                        <th class="textLeftDNP">SUB-ENTIDAD</th>
+                                        <!--<th class="textLeftDNP">EDITAR</th>-->
+                                        <th class="columAcc"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="datos in entidad.subGridOptions.data ">
+                                        <td></td>
+                                        <td class="textLeftDNP">
+                                            {{datos.Nombre}}
+                                        </td>
+                                        <td class="textLeftDNP">{{datos.NombreSubEntidad}}</td>
+                                        <!--<td class="textCenterDNP">
+                                            <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Editar Usuario" ng-click="vm.abrirModalEditar(datos)">
+                                                <span> <img src="Img/IcoEdit.svg"></span>
+                                            </button>
+                                        </td>-->
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+        <!-- #endregion Tabla -->
+    </div>
+</div>

@@ -1,0 +1,199 @@
+﻿<style>
+    .conpes-list-header {
+        margin-left: 0.2rem;
+        margin-right: 0.1rem;
+    }
+
+    .conpes-list-header-columns {
+        background-color: #e6effd;
+        display: flex;
+    }
+
+    .conpes-table-column-row {
+        display: flex;
+        align-items: stretch;
+    }
+
+    .conpes-table-column-item {
+        display: flex;
+    }
+
+    .conpes-check {
+        margin: auto!important;
+    }
+
+    .search-conpes-button {
+        background: #3366CC;
+        Color: white;
+    }
+
+    .saveConpes-button-strong{
+        text-decoration: underline;
+    }
+
+    .pagination .pagination-next a, .pagination .pagination-prev a {
+        border-color: #3266CC !important;
+        color: #3266CC !important;
+    }
+
+    .pagination .pagination-page a {
+        color: #3266CC !important;
+    }
+
+    .pagination .active a,
+    .pagination .pagination-next a:hover, .pagination .pagination-prev a:hover {
+        background-color: #3266CC !important;
+        color: white !important;
+        border-color: #3266CC !important;
+    }
+
+    
+</style>
+
+<section id="consultaConpesController" ng-init="vm.init()">
+    <div id="header-conpes-container" class="row">
+        <div class="col-lg-7 col-md-6 col-sm-12">
+            <h3 class="header-conpes-title ui-seccion-title">
+                Documentos Conpes
+            </h3>
+        </div>
+        <div class="col-lg-5 col-md-6 col-sm-12">
+            <div class="form-group">
+                <label for="conpes-search">
+                    Buscar por número o nombre de conpes
+                </label>
+                <div class="input-group mb-3">
+                    <input ng-model="vm.queryConpes"
+                           type="text"
+                           id="conpes-search"
+                           name="conpes-search"
+                           class="form-control"
+                           aria-label="Busqueda conpes"
+                           placeholder="Busque el CONPES por Nombre o número"
+                           aria-describedby="conpes-search-button" />
+                    <div class="input-group-append">
+                        <button ng-click="vm.getConpes()"
+                                type="button"                                
+                                class="input-group-text ui-grid-icon-search search-conpes-button"
+                                id="conpes-search-button"
+                                has-claim has-opciones="['TramitesVigenciaFutura:AccionesPasoUno']">
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="conpes-list-container ">
+        <div class="conpes-grid-summary row mx-0 mb-4" ng-if="vm.paginationModel.callCompleted">
+            <div class="col-md-6 p-0">
+                <span class="d-block">
+                    <strong>Resultados de la busqueda</strong>
+                </span>
+                <span class="d-block" ng-if="vm.conpesList.length === 0">
+                    No se encontraron coincidencias para {{vm.queryConpes}}
+                </span>
+            </div>
+            <div class="col-md-6 p-0 text-right">
+                <span>Total: <strong>{{vm.paginationModel.totalItems}}</strong></span>
+            </div>
+        </div>
+
+        <div id="" ng-if="vm.conpesList.length > 0">
+            <!--Listado de compes por seleccionar-->
+            <div class="row conpes-list-header">
+                <div class="list-group-item col-md-3 conpes-list-header-columns conpes-table-column-row">
+                    Número
+                </div>
+                <div class="list-group-item col-md-8 conpes-list-header-columns conpes-table-column-row">
+                    Documento Conpes
+                </div>
+                <div class="list-group-item col-md-1 conpes-list-header-columns conpes-table-column-row">
+                    -
+                </div>
+            </div>
+
+            <div class="row conpes-list-header mb-4">
+                <div ng-repeat="itemConpes in vm.compesListFiltered" class="conpes-table-column-row">
+                    <div class="list-group-item col-md-3 conpes-table-column-item">
+                        {{itemConpes.numeroCONPES}}
+                    </div>
+                    <div class="list-group-item col-md-8 conpes-table-column-item">
+                        {{itemConpes.titulo}}
+                    </div>
+                    <div class="list-group-item col-md-1 conpes-table-column-item">
+                        <input class="form-check-input conpes-check"
+                               type="checkbox"
+                               ng-checked="itemConpes.selected"
+                               id="compes-check-{{itemConpes.numeroCONPES}}"
+                               ng-click="vm.selectConpes(itemConpes.numeroCONPES)" />
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <uib-pagination total-items="vm.paginationModel.totalItems"
+                                    ng-model="vm.paginationModel.paginaActual"
+                                    max-size="5"
+                                    next-text="Siguiente"
+                                    previous-text="Anterior"
+                                    items-per-page="vm.paginationModel.itemsPorPagina"
+                                    ng-change="vm.onCompesPageChange()">
+                    </uib-pagination>
+                </div>
+
+                <div class="col-md-6 text-right mb-2 mt-5">
+                    <a id="saveConpes-button"  ng-click="vm.clearConpes()">
+                        <strong class="saveConpes-button-strong">Cancelar</strong>                        
+                    </a>
+                    <a id="saveConpes-button" class="ml-4" ng-click="vm.saveConpes()" has-claim has-opciones="['TramitesVigenciaFutura:AccionesPasoUno']">
+                        <strong class="saveConpes-button-strong">Agregar</strong>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="conpes-existing-list-container" ng-if="vm.conpespreseleccionados.length > 0">
+        <div class="conpes-grid-summary">
+            <div class="col-md-6 p-0">
+                <span class="d-block">
+                    <strong>Documentos Conpes asociados</strong>
+                </span>
+            </div>
+            <div class="col-md-6 p-0 text-right">
+                <span>Total: <strong>{{vm.conpespreseleccionados.length}}</strong></span>
+            </div>
+        </div>
+
+        <div id="">
+            <!--Listado de compes por seleccionar-->
+            <div class="row conpes-list-header">
+                <div class="list-group-item col-md-3 conpes-list-header-columns conpes-table-column-row">
+                    Número
+                </div>
+                <div class="list-group-item col-md-8 conpes-list-header-columns conpes-table-column-row">
+                    Documento Conpes
+                </div>
+                <div class="list-group-item col-md-1 conpes-list-header-columns conpes-table-column-row">
+                    -
+                </div>
+            </div>
+
+            <div class="row conpes-list-header">
+                <div ng-repeat="itemConpes in vm.conpespreseleccionados" class="conpes-table-column-row">
+                    <div class="list-group-item col-md-3 conpes-table-column-item">
+                        {{itemConpes.numeroCONPES}}
+                    </div>
+                    <div class="list-group-item col-md-8 conpes-table-column-item">
+                        {{itemConpes.titulo}}
+                    </div>
+                    <div class="list-group-item col-md-1 conpes-table-column-item">
+                        <a class="m-auto" ng-click="vm.removeConpes(itemConpes)" has-claim has-opciones="['TramitesVigenciaFutura:AccionesPasoUno']">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </a>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

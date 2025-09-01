@@ -1,0 +1,270 @@
+﻿<div ng-init="vm.init();">
+    <form id="detalladaForm" name="detalladaForm" novalidate>
+        <br>
+        <div class="col-md-12" style="text-align:left">
+            <div id="{{vm.nombreComponente}}-mensaje-error" style="padding-left: 0.5rem;" class="col-md-12 hidden uMensajeError"></div>
+            <br />
+            <span class="TituloPincFormularioDNP">
+                Programación detallada <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg">
+            </span>
+        </div>
+        <br />
+        <div class="row">
+            <br />
+            <div class="" style="padding: 0 !important">
+                <div class="alert panel-heading">
+                    <div class="card card-body pull-left divAccordionDNP">
+                        <div class="col-md-12 coldivAccordionDNP" style="display: table;">
+                            <div class="col-md-4">
+                                <div class="col-md-12 til">
+                                    <span class="NomItemAccordDNP">Total general valor crédito $ </span>
+                                </div>
+                                <div class="col-md-12 pull-right">
+                                    <input type="text" class="form-control editInputDNP " disabled value="{{vm.ConvertirNumero(vm.ValorTotalCredito)}}" />
+
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="col-md-12 til">
+                                    <span class="NomItemAccordDNP">Total general costo financiero $ </span>
+                                </div>
+                                <div class="col-md-12 pull-right">
+                                    <input type="text" class="form-control editInputDNP " disabled value="{{vm.ConvertirNumero(vm.CostoFinanciero)}}" />
+
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="col-md-12 til">
+                                    <span class="NomItemAccordDNP">Total general costo patrimonio $ </span>
+                                </div>
+                                <div class="col-md-12 pull-right">
+                                    <input type="text" class="form-control editInputDNP " disabled value="{{vm.ConvertirNumero(vm.CostoPatrimonio)}}" />
+                                </div>
+                            </div>
+                            <br />
+                            <br />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+        </div>
+        <br />
+        <span class="buttonbar pull-right">
+            <button id="EditarID"
+                    type="button"
+                    class="btneditarDNP"
+                    tooltip-placement="top"
+                    uib-tooltip="Editar"
+                    tabindex="0"
+                    ng-click="vm.ActivarEditar()"
+                    ng-disabled="vm.disabled">
+                EDITAR
+            </button>
+            &nbsp;
+            <button id="GuardarID"
+                    type="submit"
+                    class="{{vm.activar ? 'btnguardarDisabledDNP' : 'btnguardarDNP'}}"
+                    tooltip-placement="top"
+                    uib-tooltip="Guardar"
+                    ng-click="vm.guardar()"
+                    ng-disabled="vm.activar">
+                GUARDAR
+            </button>
+        </span>
+        <br />
+        <div class="row">
+            <div class="col-md-12 ">
+                <br>
+                <table class="TableDNP">
+                    <tbody>
+                        <tr ng-repeat="fuente in vm.ValoresCredito" ng-init="fuenteIndex = $index">
+                            <td>
+                                <div class="col-md-12 coldivAccordionDNP" style="display: table;">
+                                    <div class="alert panel-headingAcc2DNP">
+                                        <div class="card card-body pull-left bordesencillo">
+                                            <div class="col-md-12">
+                                                <span class="NomItemAccordDNP">Etapa: </span>
+                                                <span class="InfoItemAccordDNP">{{fuente.Etapa}}</span>
+                                                <span class="NomItemAccordDNP">Tipo Entidad: </span>
+                                                <span class="InfoItemAccordDNP">{{fuente.TipoEntidad}}</span>
+                                                <span class="NomItemAccordDNP">Entidad: </span>
+                                                <span class="InfoItemAccordDNP">{{fuente.Entidad}}</span>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <span class="NomItemAccordDNP">Tipo Recurso: </span>
+                                                <span class="InfoItemAccordDNP">{{fuente.TipoRecurso}}</span>
+                                                <span class="NomItemAccordDNP">Valor solicitado: </span>
+                                                <span class="InfoItemAccordDNP">{{vm.ConvertirNumero(fuente.ValorSolicitado)}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 form-group" style="padding-right:2rem;">
+                                        <table style="text-align: center; width: 100%; border-collapse: initial; border-style: hidden; ">
+                                            <tbody style="border-bottom-style:inherit">
+                                                <tr>
+                                                    <th class="textRightDNP" style="border-style: hidden;"><span class="spanresultadobusquedaDNP" style="font-size: 16px;">(a)</span><br><span class="NomItemAccordDNP">Valor crédito $ </span></th>
+                                                    <th class="textRightDNP" style="border-style: hidden;"><span class="spanresultadobusquedaDNP" style="font-size: 16px;">(b)</span><br><span class="NomItemAccordDNP">Costo financiero $ </span></th>
+                                                    <th class="textRightDNP" style="border-style: hidden;"><span class="spanresultadobusquedaDNP" style="font-size: 16px;">(c)</span><br><span class="NomItemAccordDNP">Costo patrimonio $ </span></th>
+                                                    <th class="textRightDNP" style="border-style: hidden;"><span class="spanresultadobusquedaDNP" style="font-size: 16px;">(a+b)</span><br><span class="NomItemAccordDNP">Valor servicio a la deuda $ </span></th>
+                                                    <th class="textRightDNP" style="border-style: hidden;"><span class="spanresultadobusquedaDNP" style="font-size: 16px;">(VS+b+c)</span><br><span class="NomItemAccordDNP">Valor a financiar $ </span></th>
+                                                </tr>
+                                                <tr>
+                                                    <td class="textRightDNP">
+                                                        <div ng-if="!vm.permiteEditar"><span class="uLabelDetalle_FP">{{vm.ConvertirNumero(fuente.ValorCredito)}}</span></div>
+                                                        <input type="text" class="form-control editInputDNP" numbers="enteros:14;precision:2;negativos:false"
+                                                               id="input1_{{fuenteIndex}}"
+                                                               ng-if="vm.permiteEditar"
+                                                               ng-value="vm.ValoresCredito[fuenteIndex].ValorCredito"
+                                                               ng-model="vm.ValoresCredito[fuenteIndex].ValorCredito"
+                                                               ng-blur="vm.actualizaValorCredito($event,$index)" 
+                                                            />
+                                                    </td>
+                                                    <td class="textRightDNP">
+                                                        <div ng-if="!vm.permiteEditar"><span class="uLabelDetalle_FP">{{vm.ConvertirNumero(fuente.CostoFinanciero)}}</span></div>
+                                                        <input type="text" class="form-control editInputDNP" numbers="enteros:14;precision:2;negativos:false"
+                                                               id="input2_{{fuenteIndex}}"
+                                                               ng-if="vm.permiteEditar"
+                                                               ng-value="vm.ValoresCredito[fuenteIndex].CostoFinanciero"
+                                                               ng-model="vm.ValoresCredito[fuenteIndex].CostoFinanciero"
+                                                               ng-blur="vm.actualizaCostoFinanciero($event,$index)" 
+                                                        />
+                                                    </td>
+                                                    <td class="textRightDNP">
+                                                        <div ng-if="!vm.permiteEditar || !vm.ValoresCredito[fuenteIndex].Habilita"><span class="uLabelDetalle_FP">{{vm.ConvertirNumero(fuente.CostoPatrimonio)}}</span></div>
+                                                        <input type="text" class="form-control editInputDNP" numbers="enteros:14;precision:2;negativos:false"
+                                                               id="input3_{{fuenteIndex}}"
+                                                               ng-if="vm.permiteEditar && vm.ValoresCredito[fuenteIndex].Habilita"
+                                                               ng-value="vm.ValoresCredito[fuenteIndex].CostoPatrimonio"
+                                                               ng-model="vm.ValoresCredito[fuenteIndex].CostoPatrimonio"
+                                                               ng-blur="vm.actualizaCostoPatrimonio($event,$index)" 
+                                                        />
+                                                    </td>
+                                                    <td class="textRightDNP">
+                                                        <div><span class="uLabelDetalle_FP">{{vm.ConvertirNumero(vm.ValoresCredito[fuenteIndex].ValorServicioDeuda)}}</span></div>
+                                                    </td>
+                                                    <td class="textRightDNP">
+                                                        <div><span class="uLabelDetalle_FP">{{vm.ConvertirNumero(vm.ValoresCredito[fuenteIndex].ValorTotalCredito)}}</span></div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <br />
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr ng-if="vm.permiteEditar">
+                            <td colspan="7" style="text-align: right;">
+                                <a has-claim has-opciones="['operacionCredito:informacionDetalladaSGRAgregar']" ng-click="vm.abrirModalAgregarFuente()"> <span class="uLabelCampo_fp" style="text-decoration:underline">AGREGAR FUENTE</span></a>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+                <br>
+                <table class="TableDNP">
+                    <tbody>
+                        <tr ng-repeat="fuente in vm.FuentesAdicionales" ng-init="fuenteIndex = $index">
+                            <td>
+                                <div class="col-md-12 coldivAccordionDNP" style="display: table;">
+                                    <div class="alert panel-headingAcc2DNP">
+                                        <div class="card card-body pull-left bordesencillo">
+                                            <div class="col-md-12">
+                                                <span class="NomItemAccordDNP">Etapa: </span>
+                                                <span class="InfoItemAccordDNP">{{fuente.Etapa}}</span>
+                                                <span class="NomItemAccordDNP">Tipo Entidad: </span>
+                                                <span class="InfoItemAccordDNP">{{fuente.TipoEntidad}}</span>
+                                                <span class="NomItemAccordDNP">Entidad: </span>
+                                                <span class="InfoItemAccordDNP">{{fuente.Entidad}}</span>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <span class="NomItemAccordDNP">Tipo Recurso: </span>
+                                                <span class="InfoItemAccordDNP">{{fuente.TipoRecurso}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 form-group" style="padding-right:2rem;">
+                                        <table style="text-align: center; width: 100%; border-collapse: initial; border-style: hidden; ">
+                                            <tbody style="border-bottom-style:inherit">
+                                                <tr>
+                                                    <th class="textRightDNP" style="border-style: hidden;"><span class="spanresultadobusquedaDNP" style="font-size: 16px;">(b)</span><br><span class="NomItemAccordDNP">Costo financiero $ </span></th>
+                                                    <th class="textRightDNP" style="border-style: hidden;"><span class="spanresultadobusquedaDNP" style="font-size: 16px;">(c)</span><br><span class="NomItemAccordDNP">Costo patrimonio $ </span></th>
+                                                </tr>
+                                                <tr>
+                                                    <td class="textRightDNP">
+                                                        <div ng-if="!vm.permiteEditar"><span class="uLabelDetalle_FP">{{vm.ConvertirNumero(fuente.CostoFinanciero)}}</span></div>
+                                                        <input type="text" class="form-control editInputDNP" numbers="enteros:14;precision:2;negativos:false"
+                                                               id="input2_{{fuenteIndex}}"
+                                                               ng-if="vm.permiteEditar"
+                                                               ng-value="vm.FuentesAdicionales[fuenteIndex].CostoFinanciero"
+                                                               ng-model="vm.FuentesAdicionales[fuenteIndex].CostoFinanciero"
+                                                               ng-blur="vm.actualizaCostoFinancieroAdicional($event,$index)"
+                                                               />
+                                                    </td>
+                                                    <td class="textRightDNP">
+                                                        <div ng-if="!vm.permiteEditar || !vm.Valores.Criterios[1].Habilita"><span class="uLabelDetalle_FP">{{vm.ConvertirNumero(fuente.CostoPatrimonio)}}</span></div>
+                                                        <input type="text" class="form-control editInputDNP" numbers="enteros:14;precision:2;negativos:false"
+                                                               id="input3_{{fuenteIndex}}"
+                                                               ng-if="vm.permiteEditar && vm.Valores.Criterios[1].Habilita"
+                                                               ng-value="vm.FuentesAdicionales[fuenteIndex].CostoPatrimonio"
+                                                               ng-model="vm.FuentesAdicionales[fuenteIndex].CostoPatrimonio"
+                                                               ng-blur="vm.actualizaCostoPatrimonioAdicional($event,$index)"
+                                                               />
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <br />
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br />
+                <table class="TableDNP">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="col-md-12 form-group" style="padding-right:2rem;">
+                                    <table style="text-align: center; width: 100%; border-collapse: initial; border-style: hidden; ">
+                                        <tbody style="border-bottom-style:inherit">
+                                            <tr>
+                                                <th></th>
+                                                <th class="textRightDNP" style="border-style: hidden;"><span class="spanresultadobusquedaDNP" style="font-size: 16px;">(a)</span><br><span class="NomItemAccordDNP">Valor crédito $ </span></th>
+                                                <th class="textRightDNP" style="border-style: hidden;"><span class="spanresultadobusquedaDNP" style="font-size: 16px;">(b)</span><br><span class="NomItemAccordDNP">Costo financiero $ </span></th>
+                                                <th class="textRightDNP" style="border-style: hidden;"><span class="spanresultadobusquedaDNP" style="font-size: 16px;">(c)</span><br><span class="NomItemAccordDNP">Costo patrimonio $ </span></th>
+                                                <th class="textRightDNP" style="border-style: hidden;"><span class="spanresultadobusquedaDNP" style="font-size: 16px;">(a+b)</span><br><span class="NomItemAccordDNP">Valor servicio a la deuda $ </span></th>
+                                                <th class="textRightDNP" style="border-style: hidden;"><span class="spanresultadobusquedaDNP" style="font-size: 16px;">(VS+b+c)</span><br><span class="NomItemAccordDNP">Valor a financiar $ </span></th>
+                                            </tr>
+                                            <tr>
+                                                <td class="columAcc icontotaldnp"><span>=</span></td>
+                                                <td class="textRightDNP">
+                                                    <div><span class="uLabelDetalle_FP">{{vm.ConvertirNumero(vm.SumaValorCredito)}}</span></div>
+                                                </td>
+                                                <td class="textRightDNP">
+                                                    <div><span class="uLabelDetalle_FP">{{vm.ConvertirNumero(vm.SumaCostoFinanciero)}}</span></div>
+                                                </td>
+                                                <td class="textRightDNP">
+                                                    <div><span class="uLabelDetalle_FP">{{vm.ConvertirNumero(vm.SumaCostoPatrimonio)}}</span></div>
+                                                </td>
+                                                <td class="textRightDNP">
+                                                    <div><span class="uLabelDetalle_FP">{{vm.ConvertirNumero(vm.SumaServicioDeuda)}}</span></div>
+                                                </td>
+                                                <td class="textRightDNP">
+                                                    <div><span class="uLabelDetalle_FP">{{vm.ConvertirNumero(vm.SumaValorFinanciar)}}</span></div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,100 @@
+﻿<section>
+	<div class="container-fluid inbox" ng-init="vm.init();">
+		<div class="tab-content">
+
+			<div class="ui-accordion-container hidden" id="accordion-datosgeneralessgphorizontesintramitesgp">
+				<div class="alert panel-heading row ui-accordion-header">
+					<button type="button" data-toggle="collapse" data-target="#datosgeneralessgphorizontesintramitesgp-1" ng-click="vm.changeArrow('datosgeneralessgphorizontesintramitesgp-1')">
+						<span class="d-inline-block" id="alert-datosgeneralessgphorizontesintramitesgp-1"></span>
+						<span id="name-capitulo-datosgeneralessgphorizontesintramitesgp"></span>
+						<span class="hidden" id="id-capitulo-datosgeneralessgphorizontesintramitesgp"></span>
+						<span id="arrow-datosgeneralessgphorizontesintramitesgp-1" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#datosgeneralessgphorizontesintramitesgp-1"></span>
+					</button>
+				</div>
+				<div class="collapse" id="datosgeneralessgphorizontesintramitesgp-1">
+					<div class="row m-0 mb-3">
+						<horizonte-Sin-Tramite-Sgp guardadoevent="vm.guardado(nombreComponenteHijo)"
+												   notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+												   notificacioncambios="vm.notificacionCambiosCapitulosExternos(handler, nombreComponente)"
+												   notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"></horizonte-Sin-Tramite-Sgp>
+					</div>
+				</div>
+			</div>
+
+			<!--<div class="ui-accordion-container hidden" id="accordion-datosgeneralessgprelacionconlaplsgp">
+				<div class="alert panel-heading row ui-accordion-header">
+					<button type="button" data-toggle="collapse" data-target="#datosgeneralessgprelacionconlaplsgp-1" ng-click="vm.changeArrow('datosgeneralessgprelacionconlaplsgp-1')">
+						<span class="d-inline-block" id="alert-datosgeneralessgprelacionconlaplsgp-1"></span>
+						<span id="name-capitulo-datosgeneralessgprelacionconlaplsgp"></span>
+						<span class="hidden" id="id-capitulo-datosgeneralessgprelacionconlaplsgp"></span>
+						<span id="arrow-datosgeneralessgprelacionconlaplsgp-1" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#datosgeneralessgprelacionconlaplsgp-1"></span>
+					</button>
+				</div>
+				<div class="collapse" id="datosgeneralessgprelacionconlaplsgp-1">
+					<div class="row m-0 mb-3">
+						<conpes guardadoevent="vm.guardado(nombreComponenteHijo)"
+								notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+								notificacioncambios="vm.notificacionCambiosCapitulosExternos(handler, nombreComponente)"
+								notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"></conpes>
+					</div>
+				</div>
+			</div>-->
+
+			<div class="ui-accordion-container hidden" id="accordion-datosgeneralessgpindicadoresdeprsintramitesgp">
+				<div class="alert panel-heading row ui-accordion-header">
+					<button type="button" data-toggle="collapse" data-target="#datosgeneralessgpindicadoresdeprsintramitesgp-1" ng-click="vm.changeArrow('datosgeneralessgpindicadoresdeprsintramitesgp-1')">
+						<span class="d-inline-block" id="alert-datosgeneralessgpindicadoresdeprsintramitesgp-1"></span>
+						<span id="name-capitulo-datosgeneralessgpindicadoresdeprsintramitesgp"></span>
+						<span class="hidden" id="id-capitulo-datosgeneralessgpindicadoresdeprsintramitesgp"></span>
+						<span id="arrow-datosgeneralessgpindicadoresdeprsintramitesgp-1" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#datosgeneralessgpindicadoresdeprsintramitesgp-1"></span>
+					</button>
+				</div>
+				<div class="collapse" id="datosgeneralessgpindicadoresdeprsintramitesgp-1">
+					<div class="row m-0 mb-3">
+						<indicadores-Sin-Tramite-Sgp guardadoevent="vm.guardado(nombreComponenteHijo)"
+													 notificacioncambios="vm.notificacionCambiosCapitulosExternos(handler, nombreComponente)"
+													 notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+													 notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"></indicadores-Sin-Tramite-Sgp>
+					</div>
+				</div>
+			</div>
+			<div class="ui-accordion-container hidden" id="accordion-datosgeneralessgpbeneficiariosTotalessintramitesgp">
+				<div class="alert panel-heading row ui-accordion-header">
+					<button type="button" data-toggle="collapse" data-target="#datosgeneralessgpbeneficiariosTotalessintramitesgp-1" ng-click="vm.changeArrow('datosgeneralessgpbeneficiariosTotalessintramitesgp-1')">
+						<span class="d-inline-block" id="alert-datosgeneralessgpbeneficiariosTotalessintramitesgp-1"></span>
+						<span id="name-capitulo-datosgeneralessgpbeneficiariosTotalessintramitesgp">Beneficiarios</span>
+						<span class="hidden" id="id-capitulo-datosgeneralessgpbeneficiariosTotalessintramitesgp"></span>
+						<span id="arrow-datosgeneralessgpbeneficiariosTotalessintramitesgp-1" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#datosgeneralessgpbeneficiariosTotalessintramitesgp-1"></span>
+					</button>
+				</div>
+				<div class="collapse" id="datosgeneralessgpbeneficiariosTotalessintramitesgp-1">
+					<div class="row m-0 mb-3">
+						<beneficiarios-Proyecto-Totales-Sin-Tramite-Sgp guardadoevent="vm.guardado(nombreComponenteHijo)"
+															   notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+															   notificacioncambios="vm.notificacionCambiosCapitulosExternos(handler, nombreComponente)"
+															   notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"></beneficiarios-Proyecto-Totales-Sin-Tramite-Sgp>
+					</div>
+				</div>
+			</div>
+			<div class="ui-accordion-container hidden" id="accordion-datosgeneralessgplocalizacionessintramitesgp">
+				<div class="alert panel-heading row ui-accordion-header">
+					<button type="button" data-toggle="collapse" data-target="#datosgeneralessgplocalizacionessintramitesgp-1" ng-click="vm.changeArrow('datosgeneralessgplocalizacionessintramitesgp-1')">
+						<span class="d-inline-block" id="alert-datosgeneralessgplocalizacionessintramitesgp-1"></span>
+						<span id="name-capitulo-datosgeneralessgplocalizacionessintramitesgp"></span>
+						<span class="hidden" id="id-capitulo-datosgeneralessgplocalizacionessintramitesgp"></span>
+						<span class="hidden" id="id-seccioncapitulo-datosgeneralessgplocalizacionessintramitesgp"></span>
+						<span id="arrow-datosgeneralessgplocalizacionessintramitesgp-1" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#datosgeneralessgplocalizacionessintramitesgp-1"></span>
+					</button>
+				</div>
+				<div class="collapse" id="datosgeneralessgplocalizacionessintramitesgp-1">
+					<div class="row m-0 mb-3">
+						<localizacion-justificacion-Sin-Tramite-Sgp guardadoevent="vm.guardado(nombreComponenteHijo)"
+																	notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+																	notificacioncambios="vm.notificacionCambiosCapitulosExternos(handler, nombreComponente)"
+																	notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"></localizacion-justificacion-Sin-Tramite-Sgp>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

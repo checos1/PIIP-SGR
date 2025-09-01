@@ -1,0 +1,90 @@
+﻿<div class="modal-header modaleDNP" style="min-width: 540px; max-width: 540px;">
+    <button type='button' class='swal2-close' aria-label='Cerrar' ng-click="vm.cancelar()">×</button>
+</div>
+
+<div class="modal-body modalebodyDNP" style="padding-top: 60px; min-width: 540px; max-width: 540px;">
+
+    <div style="display: grid; justify-items: center; padding-bottom: 30px; color: #f7a812ff">
+        <img src="/Img/SweetAlertwarning.svg" style="width: 48px" />
+        <h3 style="padding: 10px; margin: 0">{{vm.mensajeNotificacion}}</h3>
+    </div>
+
+
+    <form name="observacionForm" novalidate>
+        <div class="form-group">
+            <label for="descripcionDevolucion">
+                <strong ng-show="vm.avance===0">Descripción de la devolución (máximo 5.000 caracteres) *</strong>
+                <strong ng-show="vm.avance!==0">Descripción (máximo 5.000 caracteres)</strong>
+            </label>
+            <div class="text-danger" ng-show="vm.avance===0">                
+                <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
+                Campo obligatorio.
+            </div>
+            <textarea id="observacion" class="form-control" ng-model="vm.observacion" rows="5" maxlength="5000" required></textarea>
+        </div>
+    </form>
+</div>
+<div class="modal-footer textCenterDNP" style="bottom: 60px">
+    <button class="btn btn-primary" type="button" ng-click="vm.cancelar()">Cancelar</button>
+    <button class="btn btn-secondary" type="button" ng-click="vm.aceptar()" ng-disabled="!vm.observacion">
+        Aceptar
+    </button>
+</div>
+<style>
+    .modal {
+        align-content: center;
+    }
+    .modal-dialog {
+        width: 640px;
+        max-width: 100%;
+        margin: auto;
+        border-radius: 12px;
+        overflow: hidden; 
+    }
+
+    .modal-content {
+        border-radius: 12px; 
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25); 
+    }
+
+    .modal-observacionDevolucionDNP {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh; 
+    }
+
+    /* Ajustes al cuerpo del modal */
+    .modal-body {
+        font-family: 'Work Sans SemiBold Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif;
+        font-weight: 600;
+        font-style: normal;
+        line-height: 22px;
+    }
+
+    /* Ajustes al footer del modal */
+    .modal-footer {
+        text-align: center;
+        padding: 15px;
+    }
+
+    .modal-observacionDevolucionDNP {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh; 
+    }
+
+    .modal-dialog {
+        width: 640px;
+        max-width: 100%;
+        margin: auto;
+        border-radius: 12px; 
+        overflow: hidden;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25); 
+    }
+
+    .modal-content {
+        border-radius: 12px;
+    }
+</style>

@@ -1,0 +1,184 @@
+﻿<style>
+    .d-inline-block {
+        display: inline-block;
+    }
+</style>
+<section>
+    <div class="container-fluid inbox" ng-init="vm.init();">
+        <div class="row">
+            <h2 class="row" style="padding-left: 0rem; padding-right: 2rem; text-align: left; color: #004884">&nbsp;&nbsp;&nbsp;&nbsp;Valores Corrientes <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg" ng-click="vm.abrirMensajeInformacion()"></h2>
+        </div>
+        <div style="text-align: left;" id="tablevalorescorrientes" class="mt-5">
+            <table class="TableDNP">
+                <thead>
+                    <tr ng-if="datosCorrientes.Porcentaje == null">
+                        <th class="columAcc"></th>
+                        <th class="textRightDNP" style="width: 30%;">Año inicio</th>
+                        <th class="textRightDNP" style="width: 30%;">Año fin</th>
+                        <th class="textRightDNP" style="width: 30%;">Valores futuros $</th>
+                        <th class="columAcc"></th>
+                    </tr>
+                    <tr ng-if="datosCorrientes.Porcentaje != null">
+                        <th class="columAcc"></th>
+                        <th class="textRightDNP" style="width: 15%;">Año inicio</th>
+                        <th class="textRightDNP" style="width: 15%;">Año fin</th>
+                        <th class="textRightDNP" style="width: 21%;">Valores futuros $</th>
+                        <th class="textRightDNP" style="width: 21%;">15%</th>
+                        <th class="textLeftDNP" style="width: 18%;">15% vs apropiación</th>
+                        <th class="columAcc"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="uTexto-grilla">
+                        <td></td>
+                        <td class="textRightDNP">
+                            <div class="blockReferenciaDNP">{{datosCorrientes.AnioInicio}}</div>
+                        </td>
+                        <td class="textRightDNP">
+                            <div class="blockReferenciaDNP">{{datosCorrientes.AnioFin}}</div>
+                        </td>
+                        <td class="textRightDNP">
+                            <div class="blockReferenciaDNP">{{vm.ConvertirNumero(datosCorrientes.ValorTotalVigenteFutura)}}</div>
+                        </td>
+                        <td ng-if="datosCorrientes.Porcentaje != null" class="textRightDNP">
+                            <div class="blockReferenciaDNP">{{vm.ConvertirNumero(datosCorrientes.ValorPorcentaje)}}</div>
+                        </td>
+                        <td ng-if="datosCorrientes.Porcentaje != null" class="textLeftDNP">
+                            <div class="divInconsistencia" ng-if="datosCorrientes.cumple == true" style="color:forestgreen; border-color:forestgreen"><strong>CUMPLE</strong></div>
+                            <div class="divInconsistencia" ng-if="datosCorrientes.cumple == false"><strong>NO CUMPLE</strong></div>
+                        </td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-12 text-left">
+                <h4 class="text-left ui-seccion-title">Fuentes</h4>
+                <section class="hidden" id="ajustesvigenciasfuturasvalorescorrientes-validacionAVFFFD001">
+                    <div class="text-left color-red">
+                        <img class="img img-advertencia" src="Img/u11.svg">
+                        <span id="ajustesvigenciasfuturasvalorescorrientes-validacionAVFFFD001-error-mns"></span>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <div ng-repeat="fuente in datosCorrientes.Fuentes" ng-init="fuentesIndex = $index">
+            <div class="row" style="color: #004884">
+                <div class="" style="padding: 0 !important">
+                    <div class="alert panel-heading" style="height: 50px;">
+                        <div class="card card-body pull-left  divAccordionDNP" style="line-height: 13px; max-height: 145px;">
+                            <div class="row">
+                                <div class="card card-body pull-left col-md-12 ">
+                                    <table class="TableDNP no-border">
+                                        <tbody>
+                                            <tr style="border-bottom-color: transparent; border-top-color:transparent; border-right-color:transparent; border-left-color:transparent">
+                                                <td class="textLeftDNP" style="width: 50%;">
+                                                    <p style="line-height:1.1">
+                                                        <span style="font-weight: 500; font-style: normal; font-size: 16px; color: #004884"><strong>Etapa: </strong></span> {{fuente.Etapa}}. <span style="font-weight: 500; font-style: normal; font-size: 16px; color: #004884"><strong>Tipo financiador: </strong></span> {{fuente.TipoEntidad}}. <br />
+                                                        <span style="font-weight: 500; font-style: normal; font-size: 16px; color: #004884"><strong>Financiador: </strong></span> {{fuente.Entidad}}. <br />
+                                                        <span style="font-weight: 500; font-style: normal; font-size: 16px; color: #004884"><strong>Recurso: </strong></span> Recurso {{fuente.TipoRecurso}}
+                                                    </p>
+                                                </td>
+                                                <td class="textRightDNP" style="width: 25%;">Apropiación vigente fuente $<br /><div class="blockReferenciaDNP"><span style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 500; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px">{{vm.ConvertirNumero(fuente.ApropiacionVigente)}}</span></div></td>
+                                                <td class="textRightDNP" style="width: 25%;">Valor vigencia futura fuente $<div class="blockReferenciaDNP"><span style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 500; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px">{{vm.ConvertirNumero(fuente.ValorTotalVigenciaFutura)}}</span></div></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div>
+                                        <div class="d-inline-block">
+                                            <button class="btnaccion btnAccordionDNP" type="button" data-toggle="collapse" data-target="#fuente{{fuente.FuenteId}}" ng-model="home" ng-click="vm.BtnFuentes(fuente)" data="{{fuente}}">
+
+                                                <img ng-show="fuente.LabelBotonFuente == '+'" src="Img/btnMas.svg">
+                                                <img ng-show="fuente.LabelBotonFuente == '-'" src="Img/btnMenos.svg">
+                                            </button>
+                                        </div>
+                                        <div id="fuente-vigencia-futura-corriente-{{fuente.FuenteId}}" class="hidden img iconadverdnp hidden text-left color-red" style="margin-left:0px">
+                                            <div class="d-inline-block"><img src="Img/u4630.svg"></div>
+                                            <div class="d-inline-block">
+                                                <div><span id="fuente-futura-corriente-{{fuente.FuenteId}}-errorAVFFFD002-mns"></span></div>
+                                                <div><span id="fuente-futura-corriente-{{fuente.FuenteId}}-errorAVFFFD003-mns"></span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="collapse" id="fuente{{fuente.FuenteId}}">
+                    <div class="LineaEncabezadodivDNP" style="margin-top: 86px"></div>
+                    <h3 class="row tituloEncabezadodivDNP">
+                        Detalle fuente por vigencias
+                        <span class="buttonbar pull-right">
+                            <button type="button" class="btneditarDNP" tooltip-placement="top" ng-click="fuente.HabilitaEditarFuente ? vm.Cancelar(fuente) : vm.habilitaEditar(fuente)" uib-tooltip="{{fuente.HabilitaEditarFuente ? 'CANCELAR' : 'EDITAR'}}" has-claim has-opciones="['Ajustes:GeneralComponente']">
+                                {{fuente.HabilitaEditarFuente ? 'CANCELAR' : 'EDITAR'}}
+                            </button>
+                            <button ng-disabled="!fuente.HabilitaEditarFuente" type="button" class="{{fuente.HabilitaEditarFuente ? 'btnguardarDNP' : 'btnguardarDisabledDNP'}}" tooltip-placement="top" uib-tooltip="Guardar" tabindex="0" ng-click="vm.Guardar(fuente)" has-claim has-opciones="['Ajustes:GeneralComponente']">
+                                GUARDAR
+                            </button>
+
+
+                        </span>
+                    </h3>
+
+                    <div class=" panel-heading">
+                        <table class="TableDNP">
+                            <thead>
+                                <tr>
+                                    <th class="columAcc" style="width: 5%;"></th>
+                                    <th class="textRightDNP" style="width: 30%;"><span class="uLabelCampo">Vigencia</span></th>
+                                    <th class="textRightDNP" style="width: 60%;"><span class="uLabelCampo">Valor corriente vigencia futura $</span></th>
+                                    <th class="columAcc" style="width: 5%;"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="vig in fuente.Vigencias" ng-init="vigenciasindex = $index">
+                                    <td>
+                                        <div id="vigencia-futura-corriente-{{fuente.FuenteId}}-{{vig.Vigencia}}" class="hidden img pull-right iconadverdnp">
+                                            <img class="" src="Img/u4630.svg">
+                                        </div>
+                                    </td>
+                                    <td class="textRightDNP">
+                                        <span>{{vig.Vigencia}}</span>
+                                    </td>
+                                    <td class="textRightDNP">
+                                        <div id="input-{{fuente.FuenteId}}-{{vig.Vigencia}}" ng-if="!fuente.HabilitaEditarFuente">{{vm.ConvertirNumero(vig.ValorVigenteFutura)}}</div>
+                                        <div id="input-{{fuente.FuenteId}}-{{vig.Vigencia}}" ng-if="fuente.HabilitaEditarFuente && vig.Vigencia < vm.vigenciaActual">{{vm.ConvertirNumero(vig.ValorVigenteFutura)}}</div>
+                                        <input id="input-{{vig.Vigencia}}" type="number" string-to-number min="0.0000"
+                                               ng-if="fuente.HabilitaEditarFuente && vig.Vigencia >= vm.vigenciaActual"
+                                               ng-readonly="vig.Vigencia < vm.vigenciaActual"
+                                               ng-keypress="vm.validateFormat($event)"
+                                               ng-keyup="vm.validarTamanio($event)"
+                                               ng-value="vig.ValorVigenteFutura"
+                                               ng-model="datosCorrientes.Fuentes[fuentesIndex].Vigencias[vigenciasindex].ValorVigenteFutura"
+                                               ng-blur="vm.actualizaFila($event, fuente)"
+                                               required class="form-control editInputDNP" style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px" />
+
+                                    </td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td class="columAcc" style="font-family: 'Work Sans SemiBold Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 600; font-style: normal; font-size: 30px; color: rgba(50, 102, 204, 0.996078431372549);"><span style="margin-top: 55%">=</span></td>
+                                    <td class="textRightDNP"><span>Total</span></td>
+                                    <td class="textRightDNP">
+                                        <span style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 500; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px">{{vm.ConvertirNumero(fuente.ValorTotalVigenciaFutura)}}</span>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<link href="/Content/ui-gridDNP.css" rel="stylesheet" />
+

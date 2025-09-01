@@ -1,0 +1,79 @@
+﻿<section>
+    <div class="container-fluid inbox" style="height: 800px; overflow: scroll; padding-left: 20px;" ng-init="vm.inicializar();">
+        <div>
+            <div style="text-align: left;">
+                <img class="img-advertencia mr-2" src="Img/u11.svg" ng-if="vm.errores.preinversion || vm.errores.inversion || vm.errores.operacion" />
+                <span class="uLabelCampo">Recursos fuentes de financiación vs. costos de actividades</span>
+            </div>
+            <br />
+            <br />
+            <div class="tab-container col-md-12" style="width:100%;">
+                <ul class="nav nav-tabs">
+                    <li id="liPreinversion" ng-class="{active : 1 === vm.pagina}">
+                        <a href="" ng-click="vm.mostrarTab(1)" data-toggle="tab">
+                            <img class="img-advertencia mr-2" src="Img/u11.svg" ng-if="vm.errores.preinversion" />
+                            <b>Preinversión</b>
+                        </a>
+                    </li>
+                    <li id="liInversion" ng-class="{active : 2 === vm.pagina}">
+                        <a href="" ng-click="vm.mostrarTab(2)" data-toggle="tab">
+                            <img class="img-advertencia mr-2" src="Img/u11.svg" ng-if="vm.errores.inversion" />
+                            <b>Inversión</b>
+                        </a>
+                    </li>
+                    <li id="liOperacion" ng-class="{active : 3 === vm.pagina}">
+                        <a href="" ng-click="vm.mostrarTab(3)" data-toggle="tab">
+                            <img class="img-advertencia mr-2" src="Img/u11.svg" ng-if="vm.errores.operacion" />
+                            <b>Operación</b>
+                        </a>
+                    </li>
+                </ul>
+                <br />
+                <br />
+
+                <div style="text-align: left;">
+                    <table class="TableDNP">
+                        <thead>
+                            <tr>
+                                <th class="columAcc"></th>
+                                <th class="textCenterDNP">Vigencia</th>
+                                <th class="textCenterDNP">Costos actividades $</th>
+                                <th class="textCenterDNP">Ajustes fuentes $</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="objResumen in vm.listaResumen">
+                                <td><img ng-if="objResumen.diferente" id="u111_img" class="img" src="Img/u4630.svg"></td>
+                                <td class="textRightDNP">{{objResumen.vigencia}}</td>
+                                <td class="textRightDNP">
+                                    <div ng-if="objResumen.diferente" class="divInconsistencia">{{vm.ConvertirNumero(objResumen.Costos)}}</div>
+                                    <div ng-if="!objResumen.diferente">{{vm.ConvertirNumero(objResumen.Costos)}}</div>
+                                </td>
+                                <td class="textRightDNP">
+                                    {{vm.ConvertirNumero(objResumen.Ajuste)}}
+                                </td>
+
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td class="textRightDNP">{{vm.ResumenSubTotal.icono}}</td>
+                                <td class="textRightDNP">{{vm.ResumenSubTotal.titulo}}</td>
+                                <td class="textRightDNP">{{vm.ConvertirNumero(vm.ResumenSubTotal.Costos)}}</td>
+                                <td class="textRightDNP">{{vm.ConvertirNumero(vm.ResumenSubTotal.Ajuste)}}</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <br />
+
+                    <div ng-if="vm.mostrarMensaje" ng-click="vm.mostrarOcultarFlujo()">
+                        <span class="d-inline-block text-left color-red">
+                            <span class="d-inline-block ico-advertencia"></span>
+                            {{vm.mensaje}}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

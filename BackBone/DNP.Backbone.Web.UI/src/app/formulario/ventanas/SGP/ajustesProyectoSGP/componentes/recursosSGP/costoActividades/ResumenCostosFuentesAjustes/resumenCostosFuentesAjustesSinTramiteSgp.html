@@ -1,0 +1,76 @@
+﻿<section>
+    <div class="container-fluid inbox" ng-init="vm.inicializar();">
+        <div>
+            <div class="text-left">
+                <h3 class="text-left ui-seccion-title">
+                    <img ng-if="vm.errores.preinversion || vm.errores.inversion || vm.errores.operacion" class="img img-advertencia" src="Img/u11.svg">
+                    Recursos fuentes de financiación vs. costos de actividades /*/
+                </h3>
+            </div>
+            <div class="col-md-12" style="width:100%;">
+                <ul class="nav nav-tabs tabsCostosAct">
+                    <li ng-disabled="vm.errores.preinversion" ng-if="vm.preinversion" id="liPreinversion" class="active">
+                        <a href="" ng-click="vm.mostrarTab(1)" data-toggle="tab">
+                            <img ng-if="vm.errores.preinversion" class="img img-advertencia" src="Img/u11.svg">
+                            <b>Preinversión</b>
+                        </a>
+                    </li>
+                    <li ng-disabled="vm.errores.inversion" ng-if="vm.inversion" id="liInversion">
+                        <a href="" ng-click="vm.mostrarTab(2)" data-toggle="tab">
+                            <img ng-if="vm.errores.inversion" class="img img-advertencia" src="Img/u11.svg">
+                            <b>Inversión</b>
+                        </a>
+                    </li>
+                    <li ng-disabled="vm.errores.operacion" ng-if="vm.operacion" id="liOperacion">
+                        <a href="" ng-click="vm.mostrarTab(3)" data-toggle="tab">
+                            <img ng-if="vm.errores.operacion" class="img img-advertencia" src="Img/u11.svg">
+                            <b>Operación</b>
+                        </a>
+                    </li>
+                </ul>
+                <br />
+                <div style="text-align: left;">
+                    <table class="TableDNP">
+                        <thead>
+                            <tr>
+                                <th class="columAcc"></th>
+                                <th class="textCenterDNP">Vigencia</th>
+                                <th class="textCenterDNP">Costos actividades $</th>
+                                <th class="textCenterDNP">Ajustes fuentes $</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="objResumen in vm.listaResumen">
+                                <td class="columAcc"><img ng-if="objResumen.diferente" id="u111_img" class="img" src="Img/u4630.svg"></td>
+                                <td class="textRightDNP"><span class="uTexto-grilla">{{objResumen.vigencia}}</span></td>
+                                <td class="textRightDNP">
+                                    <div ng-if="objResumen.diferente" class="divInconsistencia textRightDNP">{{vm.ConvertirNumero(objResumen.Costos)}}</div>
+                                    <div ng-if="!objResumen.diferente" class="textRightDNP blockReferenciaDNP">{{vm.ConvertirNumero(objResumen.Costos)}}</div>
+                                </td>
+                                <td class="textRightDNP">
+                                    <div class="blockReferenciaDNP">{{vm.ConvertirNumero(objResumen.Ajuste)}}</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td class="textRightDNP"><span>{{vm.ResumenSubTotal.icono}}</span></td>
+                                <td class="textRightDNP"><span>{{vm.ResumenSubTotal.titulo}}</span></td>
+                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(vm.ResumenSubTotal.Costos)}}</div></td>
+                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(vm.ResumenSubTotal.Ajuste)}}</div></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <br />
+
+                    <div ng-if="vm.mostrarMensaje" ng-click="vm.mostrarOcultarFlujo()">
+                        <span class="d-inline-block text-left color-red">
+                            <span class="d-inline-block ico-advertencia"></span>
+                            {{vm.mensaje}}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

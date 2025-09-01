@@ -1,0 +1,73 @@
+﻿<div ng-init="vm.init();">
+    <div id="SGRERRSEC{{vm.nombreComponente}}" class="hidden mb-3 ml-5 errorSeccionPriorizacion" style="text-align: left; font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans'; font-size: 12px; font-style: normal; color: #A80521;"></div>
+
+    <div class="ui-accordion-container hidden" id="accordion-sgraprobacion1aprobacionregistroaprobacion">
+        <div class="alert panel-heading row ui-accordion-header">
+            <button type="button" data-toggle="collapse" data-target="#sgraprobacion1aprobacionregistroaprobacion" ng-click="vm.changeArrow('sgraprobacion1aprobacionregistroaprobacion')">
+                <span class="d-inline-block" id="alert-sgraprobacion1aprobacionregistroaprobacion"></span>
+                <span id="name-capitulo-sgraprobacion1aprobacionregistroaprobacion"></span>
+                <span class="hidden" id="id-capitulo-sgraprobacion1aprobacionregistroaprobacion"></span>
+                <span id="arrow-sgraprobacion1aprobacionregistroaprobacion" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#sgraprobacion1aprobacionregistroaprobacion"></span>
+            </button>
+        </div>
+        <div class="collapse" id="sgraprobacion1aprobacionregistroaprobacion">
+            <div class="row m-0 mb-3">
+                <div class="col-md-12 ">
+                    
+                    <registro-aprobacion-sgr callback="vm.notificarGuardado()"
+                                             guardadocomponent="vm.guardadohijos(nombreComponenteHijo)"
+                                             guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                             notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                             notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"
+                                             notificarrefresco="vm.notificarRefresco(handler, nombreComponente)"
+                                             notificacioncambios="vm.notificacionCambiosCapitulosExternos(handler, nombreComponente)">
+                    </registro-aprobacion-sgr>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div ng-if="vm.ProyectoTieneOPC" class="ui-accordion-container hidden" id="accordion-sgraprobacion1aprobacionresumenaprobacionopc">
+        <div class="alert panel-heading row ui-accordion-header">
+            <button type="button" data-toggle="collapse" data-target="#sgraprobacion1aprobacionresumenaprobacionopc" ng-click="vm.changeArrow('sgraprobacion1aprobacionresumenaprobacionopc')">
+                <span class="d-inline-block" id="alert-sgraprobacion1aprobacionresumenaprobacionopc"></span>
+                <span id="name-capitulo-sgraprobacion1aprobacionresumenaprobacionopc"></span>
+                <span class="hidden" id="id-capitulo-sgraprobacion1aprobacionresumenaprobacionopc"></span>
+                <span id="arrow-sgraprobacion1aprobacionresumenaprobacionopc" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#sgraprobacion1aprobacionresumenaprobacionopc"></span>
+            </button>
+        </div>
+        <div class="collapse" id="sgraprobacion1aprobacionresumenaprobacionopc">
+            <div class="row m-0 mb-3">
+                <div class="col-md-12 ">
+                    <resumen-credito-aprobacion-sgr>
+                    </resumen-credito-aprobacion-sgr>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ui-accordion-container hidden" id="accordion-sgraprobacion1aprobacionresumenaprobacion">
+        <div class="alert panel-heading row ui-accordion-header">
+            <button type="button" data-toggle="collapse" data-target="#sgraprobacion1aprobacionresumenaprobacion" ng-click="vm.changeArrow('sgraprobacion1aprobacionresumenaprobacion')">
+                <span class="d-inline-block" id="alert-sgraprobacion1aprobacionresumenaprobacion"></span>
+                <span id="name-capitulo-sgraprobacion1aprobacionresumenaprobacion"></span>
+                <span class="hidden" id="id-capitulo-sgraprobacion1aprobacionresumenaprobacion"></span>
+                <span id="arrow-sgraprobacion1aprobacionresumenaprobacion" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#sgraprobacion1aprobacionresumenaprobacion"></span>
+            </button>
+        </div>
+        <div class="collapse" id="sgraprobacion1aprobacionresumenaprobacion">
+            <div class="row m-0 mb-3">
+                <div ng-if="vm.ProyectoTieneOPC" class="col-md-12 ">
+                    <!-- Cuando el proyecto tiene operaciones de crédito -->
+                    <resumen-aprobacion-parcial-sgr></resumen-aprobacion-parcial-sgr>
+                </div>
+                <div ng-if="!vm.ProyectoTieneOPC" class="col-md-12 ">                    
+                    <!-- Cuando el proyecto no operaciones de crédito -->
+                    <resumen-aprobacion-sgr></resumen-aprobacion-sgr>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,92 @@
+﻿ <div ng-init="vm.init();">
+    <!--<div id="SGRERRSEC{{vm.nombreComponente}}" class="hidden mb-3 ml-5 errorSeccionInterventor" style="text-align: left; font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans'; font-size: 12px; font-style: normal; color: #A80521;"></div>-->
+
+    <div class="ui-accordion-container" id="accordion-sgrejecutordesignacionentinterventorregistrodesignacioninterventor">
+        <div class="alert panel-heading row ui-accordion-header">
+            <button type="button" data-toggle="collapse" data-target="#sgrejecutordesignacionentinterventorregistrodesignacioninterventor" ng-click="vm.changeArrow('sgrejecutordesignacionentinterventorregistrodesignacioninterventor')">
+                <span class="d-inline-block" id="alert-sgrejecutordesignacionentinterventorregistrodesignacioninterventor"></span>
+                <span id="name-capitulo-sgrejecutordesignacionentinterventorregistrodesignacioninterventor"></span>
+                <span class="hidden" id="id-capitulo-sgrejecutordesignacionentinterventorregistrodesignacioninterventor"></span>
+                <span id="arrow-sgrejecutordesignacionentinterventorregistrodesignacioninterventor" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#sgrejecutordesignacionentinterventorregistrodesignacioninterventor"></span>
+            </button>
+        </div>
+        <div class="collapse" id="sgrejecutordesignacionentinterventorregistrodesignacioninterventor">
+            <div class="row m-0 mb-3">
+                <div class="col-md-12 ">
+                    <registro-interventor-sgr guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                              notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                              notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)">
+                    </registro-interventor-sgr>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ui-accordion-container" id="accordion-sgrejecutordesignacionentinterventorregistrovalorinterventor">
+        <div class="alert panel-heading row ui-accordion-header">
+            <button type="button" data-toggle="collapse" data-target="#sgrejecutordesignacionentinterventorregistrovalorinterventor" ng-click="vm.changeArrow('sgrejecutordesignacionentinterventorregistrovalorinterventor')">
+                <span class="d-inline-block" id="alert-sgrejecutordesignacionentinterventorregistrovalorinterventor"></span>
+                <span id="name-capitulo-sgrejecutordesignacionentinterventorregistrovalorinterventor"></span>
+                <span class="hidden" id="id-capitulo-sgrejecutordesignacionentinterventorregistrovalorinterventor"></span>
+                <span id="arrow-sgrejecutordesignacionentinterventorregistrovalorinterventor" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#sgrejecutordesignacionentinterventorregistrovalorinterventor"></span>
+            </button>
+        </div>
+        <div class="collapse" id="sgrejecutordesignacionentinterventorregistrovalorinterventor">
+            <div class="row m-0 mb-3">
+                <div class="col-md-12 ">
+                    <valor-interventoria-sgr guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                             notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                             notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)">
+                    </valor-interventoria-sgr>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Registrar Valores de supervisión según fuentes aprobadas -->
+    <div class="ui-accordion-container hidden" id="accordion-sgrejecutordesignacionentinterventorregistrovalorctei">
+        <div class="alert panel-heading row ui-accordion-header">
+            <button type="button"
+                    data-toggle="collapse"
+                    data-target="#sgrejecutordesignacionentinterventorregistrovalorctei"
+                    ng-click="vm.changeArrow('sgrejecutordesignacionentinterventorregistrovalorctei')">
+                <span class="d-inline-block" id="alert-sgrejecutordesignacionentinterventorregistrovalorctei"></span>
+                <span id="name-capitulo-sgrejecutordesignacionentinterventorregistrovalorctei"></span>
+                <span class="hidden" id="id-capitulo-sgrejecutordesignacionentinterventorregistrovalorctei"></span>
+                <span id="arrow-sgrejecutordesignacionentinterventorregistrovalorctei"
+                      class="glyphicon-chevron-down glyphicon pull-right"
+                      data-toggle="collapse"
+                      data-target="#sgrejecutordesignacionentinterventorregistrovalorctei"></span>
+            </button>
+        </div>
+        <div class="collapse" id="sgrejecutordesignacionentinterventorregistrovalorctei">
+            <div class="row m-0 mb-3">
+                <div class="col-md-12">                    
+                    <supervisor-registro-designacion-sgr guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                                         notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                         notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)">
+                    </supervisor-registro-designacion-sgr>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ui-accordion-container" id="accordion-sgrejecutordesignacionentinterventorregistrovalorsupervisor">
+        <div class="alert panel-heading row ui-accordion-header">
+            <button type="button" data-toggle="collapse" data-target="#sgrejecutordesignacionentinterventorregistrovalorsupervisor" ng-click="vm.changeArrow('sgrejecutordesignacionentinterventorregistrovalorsupervisor')">
+                <span class="d-inline-block" id="alert-sgrejecutordesignacionentinterventorregistrovalorsupervisor"></span>
+                <span id="name-capitulo-sgrejecutordesignacionentinterventorregistrovalorsupervisor"></span>
+                <span class="hidden" id="id-capitulo-sgrejecutordesignacionentinterventorregistrovalorsupervisor"></span>
+                <span id="arrow-sgrejecutordesignacionentinterventorregistrovalorsupervisor" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#sgrejecutordesignacionentinterventorregistrovalorsupervisor"></span>
+            </button>
+        </div>
+        <div class="collapse" id="sgrejecutordesignacionentinterventorregistrovalorsupervisor">
+            <div class="row m-0 mb-3">
+                <div class="col-md-12 ">
+                    <valor-supervisor-sgr guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                             notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                             notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)">
+                    </valor-supervisor-sgr>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

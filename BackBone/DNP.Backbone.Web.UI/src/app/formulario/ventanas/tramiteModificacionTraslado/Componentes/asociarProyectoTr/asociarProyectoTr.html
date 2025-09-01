@@ -1,0 +1,34 @@
+﻿<div ng-init="vm.inicaliazarAsociacion();">
+    <div class="ui-accordion-container " id="accordion-{{vm.nombreComponenteHijo}}">
+        <div class="alert panel-heading row ui-accordion-header">
+            <button type="button" data-toggle="collapse" data-target="#proyectoproyectosasociados" ng-click="vm.changeArrow(vm.nombreComponenteHijo)">
+                <span class="d-inline-block" id="alert-{{vm.nombreComponenteHijo}}"></span>
+                <span id="name-capitulo-{{vm.nombreComponenteHijo}}"></span>
+                <span class="hidden" id="id-capitulo-{{vm.nombreComponenteHijo}}"></span>
+                <span id="arrow-{{vm.nombreComponenteHijo}}" class="glyphicon-chevron-down glyphicon pull-right"
+                      data-toggle="collapse"
+                      data-target="#proyectoproyectosasociados"></span>
+            </button>
+        </div>
+        <div class="collapse" id="proyectoproyectosasociados">
+            <div class="row m-0 mb-3">
+                <br>
+                <div class="col-md-12 ">
+                    <asociar-muchos-proyectos-formularioml tramiteid="{{vm.tramiteid}}"
+                                                         nombrecomponentepaso="{{vm.nombreComponenteHijo}}"
+                                                         tipotramiteid="{{vm.tipotramiteid}}"
+                                                         deshabilitar="{{vm.deshabilitar}}"
+                                                         rolanalista="{{vm.rolanalista}}"
+                                                         actualizacomponentes="vm.actualizacomponentes"
+                                                         guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                                         callback="vm.callback()"
+                                                         notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                         notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"
+                                                         modificodatos="vm.modificodatos">
+                    </asociar-muchos-proyectos-formularioml>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,68 @@
+﻿<section>
+    <div class="container-fluid inbox" ng-init="vm.init();">
+        <div class="tab-content">
+            <div class="ui-accordion-container">
+
+                <div class="alert panel-heading row ui-accordion-header hidden" id="accordion-segfocalizacionsegfocpoliticas">
+                    <button type="button" data-toggle="collapse" data-target="#segfocalizacionsegfocpoliticas" ng-click="vm.changeArrow('segfocalizacionsegfocpoliticas')">
+                        <span class="d-inline-block" id="alert-segfocalizacionsegfocpoliticas"></span>
+                        <span id="name-capitulo-segfocalizacionsegfocpoliticas"></span>
+                        <span class="hidden" id="id-capitulo-segfocalizacionsegfocpoliticas"></span>
+                        <span id="arrow-segfocalizacionsegfocpoliticas" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#segfocalizacionsegfocpoliticas"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="segfocalizacionsegfocpoliticas">
+                    <div class="row m-0 mb-3">
+                        <focalizacion-Politicas bpin="{{vm.globalVariables.bpin}}"
+                                                guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                                notificacioncambios="vm.notificacionCambiosCapitulosExternos(handler,nombreComponente)"
+                                                notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)">
+                        </focalizacion-Politicas>
+                    </div>
+                </div>
+
+
+                <div class="alert panel-heading row ui-accordion-header hidden" id="accordion-segfocalizacionsegindipoliticas">
+                    <button type="button" data-toggle="collapse" data-target="#segfocalizacionsegindipoliticas" ng-click="vm.changeArrow('segfocalizacionsegindipoliticas')">
+                        <span class="d-inline-block" id="alert-segfocalizacionsegindipoliticas"></span>
+                        <span id="name-capitulo-segfocalizacionsegindipoliticas"></span>
+                        <span class="hidden" id="id-capitulo-segfocalizacionsegindipoliticas"></span>
+                        <span id="arrow-segfocalizacionsegindipoliticas" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#segfocalizacionsegindipoliticas"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="segfocalizacionsegindipoliticas">
+                    <div class="row m-0 mb-3">
+                        <indicador-politicas bpin="{{vm.globalVariables.bpin}}"
+                                             guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                             notificacioncambios="vm.notificacionCambiosCapitulosExternos(handler,nombreComponente)"
+                                             notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                             notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)">
+                        </indicador-politicas>
+                    </div>
+                </div>
+
+                <div class="alert panel-heading row ui-accordion-header hidden" id="accordion-segfocalizacionsegcrucepoliticas">
+                    <button type="button" data-toggle="collapse" data-target="#segfocalizacionsegcrucepoliticas" ng-click="vm.changeArrow('segfocalizacionsegcrucepoliticas')">
+                        <span class="d-inline-block" id="alert-segfocalizacionsegcrucepoliticas"></span>
+                        <span id="name-capitulo-segfocalizacionsegcrucepoliticas"></span>
+                        <span class="hidden" id="id-capitulo-segfocalizacionsegcrucepoliticas"></span>
+                        <span id="arrow-segfocalizacionsegcrucepoliticas" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#segfocalizacionsegcrucepoliticas"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="segfocalizacionsegcrucepoliticas">
+                    <div class="row m-0 mb-3">
+                        <cruce-Politicas bpin="{{vm.globalVariables.bpin}}"
+                                                guardadoevent="vm.guardadoevent(nombreComponenteHijo)"
+                                                notificacioncambios="vm.notificacionCambiosCapitulosExternos(handler,nombreComponente)"
+                                                notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)">
+                        </cruce-Politicas>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</section>

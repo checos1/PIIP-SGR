@@ -1,0 +1,48 @@
+﻿<div class="row">
+    <div class="col-md-9">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text bg-light rounded-left-2">Ent</span>
+            </div>
+            <input type="text" class="form-control rounded-right-2" ng-model="vm.objEntidad.nombre">
+        </div>
+    </div>
+    <div class="col-md-3 mt-3">
+        <div class="form-check">
+            <input class="form-check-input" id="cabezaSector" name="cabezaSector" ng-model="vm.objEntidad.cabezaSector" type="checkbox">
+            <label class="form-check-label" for="cabezaSector">
+                Cabeza sector
+            </label>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-3">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text bg-light rounded-left-2">Sig</span>
+            </div>
+            <input ng-model="vm.objEntidad.sigla" type="text" class="form-control rounded-right-2" />
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text bg-light rounded-left-2">Sector</span>
+            </div>
+            <select ng-model="vm.objEntidad.idSector" class="form-control rounded-right-2" placeholder="Sector">
+                <option ng-repeat="sector in vm.objEntidad.listaSector" value="{{sector.Id}}">
+                    {{sector.Nombre}}
+                </option>
+            </select>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text bg-light rounded-left-2">Cod</span>
+            </div>
+            <input type="text" name="field" ng-model="vm.objEntidad.codigo" class="form-control rounded-right-2" ng-maxlength="999999" ui-number-mask="0" ui-hide-group-sep>
+        </div>
+    </div>
+</div>

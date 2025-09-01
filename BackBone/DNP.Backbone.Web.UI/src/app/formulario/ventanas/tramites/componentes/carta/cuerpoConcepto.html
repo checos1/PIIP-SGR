@@ -1,0 +1,324 @@
+﻿
+
+<button id="divcuerpoconcepto" class="accordiondatos" style="display:flex;" ng-click="vm.abrirpanel()">
+
+
+    <img class="img" style="text-align:left;" src="Img/lineavertical.png" />
+
+
+    <p style="padding-top:1rem;padding-left:2rem;width:95%;">
+        <span class="headline-s font-azul">Cuerpo Concepto </span>
+    </p>
+
+
+    <img id="u4_imgcuerpoconcepto" class="img" style="text-align:right;margin-top:3rem" src="Img/iconsmenu/u4.svg">
+
+
+</button>
+
+<div id="panelcuerpoconcepto" class="paneldatos" style="background-color: white; overflow-y: scroll;">
+    <form name="cuerpoconcepto" ng-submit="vm.guardarCuerpoConcepto()">
+        <div class="col-md-12  field " ng-init="vm.init();" style="padding-bottom:2rem;">
+            <div class="text-left" style="padding-top: 3rem;"> <label class="input fondo_violeta caja_full">Texto 1: </label> </div>
+            <div class="row" style="padding-top:1rem;">
+                <div class="col-md-6" style="padding-right: 3px; padding-left: 3px;">
+                    <div style="padding-top:2rem;">
+                        <input type="text" name="entidadTramite" class="input caja_full" ng-readonly="false" ng-model="vm.carta.ListaCartaSecciones[0].ListaCartaCampos[0].DatoValor" required />
+                    </div>
+                    <span class="error font_error" data-ng-show="cuerpoconcepto.entidadTramite.$error.required">Texto obligatorio!</span>
+                </div>
+
+                <div class="col-md-4" style="padding-right: 3px; padding-left: 3px;">
+                    <div style="padding-top:2rem;">
+                        <input type="text" name="nombreentidad" class="input fondo_violeta caja_full" style="font-size: 85%" ng-readonly="true" ng-model="vm.carta.Entidad" />
+                    </div>
+                </div>
+                <div class="col-md-1" style="padding-right: 3px; padding-left: 3px;">
+                    <div style="padding-top:2rem;">
+                        <input type="text" name="fechaRadicado" class="input caja_full" ng-readonly="false" style="font-size: 85%" ng-model="vm.carta.ListaCartaSecciones[0].ListaCartaCampos[1].DatoValor" required />
+                    </div>
+                    <span class="error font_error" data-ng-show="cuerpoconcepto.fecha.$error.required">Texto obligatorio!</span>
+                </div>
+                <div class="col-md-1" style="padding-right: 3px; padding-left: 3px;">
+                    <div style="padding-top:2rem;">
+                        <input type="text" name="valorFecha" class="input fondo_violeta caja_full" style="font-size: 85%" ng-readonly="true" ng-model="vm.fechaRadicado" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="padding-top:1rem;">
+                <div class="col-md-2" style="padding-right: 3px; padding-left: 3px;">
+                    <div style="padding-top:1rem;">
+                        <input type="text" name="numeroRadicado" class="input caja_full" ng-readonly="false" ng-model="vm.carta.ListaCartaSecciones[0].ListaCartaCampos[2].DatoValor" required />
+                    </div>
+                    <span class="error font_error" data-ng-show="cuerpoconcepto.ciudad.$error.required">Texto obligatorio!</span>
+                </div>
+                <div class="col-md-4" style="padding-right: 3px; padding-left: 3px;">
+                    <div style="padding-top:1rem;">
+                        <input type="text" name="valorradicado" class="input fondo_violeta caja_full" style="font-size: 85%" ng-readonly="true" ng-model="vm.numeroRadicado" />
+                    </div>
+                </div>
+                <div class="col-md-6" style="padding-right: 3px; padding-left: 3px;">
+                    <div style="padding-top:1rem;">
+                        <input type="text" name="concepto" class="input caja_full" ng-readonly="false" ng-model="vm.carta.ListaCartaSecciones[0].ListaCartaCampos[3].DatoValor" required />
+                    </div>
+                    <span class="error font_error" data-ng-show="cuerpoconcepto.fecha.$error.required">Texto obligatorio!</span>
+                </div>
+            </div>
+
+            <div class="row" style="padding-top:1rem;">
+                <div class="col-md-2" style="padding-right: 3px; padding-left: 3px;">
+                    <div style="padding-top:1rem;">
+                        <input type="text" name="conceptoValor" class="input fondo_violeta  caja_full" ng-readonly="true" ng-model="vm.conceptoValor" required />
+                    </div>
+                </div>
+                <div class="col-md-5" style="padding-right: 3px; padding-left: 3px;">
+                    <div style="padding-top:1rem;">
+                        <input type="text" name="recursos" class="input caja_full" ng-readonly="false" ng-model="vm.carta.ListaCartaSecciones[0].ListaCartaCampos[4].DatoValor" />
+                    </div>
+                    <span class="error font_error" data-ng-show="cuerpoconcepto.recursos.$error.required">Texto obligatorio!</span>
+                </div>
+                <div class="col-md-5" style="padding-top:1rem; padding-right: 3px; padding-left: 3px;">
+                    <div style="padding-top:1rem;" class="input fondo_violeta caja_full">
+                        <label name="recursosValor">{{vm.totalContra | currency}}</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="padding-top:1rem;">
+                <div class="col-md-12" style="padding-right: 3px; padding-left: 3px;">
+                    <div style="padding-top:1rem;">
+                        <input type="text" name="tipoRecurso" class="input caja_full" ng-readonly="false" ng-model="vm.carta.ListaCartaSecciones[0].ListaCartaCampos[5].DatoValor" required />
+                    </div>
+                    <span class="error font_error" data-ng-show="cuerpoconcepto.ciudad.$error.required">Texto obligatorio!</span>
+                </div>
+                <!--SE DEJA DE MOSTRAR EL RECURSO CALCULADO, PARA QUE QUEDE EN LA PLANTILLA Y EL USUARIO LO EDITE A SU MANERA-->
+                <!--<div class="col-md-6" style="padding-right: 3px; padding-left: 3px;">
+                    <div style="padding-top:1rem;">
+                        <input type="text" name="tipoRecursoValor" class="input fondo_violeta caja_full" ng-readonly="true" ng-model="vm.tipoRecurso" required />
+                    </div>
+                </div>-->
+            </div>
+
+            <div class="row" style="padding-top:1rem;">
+                <div class="col-md-6" style="padding-right: 3px; padding-left: 3px;">
+                    <div style="padding-top:1rem;">
+                        <input type="text" name="proyectos" class="input caja_full" ng-readonly="false" ng-model="vm.carta.ListaCartaSecciones[0].ListaCartaCampos[6].DatoValor" required />
+                    </div>
+                    <span class="error font_error" data-ng-show="cuerpoconcepto.ciudad.$error.required">Texto obligatorio!</span>
+                </div>
+            </div>
+
+
+            <!--<div class="text-left" style="padding-top:3rem;"> <label class="input fondo_violeta caja_full">AUTORIZACION </label> </div>-->
+            <div class="text-left" style="padding-top:2rem;"> <label class="input fondo_violeta caja_full">Contracrédito: </label> </div>
+
+            <div class="row" style="padding-top: 3rem; margin-left: 3px; list-style: none;">
+                <div class="col-md-12 row" list-style: none;">
+                    <div class="col-md-12 bordesencillo" style="font-size: 12px; border-top: 2px solid; border-left: 2px solid; border-right: 2px solid; border-color: rgba(230, 239, 253, 1);">
+                        <div class="row" style="background-color: rgba(249, 252, 253, 1);">
+                            <div class="col-md-3" style="padding: 0 !important; display: list-item; height: 45px; border-color: rgba(230, 239, 253, 1);">
+                                <div class="text-left" style="margin-left: 15px;"> <label style="font-weight: 700; color: #004884;">Sección</label> </div>
+                            </div>
+                            <div class="col-md-1 " style="padding: 0 !important; display: list-item; height: 45px; border-left: 2px solid; border-color: rgba(230, 239, 253, 1);">
+                                <div class="text-left" style="margin-left: 15px;"> <label>{{vm.datosAutContraCredito.entidadId}}</label> </div>
+                            </div>
+                            <div class="col-md-8 " style="padding: 0 !important; display: list-item; height: 45px; border-left: 2px solid; border-color: rgba(230, 239, 253, 1);">
+                                <div class="text-left" style="margin-left: 15px; margin-right: 5px;"> <label>{{vm.datosAutContraCredito.entidad}}</label> </div>
+                            </div>
+                        </div>
+
+                        <div ng-repeat="n in vm.proyectosContraCredito">
+                            <div class="row" style="background-color: rgba(249, 252, 253, 1); list-style: none;">
+                                <div class="col-md-3" style="padding: 0 !important; display: list-item; height: 45px; border-top: 2px solid; border-bottom: 2px solid; border-color: rgba(230, 239, 253, 1);">
+                                    <div class="text-left" style="margin-left: 15px;"> <label style="font-weight: 700; color: #004884;">{{n.item}}. Programa</label> </div>
+                                </div>
+                                <div class="col-md-1" style="padding: 0 !important; display: list-item; height: 45px; border-top: 2px solid; border-left: 2px solid; border-bottom: 2px solid; border-color: rgba(230, 239, 253, 1);">
+                                    <div class="text-left" style="margin-left: 15px;"> <label>{{n.programaCodigo}}</label> </div>
+                                </div>
+                                <div class="col-md-8" style="padding: 0 !important; display: list-item; height: 45px; border-top: 2px solid; border-left: 2px solid; border-bottom: 2px solid; border-color: rgba(230, 239, 253, 1);">
+                                    <div class="text-left" style="margin-left: 15px; margin-right: 5px;"> <label>{{n.programa}}</label> </div>
+                                </div>
+                            </div>
+
+                            <div class="row" style="background-color: rgba(249, 252, 253, 1); list-style: none;">
+                                <div class="col-md-3" style="padding: 0 !important; display: list-item; height: 45px; border-bottom: 2px solid; border-color: rgba(230, 239, 253, 1);">
+                                    <div class="text-left" style="margin-left: 15px;"> <label style="font-weight: 700; color: #004884;">a. Subprograma</label> </div>
+                                </div>
+                                <div class="col-md-1" style="padding: 0 !important; display: list-item; height: 45px; border-left: 2px solid; border-bottom: 2px solid; border-color: rgba(230, 239, 253, 1);">
+                                    <div class="text-left" style="margin-left: 15px;"> <label>{{n.subProgramaCodigo}}</label> </div>
+                                </div>
+                                <div class="col-md-8" style="padding: 0 !important; display: list-item; height: 45px; border-left: 2px solid; border-bottom: 2px solid; border-color: rgba(230, 239, 253, 1);">
+                                    <div class="text-left" style="margin-left: 15px; margin-right: 5px;"> <label>{{n.subPrograma}}</label> </div>
+                                </div>
+                            </div>
+
+                            <div class="row" style="background-color: rgba(249, 252, 253, 1); list-style: none;">
+                                <div class="col-md-3" style="padding: 0 !important;">
+                                    <div class="text-left" style="margin-left: 15px;"> <label style="font-weight: 700; color: #004884;">Proyecto</label> </div>
+                                </div>
+                                <div class="col-md-1" style="padding: 0 !important; height: 130px; border-left: 2px solid; border-color: rgba(230, 239, 253, 1);">
+                                    <div class="text-left" style="margin-left: 15px;"> <label>{{n.codigoPresupuestal}}</label> </div>
+                                </div>
+                                <div class="col-md-8" style="padding: 0 !important">
+                                    <div style="border-left: 2px solid; border-bottom: 2px solid; border-color: rgba(230, 239, 253, 1);">
+                                        <div class="row text-left " style="margin-left: 15px; margin-right: 5px;"> <label>{{n.nombreProyecto}}Nombre Proyecto</label> </div>
+                                    </div>
+                                    <div class="col-md-6" style="padding: 0 !important; border-left: 2px solid; border-bottom: 2px solid; border-color: rgba(230, 239, 253, 1);">
+                                        <div class="row text-left" style="margin-left: 15px; color: #004884; color: #004884;"> <label style="font-weight: 700;">Recursos</label> </div>
+                                    </div>
+                                    <div class="col-md-6" style="padding: 0 !important; border-left: 2px solid; border-bottom: 2px solid; border-color: rgba(230, 239, 253, 1);">
+                                        <div class="row text-left" style="margin-left: 15px; color: #004884;"> <label style="font-weight: 700;">Valor $</label> </div>
+                                    </div>
+                                    <div class="col-md-6" style="padding: 0 !important; border-left: 2px solid; border-color: rgba(230, 239, 253, 1);">
+                                        <div class="row text-left" style="margin-left: 15px;"> <label>Nación </label> </div>
+                                        <div class="row text-left" style="margin-left: 15px;"> <label>Propios </label> </div>
+                                    </div>
+                                    <div class="col-md-6" style="padding: 0 !important; border-left: 2px solid; border-color: rgba(230, 239, 253, 1);">
+                                        <div class="row text-left" style="margin-left: 15px;"> <label>{{n.valorNacionContra | currency}}</label> </div>
+                                        <div class="row text-left" style="margin-left: 15px;"> <label>{{n.valorPropiosContra | currency}}</label> </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--{{n.programaCodigo}}-->
+                        </div>
+                        <div class="row" style="background-color: rgba(249, 252, 253, 1); list-style: none;">
+                            <div class="col-md-8" style="padding: 0 !important; display: list-item; height: 45px; border-top: 2px solid; border-color: rgba(230, 239, 253, 1);">
+                                <div class="text-left" style="margin-top: 15px; margin-left: 15px;"> <label style="font-weight: 700; color: #004884;">TOTAL CONTRACRÉDITO</label></div>
+                            </div>
+                            <div class="col-md-4" style="padding: 0 !important; display: list-item; height: 45px; border-left: 2px solid; border-top: 2px solid; border-color: rgba(230, 239, 253, 1);">
+                                <div class="text-left" style="margin-top: 15px; margin-left: 15px;"> <label style="font-weight: 700;">{{vm.totalContra | currency}}</label> </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="text-left" style="padding-top:2rem;"> <label class="input fondo_violeta caja_full">Crédito: </label> </div>
+
+            <div class="row" style="padding-top: 3rem; margin-left: 3px; list-style: none;">
+                <div class="col-md-12 row" list-style: none;">
+                    <div class="col-md-12 bordesencillo" style="font-size: 12px; border-top: 2px solid; border-left: 2px solid; border-right: 2px solid; border-color: rgba(230, 239, 253, 1);">
+                        <div class="row" style="background-color: rgba(249, 252, 253, 1);">
+                            <div class="col-md-3" style="padding: 0 !important; display: list-item; height: 45px; border-bottom: 2px solid; border-color: rgba(230, 239, 253, 1);">
+                                <div class="text-left" style="margin-left: 15px;"> <label style="font-weight: 700; color: #004884;">Sección</label> </div>
+                            </div>
+                            <div class="col-md-1 " style="padding: 0 !important; display: list-item; height: 45px; border-left: 2px solid; border-color: rgba(230, 239, 253, 1);">
+                                <div class="text-left" style="margin-left: 15px;"> <label>{{vm.datosAutCredito.entidadId}}</label> </div>
+                            </div>
+                            <div class="col-md-8 " style="padding: 0 !important; display: list-item; height: 45px; border-left: 2px solid; border-color: rgba(230, 239, 253, 1);">
+                                <div class="text-left" style="margin-left: 15px; margin-right: 5px;"> <label>{{vm.datosAutCredito.entidad}}</label> </div>
+                            </div>
+                        </div>
+                        <div ng-repeat="n in vm.proyectosCredito">
+                            <div class="row" style="background-color: rgba(249, 252, 253, 1); list-style: none;">
+                                <div class="col-md-3" style="padding: 0 !important; display: list-item; height: 45px; border-top: 2px solid; border-bottom: 2px solid; border-color: rgba(230, 239, 253, 1);">
+                                    <div class="text-left" style="margin-left: 15px;"> <label style="font-weight: 700; color: #004884;">{{n.item}}. Programa</label> </div>
+                                </div>
+                                <div class="col-md-1" style="padding: 0 !important; display: list-item; height: 45px; border-top: 2px solid; border-left: 2px solid; border-bottom: 2px solid; border-color: rgba(230, 239, 253, 1);">
+                                    <div class="text-left" style="margin-left: 15px;"> <label>{{n.programaCodigo}}</label> </div>
+                                </div>
+                                <div class="col-md-8" style="padding: 0 !important; display: list-item; height: 45px; border-top: 2px solid; border-left: 2px solid; border-bottom: 2px solid; border-color: rgba(230, 239, 253, 1);">
+                                    <div class="text-left" style="margin-left: 15px; margin-right: 5px;"> <label>{{n.programa}}</label> </div>
+                                </div>
+                            </div>
+
+                            <div class="row" style="background-color: rgba(249, 252, 253, 1); list-style: none;">
+                                <div class="col-md-3" style="padding: 0 !important; display: list-item; height: 45px; border-bottom: 2px solid; border-color: rgba(230, 239, 253, 1);">
+                                    <div class="text-left" style="margin-left: 15px;"> <label style="font-weight: 700; color: #004884;">a. Subprograma</label> </div>
+                                </div>
+                                <div class="col-md-1" style="padding: 0 !important; display: list-item; height: 45px; border-left: 2px solid; border-bottom: 2px solid; border-color: rgba(230, 239, 253, 1);">
+                                    <div class="text-left" style="margin-left: 15px;"> <label>{{n.subProgramaCodigo}}</label> </div>
+                                </div>
+                                <div class="col-md-8" style="padding: 0 !important; display: list-item; height: 45px; border-left: 2px solid; border-bottom: 2px solid; border-color: rgba(230, 239, 253, 1);">
+                                    <div class="text-left" style="margin-left: 15px; margin-right: 5px;"> <label>{{n.subPrograma}}</label> </div>
+                                </div>
+                            </div>
+
+                            <div class="row" style="background-color: rgba(249, 252, 253, 1); list-style: none;">
+                                <div class="col-md-3" style="padding: 0 !important;">
+                                    <div class="text-left" style="margin-left: 15px;"> <label style="font-weight: 700; color: #004884;">Proyecto</label> </div>
+                                </div>
+                                <div class="col-md-1" style="padding: 0 !important; height: 130px; border-left: 2px solid; border-color: rgba(230, 239, 253, 1);">
+                                    <div class="text-left" style="margin-left: 15px;"> <label>{{n.codigoPresupuestal}}</label> </div>
+                                </div>
+                                <div class="col-md-8" style="padding: 0 !important">
+                                    <div style="border-left: 2px solid; border-bottom: 2px solid; border-color: rgba(230, 239, 253, 1);">
+                                        <div class="row text-left " style="margin-left: 15px; margin-right: 5px;"> <label>{{n.nombreProyecto}}Nombre Proyecto</label> </div>
+                                    </div>
+                                    <div class="col-md-6" style="padding: 0 !important; border-left: 2px solid; border-bottom: 2px solid; border-color: rgba(230, 239, 253, 1);">
+                                        <div class="row text-left" style="margin-left: 15px; color: #004884;"> <label style="font-weight: 700;">Recurso</label> </div>
+                                    </div>
+                                    <div class="col-md-6" style="padding: 0 !important; border-left: 2px solid; border-bottom: 2px solid; border-color: rgba(230, 239, 253, 1);">
+                                        <div class="row text-left" style="margin-left: 15px; color: #004884;"> <label style="font-weight: 700;">Valor $</label> </div>
+                                    </div>
+                                    <div class="col-md-6" style="padding: 0 !important; border-left: 2px solid; border-color: rgba(230, 239, 253, 1);">
+                                        <div class="row text-left" style="margin-left: 15px;"> <label>Nación </label> </div>
+                                        <div class="row text-left" style="margin-left: 15px;"> <label>Propios </label> </div>
+                                    </div>
+                                    <div class="col-md-6" style="padding: 0 !important; border-left: 2px solid; border-color: rgba(230, 239, 253, 1);">
+                                        <div class="row text-left" style="margin-left: 15px;"> <label>{{n.valorNacionCred | currency}}</label> </div>
+                                        <div class="row text-left" style="margin-left: 15px;"> <label>{{n.valorPropiosCred | currency}}</label> </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="background-color: rgba(249, 252, 253, 1); list-style: none;">
+                            <div class="col-md-8" style="padding: 0 !important; display: list-item; height: 45px; border-top: 2px solid; border-color: rgba(230, 239, 253, 1);">
+                                <div class="text-left" style="margin-top: 15px; margin-left: 15px;"> <label style="font-weight: 700; color: #004884;">TOTAL CRÉDITO</label></div>
+                            </div>
+                            <div class="col-md-4" style="padding: 0 !important; display: list-item; height: 45px; border-left: 2px solid; border-top: 2px solid; border-color: rgba(230, 239, 253, 1);">
+                                <div class="text-left" style="margin-top: 15px; margin-left: 15px;"> <label style="font-weight: 700;">{{vm.totalCred | currency}}</label> </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="text-left" style="padding-top: 3rem; padding-bottom: 2rem;"> <label class="input fondo_violeta caja_full">Texto 2: </label> </div>
+            <div class="row" style="padding-top:1rem;">
+                <div text-angular="text-angular" name="texto2" ng-model="vm.carta.ListaCartaSecciones[0].ListaCartaCampos[7].DatoValor" ta-disabled='disabled' style="display: inline-block;"></div>
+            </div>
+
+
+
+            <div class="text-left" style="padding-top:3rem;"> <label class="input fondo_violeta caja_full">Datos CDP: </label> </div>
+            <div class="row" style="text-align: right; padding-right: 2rem;">
+                Ocultar en pdf <input type="checkbox" ng-model="vm.carta.ListaCartaSecciones[0].ListaCartaCampos[9].DatoValor" />
+            </div>
+            <div class="row">
+                <div class="col-md-12 grid-proyectos" style="min-height: 50px;  padding-top: 3em; padding-bottom: 3em;">
+                    <div ui-grid="vm.gridCDPGR" ng-style="vm.getTableHeightCDPGR()" style="padding-bottom: 1em;"></div>
+                </div>
+            </div>
+
+            <div class="text-left" style="padding-top: 3rem; padding-bottom: 2rem;"> <label class="input fondo_violeta caja_full">Texto 3: </label> </div>
+            <div class="row" style="padding-top:1rem;">
+                <text-angular ng-model="vm.carta.ListaCartaSecciones[0].ListaCartaCampos[8].DatoValor"></text-angular>
+                <!--<textarea name="texto3_" ng-model="vm.carta.ListaCartaSecciones[0].ListaCartaCampos[8].DatoValor" style="width: 100%; height:250px"></textarea>-->
+            </div>
+
+            <div class="row" tyle="padding-top:3rem;">
+                <div class="col-md-12">
+                    <span class="buttonbar pull-right">
+                        <button type="submit" class="btn btn-default btn-md" tooltip-placement="top" uib-tooltip="Guardar datos iniciales"
+                                tabindex="0">
+                            Guardar
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<link rel='stylesheet' href='../../../../../../../Scripts/textangular/textAngular.min.css'>
+<script src='../../../../../../../Scripts/textangular/textAngular-rangy.min.js'></script>
+<script src='../../../../../../../Scripts/textangular/textAngular-sanitize.min.js'></script>
+<script src='../../../../../../../Scripts/textangular/textAngular.min.js'></script>
+

@@ -1,0 +1,73 @@
+﻿<section class="mx-5">
+    <div class="container-fluid inbox" ng-init="vm.init();">
+        <div class="row">
+            <div class="col-md-12 text-left">
+                <span>
+                    <strong>Ruta: </strong> Datos Generales / Horizonte
+                </span>
+            </div>
+        </div>
+        <br /><br />
+        <div class="mt-5">
+            <table class="TableDNP">
+                <thead>
+                    <tr>
+                        <th class="columAcc"></th>
+                        <th class="textRightDNP">Año fin Proyecto en firme $</th>
+                        <th class="textRightDNP">Año fin Proyecto en ajuste $</th>
+                        <th class="columAcc"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="uTexto-grilla" ng-repeat="objResumen in vm.listaDatos.Vigencia">
+                        <td></td>
+                        <td class="textRightDNP"><div class="editReferenciaDNP textLeftDNP" style="line-height: 43px;"><span>{{objResumen.VigenciaFirme}}</span></div></td>
+                        <td class="textRightDNP"><span>{{objResumen.Vigencia}}</span></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+            <br />
+        </div>
+
+        <div class="text-left" style="margin-right: 15px;">
+            <label class="uLabelCampo">Detalle del Ajuste: Ninguno.</label>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-12 text-right">
+                <button type="button" class="{{vm.isEdicion ? 'btn btncancelarHorizonte' : 'btn btncancelarHorizonte'}}" tooltip-placement="top" ng-click="vm.isEdicion ? vm.editar('cancelar') : vm.editar('editar')" uib-tooltip="{{vm.isEdicion ? 'CANCELAR' : 'EDITAR'}}" has-claim has-opciones="['Ajustes:GeneralComponente']">
+                    {{vm.isEdicion ? 'CANCELAR' : 'EDITAR'}}
+                </button>
+                <button ng-click="vm.guardar()" type="button" id="btn-guardar-edicion-horizonte" class="{{vm.ClasesbtnGuardar}}" tooltip-placement="auto" uib-tooltip="Guardar" has-claim has-opciones="['Ajustes:GeneralComponente']">GUARDAR</button>
+            </div>
+        </div>
+        <input type="hidden" id="seccion-capitulo-datosgeneraleshorizonte" value="1" />
+        <br /><br />
+        <div class="col-md-12 text-left" ng-init="vm.init();">
+            <span>
+                <strong>Justifique la modificación* </strong> (Máximo 8.000 caracteres)
+            </span>
+            <!--<span class="pull-left" style="margin-left: 80px;"><span class="uLabelCampo">{{vm.mensaje1}}</span></span>-->
+        </div>
+        <div class="col-md-12">
+
+            <div>
+                <div ng-if="vm.JustificacionError.length>0" class="text-left color-red">
+                    <span class='d-inline-block ico-advertencia'></span>
+                    <span>{{vm.JustificacionError}}</span>
+                </div>
+            </div>
+            <textarea rows="3"
+                      id="Justificacion-horizonte"
+                      name="Justificacion-horizonte"
+                      ng-model="vm.Justificacion"
+                      placeholder="Maximo 8.000 caracteres"
+                      minlength="1"
+                      maxlength="8000"
+                      class="form-control disabled" ng-required="true"></textarea>
+
+        </div>
+
+    </div>
+</section>

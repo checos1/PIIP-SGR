@@ -1,0 +1,78 @@
+﻿<section ng-init="vm.obtener();">
+    <div class="row FilaEstadoNocumpleDNP" ng-if="vm.nocumple">
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-6 text-center">
+            <span> <img class="linearojaRight" src="Img/IcoLineaRojaRight.svg"></span>
+            <span> <img class="FlecharojaRight" src="Img/IcoFlechaRed.svg"></span>
+            <span class="textoNoCumpleDNP">NO CUMPLE</span>
+            <span> <img class="linearojaLeft" src="Img/IcoFlechaRed.svg"></span>
+            <span> <img class="FlecharojaLeft" src="Img/IcoLineaRojaLeft.svg"></span>
+        </div>
+        <div class="col-md-3" style="text-align:right">
+            <span class="spanbuttonenabled">Devolver a MGA</span>
+            <button has-claim has-opciones="['viabilidad:preguntasDevolverProyecto']"
+                    class="btnaccion"
+                    tooltip-class="customClass"
+                    uib-tooltip="Devolver"
+                    ng-click="vm.devolverProyecto()"
+                    ng-disabled="vm.soloLectura">
+                <span> <img class="icoVolverDNP" src="Img/IcoVolver.svg"></span>
+            </button>
+        </div>
+    </div>
+    <div class="row FilaEstadocumpleDNP" ng-if="vm.cumple">
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-6 text-center">
+            <span> <img class="lineaverdeRight" src="Img/IcoLineaVerdeRight.svg"></span>
+            <span> <img class="FlechaverdeRight" src="Img/IcoFlechaGreen.svg"></span>
+            <span class="textoCumpleDNP"> CUMPLE</span>
+            <span> <img class="lineaverdeLeft" src="Img/IcoFlechaGreen.svg"></span>
+            <span> <img class="FlechaverdeLeft" src="Img/IcoLineaVerdeLeft.svg"></span>
+        </div>
+        <div class="col-md-3 text-right">
+            <span class="spanbuttondisabled">Devolver a MGA</span>
+            <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Devolver" disabled>
+                <span> <img class="icoVolverDNP" src="Img/IcoVolverDisabled.svg"></span>
+            </button>
+        </div>
+    </div>
+    <br>
+    <div class="container-fluid inbox">
+        <div class="tab-content">
+            <div class="ui-accordion-container">
+                <div class="alert panel-heading row ui-accordion-header">
+                    <button type="button" data-toggle="collapse" data-target="#viabilidadgenerales" ng-click="vm.changeArrow('viabilidadgenerales')">
+                        <span class="d-inline-block" id="alert-viabilidadgenerales"></span>
+                        <span id="name-capitulo-viabilidadgenerales"></span>
+                        <span class="hidden" id="id-capitulo-viabilidadgenerales"></span>
+                        <span id="arrow-viabilidadgenerales" class="glyphicon glyphicon-chevron-up pull-right" data-toggle="collapse" data-target="#viabilidadgenerales"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="viabilidadgenerales">
+                    <lider-generales guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                     notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                     notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)">
+                    </lider-generales>
+                </div>
+            </div>
+            <div class="ui-accordion-container">
+                <div class="alert panel-heading row ui-accordion-header">
+                    <button type="button" data-toggle="collapse" data-target="#viabilidadespecificas" ng-click="vm.changeArrow('viabilidadespecificas')">
+                        <span class="d-inline-block" id="alert-viabilidadespecificas"></span>
+                        <span id="name-capitulo-viabilidadespecificas"></span>
+                        <span class="hidden" id="id-capitulo-viabilidadespecificas"></span>
+                        <span id="arrow-viabilidadespecificas" class="glyphicon glyphicon-chevron-up pull-right" data-toggle="collapse" data-target="#viabilidadespecificas"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="viabilidadespecificas">
+                    <lider-especificas guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                       notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                       notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)">
+                    </lider-especificas>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

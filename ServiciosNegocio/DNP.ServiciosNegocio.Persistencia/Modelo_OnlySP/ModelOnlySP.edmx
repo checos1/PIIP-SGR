@@ -1,0 +1,889 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+	<!-- EF Runtime content -->
+	<edmx:Runtime>
+		<!-- SSDL content -->
+		<edmx:StorageModels>
+			<Schema Namespace="ModelOnlySP.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <Function Name="uspGetCrucePoliticasSeguimiento_JSON" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="ProyectoId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspGetDetalleFocalizacionProgramacionSeguimiento_JSON" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="uspGetFocalizacionProgramacionSeguimiento_JSON" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="Json" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="uspGetIndicadoresPoliticas_JSON" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="BPIN" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="uspPostCrucePoliticasSeguimiento" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="UspPostEditarIndicadorPoliticasSeguimientoPeriodosValores" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="usuario" Type="nvarchar" Mode="In" />
+          <Parameter Name="proyectoId" Type="int" Mode="In" />
+          <Parameter Name="politicaId" Type="int" Mode="In" />
+          <Parameter Name="fuenteId" Type="int" Mode="In" />
+          <Parameter Name="dimensionId" Type="int" Mode="In" />
+          <Parameter Name="localizacionId" Type="int" Mode="In" />
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostProductoCategoriaSeguimiento" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspGetAvanceFinanciero" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="FuentesFinanciacion">
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="ProyectoId" Type="int" Mode="In" />
+          <Parameter Name="Bpin" Type="varchar" Mode="In" />
+          <Parameter Name="VigenciaId" Type="int" Mode="In" />
+          <Parameter Name="PeriodoPeriodicidadId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspPostAvanceFinanciero" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="FuentesFinanciacion">
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspGetPreguntasAvanceFinanciero" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Preguntas">
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="ProyectoId" Type="int" Mode="In" />
+          <Parameter Name="Bpin" Type="varchar" Mode="In" />
+          <Parameter Name="NivelId" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="uspPostPreguntasAvanceFinanciero" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Preguntas">
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="usuario" Type="varchar" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspGetAvanceMetaProducto_JSON" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Productos">
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="ProyectoId" Type="int" Mode="In" />
+          <Parameter Name="Bpin" Type="varchar" Mode="In" />
+          <Parameter Name="VigenciaId" Type="int" Mode="In" />
+          <Parameter Name="PeriodoPeriodicidadId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspPostActualizarAvanceMetaProducto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Productos">
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="UspPostEditarActividadReporteSeguimientoPeriodosValores" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Productos">
+          <Parameter Name="usuario" Type="nvarchar" Mode="In" />
+          <Parameter Name="proyectoId" Type="int" Mode="In" />
+          <Parameter Name="jsonActividades" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="jsonCosto" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="actividadId" Type="int" Mode="In" />
+          <Parameter Name="actividadSeguimientoId" Type="int" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostProgramarProductos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Productos">
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostRegionalizacionProgramacionSeguimiento" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Productos">
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="UspGetCalendarioProgramacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Programacion">
+          <Parameter Name="FlujoId" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="UspGetCargaMasivaCreditos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Programacion" />
+        <Function Name="UspGetCargaMasivaCuotas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Programacion">
+          <Parameter Name="Vigencia" Type="int" Mode="In" />
+          <Parameter Name="EntityTypeCatalogOptionId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="UspGetValidarCalendario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Programacion">
+          <Parameter Name="EntityTypeCatalogOptionId" Type="int" Mode="In" />
+          <Parameter Name="NivelId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="SeccionCapituloId" Type="int" Mode="In" />
+          <Parameter Name="Result" Type="bit" Mode="InOut" />
+        </Function>
+        <Function Name="UspPostCargaMasivaCreditos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Programacion">
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="upsGetJustificacionProyectosBeneficiarios_JSON" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="BPIN" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="UspGetProyectosASelecionar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="flujoid" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="Entidades" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="tipoTramiteId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspGetProyectosContracredito" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="tipoEntidad" Type="nvarchar" Mode="In" />
+          <Parameter Name="entidadId" Type="int" Mode="In" />
+          <Parameter Name="idFlujoParametro" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="idEntidadFiltro" Type="int" Mode="In" />
+          <Parameter Name="bpin" Type="nvarchar" Mode="In" />
+          <Parameter Name="nombreProyecto" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="uspGetProyectosCredito" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="tipoEntidad" Type="nvarchar" Mode="In" />
+          <Parameter Name="entidadId" Type="int" Mode="In" />
+          <Parameter Name="idFlujoParametro" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="bpin" Type="nvarchar" Mode="In" />
+          <Parameter Name="nombreProyecto" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="uspGetRegionalizacionProgramacionSeguimiento_JSON" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Regionalizacion">
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="ProyectoId" Type="int" Mode="In" />
+          <Parameter Name="Bpin" Type="varchar" Mode="In" />
+          <Parameter Name="VigenciaId" Type="int" Mode="In" />
+          <Parameter Name="PeriodoPeriodicidadId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspGetResumenRegionalizacionSeguimiento_JSON" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Regionalizacion">
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="ProyectoId" Type="int" Mode="In" />
+          <Parameter Name="Bpin" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="uspGetDatosIncorporacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Tramites">
+          <Parameter Name="TramiteId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspGetObtenerAutorizacionAsociada" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Tramites">
+          <Parameter Name="tramiteId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspGetObtenerAutorizacionesParaReprogramacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Tramites">
+          <Parameter Name="codbpin" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="tramiteId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspGetObtenerEntidadesTramite" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Tramites">
+          <Parameter Name="NumeroTramite" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="uspGetObtenerModalidadContratacionVigenciasFuturas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Tramites">
+          <Parameter Name="ProyectoId" Type="int" Mode="In" />
+          <Parameter Name="TramiteId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="UspGetObtenerUsuariosPorInstanciaPadre" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Tramites">
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="uspGetOrigenRecursos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Tramites">
+          <Parameter Name="IdTramite" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspGetPresupuestalProyectosAsociados" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Tramites">
+          <Parameter Name="TramiteId" Type="int" Mode="In" />
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="uspGetPresupuestalProyectosAsociados_Adicion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Tramites">
+          <Parameter Name="TramiteId" Type="int" Mode="In" />
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="uspGetProyectosTramiteNegocio" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Tramites">
+          <Parameter Name="tramiteId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspGetResumenReprogramacionPorProductoVigencia_JSON" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Tramites">
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="ProyectoId" Type="int" Mode="In" />
+          <Parameter Name="TramiteId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspGetResumenReprogramacionPorVigencia_JSON" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Tramites">
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="ProyectoId" Type="int" Mode="In" />
+          <Parameter Name="TramiteId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspGetTramiteAjusteEnPasoUno" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Tramites">
+          <Parameter Name="tramiteId" Type="int" Mode="In" />
+          <Parameter Name="proyectoId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspGetValoresUtilizadosPorProducto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Tramites">
+          <Parameter Name="TramiteId" Type="int" Mode="In" />
+          <Parameter Name="ProyectoId" Type="int" Mode="In" />
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="uspPostActualizarLiberacionVFProducto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Tramites">
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostDatosIncorporacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Tramites">
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostEliminarAsociacionReprogramacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Tramites">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="AutorizacionVigenciasFuturasId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspPostEliminarDatosIncorporacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Tramites">
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostEliminarLiberacionVF" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Tramites">
+          <Parameter Name="TramiteId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspPostLiberacionVF" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Tramites">
+          <Parameter Name="TramiteProyectoId" Type="int" Mode="In" />
+          <Parameter Name="TramiteLiberarId" Type="int" Mode="In" />
+          <Parameter Name="CreadoPor" Type="varchar" Mode="In" />
+          <Parameter Name="VigenciaDesde" Type="datetime" Mode="In" />
+          <Parameter Name="VigenciaHasta" Type="datetime" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostProgramaciondistribucion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Tramites">
+          <Parameter Name="json" Type="varchar(max)" Mode="In" />
+          <Parameter Name="Usuario" Type="varchar(max)" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="varchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostReprogramacionPorProductoVigencia" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Tramites">
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostReprogramacionPorVigencia" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Tramites">
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostSetOrigenRecursos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Tramites">
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspGetCalendarioPeriodo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Transversal">
+          <Parameter Name="BPIN" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="UspGetErroresSeguimiento" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Transversal">
+          <Parameter Name="GuidMacroproceso" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="ProyectoId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspGetObtenerEntidadDestinoResponsableFlujoSgp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Transversal">
+          <Parameter Name="RolId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="CrTypeId" Type="int" Mode="In" />
+          <Parameter Name="EntidadResponsableId" Type="int" Mode="In" />
+          <Parameter Name="ProyectoId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspGetObtenerEntidadDestinoResponsableFlujoTramiteSgp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Transversal">
+          <Parameter Name="RolId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="EntidadResponsableId" Type="int" Mode="In" />
+          <Parameter Name="TramiteId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspGetPermisosAccionPaso_JSON" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Transversal">
+          <Parameter Name="IdInstancia" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="IdAcccion" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="ObjetoNegocioId" Type="varchar" Mode="In" />
+          <Parameter Name="UsuarioDNP" Type="varchar" Mode="In" />
+          <Parameter Name="ObjetoJson" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="uspGetProgramacionEntidadesSector" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Transversal">
+          <Parameter Name="sectorId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspGetProgramacionProyectosSinPresupuestal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Transversal">
+          <Parameter Name="sectorId" Type="int" Mode="In" />
+          <Parameter Name="entidadId" Type="int" Mode="In" />
+          <Parameter Name="proyectoId" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="uspGetProgramacionSectores" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Transversal">
+          <Parameter Name="sectorId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspGetSystemConfiguracion_JSON" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Transversal">
+          <Parameter Name="VariableKey" Type="nvarchar" Mode="In" />
+          <Parameter Name="Separador" Type="nvarchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="ModelOnlySPStoreContainer" />
+      </Schema></edmx:StorageModels>
+		<!-- CSDL content -->
+		<edmx:ConceptualModels>
+			<Schema Namespace="ModelOnlySP" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+				<EntityContainer Name="ModelOnlySPEntities" annotation:LazyLoadingEnabled="true" >
+					<FunctionImport Name="uspGetTramiteAjusteEnPasoUno" ReturnType="Collection(Int32)">
+            <Parameter Name="tramiteId" Mode="In" Type="Int32" />
+            <Parameter Name="proyectoId" Mode="In" Type="Int32" />
+          </FunctionImport>
+					<FunctionImport Name="uspGetValoresUtilizadosPorProducto" ReturnType="Collection(String)">
+            <Parameter Name="TramiteId" Mode="In" Type="Int32" />
+            <Parameter Name="ProyectoId" Mode="In" Type="Int32" />
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+          </FunctionImport>
+					<FunctionImport Name="uspGetPreguntasAvanceFinanciero" ReturnType="Collection(String)">
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="ProyectoId" Mode="In" Type="Int32" />
+            <Parameter Name="Bpin" Mode="In" Type="String" />
+            <Parameter Name="NivelId" Mode="In" Type="Guid" />
+          </FunctionImport>
+					<FunctionImport Name="uspPostPreguntasAvanceFinanciero">
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="usuario" Mode="In" Type="String" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+					<FunctionImport Name="uspGetAvanceFinanciero" ReturnType="Collection(String)">
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="ProyectoId" Mode="In" Type="Int32" />
+            <Parameter Name="Bpin" Mode="In" Type="String" />
+            <Parameter Name="VigenciaId" Mode="In" Type="Int32" />
+            <Parameter Name="PeriodoPeriodicidadId" Mode="In" Type="Int32" />
+          </FunctionImport>
+					<FunctionImport Name="uspPostAvanceFinanciero">
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+					<FunctionImport Name="UspGetProyectosASelecionar" ReturnType="Collection(String)">
+            <Parameter Name="flujoid" Mode="In" Type="Guid" />
+            <Parameter Name="Entidades" Mode="In" Type="String" />
+            <Parameter Name="tipoTramiteId" Mode="In" Type="Int32" />
+          </FunctionImport>
+					<FunctionImport Name="uspGetCalendarioPeriodo" ReturnType="Collection(ModelOnlySP.uspGetCalendarioPeriodo_Result)">
+          <Parameter Name="BPIN" Mode="In" Type="String" />
+          </FunctionImport>
+					<FunctionImport Name="uspGetProyectosCredito" ReturnType="Collection(ModelOnlySP.uspGetProyectosCredito_Result)">
+            <Parameter Name="tipoEntidad" Mode="In" Type="String" />
+            <Parameter Name="entidadId" Mode="In" Type="Int32" />
+            <Parameter Name="idFlujoParametro" Mode="In" Type="Guid" />
+            <Parameter Name="bpin" Mode="In" Type="String" />
+            <Parameter Name="nombreProyecto" Mode="In" Type="String" />
+          </FunctionImport>
+					<FunctionImport Name="uspGetProyectosContracredito" ReturnType="Collection(ModelOnlySP.uspGetProyectosContracredito_Result)">
+            <Parameter Name="tipoEntidad" Mode="In" Type="String" />
+            <Parameter Name="entidadId" Mode="In" Type="Int32" />
+            <Parameter Name="idFlujoParametro" Mode="In" Type="Guid" />
+            <Parameter Name="idEntidadFiltro" Mode="In" Type="Int32" />
+            <Parameter Name="bpin" Mode="In" Type="String" />
+            <Parameter Name="nombreProyecto" Mode="In" Type="String" />
+          </FunctionImport>
+					<FunctionImport Name="uspGetObtenerEntidadesTramite" ReturnType="Collection(ModelOnlySP.uspGetObtenerEntidadesTramite_Result)">
+          <Parameter Name="NumeroTramite" Mode="In" Type="String" />
+          </FunctionImport>
+					<FunctionImport Name="UspPostEditarActividadReporteSeguimientoPeriodosValores">
+            <Parameter Name="usuario" Mode="In" Type="String" />
+            <Parameter Name="proyectoId" Mode="In" Type="Int32" />
+            <Parameter Name="jsonActividades" Mode="In" Type="String" />
+            <Parameter Name="jsonCosto" Mode="In" Type="String" />
+            <Parameter Name="actividadId" Mode="In" Type="Int32" />
+            <Parameter Name="actividadSeguimientoId" Mode="In" Type="Int32" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+					<FunctionImport Name="uspGetAvanceMetaProducto_JSON" ReturnType="Collection(String)">
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="ProyectoId" Mode="In" Type="Int32" />
+            <Parameter Name="Bpin" Mode="In" Type="String" />
+            <Parameter Name="VigenciaId" Mode="In" Type="Int32" />
+            <Parameter Name="PeriodoPeriodicidadId" Mode="In" Type="Int32" />
+          </FunctionImport>
+					<FunctionImport Name="uspPostActualizarAvanceMetaProducto">
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+					<FunctionImport Name="uspPostActualizarLiberacionVFProducto" ReturnType="Collection(String)">
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+					<FunctionImport Name="uspPostEliminarLiberacionVF">
+          <Parameter Name="TramiteId" Mode="In" Type="Int32" />
+          </FunctionImport>
+					<FunctionImport Name="uspPostLiberacionVF" ReturnType="Collection(Int32)">
+            <Parameter Name="TramiteProyectoId" Mode="In" Type="Int32" />
+            <Parameter Name="TramiteLiberarId" Mode="In" Type="Int32" />
+            <Parameter Name="CreadoPor" Mode="In" Type="String" />
+            <Parameter Name="VigenciaDesde" Mode="In" Type="DateTime" />
+            <Parameter Name="VigenciaHasta" Mode="In" Type="DateTime" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+					<FunctionImport Name="UspGetObtenerUsuariosPorInstanciaPadre" ReturnType="Collection(ModelOnlySP.UspGetObtenerUsuariosPorInstanciaPadre_Result)">
+          <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+          </FunctionImport>
+					<FunctionImport Name="uspPostProgramarProductos">
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+					<FunctionImport Name="uspGetRegionalizacionProgramacionSeguimiento_JSON" ReturnType="Collection(String)">
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="ProyectoId" Mode="In" Type="Int32" />
+            <Parameter Name="Bpin" Mode="In" Type="String" />
+            <Parameter Name="VigenciaId" Mode="In" Type="Int32" />
+            <Parameter Name="PeriodoPeriodicidadId" Mode="In" Type="Int32" />
+          </FunctionImport>
+					<FunctionImport Name="uspPostRegionalizacionProgramacionSeguimiento">
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+					<FunctionImport Name="uspGetDatosIncorporacion" ReturnType="Collection(String)">
+          <Parameter Name="TramiteId" Mode="In" Type="Int32" />
+          </FunctionImport>
+					<FunctionImport Name="uspPostDatosIncorporacion">
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+					<FunctionImport Name="uspPostEliminarDatosIncorporacion">
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+					<FunctionImport Name="uspGetPresupuestalProyectosAsociados" ReturnType="Collection(String)">
+            <Parameter Name="TramiteId" Mode="In" Type="Int32" />
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+          </FunctionImport>
+					<FunctionImport Name="UspGetErroresSeguimiento" ReturnType="Collection(ModelOnlySP.UspGetErroresSeguimiento_Result)">
+            <Parameter Name="GuidMacroproceso" Mode="In" Type="Guid" />
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="ProyectoId" Mode="In" Type="Int32" />
+          </FunctionImport>
+					<FunctionImport Name="uspGetPermisosAccionPaso_JSON" ReturnType="Collection(String)">
+            <Parameter Name="IdInstancia" Mode="In" Type="Guid" />
+            <Parameter Name="IdAcccion" Mode="In" Type="Guid" />
+            <Parameter Name="ObjetoNegocioId" Mode="In" Type="String" />
+            <Parameter Name="UsuarioDNP" Mode="In" Type="String" />
+            <Parameter Name="ObjetoJson" Mode="In" Type="String" />
+          </FunctionImport>
+					<FunctionImport Name="uspGetResumenRegionalizacionSeguimiento_JSON" ReturnType="Collection(String)">
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="ProyectoId" Mode="In" Type="Int32" />
+            <Parameter Name="Bpin" Mode="In" Type="String" />
+          </FunctionImport>
+					<FunctionImport Name="uspGetOrigenRecursos" ReturnType="Collection(String)">
+          <Parameter Name="IdTramite" Mode="In" Type="Int32" />
+          </FunctionImport>
+					<FunctionImport Name="uspGetIndicadoresPoliticas_JSON" ReturnType="Collection(String)">
+          <Parameter Name="BPIN" Mode="In" Type="String" />
+          </FunctionImport>
+					<FunctionImport Name="uspPostSetOrigenRecursos" ReturnType="Collection(String)">
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+		  <FunctionImport Name="UspPostEditarIndicadorPoliticasSeguimientoPeriodosValores">
+            <Parameter Name="usuario" Mode="In" Type="String" />
+            <Parameter Name="proyectoId" Mode="In" Type="Int32" />
+            <Parameter Name="politicaId" Mode="In" Type="Int32" />
+            <Parameter Name="fuenteId" Mode="In" Type="Int32" />
+            <Parameter Name="dimensionId" Mode="In" Type="Int32" />
+            <Parameter Name="localizacionId" Mode="In" Type="Int32" />
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+					<FunctionImport Name="uspGetSystemConfiguracion_JSON" ReturnType="Collection(String)">
+            <Parameter Name="VariableKey" Mode="In" Type="String" />
+            <Parameter Name="Separador" Mode="In" Type="String" />
+          </FunctionImport>
+					<FunctionImport Name="uspGetPresupuestalProyectosAsociados_Adicion" ReturnType="Collection(String)">
+            <Parameter Name="TramiteId" Mode="In" Type="Int32" />
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+          </FunctionImport>
+					<FunctionImport Name="uspGetFocalizacionProgramacionSeguimiento_JSON" ReturnType="Collection(String)">
+          <Parameter Name="Json" Mode="In" Type="String" />
+          </FunctionImport>
+					<FunctionImport Name="uspPostProductoCategoriaSeguimiento">
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+					<FunctionImport Name="uspGetCrucePoliticasSeguimiento_JSON" ReturnType="Collection(String)">
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="ProyectoId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostCrucePoliticasSeguimiento">
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetResumenReprogramacionPorProductoVigencia_JSON" ReturnType="Collection(String)">
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="ProyectoId" Mode="In" Type="Int32" />
+            <Parameter Name="TramiteId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetResumenReprogramacionPorVigencia_JSON" ReturnType="Collection(String)">
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="ProyectoId" Mode="In" Type="Int32" />
+            <Parameter Name="TramiteId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetObtenerModalidadContratacionVigenciasFuturas" ReturnType="Collection(Int32)">
+            <Parameter Name="ProyectoId" Mode="In" Type="Int32" />
+            <Parameter Name="TramiteId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostReprogramacionPorProductoVigencia">
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostReprogramacionPorVigencia">
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetObtenerAutorizacionAsociada" ReturnType="Collection(ModelOnlySP.uspGetObtenerAutorizacionAsociada_Result)">
+          <Parameter Name="tramiteId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetObtenerAutorizacionesParaReprogramacion" ReturnType="Collection(ModelOnlySP.uspGetObtenerAutorizacionesParaReprogramacion_Result)">
+            <Parameter Name="codbpin" Mode="In" Type="String" />
+            <Parameter Name="tramiteId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostEliminarAsociacionReprogramacion">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="AutorizacionVigenciasFuturasId" Mode="In" Type="Int32" />
+          </FunctionImport>
+		  <FunctionImport Name="UspGetValidarCalendario">
+            <Parameter Name="EntityTypeCatalogOptionId" Mode="In" Type="Int32" />
+            <Parameter Name="NivelId" Mode="In" Type="Guid" />
+            <Parameter Name="SeccionCapituloId" Mode="In" Type="Int32" />
+            <Parameter Name="Result" Mode="InOut" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetProgramacionProyectosSinPresupuestal" ReturnType="Collection(String)">
+            <Parameter Name="sectorId" Mode="In" Type="Int32" />
+            <Parameter Name="entidadId" Mode="In" Type="Int32" />
+            <Parameter Name="proyectoId" Mode="In" Type="String" />
+          </FunctionImport>
+		  <FunctionImport Name="UspGetCargaMasivaCuotas" ReturnType="Collection(String)">
+            <Parameter Name="Vigencia" Mode="In" Type="Int32" />
+            <Parameter Name="EntityTypeCatalogOptionId" Mode="In" Type="Int32" />
+          </FunctionImport>
+		  <FunctionImport Name="uspGetProgramacionSectores" ReturnType="Collection(String)">
+          <Parameter Name="sectorId" Mode="In" Type="Int32" />
+          </FunctionImport>
+		  <FunctionImport Name="uspGetProgramacionEntidadesSector" ReturnType="Collection(String)">
+          <Parameter Name="sectorId" Mode="In" Type="Int32" />
+          </FunctionImport>
+		  <FunctionImport Name="UspGetCalendarioProgramacion" ReturnType="Collection(String)">
+          <Parameter Name="FlujoId" Mode="In" Type="Guid" />
+          </FunctionImport>
+		  <FunctionImport Name="UspPostCargaMasivaCreditos">
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="usuario" Mode="In" Type="String" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+		  <FunctionImport Name="UspGetCargaMasivaCreditos" ReturnType="Collection(String)" />
+          <FunctionImport Name="UspGetDetalleDesagregarRegionalizacion_Ajustes_JSON" ReturnType="Collection(String)">
+          <Parameter Name="json" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostProgramaciondistribucion">
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetDetalleFocalizacionProgramacionSeguimiento_JSON" ReturnType="Collection(String)">
+          <Parameter Name="json" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="upsGetJustificacionProyectosBeneficiarios_JSON" ReturnType="Collection(String)">
+          <Parameter Name="BPIN" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetProyectosTramiteNegocio" ReturnType="Collection(ModelOnlySP.uspGetProyectosTramiteNegocio_Result)">
+          <Parameter Name="tramiteId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetObtenerEntidadDestinoResponsableFlujoSgp" ReturnType="Collection(ModelOnlySP.uspGetObtenerEntidadDestinoResponsableFlujoSgp_Result)">
+            <Parameter Name="RolId" Mode="In" Type="Guid" />
+            <Parameter Name="CrTypeId" Mode="In" Type="Int32" />
+            <Parameter Name="EntidadResponsableId" Mode="In" Type="Int32" />
+            <Parameter Name="ProyectoId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetObtenerEntidadDestinoResponsableFlujoTramiteSgp" ReturnType="Collection(ModelOnlySP.uspGetObtenerEntidadDestinoResponsableFlujoTramiteSgp_Result)">
+            <Parameter Name="RolId" Mode="In" Type="Guid" />
+            <Parameter Name="EntidadResponsableId" Mode="In" Type="Int32" />
+            <Parameter Name="TramiteId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          </EntityContainer>
+				<ComplexType Name="uspGetCalendarioPeriodo_Result">
+					<Property Type="Int32" Name="CalendarioPeriodoId" Nullable="false" />
+					<Property Type="Int32" Name="FaseId" Nullable="true" />
+					<Property Type="Int32" Name="Vigencia" Nullable="true" />
+					<Property Type="Int32" Name="PeriodosPeriodicidadId" Nullable="true" />
+					<Property Type="DateTime" Name="FechaDesde" Nullable="false" Precision="23" />
+					<Property Type="DateTime" Name="FechaHasta" Nullable="false" Precision="23" />
+					<Property Type="String" Name="Mes" Nullable="true" MaxLength="20" />
+				</ComplexType>
+				<ComplexType Name="uspGetProyectosCredito_Result">
+					<Property Type="String" Name="sector" Nullable="false" MaxLength="200" />
+					<Property Type="String" Name="nombreEntidad" Nullable="false" MaxLength="250" />
+					<Property Type="String" Name="BPIN" Nullable="true" MaxLength="100" />
+					<Property Type="String" Name="nombreProyecto" Nullable="true" MaxLength="1566" />
+					<Property Type="Int32" Name="idProyecto" Nullable="false" />
+					<Property Type="Int32" Name="idEntidad" Nullable="false" />
+					<Property Type="String" Name="programa" Nullable="true" MaxLength="20" />
+					<Property Type="String" Name="subprograma" Nullable="true" MaxLength="20" />
+				</ComplexType>
+				<ComplexType Name="uspGetProyectosContracredito_Result">
+					<Property Type="String" Name="sector" Nullable="true" MaxLength="300" />
+					<Property Type="String" Name="nombreEntidad" Nullable="true" MaxLength="500" />
+					<Property Type="String" Name="BPIN" Nullable="true" MaxLength="50" />
+					<Property Type="String" Name="nombreProyecto" Nullable="true" MaxLength="2000" />
+					<Property Type="Int32" Name="idProyecto" Nullable="true" />
+					<Property Type="Int32" Name="idEntidad" Nullable="true" />
+					<Property Type="String" Name="programa" Nullable="true" MaxLength="20" />
+					<Property Type="String" Name="subprograma" Nullable="true" MaxLength="20" />
+					<Property Type="String" Name="MarcaTraslado" Nullable="true" MaxLength="10" />
+				</ComplexType>
+				<ComplexType Name="uspGetObtenerEntidadesTramite_Result">
+					<Property Type="Int32" Name="Id" Nullable="false" />
+					<Property Type="String" Name="NombreEntidad" Nullable="true" MaxLength="250" />
+					<Property Type="Boolean" Name="CabezaSector" Nullable="false" />
+				</ComplexType>
+				<ComplexType Name="UspGetObtenerUsuariosPorInstanciaPadre_Result" >
+					<Property Type="String" Name="IdUsuarioDNP" Nullable="false" />
+					<Property Type="String" Name="NombreUsuario" Nullable="false" />
+					<Property Type="String" Name="Correo" Nullable="false" />
+				</ComplexType>
+				<ComplexType Name="UspGetErroresSeguimiento_Result">
+					<Property Type="String" Name="seccion" Nullable="true" MaxLength="50" />
+					<Property Type="String" Name="capitulo" Nullable="true" MaxLength="200" />
+					<Property Type="String" Name="Errores" Nullable="true" />
+				</ComplexType>
+        <ComplexType Name="uspGetObtenerAutorizacionAsociada_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="NumeroTramite" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="CodigoAutorizacion" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Descripcion" Nullable="true" />
+          <Property Type="Int32" Name="TramiteLiberarId" Nullable="false" />
+          <Property Type="DateTime" Name="FechaAutorizacion" Nullable="false" />
+          <Property Type="Int32" Name="ReprogramacionId" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="uspGetObtenerAutorizacionesParaReprogramacion_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="NumeroTramite" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="CodigoAutorizacion" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Descripcion" Nullable="true" />
+          <Property Type="Int32" Name="TramiteLiberarId" Nullable="false" />
+          <Property Type="DateTime" Name="FechaAutorizacion" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="uspGetProyectosTramiteNegocio_Result">
+          <Property Type="String" Name="Sector" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="NombreEntidad" Nullable="false" MaxLength="250" />
+          <Property Type="String" Name="BPIN" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="NombreProyecto" Nullable="false" MaxLength="1500" />
+          <Property Type="Int32" Name="ProyectoId" Nullable="false" />
+          <Property Type="String" Name="Programa" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="SubPrograma" Nullable="false" MaxLength="20" />
+          <Property Type="Int32" Name="EntidadId" Nullable="false" />
+          <Property Type="String" Name="CodigoPresupuestal" Nullable="true" MaxLength="40" />
+          <Property Type="String" Name="TipoProyecto" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Estado" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="EstadoActualizacion" Nullable="false" MaxLength="500" />
+          <Property Type="Int32" Name="TramiteId" Nullable="true" />
+          <Property Type="Decimal" Name="ValorMontoProyectoNacion" Nullable="false" Precision="24" Scale="2" />
+          <Property Type="Decimal" Name="ValorMontoProyectoPropios" Nullable="false" Precision="24" Scale="2" />
+          <Property Type="Decimal" Name="ValorMontoTramiteNacion" Nullable="false" Precision="24" Scale="2" />
+          <Property Type="Decimal" Name="ValorMontoTramitePropios" Nullable="false" Precision="24" Scale="2" />
+          <Property Type="Decimal" Name="ValorMontoTramiteNacionSSF" Nullable="false" Precision="24" Scale="2" />
+        </ComplexType>
+        <ComplexType Name="uspGetObtenerEntidadDestinoResponsableFlujoSgp_Result">
+          <Property Type="Int32" Name="EntidadDestinoAccionId" Nullable="true" />
+          <Property Type="String" Name="Dependencia" Nullable="false" MaxLength="250" />
+        </ComplexType>
+        <ComplexType Name="uspGetObtenerEntidadDestinoResponsableFlujoTramiteSgp_Result">
+          <Property Type="Int32" Name="EntidadDestinoAccionId" Nullable="true" />
+          <Property Type="String" Name="Dependencia" Nullable="false" MaxLength="250" />
+        </ComplexType>
+			</Schema>
+		</edmx:ConceptualModels>
+		<!-- C-S mapping content -->
+		<edmx:Mappings>
+			<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+				<EntityContainerMapping StorageEntityContainer="ModelOnlySPStoreContainer" CdmEntityContainer="ModelOnlySPEntities" >
+					<FunctionImportMapping FunctionImportName="uspGetTramiteAjusteEnPasoUno" FunctionName="ModelOnlySP.Store.uspGetTramiteAjusteEnPasoUno" />
+					<FunctionImportMapping FunctionImportName="uspGetValoresUtilizadosPorProducto" FunctionName="ModelOnlySP.Store.uspGetValoresUtilizadosPorProducto" />
+
+					<FunctionImportMapping FunctionImportName="uspGetPreguntasAvanceFinanciero" FunctionName="ModelOnlySP.Store.uspGetPreguntasAvanceFinanciero" />
+					<FunctionImportMapping FunctionImportName="uspPostPreguntasAvanceFinanciero" FunctionName="ModelOnlySP.Store.uspPostPreguntasAvanceFinanciero" />
+					<FunctionImportMapping FunctionImportName="uspGetAvanceFinanciero" FunctionName="ModelOnlySP.Store.uspGetAvanceFinanciero" />
+					<FunctionImportMapping FunctionImportName="uspPostAvanceFinanciero" FunctionName="ModelOnlySP.Store.uspPostAvanceFinanciero" />
+					<FunctionImportMapping FunctionImportName="UspGetProyectosASelecionar" FunctionName="ModelOnlySP.Store.UspGetProyectosASelecionar" />
+					<FunctionImportMapping FunctionImportName="uspGetCalendarioPeriodo" FunctionName="ModelOnlySP.Store.uspGetCalendarioPeriodo">
+						<ResultMapping>
+							<ComplexTypeMapping TypeName="ModelOnlySP.uspGetCalendarioPeriodo_Result">
+								<ScalarProperty Name="CalendarioPeriodoId" ColumnName="CalendarioPeriodoId" />
+								<ScalarProperty Name="FaseId" ColumnName="FaseId" />
+								<ScalarProperty Name="Vigencia" ColumnName="Vigencia" />
+								<ScalarProperty Name="PeriodosPeriodicidadId" ColumnName="PeriodosPeriodicidadId" />
+								<ScalarProperty Name="FechaDesde" ColumnName="FechaDesde" />
+								<ScalarProperty Name="FechaHasta" ColumnName="FechaHasta" />
+								<ScalarProperty Name="Mes" ColumnName="Mes" />
+							</ComplexTypeMapping>
+						</ResultMapping>
+					</FunctionImportMapping>
+					<FunctionImportMapping FunctionImportName="uspGetProyectosCredito" FunctionName="ModelOnlySP.Store.uspGetProyectosCredito">
+						<ResultMapping>
+							<ComplexTypeMapping TypeName="ModelOnlySP.uspGetProyectosCredito_Result">
+								<ScalarProperty Name="sector" ColumnName="sector" />
+								<ScalarProperty Name="nombreEntidad" ColumnName="nombreEntidad" />
+								<ScalarProperty Name="BPIN" ColumnName="BPIN" />
+								<ScalarProperty Name="nombreProyecto" ColumnName="nombreProyecto" />
+								<ScalarProperty Name="idProyecto" ColumnName="idProyecto" />
+								<ScalarProperty Name="idEntidad" ColumnName="idEntidad" />
+								<ScalarProperty Name="programa" ColumnName="programa" />
+								<ScalarProperty Name="subprograma" ColumnName="subprograma" />
+							</ComplexTypeMapping>
+						</ResultMapping>
+					</FunctionImportMapping>
+					<FunctionImportMapping FunctionImportName="uspGetProyectosContracredito" FunctionName="ModelOnlySP.Store.uspGetProyectosContracredito">
+						<ResultMapping>
+							<ComplexTypeMapping TypeName="ModelOnlySP.uspGetProyectosContracredito_Result">
+								<ScalarProperty Name="sector" ColumnName="sector" />
+								<ScalarProperty Name="nombreEntidad" ColumnName="nombreEntidad" />
+								<ScalarProperty Name="BPIN" ColumnName="BPIN" />
+								<ScalarProperty Name="nombreProyecto" ColumnName="nombreProyecto" />
+								<ScalarProperty Name="idProyecto" ColumnName="idProyecto" />
+								<ScalarProperty Name="idEntidad" ColumnName="idEntidad" />
+								<ScalarProperty Name="programa" ColumnName="programa" />
+								<ScalarProperty Name="subprograma" ColumnName="subprograma" />
+								<ScalarProperty Name="MarcaTraslado" ColumnName="MarcaTraslado" />
+							</ComplexTypeMapping>
+						</ResultMapping>
+					</FunctionImportMapping>
+					<FunctionImportMapping FunctionImportName="uspGetObtenerEntidadesTramite" FunctionName="ModelOnlySP.Store.uspGetObtenerEntidadesTramite">
+						<ResultMapping>
+							<ComplexTypeMapping TypeName="ModelOnlySP.uspGetObtenerEntidadesTramite_Result">
+								<ScalarProperty Name="Id" ColumnName="Id" />
+								<ScalarProperty Name="NombreEntidad" ColumnName="NombreEntidad" />
+								<ScalarProperty Name="CabezaSector" ColumnName="CabezaSector" />
+							</ComplexTypeMapping>
+						</ResultMapping>
+					</FunctionImportMapping>
+					<FunctionImportMapping FunctionImportName="UspPostEditarActividadReporteSeguimientoPeriodosValores" FunctionName="ModelOnlySP.Store.UspPostEditarActividadReporteSeguimientoPeriodosValores">
+					</FunctionImportMapping>
+					<FunctionImportMapping FunctionImportName="UspGetObtenerUsuariosPorInstanciaPadre" FunctionName="ModelOnlySP.Store.UspGetObtenerUsuariosPorInstanciaPadre" >
+						<ResultMapping>
+							<ComplexTypeMapping TypeName="ModelOnlySP.UspGetObtenerUsuariosPorInstanciaPadre_Result">
+								<ScalarProperty Name="IdUsuarioDNP" ColumnName="IdUsuarioDNP" />
+								<ScalarProperty Name="NombreUsuario" ColumnName="NombreUsuario" />
+								<ScalarProperty Name="Correo" ColumnName="Correo" />
+							</ComplexTypeMapping>
+						</ResultMapping>
+					</FunctionImportMapping>
+					<FunctionImportMapping FunctionImportName="uspGetAvanceMetaProducto_JSON" FunctionName="ModelOnlySP.Store.uspGetAvanceMetaProducto_JSON" />
+					<FunctionImportMapping FunctionImportName="uspPostActualizarAvanceMetaProducto" FunctionName="ModelOnlySP.Store.uspPostActualizarAvanceMetaProducto" />
+					<FunctionImportMapping FunctionImportName="uspPostActualizarLiberacionVFProducto" FunctionName="ModelOnlySP.Store.uspPostActualizarLiberacionVFProducto" />
+					<FunctionImportMapping FunctionImportName="uspPostEliminarLiberacionVF" FunctionName="ModelOnlySP.Store.uspPostEliminarLiberacionVF" />
+					<FunctionImportMapping FunctionImportName="uspPostLiberacionVF" FunctionName="ModelOnlySP.Store.uspPostLiberacionVF" />
+					<FunctionImportMapping FunctionImportName="uspPostProgramarProductos" FunctionName="ModelOnlySP.Store.uspPostProgramarProductos" />
+					<FunctionImportMapping FunctionImportName="uspGetRegionalizacionProgramacionSeguimiento_JSON" FunctionName="ModelOnlySP.Store.uspGetRegionalizacionProgramacionSeguimiento_JSON" />
+					<FunctionImportMapping FunctionImportName="uspPostRegionalizacionProgramacionSeguimiento" FunctionName="ModelOnlySP.Store.uspPostRegionalizacionProgramacionSeguimiento" />
+					<FunctionImportMapping FunctionImportName="uspGetDatosIncorporacion" FunctionName="ModelOnlySP.Store.uspGetDatosIncorporacion" />
+					<FunctionImportMapping FunctionImportName="uspPostDatosIncorporacion" FunctionName="ModelOnlySP.Store.uspPostDatosIncorporacion" />
+					<FunctionImportMapping FunctionImportName="uspPostEliminarDatosIncorporacion" FunctionName="ModelOnlySP.Store.uspPostEliminarDatosIncorporacion" />
+					<FunctionImportMapping FunctionImportName="uspGetFocalizacionProgramacionSeguimiento_JSON" FunctionName="ModelOnlySP.Store.uspGetFocalizacionProgramacionSeguimiento_JSON" />
+					<FunctionImportMapping FunctionImportName="uspPostProductoCategoriaSeguimiento" FunctionName="ModelOnlySP.Store.uspPostProductoCategoriaSeguimiento" />
+					<FunctionImportMapping FunctionImportName="uspGetPresupuestalProyectosAsociados" FunctionName="ModelOnlySP.Store.uspGetPresupuestalProyectosAsociados" />
+					<FunctionImportMapping FunctionImportName="uspGetCrucePoliticasSeguimiento_JSON" FunctionName="ModelOnlySP.Store.uspGetCrucePoliticasSeguimiento_JSON" />
+					<FunctionImportMapping FunctionImportName="UspGetErroresSeguimiento" FunctionName="ModelOnlySP.Store.UspGetErroresSeguimiento">
+						<ResultMapping>
+							<ComplexTypeMapping TypeName="ModelOnlySP.UspGetErroresSeguimiento_Result">
+								<ScalarProperty Name="seccion" ColumnName="seccion" />
+								<ScalarProperty Name="capitulo" ColumnName="capitulo" />
+								<ScalarProperty Name="Errores" ColumnName="Errores" />
+							</ComplexTypeMapping>
+						</ResultMapping>
+					</FunctionImportMapping>
+					<FunctionImportMapping FunctionImportName="uspGetPermisosAccionPaso_JSON" FunctionName="ModelOnlySP.Store.uspGetPermisosAccionPaso_JSON" />
+					<FunctionImportMapping FunctionImportName="uspGetResumenRegionalizacionSeguimiento_JSON" FunctionName="ModelOnlySP.Store.uspGetResumenRegionalizacionSeguimiento_JSON" />
+					<FunctionImportMapping FunctionImportName="uspGetOrigenRecursos" FunctionName="ModelOnlySP.Store.uspGetOrigenRecursos" />
+					<FunctionImportMapping FunctionImportName="uspGetIndicadoresPoliticas_JSON" FunctionName="ModelOnlySP.Store.uspGetIndicadoresPoliticas_JSON" />
+					<FunctionImportMapping FunctionImportName="UspPostEditarIndicadorPoliticasSeguimientoPeriodosValores" FunctionName="ModelOnlySP.Store.UspPostEditarIndicadorPoliticasSeguimientoPeriodosValores" />
+					<FunctionImportMapping FunctionImportName="uspPostSetOrigenRecursos" FunctionName="ModelOnlySP.Store.uspPostSetOrigenRecursos" />
+					<FunctionImportMapping FunctionImportName="uspGetSystemConfiguracion_JSON" FunctionName="ModelOnlySP.Store.uspGetSystemConfiguracion_JSON" />
+					<FunctionImportMapping FunctionImportName="uspGetPresupuestalProyectosAsociados_Adicion" FunctionName="ModelOnlySP.Store.uspGetPresupuestalProyectosAsociados_Adicion" />
+                    <FunctionImportMapping FunctionImportName="uspGetResumenReprogramacionPorVigencia_JSON" FunctionName="ModelOnlySP.Store.uspGetResumenReprogramacionPorVigencia_JSON" />
+          <FunctionImportMapping FunctionImportName="uspPostReprogramacionPorProductoVigencia" FunctionName="ModelOnlySP.Store.uspPostReprogramacionPorProductoVigencia" />
+          <FunctionImportMapping FunctionImportName="uspPostReprogramacionPorVigencia" FunctionName="ModelOnlySP.Store.uspPostReprogramacionPorVigencia" />
+		  <FunctionImportMapping FunctionImportName="UspGetValidarCalendario" FunctionName="ModelOnlySP.Store.UspGetValidarCalendario" />
+		  <FunctionImportMapping FunctionImportName="UspGetCargaMasivaCreditos" FunctionName="ModelOnlySP.Store.UspGetCargaMasivaCreditos" />
+		  <FunctionImportMapping FunctionImportName="uspGetProgramacionProyectosSinPresupuestal" FunctionName="ModelOnlySP.Store.uspGetProgramacionProyectosSinPresupuestal" />
+		  <FunctionImportMapping FunctionImportName="UspGetCargaMasivaCuotas" FunctionName="ModelOnlySP.Store.UspGetCargaMasivaCuotas" />
+		  <FunctionImportMapping FunctionImportName="uspGetProgramacionSectores" FunctionName="ModelOnlySP.Store.uspGetProgramacionSectores" />
+		  <FunctionImportMapping FunctionImportName="uspGetProgramacionEntidadesSector" FunctionName="ModelOnlySP.Store.uspGetProgramacionEntidadesSector" />
+		  <FunctionImportMapping FunctionImportName="UspGetCalendarioProgramacion" FunctionName="ModelOnlySP.Store.UspGetCalendarioProgramacion" />
+		  <FunctionImportMapping FunctionImportName="UspPostCargaMasivaCreditos" FunctionName="ModelOnlySP.Store.UspPostCargaMasivaCreditos" />
+          <FunctionImportMapping FunctionImportName="uspGetObtenerAutorizacionAsociada" FunctionName="ModelOnlySP.Store.uspGetObtenerAutorizacionAsociada">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ModelOnlySP.uspGetObtenerAutorizacionAsociada_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="NumeroTramite" ColumnName="NumeroTramite" />
+                <ScalarProperty Name="CodigoAutorizacion" ColumnName="CodigoAutorizacion" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="TramiteLiberarId" ColumnName="TramiteLiberarId" />
+                <ScalarProperty Name="FechaAutorizacion" ColumnName="FechaAutorizacion" />
+                <ScalarProperty Name="ReprogramacionId" ColumnName="ReprogramacionId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="uspGetObtenerAutorizacionesParaReprogramacion" FunctionName="ModelOnlySP.Store.uspGetObtenerAutorizacionesParaReprogramacion">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ModelOnlySP.uspGetObtenerAutorizacionesParaReprogramacion_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="NumeroTramite" ColumnName="NumeroTramite" />
+                <ScalarProperty Name="CodigoAutorizacion" ColumnName="CodigoAutorizacion" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="TramiteLiberarId" ColumnName="TramiteLiberarId" />
+                <ScalarProperty Name="FechaAutorizacion" ColumnName="FechaAutorizacion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="uspPostEliminarAsociacionReprogramacion" FunctionName="ModelOnlySP.Store.uspPostEliminarAsociacionReprogramacion" />
+          <FunctionImportMapping FunctionImportName="uspPostProgramaciondistribucion" FunctionName="ModelOnlySP.Store.uspPostProgramaciondistribucion" />
+          <FunctionImportMapping FunctionImportName="uspGetDetalleFocalizacionProgramacionSeguimiento_JSON" FunctionName="ModelOnlySP.Store.uspGetDetalleFocalizacionProgramacionSeguimiento_JSON" />
+          <FunctionImportMapping FunctionImportName="upsGetJustificacionProyectosBeneficiarios_JSON" FunctionName="ModelOnlySP.Store.upsGetJustificacionProyectosBeneficiarios_JSON" />
+          <FunctionImportMapping FunctionImportName="uspGetProyectosTramiteNegocio" FunctionName="ModelOnlySP.Store.uspGetProyectosTramiteNegocio">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ModelOnlySP.uspGetProyectosTramiteNegocio_Result">
+                <ScalarProperty Name="Sector" ColumnName="Sector" />
+                <ScalarProperty Name="NombreEntidad" ColumnName="NombreEntidad" />
+                <ScalarProperty Name="BPIN" ColumnName="BPIN" />
+                <ScalarProperty Name="NombreProyecto" ColumnName="NombreProyecto" />
+                <ScalarProperty Name="ProyectoId" ColumnName="ProyectoId" />
+                <ScalarProperty Name="Programa" ColumnName="Programa" />
+                <ScalarProperty Name="SubPrograma" ColumnName="SubPrograma" />
+                <ScalarProperty Name="EntidadId" ColumnName="EntidadId" />
+                <ScalarProperty Name="CodigoPresupuestal" ColumnName="CodigoPresupuestal" />
+                <ScalarProperty Name="TipoProyecto" ColumnName="TipoProyecto" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="EstadoActualizacion" ColumnName="EstadoActualizacion" />
+                <ScalarProperty Name="TramiteId" ColumnName="TramiteId" />
+                <ScalarProperty Name="ValorMontoProyectoNacion" ColumnName="ValorMontoProyectoNacion" />
+                <ScalarProperty Name="ValorMontoProyectoPropios" ColumnName="ValorMontoProyectoPropios" />
+                <ScalarProperty Name="ValorMontoTramiteNacion" ColumnName="ValorMontoTramiteNacion" />
+                <ScalarProperty Name="ValorMontoTramitePropios" ColumnName="ValorMontoTramitePropios" />
+                <ScalarProperty Name="ValorMontoTramiteNacionSSF" ColumnName="ValorMontoTramiteNacionSSF" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="uspGetObtenerEntidadDestinoResponsableFlujoSgp" FunctionName="ModelOnlySP.Store.uspGetObtenerEntidadDestinoResponsableFlujoSgp">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ModelOnlySP.uspGetObtenerEntidadDestinoResponsableFlujoSgp_Result">
+                <ScalarProperty Name="EntidadDestinoAccionId" ColumnName="EntidadDestinoAccionId" />
+                <ScalarProperty Name="Dependencia" ColumnName="Dependencia" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="uspGetObtenerEntidadDestinoResponsableFlujoTramiteSgp" FunctionName="ModelOnlySP.Store.uspGetObtenerEntidadDestinoResponsableFlujoTramiteSgp">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ModelOnlySP.uspGetObtenerEntidadDestinoResponsableFlujoTramiteSgp_Result">
+                <ScalarProperty Name="EntidadDestinoAccionId" ColumnName="EntidadDestinoAccionId" />
+                <ScalarProperty Name="Dependencia" ColumnName="Dependencia" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+				</EntityContainerMapping>
+			</Mapping>
+		</edmx:Mappings>
+	</edmx:Runtime>
+	<!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+	<Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+		<Connection>
+			<DesignerInfoPropertySet>
+				<DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+			</DesignerInfoPropertySet>
+		</Connection>
+		<Options>
+			<DesignerInfoPropertySet>
+				<DesignerProperty Name="ValidateOnBuild" Value="true" />
+				<DesignerProperty Name="EnablePluralization" Value="false" />
+				<DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
+				<DesignerProperty Name="UseLegacyProvider" Value="false" />
+				<DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+			</DesignerInfoPropertySet>
+		</Options>
+		<!-- Diagram content (shape and connector positions) -->
+		<Diagrams></Diagrams>
+	</Designer>
+</edmx:Edmx>

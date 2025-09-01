@@ -1,0 +1,54 @@
+﻿<section ng-init="vm.obtener();">
+	<div class="row FilaEstadoNocumpleDNP">
+		<div class="col-md-12" style="text-align:right">
+			<span class="spanbuttonenabled">Enviar a {{vm.Fase}}</span>
+			<button has-claim has-opciones="['viabilidad:preguntasTecnicoEnviarLider']"
+					class="btnaccion"
+					tooltip-class="customClass"
+					uib-tooltip="Enviar"
+					ng-click="vm.enviarLider()"
+					ng-disabled="!vm.cumple">
+				<span> <img class="icoVolverDNP" src="Img/icodivUp.svg" style="width:20px; height:20px;"></span>
+			</button>
+		</div>
+	</div>
+	<br>		
+	<div class="container-fluid inbox">
+		<div class="tab-content">
+			<div class="ui-accordion-container">
+				<div class="alert panel-heading row ui-accordion-header">
+					<button type="button" data-toggle="collapse" data-target="#viabilidadtecnicogenerales" ng-click="vm.changeArrow('viabilidadtecnicogenerales')">
+						<span class="d-inline-block" id="alert-viabilidadtecnicogenerales"></span>
+						<span id="name-capitulo-viabilidadtecnicogenerales"></span>
+						<span class="hidden" id="id-capitulo-viabilidadtecnicogenerales"></span>
+						<span id="arrow-viabilidadtecnicogenerales" class="glyphicon glyphicon-chevron-up pull-right" data-toggle="collapse" data-target="#viabilidadtecnicogenerales"></span>
+					</button>
+				</div>
+				<div class="collapse" id="viabilidadtecnicogenerales">
+					<tecnico-generales guardadoevent="vm.guardado(nombreComponenteHijo)"
+									   notificacioncambios="vm.notificacionCambiosCapitulosExternos(handler, nombreComponente)"
+									   notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+									   notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)">
+					</tecnico-generales>
+				</div>
+			</div>
+			<div class="ui-accordion-container">
+				<div class="alert panel-heading row ui-accordion-header">
+					<button type="button" data-toggle="collapse" data-target="#viabilidadtecnicoespecificas" ng-click="vm.changeArrow('viabilidadtecnicoespecificas')">
+						<span class="d-inline-block" id="alert-viabilidadtecnicoespecificas"></span>
+						<span id="name-capitulo-viabilidadtecnicoespecificas"></span>
+						<span class="hidden" id="id-capitulo-viabilidadtecnicoespecificas"></span>
+						<span id="arrow-viabilidadtecnicoespecificas" class="glyphicon glyphicon-chevron-up pull-right" data-toggle="collapse" data-target="#viabilidadtecnicoespecificas"></span>
+					</button>
+				</div>
+				<div class="collapse" id="viabilidadtecnicoespecificas">
+					<tecnico-especificas guardadoevent="vm.guardado(nombreComponenteHijo)"
+										 notificacioncambios="vm.notificacionCambiosCapitulosExternos(handler, nombreComponente)"
+											notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+											notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)">
+					</tecnico-especificas>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

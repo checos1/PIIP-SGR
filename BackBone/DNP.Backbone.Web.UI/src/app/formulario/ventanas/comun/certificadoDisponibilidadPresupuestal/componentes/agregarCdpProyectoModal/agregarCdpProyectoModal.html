@@ -1,0 +1,114 @@
+﻿<style>
+    .agregar-cdp-modal {
+        overflow-x: hidden;
+    }
+
+        .agregar-cdp-modal .list-group-item {
+            border: none !important;
+            min-height: 60px !important;
+        }
+
+        .agregar-cdp-modal .cdp-date {
+            line-height: 1.42857143 !important;
+        }
+
+        .agregar-cdp-modal .list-group-item {
+            height: 90px!important;
+        }
+</style>
+
+
+<div class="modal-header" ng-init="vm.init()">
+    <button type='button' class='swal2-close closemodalDNP' aria-label='Close this dialog' data-dismiss="modal" ng-click="vm.cerrar()">×</button>
+    <h3 class="modal-title TituloModal1DNP" id="modal-title">Agregar CDP</h3>
+    <h4 class="TituloModal2DNP">Carga individual</h4>
+</div>
+
+<div class="modal-body agregar-cdp-modal">
+    <div class="row">
+        <div class="col-md-6 list-group-item">
+            <label for="selectTipo" class="ulabelModal1">Tipo</label>
+            <select name="selTipo" id="selectTipo" class="form-control" disabled>
+                <option value="CDP" disabled selected>CDP</option>
+            </select>
+        </div>
+        <div class="col-md-6 list-group-item">
+            <label for="inputText" class="ulabelModal1">Número</label>
+            <input type="text"
+                   class="form-control"
+                   name="inputText"
+                   value=""
+                   ng-required="true"
+                   ng-model="vm.model.idNumero"
+                   placeholder="Número del CDP" />
+
+            <div class="messagealerttableDNP" ng-if="vm.errors.model && vm.model.idNumero.length === 0">
+                <span class="img iconadverdnp mr-2"><img src="Img/u4630.svg"></span>
+                El número de CDP es obligatorio
+            </div>
+        </div>
+        <div class="col-md-6 list-group-item">
+            <label for="inputDate" class="ulabelModal1">Fecha</label>
+            <input type="date"
+                   name="inputDate"
+                   class="form-control cdp-date"
+                   value="DD/MM/AAAA"
+                   ng-required="true"
+                   ng-model="vm.model.idFecha"
+                   placeholder="Fecha del CDP" />
+
+            <div class="messagealerttableDNP" ng-if="vm.errors.model && vm.model.idFecha.length === 0">
+                <span class="img iconadverdnp mr-2"><img src="Img/u4630.svg"></span>
+                la fecha es obligatoria
+            </div>
+        </div>
+        <div class="col-md-6 list-group-item">
+            <label for="inputTotalValue" class="ulabelModal1">Valor CDP $</label>
+            <input type="number"
+                   name="inputTotalValue"
+                   class="form-control"
+                   value=""
+                   ng-required="true"
+                   ng-model="vm.model.idValorTotal"
+                   placeholder="Valor Total"
+                   ng-change="vm.validarValoresCdp()" />
+
+            <div class="messagealerttableDNP" ng-if="vm.errors.model && vm.model.idValorCDPTramite.length === 0">
+                <span class="img iconadverdnp mr-2"><img src="Img/u4630.svg"></span>
+                El valor CDP es obligatorio
+            </div>
+        </div>
+        <div class="col-md-12 list-group-item">
+            <label for="inputCDPValue" class="ulabelModal1">Valor CDP para el trámite $</label>
+            <input type="number"
+                   name="inputCDPValue"
+                   class="form-control"
+                   value=""
+                   ng-required="true"                   
+                   ng-model="vm.model.idValorCDPTramite"
+                   ng-change="vm.validarValoresCdp()"
+                   placeholder="Valor CDP para el trámite" />
+
+            <div class="messagealerttableDNP" ng-if="vm.errors.model && vm.model.idValorTotal.length === 0">
+                <span class="img iconadverdnp mr-2"><img src="Img/u4630.svg"></span>
+                El valor CDP para el trámite es obligatorio
+            </div>
+        </div>
+
+        <div class="col-md-12" ng-if="vm.errors.valores">
+            <div class="messagealerttableDNP">
+                <span class="img iconadverdnp mr-2"><img src="Img/u4630.svg"></span>
+                El valor CDP para el trámite debe ser menor o igual al valor del CDP
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-footer textCenterDNP">
+    <button class="btneditarDNP" type="button" ng-click="vm.cerrar()">Cancelar</button>
+    <button class="btnguardarDNP"
+            type="button"
+            ng-click="vm.guardar()">
+        Guardar
+    </button>
+</div> 

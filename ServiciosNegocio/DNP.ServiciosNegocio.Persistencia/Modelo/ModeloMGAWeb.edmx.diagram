@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7c4e1f7a003b49c59d4298c3c3c9f03a" Name="Diagram1" ZoomLevel="41">
+        <EntityTypeShape EntityType="ModeloMGAWeb.RegionalizacionMeta" Width="1.5" PointX="36.75" PointY="95.875" />
+        <EntityTypeShape EntityType="ModeloMGAWeb.TipoValor" Width="1.5" PointX="34.5" PointY="95.875" />
+        <AssociationConnector Association="ModeloMGAWeb.FK_Productos_RegionalizacionMetas_Department" />
+        <AssociationConnector Association="ModeloMGAWeb.FK_Productos_RegionalizacionMetas_Municipality" />
+        <AssociationConnector Association="ModeloMGAWeb.FK_Productos_RegionalizacionMetas_ProductIndicatorDetail" />
+        <AssociationConnector Association="ModeloMGAWeb.FK_Productos_RegionalizacionMetas_Region" />
+        <AssociationConnector Association="ModeloMGAWeb.FK_Productos_RegionalizacionMetas_Shelter" />
+        <AssociationConnector Association="ModeloMGAWeb.FK_Productos_RegionalizacionMetas_Transversal_TipoValor" />
+        <EntityTypeShape EntityType="ModeloMGAWeb.AtributosEntidad" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="ModeloMGAWeb.EntityTypeCatalogOption" Width="2.25" PointX="0.5" PointY="1.125" />
+        <AssociationConnector Association="ModeloMGAWeb.FK_AtributosEntidad_EntityTypeCatalogOption" />
+        <EntityTypeShape EntityType="ModeloMGAWeb.Alternative" Width="1.5" PointX="9.875" PointY="10.75" />
+        <EntityTypeShape EntityType="ModeloMGAWeb.ClassificationType" Width="1.5" PointX="8.25" PointY="16.375" />
+        <EntityTypeShape EntityType="ModeloMGAWeb.Department" Width="1.5" PointX="13.125" PointY="6" />
+        <EntityTypeShape EntityType="ModeloMGAWeb.EntityType" Width="1.5" PointX="0.75" PointY="6.25" />
+        <EntityTypeShape EntityType="ModeloMGAWeb.Municipality" Width="1.5" PointX="15.375" PointY="6" />
+        <EntityTypeShape EntityType="ModeloMGAWeb.ProductCatalog" Width="1.5" PointX="7.75" PointY="12.25" />
+        <EntityTypeShape EntityType="ModeloMGAWeb.Program" Width="1.5" PointX="5.5" PointY="12.25" />
+        <EntityTypeShape EntityType="ModeloMGAWeb.Region" Width="1.5" PointX="10.875" PointY="6.125" />
+        <EntityTypeShape EntityType="ModeloMGAWeb.Sector" Width="1.5" PointX="3.25" PointY="5.875" />
+        <EntityTypeShape EntityType="ModeloMGAWeb.Shelter" Width="1.5" PointX="17.625" PointY="6.125" />
+        <EntityTypeShape EntityType="ModeloMGAWeb.Stage" Width="1.5" PointX="11.875" PointY="10.75" />
+        <AssociationConnector Association="ModeloMGAWeb.FK_AtributosEntidad_Sector" />
+        <AssociationConnector Association="ModeloMGAWeb.FK_Department_Region" />
+        <AssociationConnector Association="ModeloMGAWeb.FK_Municipality_Department" />
+        <AssociationConnector Association="ModeloMGAWeb.FK_EntityTypeCatalogOption_EntityType" />
+        <AssociationConnector Association="ModeloMGAWeb.FK_Shelter_Municipality" />
+        <AssociationConnector Association="ModeloMGAWeb.FK_Program_Id" />
+        <AssociationConnector Association="ModeloMGAWeb.FK_Program_Sector" />
+        <EntityTypeShape EntityType="ModeloMGAWeb.Bienio" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ModeloMGAWeb.VGetCRType" Width="1.5" PointX="5.375" PointY="4.75" />
+        <EntityTypeShape EntityType="ModeloMGAWeb.VGetFase" Width="1.5" PointX="7.375" PointY="0.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="ModeloMGAWeb.AlmacenamientoTemporal" Width="1.5" PointX="7.375" PointY="3.75" />
+        <EntityTypeShape EntityType="ModeloMGAWeb.ResourceGroup" Width="1.5" PointX="10.25" PointY="20.25" />
+        <EntityTypeShape EntityType="ModeloMGAWeb.Agrupaciones" Width="1.5" PointX="20.625" PointY="6.25" />
+        <EntityTypeShape EntityType="ModeloMGAWeb.TipoAgrupacion" Width="1.5" PointX="18.375" PointY="2.375" />
+        <AssociationConnector Association="ModeloMGAWeb.FK_Transversal_Agrupaciones_Municipality" />
+        <AssociationConnector Association="ModeloMGAWeb.FK_Transversal_Agrupaciones_Transversal_TipoAgrupacion" />
+        <EntityTypeShape EntityType="ModeloMGAWeb.PolicyTargeting" Width="1.5" PointX="7.375" PointY="6.75" />
+        <EntityTypeShape EntityType="ModeloMGAWeb.PolicyIndicator" Width="1.5" PointX="7.375" PointY="19.75" />
+        <EntityTypeShape EntityType="ModeloMGAWeb.PolicyTargetingIndicator" Width="1.5" PointX="9.625" PointY="2.875" />
+        <AssociationConnector Association="ModeloMGAWeb.FK_PolicyTargetingIndicator_PolicyIndicator" />
+        <AssociationConnector Association="ModeloMGAWeb.FK_PolicyTargetingIndicator_PolicyTargeting" />
+        <EntityTypeShape EntityType="ModeloMGAWeb.TipoCofinanciador" Width="1.5" PointX="0.75" PointY="9.75" />
+        <AssociationConnector Association="ModeloMGAWeb.FK_EntityType_ResourceGroup" />
+        <EntityTypeShape EntityType="ModeloMGAWeb.ResourceGroupEntityType" Width="1.5" PointX="14.75" PointY="13.5" />
+        <AssociationConnector Association="ModeloMGAWeb.FK_ResourceGroupEntityType_EntityType" />
+        <AssociationConnector Association="ModeloMGAWeb.FK_ResourceGroupEntityType_ResourceGroup" />
+        <EntityTypeShape EntityType="ModeloMGAWeb.TipoDocumentoTramite" Width="1.5" PointX="19.625" PointY="11" />
+        <EntityTypeShape EntityType="ModeloMGAWeb.TipoDocumentoTramiteRol" Width="1.5" PointX="21.875" PointY="11" />
+        <EntityTypeShape EntityType="ModeloMGAWeb.TipoDocumento" Width="1.5" PointX="17.375" PointY="11.125" />
+        <AssociationConnector Association="ModeloMGAWeb.FK_TipoDocumentoTramite_TipoDocumento" />
+        <AssociationConnector Association="ModeloMGAWeb.FK_TipoDocumentoTramite_TipoDocumentoTramiteRol" />
+        <EntityTypeShape EntityType="ModeloMGAWeb.JustificacionRespuestaDetalle" Width="1.5" PointX="0.75" PointY="12.75" />
+        <EntityTypeShape EntityType="ModeloMGAWeb.JustificacionRespuesta" Width="1.5" PointX="17.375" PointY="14.75" />
+        <AssociationConnector Association="ModeloMGAWeb.FK_JustificacionRespuestaDetalle_JustificacionRespuesta" />
+        <EntityTypeShape EntityType="ModeloMGAWeb.ProyectoFuentesPresupuestal" Width="1.5" PointX="14.625" PointY="22.875" />
+        <EntityTypeShape EntityType="ModeloMGAWeb.ProyectoFuentesPresupuestalValores" Width="1.5" PointX="16.875" PointY="23" />
+        <EntityTypeShape EntityType="ModeloMGAWeb.Proyectos" Width="1.5" PointX="12.375" PointY="22.375" />
+        <EntityTypeShape EntityType="ModeloMGAWeb.ProyectosRequisitos" Width="1.5" PointX="14.625" PointY="26.375" />
+        <EntityTypeShape EntityType="ModeloMGAWeb.ProyectosRequisitosValores" Width="1.5" PointX="16.875" PointY="26.875" />
+        <EntityTypeShape EntityType="ModeloMGAWeb.ProyectosValores" Width="1.5" PointX="14.625" PointY="19.375" />
+        <AssociationConnector Association="ModeloMGAWeb.FK_ProyectoFuentesPresupuestalValores_ProyectoFuente" />
+        <AssociationConnector Association="ModeloMGAWeb.FK_TramitesProyectoFuentes_TramitesProyecto" />
+        <AssociationConnector Association="ModeloMGAWeb.FK_ProyectosRequisitos_TramiteProyecto" />
+        <AssociationConnector Association="ModeloMGAWeb.FK_TramitesProyectosValores_TramitesProyectos" />
+        <AssociationConnector Association="ModeloMGAWeb.FK_ProyectosRequisitosValores_ProyectosRequisitos" />
+        <EntityTypeShape EntityType="ModeloMGAWeb.Fondo" Width="1.5" PointX="12.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ModeloMGAWeb.DNH_SIIF" Width="1.5" PointX="3.375" PointY="15.75" />
+        <EntityTypeShape EntityType="ModeloMGAWeb.ProyectoConpes" Width="1.5" PointX="14.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ModeloMGAWeb.CartaConceptoFirma" Width="1.5" PointX="0.75" PointY="16.75" />
+        <EntityTypeShape EntityType="ModeloMGAWeb.Capitulo" Width="1.5" PointX="5.375" PointY="16.75" />
+        <EntityTypeShape EntityType="ModeloMGAWeb.Seccion" Width="1.5" PointX="19.375" PointY="14.75" />
+        <EntityTypeShape EntityType="ModeloMGAWeb.CartaConcepto" Width="1.5" PointX="0.75" PointY="20.75" />
+        <EntityTypeShape EntityType="ModeloMGAWeb.TramiteConpes" Width="1.5" PointX="21.375" PointY="14.75" />
+        <EntityTypeShape EntityType="ModeloMGAWeb.PeriodoPresidencial" Width="1.5" PointX="21.375" PointY="18.75" />
+        <EntityTypeShape EntityType="ModeloMGAWeb.DeliverableCatalog" Width="1.5" PointX="10" PointY="24.75" />
+        <AssociationConnector Association="ModeloMGAWeb.FK_DeliverableCatalog_ProductCatalog_Id" />
+        <EntityTypeShape EntityType="ModeloMGAWeb.MacroprocesoSeccion" Width="1.5" PointX="17.375" PointY="18.75" />
+        <EntityTypeShape EntityType="ModeloMGAWeb.SeccionCapitulos" Width="1.5" PointX="20.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ModeloMGAWeb.SystemConfigurations" Width="1.5" PointX="22.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ModeloMGAWeb.TransferConfiguration" Width="1.5" PointX="23" PointY="5" />
+        <AssociationConnector Association="ModeloMGAWeb.FK_TransferConfiguration_EntityTypeCatalogOption" />
+        <EntityTypeShape EntityType="ModeloMGAWeb.ResourceType" Width="1.5" PointX="12.5" PointY="15.875" />
+        <EntityTypeShape EntityType="ModeloMGAWeb.ResourceTypeByEntity" Width="1.5" PointX="3.5" PointY="0.75" />
+        <AssociationConnector Association="ModeloMGAWeb.FK__ResourceType__ClassificationType" />
+        <AssociationConnector Association="ModeloMGAWeb.FK_ResourceType_EntityType" />
+        <AssociationConnector Association="ModeloMGAWeb.FK_ResourceTypeByEntity_EntityTypeCatalogOption" />
+        <AssociationConnector Association="ModeloMGAWeb.FK_ResourceTypeByEntity_EntityTypeCatalogOptionPresent" />
+        <AssociationConnector Association="ModeloMGAWeb.FK_ResourceType_ResourceGroup" />
+        <AssociationConnector Association="ModeloMGAWeb.FK_ResourceGroupEntityType_ResourceType" />
+        <AssociationConnector Association="ModeloMGAWeb.FK_ResourceTypeByEntity_ResourceType" />
+        <AssociationConnector Association="ModeloMGAWeb.FK_TransferConfiguration_ResourceTypeByEntity" />
+        <EntityTypeShape EntityType="ModeloMGAWeb.Ejecutor" Width="1.5" PointX="3" PointY="10.375" />
+        <AssociationConnector Association="ModeloMGAWeb.FK__Ejecutor__EntityType" />
+        <EntityTypeShape EntityType="ModeloMGAWeb.Reprogramacion" Width="1.5" PointX="14.625" PointY="31.625" />
+        <AssociationConnector Association="ModeloMGAWeb.FK_Reprogramacion_TramiteProyecto" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,461 @@
+﻿
+<section class="container-fluid inbox" ng-init="vm.init();">
+    <table class="TableDNP">
+        <thead>
+            <tr>
+                <th class="columAcc"></th>
+                <th class="textLeftDNP">Actividad</th>
+                <th class="textLeftDNP actividad-width-80">Cantidad total - Unidad medida</th>
+                <th class="textRightDNP">Costo total actividad</th>
+                <th class="textRightDNP">Costo unitario</th>
+                <th class="textRightDNP actividad-width-90">Fecha inicio -<br />Fecha fin</th>
+            </tr>
+        </thead>
+        <tbody ng-repeat="actividad in vm.listadoActividadesNiveles" ng-init="indexActividad = $index">
+            <tr>
+                <td class="columAcc"
+                    style="background: transparent">
+                        <button id="buttonReporActividad-{{actividad.ActividadId}}-{{actividad.SeguimientoEntregableId}}"
+                                class="btnaccion btnAccordionDNP"
+                                type="button"
+                                data-toggle="collapse"
+                                data-target="#ReporActividadProgramar-{{actividad.ActividadId}}-{{actividad.SeguimientoEntregableId}}"
+                                ng-click="vm.abrilNivel('reporProgramarActividad-'+actividad.ActividadId+'-'+actividad.SeguimientoEntregableId)">
+                            <img src="Img/btnMas.svg" id="reporProgramarActividad-{{actividad.ActividadId}}-{{actividad.SeguimientoEntregableId}}-mas">
+                            <img class="hidden" src="Img/btnMenos.svg" id="reporProgramarActividad-{{actividad.ActividadId}}-{{actividad.SeguimientoEntregableId}}-menos">
+                        </button>
+                </td>
+                <td>
+                    <div ng-if="actividad.NombreActividad != null" ng-class="{'detalle-actividad-cell': actividad.NombreActividad.length > 44 }">
+                        {{actividad.Consecutivo}}  {{actividad.NombreActividad}}
+                    </div>
+                    <div ng-if="actividad.NombreActividad == null" ng-class="{'detalle-actividad-cell': actividad.NombreActividad.length > 44 }">
+                        {{actividad.Consecutivo}}  {{actividad.NombreEntregable}}
+                    </div>
+                </td>
+                <td>{{actividad.CantidadTotal == null ? 0 : actividad.CantidadTotal | number:2  }} - {{actividad.UnidadMedida}}</td>
+                <td class="textRightDNP">{{actividad.CostoTotal | currency:"$"}}</td>
+                <td class="textRightDNP" ng-if="actividad.CantidadTotal == null">{{actividad.CostoUnitario | currency:"$"}}</td>
+                <td class="textRightDNP" ng-if="actividad.CantidadTotal != null">{{(actividad.CostoTotal / actividad.CantidadTotal) | currency:"$"}}</td>
+                <td class="textRightDNP">{{actividad.FechaInicio | date : 'dd/MM/yyyy'}}- {{actividad.FechaFin | date : 'dd/MM/yyyy'}}</td>
+            </tr>
+            <tr class="no-border collapse " id="ReporActividadProgramar-{{actividad.ActividadId}}-{{actividad.SeguimientoEntregableId}}">
+
+                <td colspan="8" class="p-0">
+                    <div class="LineaEncabezado2tabDNP"></div>
+                    <h3 class="row tituloEncabezadotabDNP">
+                        Detalles actividad
+                    </h3>
+                    <div class="row">
+                        <div class="alert panel-heading">
+                            <div class="col-md-12">
+                                <div class="col-md-12">
+                                    <h3 class="text-left ui-seccion-title mb-5">
+                                        Avance cantidades y costos del periodo <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg" ng-click="vm.abrirMensajeQueEsEsto()">
+                                        <span class="buttonbar pull-right">
+                                            <button id="ReporEditar{{actividad.ActividadId}}" type="button" class="btneditarDNP" tooltip-placement="top" 
+                                                    ng-click="actividad.HabilitaEditar ? vm.habilitaEditar(actividad,1) : vm.habilitaEditar(actividad,0)" 
+                                                    uib-tooltip="{{actividad.HabilitaEditar ? 'CANCELAR' : 'EDITAR'}}" ng-if="!vm.soloLectura">
+                                                {{actividad.HabilitaEditar  ? 'CANCELAR' : 'EDITAR'}}
+                                            </button>
+                                            <button id="ReporGuardar{{actividad.ActividadId}}" type="submit" ng-class="actividad.HabilitaEditar  ? 'btnguardarDNP' : 'btnguardarDisabledDNP' "
+                                                    tooltip-placement="top" ng-click="vm.actualizarVigencia(actividad)" ng-disabled="!actividad.HabilitaEditar"
+                                                    ng-if="!vm.soloLectura">
+                                                GUARDAR
+                                            </button>
+                                        </span>
+                                    </h3>
+                                </div>
+                            </div>
+                            <div class="tab-content">
+                                <div class="tab-pane active cont col-md-12"
+                                     style="padding-left:0 !important;padding-top:20px !important" id="tabAjustados{{actividad.ActividadId}}">
+                                    <div class="col-md-12">
+                                        <h4 class="header-titulo">Cantidades</h4>
+                                    </div>
+                                    <table class="TableDNP no-border">
+                                        <thead>
+                                            <tr>
+                                                <th class="columAcc" style="width:2%"></th>
+                                                <th class="textLeftDNP" style="width:18%"><span>Vigencia/Periodo </span></th>
+                                                <th class="textRightDNP" style="width:20%"><span>Cantidad programada para la vigencia </span></th>
+                                                <th class="textRightDNP" style="width:20%"><span>Acumulado al mes anterior </span></th>
+                                                <th class="textRightDNP" style="width:20%"><span>Cantidad ejecutada en el mes </span></th>
+                                                <th class="textLeftDNP" style="width:20%"><span>Observación </span></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody ng-repeat="avanceCantidades in actividad.AvanceCantidades">
+                                            <tr>
+                                                <td class="columAcc"
+                                                    style="background: transparent">
+                                                </td>
+                                                <td class="textLeftDNP"><div class="blockReferenciaDNP">{{avanceCantidades.Vigencia}}/{{avanceCantidades.Mes}}</div></td>
+                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{avanceCantidades.CantidadProgramadaVigencia | number:2}}</div></td>
+                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{avanceCantidades.CantidadAcumuladaMeses | number:2}}</div></td>
+                                                <td class="textRightDNP">
+                                                    <div class="blockReferenciaDNP" ng-if="!actividad.HabilitaEditar">{{avanceCantidades.CantidadEjecutadaMes | number:2}}</div>
+                                                    <input type="number" string-to-number min="0.00"
+                                                           ng-if="actividad.HabilitaEditar"
+                                                           ng-value="avanceCantidades.CantidadEjecutadaMes"
+                                                           ng-model="avanceCantidades.CantidadEjecutadaMes"
+                                                           ng-blur="vm.recorrerObjetivosNumber($event)"
+                                                           ng-keypress="vm.validateFormat($event)"
+                                                           ng-keyup="vm.validarTamanio($event)" />
+                                                </td>
+                                                <td>
+                                                    <div class="blockReferenciaDNP" ng-if="!actividad.HabilitaEditar">{{avanceCantidades.Observaciones}}</div>
+                                                    <div class="textAreDivRes" ng-if="actividad.HabilitaEditar">
+                                                        <textarea ng-value="avanceCantidades.Observaciones" 
+                                                                  ng-model="avanceCantidades.Observaciones" maxlength="500"
+                                                                  placeholder="Escriba su obseración"></textarea>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <br />
+                                    <div class="col-md-12">
+                                        <h4 class="header-titulo">Costos</h4>
+                                    </div>
+                                    <table class="TableDNP no-border">
+                                        <thead>
+                                            <tr>
+                                                <th class="columAcc" style="width:2%"></th>
+                                                <th class="textRightDNP" style="width:18%"><span>Vigencia/Periodo/Tipo </span></th>
+                                                <th class="textRightDNP" style="width:20%"><span>Programado para la vigencia $ </span></th>
+                                                <th class="textRightDNP" style="width:20%"><span>Obligado acumulado al mes anterior $ </span></th>
+                                                <th class="textRightDNP" style="width:20%"><span>Obligado reporte del mes $ </span></th>
+                                                <th class="textRightDNP" style="width:20%"><span>Observación </span></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody ng-repeat="costoPeriodo in actividad.CostoPeriodo">
+                                            <tr>
+                                                <td class="columAcc"
+                                                    style="background: transparent">
+                                                </td>
+                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{costoPeriodo.Vigencia}}/{{costoPeriodo.Mes}}/{{costoPeriodo.TipoCosto}}</div></td>
+                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{costoPeriodo.CostoProgramadoVigencia | number:2}}</div></td>
+                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{costoPeriodo.CostoAcumuladoMeses | number:2}}</div></td>
+                                                <td class="textRightDNP">
+                                                    <div class="blockReferenciaDNP" ng-if="!actividad.HabilitaEditar">{{costoPeriodo.CostoEjecutadoMes | number:2}}</div>
+                                                    <div class="blockReferenciaDNP" ng-if="actividad.HabilitaEditar &&  costoPeriodo.TipoCosto == 'Flujo de caja' && vm.editarIguales">{{costoPeriodo.CostoEjecutadoMes | number:2}}</div>
+                                                    <input type="number" string-to-number min="0.00"
+                                                           ng-if="actividad.HabilitaEditar &&  costoPeriodo.TipoCosto == 'Flujo de caja' && !vm.editarIguales"
+                                                           ng-value="costoPeriodo.CostoEjecutadoMes"
+                                                           ng-model="costoPeriodo.CostoEjecutadoMes"
+                                                           ng-blur="vm.recorrerObjetivosNumber($event)"
+                                                           ng-keypress="vm.validateFormat($event)"
+                                                           ng-keyup="vm.validarTamanio($event)" />
+                                                    <input type="number" string-to-number min="0.00"
+                                                           ng-if="actividad.HabilitaEditar &&  costoPeriodo.TipoCosto == 'Presupuestal'"
+                                                           ng-value="costoPeriodo.CostoEjecutadoMes"
+                                                           ng-model="costoPeriodo.CostoEjecutadoMes"
+                                                           ng-blur="vm.recorrerObjetivosNumber($event)"
+                                                           ng-keypress="vm.validateFormat($event)"
+                                                           ng-keyup="vm.validarTamanio($event)" />
+                                                </td>
+                                                <td>
+                                                    <div class="blockReferenciaDNP" ng-if="!actividad.HabilitaEditar">{{costoPeriodo.Observaciones}}</div>
+                                                    <div class="blockReferenciaDNP" ng-if="actividad.HabilitaEditar &&  costoPeriodo.TipoCosto == 'Flujo de caja' && vm.editarIguales">Escriba su obseración</div>
+                                                    <div class="textAreDivRes" ng-if="actividad.HabilitaEditar &&  costoPeriodo.TipoCosto == 'Flujo de caja' && !vm.editarIguales">
+                                                        <textarea ng-value="costoPeriodo.Observaciones"
+                                                                  ng-model="costoPeriodo.Observaciones" maxlength="500"
+                                                                  placeholder="Escriba su obseración"></textarea>
+                                                    </div>
+                                                    <div class="textAreDivRes" ng-if="actividad.HabilitaEditar &&  costoPeriodo.TipoCosto == 'Presupuestal'">
+                                                        <textarea ng-value="costoPeriodo.Observaciones"
+                                                                  ng-model="costoPeriodo.Observaciones" maxlength="500"
+                                                                  placeholder="Escriba su obseración"></textarea>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <br />
+                                    <div class="col-md-12">
+                                        <div class="col-md-12">
+                                            <h3 class="text-left ui-seccion-title mb-5">
+                                                Resumen cantidades y costos <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg" ng-click="vm.abrirMensajeQueEsEsto()">
+                                            </h3>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="col-sm-12 tabs radio radio-primary">
+                                            <ul class="nav nav-tabs tabsFiltro">
+                                                <li tabindex="0" class="active">
+                                                    <a data-toggle="tab" data-target="#cantidades-{{actividad.ActividadId}}" id="tab-cantidades-{{actividad.ActividadId}}">
+                                                        Resumen cantidades
+                                                    </a>
+                                                </li>
+                                                <li tabindex="0" class="">
+                                                    <a data-toggle="tab" data-target="#presupuestal-{{actividad.ActividadId}}" id="tab-presupuestal-{{actividad.ActividadId}}">
+                                                        Resumen presupuestal
+                                                    </a>
+                                                </li>
+                                                <li tabindex="0" class="">
+                                                    <a data-toggle="tab" data-target="#fcaja-{{actividad.ActividadId}}" id="tab-fcaja-{{actividad.ActividadId}}">
+                                                        Resumen flujo de caja
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="tab-content">
+                                        <div class="tab-pane active cont col-md-12 p-0" id="cantidades-{{actividad.ActividadId}}">
+                                            <div class="alert panel-heading" style="height: 50px;">
+                                                <div class="col-md-12">
+                                                    <table class="TableDNP no-border">
+                                                        <thead>
+                                                            <tr>
+                                                                <th class="columAcc" style="width:2%"></th>
+                                                                <th class="textRightDNP" style="width:28%"><span>Vigencia </span></th>
+                                                                <th class="textRightDNP" style="width:35%"><span>Cantidad programada para la vigencia </span></th>
+                                                                <th class="textRightDNP" style="width:35%"><span>Avance acumulado para la vigencia </span></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody ng-repeat="vigencia in actividad.Vigencias">
+                                                            <tr>
+                                                                <td class="columAcc"
+                                                                    style="background: transparent">
+                                                                    <button class="btnaccion " style="margin-left: -5px" type="button" ng-click="vm.AbrilNivelCE(vigencia.Vigencia,actividad.ActividadId)" data-toggle="collapse"
+                                                                            data-target="#detailCE-{{vigencia.Vigencia}}-{{actividad.ActividadId}}">
+
+                                                                        <img id="imgmasCE-{{vigencia.Vigencia}}-{{actividad.ActividadId}}" style="width:18px;height:18px" src="Img/btnMasTb.svg">
+                                                                        <img id="imgmenosCE-{{vigencia.Vigencia}}-{{actividad.ActividadId}}" style="width:18px;height:18px;display:none" src="Img/btnMenosTb.svg">
+                                                                        <span id="icoCE{{vigencia.Vigencia}}-{{actividad.ActividadId}}" style="display:none">+</span>
+                                                                    </button>
+                                                                </td>
+                                                                <td class="textRightDNP"><span>{{vigencia.Vigencia}}</span></td>
+                                                                <td class="textRightDNP"><span>{{vigencia.TotalBaseCE | number:2}}</span></td>
+                                                                <td class="textRightDNP"><span>{{vigencia.TotalVigenciaCE | number:2}}</span></td>
+                                                            </tr>
+                                                            <tr class="no-border hidden" id="detailCE-{{vigencia.Vigencia}}-{{actividad.ActividadId}}">
+                                                                <td colspan="8" class="p-0">
+                                                                    <div class="LineaEncabezado2divDNP" style="margin-top: 0px; margin-left: 11px;"></div>
+                                                                    <h3 class="row tituloEncabezadodivDNP" style="margin-left:17%;width:83%">
+                                                                        Detalle {{vigencia.Vigencia}}
+                                                                    </h3>
+                                                                    <div class="level-1-content mt-4">
+                                                                        <table class="TableDNP no-border">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th class="columAcc" style="width:2%"></th>
+                                                                                    <th class="textLeftDNP" style="width:18%"><span>Periodo </span></th>
+                                                                                    <th class="textRightDNP" style="width:25%"><span>Cantidad programada para el mes </span></th>
+                                                                                    <th class="textRightDNP" style="width:25%"><span>Cantidad ejecutada para el mes </span></th>
+                                                                                    <th class="textLeftDNP" style="width:30%"><span>Observación </span></th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody ng-repeat="programacionSeguimientoPeriodosValoresCE in vigencia.ProgramacionSeguimientoPeriodosValoresCE">
+                                                                                <tr>
+                                                                                    <td>
+                                                                                    </td>
+                                                                                    <td class="textLeftDNP"><div class="blockReferenciaDNP">{{programacionSeguimientoPeriodosValoresCE.Mes}}</div></td>
+                                                                                    <td class="textRightDNP"><div class="blockReferenciaDNP">{{programacionSeguimientoPeriodosValoresCE.Valor | number:2}}</div></td>
+                                                                                    <td class="textRightDNP">
+                                                                                        <div class="blockReferenciaDNP">{{programacionSeguimientoPeriodosValoresCE.ValorCantidadEjecutada | number:2}}</div>
+                                                                                    </td>
+                                                                                    <td class="textLeftDNP"><div class="textAreDivRes">
+                                                                                                                     <textarea ng-model="programacionSeguimientoPeriodosValoresCE.Observaciones" maxlength="500"
+                                                                                                                               readonly disabled></textarea>
+                                                                                                                 </div></td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                            <tfoot>
+                                                                                <tr>
+                                                                                    <td class="columAcc icontotaldnp"><span>=</span></td>
+                                                                                    <td class="textRightDNP"><span>TOTAL</span></td>
+                                                                                    <td class="textRightDNP"><div class="blockReferenciaDNP">{{vigencia.TotalBaseCE | number:2}}</div></td>
+                                                                                    <td class="textRightDNP"><div class="blockReferenciaDNP">{{vigencia.TotalVigenciaCE | number:2}}</div></td>
+                                                                                    <td class="textRightDNP"><div class="blockReferenciaDNP">N/A</div></td>
+                                                                                    <td></td>
+                                                                                </tr>
+                                                                            </tfoot>
+                                                                        </table>
+                                                                        <br />
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane cont col-md-12 p-0" id="presupuestal-{{actividad.ActividadId}}">
+                                            <div class="alert panel-heading" style="height: 50px;">
+                                                <div class="col-md-12">
+                                                    <table class="TableDNP no-border">
+                                                        <thead>
+                                                            <tr>
+                                                                <th class="columAcc" style="width:2%"></th>
+                                                                <th class="textRightDNP" style="width:28%"><span>Vigencia </span></th>
+                                                                <th class="textRightDNP" style="width:35%"><span>Costo programado para la vigencia $ </span></th>
+                                                                <th class="textRightDNP" style="width:35%"><span>Costo acumulado - obligado para la vigencia $ </span></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody ng-repeat="vigencia in actividad.Vigencias">
+                                                            <tr>
+                                                                <td class="columAcc"
+                                                                    style="background: transparent">
+                                                                    <button class="btnaccion " style="margin-left: -5px" type="button" ng-click="vm.AbrilNivelCP(vigencia.Vigencia,actividad.ActividadId)" data-toggle="collapse"
+                                                                            data-target="#detailCP-{{vigencia.Vigencia}}-{{actividad.ActividadId}}">
+
+                                                                        <img id="imgmasCP-{{vigencia.Vigencia}}-{{actividad.ActividadId}}" style="width:18px;height:18px" src="Img/btnMasTb.svg">
+                                                                        <img id="imgmenosCP-{{vigencia.Vigencia}}-{{actividad.ActividadId}}" style="width:18px;height:18px;display:none" src="Img/btnMenosTb.svg">
+                                                                        <span id="icoCP{{vigencia.Vigencia}}-{{actividad.ActividadId}}" style="display:none">+</span>
+                                                                    </button>
+                                                                </td>
+                                                                <td class="textRightDNP"><span>{{vigencia.Vigencia}}</span></td>
+                                                                <td class="textRightDNP"><span>{{vigencia.TotalBaseCP | number:2}}</span></td>
+                                                                <td class="textRightDNP"><span>{{vigencia.TotalVigenciaCP | number:2}}</span></td>
+                                                            </tr>
+                                                            <tr class="no-border hidden" id="detailCP-{{vigencia.Vigencia}}-{{actividad.ActividadId}}">
+                                                                <td colspan="8" class="p-0">
+                                                                    <div class="LineaEncabezado2divDNP" style="margin-top: 0px; margin-left: 11px;"></div>
+                                                                    <h3 class="row tituloEncabezadodivDNP" style="margin-left:17%;width:83%">
+                                                                        Detalle {{vigencia.Vigencia}}
+                                                                    </h3>
+                                                                    <div class="level-1-content mt-4">
+                                                                        <table class="TableDNP no-border">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th class="columAcc" style="width:2%"></th>
+                                                                                    <th class="textLeftDNP" style="width:18%"><span>Periodo </span></th>
+                                                                                    <th class="textRightDNP" style="width:25%"><span>Costo programado para el mes $ </span></th>
+                                                                                    <th class="textRightDNP" style="width:25%"><span>Costo ejecutado para el mes $ </span></th>
+                                                                                    <th class="textLeftDNP" style="width:30%"><span>Observación </span></th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody ng-repeat="programacionSeguimientoPeriodosValoresCP in vigencia.ProgramacionSeguimientoPeriodosValoresCP">
+                                                                                <tr>
+                                                                                    <td>
+                                                                                    </td>
+                                                                                    <td class="textLeftDNP"><div class="blockReferenciaDNP">{{programacionSeguimientoPeriodosValoresCP.Mes}}</div></td>
+                                                                                    <td class="textRightDNP"><div class="blockReferenciaDNP">{{programacionSeguimientoPeriodosValoresCP.ValorCantidad | number:2}}</div></td>
+                                                                                    <td class="textRightDNP">
+                                                                                        <div class="blockReferenciaDNP">{{programacionSeguimientoPeriodosValoresCP.ValorCostoPresupuestal | number:2}}</div>
+                                                                                    </td>
+                                                                                    <td class="textLeftDNP">
+                                                                                        <div class="textAreDivRes">
+                                                                                            <textarea ng-model="programacionSeguimientoPeriodosValoresCP.Observaciones" maxlength="500"
+                                                                                                      readonly disabled></textarea>
+                                                                                        </div>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                            <tfoot>
+                                                                                <tr>
+                                                                                    <td class="columAcc icontotaldnp"><span>=</span></td>
+                                                                                    <td class="textRightDNP"><span>TOTAL</span></td>
+                                                                                    <td class="textRightDNP"><div class="blockReferenciaDNP">{{vigencia.TotalBaseCP | number:2}}</div></td>
+                                                                                    <td class="textRightDNP"><div class="blockReferenciaDNP">{{vigencia.TotalVigenciaCP | number:2}}</div></td>
+                                                                                    <td class="textRightDNP"><div class="blockReferenciaDNP">N/A</div></td>
+                                                                                    <td></td>
+                                                                                </tr>
+                                                                            </tfoot>
+                                                                        </table>
+                                                                        <br />
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane cont col-md-12 p-0" id="fcaja-{{actividad.ActividadId}}">
+                                            <div class="alert panel-heading" style="height: 50px;">
+                                                <div class="col-md-12">
+                                                    <div class="col-md-12">
+                                                        <table class="TableDNP no-border">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th class="columAcc" style="width:2%"></th>
+                                                                    <th class="textRightDNP" style="width:28%"><span>Vigencia </span></th>
+                                                                    <th class="textRightDNP" style="width:35%"><span>Costo programado para la vigencia $ </span></th>
+                                                                    <th class="textRightDNP" style="width:35%"><span>Costo acumulado - obligado para la vigencia $ </span></th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody ng-repeat="vigencia in actividad.Vigencias">
+                                                                <tr>
+                                                                    <td class="columAcc"
+                                                                        style="background: transparent">
+                                                                        <button class="btnaccion " style="margin-left: -5px" type="button" ng-click="vm.AbrilNivelCFC(vigencia.Vigencia,actividad.ActividadId)" data-toggle="collapse"
+                                                                                data-target="#detailCFC-{{vigencia.Vigencia}}-{{actividad.ActividadId}}">
+
+                                                                            <img id="imgmasCFC-{{vigencia.Vigencia}}-{{actividad.ActividadId}}" style="width:18px;height:18px" src="Img/btnMasTb.svg">
+                                                                            <img id="imgmenosCFC-{{vigencia.Vigencia}}-{{actividad.ActividadId}}" style="width:18px;height:18px;display:none" src="Img/btnMenosTb.svg">
+                                                                            <span id="icoCFC{{vigencia.Vigencia}}-{{actividad.ActividadId}}" style="display:none">+</span>
+                                                                        </button>
+                                                                    </td>
+                                                                    <td class="textRightDNP"><span>{{vigencia.Vigencia}}</span></td>
+                                                                    <td class="textRightDNP"><span>{{vigencia.TotalBaseCFC | number:2}}</span></td>
+                                                                    <td class="textRightDNP"><span>{{vigencia.TotalVigenciaCFC | number:2}}</span></td>
+                                                                </tr>
+                                                                <tr class="no-border hidden" id="detailCFC-{{vigencia.Vigencia}}-{{actividad.ActividadId}}">
+                                                                    <td colspan="8" class="p-0">
+                                                                        <div class="LineaEncabezado2divDNP" style="margin-top: 0px; margin-left: 11px;"></div>
+                                                                        <h3 class="row tituloEncabezadodivDNP" style="margin-left:17%;width:83%">
+                                                                            Detalle {{vigencia.Vigencia}}
+                                                                        </h3>
+                                                                        <div class="level-1-content mt-4">
+                                                                            <table class="TableDNP no-border">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        <th class="columAcc" style="width:2%"></th>
+                                                                                        <th class="textLeftDNP" style="width:18%"><span>Periodo </span></th>
+                                                                                        <th class="textRightDNP" style="width:25%"><span>Costo programado para el mes $ </span></th>
+                                                                                        <th class="textRightDNP" style="width:25%"><span>Costo ejecutado para el mes $ </span></th>
+                                                                                        <th class="textLeftDNP" style="width:30%"><span>Observación </span></th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody ng-repeat="programacionSeguimientoPeriodosValoresCFC in vigencia.ProgramacionSeguimientoPeriodosValoresCFC">
+                                                                                    <tr>
+                                                                                        <td>
+                                                                                        </td>
+                                                                                        <td class="textLeftDNP"><div class="blockReferenciaDNP">{{programacionSeguimientoPeriodosValoresCFC.Mes}}</div></td>
+                                                                                        <td class="textRightDNP"><div class="blockReferenciaDNP">{{programacionSeguimientoPeriodosValoresCFC.ValorCantidad | number:2}}</div></td>
+                                                                                        <td class="textRightDNP">
+                                                                                            <div class="blockReferenciaDNP">{{programacionSeguimientoPeriodosValoresCFC.ValorCostoFlujoCaja | number:2}}</div>
+                                                                                        </td>
+                                                                                        <td class="textLeftDNP">
+                                                                                            <div class="textAreDivRes">
+                                                                                                <textarea ng-model="programacionSeguimientoPeriodosValoresCFC.Observaciones" maxlength="500"
+                                                                                                          readonly disabled></textarea>
+                                                                                            </div>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                                <tfoot>
+                                                                                    <tr>
+                                                                                        <td class="columAcc icontotaldnp"><span>=</span></td>
+                                                                                        <td class="textRightDNP"><span>TOTAL</span></td>
+                                                                                        <td class="textRightDNP"><div class="blockReferenciaDNP">{{vigencia.TotalBaseCFC | number:2}}</div></td>
+                                                                                        <td class="textRightDNP"><div class="blockReferenciaDNP">{{vigencia.TotalVigenciaCFC | number:2}}</div></td>
+                                                                                        <td class="textRightDNP"><div class="blockReferenciaDNP">N/A</div></td>
+                                                                                        <td></td>
+                                                                                    </tr>
+                                                                                </tfoot>
+                                                                            </table>
+                                                                            <br />
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <br />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>

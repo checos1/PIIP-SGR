@@ -1,0 +1,179 @@
+﻿<div class="dashboard">
+
+    <div id="proyectos" class="project">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="titlebar">
+                    <span>Consola de procesos </span>
+                    <span class="buttonbar pull-right">
+                        <!--<button type="button" class="btn btn-default btn-md btnFiltroHeader" tooltip-placement="top" uib-tooltip="Adicionar Columna" ng-click="vm.abrirModalAdicionarColumnas()" tabindex="0">
+                            Adicionar columna
+                        </button>
+                        <button type="button" class="btn btn-default btn-md btnFiltroHeader" ng-click="vm.conmutadorFiltro()" tooltip-placement="auto" uib-tooltip="Filtro">Filtro</i></button>-->
+                        <a href="" download target="_blank" class="btn btn-default btn-md btnFiltroHeader btnRedondo" ng-click="vm.downloadPdf()" tooltip-placement="auto" uib-tooltip="Exportar PDF">
+                            PDF
+                        </a>
+                        <a href="" download target="_blank" class="btn btn-default btn-md btnFiltroHeader btnRedondo" ng-click="vm.downloadExcel()" tooltip-placement="auto" uib-tooltip="Exportar XLS">
+                            XLS
+                        </a>
+                        <!-- <a href="{{vm.obtenerXML}}" download target="_blank" tooltip-placement="top" uib-tooltip="Exportar XML"><img src="/Img/btn/btnExportXML.png" alt="XML" /></a> -->
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn pl" ng-class="vm.etapa == 'pl'? 'active':''">
+                        <a href="/consolaprocesos/{{vm.tipoProceso}}/pl">PL</a>
+                        <!--<span class="etapas circle-noti" ng-class="vm.etapa == 'pl'? 'active':''">5</span>-->
+                    </label>
+                    <label class="btn pr" ng-class="vm.etapa == 'pr'? 'active':''">
+                        <a href="/consolaprocesos/{{vm.tipoProceso}}/pr">GR</a>
+                        <!--<span class="etapas circle-noti" ng-class="vm.etapa == 'pr'? 'active':''">4</span>-->
+                    </label>
+                    <label class="btn ej" ng-class="vm.etapa == 'ej'? 'active':''">
+                        <a href="/consolaprocesos/{{vm.tipoProceso}}/ej">EJ</a>
+                        <!--<span class="etapas circle-noti" ng-class="vm.etapa == 'ej'? 'active':''">3</span>-->
+                    </label>
+                    <!--<label class="btn se" ng-class="vm.etapa == 'se'? 'active':''">
+                        <a href="/consolaprocesos/{{vm.tipoProceso}}/se">SE</a>-->
+                        <!--<span class="etapas circle-noti" ng-class="vm.etapa == 'se'? 'active':''">2</span>-->
+                    <!--</label>-->
+                    <label class="btn ev" ng-class="vm.etapa == 'ev'? 'active':''">
+                        <a href="/consolaprocesos/{{vm.tipoProceso}}/ev">EV</a>
+                        <!--<span class="etapas circle-noti" ng-class="vm.etapa == 'ev'? 'active':''">1</span>-->
+                    </label>
+                </div>
+                <div class="btn-group btn-group-toggle">
+                    <label class="btn btn-secondary border-0">
+                        <a>»</a>
+                    </label>
+                </div>&nbsp;&nbsp;
+                <div class="btn-group btn-group-toggle btnsFiltrosAgrupados" data-toggle="buttons">
+                    <label class="btn btn-secondary" ng-class="vm.tipoProceso == 'proyectos'? 'active':''">
+                        <a href="/consolaprocesos/proyectos/{{vm.etapa}}">Proyectos</a>
+                    </label>
+                    <label class="btn btn-secondary" ng-class="vm.tipoProceso == 'tramites'? 'active':''">
+                        <a href="/consolaprocesos/tramites/{{vm.etapa}}">Trámites</a>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <p class="mis-procesos-titulo-totales">Total de proyectos: 0</p>
+            </div>
+        </div>
+
+        <!--inicio tabs-->
+        <div class="form-group clearfix">
+            <div class="row">
+                <div class="col-sm-12 tabs radio radio-primary">
+                    <ul class="nav nav-tabs tabsFiltro">
+                        <li tabindex="0" class="{{$index == 0 ? 'active' : ''}}" ng-repeat="tipo in vm.listaTipoEntidad">
+                            <a data-toggle="tab" ng-click="vm.cambioTipoEntidad(tipo.Nombre)" ng-disabled="{{tipo.Deshabilitado}}" ng-if="!tipo.Deshabilitado"
+                               llamar-funcion-con-tecla="vm.cambioTipoEntidad(tipo.Nombre)">
+                                {{tipo.Descripcion}}
+                            </a>
+                            <a ng-if="tipo.Deshabilitado" class="disabled" disabled>{{tipo.Descripcion}}</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+            <!--inicio filtro-->
+            <div class="filtro" ng-if="vm.mostrarFiltro">
+                <div class="clearfix">
+                    <div class="row">
+                        <div class="col-md-10">
+                            <div class="col-md-3" ng-if="vm.puedeVerFiltroIdentificador">
+                                <input type="text" ng-model="vm.proyectoFiltro.identificador" name="txtIdentificador" id="txtIdentificador" class="form-control" placeholder="Identificador" />
+                            </div>
+                            <div class="col-md-3" ng-if="vm.puedeVerFiltroBpin">
+                                <input type="text" ng-model="vm.proyectoFiltro.bpin" numbers-only ng-model="vm.FiltroBpin" name="txtBpin" id="txtBpin" class="form-control" placeholder="BPIN" />
+                            </div>
+                            <div class="col-md-3" ng-if="vm.puedeVerFiltroNombre">
+                                <input type="text" ng-model="vm.proyectoFiltro.nombre" name="txtNombreFlujo" id="txtNombreFlujo" class="form-control" placeholder="Nombre Proyecto" />
+                            </div>
+
+
+
+                            <div class="col-md-3" ng-if="vm.puedeVerFiltroSector">
+                                <select ng-model="vm.proyectoFiltro.sectorId" ng-options="x.Id as x.Name for x in vm.listaFiltroSectores" name="ddlSector" id="ddlSector" class="form-control">
+                                    <option value="" selected>Sector del Proyecto</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3" ng-if="vm.puedeVerFiltroEntidad">
+                                <select ng-model="vm.proyectoFiltro.entidadId" ng-options="x.Id as x.Name for x in vm.listaFiltroEntidades" name="ddlEntidad" id="ddlEntidad" class="form-control">
+                                    <option value="" selected>Entidad</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3" ng-if="vm.puedeVerFiltroIdentificadorCR">
+                                <input type="text" ng-model="vm.proyectoFiltro.identificadorCR" name="txtIdentificadorCR" id="txtIdentificadorCR" class="form-control" placeholder="Identificador CR" />
+                            </div>
+
+                            <div class="col-md-3" ng-if="vm.puedeVerFiltroAnoInicio">
+                                <input type="text" numbers-only ng-model="vm.proyectoFiltro.horizonteInicio" maxlength="4" name="txtAnoInicio" id="txtAnoInicio" class="form-control" placeholder="Año Inicio" />
+                            </div>
+                            <div class="col-md-3" ng-if="vm.puedeVerFiltroAnoFin">
+                                <input type="text" numbers-only ng-model="vm.proyectoFiltro.horizonteFin" maxlength="4" name="txtAnoFinal" id="txtAnoFinal" class="form-control" placeholder="Año Final" />
+                            </div>
+                            <div class="col-md-3" ng-if="vm.puedeVerFiltroPrioridad">
+                                <select ng-model="vm.proyectoFiltro.prioridad" ng-options="x.Id as x.Name for x in vm.listaFiltroPrioridades" name="ddlPrioridad" id="ddlPrioridad" class="form-control">
+                                    <option value="" selected>Prioridad</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3" ng-if="vm.puedeVerFiltroEstadoProyecto">
+                                <select ng-model="vm.proyectoFiltro.estadoProyectoId" ng-options="x.Id as x.Estado for x in vm.listaFiltroEstadoProyectos" name="ddlEstadoDelProyecto" id="ddlEstadoDelProyecto" class="form-control">
+                                    <option value="" selected>Estado del Proyecto</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3" ng-if="vm.puedeVerFiltroAccionFlujo">
+                                <input type="text" ng-model="vm.proyectoFiltro.accionFlujo" class="form-control" placeholder="Accion Flujo" />
+                            </div>
+                            <div class="col-md-3" ng-if="vm.puedeVerFiltroNombreFlujo">
+                                <input type="text" ng-model="vm.proyectoFiltro.nombreFlujo" class="form-control" placeholder="Nombre Flujo" />
+                            </div>
+                        </div>
+
+                        <div class="col-md-2 text-right">
+                            <button type="button" class="btn btn-filtro" ng-click="vm.buscar()" tooltip-placement="auto" uib-tooltip="Buscar">Buscar</button>
+                            <button type="button" class="btn btn-filtro" ng-click="vm.limpiarCamposFiltro()" tooltip-placement="auto" uib-tooltip="Limpiar">Limpiar</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!--fim filtro-->
+        </div>
+        <!--fim tabs-->
+        <!--inicio grid-->
+        <div class="row grid-proyectos">
+            <div class="col-md-12">
+                <div class="container-table" ui-i18n="{{vm.lang}}">
+
+                    <div ng-if="vm.filasFiltradas" class="clearfix grid-icon" id="uigprojecto" ui-grid="vm.gridOptions"
+                         ui-grid-resize-columns ui-grid-pagination ui-grid-expandable>
+                    </div>
+
+                    <div class="text-center intro-help  min-mh no-result-watermark" ng-if="!vm.tipoEntidad && !vm.filasFiltradas">
+                        <h4>{{ 'Buscando resultados' }} </h4>
+                    </div>
+
+                    <div class="text-center intro-help  min-mh no-result-watermark" ng-if="vm.tipoEntidad && !vm.filasFiltradas">
+                        <h4>{{ 'No hay ningún resultado para su búsqueda por el tipo de entidad' }} {{ vm.tipoEntidad }}</h4>
+                    </div>
+                </div>
+            </div>
+            <div ng-if="vm.mostrarMensajeProyectos" ng-cloak>
+                <div class="text-center intro-help no-result-watermark">
+                    <img src="Img/image-help.png" alt="Sin resultados">
+                    <h2 id="idLabelMensajeResultados">{{vm.Mensaje}}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

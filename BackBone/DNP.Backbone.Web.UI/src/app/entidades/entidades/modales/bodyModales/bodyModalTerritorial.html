@@ -1,0 +1,52 @@
+﻿<div class="row">
+    <div ng-class="vm.objEntidad.entityType == '4'? 'col-md-6':'col-md-12'">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text bg-light rounded-left-2">Ent</span>
+            </div>
+            <input type="text" class="form-control rounded-right-2" ng-model="vm.objEntidad.nombre">
+        </div>
+    </div>
+    <div class="col-md-6" ng-if="vm.objEntidad.entityType == '4'">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text bg-light rounded-left-2">Depart</span>
+            </div>
+            <select ng-model="vm.objEntidad.parentGuid" class="form-control rounded-right-2" placeholder="Departamento">
+                <option ng-repeat="dep in vm.objEntidad.listaDepartamentos" value="{{dep.Id}}">
+                    {{dep.Nombre}}
+                </option>
+            </select>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text bg-light rounded-left-2">Tipo</span>
+            </div>
+            <select ng-model="vm.objEntidad.entityType" class="form-control rounded-right-2" placeholder="Tipo">
+                <option ng-repeat="et in vm.objEntidad.listaEntityType" value="{{et.Id}}">
+                    {{et.Nombre}}
+                </option>
+            </select>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text bg-light rounded-left-2">Sig</span>
+            </div>
+            <input ng-model="vm.objEntidad.sigla" type="text" class="form-control rounded-right-2" />
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text bg-light rounded-left-2">Cod</span>
+            </div>
+            <input type="text" name="field" ng-model="vm.objEntidad.codigo" minlength="1" maxlength="99999" class="form-control rounded-right-2" ui-number-mask="0" ui-hide-group-sep >
+        </div>
+    </div>
+</div>

@@ -1,0 +1,9 @@
+﻿<div ng-if="form.visible === true" ng-controller="WbsController as vm">
+    <div class="text-center intro-help" id="panelMensajeError" ng-show="vm.modelo === null">
+        <!-- ReSharper disable Html.PathError -->
+        <img src="img/image-help.png" alt="Sin resultados" />
+        <h2>{{ 'NoResultadosBusqueda' |language}}</h2>
+        <h3>{{ 'SeleccioneFiltrosMensaje'|language}}</h3>
+    </div>
+    <wbs modelo="vm.modelo" datos="vm.datos" schema="vm.schema" opciones="vm.opciones"></wbs>
+</div>

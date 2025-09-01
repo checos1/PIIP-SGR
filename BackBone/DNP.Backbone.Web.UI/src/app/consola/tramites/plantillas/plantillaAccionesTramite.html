@@ -1,0 +1,14 @@
+﻿<div class="text-center">
+    <!--<a ng-if="grid.appScope.vm.consultarPermiso(row.entity.entidadId, 'ConsolaTramites:VerArchivos')" href="" class="btnaccion" tooltip-placement="Auto" uib-tooltip="Archivos">-->
+    <a href="" ng-click="grid.appScope.vm.abrirModalArchivos(row.entity)" class="btnaccion" tooltip-placement="Auto" uib-tooltip="Archivos">
+        <span><img class="grid-icon-accion" src="Img/iconsgrid/iconAccionDocumento.png" /></span>
+    </a>
+    <!--<a ng-if="grid.appScope.vm.consultarPermiso(row.entity.entidadId, 'ConsolaTramites:VerFichas')" href="" class="btnaccion" tooltip-placement="Auto" uib-tooltip="Fichas">-->
+    <a href="" class="btnaccion" tooltip-placement="Auto" uib-tooltip="Fichas" ng-click="grid.appScope.vm.abrirModalFichas(row.entity)">
+        <span><img class="grid-icon-accion" src="Img/iconsgrid/iconAccionDocumentos.png" /></span>
+    </a>
+    <!--<a ng-if="grid.appScope.vm.consultarPermiso(row.entity.entidadId, 'ConsolaTramites:VerProyectos')" href="/consolaTramite/{{row.entity.IdInstancia}}/proyectos" class="btnaccion" tooltip-placement="Auto" uib-tooltip="Ver Proyectos">-->
+    <a href="/consolaTramite/{{row.entity.IdInstancia}}/proyectos" class="btnaccion" tooltip-placement="Auto" uib-tooltip="Ver Proyectos">
+        <span><img class="grid-icon-accion" src="Img/iconsgrid/iconAccionVer.png" /></span>
+    </a>
+</div>

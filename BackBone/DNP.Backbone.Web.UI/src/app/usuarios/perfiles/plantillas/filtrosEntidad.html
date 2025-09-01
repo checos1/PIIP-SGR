@@ -1,0 +1,14 @@
+﻿<div class="row">
+    {{vm.tiposEntidad}}
+    <div class="tabs-perfil-usuario">
+        <ul class="nav nav-pills">
+            <li ng-repeat="entidad in vm.tiposEntidad"
+                ng-class="{'active' : vm.tipoEntidadSeleccionada === entidad.clave }">
+                <a data-toggle="tab" ng-click="vm.cambiarTipoEntidadFiltro(entidad.clave)">
+                    <div class="upper-selection"></div>
+                    <span>{{entidad.nombre}}</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

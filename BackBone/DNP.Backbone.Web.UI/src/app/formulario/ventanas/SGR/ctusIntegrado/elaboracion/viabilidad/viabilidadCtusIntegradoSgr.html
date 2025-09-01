@@ -1,0 +1,24 @@
+﻿<section ng-init="vm.obtener();">
+    <div id="SGRERRSEC{{vm.nombreComponente}}" class="hidden mb-3 ml-5 errorSeccionViabilidad" style="text-align: left; font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans'; font-size: 12px; font-style: normal; color: #A80521;"></div>
+    <div class="container-fluid inbox">
+        <div class="tab-content">
+            <div class="ui-accordion-container">
+                <div class="alert panel-heading row ui-accordion-header">
+                    <button type="button" data-toggle="collapse" data-target="#sgrctusintegradoviabilidadcuestionarioviabilidad" ng-click="vm.changeArrow('sgrctusintegradoviabilidadcuestionarioviabilidad')">
+                        <span class="d-inline-block" id="alert-sgrctusintegradoviabilidadcuestionarioviabilidad"></span>
+                        <span id="name-capitulo-sgrctusintegradoviabilidadcuestionarioviabilidad"></span>
+                        <span class="hidden" id="id-capitulo-sgrctusintegradoviabilidadcuestionarioviabilidad"></span>
+                        <span id="arrow-sgrctusintegradoviabilidadcuestionarioviabilidad" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#sgrctusintegradoviabilidadcuestionarioviabilidad"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="sgrctusintegradoviabilidadcuestionarioviabilidad">
+                    <cuestionario-ctus-integrado-sgr guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                                 notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                 notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"
+                                                 notificacioninicio="vm.notificacionInicioHijos(handlerInicio, nombreComponente)">
+                    </cuestionario-ctus-integrado-sgr>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

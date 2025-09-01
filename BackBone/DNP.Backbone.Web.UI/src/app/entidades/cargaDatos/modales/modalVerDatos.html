@@ -1,0 +1,36 @@
+﻿<modal-dialog cerrar="vm.cerrar">
+    <div id="carga-datos-modal">
+        <div class="row ">
+            <div class="col-md-12">
+                <div class="titulo-modal">
+                    <span>ARCHIVO</span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 mt-2 ">
+                <table class="table table-bordered">
+                    <tr>
+                        <th  ng-repeat="(key, val) in  vm.listaDynamic[0]"> 
+                            <!--ng-click="sortBy(key)">-->
+                            {{ key }}
+                            <!--<span ng-if="sortByColumn === key">{{ sortByReverse ? '▲' : '▼' }}</span>-->
+                        </th>
+                    </tr>
+                    <tr ng-repeat="row in vm.listaDynamic" >
+                        <!--| orderBy : getSortColumn() : sortByReverse">-->
+                        <td  ng-repeat="column in row">
+                            {{ column }}
+                        </td>
+                    </tr>
+                </table>
+
+
+                <!--<div class="clearfix"
+                     ui-grid="vm.gridOptions"
+                     ng-style="{ height: (vm.gridOptions.data.length * 40) + 32 + 'px'}">
+                </div>-->
+            </div>
+        </div>
+    </div>
+</modal-dialog>

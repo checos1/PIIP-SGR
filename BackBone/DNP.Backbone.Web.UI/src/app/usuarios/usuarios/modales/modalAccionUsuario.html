@@ -1,0 +1,122 @@
+﻿<!--<modal-dialog cerrar="vm.cerrar" guardar="vm.guardar" ng-init="vm.init()">
+    <div class="row ">
+        <div class="col-md-12">
+            <div class="titulo-modal">
+                <span>EDICIÓN DE USUARIO</span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="entidad"><b>Id</b></label>
+                <input type="text" class="form-control" id="entidad" ng-model="vm.idUsuarioDNP" disabled="disabled" />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="nombre"><b>Nombre</b></label>
+                <input type="text" class="form-control" id="nombre" ng-model="vm.nombre" required>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="apellido"><b>Apelido</b></label>
+                <input type="text" class="form-control" id="apelido" ng-model="vm.apelido" required>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="entidad"><b>Entidad</b></label>
+                <input type="text" class="form-control" id="entidad" ng-model="vm.nombreEntidad" disabled="disabled" />
+            </div>
+        </div>
+    </div>
+</modal-dialog>-->
+
+
+<modal-dialog cerrar="vm.cerrar" guardar="vm.guardar" ng-init="vm.init()">
+
+    <div class="modal-body modalebodyDNP" id="modal-body" style="min-height:350px">
+        <br/>
+        <div class="row modaleDNP" style="margin-left: 0px !important; margin-right: 0px !important; margin-top: -40px; ">
+            <div>
+                <br />
+                <h3 class="modal-title" id="modal-title">Datos básicos </h3>
+                <br />
+                <span class="modal-title22" style="font-family: 'Montserrat Medium', 'Montserrat Regular', 'Montserrat', sans-serif; font-weight: 500; font-size: 16px !important;">  {{vm.idUsuarioDNP}}.  {{vm.TipoUsuario}}. {{vm.Nombres}}. {{vm.Correo}}. {{vm.EstadoUsuario}}</span><br />
+                <span class="modal-title22" style="font-family: 'Montserrat Medium', 'Montserrat Regular', 'Montserrat', sans-serif; font-weight: 500; font-size: 16px !important;">  {{vm.nombreEntidad}}</span>
+            </div>
+        </div>
+        <br /><br /> <br /><br />
+        <div class="row" style="margin-left:0px;margin-right:0px">
+            <div class="col-md-4">
+
+                <div class="labelbuscadorDNP">
+                    <label style=" font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif; font-weight: 500; font-style: normal; font-size: 16px; color: #4B4B4B;">Nombres*</label>
+                </div>
+
+                <input type="text" class="form-control InputBuscadorDNP" id="nombre" ng-model="vm.nombre" required>
+
+
+            </div>
+            <div class="col-md-4">
+
+                <div class="labelbuscadorDNP">
+                    <label style=" font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif; font-weight: 500; font-style: normal; font-size: 16px; color: #4B4B4B;">Apellidos*</label>
+                </div>
+
+                <input type="text" class="form-control InputBuscadorDNP" id="apelido" ng-model="vm.apelido" required>
+            </div>
+            <div class="col-md-4">
+
+                <div class="labelbuscadorDNP">
+                    <label style=" font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif; font-weight: 500; font-style: normal; font-size: 16px; color: #4B4B4B;">Correo*</label>
+                </div>
+
+                <input type="text" class="form-control InputBuscadorDNP" id="apelido" ng-model="vm.Correo" required>
+            </div>
+        </div>
+
+    </div>
+</modal-dialog>
+
+
+<style>
+
+
+    .closemodalDNP {
+        display: flex;
+        right: 30px;
+        top: 0px;
+        margin-top: -20px;
+    }
+
+    .modalebodyDNP {
+        background: transparent !important;
+        margin-left: 20px !important;
+        padding: 0px !important;
+        margin-right: 20px !important;
+        margin-top: 25px !important;
+    }
+
+    .btneditarDNP[disabled] {
+        -webkit-border-radius: 50px;
+        background-color: transparent !important;
+        border-width: 2px !important;
+        border-style: solid !important;
+        border-color: rgba(186, 186, 186, 0.996) !important;
+        color: rgba(186, 186, 186, 0.996) !important;
+        font-size: 16px !important;
+        font-weight: 500 !important;
+        padding-right: 18px !important;
+        padding-left: 18px !important;
+        padding: 3px 0px 3px 0px;
+        font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans';
+        white-space: nowrap;
+    }
+</style>

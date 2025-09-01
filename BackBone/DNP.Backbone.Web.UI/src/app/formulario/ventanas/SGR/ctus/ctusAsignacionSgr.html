@@ -1,0 +1,18 @@
+﻿<section class="ventana-ajsutes mt-4" ng-init="vm.init()">
+    <div class="row m-0">
+        <div class="form-group">
+            <div class="tab-container col-md-12">
+                <div class="tab-content">
+                    <div class="tab-pane active cont col-md-12" style="padding-left: 0 !important; padding-top: 0 !important; padding-right: 0 !important; padding-bottom: 0 !important;" id="dsgrctusasignacion">
+                        <asignacion-tecnico-ctus-sgr callback="vm.notificarGuardado()"
+                                                      guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                                      notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                                      notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)"
+                                                      notificacioncambios="vm.notificacionCambiosAjustes(handler, nombreComponente)">
+                        </asignacion-tecnico-ctus-sgr>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

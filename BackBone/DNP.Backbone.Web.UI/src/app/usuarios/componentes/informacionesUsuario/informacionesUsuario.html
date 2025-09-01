@@ -1,0 +1,26 @@
+<div class="name-profile" ng-init="vm.init()">
+    <div class="dropdown">
+        <div class="dropdown-toggle" data-toggle="dropdown" uib-tooltip="Usuario">
+            <span class="name" title="{{vm.nombreUsuario}}">{{vm.nombreUsuario}}</span>
+            <img src="/Img/iconsheader/iconUser.svg" />
+        </div>
+        <ul class="dropdown-menu">
+            <li ng-if="vm.esUsuarioExterno">
+                <a data-toggle="collapse" ng-click="vm.abrirModalCambiarContrasena()">
+                    <span class="icon-passwork"></span> &nbsp;
+                    <span>Cambiar contraseña</span>
+                </a>
+            </li>
+            <li class="divider" ng-if="vm.esUsuarioExterno"></li>
+            <li>
+                <a href="/MiPerfil">
+                    <span class="icon-user"></span> &nbsp;
+                    <span>Ver perfil</span>
+                </a>
+            </li>
+        </ul>
+        <a href="/Account/SignOut" title="Salir">
+            <img src="Img/iconsheader/logout.svg" class="icon" alt="Salir" tooltip-placement="auto" uib-tooltip="Salir" />
+        </a>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+﻿<section ng-init="vm.init();">
+    <div id="SGPERRSEC-usuariosinvolucradossgp" class="hidden mb-3 ml-5 errorSeccionInformacionGeneralViabilidad" style="text-align: left; font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans'; font-size: 12px; font-style: normal; color: #A80521;"></div>
+    <div class="container-fluid inbox">
+        <div class="tab-content">
+            <div class="ui-accordion-container">
+                <div class="alert panel-heading row ui-accordion-header">
+                    <button type="button" data-toggle="collapse" data-target="#usuariosinvolucradossgptramiteproyectosgp" ng-click="vm.changeArrow('usuariosinvolucradossgptramiteproyectosgp')">
+                        <span class="d-inline-block" id="alert-usuariosinvolucradossgptramiteproyectosgp"></span>
+                        <span id="name-capitulo-usuariosinvolucradossgptramiteproyectosgp"></span>
+                        <span class="hidden" id="id-capitulo-usuariosinvolucradossgptramiteproyectosgp"></span>
+                        <span id="arrow-usuariosinvolucradossgptramiteproyectosgp" class="glyphicon glyphicon-chevron-up pull-right" data-toggle="collapse" data-target="#usuariosinvolucradossgptramiteproyectosgp"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="usuariosinvolucradossgptramiteproyectosgp">
+                    <usuarios-involucrados-adicion-sgp guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                                        notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                        notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)">
+                    </usuarios-involucrados-adicion-sgp>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

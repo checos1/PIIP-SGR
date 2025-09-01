@@ -1,0 +1,55 @@
+﻿<div ng-init="vm.init();">
+    <div id="SGRERRSEC{{vm.nombreComponente}}" class="hidden mb-3 ml-5 errorSeccionRequisitosGenerales" style="text-align: left; font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans'; font-size: 12px; font-style: normal; color: #A80521;"></div>
+
+    <div class="ui-accordion-container " id="accordion-sgrctusintegradoelaboraciondatosverificaciondatosadicionalesverificacion">
+        <div class="alert panel-heading row ui-accordion-header">
+            <button type="button" data-toggle="collapse" data-target="#sgrctusintegradoelaboraciondatosverificaciondatosadicionalesverificacion" ng-click="vm.changeArrow('sgrctusintegradoelaboraciondatosverificaciondatosadicionalesverificacion')">
+                <span class="d-inline-block" id="alert-sgrctusintegradoelaboraciondatosverificaciondatosadicionalesverificacion"></span>
+                <span id="name-capitulo-sgrctusintegradoelaboraciondatosverificaciondatosadicionalesverificacion"></span>
+                <span class="hidden" id="id-capitulo-sgrctusintegradoelaboraciondatosverificaciondatosadicionalesverificacion"></span>
+                <span id="arrow-sgrctusintegradoelaboraciondatosverificaciondatosadicionalesverificacion" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#sgrctusintegradoelaboraciondatosverificaciondatosadicionalesverificacion"></span>
+            </button>
+        </div>
+        <div class="collapse" id="sgrctusintegradoelaboraciondatosverificaciondatosadicionalesverificacion">
+            <div class="row m-0 mb-3">
+                <div class="col-md-12 ">
+                    <datos-adicionales-ctus-i-sgr callback="vm.notificarGuardado()"
+                                           guardadocomponent="vm.guardadohijos(nombreComponenteHijo)"
+                                           notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                           notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"
+                                           notificarrefresco="vm.notificarRefresco(handler, nombreComponente)"
+                                           notificacioncambios="vm.notificacionCambiosCapitulosExternos(handler, nombreComponente)">
+                    </datos-adicionales-ctus-i-sgr>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="ui-accordion-container " id="accordion-sgrctusintegradoelaboraciondatosverificacionagregarsectores">
+        <div class="alert panel-heading row ui-accordion-header">
+            <button type="button" data-toggle="collapse" data-target="#sgrctusintegradoelaboraciondatosverificacionagregarsectores" ng-click="vm.changeArrow('sgrctusintegradoelaboraciondatosverificacionagregarsectores')">
+                <span class="d-inline-block" id="alert-sgrctusintegradoelaboraciondatosverificacionagregarsectores"></span>
+                <span id="name-capitulo-sgrctusintegradoelaboraciondatosverificacionagregarsectores"></span>
+                <span class="hidden" id="id-capitulo-sgrctusintegradoelaboraciondatosverificacionagregarsectores"></span>
+                <span id="arrow-sgrctusintegradoelaboraciondatosverificacionagregarsectores" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#sgrctusintegradoelaboraciondatosverificacionagregarsectores"></span>
+            </button>
+        </div>
+        <div class="collapse" id="sgrctusintegradoelaboraciondatosverificacionagregarsectores">
+            <div class="row m-0 mb-3">
+                <div class="col-md-12 ">
+                    <agregar-sectores-ctus-i-sgr callback="vm.notificarGuardado()"
+                                          guardadocomponent="vm.guardadohijos(nombreComponenteHijo)"
+                                          notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                          notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"
+                                          notificarrefresco="vm.notificarRefresco(handler, nombreComponente)"
+                                          notificacioncambios="vm.notificacionCambiosCapitulosExternos(handler, nombreComponente)">
+                    </agregar-sectores-ctus-i-sgr>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

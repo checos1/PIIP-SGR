@@ -1,0 +1,143 @@
+﻿@using DNP.Backbone.Dominio.Dto.Monitoreo;
+@model ProyectoResumenDto
+@{
+    Layout = null;
+    ViewBag.Title = "MonitoreoProyectosPDF";
+}
+<html>
+<head>
+    @Html.Partial("_IncludeEstilosRelatorios")
+</head>
+<body class="pdf">
+    @Html.Partial("_CabecalhoRelatorio", "Informe del Monitoreo de Proyectos")
+
+    <div class="mt-5">
+        @if (Model.GruposEntidades == null)
+        {
+            <table class="table table-sm table-borderless">
+                <thead>
+                    <tr>
+                        <th class="text-left">
+                            No hubo registros para los filtros seleccionados.
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+        }
+        else
+        {
+            foreach (var entidades in Model.GruposEntidades)
+            {
+                <div>
+                    <div class="marginTop10">
+                        <table class="table table-sm table-borderless">
+                            <tr>
+                                <td><b>Tipo Entidade:</b> @entidades.TipoEntidad </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                foreach (var grpProyectos in entidades.ListaEntidades)
+                {
+                    <div>
+                        <div class="marginTop10">
+                            <table class="table">
+                                <tr>
+                                    <td><b>Sector:</b> <span class="agr-blue"> @grpProyectos.ObjetosNegocio.FirstOrDefault().SectorNombre </span> - <b>Nombre Entidad</b> <span class="agr-black">@grpProyectos.NombreEntidad </span></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div id="containerbody">
+                        <table class="table  table-borderless border-table">
+                            <thead>
+                                <tr>
+                                    @foreach (var columna in Model.ColumnasVisibles)
+                                    {
+                                        if (columna.Contains("ProyectoNombre"))
+                                        {
+                                            <th>Proyecto/BPIN</th>
+                                        }
+                                        if (columna.Contains("EstadoProyecto"))
+                                        {
+                                            <th>Estado</th>
+                                        }
+                                        if (columna.Contains("AvanceFinanciero"))
+                                        {
+                                            <th>Avance Financiero</th>
+                                        }
+                                        if (columna.Contains("AvanceFisico"))
+                                        {
+                                            <th>Avance Fisico</th>
+                                        }
+                                        if (columna.Contains("AvanceProyecto"))
+                                        {
+                                            <th>Avance Proyecto</th>
+                                        }
+                                        if (columna.Contains("Duracion"))
+                                        {
+                                            <th>Duracion</th>
+                                        }
+                                        if (columna.Contains("PeriodoEjecucion"))
+                                        {
+                                            <th>Periodo Ejecucion</th>
+                                        }
+                                        if (columna.Contains("Sector"))
+                                        {
+                                            <th>Sector</th>
+                                        }
+                                    }
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var proyectos in grpProyectos.ObjetosNegocio)
+                                {
+                                <tr>
+                                    @foreach (var columna in Model.ColumnasVisibles)
+                                    {
+                                        if (columna.Contains("ProyectoNombre"))
+                                        {
+                                            <td>@proyectos.CodigoBpin - @proyectos.ProyectoNombre</td>
+                                        }
+                                        if (columna.Contains("EstadoProyecto"))
+                                        {
+                                            <td>@proyectos.EstadoProyecto</td>
+                                        }
+                                        if (columna.Contains("AvanceFinanciero"))
+                                        {
+                                            <td>@proyectos.AvanceFinanciero</td>
+                                        }
+                                        if (columna.Contains("AvanceFisico"))
+                                        {
+                                            <td>@proyectos.AvanceFisico</td>
+                                        }
+                                        if (columna.Contains("AvanceProyecto"))
+                                        {
+                                            <td>@proyectos.AvanceProyecto</td>
+                                        }
+                                        if (columna.Contains("Duracion"))
+                                        {
+                                            <td>@proyectos.Duracion</td>
+                                        }
+                                        if (columna.Contains("PeriodoEjecucion"))
+                                        {
+                                            <td>@proyectos.PeriodoEjecucion</td>
+                                        }
+                                        if (columna.Contains("Sector"))
+                                        {
+                                            <td>@proyectos.SectorNombre</td>
+                                        }
+                                    }
+
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+            }
+
+        }
+    </div>
+</body>
+</html>

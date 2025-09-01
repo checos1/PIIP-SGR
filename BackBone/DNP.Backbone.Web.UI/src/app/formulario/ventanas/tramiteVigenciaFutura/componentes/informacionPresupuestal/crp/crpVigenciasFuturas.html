@@ -1,0 +1,144 @@
+﻿<style>
+    .uLabelDetalle_FP {
+        color: #004884 !important;
+        font-family: 'Work Sans';
+        letter-spacing: 0px;
+        font-size: 16px;
+    }
+
+    .uLabelCampo_fp {
+        color: #004884 !important;
+        font-family: 'Work Sans';
+        letter-spacing: 0px;
+        font-weight: 600;
+        font-size: 16px;
+    }
+
+
+    .uLabelCampo_fp1 {
+        color: #004884 !important;
+        font-family: 'Work Sans';
+        letter-spacing: 0px;
+        font-weight: 600;
+        font-size: 14px;
+    }
+
+    .btn-primary,
+    .btn-primary:hover,
+    .btn-primary:active,
+    .btn-primary:visited {
+        background-color: #8064A2 !important;
+    }
+</style>
+<div ng-init="vm.init()">
+    <form id="cdpVigenciaForm" name="cdpVigenciaForm" novalidate>
+        <div class="col-md-12">
+            <div ng-click="vm.informacionRP()">
+                <span class="uLabelCampoAzul">Agregar RP </span>
+                <svg class="mi-card__tooltip-icon" xmlns="http://www.w3.org/2000/svg" width="17.037" height="17.037" viewBox="0 0 17.037 17.037">
+                    <g id="Grupo_5110" data-name="Grupo 5110" transform="translate(0 0)">
+                        <path id="Caminho_9243" data-name="Caminho 9243" d="M8.552,0A8.552,8.552,0,0,0,0,8.485a8.609,8.609,0,0,0,8.552,8.552A8.519,8.519,0,0,0,8.552,0Zm0,14.542a1,1,0,1,1,1-1A1,1,0,0,1,8.552,14.542Zm1.769-6.136A2.663,2.663,0,0,0,9.55,10.22v.262a1,1,0,0,1-2,0V10.22A4.614,4.614,0,0,1,9.141,6.8,1,1,0,1,0,7.554,5.99a1,1,0,0,1-2,0,2.995,2.995,0,1,1,4.764,2.416Z" transform="translate(0 0)" fill="#36c"></path>
+                    </g>
+                </svg>
+            </div>
+            <br />
+            <br />
+            <span class="uLabelCampoNegro1">CRP agregados</span>
+        </div>
+        <p align="right">
+            <span class="uLabelCampoNegro0">Total: {{vm.listaCDP.length}}</span>
+        </p>
+        <div class="row">
+            <div class="col-md-1">&nbsp;</div>
+            <div class="col-md-12">
+                <div id="recursosfuentesdefinanc-validacionguardar-error" src="Img/u11.svg" class=" img hidden text-left color-red"></div>
+
+            </div>
+        </div>
+        <br />
+
+        <table class="TableDNP">
+            <thead>
+                <tr>
+                    <th class="columAcc"></th>
+                    <th class="textRightDNP">Número RP</th>
+                    <th class="textRightDNP">Valor RP $</th>
+                    <th class="textRightDNP">Nº de contrato</th>
+                    <th class="textRightDNP">Fecha RP</th>
+                    <th class="textRightDNP">Valor total $</th>
+                    <th class="columAcc"></th>
+                    <th class="columAcc"></th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="objCDP in vm.listaCDP">
+                    <td> <div id="informacionpresupuestalrp-{{objCDP.numeroCDP}}" class="hidden text-left color-red"></div> </td>
+                    <td class="textRightDNP"> {{objCDP.numeroCDP}}</td>
+                    <td class="textRightDNP"> {{objCDP.valorCDP}}</td>
+                    <td class="textRightDNP"> {{objCDP.numeroContrato}}</td>
+                    <td class="textRightDNP"> {{objCDP.fechaCDP}}</td>
+                    <td class="textRightDNP"> {{objCDP.valortotalCDP}}</td>
+                    <td>
+                        <button class="btn" title="Editar CDP" ng-click="vm.editarCDP(objCDP.id)" style="background-color: Window" has-claim has-opciones="['TramitesVigenciaFutura:AccionesPasoUno']">
+                            <img src="Img/u475.svg" />
+                        </button>
+                    </td>
+                    <td>
+                        <button class="btn" title="Eliminar CDP" ng-click="vm.eliminarCDP(objCDP.id)" style="background-color: Window" has-claim has-opciones="['TramitesVigenciaFutura:AccionesPasoUno']">
+                            <img src="Img/u928.svg" />
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div id="informacionpresupuestalrp-RP-error" class="hidden uMensajeError"></div>
+        <div id="informacionpresupuestalrp-RPObligatorio-error" class="hidden uMensajeError"></div>
+
+        <p align="right">
+            <button type="button" class="btn btn-link btn-md buttonhiperDNP" ng-click="vm.abrirModalEditarCDP()" has-claim has-opciones="['TramitesVigenciaFutura:AccionesPasoUno']">
+                AGREGAR RP
+            </button>
+        </p>
+
+        <div class="row">
+            <div class="col-md-12 DetacolumnDNP" has-claim has-opciones="['TramitesVigenciaFutura:AccionesPasoUno']">
+                <span>
+                    Archivo plantilla carga masiva <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg" ng-click="vm.informacionCDP()">
+                </span>
+                <button type="button" class="btn btn-link btn-md buttonhiperDNP" ng-click="vm.exportExcel()">
+                    DESCARGAR PLANTILLA
+                </button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <div class="divpanelcargarchivoDNP" style="">
+                    <div class="upload-btn-wrapper pull-left">
+                        <button class="btncargarch" has-claim has-opciones="['TramitesVigenciaFutura:AccionesPasoUno']">EXAMINAR</button>
+                        <input type="file" onchange="angular.element(this).scope().SelectFile(event)" file-model-no-preview="data.file" id="control" />
+                    </div>
+                    <div ng-repeat="file in files"><span class="uLabelDetalle"> Nombre archivo: {{file.nombreArchivo}}</span></div>
+                    <button id="BotonCancelarSearch" class="btncancearchDisabled" type="button" uib-tooltip="Cancelar" ng-click="vm.limpiarArchivo()">
+                        X
+                    </button>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <span class="buttonbar pull-right">
+                    <button id="BotonValidar" type="button" class="btnguardarDisabledDNP" tooltip-placement="top" uib-tooltip="Validar" tabindex="0" ng-click="vm.validarArchivo()">
+                        VALIDAR
+                    </button>
+                    <button id="BotonCancelar" type="button" class="btnguardarDisabledDNP" tooltip-placement="top" uib-tooltip="Cancelar" tabindex="0" ng-click="vm.limpiarArchivo()">
+                        CANCELAR
+                    </button>
+                    <button id="BotonCargar" type="button" class="btnguardarDisabledDNP" tooltip-placement="top" uib-tooltip="Cargar" tabindex="0" ng-click="vm.cargarArchivo()">
+                        CARGAR
+                    </button>
+                </span>
+            </div>
+        </div>
+    </form>
+    <br />  
+</div>

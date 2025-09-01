@@ -1,0 +1,57 @@
+<div class="centroayuda__container">
+    <div class="header__centro__ayuda">
+        <span style="font-weight: bold; color: #004884">¿Dudas sobre la PIIP?</span>
+        <a href="#" class="closebtn" id="closeSideBar" onclick="closeNav()"></a>
+    </div>
+    <div class="body__centro__ayuda">
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="nav nav-tabs tabs-ayuda">
+                    <li tabindex="0" class="active">
+                        <a data-toggle="tab" ng-click="vm.cambioAba('articulos')">Centro de ayuda</a>
+                    </li>
+                    <li tabindex="1">
+                        <a data-toggle="tab" ng-click="vm.cambioAba('videos')">Videos</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="search__container">
+                    <input class="search__box" ng-model="vm.filtro" type="search" name="search" placeholder="Buscar..." ng-keydown="vm.filtrarAyuda()" ng-keypress="vm.filtrarAyuda()">
+                    <i class="fa fa-search search__icon" ng-click="vm.filtrarAyuda()"></i>
+                </div>
+            </div>
+        </div>
+        <div class="tab-content">
+            <div id="articulos" ng-if="vm.abaArticulo">
+                <div class="lista__items__ayuda">
+                    <ul class="lista__general" ng-repeat="articulo in vm.articulos">
+                        <li data-toggle="collapse" data-target="#{{articulo.Id}}" aria-expanded="false">
+                            <a class="item__general">
+                                {{ articulo.Nombre }}
+                                <i class="fa fa-chevron-circle-down menu-arrow icon_general" aria-hidden="true"></i>
+                            </a>
+                            <ul class="collapse lista__especifica" id="{{articulo.Id}}">
+                                <li ng-repeat="subItem in articulo.SubItems">
+                                    <a ng-click="vm.visualizarArticulo(subItem)"> {{subItem.Nombre}} </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div id="videos" ng-if="!vm.abaArticulo">
+                <div class="box__video__ayuda" ng-class="{ 'activo' : video.showMore }" ng-repeat="video in vm.videos" id="{{video.Id}}">
+                    <div class="box__frame">
+                        <div ng-bind-html="video.Contenido | to_trusted"></div>
+                    </div>
+                    <p class="title text-overflow-title" title="{{video.Nombre}}">{{video.Nombre}}</p>
+                    <p class="descricion" ng-class="{ 'show__less' : !video.showMore }">{{video.Descripcion}}</p>
+                    <span class="show__more" ng-if="vm.showMore(video.Descripcion)" ng-click="vm.toggleShow(video)">{{ !video.showMore ? "Ver más" : "Ver menos" }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>  

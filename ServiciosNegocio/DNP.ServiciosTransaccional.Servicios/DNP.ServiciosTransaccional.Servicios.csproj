@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C1345774-D0C4-4626-8E1D-1FB6BA1EBF33}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DNP.ServiciosTransaccional.Servicios</RootNamespace>
+    <AssemblyName>DNP.ServiciosTransaccional.Servicios</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Dev|AnyCPU'">
+    <OutputPath>bin\Dev\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'QA|AnyCPU'">
+    <OutputPath>bin\QA\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'UAT|AnyCPU'">
+    <OutputPath>bin\UAT\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Local|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Local\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DevNT|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\DevNT\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'UatNT|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\UatNT\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'QA2|AnyCPU'">
+    <OutputPath>bin\QA2\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'QA3|AnyCPU'">
+    <OutputPath>bin\QA3\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'QA4|AnyCPU'">
+    <OutputPath>bin\QA4\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'SGR|AnyCPU'">
+    <OutputPath>bin\SGR\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'UATSGR|AnyCPU'">
+    <OutputPath>bin\UATSGR\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Dto\DevolverFlujoSGRDto.cs" />
+    <Compile Include="Dto\AplicarFlujoSGRDto.cs" />
+    <Compile Include="Dto\ArchivoEntidadDto.cs" />
+    <Compile Include="Dto\ArchivoInfoCargueDto.cs" />
+    <Compile Include="Dto\ArchivoViewModelDto.cs" />
+    <Compile Include="Dto\CreacionRadicadoEntradaDto.cs" />
+    <Compile Include="Dto\ProyectoCtusDto.cs" />
+    <Compile Include="Dto\CrearRadicadoRequestDto.cs" />
+    <Compile Include="Dto\CrearInstanciaDto.cs" />
+    <Compile Include="Dto\InstanciaFlujoPIIPDto.cs" />
+    <Compile Include="Dto\ResponseArchivoViewModelDto.cs" />
+    <Compile Include="Dto\UsuarioCuentaDto.cs" />
+    <Compile Include="Dto\UsuarioDto.cs" />
+    <Compile Include="Dto\UsuariosArchivosLoginDto.cs" />
+    <Compile Include="Implementaciones\ClienteHttpServicios.cs" />
+    <Compile Include="Implementaciones\Fichas\FichaServicios.cs" />
+    <Compile Include="Implementaciones\ModificacionLey\ModificacionLeyServicio.cs" />
+    <Compile Include="Implementaciones\ManejadorArchivos\ManejadorArchivosServicio.cs" />
+    <Compile Include="Implementaciones\Priorizacion\PriorizacionServicio.cs" />
+    <Compile Include="Implementaciones\Programacion\ProgramacionServicio.cs" />
+    <Compile Include="Implementaciones\Proyectos\BpinServicio.cs" />
+    <Compile Include="Implementaciones\Proyectos\MergeServicio.cs" />
+    <Compile Include="Implementaciones\Proyectos\ProyectoServicio.cs" />
+    <Compile Include="Implementaciones\ServicioBase.cs" />
+    <Compile Include="Implementaciones\Tramites\TramiteServicios.cs" />
+    <Compile Include="Implementaciones\Transferencias\CreacionBpinServicio.cs" />
+    <Compile Include="Implementaciones\Transferencias\TransferenciaServicio.cs" />
+    <Compile Include="Implementaciones\Transversales\AuditoriaServicios.cs" />
+    <Compile Include="Implementaciones\Transversales\CacheServicio.cs" />
+    <Compile Include="Implementaciones\Transversales\ParametrosServicio.cs" />
+    <Compile Include="Interfaces\Fichas\IFichaServicios.cs" />
+    <Compile Include="Interfaces\IClienteHttpServicios.cs" />
+    <Compile Include="Interfaces\ModificacionLey\IModificacionLeyServicio.cs" />
+    <Compile Include="Interfaces\ManejadorArchivos\IManejadorArchivosServicio.cs" />
+    <Compile Include="Interfaces\Priorizacion\IPriorizacionServicio.cs" />
+    <Compile Include="Interfaces\Programacion\IProgramacionServicio.cs" />
+    <Compile Include="Interfaces\Proyectos\IBpinServicio.cs" />
+    <Compile Include="Interfaces\Proyectos\IMergeServicio.cs" />
+    <Compile Include="Interfaces\Proyectos\IProyectoServicio.cs" />
+    <Compile Include="Interfaces\Tramites\ITramiteServicio.cs" />
+    <Compile Include="Interfaces\Tramites\IRadicadoService.cs" />
+    <Compile Include="Interfaces\Tramites\ITramiteService.cs" />
+    <Compile Include="Interfaces\Transferencias\ICreacionBpinServicio.cs" />
+    <Compile Include="Interfaces\Transferencias\ITransferenciaServicio.cs" />
+    <Compile Include="Interfaces\Transversales\IAuditoriaServicios.cs" />
+    <Compile Include="Interfaces\Transversales\ICacheServicio.cs" />
+    <Compile Include="Interfaces\Transversales\IParametrosServicio.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DNP.ServiciosNegocio.Comunes\DNP.ServiciosNegocio.Comunes.csproj">
+      <Project>{b20f5062-15b9-49e4-88c5-79f109f947ef}</Project>
+      <Name>DNP.ServiciosNegocio.Comunes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DNP.ServiciosNegocio.Dominio\DNP.ServiciosNegocio.Dominio.csproj">
+      <Project>{694221D1-E217-4D2E-87E3-B196C4C6BE94}</Project>
+      <Name>DNP.ServiciosNegocio.Dominio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DNP.ServiciosTransaccional.Persistencia\DNP.ServiciosTransaccional.Persistencia.csproj">
+      <Project>{3B3E24B5-7ADE-41A4-84B5-3F4683DFFA90}</Project>
+      <Name>DNP.ServiciosTransaccional.Persistencia</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <Compile Include="Dto\RadicadosStep.constantes.model.cs" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

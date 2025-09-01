@@ -1,0 +1,97 @@
+﻿<section>
+    <div class="container-fluid inbox" ng-init="vm.init();">
+        <div class="tab-content">
+            <br />
+            <br />
+            <div style="text-align: left;" class="col-md-12">
+                <div class="col-md-12 form-group text-right" style="padding-right:2rem;">
+                    <button id="EditarPreguntas"
+                            type="submit"
+                            class="btneditarDNP"
+                            tooltip-placement="top"
+                            ng-click="vm.ActivarEditar()"
+                            ng-if="!vm.soloLectura"
+                            uib-tooltip="Clic para editar la información">
+                        EDITAR
+                    </button>
+                    <button type="submit"
+                            id="GuardarPreguntas"
+                            class="btnguardarDisabledDNP"
+                            tooltip-placement="top"
+                            uib-tooltip="Guardar modificación"
+                            ng-if="!vm.soloLectura"
+                            ng-click="vm.registroRespuesta()"
+                            disabled>
+                        GUARDAR
+                    </button>
+                    <br />
+                </div>
+            </div>
+            <br />
+            <div id="sgpgraprobaciondefinitivaaprobaciondefinitivagrsgp-validacionFuentesErrores1-error" src="Img/u11.svg" class=" img hidden text-left color-red">
+                <span id="sgpgraprobaciondefinitivaaprobaciondefinitivagrsgp-validacionFuentesErrores1-error-mns" style="font-size:!important 16px"></span>
+            </div>
+            <br />
+            <br />
+            <div id="sgpgraprobaciondefinitivaaprobaciondefinitivagrsgp-validacionFuentesErrores2-error" src="Img/u11.svg" class=" img hidden text-left color-red">
+                <span id="sgpgraprobaciondefinitivaaprobaciondefinitivagrsgp-validacionFuentesErrores2-error-mns" style="font-size:!important 16px"></span>
+            </div>
+            <br />
+
+            <div ng-repeat="preguntas in vm.Preguntas">
+                <br />
+                <div class="row">
+                    <div class="col-md-12 DetacolumnDNP" style="text-align: left;">
+                        <span class="detapregun">{{preguntas.Pregunta}}</span>
+                        <span class="notapregun" ng-if="preguntas.TipoPregunta == 'Texto'"></span>
+                    </div>
+                    <div class="textAreDivRes" ng-if="preguntas.TipoPregunta == 'Lista'" style="text-align:left;">
+                        <div ng-repeat="respuestas in vm.Respuestas" class="col-md-1">
+                            <div ng-if="respuestas.Respuesta !=''">
+                                <input type="radio" value="{{preguntas.idPregunta}}-{{respuestas.idRespuesta}}"
+                                       ng-checked="{{respuestas.valor}} == {{preguntas.idPregunta}}-{{respuestas.idRespuesta}} ? true : false"
+                                       name="rbPresupuesto" disabled
+                                       id="{{preguntas.idPregunta}}-{{respuestas.idRespuesta}}">
+                                <label for="{{preguntas.idPregunta}}-{{respuestas.idRespuesta}}">{{respuestas.Respuesta}}</label>
+                            </div>
+                            <br />
+                        </div>
+                    </div>
+                    <div class="textAreDivRes" ng-if="preguntas.TipoPregunta == 'Fecha'" style="text-align: left;">
+                        <div ng-repeat="respuestas in vm.Respuestas" class="col-md-4" style="margin-left: 100px;">
+                            <input type="date" id="{{preguntas.idPregunta}}-{{preguntas.IdValorOpcion}}" formControlName="docdatetime" style="width: 150px;"
+                                   value="{{respuestas.valor}}" disabled
+                                   ng-if="respuestas.idPregunta == preguntas.idPregunta">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="u5226_div" class="divPanelPregRespDNP" style="width:100% !important" ng-if="preguntas.TipoPregunta == 'Texto'">
+                            <div class="respAdon">
+                                <span style="vertical-align: middle; display: table-cell;">\Respuesta</span>
+                            </div>
+                            <div class="textAreDivRes">
+                                <div ng-repeat="respuestas in vm.Respuestas">
+                                    <div ng-if="preguntas.TipoPregunta == 'Texto' && respuestas.idPregunta == preguntas.idPregunta">
+                                        <textarea id="{{preguntas.idPregunta}}-{{preguntas.IdValorOpcion}}" style="height:115px; width:810px;"
+                                                  placeholder="(Máximo 8.000 caracteres)"
+                                                  disabled class="textareObservaDNP"> {{ respuestas.valor != 0 ? respuestas.valor : '' }}</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+                 
+
+                </div>
+            </div>
+            <br />
+        </div>
+    </div>
+
+</section>

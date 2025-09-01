@@ -1,0 +1,221 @@
+﻿<div id="accordion" class="panel-collapse collapse in" aria-expanded="true">
+    <div class="wbs">
+        <div class="panel panel-default">
+            <div class="panel-body bgwhite">
+                <fieldset class="top20 borderbottom-tabla">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="titlebargrid">
+                                <span class="pull-left" style="margin-top: -7px !important"
+                                      ng-click="vm.collapsar = !vm.collapsar"
+                                      ng-class="{ 'collapsed' : vm.collapsar }">
+                                    <div class="accordian-arrow">
+                                        <i class="icon-less" aria-hidden="true"></i>
+                                        <i class="icon-add" aria-hidden="true"></i>
+                                    </div>
+                                </span>
+
+                                <span>{{vm.modelo.encabezado || vm.modelo.propiedad}} </span>
+                                <span class="buttonbar pull-right">
+                                    <a href="" ng-if="vm.modelo.adicionar"
+                                       ng-click="vm.adicionarFilaTabla(vm.modelo)"
+                                       ng-show="vm.desHabilitarBottonAdiccionar"
+                                       aria-hidden="true"
+                                       tooltip-placement="top"
+                                       uib-tooltip="{{ 'Adicionar' | language }}"
+                                       ng-disabled="vm.opciones.deshabilitarControles">
+                                        <img src="/Img/iconsgrid/iconAccionAdicionar.png" alt="Adicionar" />
+                                    </a>
+                                    <span class="pull-right" ng-repeat="(propiedad, valores) in vm.propiedadesTotalizarJerarquia | orderObjectBy:'propiedad':true">
+                                        <span class="total-label" ng-if="valores.totalizar"> {{valores.propiedadAMostrar}} Total :</span><span class="total-value" ng-if="valores.totalizar"> {{valores.total}}</span>
+                                    </span>
+                                </span>
+                                <div ng-if="vm.modelo.ImportarData">
+                                    <div class="col-md-12"><a href="" download="" target="_blank" ng-click="vm.exportarEstructura()" tooltip-placement="auto" uib-tooltip="Exportar estructura tabla" class="btn btn-default btn-md btnRedondo">Exportar estructura tabl</a></div>
+                                    <div class="col-md-12"><input type="file" onchange="angular.element(this).scope().SelectFile(event)" /></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="over-auto table-white" ng-class="{ 'collapse' : vm.collapsar }">
+                        <table ng-if="!vm.templatesServicio.tieneHijosTipoArray(vm.modelo)" class="table">
+                            <thead ng-if="!vm.tieneCabecera(vm.modelo.items)">
+                                <tr>
+                                    <th ng-if="item.visible  && !item.detalle" ng-repeat="item in vm.modelo.items">{{item.encabezado !== '' && item.encabezado !== null ? item.encabezado : item.propiedad}}</th>
+                                    <th class="{{vm.tieneScroll() ? 'fixed-column-rigth' : '' }}  col-accion" ng-if="vm.adicionarDesglose(dato) || vm.modelo.eliminar">{{'Acciones' | language }}</th>
+                                </tr>
+                            </thead>
+                            <!--código anterior-->
+                            <tbody class="cabeceras-tbody" ng-repeat="dato in vm.cabeceras" ng-if="vm.filtrar(dato)">
+                                <tr>
+                                    <td ng-if="dato.isCabecera" class="dato-cabecera">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th class="column-width-30" ng-if="vm.tieneCabecera(vm.modelo.items)"></th>
+                                                    <th class="column-width-150" ng-if="item.cabecera && !item.detalle" ng-repeat="item in vm.modelo.items">{{item.encabezado !== '' && item.encabezado !== null ? item.encabezado : item.propiedad}}</th>
+                                                    <!--<th ng-if="vm.modelo.eliminar">{{'Acciones' | language }}</th>-->
+                                                </tr>
+                                            </thead>
+                                            <tbody class="cabeceras-tbody">
+                                                <tr>
+                                                    <td ng-if="dato.isCabecera" class="column-width-30">
+                                                        <button class="accordian-button pull-left" ng-click="dato.colapsarCabecera = !dato.colapsarCabecera" ng-class="{ 'collapsed' : !dato.colapsarCabecera }">
+                                                            <div class="accordian-arrow">
+                                                                <i class="icon-add" aria-hidden="true"></i>
+                                                                <i class="icon-less" aria-hidden="true"></i>
+                                                            </div>
+                                                        </button>
+                                                    </td>
+                                                    <td class="column-width-150" ng-if="item.visible && !item.detalle && dato.isCabecera" ng-repeat="item in vm.modelo.items">
+                                                        <input class="form-control text-right"
+                                                               ng-if="item.editar && !item.rCache  && (item.tipo === 'decimal' || item.tipo === 'integer' || item.tipo === 'number' || item.tipo === 'double')"
+                                                               ng-model="dato[item.propiedad]"
+                                                               ng-change="vm.totalizar()"
+                                                               ng-disabled="vm.opciones.deshabilitarControles" />
+                                                        <input class="form-control"
+                                                               ng-if="item.editar && !item.rCache  && !(item.tipo === 'decimal' || item.tipo === 'integer' || item.tipo === 'number' || item.tipo === 'double')"
+                                                               ng-model="dato[item.propiedad]"
+                                                               ng-change="vm.totalizar()"
+                                                               ng-disabled="vm.opciones.deshabilitarControles" />
+                                                        <span ng-if="!item.editar && item.rCache">{{vm.getCache(dato[item.propiedad], item)}}</span>
+                                                        <span ng-if="!item.editar && !item.rCache && item.tipo === 'number'">{{dato[item.propiedad] | number : 2}}</span>
+                                                        <span ng-if="!item.editar && !item.rCache && item.tipo !== 'number'">{{dato[item.propiedad] != null ? dato[item.propiedad] : item.cacheValue}}</span>
+
+                                                        <select ng-if="item.editar && item.rCache" class="form-control" tooltip-placement="top" name="modal" ng-model="dato[item.propiedad]">
+                                                            <option ng-value="itemRedis.Id" ng-selected="dato[item.propiedad] == itemRedis.Id"
+                                                                    ng-repeat="itemRedis in vm.getTiposCatalogo(dato[item.propiedad], item, dato)">
+                                                                {{ itemRedis.Name }}
+                                                            </option>
+                                                        </select>
+
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <div ng-if="dato.colapsarCabecera">
+                                            <table class="{{vm.tieneScroll() && vm.tieneAccion() ? 'rightPaddingFix' : '' }} table table-white marginleft15">
+                                                <thead ng-if="vm.tieneCabecera(vm.modelo.items)">
+                                                    <tr>
+                                                        <th class="column-width-30" ng-if="item.visible && item.detalle" ng-repeat="item in vm.modelo.items">{{item.encabezado !== '' && item.encabezado !== null ? item.encabezado : item.propiedad}}</th>
+                                                        <th class="{{vm.tieneScroll() ? 'fixed-column-rigth' : '' }} col-accion" ng-if="vm.modelo.eliminar || vm.tieneDato(dato)">{{'Acciones' | language }}</th>
+                                                    </tr>
+                                                </thead>
+                                                <tr ng-repeat="datoItem in dato.items" ng-if="vm.filtrar(datoItem)">
+                                                    <td class="column-width-150" ng-if="itemDetalle.visible && itemDetalle.detalle" ng-repeat="itemDetalle in vm.modelo.items">
+                                                        <input class="form-control text-right"
+                                                               ng-if="itemDetalle.editar && !itemDetalle.rCache && (itemDetalle.tipo === 'decimal' || itemDetalle.tipo === 'integer' || itemDetalle.tipo === 'number' || itemDetalle.tipo === 'double')"
+                                                               ng-model="dato[itemDetalle.propiedad]"
+                                                               ng-change="vm.totalizar()"
+                                                               ng-disabled="vm.opciones.deshabilitarControles" />
+                                                        <input class="form-control"
+                                                               ng-if="itemDetalle.editar && !itemDetalle.rCache && !(itemDetalle.tipo === 'decimal' || itemDetalle.tipo === 'integer' || itemDetalle.tipo === 'number' || itemDetalle.tipo === 'double')"
+                                                               ng-model="dato[itemDetalle.propiedad]"
+                                                               ng-change="vm.totalizar()"
+                                                               ng-disabled="vm.opciones.deshabilitarControles" />
+                                                        <span ng-if="!itemDetalle.editar && itemDetalle.rCache ">{{vm.getCache(dato[itemDetalle.propiedad], itemDetalle)}}</span>
+                                                        <span ng-if="!itemDetalle.editar && !itemDetalle.rCache && itemDetalle.tipo === 'number'">{{dato[itemDetalle.propiedad] | number : 2}}</span>
+                                                        <span ng-if="!itemDetalle.editar && !itemDetalle.rCache && itemDetalle.tipo !== 'number'">{{dato[itemDetalle.propiedad] != null ? dato[itemDetalle.propiedad] : itemDetalle.cacheValue}}</span>
+
+                                                        <select ng-if="itemDetalle.editar && itemDetalle.rCache" class="form-control" tooltip-placement="top" name="modal" ng-model="dato[itemDetalle.propiedad]">
+                                                            <option ng-value="itemRedis.Id" ng-selected="dato[itemDetalle.propiedad] == itemRedis.Id"
+                                                                    ng-repeat="itemRedis in vm.getTiposCatalogo(dato[itemDetalle.propiedad], itemDetalle, dato)">
+                                                                {{ itemRedis.Name }}
+                                                            </option>
+                                                        </select>
+                                                    </td>
+                                                    <td ng-if="vm.modelo.eliminar" class="{{vm.tieneScroll() ? 'fixed-column-rigth' : '' }} col-accion">
+                                                        <button class="btnaccion"
+                                                                ng-click="vm.eliminarDato(dato, vm.modelo.propiedad)"
+                                                                ng-disabled="vm.opciones.deshabilitarControles">
+                                                            <span uib-tooltip="{{ 'Eliminar' | language }}"><img src="Img/iconsgrid/iconAccionEliminar.png" /></span>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </td>
+                                    <td ng-if="item.visible && !item.detalle && !dato.isCabecera" ng-repeat="item in vm.modelo.items">
+                                        <input class="form-control text-right"
+                                               ng-if="item.editar && !item.rCache && (item.tipo === 'decimal' || item.tipo === 'integer' || item.tipo === 'number' || item.tipo === 'double') && (item.tipodecontrol == 'Número' || item.tipodecontrol == 'Número con decimales')"
+                                               ng-model="dato[item.propiedad]"
+                                               ng-change="vm.totalizar()"
+                                               ng-disabled="vm.opciones.deshabilitarControles"
+                                               ng-focus="vm.removerDecimales($event)"
+                                               format="number"
+                                               ng-blur="item.tipodecontrol == 'Número' ? vm.onKeypressEvent($event) : item.tipodecontrol == 'Número con decimales' ? vm.onKeypressDecimalEvent($event):''" />
+                                        <input class="form-control text-right"
+                                               ng-if="item.editar && !item.rCache && (item.tipo === 'decimal' || item.tipo === 'integer' || item.tipo === 'number' || item.tipo === 'double') && !(item.tipodecontrol == 'Número' || item.tipodecontrol == 'Número con decimales')"
+                                               ng-model="dato[item.propiedad]"
+                                               ng-change="vm.totalizar()"
+                                               ng-disabled="vm.opciones.deshabilitarControles"
+                                               ng-focus="oldValue=dato[item.propiedad]"
+                                               ng-blur="vm.aplicarReglasEdicion(oldValue, dato[item.propiedad], dato, item, item.reglas)" />
+                                        <input class="form-control"
+                                               ng-if="item.editar && !item.rCache && !(item.tipo === 'decimal' || item.tipo === 'integer' || item.tipo === 'number' || item.tipo === 'double')"
+                                               ng-model="dato[item.propiedad]"
+                                               ng-change="vm.totalizar()"
+                                               ng-disabled="vm.opciones.deshabilitarControles"
+                                               ng-focus="oldValue=dato[item.propiedad]"
+                                               ng-blur="vm.aplicarReglasEdicion(oldValue, dato[item.propiedad], dato, item, item.reglas)"/>
+                                        <span ng-if="!item.editar && item.rCache">{{vm.getCache1(dato[item.propiedad], item)}}</span>
+                                        <span ng-if="!item.editar && !item.rCache && item.tipo === 'number'">{{dato[item.propiedad] | number : 2}}</span>
+                                        <span ng-if="!item.editar && !item.rCache && item.tipo !== 'number'">{{dato[item.propiedad] != null ? dato[item.propiedad] : item.cacheValue}}</span>
+                                        <select ng-if="item.rCache && item.editar" class="form-control" tooltip-placement="top" name="modal" ng-model="dato[item.propiedad]">
+                                            <option ng-value="itemRedis.Id" ng-selected="dato[item.propiedad] == itemRedis.Id"
+                                                    ng-repeat="itemRedis in vm.getTiposCatalogo(dato[item.propiedad], item, dato)">
+                                                {{ itemRedis.Name }}
+                                            </option>
+                                        </select>
+
+                                    </td>
+                                    <td class="{{vm.tieneScroll() ? 'fixed-column-rigth' : '' }} col-accion" ng-if="!dato.isCabecera">
+                                        <span class="boton-acciones">
+                                            <button ng-if="vm.adicionarDesglose(dato)"
+                                                    class="btn btnaccion"
+                                                    ng-click="vm.adicionarNodo(dato, vm.modelo.propiedad)"
+                                                    ng-disabled="vm.opciones.deshabilitarControles">
+                                                <span uib-tooltip="{{ 'Adicionar' | language }}">
+                                                    <img src="Img/iconsgrid/btnAccionAdd.png" />
+                                                </span>
+                                            </button>
+                                            <button ng-if="vm.modelo.eliminar" class="btnaccion"
+                                                    ng-click="vm.eliminarDato(dato, vm.modelo.propiedad)"
+                                                    ng-disabled="vm.opciones.deshabilitarControles">
+                                                <span uib-tooltip="{{ 'Eliminar' | language }}">
+                                                    <img src="Img/iconsgrid/iconAccionEliminar.png" />
+                                                </span>
+                                            </button>
+                                        </span>
+                                    </td>
+                                </tr>
+
+                                <tr ng-if="vm.newIsArray(dato, vm.modelo.propiedad)" style="background-color: #F1F5F9 !important">
+                                    <td colspan="{{ vm.modelo.items.length + 1 }}">
+                                        <tabla-wbs modelo="vm.modelo" datos="dato"
+                                                   opciones="vm.opciones"
+                                                   schema="vm.schema"
+                                                   inserir-primeiro-filho="vm.inserirPrimeiroFilho"
+                                                   nivel-desglose="(vm.nivelDesglose + 1)"
+                                                   style="margin-bottom: 15px;"></tabla-wbs>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tr>
+                                <td ng-repeat="(propiedad, valores) in vm.pieDeTabla">
+                                    <span class="total-label" ng-if="valores.totalizar">Total :</span>
+                                    <span class="total-value" ng-if="valores.totalizar && valores.tipo === 'number'"> {{valores.total | number : 2}}</span>
+                                    <span class="total-value" ng-if="valores.totalizar && valores.tipo === 'integer'"> {{valores.total | number : 0}}</span>
+                                    <span class="total-value" ng-if="valores.totalizar && (valores.tipo !== 'number' && valores.tipo !== 'integer')"> {{valores.total}}</span>
+                                </td>
+                                <td ng-if="vm.tieneAccion()"><span class="total-value"></span></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                </fieldset>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,182 @@
+body.dialog-modal-alerta {
+
+    .modal-dialog {
+        margin-top: 1.5%;
+    }
+
+    .modal-lg {
+        @media (min-width: 992px) {
+            width: 1170px !important;
+        }
+    }
+
+    .modal-content {
+        -webkit-border-radius: 7px !important;
+        -moz-border-radius: 7px !important;
+        border-radius: 7px !important;
+    }
+
+    .modal-footer {
+        padding-top: 25px;
+        padding-bottom: 25px;
+    }
+
+    .alerta-container-form {
+
+        .container-modal-alerta,
+        .container-modal-alerta-generadas {
+            padding: 29px;
+            background: #edf5fd;
+            font-weight: bold;
+            font-size: 16px;
+            height: auto;
+            max-height: 440px;
+            padding-right: 45px;
+
+            .cuerpo-modal-alerta,
+            .cuerpo-modal-alerta-generadas {
+                padding-top: 10px;
+                padding-bottom: 10px;
+
+                .items-condicionales {
+                    max-height: 155px;
+                    min-height: 45px;
+                    height: auto;
+                    overflow: hidden;
+                    margin-bottom: 5px;
+
+                    @media (min-height: 155px) {
+                        overflow-y: auto;
+                        margin-right: -6px;
+                    }
+                }
+            }
+
+            .cuerpo-modal-alerta-generadas {
+                padding-bottom: 0px !important;
+
+                .items-alertas-generadas {
+                    max-height: 300px;
+                    height: auto;
+                    overflow: hidden;
+                    margin-bottom: 20px;
+                    padding-bottom: 0px !important;
+
+                    @media (min-height: 300px) {
+                        overflow-y: auto;
+                        margin-right: -6px;
+                    }
+
+                    .alert {
+                        margin-bottom: 3px;
+                        text-align: center;
+                        font-weight: 500;
+                        padding: 25px;
+                    }
+
+                    div[class*="alert-"] {
+                        color: black;
+                    }
+
+                    .alert-success {
+                        background-color: #23deb4;
+                    }
+
+                    .alert-warning {
+                        background-color: #ffdd6d;
+                    }
+
+                    .alert-danger {
+                        background-color: #ff938f;
+                    }
+                }
+            }
+
+            .titlebar {
+                .buttonbar {
+                    position: inherit;
+                }
+            }
+
+            .img-acion:hover {
+                cursor: pointer;
+            }
+
+            .padding-left-off {
+                padding-left: 0px;
+            }
+
+            .padding-right-off {
+                padding-right: 0px !important;
+            }
+
+            select:invalid {
+                color: gray;
+            }
+
+            .radio, .alert {
+                label {
+                    padding-left: 30px;
+                }
+
+                font-size: 15px;
+
+                p[class*="text-"] {
+                    display: inline;
+                }
+
+                .text-warning {
+                    color: #cf8020;
+                }
+
+                .text-success {
+                    color: #008265;
+                }
+
+                .text-danger {
+                    color: #cf3f1d;
+                }
+
+                .border-warning {
+                    border: 2px solid #cf8020;
+                }
+
+                .border-success {
+                    border: 2px solid #008265;
+                }
+
+                .border-danger {
+                    border: 2px solid #cf3f1d;
+                }
+
+                .check-success {
+                    background-color: #008265;
+                }
+
+                .check-warning {
+                    background-color: #cf8020;
+                }
+
+                .check-danger {
+                    background-color: #cf3f1d;
+                }
+            }
+        }
+
+        .container-modal-alerta-generadas {
+            padding-bottom: 0px !important;
+        }
+
+        .header-modal-alerta {
+            display: flow-root;
+            padding: 20px;
+            padding-right: 35px;
+        }
+
+        button[class*="btn-sm btn-"] {
+            border-radius: 6px;
+            min-width: 110px;
+            padding: 7px;
+        }
+    }
+}

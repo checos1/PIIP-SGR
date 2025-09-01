@@ -1,0 +1,681 @@
+﻿.fa-minus-square:before {
+    content: "\f146";
+}
+
+.divNivel1 {
+    border: 2px solid #3366cc;
+    border-radius: 5px 0px;
+    padding: 10px;
+    margin: 1px 0 0 8.4%;
+    border-bottom: none;
+    border-right: none;
+    width: 91.6%;
+    height: 55px;
+}
+
+.titleIP {
+    /*font-family: 'Montserrat', sans-serif;*/
+    font-family: 'Work Sans', sans-serif;
+    color: #004884;
+}
+
+.titulos {
+    font-family: 'Montserrat', sans-serif;
+    color: #004884;
+}
+
+.titulosBold {
+    font-weight: bold;
+    font-family: 'Work Sans';
+}
+
+.titulo {
+    font-family: 'Work Sans';
+}
+
+.subtitulos, .parrafos, .titulosTabla {
+    font-family: 'Work Sans';
+    color: #4B4B4B;
+}
+
+#contenedorCategoriaProductosPoliticaSgp {
+    padding-left: 10px !important;
+    padding-top: 20px !important;
+    width: 96%;
+    font-size: 12pt;
+    margin: 10px 0 0 50px;
+}
+
+.dTableLocalizaciones {
+    border: 1px solid #e6effd;
+    background-color: #f9fcfd;
+}
+
+.td1 {
+    width: 50%;
+}
+
+.td2 {
+    width: 25%;
+    text-align: right;
+    font-size: 10pt;
+    font-weight: bold;
+}
+
+.textoBold {
+    font-weight: bold;
+}
+
+.inputCPP {
+    width: 95%;
+    height: 40px;
+    padding: 3px 5px 3px 10px;
+    font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans';
+    /* font-weight: 400; */
+    /* font-style: normal; */
+    /* font-size: 16px; */
+    /* letter-spacing: normal; */
+    /* color: #4B4B4B; */
+    background-color: #f6f8f9;
+    /* border-color: #e4eafb; */
+    border: 1px solid #e4eafb;
+    text-align: right;
+    color: #1c679a;
+    font-weight: bold;
+}
+
+.tablaDetalleVigencia {
+    /*border-width: 2px;
+    border-style: solid;
+    border-color: rgba(230, 239, 253, 1);
+    border-collapse: collapse;  
+    padding: 5px;   
+    font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans';
+    font-weight: 500;*/
+    border-width: 2px;
+    border-style: solid;
+    border-color: rgba(230, 239, 253, 1);
+    border-collapse: collapse;
+    vertical-align: middle;
+    text-align: center;
+    padding: 5px;
+    min-width: 50px;
+    font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans';
+    font-weight: 500;
+}
+
+    .tablaDetalleVigencia thead {
+        /*  height: 55px;
+    background-color: rgba(249, 252, 253, 1);
+    font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans';
+    font-weight: 500;
+    font-style: normal;
+    font-size: 16px;
+    color: #004884;
+    text-align: right;*/
+        height: 55px;
+        background-color: rgba(249, 252, 253, 1);
+        font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans';
+        font-weight: 500;
+        font-style: normal;
+        font-size: 16px;
+        color: #004884;
+        text-align: left;
+    }
+
+        .tablaDetalleVigencia thead td {
+            border: 1px solid #f0f6f6;
+            padding: 5px;
+        }
+
+    .tablaDetalleVigencia th {
+        border-width: 2px;
+        border-style: solid;
+        border-color: rgba(230, 239, 253, 1);
+        border-collapse: collapse;
+        vertical-align: middle;
+        text-align: center;
+        padding: 5px;
+        min-width: 50px;
+        font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans';
+        font-weight: 500;
+    }
+
+.cInputTblDetalleCat {
+    border: 1px solid #f5f7f7;
+    background-color: #f7faf9;
+    padding: 5px;
+    height: 50px;
+    text-align: right;
+    /*color: #acb0ba;*/
+}
+
+.cCellDetalleCat {
+    text-align: right;
+    background: none;
+    /*color: #acb0ba;*/
+}
+
+.cCellFootDetalleCat {
+    text-align: right;
+    color: #5e6d7c;
+}
+
+.cTexto {
+    color: #0048a3 !important;
+}
+
+.cTextoBold {
+    color: #004884 !important;
+    font-weight: bold;
+}
+
+.cVigencia {
+    /* border: 1px solid #f5f7f7;
+    text-align: right;*/
+    border: 1px solid #e6effd;
+    background-color: #f6f8f9;
+    padding: 5px;
+    height: 40px;
+    text-align: right;
+    width: 55px;
+}
+
+
+.inputCPP2 {
+    /*height: 40px;
+    padding: 3px 5px 3px 10px;
+    font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans';
+    background-color: #f6f8f9;
+    border: 1px solid #e4eafb;
+    text-align: right;
+    color: #1c679a;
+    font-weight: bold;*/
+    border: 1px solid rgb(170, 170, 170) !important;
+    border-radius: 0px !important;
+    text-align: left;
+    margin-left: -5px;
+    height: 40px;
+    font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans';
+    font-weight: 400;
+    font-size: 16px;
+    padding: 0px 0px 0px 5px;
+    margin-bottom: 0px;
+}
+
+.borderTabla {
+    border: 1px solid #f0f6f6;
+}
+
+.tablaDetalleSolRec {
+    /*width: 100%;
+    border-width: 2px;
+    border-style: solid;
+    border-color: rgba(230, 239, 253, 1);
+    border-collapse: collapse;
+    padding: 5px;
+    font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans';
+    font-weight: 500;*/
+    border-width: 2px;
+    border-style: solid;
+    border-color: rgba(230, 239, 253, 1);
+    border-collapse: collapse;
+    vertical-align: middle;
+    text-align: center;
+    padding: 5px;
+    min-width: 50px;
+    font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans';
+    font-weight: 500;
+}
+
+    .tablaDetalleSolRec th {
+        border-width: 2px;
+        border-style: solid;
+        border-color: rgba(230, 239, 253, 1);
+        border-collapse: collapse;
+        vertical-align: middle;
+        text-align: center;
+        padding: 5px;
+        min-width: 50px;
+        font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans';
+        font-weight: 500;
+    }
+
+    .tablaDetalleSolRec thead {
+        /* background-color: #f9fefd;
+padding: 10px 10px 10px 10px;
+color: #425a6d;
+text-align: right;
+font-weight: bold;*/
+        height: 55px;
+        background-color: rgba(249, 252, 253, 1);
+        font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans';
+        font-weight: 500;
+        font-style: normal;
+        font-size: 16px;
+        color: #004884;
+        text-align: left;
+    }
+
+        .tablaDetalleSolRec thead td {
+            border: 1px solid #f0f6f6;
+            padding: 5px;
+        }
+
+.cInputTblDetalleCat2 {
+    width: auto;
+    /*width: 100%;*/
+    border: 1px solid #f5f7f7;
+    background-color: #f7faf9;
+    padding: 5px;
+    height: 50px;
+    text-align: right;
+    color: #acb0ba;
+}
+
+
+.cInputTblDetalleCat3 {
+    /*  width: 100%;
+    border: 1px solid #f5f7f7;
+    background-color: none;
+    padding: 5px;
+    height: 50px;
+    text-align: right;
+    color: #acb0ba;*/
+    border: 1px solid #e6effd;
+    background-color: #f6f8f9;
+    padding: 5px;
+    height: 40px;
+    text-align: right;
+    /*width: 202px;*/
+    width: 100%;
+}
+
+
+.cAlignCenter {
+    text-align: center;
+}
+
+.cAlignRight {
+    text-align: right !important;
+}
+
+.cLetraNegra {
+    color: black;
+    font-family: 'Work Sans', sans-serif;
+}
+
+.cLetraNegraNegrilla {
+    color: black;
+    font-weight: bold;
+    font-family: 'Work Sans', sans-serif;
+}
+
+.inputCPP3 {
+    /* height: 40px;
+    padding: 3px 5px 3px 10px;
+    font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans';
+    background-color: #f6f8f9;
+    border: 1px solid #e4eafb;
+    text-align: right;
+    color: #1c679a;
+    font-weight: bold;
+    width: 100%;*/
+    border: 1px solid rgb(170, 170, 170) !important;
+    border-radius: 0px !important;
+    text-align: left;
+    margin-left: -5px;
+    height: 40px;
+    font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans';
+    font-weight: 400;
+    font-size: 16px;
+    padding: 0px 0px 0px 5px;
+    margin-bottom: 0px;
+}
+
+.cSinBackground {
+    background-color: none;
+}
+
+.cBackgroundTabla {
+    background-color: white;
+}
+
+.btnEditGuardar {
+    width: 120px;
+}
+
+.cMensajeCatPolitica {
+    display: none;
+}
+
+.cAlignLeft {
+    text-align: left;
+}
+
+.cContentMainDiv2 {
+    border: 2px solid #e6effd;
+    padding: 15px 15px 35px 15px;
+}
+
+.cBtnUpDown2 {
+    cursor: pointer;
+    color: #3366cc;
+    /*margin: 20px 0 0 -14px;*/
+    margin: 15px 0 0 -11px;
+    float: left;
+}
+
+.cTituloMain2 {
+    margin: 0 0 0 15px;
+}
+
+/*.cConectorDiv {
+    border-top: none;
+    border-right: none;
+    border-left: 2px solid #3366cc;
+    border-bottom: 2px solid #3366cc;
+    position: absolute;
+    margin: 35px 0 0 -7px;
+    width: 7.4%;
+}*/
+
+
+.cInputTblDetalleCatBloq {
+    border: 1px solid #e6effd;
+    background-color: #f6f8f9;
+    padding: 5px;
+    height: 40px !important;
+    text-align: right;
+    width: 100%;
+    /*width: 195px;*/
+    /*color: #acb0ba;*/
+}
+
+.cInputTblDetalleCatBloq2 {
+    border: 1px solid #e6effd;
+    background-color: #f6f8f9;
+    padding: 5px;
+    height: 40px;
+    text-align: right;
+    width: 100%;
+}
+
+/*.cInputTblDetalleCat {
+    border: 1px solid #eeeeee;
+    background-color: #ffffff;
+    padding: 5px;
+    height: 40px;
+    text-align: right;
+}*/
+
+.tablaDetalleVigencia tbody td {
+    padding: 5px 5px 5px 5px;
+    border-bottom: 1px solid;
+    border-bottom-color: rgba(230, 239, 253, 1);
+}
+
+.tfooterTbl {
+    border: none;
+    border-top: 2px solid #e6effd;
+    /*border-top: 2px solid #e6effd;*/
+    text-align: right;
+    height: 55px;
+}
+
+.cSpTotalTbl {
+    /*margin: -10px 0 0 -20px;
+    position: absolute;*/
+}
+
+.cVerMas {
+    font-family: 'Work Sans Medium';
+    font-size: 14px;
+}
+
+.capitalize {
+    text-transform: capitalize;
+}
+
+.tablaSolRecCategoria {
+    /* border-spacing: 2px;
+    border-collapse: separate;
+    font-size: 11pt;*/
+    border-width: 2px;
+    border-style: solid;
+    border-color: rgba(230, 239, 253, 1);
+    border-collapse: collapse;
+    /*vertical-align: middle;*/
+    /*text-align: center;*/
+    padding: 5px;
+    /*min-width: 50px;*/
+    font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans';
+    font-weight: 500;
+}
+
+    .tablaSolRecCategoria thead {
+        height: 55px;
+        background-color: rgba(249, 252, 253, 1);
+        font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans';
+        font-weight: 500;
+        font-style: normal;
+        font-size: 16px;
+        color: #004884;
+        text-align: right;
+    }
+
+        .tablaSolRecCategoria thead td {
+            border: 1px solid #f0f6f6;
+            padding: 5px;
+        }
+
+.cInputTblSolRecCategoria {
+    border: 1px solid #e6effd;
+    background-color: white;
+    padding: 5px;
+    height: 40px;
+    text-align: right;
+    width: 100%;
+}
+
+.linkGrpEtnicos {
+    font-size: 7pt;
+    text-decoration: underline;
+    font-family: 'Work Sans';
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+}
+
+.cConectorDiv {
+    border-top: none;
+    border-right: none;
+    border-left: 2px solid #3366cc;
+    border-bottom: 2px solid #3366cc;
+    position: absolute;
+    margin: 37px 0 0px -3px;
+    width: 7.1%;
+    height: 28px;
+}
+
+.cConectorDivNivel2 {
+    border-top: none;
+    border-right: none;
+    border-left: 2px solid #3366cc;
+    border-bottom: 2px solid #3366cc;
+    position: absolute;
+    margin: 1px 0 0 12px;
+    width: 11.9%;
+    height: 28px;
+}
+
+
+.cConectorDiv2 {
+    border-top: none;
+    border-right: none;
+    border-left: 2px solid #3366cc;
+    border-bottom: 2px solid #3366cc;
+    position: absolute;
+    margin: -5px 0 0 12px;
+    width: 4.75%;
+}
+
+.divNivel2 {
+    border: 2px solid #3366cc;
+    border-radius: 5px 0px;
+    padding: 10px;
+    margin: 1px 0 0 16.9%;
+    border-bottom: none;
+    border-right: none;
+    width: 83.1%;
+    height: 55px;
+}
+
+.espacioTituloPrimerNivel {
+    margin: 7px 0 0 17px;
+}
+
+.altoDesplieguePrimerNivel {
+}
+
+/*//////////////////////////*/
+.iconPlusPrimerNivel {
+    width: 18px;
+    height: 18px;
+}
+
+    .iconPlusPrimerNivel img {
+        content: url(/Img/btnMas.svg);
+        width: 18px;
+        height: 18px;
+    }
+
+.iconMinusPrimerNivel {
+    width: 18px;
+    height: 18px;
+}
+
+    .iconMinusPrimerNivel img {
+        content: url(/Img/btnMenos.svg);
+        width: 18px;
+        height: 18px;
+    }
+
+/*//////////////////////////*/
+
+.iconPlusSegundoNivel {
+    width: 18px;
+    height: 18px;
+}
+
+    .iconPlusSegundoNivel img {
+        content: url(/Img/btnMasn2.svg);
+        width: 18px;
+        height: 18px;
+    }
+
+.iconMinusSegundoNivel {
+    width: 18px;
+    height: 18px;
+}
+
+    .iconMinusSegundoNivel img {
+        content: url(/Img/btnMenosn2.svg);
+        width: 18px;
+        height: 18px;
+    }
+
+/*//////////////////////////*/
+
+.iconPlusTercerNivel {
+    width: 18px;
+    height: 18px;
+}
+
+    .iconPlusTercerNivel img {
+        content: url(/Img/btnMasTb.svg);
+        width: 18px;
+        height: 18px;
+    }
+
+.iconMinusTercerNivel {
+    width: 18px;
+    height: 18px;
+}
+
+    .iconMinusTercerNivel img {
+        content: url(/Img/btnMenosTb.svg);
+        width: 18px;
+        height: 18px;
+    }
+
+/*//////////////////////////*/
+
+.totalSumaTbl {
+    font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans';
+    font-weight: 500;
+    font-style: normal;
+    font-size: 16px;
+    color: #004884;
+    text-align: right;
+    padding: 0px 5px 0px 5px;
+    margin-left: 5px;
+}
+
+.cInputTblDetalleCatBloq3 {
+    border: 1px solid #e6effd;
+    background-color: #f6f8f9;
+    padding: 5px;
+    height: 40px;
+    text-align: right;
+    width: 95%;
+    /*width: 195px;*/
+    /*color: #acb0ba;*/
+}
+
+.trFooterTableTotal {
+    border-top: 2px solid;
+    border-color: inherit;
+}
+
+.cInputTblDetalleCatBloq4 {
+    border: 1px solid #e6effd;
+    background-color: #f6f8f9;
+    padding: 5px;
+    height: 40px;
+    text-align: right;
+    width: 100%;
+}
+
+.cConectorDivNivelLoc {
+    border-top: none;
+    border-right: none;
+    border-left: 2px solid #3366cc;
+    border-bottom: 2px solid #3366cc;
+    position: absolute;
+    margin: 1px 0 0 12px;
+    width: 10.9%;
+    height: 28px;
+}
+
+
+.divNivelLocalizacion {
+    border: 2px solid #3366cc;
+    border-radius: 5px 0px;
+    padding: 10px;
+    margin: 1px 0 0 12.2%;
+    border-bottom: none;
+    border-right: none;
+    width: 87.8%;
+    height: 55px;
+}
+
+.cConectorDivNivel3Vigencias {
+    border-top: none;
+    border-right: none;
+    border-left: 2px solid #3366cc;
+    border-bottom: 2px solid #3366cc;
+    position: absolute;
+    margin: 3px 0 0 1px;
+    width: 15.6%;
+    height: 28px;
+}

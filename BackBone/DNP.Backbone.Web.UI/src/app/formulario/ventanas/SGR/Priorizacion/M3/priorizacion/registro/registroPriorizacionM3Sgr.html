@@ -1,0 +1,190 @@
+﻿
+<div ng-init="vm.init();">
+    <form class="formCenter" id="generalesForm" name="generalesForm" novalidate>
+        <div style="padding-top:50px;">
+            <span class="buttonbar pull-right">
+                <button id="EditarG"
+                        type="button"
+                        class="btneditarDNP"
+                        tooltip-placement="top"
+                        uib-tooltip="Editar"
+                        tabindex="0"
+                        ng-click="vm.ActivarEditar()"
+                        ng-disabled="vm.disabled ">
+                    EDITAR
+                </button>
+                &nbsp;
+                <button id="GuardarG"
+                        type="submit"
+                        class="{{vm.activar ? 'btnguardarDisabledDNP' : 'btnguardarDNP'}}"
+                        tooltip-placement="top"
+                        uib-tooltip="Guardar"
+                        ng-click="vm.Guardar()"
+                        ng-disabled="vm.activar">
+                    GUARDAR
+                </button>
+            </span>
+        </div>
+
+        <div class="row">
+            &nbsp;
+        </div>
+        <div class="row">
+            &nbsp;
+        </div>
+        <div class="row">
+            <div style="text-align: left;">
+                <span style="font-family: 'Work Sans', sans-serif; font-style: italic; font-weight: 600; font-size: 14px; color: #7F7F7F;">
+                    La resolución 2993 de 2021 establece la metodología de cierre de brechas para la priorización de la inversión con cargo a la Asignación para la Inversión Local del SGR. La resolución y guía metodológica puede ser consultada en el enlace https://www.sgr.gov.co/Normativa/Resoluciones.aspx
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            &nbsp;
+        </div>
+        <div id="PRIPRICIEBRE" class="hidden mb-3 ml-5 errorSeccionInformacionGeneralViabilidad" style="text-align: left; font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans'; font-size: 12px; font-style: normal; color: #A80521;"></div>
+
+        <div class="row">
+            <div class="col-md-12" style="margin-bottom: 5px; text-align: left;">
+                <span class="labelQuestions" style="padding-left: 5px;">¿El programa y sector del proyecto están priorizados, de acuerdo con la definición metodológica de Cierre de Brechas?*</span>
+            </div>
+        </div>
+        <div class="col-md-12" style="text-align: left;">
+            <div id="PreguntaObligatoria1" class="hidden" style="text-align: left;">
+                <img class="" src="Img/u4630.svg">
+                <span class="messagealerttableDNP" style="text-align: left;font-family: 'Work Sans'; font-size: 14px; font-style: normal;">Campo obligatorio.</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-3 form-check" style="text-align: left; padding-left: 6px;">
+                    <input type="radio" id="radio1" ng-disabled="vm.activar" name="optradio1" ng-model="vm.PriorizionProyectoDetalle.TieneMetodologiaCierreBrechas" value="true" ng-value="true">
+                    <label for="radio1" style="padding-right: 78px;">
+                        Si
+                    </label>
+                    <input type="radio" id="radio2" ng-disabled="vm.activar" name="optradio1" ng-model="vm.PriorizionProyectoDetalle.TieneMetodologiaCierreBrechas" value="false" ng-value="false">
+                    <label for="radio2">
+                        No
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            &nbsp;
+        </div>
+        <div id="PRIPRIMAGBRE" class="hidden mb-3 ml-5 errorSeccionInformacionGeneralViabilidad" style="text-align: left; font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans'; font-size: 12px; font-style: normal; color: #A80521;"></div>
+
+        <div class="row">
+            <div class="col-md-12" style="margin-bottom: 5px;">
+                <span class="labelQuestions" style="padding-left: 5px;">¿Cuál es la magnitud de la brecha sectorial correspondiente al sector del proyecto de inversión a priorizar?*</span>
+            </div>
+        </div>
+        <div class="col-md-12" style="text-align: left;">
+            <div id="PreguntaObligatoria2" class="hidden" style="text-align: left;">
+                <img class="" src="Img/u4630.svg">
+                <span class="messagealerttableDNP" style="text-align: left;font-family: 'Work Sans'; font-size: 14px; font-style: normal;">Campo obligatorio.</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-3 form-check" style="text-align: left; padding-left: 6px;">
+                    <select class="form-control" ng-model="vm.PriorizionProyectoDetalle.MagnitudBrecha" ng-disabled="vm.activar">
+                        <option value="" disabled>Seleccione un valor</option>
+                        <option ng-repeat="n in [].constructor(101) track by $index" ng-value="$index">
+                            {{$index}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            &nbsp;
+        </div>
+        <div id="PRIPRIPOSBRE" class="hidden mb-3 ml-5 errorSeccionInformacionGeneralViabilidad" style="text-align: left; font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans'; font-size: 12px; font-style: normal; color: #A80521;"></div>
+
+        <div class="row">
+            <div class="col-md-12" style="margin-bottom: 5px;">
+                <span class="labelQuestions" style="padding-left: 5px;">¿Cuál es la posición de la brecha sectorial correspondiente al sector del proyecto de inversión a priorizar?*</span>
+            </div>
+        </div>
+        <div class="col-md-12" style="text-align: left;">
+            <div id="PreguntaObligatoria3" class="hidden" style="text-align: left;">
+                <img class="" src="Img/u4630.svg">
+                <span class="messagealerttableDNP" style="text-align: left;font-family: 'Work Sans'; font-size: 14px; font-style: normal;">Campo obligatorio.</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-3 form-check" style="text-align: left; padding-left: 6px;">
+                    <select class="form-control" ng-model="vm.PriorizionProyectoDetalle.PosicionBrecha" ng-disabled="vm.activar">
+                        <option value="" disabled>Seleccione un valor</option>
+                        <option ng-repeat="n in [].constructor(14) track by $index" ng-value="$index">
+                            {{$index}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            &nbsp;
+        </div>
+        <div id="PRIPRIPRE" class="hidden mb-3 ml-5 errorSeccionInformacionGeneralViabilidad" style="text-align: left; font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans'; font-size: 12px; font-style: normal; color: #A80521;"></div>
+
+        <div class="row">
+            <div class="col-md-12" style="margin-bottom: 5px;">
+                <span class="labelQuestions" style="padding-left: 5px;">¿Decide priorizar el proyecto de inversión conforme la metodología de priorización correspondiente?*</span>
+            </div>
+        </div>
+        <div class="col-md-12" style="text-align: left;">
+            <div id="PreguntaObligatoria4" class="hidden" style="text-align: left;">
+                <img class="" src="Img/u4630.svg">
+                <span class="messagealerttableDNP" style="text-align: left;font-family: 'Work Sans'; font-size: 14px; font-style: normal;">Campo obligatorio.</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-3 form-check" style="text-align: left; padding-left: 6px;">
+                    <input type="radio" id="radio3" ng-disabled="vm.activar" name="optradio2" ng-model="vm.PriorizionProyectoDetalle.Priorizado" value="true" ng-value="true">
+                    <label for="radio3" style="padding-right: 78px;">
+                        Si
+                    </label>
+                    <input type="radio" id="radio3" ng-disabled="vm.activar" name="optradio2" ng-model="vm.PriorizionProyectoDetalle.Priorizado" value="false" ng-value="false">
+                    <label for="radio4">
+                        No
+                    </label>
+                </div>
+            </div>
+        </div>
+
+
+        <!--Sesión Espacio Formulario-->
+        <div class="col-md-12">
+            <div class="col-md-6">
+                &nbsp;
+            </div>
+            <div class="col-md-6">
+                &nbsp;
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="col-md-6">
+                &nbsp;
+            </div>
+            <div class="col-md-6">
+                &nbsp;
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="col-md-6">
+                &nbsp;
+            </div>
+            <div class="col-md-6">
+                &nbsp;
+            </div>
+        </div>
+    </form>
+</div>

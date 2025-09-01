@@ -1,0 +1,33 @@
+﻿
+<modal-dialog cerrar="vm.cerrar" >
+    <div class="div-escopo">
+        <div class="user-infos">
+            <div class="row col-md-12">
+                <div class="titlebarmodal fndAzul">
+                    <span>Instancias</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row grid-proyectos">
+        <div class="col-md-12">
+            <div class="container-table" ui-i18n="{{vm.lang}}">
+                <div ng-if="vm.filasFiltradas" class="clearfix grid-icon" id="uigprojecto" ui-grid="vm.gridOptions"
+                     ui-grid-resize-columns ui-grid-pagination ui-grid-expandable>
+                </div>
+
+                <div class="text-center intro-help  min-mh no-result-watermark" ng-if="!vm.filasFiltradas">
+                    <h4>{{ 'No hay instancia para el proyecto seleccionado' }} </h4>
+                </div>
+            </div>
+        </div>
+        <div ng-if="vm.mostrarMensajeProyectos" ng-cloak>
+            <div class="text-center intro-help no-result-watermark">
+                <img src="Img/image-help.png" alt="Sin resultados">
+                <h2 id="idLabelMensajeResultados">{{vm.Mensaje}}</h2>
+            </div>
+        </div>
+    </div>
+
+</modal-dialog>

@@ -1,0 +1,16 @@
+﻿<div class="text-center">
+    <button has-claim  has-opciones="['ConsolaProyectos:VerArchivos']" class="btnaccion" ng-click="grid.appScope.vm.abrirModalDocumentosAdjuntos(row.entity)" tooltip-placement="auto" uib-tooltip="Ver Documentos Adjuntos">
+        <span><img  class="grid-icon-accion"  src="Img/iconsgrid/iconAccionDocumento.png" /></span>
+    </button>
+    <button has-claim  has-opciones="['ConsolaProyectos:VerFichas']" class="btnaccion" ng-click="grid.appScope.vm.abrirModalFichas(row.entity)" tooltip-placement="auto" uib-tooltip="Fichas">
+        <span><img  class="grid-icon-accion"  src="Img/iconsgrid/iconAccionDocumentos.png" /></span>
+    </button>
+    <button has-claim  has-opciones="['ConsolaProyectos:CambiarEntidad']"  id="btnActualizaProyecto_{{row.entity.ProyectoId}}" class="btnaccion"  tooltip-placement="Auto"
+        uib-tooltip="Intercambiar proyecto entre entidades"
+        ng-click="grid.appScope.vm.btnActualizaProyecto_onClick($event, $event.target)">
+        <span><img  class="grid-icon-accion"  src="Img/iconsgrid/iconAccionCambiar.png"></span>
+    </button>
+    <button class="btnaccion" ng-click="grid.appScope.vm.abrirModalInstanciasProyecto(row.entity.IdObjetoNegocio)" tooltip-placement="auto" uib-tooltip="Ver Instancias">
+        <span><img  class="grid-icon-accion"  src="Img/iconsgrid/iconAccionVer.png" /></span>
+    </button>
+</div> 

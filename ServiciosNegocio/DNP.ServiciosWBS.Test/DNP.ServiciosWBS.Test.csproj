@@ -1,0 +1,259 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\MSTest.TestAdapter.1.2.1\build\net45\MSTest.TestAdapter.props" Condition="Exists('..\packages\MSTest.TestAdapter.1.2.1\build\net45\MSTest.TestAdapter.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5DC1D82B-36A0-4066-B9A9-CBCF75F92DF8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DNP.ServiciosWBS.Test</RootNamespace>
+    <AssemblyName>DNP.ServiciosWBS.Test</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">15.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
+    <IsCodedUITest>False</IsCodedUITest>
+    <TestProjectType>UnitTest</TestProjectType>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Dev|AnyCPU'">
+    <OutputPath>bin\Dev\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'QA|AnyCPU'">
+    <OutputPath>bin\QA\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'UAT|AnyCPU'">
+    <OutputPath>bin\UAT\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Local|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Local\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DevNT|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\DevNT\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'UatNT|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\UatNT\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'QA2|AnyCPU'">
+    <OutputPath>bin\QA2\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'QA3|AnyCPU'">
+    <OutputPath>bin\QA3\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'QA4|AnyCPU'">
+    <OutputPath>bin\QA4\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'SGR|AnyCPU'">
+    <OutputPath>bin\SGR\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'UATSGR|AnyCPU'">
+    <OutputPath>bin\UATSGR\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=6.2.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.6.2.2\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Core.4.3.1\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="CommonServiceLocator, Version=2.0.2.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.5.6\lib\net45\CommonServiceLocator.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MSTest.TestFramework.1.2.1\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MSTest.TestFramework.1.2.1\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Moq, Version=4.9.0.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\packages\Moq.4.9.0\lib\net45\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.0\lib\netstandard1.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.1\lib\portable-net45+win8+wp8+wpa81\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.4.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Abstractions, Version=3.1.3.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.5.6\lib\net45\Unity.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Configuration, Version=5.1.3.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.5.6\lib\net45\Unity.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Container, Version=5.5.6.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.5.6\lib\net45\Unity.Container.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Interception, Version=5.3.1.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.5.6\lib\net45\Unity.Interception.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Interception.Configuration, Version=5.1.3.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.5.6\lib\net45\Unity.Interception.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RegistrationByConvention, Version=2.1.4.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.5.6\lib\net45\Unity.RegistrationByConvention.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ServiceLocation, Version=2.1.0.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.5.6\lib\net45\Unity.ServiceLocation.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Configuracion\UnityConfig.cs" />
+    <Compile Include="Mocks\AjustesCuantificacionBeneficiarioPersistenciaMock.cs" />
+    <Compile Include="Mocks\AjustesPoliticaTransversalBeneficiarioPersistenciaMock.cs" />
+    <Compile Include="Mocks\AjustesPoliticaTransversalCategoriaPersistenciaMock.cs" />
+    <Compile Include="Mocks\AjustesPoliticasTransversalesMetasPersistenciaMock.cs" />
+    <Compile Include="Mocks\AjustesRegionalizaFuentesPersistenciaMock.cs" />
+    <Compile Include="Mocks\AjustesUbicacionPersistenciaMock.cs" />
+    <Compile Include="Mocks\AuditoriaServiciosMock.cs" />
+    <Compile Include="Mocks\CadenaValorPersistenciaMock.cs" />
+    <Compile Include="Mocks\CostosEntregablesPersistenciaMock.cs" />
+    <Compile Include="Mocks\DiligenciarFuentesMock.cs" />
+    <Compile Include="Mocks\CuantificacionBeneficiarioPersistenciaMock.cs" />
+    <Compile Include="Mocks\FocalizacionCuantificacionLocalizacionPersistenciaMock.cs" />
+    <Compile Include="Mocks\FocalizacionPoliticasTransversalesMock.cs" />
+    <Compile Include="Mocks\PoliticaTransversalBeneficiarioPersistenciaMock.cs" />
+    <Compile Include="Mocks\RegionalizacionMetasyRecursosMock.cs" />
+    <Compile Include="Mocks\LocalizacionPersistenciaMock.cs" />
+    <Compile Include="Mocks\PoliticaTransversalCategoriaPersistenciaMock.cs" />
+    <Compile Include="Mocks\CostosActividadesPersistenciaMock.cs" />
+    <Compile Include="Mocks\RegionalizaFuentesPersistenciaMock.cs" />
+    <Compile Include="Mocks\ValidarViabilidadCompletarInfoPersistenciaMock.cs" />
+    <Compile Include="Mocks\FocalizacionProyectoPersistenciaMock.cs" />
+    <Compile Include="Mocks\CuantificacionLocalizacionPersistenciaMock.cs" />
+    <Compile Include="Mocks\IndicadorProductoAgregarPersistenciaMock.cs" />
+    <Compile Include="Mocks\MockableDbSetWithExtensions.cs" />
+    <Compile Include="Mocks\PersistenciaTemporalMock.cs" />
+    <Compile Include="Mocks\ProductoPersistenciaMock.cs" />
+    <Compile Include="Mocks\RegionalizacionIndicadorAgregarPersistenciaMock.cs" />
+    <Compile Include="Mocks\RegionalizacionIndicadoresPersistenciaMock.cs" />
+    <Compile Include="Mocks\FocalizacionPersistenciaMock.cs" />
+    <Compile Include="Mocks\RegionalizacionPersistenciaMock.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Servicios\AjustesCuantificacionBeneficiarioServicioTest.cs" />
+    <Compile Include="Servicios\AjustesPoliticasTransversalesMetasServicioTest.cs" />
+    <Compile Include="Servicios\AjustesPoliticaTransversalBeneficiarioServicioTest.cs" />
+    <Compile Include="Servicios\AjustesPoliticaTransversalCategoriaServicioTest.cs" />
+    <Compile Include="Servicios\AjustesRegionalizaFuentesServicioTest.cs" />
+    <Compile Include="Servicios\AjustesUbicacionServicioTest.cs" />
+    <Compile Include="Servicios\CadenaValorServicioTest.cs" />
+    <Compile Include="Servicios\CostosEntregablesTest.cs" />
+    <Compile Include="Servicios\DiligenciarFuentesTest.cs" />
+    <Compile Include="Servicios\CuantificacionBeneficiarioServicioTest.cs" />
+    <Compile Include="Servicios\FocalizacionPoliticasTransversalesTest.cs" />
+    <Compile Include="Servicios\PoliticaTransversalBeneficiarioServicioTest.cs" />
+    <Compile Include="Servicios\RegionalizacionMetasyRecursosTest.cs" />
+    <Compile Include="Servicios\LocalizacionServicioTest.cs" />
+    <Compile Include="Servicios\PoliticaTransversalCategoriaServicioTest.cs" />
+    <Compile Include="Servicios\CostosActividadesTest.cs" />
+    <Compile Include="Servicios\RegionalizaFuentesServicioTest.cs" />
+    <Compile Include="Servicios\ValidarViabilidadCompletarInfoServicioTest.cs" />
+    <Compile Include="Servicios\FocalizacionServicioTest.cs" />
+    <Compile Include="Servicios\CuantificacionLocalizacionServicioTest.cs" />
+    <Compile Include="Servicios\IndicadorProductoAgregarServicioTest.cs" />
+    <Compile Include="Servicios\ProductosServicioTest.cs" />
+    <Compile Include="Servicios\FocalizacionProyectoServicioTest.cs" />
+    <Compile Include="Servicios\RegionalizacionIndicadorAgregarServicioTest.cs" />
+    <Compile Include="Servicios\RegionalizacionIndicadoresServicioTest.cs" />
+    <Compile Include="Servicios\RegionalizacionProyectoServicioTest.cs" />
+    <Compile Include="Servicios\FocalizacionCuantificacionLocalizacionServicioTest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DNP.ServiciosNegocio.Comunes\DNP.ServiciosNegocio.Comunes.csproj">
+      <Project>{B20F5062-15B9-49E4-88C5-79F109F947EF}</Project>
+      <Name>DNP.ServiciosNegocio.Comunes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DNP.ServiciosNegocio.Dominio\DNP.ServiciosNegocio.Dominio.csproj">
+      <Project>{694221D1-E217-4D2E-87E3-B196C4C6BE94}</Project>
+      <Name>DNP.ServiciosNegocio.Dominio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DNP.ServiciosNegocio.Test\DNP.ServiciosNegocio.Test.csproj">
+      <Project>{1240B59E-B6BD-4AD2-A509-C163646F6CE6}</Project>
+      <Name>DNP.ServiciosNegocio.Test</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DNP.ServiciosWBS.Persistencia\DNP.ServiciosWBS.Persistencia.csproj">
+      <Project>{dbe1bc0f-e99d-4f10-85fa-59a9d6e95793}</Project>
+      <Name>DNP.ServiciosWBS.Persistencia</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DNP.ServiciosWBS.Servicios\DNP.ServiciosWBS.Servicios.csproj">
+      <Project>{600D9DA1-E31B-475C-AE02-E6D6419E66E8}</Project>
+      <Name>DNP.ServiciosWBS.Servicios</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\MSTest.TestAdapter.1.2.1\build\net45\MSTest.TestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MSTest.TestAdapter.1.2.1\build\net45\MSTest.TestAdapter.props'))" />
+    <Error Condition="!Exists('..\packages\MSTest.TestAdapter.1.2.1\build\net45\MSTest.TestAdapter.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MSTest.TestAdapter.1.2.1\build\net45\MSTest.TestAdapter.targets'))" />
+  </Target>
+  <Import Project="..\packages\MSTest.TestAdapter.1.2.1\build\net45\MSTest.TestAdapter.targets" Condition="Exists('..\packages\MSTest.TestAdapter.1.2.1\build\net45\MSTest.TestAdapter.targets')" />
+</Project>

@@ -1,0 +1,132 @@
+﻿<div ng-init="vm.init();">
+    <div class="row pb-5">
+        <span class="TituloPincFormularioDNP pull-left text-left">
+            Firma para finalizar el proceso <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg">
+        </span>
+    </div>
+
+    <div class="row pb-5">
+        <div class="col-md-12 pb-4" style="padding-left:0px">
+            <span class="pull-left text-left"><span>Si su firma se visualiza en el recuadro "Última firma cargada", confirme su aprobación dando clic en el botón "Firmar". Si requiere incluirla, o reemplazarla, haga clic en "Examinar", "Cargar" y "Firmar". </span></span>
+        </div>
+        <br />
+        <br />
+        <div class="col-md-12" style="padding-left:0px">
+            <span class="pull-left text-left"><span>Recuerde que una vez que todos los responsables terminen el proceso de firma, SOLO el usuario responsable de "Emitir" el concepto podrá "Validar" y posteriormente, "Finalizar" el proceso. </span></span>
+        </div>
+    </div>
+
+    <div class="row">
+        <br />
+        <div class="row pt-5 pr-5 ng-scope">
+            <div id="firmaconceptoviabilidad-archivo-error" class="hidden uMensajeError"></div>
+            <div class="row ng-scope">
+
+                <div class="col-md-7">
+                    <span class="pull-left text-left" style="font-weight: bold; padding-left: 1.5rem">Cargar nueva firma</span>
+                </div>
+                <div class="col-md-1"></div>
+                <div class="col-md-3">
+                    <span class="pull-left text-left" style="font-weight: bold;margin-left: 1.5rem;">Última firma cargada</span>
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+            <div class="col-md-7" style="padding-top: 2rem;">
+                <div class="divpanelcargarchivoDNP" style="width:100% !important;">
+                    <button class="btncargarch" ng-class="{'my-disable':vm.nombreArchivo !== undefined && vm.nombreArchivo !== ''}"
+                            type="button" uib-tooltip="Examinar" ng-click="vm.examinar()" ng-disabled="vm.desactivarExaminar"> 
+                        EXAMINAR
+                    </button>
+                    <input type="file" style="display:none" id="fileFirma" name='files[]' onchange="angular.element(this).scope().fileFirmaNameChanged(this)" multiple />
+                    <input type="search" style="display:none" id="firmaNombreArchivo" ng-model="vm.nombreArchivo" class="form-control InputSearchDNP " placeholder="" ng-change="ChangeFirmaSet()">
+                    <span>{{vm.nombreArchivo}}</span>
+                    <button class="btncancearch" ng-class="{'my-disable':vm.nombreArchivo === undefined || vm.nombreArchivo === ''}"
+                            type="button" uib-tooltip="Cancelar" ng-click="vm.limpiarArchivo()">
+                        X
+                    </button>
+                </div>
+                <div style="width:100% !important;">
+                    <span class="pull-left text-left">Se permiten archivos tipo PNG y JPG. Tamaño: 300x150 pixeles. Peso máximo 1 MB</span>
+                </div>
+            </div>
+            <div class="col-md-1" style="padding-top: 2rem;">
+                <span class="buttonbar pull-center">
+                    <button class="btn btnguardarDNP" ng-disabled="vm.desactivarGuardar" type="button" tooltip-placement="top" uib-tooltip="Cargar" tabindex="0" ng-click="vm.archivoSeleccionado()">
+                        CARGAR
+                    </button>
+                </span>
+            </div>
+            <div class="col-md-3" style="padding-top: 2rem; padding-left:4rem;">
+                <div id="main" style="width:80%;margin-left:2rem !important;border:inset;height:15rem;">
+                </div>
+            </div>
+            <div class="col-md-1" style="padding-top: 2rem;">
+                <span class="buttonbar pull-center">
+                    <button ng-disabled="!vm.boolExisteFirma"
+                            class="btn btnguardarDNP" type="button" tooltip-placement="top" uib-tooltip="Borrar" tabindex="0" ng-click="vm.borrarSeleccionado()">
+                        BORRAR
+                    </button>
+                </span>
+                <br />
+                <br />
+                <span class="buttonbar pull-center">
+                    <button ng-disabled="vm.desactivarFirmar"
+                            class="btn btnguardarDNP" type="button" tooltip-placement="top" uib-tooltip="Firmar" tabindex="0" ng-click="vm.firmar()">
+                        FIRMAR
+                    </button>
+                </span>
+            </div>
+        </div>
+        <div class="col-md-12" style="padding-top: 2rem;">
+            &nbsp;&nbsp;&nbsp;&nbsp;<div id="firmaconceptoviabilidad-pregunta-error-firma" class="hidden uMensajeError"></div>
+        </div>
+        <br />
+    </div>
+
+    <div class="row pb-5">
+        <span class="TituloPincFormularioDNP pull-left text-left">
+            Tabla de resumen <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg">
+        </span>
+    </div>
+
+    <div class="row">
+        <table class="TableDNP">
+            <thead>
+                <tr>
+                    <th class="columAcc" style="width:5%"></th>
+                    <th style="width:40%" class="textLeftDNP">Usuario</th>
+                    <th style="width:40%" class="textLeftDNP">Entidad/ Área o dependencia</th>
+                    <th style="width:40%" class="textLeftDNP">Acción / Fecha de firma</th>
+                    <th class="columAcc" style="width:5%"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="involucrado in vm.involucrados">
+                    <td colspan="1"></td>
+                    <td style="width:40%">
+                        <span>{{involucrado.Nombre}}</span>
+                        <br />
+                        <span>{{involucrado.Correo}}</span>
+                    </td>
+                    <td style="width: 40%; word-break: break-all;">
+                        <span>{{involucrado.Area}}</span>
+                    </td>
+                    <td style="width:40%">
+                        <span>{{involucrado.Accion}}</span>
+                        <br />
+                        <span ng-show="involucrado.FechaFirma != null">{{involucrado.FechaFirma | date : "dd/MM/yyyy HH:mm:ss"}}</span>
+                        <span ng-show="involucrado.FechaFirma == null">Pendiente</span>
+                    </td>
+                    <td style="width:2%" class="textCenterDNP">
+                        <button id="brtnFirmarDesh" class="btnaccion" tooltip-class="customClass" uib-tooltip="Sin firmar" disabled ng-show="!involucrado.Firmado" ng-click="vm.asignarUsuarioFirmar(involucrado)">
+                            <span><img style="width: 35px;height:35px" src="Img/IcoFirmaDeshabilitado.svg"></span>
+                        </button>
+                        <button id="btnFirmarHab" class="btnaccion" tooltip-class="customClass" uib-tooltip="Firmado" ng-show="involucrado.Firmado">
+                            <span> <img style="width: 35px;height:35px" src="Img/IcoFirmaHabilitado.svg"></span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,58 @@
+﻿
+<div ng-init="vm.init();">
+    <div class="ui-accordion-container " id="accordion-documentossoportealojararchivo">
+        <div class="alert panel-heading row ui-accordion-header">
+            <button type="button" data-toggle="collapse" data-target="#documentossoportealojararchivo" ng-click="vm.changeArrow('documentossoportealojararchivo')">
+                <span class="d-inline-block" id="alert-documentossoportealojararchivo"></span>
+                <span id="name-capitulo-documentossoportealojararchivo"></span>
+                <span class="hidden" id="id-capitulo-documentossoportealojararchivo"></span>
+                <span id="arrow-documentossoportealojararchivo" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#documentossoportealojararchivo"></span>
+            </button>
+        </div>
+        <div class="collapse" id="documentossoportealojararchivo">
+            <div class="row m-0 mb-3">
+                <br>
+                <div class="col-md-12 ">
+                    <archivos-formulario tipotramiteid="{{vm.tipotramiteid}}"
+                                         tramiteid="{{vm.tramiteid}}"
+                                         nivel="{{vm.nivel}}"
+                                         rol="{{vm.rol}}"
+                                         section="{{vm.section}}"
+                                         nombrecomponentepaso="{{vm.nombreComponenteHijo}}"
+                                         guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                         notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                         notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)">
+                    </archivos-formulario>
+                </div>
+            </div>
+        </div>
+        <div class="alert panel-heading row ui-accordion-header">
+            <button type="button" data-toggle="collapse" data-target="#documentossoportearchivosenprocesoactual" ng-click="vm.changeArrow('documentossoportearchivosenprocesoactual')">
+                <span class="d-inline-block" id="alert-documentossoportearchivosenprocesoactual"></span>
+                <span id="name-capitulo-documentossoportearchivosenprocesoactual"></span>
+                <span class="hidden" id="id-capitulo-documentossoportearchivosenprocesoactual"></span>
+                <span id="arrow-documentossoportearchivosenprocesoactual" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#documentossoportearchivosenprocesoactual"></span>
+            </button>
+        </div>
+        <div class="collapse" id="documentossoportearchivosenprocesoactual">
+            <div class="row m-0 mb-3">
+               
+                <br>
+                <div class="col-md-12 ">
+                    <archivo-proceso-actual tipotramiteid="{{vm.tipotramiteid}}"
+                                         tramiteid="{{vm.tramiteid}}"
+                                         nivel="{{vm.nivel}}"
+                                         rol="{{vm.rol}}"
+                                         section="{{vm.section}}"
+                                         nombrecomponentepaso="{{vm.nombreComponenteHijo}}"
+                                         guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                         notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                         notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)">
+                    </archivo-proceso-actual>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

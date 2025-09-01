@@ -1,0 +1,26 @@
+﻿<section ng-init="vm.obtener();">
+    <div id="SGRERRSEC{{vm.nombreComponente}}" class="hidden mb-3 ml-5 errorSeccionRequisitos" style="text-align: left; font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans'; font-size: 12px; font-style: normal; color: #A80521;"></div>
+    <div class="container-fluid inbox">
+        <div class="tab-content">
+            <div class="ui-accordion-container">
+                <div class="alert panel-heading row ui-accordion-header">
+                    <button type="button" data-toggle="collapse" data-target="#sgrviabilidadrequisitosverificacionrequisitos" ng-click="vm.changeArrow('sgrviabilidadrequisitosverificacionrequisitos')">
+                        <span class="d-inline-block" id="alert-sgrviabilidadrequisitosverificacionrequisitos"></span>
+                        <span id="name-capitulo-sgrviabilidadrequisitosverificacionrequisitos"></span>
+                        <span class="hidden" id="id-capitulo-sgrviabilidadrequisitosverificacionrequisitos"></span>
+                        <span id="arrow-sgrviabilidadrequisitosverificacionrequisitos" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#sgrviabilidadrequisitosverificacionrequisitos"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="sgrviabilidadrequisitosverificacionrequisitos">
+                    <generales-sgr callback="vm.notificarGuardado()"
+                                   guardadoevent="vm.guardadohijos(nombreComponenteHijo)"
+                                   notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                   notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"
+                                   notificacioncambios="vm.notificacionCambiosCapitulosExternos(handler, nombreComponente)"
+                                   notificacioninicio="vm.notificacionInicioHijos(handlerInicio, nombreComponente)">
+                    </generales-sgr>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,47 @@
+﻿<div class="modal-header">
+    <h3 class="modal-title" id="modal-title">Agregar {{vm.Producto.AplicaEDT === 1? 'entregable' : 'actividad'}}</h3>
+</div>
+<div class="modal-body" id="modal-body">
+
+    <div class="col-md-12">
+
+        <p><h4>Objetivo:</h4></p>
+        <p>{{vm.Producto.objectivo}}.</p>
+        <br />
+
+        <p><h4>Producto:</h4></p>
+        <p>{{vm.Producto.Producto}}.</p>
+        <br />
+
+        <div ng-repeat="entregable in vm.Producto.CatalogoEntregables | orderBy:'EntregableNombre'">
+
+            <input type="checkbox" name="entregable" id="chk-{{entregable.EntregableId}}" ng-model="entregable.isChecked" ng-value="entregable" ng-change="vm.toggleCurrency(entregable)" />
+            <label for="chk-{{entregable.EntregableId}}">{{entregable.EntregableNombre}}</label>
+            <b>
+        </div>
+        <div>
+
+            <input type="checkbox" name="entregable" id="chk-nuevo" ng-model="nuevo.isChecked" ng-value="nuevo" ng-change="vm.seleccionarNuevo(nuevo)" />
+            <label ng-if="vm.Producto.AplicaEDT === 1" for="chk-nuevo">Crear nuevo entregable</label>
+            <label ng-if="vm.Producto.AplicaEDT === 0" for="chk-nuevo">Crear nueva actividad</label>
+        </div>
+        <br />
+    </div>
+
+
+    <div class="col-md-12" ng-if="vm.agregarOtro">
+        <br />
+        <label ng-if="vm.Producto.AplicaEDT === 1">Escriba el nuevo entregable * (Mínimo 20 caracteres - máximo 200 caracteres)</label>
+        <label ng-if="vm.Producto.AplicaEDT === 0">Escriba la nueva actividad * (Mínimo 20 caracteres - máximo 200 caracteres)</label>
+        <textarea class="form-control" ng-model="vm.textoEntregable" ng-value="vm.textoEntregable"></textarea>
+        <span class="error font_error" ng-if="vm.mostrarError">Campo obligatorio</span>
+        <span class="error font_error" ng-if="vm.mostrarErrorLongitud">Mínimo 20 caracteres - máximo 200 caracteres</span>
+
+    </div>
+
+</div>
+<div class="modal-footer">
+    <button class="btn btn-default btn-md" type="button" ng-click="vm.cerrar()">Cancelar</button>
+    <button class="btn btn-default btn-md" type="button" ng-click="vm.guardar()" ng-disabled="vm.btnGuardarDisable === true">Agregar</button>
+</div>
+

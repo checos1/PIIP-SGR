@@ -1,0 +1,80 @@
+﻿<modal-dialog cerrar="vm.cerrar" txt-cerrar="CANCELAR" guardar="vm.guardar" txt-guardar="ACEPTAR" ng-init="vm.init()">
+    <form id="formAgregarFuente" name="formAgregarFuente">
+        <div class="titlebar marginb-15">
+            <span>Agregar Proyecto</span>
+        </div>
+
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="inputText" class="form-label"><b>BPIN *</b></label>
+                </div>
+                <div class="col-md-6">
+                    <label for="inputText" class="form-label" style="text-align: right; width:40%"><b>Palabra o frase contenida *</b></label>
+                </div>
+            </div>
+            <div class="row" style="height:20px">
+                <span class="errores-contenedor" id="error-busqueda" ng-if="vm.errorBusqueda">
+                    <span class="img iconadverdnp"><img src="Img/u4630.svg"> </span>
+                    <span class="messagealerttableDNP" id="error-txt">Diligencie al menos un campo</span>
+                </span>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <input style="width:100%" type="text" name="inputText" value="" ng-model="vm.textoBuscarBPIN" ng-required="true" />
+                </div>
+                <div class="col-md-6">
+                    <input style="width:100%" type="text" name="inputText" value="" ng-model="vm.textoBuscarNombre" ng-required="true" />
+                </div>
+                <div class="col-md-2 pull-right">
+                    <button tooltip-class="customClass" uib-tooltip="Buscar" class="btnicobuscarDNP" type="button" ng-click="vm.buscarProyecto()">
+                        <span> <img id="IdPanelBuscador" class="icoBusquedasDNP" src="Img/icoBuscar.svg"></span>
+                    </button>
+                    <button ng-if="vm.habilitaLimpiar" tooltip-class="customClass" uib-tooltip="Limpiar" class="btnicobuscarDNP" type="button" ng-click="vm.limpiarBusqueda()">
+                        <span> <img id="IdPanelBuscador" class="icoBusquedasDNP" src="Img/IcoLimpiarBusq.svg"></span>
+                    </button>
+                    <button ng-if="!vm.habilitaLimpiar" tooltip-class="customClass" uib-tooltip="Limpiar" class="btnicobuscarDNP" type="button">
+                        <span> <img id="IdPanelBuscador" class="icoBusquedasDNP" src="Img/IcoLimpiarBusqD.svg"></span>
+                    </button>
+
+                </div>
+            </div>
+            <br /><br />
+            <div ng-if="vm.sinResultados" class="col-md-6 pull-left text-left">
+                <!--<span class="spanresultadobusquedaDNP pull-left">
+                    Se encontraron (1) resultados.
+                </span>-->
+                <span class="spanresultadobusqueda2DNP pull-left" style="margin-top: 0px;">
+                    No se encontraron resultados.
+                </span>
+            </div>
+            <div ng-if="vm.mostrarGrilla">
+                <table class="TableDNP">
+                    <thead>
+                        <tr>
+                            <th class="columAcc"></th>
+                            <th class="textRightDNP">BPIN</th>
+                            <th class="textLeftDNP">Nombre de proyecto</th>
+                            <th class="columAcc"></th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="objValor in vm.datosProyectos">
+
+                            <td></td>
+                            <td>
+                                <div class="textRightDNP"><label style="font-weight: 400; font-size: 16px; font-style: normal;">{{objValor.BPIN}} </label></div>
+                            </td>
+                            <td> <div style="text-align: left; overflow-y: scroll; height: 60px"><label style="font-weight: 400; font-size: 16px; font-style: normal;">{{objValor.NombreProyecto}} </label></div></td>
+
+                            <td><div><input type="checkbox" ng-model="objValor.select" /></div></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </form>
+</modal-dialog>

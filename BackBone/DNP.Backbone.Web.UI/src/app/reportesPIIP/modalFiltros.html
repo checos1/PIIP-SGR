@@ -1,0 +1,47 @@
+﻿<modal-dialog cerrar="vm.cerrar" guardar="vm.guardar" txt-guardar="GENERAR" ng-init="vm.init()">
+    <br />
+    <div class="row modaleDNP" style="margin-left: 0px !important; margin-right: 0px !important; margin-top: -40px; ">
+        <div>
+            <br /><br />
+            <h3 class="modal-title" id="modal-title">Filtros Reporte</h3>
+        </div>
+    </div>
+    <div class="row" style="margin-left:0px;margin-right:0px">
+        <div class="col-md-6" style="padding-left: 0px; padding-right: 0px; text-align: left; height: 30px; font-family: 'Work Sans', sans-serif; font-weight: 400; ">
+
+        </div>
+        <div class="col-md-6" style="text-align: right; height: 30px; padding-left: 0px; padding-right: 0px; font-weight: 400; ">
+        </div>
+    </div>
+
+    <div style="background-color: white !important; margin-left: 50px;">
+        <!--filtros dinamicos-->
+        <div class="row" style="height: 45px;" ng-repeat="filtro in vm.listaFiltros">
+            <div class="col-md-4" style=" border-width: 0px;left: 0px;top: 0px;height: 35px; background: inherit; background-color: rgba(249, 252, 253, 1); box-sizing: border-box; border-width: 2px;
+                              border-style: solid;    border-color: rgba(230, 239, 253, 1);     border-radius: 5px;     -moz-box-shadow: none;     -webkit-box-shadow: none;     box-shadow: none;
+                              font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans';
+                              font-weight: 500;     font-style: normal;     font-size: 16px;     color: #004884;     text-align: left;    line-height: 30px;">
+                <label for="{{filtro.nombre}}" class="textRightDNP" style="font-size: 16px;">{{filtro.descripcion}}:</label>
+            </div>
+            <div class="col-md-6">
+                <select name="{{filtro.nombre}}" id="{{filtro.nombre}}" ng-required="true" class="form-control" ng-if="filtro.nombreTabla!=null">
+                    <option value="" selected>Seleccione</option>
+                    <option ng-repeat="opcion in filtro.listaFiltro.Data" ng-value="opcion.id">{{ opcion.nombre }} </option>
+                </select>
+
+                <input id="{{filtro.nombre}}" class="form-control" ng-if="filtro.nombreTabla==null" ng-keypress="vm.validateFormat($event)" />
+
+            </div>
+        </div>
+        <div class="col-md-10 text-right nopadding">
+            <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Limpiar" ng-click="vm.limpiarCamposFiltro()">
+                <span> <img id="icoLimpiarBusqueda" class="icoBusquedasDNP" src="Img/IcolimpiarBusqD.svg"></span>
+            </button>
+        </div>
+    </div>
+
+    <br />
+</modal-dialog>
+<script>
+
+</script>

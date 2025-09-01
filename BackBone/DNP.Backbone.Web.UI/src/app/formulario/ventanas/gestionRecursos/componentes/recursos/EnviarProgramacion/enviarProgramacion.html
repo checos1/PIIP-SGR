@@ -1,0 +1,23 @@
+﻿<section>
+    <div class="container-fluid inbox" ng-init="vm.init();">
+        <div class="tab-content">
+            <div class="ui-accordion-container hidden" id="accordion-aprobacionpegraprobacionpegr">
+                <div class="alert panel-heading row ui-accordion-header" style="border-color: #E6EFFD; border-left-color: #004884; height: 50px;">
+                    <button type="button" data-toggle="collapse" data-target="#rEnvioId" ng-click="vm.changeArrow('aprobacionpegraprobacionpegr')">
+                        <span id="arrow-aprobacionpegraprobacionpegr" class="glyphicon glyphicon-chevron-up pull-right" data-toggle="collapse" data-target="#rEnvioId"></span>
+                        <span class="d-inline-block" id="alert-aprobacionpegraprobacionpegr"></span>
+                        <span id="name-capitulo-aprobacionpegraprobacionpegr"></span>
+                        <span class="hidden" id="id-capitulo-aprobacionpegraprobacionpegr"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="rEnvioId" style="width: 100%;">
+                    <enviar-programaciondet guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                            notificacioncambios="vm.notificacionCambiosCapitulosExternos(handler, nombreComponente)"
+                                            notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                            notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)">
+                    </enviar-programaciondet>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

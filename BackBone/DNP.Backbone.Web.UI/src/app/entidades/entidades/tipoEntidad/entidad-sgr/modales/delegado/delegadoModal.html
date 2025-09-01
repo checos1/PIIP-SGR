@@ -1,0 +1,91 @@
+<modal-dialog cerrar="vm.cerrar" guardar="vm.guardar" ng-init="vm.init()">
+    <div class="row ">
+        <div class="col-md-12">
+            <div class="titulo-modal">
+                <span>ADICIONAR DELEGADOS - <span class="tipo-entidad-cor">SGR</span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="input-group mb-3 p-1">
+                <div class="input-group-prepend">
+                    <span class="input-group-text bg-light rounded-left-2">Entidad</span>
+                </div>
+                <span class="form-control rounded-right-2">{{vm.nombreEntidad}}</span>
+            </div>
+        </div>
+        <div class="p-1" ng-repeat="delegado in vm.model.Delegados">
+            <div class="col-md-10 pl-0 pr-0">
+
+                <div class="col-md-2 pr-0">
+                    <div class="input-group mb-4">
+                        <!--<div class="input-group-prepend ">
+                            <span class="input-group-text bg-light rounded-left-2 pl-3 pr-3">Id</span>
+                        </div>-->
+                        <input type="text" ng-model="delegado.IdUsuarioDnp" class="form-control rounded-left-2" placeholder="Id">
+                        <div class="input-group-append">
+                            <span class="input-group-text bg-light rounded-right-2 btn-span pl-3 pr-3" ng-click="vm.buscarUsuario(delegado)">
+                                <i class="fa fa-search" aria-hidden="true"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 pr-0">
+                    <div class="input-group mb-4 ">
+                        <span class="form-control rounded-left-2 rounded-right-2 nombre-apllido" ng-bind-html="delegado.Nombre ? delegado.Nombre : 'Nombre' "></span>
+                    </div>
+                </div>
+                <div class="col-md-2 pr-0">
+                    <div class="input-group mb-4">
+                        <span class="form-control rounded-left-2 rounded-right-2 nombre-apllido" ng-bind-html="delegado.Apodo ? delegado.Apodo : 'Apellido' "></span>
+                    </div>
+                </div>
+                <div class="col-md-2 pr-0">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-light rounded-left-2">Tipo</span>
+                        </div>
+                        <select class="form-control rounded-right-2" ng-model="delegado.TipoDelegado">
+                            <option value="" disabled selected hidden>Seleccione...</option>
+                            <option ng-repeat="tipo in vm.tiposDelegado" ng-value="tipo.Id">{{ tipo.Nombre }} </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-2 pr-0">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-light rounded-left-2">SubT</span>
+                        </div>
+                        <select class="form-control rounded-right-2" ng-model="delegado.SubTipoDelegado">
+                            <option value="" disabled selected hidden>Seleccione...</option>
+                            <option ng-repeat="subTipo in vm.subTiposDelegado" ng-value="subTipo">{{ subTipo }} </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="pl-3 col-md-2 padding-off">
+                    <input type="date" class="form-control rounded-left-2 rounded-right-2" ng-model="delegado.Fecha">
+                </div>
+            </div>
+            <div class="col-md-2 p-0 mt-1 padding-off">
+                <button class="btnaccion ml-5" ng-click="vm.adicionarDelegado()" tooltip-placement="Auto" uib-tooltip="Agregar nuevo Delegado">
+                    <span><img src="Img/iconsgrid/iconAccionAdicionar.png"></span>
+                </button>
+
+                <button class="btnaccion" ng-click="vm.removerDelegado($index)" tooltip-placement="Auto" uib-tooltip="Eliminar Delegado">
+                    <span><img src="Img/iconsgrid/iconAccionEliminar.png"></span>
+                </button>
+                <button class="btnaccion" ng-click="vm.visualizar(delegado)" tooltip-placement="Auto" uib-tooltip="Visualizar Delegado">
+                    <span><img src="Img/iconsgrid/iconAccionVer.png"></span>
+                </button>
+                <button class="btnaccion" ng-click="vm.enviarDocumento(delegado)" tooltip-placement="Auto" uib-tooltip="Enviar archivo">
+                    <span><img src="Img/iconsgrid/iconAccionUpload.png"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div>
+        <input type="file" id="file" name="file" style="display:none" onchange="angular.element(this).scope().vm.cargarArchivo()" />
+    </div>
+</modal-dialog>

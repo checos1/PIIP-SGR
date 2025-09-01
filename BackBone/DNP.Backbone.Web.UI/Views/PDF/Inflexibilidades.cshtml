@@ -1,0 +1,88 @@
+﻿@model List<DNP.Backbone.Dominio.Dto.AutorizacionNegocio.InflexibilidadDto>
+@{
+    Layout = null;
+    ViewBag.Title = "Inflexibilidades";
+}
+<html>
+<head>
+    @Html.Partial("_IncludeEstilosRelatorios")
+</head>
+<body class="pdf">
+    @Html.Partial("_CabecalhoRelatorio", "Informe de Inflexibilidades")
+
+    <div class="mt-5">
+        @if (Model == null)
+        {
+            <table class="table table-sm table-borderless">
+                <thead>
+                    <tr>
+                        <th class="text-left">
+                            No hubo registros para los filtros seleccionados.
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+        }
+        else
+        {
+            <div id="containerbody">
+                <table class="table  table-borderless border-table">
+                    <thead>
+                        <tr>
+                            @if (Model.FirstOrDefault().ColumnasHeader.Contains("NombreInflexibilidad"))
+                            {
+                                <th>NOMBRE DE LA INFLEXIBILIDAD</th>
+                            }
+                            @if (Model.FirstOrDefault().ColumnasHeader.Contains("Periodo"))
+                            {
+                                <th>PERÍODO</th>
+                            }
+                            @if (Model.FirstOrDefault().ColumnasHeader.Contains("ValorTotal"))
+                            {
+                                <th>VALOR TOTAL</th>
+                            }
+                            @if (Model.FirstOrDefault().ColumnasHeader.Contains("ValorPagado"))
+                            {
+                                <th>VALOR PAGADO</th>
+                            }
+                            @if (Model.FirstOrDefault().ColumnasHeader.Contains("Estado"))
+                            {
+                                <th>ESTADO</th>
+                            }
+
+                          
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                @if (Model.FirstOrDefault().ColumnasHeader.Contains("NombreInflexibilidad"))
+                                {
+                                    <td>@item.NombreInflexibilidad</td>
+                                }
+                                @if (Model.FirstOrDefault().ColumnasHeader.Contains("Periodo"))
+                                {
+                                    <td>@item.PeriodoExcel</td>
+                                }
+                                @if (Model.FirstOrDefault().ColumnasHeader.Contains("ValorTotal"))
+                                {
+                                    <td>@item.ValorTotal</td>
+                                }
+                                @if (Model.FirstOrDefault().ColumnasHeader.Contains("ValorPagado"))
+                                {
+                                    <td>@item.ValorPagado</td>
+                                }
+                                @if (Model.FirstOrDefault().ColumnasHeader.Contains("Estado"))
+                                {
+                                    <td>@item.Estado</td>
+                                }
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </div>
+</body>
+</html>

@@ -1,0 +1,77 @@
+﻿<section>
+    <div class="container-fluid inbox" ng-init="vm.initInformacionPresupuestal();">
+        <div class="tab-content">
+            <div class="ui-accordion-container" id="accordion-{{vm.nombreComponenteHijo}}">
+                <div class="alert panel-heading row ui-accordion-header" style="border-color: #E6EFFD; border-left-color: #004884; height: 50px;">
+                    <button type="button"
+                            data-toggle="collapse"
+                            data-target="#rinformacionpresupuestal"
+                            ng-click="vm.changeArrow(vm.nombreComponenteHijo)">
+                        <span id="arrow-{{vm.nombreComponenteHijo}}" class="glyphicon glyphicon-chevron-up pull-right"
+                              data-toggle="collapse"
+                              data-target="#rinformacionpresupuestal"></span>
+                        <span class="d-inline-block" id="alert-{{vm.nombreComponenteHijo}}"></span>
+                        <span id="name-capitulo-{{vm.nombreComponenteHijo}}"></span>
+                        <span class="hidden" id="id-capitulo-{{vm.nombreComponenteHijo}}"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="rinformacionpresupuestal" style="width: 100%;">
+                    <div ng-if="!vm.mostrarinformacionpresupuestal">
+                        <informacion-presupuestal-sgp-formulario tipotramiteid="{{vm.tipotramiteid}}"
+                                                                 tramiteid="{{vm.tramiteid}}"
+                                                                 actualizacomponentes="vm.actualizacomponentes"
+                                                                 nivel="{{vm.nivel}}"
+                                                                 vm.nombrecomponentepaso="{{vm.nombrecomponentehijo}}"
+                                                                 guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                                                 notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                                 notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"
+                                                                 callback="vm.callback()">
+                        </informacion-presupuestal-sgp-formulario>
+                    </div>
+                    <div ng-if="vm.mostrarinformacionpresupuestal">
+                        <info-presupuestal-apro-sgp-formulario tipotramiteid="{{vm.tipotramiteid}}"
+                                                               tramiteid="{{vm.tramiteid}}"
+                                                               nivel="{{vm.nivel}}"
+                                                               rolanalista="{{vm.rolanalista}}"
+                                                               deshabilitar="{{vm.deshabilitar}}"
+                                                               vm.nombrecomponentepaso="{{vm.nombrecomponentehijo}}"
+                                                               guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                                               notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                               notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"
+                                                               callback="vm.callback()">
+                        </info-presupuestal-apro-sgp-formulario>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="ui-accordion-container hidden" id="accordion-informacionpresupuestalsgpproyectosasociadossgp">
+                <div class="alert panel-heading row ui-accordion-header">
+                    <button type="button" data-toggle="collapse" data-target="#informacionpresupuestalsgpproyectosasociadossgp-1" ng-click="vm.changeArrow('informacionpresupuestalsgpproyectosasociadossgp-1')">
+                        <span class="d-inline-block" id="alert-informacionpresupuestalsgpproyectosasociadossgp"></span>
+                        <span id="name-capitulo-informacionpresupuestalsgpproyectosasociadossgp"></span>
+                        <span class="hidden" id="id-capitulo-informacionpresupuestalsgpproyectosasociadossgp"></span>
+                        <span id="arrow-informacionpresupuestalsgpproyectosasociadossgp-1" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#informacionpresupuestalsgpproyectosasociadossgp-1"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="informacionpresupuestalsgpproyectosasociadossgp-1">
+                    <div class="row m-0 mb-3">
+                        <proyectos-asociados-sgp-formulario tramiteid="{{vm.tramiteid}}"
+                                                                 nombrecomponentepaso="{{vm.nombreComponenteHijo}}"
+                                                                 tipotramiteid="{{vm.tipotramiteid}}"
+                                                                 deshabilitar="{{vm.deshabilitar}}"
+                                                                 rolanalista="{{vm.rolanalista}}"
+                                                                 actualizacomponentes="vm.actualizacomponentes"
+                                                                 guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                                                 callback="vm.callback()"
+                                                                 notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                                 notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)">
+                        </proyectos-asociados-sgp-formulario>
+                    </div>
+                </div>
+            </div>
+
+           
+        </div>
+    </div>
+</section>

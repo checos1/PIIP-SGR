@@ -1,0 +1,241 @@
+﻿<div ng-init="vm.init();">
+    <form id="fuentesF" novalidate>
+        <div id="recursossgpfuentesdefinancsintramitesgp-validacionguardar-error" class="hidden text-left color-red">
+            <img class="img img-advertencia" src="Img/u11.svg" />
+            <span id="recursossgpfuentesdefinancsintramitesgp-validacionguardar-error-mns"></span>
+        </div>
+        <div id="fuentes" class="collapsed panel-body">
+            <h3 class="text-left ui-seccion-title">Modificar fuente</h3>
+            <span id="ErrorAFST001" class="hidden text-left color-red">
+                <img class="img img-advertencia" src="Img/u11.svg" />
+                <span id="ErroAFST001Msg"></span>
+                <br />
+            </span>
+            <span id="ErrorAFST002" class="hidden text-left color-red">
+                <img class="img img-advertencia" src="Img/u11.svg" />
+                <span id="ErroAFST002Msg"></span>
+                <br />
+            </span>
+            <span id="ErrorAFST003" class="hidden text-left color-red">
+                <img class="img img-advertencia" src="Img/u11.svg" />
+                <span id="ErroAFST003Msg"></span>
+                <br />
+            </span>
+            <span id="ErrorAFST004" class="hidden text-left color-red">
+                <img class="img img-advertencia" src="Img/u11.svg" />
+                <span id="ErroAFST004Msg"></span>
+                <br />
+            </span>
+            <table class="TableDNP no-border">
+                <thead>
+                    <tr>
+                        <th class="columAcc"></th>
+                        <th class="textLeftDNP">Etapa</th>
+                        <th class="textLeftDNP">Tipo financiador</th>
+                        <th class="textLeftDNP">Financiador</th>
+                        <th class="textLeftDNP">Recurso</th>
+                        <th class="textLeftDNP">Cofinanciador</th>
+                        <th class="textLeftDNP"></th>
+                        <th class="columAcc"></th>
+                    </tr>
+                </thead>
+                <tbody ng-repeat="objFuentes in vm.listaFuentes">
+                    <tr>
+                        <td class="columAcc"
+                            style="background: transparent"
+                            ng-class="{disabled: vm.validaEstado(vm.esAjuste,objFuentes.DatosAdicionales,objFuentes.contieneCofinanciador)}">
+
+                            <a data-toggle="collapse" ng-click="vm.mostrarOcultarCofinanciador(objFuentes.Id, objFuentes.TipoFinanciadorId,objFuentes.Etapa)"
+                               data-target="#fuente{{objFuentes.Id}}-{{objFuentes.Etapa}}">
+                                <span class="text-column-info">Ajustes</span>
+                            </a><br />
+                            <button class="btn btn-default collapsed button-column-info" type="button" data-toggle="collapse"
+                                    ng-click="vm.mostrarOcultarCofinanciador(objFuentes.Id, objFuentes.TipoFinanciadorId,objFuentes.Etapa)"
+                                    data-target="#fuente{{objFuentes.Id}}-{{objFuentes.Etapa}}">
+                                <span id="ico{{objFuentes.Id}}-{{objFuentes.Etapa}}"> + </span>
+                            </button>
+                        </td>
+                        <td>{{objFuentes.Etapa}}</td>
+                        <td>{{objFuentes.TipoFinanciador}}</td>
+                        <td title="{{objFuentes.FinanciadorFull}}">{{objFuentes.Financiador}}</td>
+                        <td>{{objFuentes.Recurso}}</td>
+                        <td>
+                            <a ng-if="objFuentes.habilitaDatosAdicionales===true" ng-click="vm.abrirModalAgregarDatosAdicionales(objFuentes.Id)"><span class="uLabelDetalle_FP" style="text-decoration:underline">SI, INGRESAR</span></a>
+                            <span ng-if="objFuentes.habilitaDatosAdicionales===false || objFuentes.habilitaDatosAdicionales===null || objFuentes.habilitaDatosAdicionales===0" class="uLabelDetalle_FP">No</span>
+                        </td>
+                        <td>
+                            <button class="button-column-action trash" title="Eliminar Fuente Financiacion" ng-click="vm.eliminarFuente(objFuentes.Id)" ng-if="!objFuentes.FuenteFirme">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="rgb(51, 102, 204)" class="bi bi-trash" viewBox="0 0 16 16">
+                                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                                    <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                                </svg>
+                            </button>
+                            <button class="button-column-action trash" title="Eliminar Fuente Financiacion" ng-disabled="true" ng-if="objFuentes.FuenteFirme">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#BABABA" class="bi bi-trash" viewBox="0 0 16 16">
+                                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                                    <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                                </svg>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr class="no-border hidden" id="detail-{{objFuentes.Id}}-{{objFuentes.Etapa}}">
+                        <td colspan="8" class="p-0">
+                            <div class="line-vertical"></div>
+                            <div class="line-horizontal"></div>
+                            <div class="level-1 row m-0" id="fuente{{objFuentes.Id}}-{{objFuentes.Etapa}}">
+                                <div class="title">
+                                    <div class="row m-0">
+                                        <div class="col-md-8 p-0">
+                                            <h4 class="text-left ui-seccion-title my-0">Ajustes de fuente</h4>
+                                        </div>
+                                        <div class="col-md-4 p-0">
+                                            <div ng-if="vm.habilitaBotones" class="col-md-12 form-group text-right">
+                                                <button id="Editar{{objFuentes.Id}}" type="button" class="btn btncancelarHorizonte" tooltip-placement="top" ng-click="vm.ActivarEditar(objFuentes.Id, objFuentes.TipoFinanciadorId,objFuentes.Etapa, objFuentes.Cofinanciador, objFuentes.vigenciaFuente, objFuentes.DatosAdicionales)" uib-tooltip="EDITAR" ng-if="!vm.soloLectura">
+                                                    EDITAR
+                                                </button>
+                                                <button id="Guardar{{objFuentes.Id}}{{objFuentes.Etapa}}" type="submit" ng-class="vm.ClasesbtnGuardar" tooltip-placement="top" ng-click="vm.actualizarVigencia(objFuentes.Etapa,vm.listaFuentes, objFuentes.Id)"
+                                                        disabled="disabled" ng-if="!vm.soloLectura">
+                                                    GUARDAR
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="level-1-content mt-4">
+                                <div class="col-md-12 form-group text-left p-0 mb-4">
+                                    <h5>* La columna "En ajuste $" presenta inicialmente los valores en firme. Si usted edita y guarda un nuevo valor, este será identificado como valor en ajuste.</h5>
+                                </div>
+                                <div ng-repeat="objdatos in objFuentes.Cofinanciador">
+                                    <div class="col-md-12 form-group p-0 my-4">
+                                        <h4 class="ui-seccion-title d-inline-block">Cofinanciador: </h4> <span>{{objdatos.tipoCofinanciador}}</span>
+                                        <span class="d-inline-block">Codigo: </span><span>{{objdatos.codigo}}</span>
+                                        <span class="d-inline-block">Nombre: </span>
+                                        <span>
+                                            <span id="cof-{{objFuentes.Id}}-{{objFuentes.Etapa}}-{{objdatos.cofinanciadorId}}-min">
+                                                {{objdatos.codigoCofinanciador}}<span style="cursor: pointer" class="ui-seccion-title"
+                                                                                      ng-if="objdatos.codigoCofinanciador != objdatos.codigoCofinanciadorFull"
+                                                                                      ng-click="vm.verNombreCof(objFuentes.Id, objFuentes.Etapa,objdatos.cofinanciadorId, 'min', 'full')">VER MAS</span>
+
+                                            </span>
+                                            <span ng-click="vm.verNombreCof(objFuentes.Id, objFuentes.Etapa,objdatos.cofinanciadorId, 'full', 'min')"
+                                                  class="hidden"
+                                                  id="cof-{{objFuentes.Id}}-{{objFuentes.Etapa}}-{{objdatos.cofinanciadorId}}-full">
+                                                {{objdatos.codigoCofinanciadorFull}}
+                                            </span>
+                                        </span>
+
+                                    </div>
+                                    <div class="col-md-12 form-group p-0">
+                                        <table class="TableDNP">
+                                            <thead>
+                                                <tr>
+                                                    <th class="columAcc"></th>
+                                                    <th class="textRightDNP">Vigencia</th>
+                                                    <th ng-if="!vm.esAjuste" class="textRightDNP">Valor solicitado $</th>
+                                                    <th ng-if="vm.esAjuste" class="textRightDNP">En ajuste $ *</th>
+                                                    <th></th>
+                                                    <th class="columAcc"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="objdatosVigencia in objdatos.listaVigenciasCofinanciador">
+                                                    <td></td>
+                                                    <td class="textRightDNP"><span class="textRightDNP">{{objdatosVigencia.Vigencia}}</span></td>
+                                                    <td class="textRightDNP">
+                                                        <div class="blockReferenciaDNP" ng-if="!objdatosVigencia.permiteHabilitar || !vm.permiteEditar">{{vm.ConvertirNumero(objdatosVigencia.ValorOriginal)}}</div>
+                                                        <input type="text" min="0.00"
+                                                               id="inp-{{objFuentes.Id}}-{{objdatosVigencia.Vigencia}}-{{objFuentes.Etapa}}-{{objdatos.cofinanciadorId}}"
+                                                               ng-if="objdatosVigencia.permiteHabilitar && vm.permiteEditar"
+                                                               ng-keypress="vm.validateFormat($event)"
+                                                               ng-keyup="vm.validarTamanio($event)"
+                                                               ng-value="objdatosVigencia.Valor"
+                                                               ng-model="objdatosVigencia.Valor"
+                                                               ng-blur="vm.actualizaFila($event, objFuentes.Id, objdatosVigencia.Vigencia, TotalInversionVigencia,objFuentes.cofinanciadorId,objFuentes.Etapa)"
+                                                               required disabled/>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <td class="columAcc"><strong>=</strong></td>
+                                                    <td class="textRightDNP"><span>TOTAL</span></td>
+                                                    <td class="textRightDNP">
+                                                        <label class="col-form-label" style="margin-left: 20px;" id="ipnTotal-{{objFuentes.Id}}">
+                                                            {{vm.ConvertirNumero(objdatos.valorTotalCof)}}
+                                                        </label>
+                                                    </td>
+                                                    <td></td>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                        <br />
+                                    </div>
+                                </div>
+                                <div ng-if="objFuentes.DatosAdicionales===false || objFuentes.DatosAdicionales===null || objFuentes.DatosAdicionales===0" style="width:99%; text-align:left">
+                                    <div class="col-md-12 form-group p-0 mb-4">
+                                        <div class="col-md-12 form-group p-0">
+                                            <table class="TableDNP">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="columAcc"></th>
+                                                        <th class="textRightDNP">Vigencia</th>
+                                                        <th class="textRightDNP">Solicitados (gestión de recursos) $</th>
+                                                        <th class="textRightDNP">En firme $</th>
+                                                        <th ng-if="!vm.esAjuste" class="textRightDNP">Valor solicitado $</th>
+                                                        <th ng-if="vm.esAjuste" class="textRightDNP">En ajuste $ *</th>
+                                                        <th></th>
+                                                        <th class="columAcc"></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="objdatosVigencia in objFuentes.vigenciaFuente">
+                                                        <td></td>
+                                                        <td class="textRightDNP"><span class="textRightDNP">{{objdatosVigencia.Vigencia}}</span></td>
+                                                        <td class="textRightDNP"><span class="textRightDNP">{{vm.ConvertirNumero(objdatosVigencia.ValorSolicitado)}}</span></td>
+                                                        <td class="textRightDNP"><span class="textRightDNP">{{vm.ConvertirNumero(objdatosVigencia.ValorFirme)}}</span></td>
+                                                        <td class="textRightDNP">
+                                                            <div ng-if="!objdatosVigencia.permiteHabilitar || !vm.permiteEditar">{{vm.ConvertirNumero(objdatosVigencia.ValorOriginal)}}</div>
+                                                            <input type="text" min="0.00"
+                                                                   ng-if="objdatosVigencia.permiteHabilitar && vm.permiteEditar"
+                                                                   ng-keypress="vm.validateFormat($event)"
+                                                                   ng-keyup="vm.validarTamanio($event)"
+                                                                   ng-value="objdatosVigencia.Valor"
+                                                                   ng-model="objdatosVigencia.Valor"
+                                                                   id="inp-{{objFuentes.Id}}-{{objdatosVigencia.Vigencia}}-{{objFuentes.Etapa}}-{{objdatos.cofinanciadorId}}"
+                                                                   ng-blur="vm.actualizaFila($event, objFuentes.Id, objdatosVigencia.Vigencia, TotalInversionVigencia,objFuentes.cofinanciadorId,objFuentes.Etapa)"
+                                                                   required disabled/>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <td class="columAcc"><strong>=</strong></td>
+                                                        <td class="textRightDNP"><span>TOTAL</span></td>
+                                                        <td class="textRightDNP"><div id="ipnTotal-{{objFuentes.Id}}">{{vm.ConvertirNumero(objFuentes.valorTotalFuenteSolicitado)}}</div></td>
+                                                        <td class="textRightDNP"><div id="ipnTotal-{{objFuentes.Id}}">{{vm.ConvertirNumero(objFuentes.valorTotalFuenteFirme)}}</div></td>
+                                                        <td class="textRightDNP"><div id="ipnTotal-{{objFuentes.Id}}">{{vm.ConvertirNumero(objFuentes.valorTotalFuente)}}</div></td>
+                                                        <td></td>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="add-new-fuente row mx-0 mt-4 text-right">
+                <a ng-click="vm.abrirModalAgregarFuente()" ng-if="!vm.soloLectura"><span class="uLabelCampo_fp" style="text-decoration:underline">AGREGAR FUENTE</span></a>
+            </div>
+            <div class="mt-4">
+                <resumen-fuentes-Sin-Tramite-Sgp notificacionvalidacion="vm.notificacionValidacionHijo(handler)" recargarresumen="vm.recargaresumen(handler)"></resumen-fuentes-Sin-Tramite-Sgp>
+            </div>
+            <div>
+                <costos-fuentes-ajustes-Sin-Tramite-Sgp validacionguardadopadre="vm.validacionGuardadoHijo(handler)" recargarresumen="vm.recargaresumencostos(handler)"></costos-fuentes-ajustes-Sin-Tramite-Sgp>
+            </div>
+        </div>
+    </form>
+</div>

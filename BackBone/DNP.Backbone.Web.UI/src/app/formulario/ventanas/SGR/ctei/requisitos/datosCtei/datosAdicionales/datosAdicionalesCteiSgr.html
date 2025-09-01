@@ -1,0 +1,596 @@
+﻿<div ng-init="vm.init();">
+    <form class="formCenter" id="datosAdicionalesSgrForm" name="datosAdicionalesSgrForm" novalidate>
+
+        <div style="padding-top:128px;">
+            <span class="buttonbar pull-right">
+                <button id="EditarG2"
+                        type="button"
+                        class="btneditarDNP"
+                        tooltip-placement="top"
+                        uib-tooltip="Editar"
+                        tabindex="0"
+                        ng-click="vm.ActivarEditar()"
+                        ng-disabled="vm.disabled"
+                        ng-if="vm.habilitaBotones">
+                    EDITAR
+                </button>
+                &nbsp;
+                <button id="GuardarG"
+                        type="submit"
+                        class="{{vm.activar ? 'btnguardarDNP' : 'btnguardarDisabledDNP'}}"
+                        tooltip-placement="top"
+                        uib-tooltip="Guardar"
+                        ng-click="vm.guardar()"
+                        ng-disabled="!vm.activar"
+                        ng-if="vm.habilitaBotones">
+                    GUARDAR
+                </button>
+            </span>
+        </div>
+
+        <!--Revisiones-->
+        <div class="row">
+            <div class="" style="padding: 0 !important">
+                <br />
+                <div style="margin-left: 15px; margin-right:15px">
+                    <!--Sesión Pregunta-->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="divIconsQuestions">
+                                <label class="labelQuestionsText" id="labelNumeroRevisiones">Número de revisiones</label>
+                            </div>
+                        </div>
+                        <!--Sesión Opciones de Respuesta-->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div style="text-align:left">
+                                    <div class="col-md-12" style="padding-top: 1rem; padding-left: -1.5rem">
+                                        <input type="text"
+                                               id="numeroRevisiones"
+                                               name="numeroRevisiones"
+                                               ng-model="vm.revisiones"
+                                               style="text-align:right; padding: 0px 5px 0px 5px; margin-left: 5px"
+                                               disabled="disabled"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Sesión Espacio Pregunta-->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-6">
+                                    &nbsp;
+                                </div>
+                                <div class="col-md-6">
+                                    &nbsp;
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Programa/Estrategia-->
+        <div class="row">
+            <div class="" style="padding: 0 !important">
+                <br />
+                <div style="margin-left: 15px; margin-right:15px">
+                    <!--Sesión Pregunta-->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <span class="d-inline-block errorpregDatosPre2" id="alert-sgrcteidatoscteidatosadicionalesctei-programaestrategia" style="visibility: hidden !important"></span>
+                            <div class="divIconsQuestions">
+                                <label class="labelQuestionsText" id="labelProgramaEstrategia">Programa/Estrategia*</label>
+                                <div style="margin-left: 21px; display: flex;">
+                                    <span class="d-inline-block errorpregDatosPre2 ml-4" id="alertE-sgrcteidatoscteidatosadicionalesctei-programaestrategia"></span>
+                                    <span class="messagealerttableDNP" style="padding-left: 5px;" id="ERR-sgrcteidatoscteidatosadicionalesctei-programaestrategia"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Sesión Opciones de Respuesta-->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div style="text-align:left">
+                                    <div class="col-md-10 form-check">
+                                        <select id="programaEstrategia" title="rogramaEstrategia" name="rogramaEstrategia" ng-change="vm.onChangeProgramaEstrategia(this)" ng-model="vm.datosAdicionalesCTEI.ProgramaEstrategia" ng-disabled="!vm.activar">
+                                            <option class="option" value='0' selected>Seleccione...</option>
+                                            <option class="option" ng-repeat="programaEstrategia in vm.programasEstrategiasCTEI" ng-value="programaEstrategia.Id">{{ programaEstrategia.Nombre }} </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Sesión Espacio Pregunta-->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-6">
+                                    &nbsp;
+                                </div>
+                                <div class="col-md-6">
+                                    &nbsp;
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--PAED-->
+        <div class="row">
+            <div class="" style="padding: 0 !important">
+                <br />
+                <div style="margin-left: 15px; margin-right:15px">
+                    <!--Sesión Pregunta-->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <span class="d-inline-block errorpregDatosPre2" id="alert-sgrcteidatoscteidatosadicionalesctei-paed" style="visibility: hidden !important"></span>
+                            <div class="divIconsQuestions">
+                                <label class="labelQuestionsText" id="labelPAEDdeCTEI">PAED de CTEI*</label>
+                                <div style="margin-left: 21px; display: flex;">
+                                    <span class="d-inline-block errorpregDatosPre2 ml-4" id="alertE-sgrcteidatoscteidatosadicionalesctei-paed"></span>
+                                    <span class="messagealerttableDNP" style="padding-left: 5px;" id="ERR-sgrcteidatoscteidatosadicionalesctei-paed"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Sesión Opciones de Respuesta-->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div style="text-align:left">
+                                    <div class="col-md-10 form-check">
+                                        <textarea style="width: 300px; height: 70px; text-align: left; font-family: 'Work Sans'; font-size: 14px; font-style: normal;"
+                                                  rows="3"
+                                                  id="paedctei"
+                                                  name="paedctei"
+                                                  placeholder="Máximo 5000 caracteres"
+                                                  ng-model="vm.datosAdicionalesCTEI.PAED"
+                                                  minlength="1"
+                                                  maxlength="5000"
+                                                  class="textareObservaDNP"
+                                                  ng-disabled="!vm.activar">
+                                            </textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Sesión Espacio Pregunta-->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-6">
+                                    &nbsp;
+                                </div>
+                                <div class="col-md-6">
+                                    &nbsp;
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Atención de desastres-->
+        <div class="row">
+            <div class="" style="padding: 0 !important">
+                <br />
+                <div style="margin-left: 15px; margin-right:15px">
+                    <!--Sesión Pregunta-->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <span class="d-inline-block errorpregDatosPre2" id="alert-sgrcteidatoscteidatosadicionalesctei-atenciondedesastres" style="visibility: hidden !important"></span>
+                            <div class="divIconsQuestions">
+                                <label class="labelQuestionsText" id="labelConcordanteConAcuerdos">{{vm.textoAtencionDeDesastres}}*</label>
+                                <div style="margin-left: 21px; display: flex;">
+                                    <span class="d-inline-block errorpregDatosPre2 ml-4" id="alertE-sgrcteidatoscteidatosadicionalesctei-atenciondedesastres"></span>
+                                    <span class="messagealerttableDNP" style="padding-left: 5px;" id="ERR-sgrcteidatoscteidatosadicionalesctei-atenciondedesastres"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Sesión Opciones de Respuesta-->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div style="text-align:left">
+                                <div class="col-md-1 form-check">
+                                    <input type="radio"
+                                           id="preguntaAtencionDeDesastres"
+                                           name="preguntaAtencionDeDesastres"
+                                           style="margin-left: -8px;"
+                                           value="1"
+                                           ng-model="vm.datosAdicionalesCTEI.AtencionDeDesastres"
+                                           ng-disabled="!vm.activar"> Sí
+                                </div>
+                                <div class="col-md-1 form-check">
+                                    <input type="radio"
+                                           id="preguntaAtencionDeDesastres"
+                                           name="preguntaAtencionDeDesastres"
+                                           style="margin-left: -8px;"
+                                           value="2"
+                                           ng-model="vm.datosAdicionalesCTEI.AtencionDeDesastres"
+                                           ng-disabled="!vm.activar"> No
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Sesión Espacio Pregunta-->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-6">
+                                &nbsp;
+                            </div>
+                            <div class="col-md-6">
+                                &nbsp;
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!--Enfoque diferencial-->
+        <div class="row">
+            <div class="" style="padding: 0 !important">
+                <br />
+                <div style="margin-left: 15px; margin-right:15px">
+                    <!--Sesión Pregunta-->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <span class="d-inline-block errorpregDatosPre2" id="alert-sgrcteidatoscteidatosadicionalesctei-enfoquediferencial" style="visibility: hidden !important"></span>
+                            <div class="divIconsQuestions">
+                                <label class="labelQuestionsText" id="labelEnfoqueDiferencial">{{vm.textoEnfoqueDiferencial}}*</label>
+                                <div style="margin-left: 21px; display: flex;">
+                                    <span class="d-inline-block errorpregDatosPre2 ml-4" id="alertE-sgrcteidatoscteidatosadicionalesctei-enfoquediferencial"></span>
+                                    <span class="messagealerttableDNP" style="padding-left: 5px;" id="ERR-sgrcteidatoscteidatosadicionalesctei-enfoquediferencial"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Sesión Opciones de Respuesta-->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div style="text-align:left">
+                                <div class="col-md-1 form-check">
+                                    <input type="radio"
+                                           id="preguntaEnfoqueDiferencial"
+                                           name="preguntaEnfoqueDiferencial"
+                                           style="margin-left: -8px;"
+                                           value="1"
+                                           ng-model="vm.datosAdicionalesCTEI.EnfoqueDiferencial"
+                                           ng-disabled="!vm.activar"> Sí
+                                </div>
+                                <div class="col-md-1 form-check">
+                                    <input type="radio"
+                                           id="preguntaEnfoqueDiferencial"
+                                           name="preguntaEnfoqueDiferencial"
+                                           style="margin-left: -8px;"
+                                           value="2"
+                                           ng-model="vm.datosAdicionalesCTEI.EnfoqueDiferencial"
+                                           ng-disabled="!vm.activar"> No
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Sesión Espacio Pregunta-->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-6">
+                                &nbsp;
+                            </div>
+                            <div class="col-md-6">
+                                &nbsp;
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Minorías-->
+        <div class="row">
+            <div class="" style="padding: 0 !important">
+                <br />
+                <div style="margin-left: 15px; margin-right:15px">
+                    <!--Sesión Pregunta-->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <span class="d-inline-block errorpregDatosPre2" id="alert-sgrcteidatoscteidatosadicionalesctei-minorias" style="visibility: hidden !important"></span>
+                            <div class="divIconsQuestions">
+                                <label class="labelQuestionsText" id="labelMinorias">{{vm.textoMinorias}}*</label>
+                                <div style="margin-left: 21px; display: flex;">
+                                    <span class="d-inline-block errorpregDatosPre2 ml-4" id="alertE-sgrcteidatoscteidatosadicionalesctei-minorias"></span>
+                                    <span class="messagealerttableDNP" style="padding-left: 5px;" id="ERR-sgrcteidatoscteidatosadicionalesctei-minorias"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Sesión Opciones de Respuesta-->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div style="text-align:left">
+                                <div class="col-md-1 form-check">
+                                    <input type="radio"
+                                           id="preguntaMinorias"
+                                           name="preguntaMinorias"
+                                           style="margin-left: -8px;"
+                                           value="1"
+                                           ng-model="vm.datosAdicionalesCTEI.Minorias"
+                                           ng-disabled="!vm.activar"> Sí
+                                </div>
+                                <div class="col-md-1 form-check">
+                                    <input type="radio"
+                                           id="preguntaMinorias"
+                                           name="preguntaMinorias"
+                                           style="margin-left: -8px;"
+                                           value="2"
+                                           ng-model="vm.datosAdicionalesCTEI.Minorias"
+                                           ng-disabled="!vm.activar"> No
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Sesión Espacio Pregunta-->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-6">
+                                &nbsp;
+                            </div>
+                            <div class="col-md-6">
+                                &nbsp;
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Concordante con acuerdos-->
+        <div class="row">
+            <div class="" style="padding: 0 !important">
+                <br />
+                <div style="margin-left: 15px; margin-right:15px">
+                    <!--Sesión Pregunta-->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <span class="d-inline-block errorpregDatosPre2" id="alert-sgrcteidatoscteidatosadicionalesctei-concordanteconacuerdos" style="visibility: hidden !important"></span>
+                            <div class="divIconsQuestions">
+                                <label class="labelQuestionsText" id="labelConcordanteConAcuerdos">{{vm.textoConcordanteConAcuerdos}}*</label>
+                                <div style="margin-left: 21px; display: flex;">
+                                    <span class="d-inline-block errorpregDatosPre2 ml-4" id="alertE-sgrcteidatoscteidatosadicionalesctei-concordanteconacuerdos"></span>
+                                    <span class="messagealerttableDNP" style="padding-left: 5px;" id="ERR-sgrcteidatoscteidatosadicionalesctei-concordanteconacuerdos"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Sesión Opciones de Respuesta-->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div style="text-align:left">
+                                <div class="col-md-1 form-check">
+                                    <input type="radio"
+                                           id="preguntaConcordanteConAcuerdos"
+                                           name="preguntaConcordanteConAcuerdos"
+                                           style="margin-left: -8px;"
+                                           value="1"
+                                           ng-model="vm.datosAdicionalesCTEI.ConcordanteConAcuerdos"
+                                           ng-disabled="!vm.activar"> Sí
+                                </div>
+                                <div class="col-md-1 form-check">
+                                    <input type="radio"
+                                           id="preguntaConcordanteConAcuerdos"
+                                           name="preguntaConcordanteConAcuerdos"
+                                           style="margin-left: -8px;"
+                                           value="2"
+                                           ng-model="vm.datosAdicionalesCTEI.ConcordanteConAcuerdos"
+                                           ng-disabled="!vm.activar"> No
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Sesión Espacio Pregunta-->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-6">
+                                &nbsp;
+                            </div>
+                            <div class="col-md-6">
+                                &nbsp;
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Solicita vigencias futuras-->
+        <div class="row">
+            <div class="" style="padding: 0 !important">
+                <br />
+                <div style="margin-left: 15px; margin-right:15px">
+                    <!--Sesión Pregunta-->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <span class="d-inline-block errorpregDatosPre2" id="alert-sgrcteidatoscteidatosadicionalesctei-solicitavigenciasfuturas" style="visibility: hidden !important"></span>
+                            <div class="divIconsQuestions">
+                                <label class="labelQuestionsText" id="labelSolicitaVigenciasFuturas" for="pregunta">{{vm.textoSolicitaVigenciasFuturas}}*</label>
+                                <div style="margin-left: 21px; display: flex;">
+                                    <span class="d-inline-block errorpregDatosPre2 ml-4" id="alertE-sgrcteidatoscteidatosadicionalesctei-solicitavigenciasfuturas"></span>
+                                    <span class="messagealerttableDNP" style="padding-left: 5px;" id="ERR-sgrcteidatoscteidatosadicionalesctei-solicitavigenciasfuturas"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Sesión Opciones de Respuesta-->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div style="text-align:left">
+                                <div class="col-md-1 form-check">
+                                    <input type="radio"
+                                           id="preguntaSolicitaVigenciasFuturas"
+                                           name="preguntaSolicitaVigenciasFuguras"
+                                           style="margin-left: -8px;"
+                                           value="1"
+                                           ng-model="vm.datosAdicionalesCTEI.SolicitaVigenciasFuturas"
+                                           ng-disabled="!vm.activar"> Sí
+                                </div>
+                                <div class="col-md-1 form-check">
+                                    <input type="radio"
+                                           id="preguntaSolicitaVigenciasFuturas"
+                                           name="preguntaSolicitaVigenciasFuguras"
+                                           style="margin-left: -8px;"
+                                           value="2"
+                                           ng-model="vm.datosAdicionalesCTEI.SolicitaVigenciasFuturas"
+                                           ng-disabled="!vm.activar"> No
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Sesión Espacio Pregunta-->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-6">
+                                &nbsp;
+                            </div>
+                            <div class="col-md-6">
+                                &nbsp;
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Requiere certificado-->
+        <div class="row">
+            <div class="" style="padding: 0 !important">
+                <br />
+                <div style="margin-left: 15px; margin-right:15px">
+                    <!--Sesión Pregunta-->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <span class="d-inline-block errorpregDatosPre2" id="alert-sgrcteidatoscteidatosadicionalesctei-requierecertificado" style="visibility: hidden !important"></span>
+                            <div class="divIconsQuestions">
+                                <label class="labelQuestionsText" id="labelRequiereCertificado">{{vm.textoRequiereCertificado}}*</label>
+                                <div style="margin-left: 21px; display: flex;">
+                                    <span class="d-inline-block errorpregDatosPre2 ml-4" id="alertE-sgrcteidatoscteidatosadicionalesctei-requierecertificado"></span>
+                                    <span class="messagealerttableDNP" style="padding-left: 5px;" id="ERR-sgrcteidatoscteidatosadicionalesctei-requierecertificado"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Sesión Opciones de Respuesta-->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div style="text-align:left">
+                                <div class="col-md-1 form-check">
+                                    <input type="radio"
+                                           id="preguntaRequiereCertificado"
+                                           name="preguntaRequiereCertificado"
+                                           style="margin-left: -8px;"
+                                           value="1"
+                                           ng-model="vm.datosAdicionalesCTEI.RequiereCertificado"
+                                           ng-disabled="!vm.activar"> Sí
+                                </div>
+                                <div class="col-md-1 form-check">
+                                    <input type="radio"
+                                           id="preguntaRequiereCertificado"
+                                           name="preguntaRequiereCertificado"
+                                           style="margin-left: -8px;"
+                                           value="2"
+                                           ng-model="vm.datosAdicionalesCTEI.RequiereCertificado"
+                                           ng-disabled="!vm.activar"> No
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Sesión Espacio Pregunta-->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-6">
+                                &nbsp;
+                            </div>
+                            <div class="col-md-6">
+                                &nbsp;
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 ">
+                <br>
+
+                <br>
+                <div class="col-md-12" style="text-align:left">
+                    <br />
+                    <span class="TituloPincFormularioDNP">
+                        Seguimiento al proyecto 
+                    </span>
+                </div>
+
+                <table class="TableDNP">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="col-md-12 form-group" style="padding-right:2rem;">
+                                    <table style="text-align: center; width: 100%; border-collapse: initial; border-style: hidden; ">
+                                        <tbody style="border-bottom-style:inherit">
+                                            <tr>
+                                                <th class="textRightDNP" style="border-style: hidden;"><span class="NomItemAccordDNP">Valor interventoría $ </span></th>
+                                                <th class="textRightDNP" style="border-style: hidden;"><span class="NomItemAccordDNP">Valor supervisión $ </span></th>
+                                                <th class="textRightDNP" style="border-style: hidden;"><span class="NomItemAccordDNP">Total $ </span></th>
+                                            </tr>
+                                            <tr>
+                                                <td class="textRightDNP">
+                                                    <input type="text" class="form-control editInputDNP" min="0.0000" id="valorInterventoria" numbers="enteros:14;precision:2;negativos:false"
+                                                           ng-model="vm.datosAdicionalesCTEI.ValorInterventoria"
+                                                           ng-value="{{vm.datosAdicionalesCTEI.ValorInterventoria}}"
+                                                           ng-change="vm.CalcularTotalFuentes()"
+                                                           ng-disabled="!vm.activar"
+                                                           />
+                                                </td>
+                                                <td class="textRightDNP">
+                                                    <input type="text" class="form-control editInputDNP" min="0.0000" id="valorInterventoria" numbers="enteros:14;precision:2;negativos:false"
+                                                           ng-model="vm.datosAdicionalesCTEI.ValorSupervision"
+                                                           ng-value="{{vm.datosAdicionalesCTEI.ValorSupervision}}"
+                                                           ng-change="vm.CalcularTotalFuentes()"
+                                                           ng-disabled="!vm.activar"
+                                                           />
+                                                </td>
+                                                <td class="textRightDNP">
+                                                    <input type="text" class="form-control editInputDNP" id="valorTotal"
+                                                           ng-model="vm.valorTotal" 
+                                                           ng-value="{{vm.valorTotal}}"
+                                                           format="currency"
+                                                           disabled/>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+    </form>
+
+    <div class="row">
+        <div class="col-md-12">
+            &nbsp;
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            &nbsp;
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,9 @@
+<div class="container_disclaimer" ng-init="vm.init()">
+    <div class="alert alert-blur" ng-class="vm.iconos[vm.type].alert" role="alert" ng-style="vm.show ? { 'display': 'block' } : { 'display': 'none' }">
+        <button type="button" class="close" aria-label="Close" ng-click="vm.cerrar()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <i class="fa" ng-class="vm.iconos[vm.type].icon" ng-style="vm.iconos[vm.type].style" aria-hidden="true"></i>
+        <span class="ql-editor template_disclaimer" ng-bind-html="vm.renderizarTemplate(vm.template)"></span>
+    </div>
+</div>

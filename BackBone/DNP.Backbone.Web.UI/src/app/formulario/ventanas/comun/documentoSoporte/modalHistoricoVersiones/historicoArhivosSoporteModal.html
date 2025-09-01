@@ -1,0 +1,221 @@
+<style>
+    .modal-header {
+        border-bottom: 0px !important;
+    }
+
+    .modal-body {
+        max-height: 570px !important;
+        padding-top: 6px !important;
+        padding-bottom: 6px !important;
+    }
+
+    .TableDNP, .TableDNP th {
+        min-width: 0px !important;
+    }
+
+    .modal-footer {
+        border-bottom: 0px !important;
+        display: contents;
+        visibility: hidden;
+    }
+
+    .panelbuscadorDNP {
+        margin-left: 0px;
+        margin-right: 0px;
+        padding: 0px 10px 5px 10px !important;
+    }
+
+    .modal-content {
+        width: 107% !important;
+    }
+
+    .textLeftDNP {
+        font-size: 14px !important;
+    }
+</style>
+<modal-dialog cerrar="vm.cerrar" ng-init="vm.init()">
+    <div class="row">
+        <div class="col-md-12">
+            <div style="font-weight: bold; font-size: 20px; color: #004884;">
+                <span>Soportes relacionados al proceso: {{vm.codigoProceso}}.</span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div style="font-weight: bold; font-size: 18px; color: #004884;">
+                <span>{{vm.nombreProceso}}: {{vm.idObjetoNegocio}}.</span>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="row panelbuscadorDNP">
+        <table>
+            <tr>
+                <td style="padding-right: 10px; min-width: 100px; max-width: 100px; ">
+                    <div style="margin-top: -2px;">
+                        <div>
+                            <span style=" font-size: 1.3rem; font-weight: 600;">Origen</span>
+                        </div>
+                        <select class="form-control selectDNP" chosen options="vm.listadoArchivosPorOrigen" ng-model="vm.ejecutorFiltro.tipoPasosdOrigenId" style="height: 25px !important;"
+                                ng-options="x.Id as x.Name for x in vm.listadoArchivosPorOrigen" name="ddlTipoPasos" id="ddlTipoOrigen" no-results-text="No hay ningún resultado para su búsqueda"
+                                placeholder-text-single="Seleccione..." ng-change="vm.changeEntidad()">
+                            <option value="0" selected>Seleccione...</option>
+                        </select>
+                    </div>
+                </td>
+                <td style="padding-right: 10px; min-width: 128px; max-width: 128px; ">
+                    <div style="margin-top: -2px;">
+                        <div>
+                            <span style=" font-size: 1.3rem; font-weight: 600;">Paso</span>
+                        </div>
+                        <select class="form-control selectDNP" chosen options="vm.listaTipoPasosDocumentoSoporte" ng-model="vm.ejecutorFiltro.tipoPasosdId" style="height: 25px !important;"
+                                ng-options="x.Id as x.Name for x in vm.listaTipoPasosDocumentoSoporte" name="ddlTipoPasos" id="ddlTipoPasos" no-results-text="No hay ningún resultado para su búsqueda"
+                                placeholder-text-single="Seleccione..." ng-change="vm.changeEntidad()">
+                            <option value="0" selected>Seleccione...</option>
+                        </select>
+                    </div>
+                </td>
+                <td style="padding-right: 10px; padding-left: 10px; ">
+                    <div>
+                        <div>
+                            <span style=" font-size: 1.3rem; font-weight: 600;">Rango de fecha de cargue</span>
+                        </div>
+                        <div style=" display: inline-flex; align-items: baseline;">
+                            <div>
+                                <span style=" font-size: 1.3rem; font-weight: 600; padding-right: 5px;">Desde</span>
+                            </div>
+                            <input class="form-control selectDNP" type="date" ng-model="vm.ejecutorFiltro.fechaDesde" id="ddlFechaDesde" style="width: 135px; height: 25px !important; font-size: small;">
+                            <div style="padding-left: 10px;">
+                                <span style=" font-size: 1.3rem; font-weight: 600; padding-right: 5px;">Hasta</span>
+                            </div>
+                            <input class="form-control selectDNP" type="date" ng-model="vm.ejecutorFiltro.fechaHasta" id="ddlFechaHasta" style="width: 135px; height: 25px !important; font-size: small;">
+                        </div>
+                    </div>
+                </td>
+                <td style="padding-right: 10px; padding-left: 10px; min-width: 152px; max-width: 152px; ">
+                    <div style="margin-top: -2px;">
+                        <div>
+                            <span style=" font-size: 1.3rem; font-weight: 600;">Tipo de documento</span>
+                        </div>
+                        <select class="form-control selectDNP" chosen options="vm.listaTipoDocumentoSoporte" ng-model="vm.ejecutorFiltro.tipoDocumentodId" style="width: 110px; height: 25px !important;"
+                                ng-options="x.Id as x.Name for x in vm.listaTipoDocumentoSoporte" name="ddlTipoDocumento" id="ddlTipoDocumento" no-results-text="No hay ningún resultado para su búsqueda"
+                                placeholder-text-single="Seleccione..." ng-change="vm.changeEntidad()">
+                            <option value="0" selected>Seleccione...</option>
+                        </select>
+                    </div>
+                </td>
+                <td style="padding-right: 10px; padding-left: 10px;">
+                    <div>
+                        <div>
+                            <span style=" font-size: 1.3rem; font-weight: 600;">Nombre del documento</span>
+                        </div>
+                        <div style=" display: inline-flex; align-items: baseline;">
+                            <input class="form-control selectDNP" style="height: 25px !important; width: 170px" type="text" ng-model="vm.ejecutorFiltro.documento" name="txtNombreDocumento" id="txtNombreDocumento" ng-disabled="vm.disabled" />
+                        </div>
+                    </div>
+                </td>
+                <td style="padding-right: 10px; padding-left: 10px; min-width: 150px; max-width: 150px; ">
+                    <div style="margin-top: -2px;">
+                        <div>
+                            <span style=" font-size: 1.3rem; font-weight: 600;">Rol que carga</span>
+                        </div>
+                        <select class="form-control selectDNP" chosen options="vm.listaTipoDocumentoSoporte" ng-model="vm.ejecutorFiltro.tipoRolId" style="height: 25px !important;"
+                                ng-options="x.Id as x.Name for x in vm.listaTipoRolDocumentoSoporte" name="ddlTipoRol" id="ddlTipoRol" no-results-text="No hay ningún resultado para su búsqueda"
+                                placeholder-text-single="Seleccione..." ng-change="vm.changeRol()">
+                            <option value="0" selected>Seleccione...</option>
+                        </select>
+                    </div>
+                </td>
+                <td>
+                    <div style="display: inline-flex;">
+                        <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Limpiar" ng-click="vm.restablecerBusqueda()">
+                            <span> <img id="icoLimpiarBusqueda" class="icoBusquedasDNP" src="Img/IcoLimpiarBusq.svg"></span>
+                        </button>
+                        <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Buscar" ng-click="vm.buscar()">
+                            <span> <img id="arrow-IdPanelBuscador" class="icoBusquedasDNP" src="Img/IcoBuscar.svg"></span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <div class="row">
+            <div class="col-md-6 pull-left text-left" ng-if="vm.BusquedaRealizada">
+                <span class="spanresultadobusquedaDNP pull-left" ng-if="vm.cantidadDeProyectos > 0">
+                </span>
+                <span class="hidden" style="text-align: left; font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans'; font-size: 12px; font-style: normal; color: #A80521;" ng-if="vm.cantidadDeProyectos == 0">
+                    No se encontraron resultados.
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <table class="TableDNP" ng-init='configPages()'>
+        <thead style="height: 35px !important;">
+            <tr>
+                <th class="textRightDNP"></th>
+                <th class="textLeftDNP">Origen</th>
+                <th class="textLeftDNP">Tipo de documento</th>
+                <th class="textLeftDNP">Documento y datos</th>
+                <th class="textLeftDNP">Descripci&oacute;n</th>
+                <th class="textRightDNP"></th>
+                <th><input type="checkbox" ng-model="vm.todosSeleccionados" ng-click="vm.seleccionarTodos()" /></th>
+            </tr>
+        </thead>
+        <tbody ng-repeat="objArchivo in vm.listaArchivosUltimasVersiones | startFromGrid: currentPage * pageSize | limitTo: pageSize" ng-init="objArchivoIndex = $index">
+            <tr>
+                <td>
+                    &nbsp;
+                </td>
+                <td class="textLeftDNP">
+                    <span style="color:#36C; text-decoration: underline;">{{objArchivo.origen}} - {{objArchivo.pasoDocumentoSoporte}} </span>
+                </td>
+                <td class="textLeftDNP">
+                    <span>{{objArchivo.tipoDocumento}} </span>
+                </td>
+                <td class="textLeftDNP" style="max-width: 450px; overflow-y: auto;">
+                    <span style="color:#36C; text-decoration: underline;">{{objArchivo.nombre}}</span><br /><span>{{objArchivo.datosDocumento}} </span>
+                </td>
+                <td class="textLeftDNP">
+                    <span>{{objArchivo.descripcion}}</span>
+                </td>
+                <td style="text-align: center;">
+                    <img style="width:26px; height:26px; padding-left: 5px; padding-right:5px;" ng-src="Img/etapas/u670.svg" uib-tooltip="Versiones Anteriores" ng-click="vm.verLogVersionesAnteriores(objArchivo.tipoDocumentoId,objArchivo.tipoDocumento,objArchivo.nombre,objArchivo.pasoDocumentoSoporte,objArchivo.versionDocumentoSoporte)" ng-show="objArchivo.versionesAnteriores" />
+                </td>
+                <td style="text-align: center;">
+                    <input type="checkbox" ng-model="objArchivo.seleccionado" ng-change="vm.actualizarSeleccionados()" />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <br />
+    <div class="col-md-12 text-right nopadding" style="margin-bottom: -15px; margin-top: -5px;">
+        <span style="font-family:'Work Sans Medium', 'Work Sans Roman', 'Work Sans', sans-serif;font-weight:500;color:#004884;">&nbsp;{{vm.totalRegSeleccionados}} seleccionados</span>
+        <span style="font-family:'Work Sans', sans-serif;font-weight:400;color:#4B4B4B;"> de {{vm.totalRegistros}}</span>&nbsp;
+    </div>
+    <div class="row">
+        <div class="col-md-12" style="display: flex; justify-content: center; align-items: center;">
+            <div class='btn-group'>
+                <button type='button' class='btn ' ng-disabled='currentPage == 0' ng-click='currentPage = currentPage - 1'>
+                    <span style="text-decoration:underline">Anterior</span>
+                </button>
+                <button type='button' class='btn btn-default' ng-disabled='currentPage == page.no - 1' ng-click='setPage(page.no)' ng-repeat='page in pages'>{{page.no}}</button>
+                <button type='button' class='btn ' ng-disabled='currentPage >= vm.listaArchivosUltimasVersiones.length/pageSize - 1' , ng-click='currentPage = currentPage + 1'>
+                    <span style="text-decoration:underline">Siguiente</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div>
+        <div style="text-align: right;">
+            <a ng-click="vm.limpiarSeleccionDescarga()">LIMPIAR</a>&nbsp;
+            <a ng-click="vm.generarDescargaArchivos()">DESCARGAR</a>
+        </div>
+        <div style="text-align: left; margin-top: -10px;">
+            <spam><spam style=" font-size: 1.3rem; font-weight: 700; color: #004884;">Nota:</spam> Vea el historial de versiones de origen distintos a la PIIP desde cada una de esas plataformas.</spam>
+        </div>
+    </div>
+</modal-dialog>

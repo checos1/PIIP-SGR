@@ -1,0 +1,84 @@
+﻿<div class="modal-dashboard">
+    <!-- // inicio: contenedor principal -->
+    <div class="resumen-proyectos" ng-init="vm.init();">
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <!-- // tittle -->
+                    <div class="titlebarmodal">
+                        <span>RESUMEN</span>
+                        <span class="buttonbar pull-right">
+                            <button id="btnGenerarInstancias" ng-click="vm.generarInstancias()" class="btn btn-sm btn-success" tooltip-placement="top" uib-tooltip="Generar instancias" tabindex="0">
+                                Generar instancias
+                            </button>
+                        </span>
+                    </div>
+    
+                </div>
+            </div>
+
+            <!-- // inicio: filtros -->
+            <div class="form-group clearfix">
+                <div class="filtro">
+                    <div class="clearfix">
+                        <div class="row">
+                            <div class="col-md-10">
+
+                                <!-- // entidades -->
+                                <!--<div class="col-md-4">
+                                    <select name="cmbEntidad" id="cmbEntidad" class="form-control">
+                                        <option value="" selected>Entidad</option>
+                                        <option value="1" selected>Dos vias</option>
+                                    </select>
+                                </div>-->
+
+                                <!-- // BPIN -->
+                                <div class="col-md-3" >
+                                    <input type="text" ng-model="vm.filtro.bpin.valor" numbers-only name="txtBpin" id="txtBpin" class="form-control" placeholder="BPIN" />
+                                </div>
+
+
+                                <!-- Proyectos -->
+                                <div class="col-md-5" >
+                                    <input type="text" ng-model="vm.filtro.nombreProyecto.valor"  name="txtNombreProyecto" id="txtNombreProyecto" class="form-control" placeholder="Nombre Proyecto" />
+                                </div>
+                            </div>
+
+                             <!-- // botones filtrar -->
+                             <div class="col-md-2 text-right">
+                                <button id="btnFiltrar" ng-click="vm.buscar()" type="button" class="btn btn-filtro"  tooltip-placement="auto" uib-tooltip="Buscar">Buscar</button>
+                                <button id="btnLimpiarFiltro" ng-click="vm.limpiarCamposFiltro()" type="button" class="btn btn-filtro" tooltip-placement="auto" uib-tooltip="Limpiar">Limpiar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- // fin: filtros -->
+
+            <!-- inicio: grid -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="container-table">
+
+                        <!-- // start: data table -->
+                        <div class="grid-proyectos" style="padding: 20px; margin-top: 5px;"
+                            ng-if="vm.gridOptions.data.length > 0"
+
+                            ui-grid ="vm.gridOptions" 
+                            ui-grid-move-columns ui-grid-draggable-rows ui-grid-pinning
+                            ui-grid-resize-columns ui-grid-pagination
+                        >
+                        </div>
+                        <!-- // end: data table -->
+
+                        <div class="text-center intro-help  min-mh no-result-watermark" ng-if="vm.gridOptions.data.length === 0">
+                            <h4>{{ 'No hay ningún resultado para su búsqueda para el proyecto actual' }} </h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- // fin: contenedor principal -->
+</div>

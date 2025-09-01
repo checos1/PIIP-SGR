@@ -1,0 +1,106 @@
+﻿<div class="modal-header modaleDNP" ng-init="vm.init();">
+    <div class="row">
+        <div style="display:inline-flex">
+            <h3 class="modal-title" id="modal-title">
+                Contribución a la Política Pública
+            </h3>
+        </div>
+        <div>
+            <h3>
+                {{vm.PND.PND}}
+            </h3>
+        </div>
+        <button type='button' class='swal2-close' aria-label='Close this dialog' ng-click="vm.cerrar()">×</button>
+    </div>
+
+</div>
+<div class="modal-body modalebodyDNP moddnp2" id="modal-body">
+    <div id="tblMigracion">
+        <br />
+        <div>
+            <table class="tablaDetallesDNP">
+                <tbody>
+                    <tr ng-if="vm.PND.Nivel1 !== ''">
+                        <td class="titulo">
+                            {{vm.PND.Nivel1}}
+                        </td>
+                        <td class="valores">
+                            {{vm.PND.Nivel1Code}}
+                        </td>
+                        <td class="valores">
+                            {{vm.PND.Nivel1Nombre}}
+                        </td>
+                    </tr>
+                    <tr ng-if="vm.PND.Nivel2 !== ''">
+                        <td class="titulo">
+                            {{vm.PND.Nivel2}}
+                        </td>
+                        <td class="valores">
+                            {{vm.PND.Nivel2Code}}
+                        </td>
+                        <td class="valores">
+                            {{vm.PND.Nivel2Nombre}}
+                        </td>
+                    </tr>
+                    <tr ng-if="vm.PND.Nivel3 !== ''">
+                        <td class="titulo">
+                            {{vm.PND.Nivel3}}
+                        </td>
+                        <td class="valores">
+                            {{vm.PND.Nivel3Code}}
+                        </td>
+                        <td class="valores">
+                            {{vm.PND.Nivel3Nombre}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            &nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="titulo">
+                            Sector
+                        </td>
+                        <td class="valores">
+                            {{vm.PND.IdSector}}
+                        </td>
+                        <td class="valores">
+                            {{vm.PND.Sector}}
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="titulo">
+                            Programa
+                        </td>
+                        <td class="valores">
+                            {{vm.PND.CodigoPrograma}}
+                        </td>
+                        <td class="valores">
+                            {{vm.PND.Programa}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="titulo">
+                            Subprograma
+                        </td>
+                        <td class="valores">
+                            {{vm.PND.CodigoSubPrograma}}
+                        </td>
+                        <td class="valores">
+                            {{vm.PND.NombreSubPrograma}}
+                        </td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <!--<div class="col-md-12">
+        <a class="link pull-right" ng-click="vm.descargar()">Descargar</a>
+    </div>-->
+</div>

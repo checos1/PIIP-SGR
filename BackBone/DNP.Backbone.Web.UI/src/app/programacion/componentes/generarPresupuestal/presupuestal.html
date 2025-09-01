@@ -1,0 +1,140 @@
+﻿<div class="container-fluid inbox">
+    <br />
+    <div class="row panelbuscadorDNP">
+        <div class="row">
+            <div class="col-md-8 SelectBuscadorDNP">
+                <div class="labelbuscadorDNP"> <span>Sector</span></div>
+                <select class="form-control selectDNP" chosen options="vm.listaSectores" ng-model="vm.Sectores"
+                        ng-options="x.id as x.Sector for x in vm.listaSectores" ng-value="{{vm.listaSectores.id}}" name="ddlSector" id="ddlSector"
+                        placeholder-text-single="Todos" ng-change="vm.changeSector()">
+                    <option value="0" selected>Todos</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <div class="labelbuscadorDNP"><span>Código BPIN</span></div>
+                <input type="text" name="txtBPIN" id="txtBPIN" class="form-control InputBuscadorDNP" />
+            </div>
+        </div>
+
+        <div class="" style="height:20px">
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 SelectBuscadorDNP">
+                <div class="labelbuscadorDNP"> <span>Entidad</span></div>
+                <select class="form-control selectDNP" ng-model="vm.listaFiltroEntidades" name="ddlEntidad" id="ddlEntidad">
+                    <option value="0" selected>Todos</option>
+                    <option ng-repeat="entidad in vm.listaEntidades" ng-value="{{entidad.Id}}">{{entidad.Entidad}} </option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 pull-left text-left">
+                <span class="spanresultadobusquedaDNP pull-left" ng-if="vm.listaPresupuestales && vm.listaPresupuestales.length > 0">
+                    Se encontraron ({{vm.listaPresupuestales.length}}) resultados.
+                    <!--#14c729-->
+                </span>
+                <span class="spanresultadobusqueda2DNP pull-left" ng-if="!vm.listaPresupuestales || vm.listaPresupuestales.length == 0">
+                    No se encontraron resultados.
+                </span>
+
+                <span class="hidden" style="text-align: left; font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans'; font-size: 12px; font-style: normal; color: #A80521;" ng-if="vm.cantidadDeProyectos == 0">
+                    No se encontraron resultados.
+                </span>
+            </div>
+            <div class="col-md-6 pull-right text-right">
+                <span class="pull-right">
+                    <button type="button" ng-disabled="vm.dsblBtn" ng-show="vm.showBtn" class=" btnBuscarDNP " tooltip-class="customClass" uib-tooltip="Buscar" ng-click="vm.buscar()">
+                        BUSCAR
+                    </button>
+                </span>
+            </div>
+        </div>
+
+    </div>
+
+    <br />
+    <div class="col-md-6 textLeftDNP">
+        <span class="col-md-10" style="text-align: left; font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans'; font-size: 18px; font-style: normal; color: #04255c;">
+            Asignación de Códigos Presupuestales
+        </span>
+
+    </div>
+    <!--<br />
+    <div class="col-md-10 pull-right text-right" >
+
+    </div>
+    <br />-->
+    <span class="buttonbar col-md-6 pull-right text-right">
+        <button id="EditarG" type="button" ng-show="vm.showBtnEditar"
+                class="btneditarDNP" tooltip-placement="top"
+                uib-tooltip="Editar"
+                tabindex="0"
+                ng-click="vm.ActivarEditar()"
+                ng-disabled="vm.disabled">
+            {{vm.Editar}}
+        </button>
+        &nbsp;
+        <button id="GuardarG" type="submit"
+                class="{{vm.activar ? 'btnguardarDNP' : 'btnguardarDisabledDNP'}}"
+                tooltip-placement="top"
+                uib-tooltip="Guardar"
+                ng-click="vm.Guardar()"
+                ng-disabled="!vm.activar">
+            GUARDAR
+        </button>
+        &nbsp;
+        <button type="button" ng-disabled="vm.dsblBtnSimular" ng-show="vm.showBtnSimular" class=" btnBuscarDNP " tooltip-class="customClass" uib-tooltip="Buscar" ng-click="vm.Validar()" ng-if="vm.BusquedaRealizada">
+            ACTIVAR SIMULACION
+        </button>
+    </span>
+
+    <br />
+
+    <div class="" style="height:20px">
+        <!--<input type="checkbox" id="chkProyectoIdHeader" name="chkProyectoIdHeader" value="0" ng-change="vm.SeleccionarTodos()">-->
+    </div>
+
+    <table class="TableDNP">
+        <thead>
+            <tr>
+                <th class="columAcc"></th>
+                <th class="textLeftDNP">Código / Entidad</th>
+                <th class="textLeftDNP">Código BPIN / Nombre del Proyecto</th>
+                <th class="textLeftDNP">Programa / SubPrograma</th>
+                <th class="columAcc">
+                    <input type="checkbox" id="chkProyectoIdHeader" name="chkProyectoIdHeader" value="0" />
+                </th>
+                <th class="textRightDNP">Consecutivo</th>
+                <th class="textLeftDNP">Código Presupuestal</th>
+                <th class="columAcc"></th>
+            </tr>
+        </thead>
+        <tbody class="table" ng-repeat="presupuestal in vm.listaPresupuestales track by $index">
+            <tr>
+                <td></td>
+                <td>
+                    <textareaa class="form-control textAreatableDNP" rows="30" cols="50" disabled="disabled">{{presupuestal.Entidad}}</textareaa>
+                </td>
+                <td><textareaa class="textAreatableDNP">{{presupuestal.Proyecto}}</textareaa></td>
+                <td>{{presupuestal.ProgramaSubPrograma}}</td>
+                <td class="columAcc"><input type="checkbox" id="chkProyectoId{{$index}}" name="CheckId{{$index}}" value="{{presupuestal.ProyectoId}}" /></td>
+                <td class="textRightDNP" colspan="1">
+                    <input id="consecutivoPtal" type="number" only-digits class="form-control editInputDNP" ng-show="vm.activarConsecutivo" ng-model="presupuestal.Consecutivo"/>
+                </td>
+                <td class="textRightDNP">{{presupuestal.CodigoPresupuestal}}</td>
+                <td></td>
+            </tr>
+
+            <tr class="filaAnidada" ng-if="presupuestal.TieneError">
+                <td colspan="1">
+                </td>
+                <td colspan="7">
+                    <span class="messagealerttableDNP">{{presupuestal.ValidacionError}}</span>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+

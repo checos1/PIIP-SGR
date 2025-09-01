@@ -1,0 +1,91 @@
+﻿<div ng-init="vm.init();" style="text-align: left;">
+    <div>
+        <div style="text-align: left;">
+            <span class="uTituloTab">Resumen costos frente al valor solicitado</span>
+        </div>
+        <br />
+        <br />
+        <div>
+            <ul class="nav nav-tabs">
+                <li id="liDgenerales" class="{{vm.idetapa==1?'active':''}}">
+                    <a href="" ng-click="vm.mostrarTab(1)" data-toggle="tab">
+                        <span class="d-inline-block" id="alert-Preinversion"></span><b>Preinversión</b>
+                    </a>
+                </li>
+                <li id="liRecursos" class="{{vm.idetapa==2?'active':''}}">
+                    <a href="" ng-click="vm.mostrarTab(2)" data-target="#drecursos" data-toggle="tab">
+                        <span class="d-inline-block" id="alert-inversion"></span><b>Inversión</b>
+                    </a>
+                </li>
+                <li id="lijustificacion" class="{{vm.idetapa==3?'active':''}}">
+                    <a href="" ng-click="vm.mostrarTab(3)" data-target="#djustificacion" data-toggle="tab">
+                        <span class="d-inline-block" id="alert-operacion"></span><b>Operación</b>
+                    </a>
+                </li>
+            </ul>
+            <br />
+            <br />
+            <div style="text-align: left;">
+
+                <table class="TableDNP" style="width:98%;">
+                    <thead>
+                        <tr>
+                            <th class="columAcc" style="width:5%;"></th>
+                            <th class="textRightDNP" style="width:10%;">Vigencia</th>
+                            <th class="textRightDNP" style="width:40%;">Costo $</th>
+                            <th class="textRightDNP" style="width:40%;">Solicitado $</th>
+                            <th class="columAcc" style="width:5%;"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="objResumen in vm.listaResumen">
+                            <td><img ng-if="objResumen.Costos!==objResumen.Solicitado" id="u111_img" class="iconoErrorDNP" src="Img/u4630.svg"></td>
+                            <td class="textRightDNP">{{objResumen.vigencia}}</td>
+                            <td class="textRightDNP">{{objResumen.Costos}}</td>
+                            <td class="textRightDNP">
+                                <div ng-if="objResumen.Costos!==objResumen.Solicitado" class="divInconsistencia">{{objResumen.Solicitado}}</div>
+                                <div ng-if="objResumen.Costos===objResumen.Solicitado">{{objResumen.Solicitado}}</div>
+                            </td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                    <thead>
+
+                        <tr>
+                            <th class="columAcc">{{vm.ResumenSubTotal.icono}}</th>
+                            <th class="textRightDNP">{{vm.ResumenSubTotal.titulo}}</th>
+                            <th class="textRightDNP">{{vm.ResumenSubTotal.Costos}}</th>
+                            <th class="textRightDNP">{{vm.ResumenSubTotal.Solicitado}}</th>
+
+                            <th class="columAcc"></th>
+                        </tr>
+                    </thead>
+
+                </table>
+                <br />
+
+                <div style="font-family: 'Montserrat SemiBold', 'Montserrat Regular', 'Montserrat';font-size: 18px;font-style: normal;">
+                    <a ng-click="vm.mostrarOcultarFlujo()">
+                        <img ng-if="vm.mensaje!==''" id="u111_img" src="Img/u4630.svg">
+                        <label id="ver" class="uaviso">{{vm.mensaje}} </label>
+                    </a>&nbsp;
+                </div>
+
+                <span class="uLabelCampo">Totales globales</span>
+                <br />
+                <span class="uLabelDetallePequeno">Corresponden a sumatoria de recursos registrados en las etapas de preinversión, inversion y operación</span>
+                <table class="TableDNP">
+                    <thead>
+                        <tr>
+                            <th class="columAcc" style="width:5%;"><span>{{vm.listaTotal.icono}}</span></th>
+                            <th class="textRightDNP" style="width:10%;">Total</th>
+                            <th class="textRightDNP" style="width:40%;">{{vm.listaTotal.costo}}</th>
+                            <th class="textRightDNP" style="width:40%;">{{vm.listaTotal.solicitado}}</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

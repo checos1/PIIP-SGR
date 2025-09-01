@@ -1,0 +1,65 @@
+﻿<div ng-init="vm.init();">
+    <form id="politicastransversales" novalidate>
+        <div id="recursosfuentesdefinanc-validacionguardar-error" class="hidden text-left color-red">
+            <img class="img img-advertencia" src="Img/u11.svg" />
+            <span id="recursosfuentesdefinanc-validacionguardar-error-mns"></span>
+        </div>
+        <div id="fuentes" class="collapsed panel-body">
+            <h3 class="text-left ui-seccion-title">Políticas transversales asociadas <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg" ng-click="vm.abrirMensajePoliticasProyecto()"></h3>
+
+            <div class="col-md-12" style="padding-left:0px">
+                <span class="pull-left"><span>Las políticas transversales sobre las que ya se registró información sobre su ejecución no se encuentran disponibles para ser desasociadas. </span></span>
+            </div>
+            <table class="TableDNP no-border">
+                <thead>
+                    <tr>
+                        <th class="columAcc"></th>
+                        <th class="textLeftDNP">Política</th>
+                        <th class="columAcc"></th>
+                    </tr>
+                </thead>
+                <tbody ng-repeat="objPoliticas in vm.listaPoliticasProyectos">
+                    <tr>
+                        <td class="columAcc"
+                            style="background: transparent">
+                        </td>
+                        <td>
+                            {{objPoliticas.politica}}<br />
+                            <span class="DetalleFormularioDNP" ng-if="objPoliticas.TieneConceptoPendiente == true">La política no se puede eliminar ni editar porque se encuentra en proceso de aprobación de modificación por parte de la dirección técnica del DNP o porque fue aprobada para modificación</span>
+                        </td>
+                        <td>                            
+                            <div ng-if="objPoliticas.TieneConceptoPendiente == false">
+                                <button class="button-column-action trash" title="Eliminar Politica Transversal" ng-click="vm.eliminarPolitica(objPoliticas.politicaId,objPoliticas.politica)" ng-if="!objPoliticas.enSeguimiento" >
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="rgb(51, 102, 204)" class="bi bi-trash" viewBox="0 0 16 16" has-claim has-opciones="['Ajustes:GeneralComponente']">
+                                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                                        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                                    </svg>
+                                </button>
+                                <button class="button-column-action trash" title="Eliminar Politica Transversal" ng-disabled="true" ng-if="objPoliticas.enSeguimiento" >
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#BABABA" class="bi bi-trash" viewBox="0 0 16 16" has-claim has-opciones="['Ajustes:GeneralComponente']">
+                                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                                        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="add-new-fuente row mx-0 mt-4 text-right">
+                <a ng-click="vm.abrirModalAgregarPoliticaTrans()"><span class="uLabelCampo_fp" style="text-decoration:underline" has-claim has-opciones="['Ajustes:GeneralComponente']">AGREGAR POLITICA TRANSVERSAL</span></a>
+            </div>
+            <div class="row">
+                <div class="col-md-1">
+                    &nbsp;
+                </div>
+                <div class="col-md-11">
+                    <div id="focalizacionpolpoliticastransv-categoriapolitica-error" class="hidden text-left color-red"></div>
+                </div>
+                <div class="col-md-11">
+                    <div id="focalizacionpolpoliticastransv-valorcategoriapolitica-error" class="hidden text-left color-red"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

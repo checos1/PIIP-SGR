@@ -1,0 +1,38 @@
+﻿<!--<div style="background-color:white;padding-top:2rem;padding-bottom:0px !important;max-width:auto !important;" ng-init="vm.init()">
+    <priorizacion></priorizacion>
+</div>-->
+
+<section class="ventana-ajsutes mt-4" ng-init="vm.init()">
+    <div class="row m-0">
+        <div class="form-group">
+            <div class="tab-container col-md-12">
+                <div class="tab-content">
+
+                    <div class="tab-pane active cont col-md-12" style="padding-left:0 !important;padding-top:20px !important" id="dsgrpriorizacionm3priorizacion">
+                        <priorizacion-m3-prioriza-sgr  callback="vm.notificarGuardado()"
+                                                guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                                notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                                notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)"
+                                                notificacioncambios="vm.notificacionCambiosAjustes(handler, nombreComponente)">
+                        </priorizacion-m3-prioriza-sgr>
+                    </div>
+
+                    <div class="tab-pane  cont col-md-12" style="padding-left:0 !important;padding-top:20px !important;text-align:left;" id="dsgrpriorizacionm1soportes">
+                        <alojar-documentos-priorizacion-sgr tipotramiteid="{{vm.tipoTramiteId}}"
+                                                            tramiteid="{{vm.tramiteId}}"
+                                                            nivel="{{vm.IdNivel}}"
+                                                            rol="{{vm.IdRol}}"
+                                                            section="{{vm.section}}"
+                                                            callback="vm.notificarGuardado()"
+                                                            guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                                            notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                                            notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)"
+                                                            notificacioncambios="vm.notificacionCambiosAjustes(handler, nombreComponente)">
+                        </alojar-documentos-priorizacion-sgr>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

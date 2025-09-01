@@ -1,0 +1,132 @@
+﻿
+namespace DNP.ServiciosWBS.Test.Servicios
+{
+    using System;
+    using System.Collections.Generic;
+    using System.Configuration;
+    using System.Data.Entity;
+    using System.Data.Entity.Core.Objects;
+    using System.Data.Entity.Migrations;
+    using System.Linq;
+    using System.Net.Http;
+    using Configuracion;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using Mocks;
+    using Moq;
+    using Persistencia.Implementaciones;
+    using Persistencia.Implementaciones.Transversales;
+    using Persistencia.Interfaces;
+    using Persistencia.Interfaces.Transversales;
+    using Persistencia.Modelo;
+    using ServiciosNegocio.Comunes.Dto;
+    using ServiciosNegocio.Comunes.Dto.Formulario;
+    using ServiciosNegocio.Comunes.Excepciones;
+    using ServiciosNegocio.Dominio.Dto.FocalizacionProyecto;
+    using ServiciosNegocio.Test.Mock;
+    using ServiciosWBS.Servicios.Implementaciones;
+    using ServiciosWBS.Servicios.Implementaciones.Transversales;
+    using ServiciosWBS.Servicios.Interfaces.Transversales;
+    using Unity;
+    /// <summary>
+    /// Summary description for DiligenciarFuentesTest
+    /// </summary>
+    [TestClass]
+    public class DiligenciarFuentesTest
+    {
+        private IDiligenciarFuentesPersistencia _diligenciarFuentesPersistencia { get; set; }
+        private IPersistenciaTemporal PersistenciaTemporal { get; set; }
+        private IAuditoriaServicios AuditoriaServicio { get; set; }
+        private DiligenciarFuentesServicios _diligenciarFuentesServicios { get; set; }
+
+        private string Bpin { get; set; }
+        private readonly Mock<MockableDbSetWithExtensions<AlmacenamientoTemporal>> _mockSet = new Mock<MockableDbSetWithExtensions<AlmacenamientoTemporal>>();
+        private readonly Mock<MGAWebContexto> _mockContext = new Mock<MGAWebContexto>();
+        private readonly Mock<IContextoFactory> _mockContextFactory = new Mock<IContextoFactory>();
+
+
+        [TestInitialize]
+        public void Init()
+        {
+            Bpin = "202000000000005";
+            var contenedor =  UnityConfig.Container;
+            _diligenciarFuentesPersistencia = contenedor.Resolve<IDiligenciarFuentesPersistencia>();
+            PersistenciaTemporal = contenedor.Resolve<IPersistenciaTemporal>();
+            AuditoriaServicio = contenedor.Resolve<IAuditoriaServicios>();
+            _diligenciarFuentesServicios = new DiligenciarFuentesServicios(_diligenciarFuentesPersistencia, PersistenciaTemporal, AuditoriaServicio);
+
+            var data = new List<AlmacenamientoTemporal>().AsQueryable();
+
+            var objetoRetornoRecursosFocalizacion = new uspGetProyectoFocalizacionVA_Result();
+            var mockProyectoFocalizacion = new Mock<ObjectResult<uspGetProyectoFocalizacionVA_Result>>();
+            mockProyectoFocalizacion.SetupReturn(objetoRetornoRecursosFocalizacion);
+
+            _mockSet.As<IQueryable<AlmacenamientoTemporal>>().Setup(m => m.Provider).Returns(data.Provider);
+            _mockSet.As<IQueryable<AlmacenamientoTemporal>>().Setup(m => m.Expression).Returns(data.Expression);
+            _mockSet.As<IQueryable<AlmacenamientoTemporal>>().Setup(m => m.ElementType).Returns(data.ElementType);
+            _mockSet.As<IQueryable<AlmacenamientoTemporal>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator());
+
+            _mockContext.Setup(m => m.AlmacenamientoTemporal).Returns(_mockSet.Object);
+            _mockContext.Setup(mc => mc.uspGetProyectoFocalizacionVA(Bpin)).Returns(mockProyectoFocalizacion.Object);
+
+            _mockContextFactory.Setup(mcf => mcf.CrearContextoConConexion(ConfigurationManager.ConnectionStrings["MGAWebContexto"].ConnectionString)).Returns(_mockContext.Object);
+        }
+
+
+
+
+        public DiligenciarFuentesTest()
+        {
+            //
+            // TODO: Add constructor logic here
+            //
+        }
+
+        private TestContext testContextInstance;
+
+        /// <summary>
+        ///Gets or sets the test context which provides
+        ///information about and functionality for the current test run.
+        ///</summary>
+        public TestContext TestContext
+        {
+            get
+            {
+                return testContextInstance;
+            }
+            set
+            {
+                testContextInstance = value;
+            }
+        }
+
+        #region Additional test attributes
+        //
+        // You can use the following additional attributes as you write your tests:
+        //
+        // Use ClassInitialize to run code before running the first test in the class
+        // [ClassInitialize()]
+        // public static void MyClassInitialize(TestContext testContext) { }
+        //
+        // Use ClassCleanup to run code after all tests in a class have run
+        // [ClassCleanup()]
+        // public static void MyClassCleanup() { }
+        //
+        // Use TestInitialize to run code before running each test 
+        // [TestInitialize()]
+        // public void MyTestInitialize() { }
+        //
+        // Use TestCleanup to run code after each test has run
+        // [TestCleanup()]
+        // public void MyTestCleanup() { }
+        //
+        #endregion
+
+        [TestMethod]
+        public void TestMethod1()
+        {
+            //
+            // TODO: Add test logic here
+            //
+        }
+    }
+}

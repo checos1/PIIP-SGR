@@ -1,0 +1,108 @@
+﻿<style>
+    .pagination .pagination-next a, .pagination .pagination-prev a {
+        color: #3266CC !important;
+        background: none !important;
+        border: none;
+        text-decoration: underline;
+        font-family: "Work Sans Medium", "Work Sans Roman", "Work Sans", sans-serif !important;
+        text-transform: none !important;
+        font-weight: 500 !important;
+        font-style: normal !important;
+        font-size: 16px !important;
+    }
+
+    .pagination .pagination-page a {
+        color: #3266CC !important;
+        font-family: "Work Sans SemiBold", "Work Sans Roman", "Work Sans", sans-serif !important;
+        font-weight: 700 !important;
+        padding: 6px 12px !important;
+        margin-left: 5px;
+        margin-right: 5px;
+        font-size: 16px;
+        font-weight: 600 !important;
+        font-style: normal !important;
+    }
+
+    .pagination .active a {
+        background-color: #3266CC !important;
+        color: #FFFFFF !important;
+        border-color: #3266CC !important;
+        font-weight: 600 !important;
+    }
+
+    .pagination .pagination-next a:hover, .pagination .pagination-prev a:hover {
+        background-color: #E6EFFD !important;
+        color: #3266CC !important;
+        border-color: none !important;
+        border: none;
+        background: none !important;
+    }
+
+    .pagination .disabled {
+        color: #777 !important;
+        cursor: not-allowed !important;
+    }
+
+    .ui-grid-filter-input {
+        font-weight: 300 !important;
+    }
+
+    .ui-grid-top-panel {
+        background-color: #E6EFFD !important;
+    }
+
+    .modal-body .intro-help {
+        top: -21px !important;
+        min-height: 340px;
+    }
+
+    .ui-grid-cell {
+        max-height: 52px !important;
+        font-size: 12px;
+    }
+
+    .modal-header {
+        border-bottom: 0px !important;
+    }
+
+    .modal-body {
+        max-height: 485px !important;
+    }
+
+    .modal-footer {
+        margin-top: -15px !important;
+    }
+</style>
+<div style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 400; font-style: normal;">
+    <div class="col-md-12 text-right">
+        <button type="button" class="swal2-close closemodalDNP" ng-click="vm.cerrar()" style="top:10px;">x</button>
+    </div>
+    <div class="row">
+        <div class="col-md-12 TituloModal1DNP" style="padding-left: 40px;">
+            <h4><b>Crear proceso de {{ vm.nombreOpcion }}</b></h4>
+        </div>
+    </div>
+    <span class="header-title" style="padding-left: 27px;">
+        Total registros habilitados:&nbsp;<span class="mis-procesos-titulo-totales">{{vm.grillaProyectos.totalItems}}</span>
+    </span>
+    <div class="modal-body" style="padding-top: 0px !important;">
+        <div class="row">
+            <div class="table-top border-grid grid-icon" ui-grid="vm.grillaProyectos" ui-grid-pagination="" style="height:450px;">
+                <div class="text-center intro-help no-result-watermark" style="height: min-content;" ng-show="!vm.filasFiltradas">
+                    <img src="img/image-help.png" alt="Sin resultados" />
+                    <h2>{{ vm.mensajeResultado }}</h2>
+                    <h3 ng-if="vm.listaDeProyectos.length > 0">{{ 'TextoSeleccioneFiltrosMensaje' | language }}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="text-left" ng-show="vm.filasFiltradas" style="max-width: 320px; position: absolute; bottom: 28px; left: 71px; font-size: 13px; padding-left: 15px;">
+        <span>Consulte los procesos de {{vm.flujoNombre}} de proyectos en la consola de procesos.</span>
+    </div>
+    <div class="text-center" ng-show="vm.filasFiltradas">
+        <ul uib-pagination previous-text="Anterior" next-text="Siguiente" items-per-page="vm.numeroPorPagina" total-items="vm.grillaProyectos.totalItems"
+            ng-model="vm.grillaProyectos.paginationCurrentPage" max-size="vm.maximoPaginas" class="pagination-sm"
+            boundary-link-numbers="true" rotate="false"></ul>
+    </div>
+    &nbsp;
+</div>

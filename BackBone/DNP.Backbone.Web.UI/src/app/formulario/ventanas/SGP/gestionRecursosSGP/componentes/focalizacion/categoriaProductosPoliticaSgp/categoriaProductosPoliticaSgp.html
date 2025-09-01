@@ -1,0 +1,332 @@
+﻿<div id="secCategoriaProductosPolitica" style="margin: 0 0 0 15px;" ng-init="vm.init();">
+    <div ng-repeat="dat in datos" style="margin:30px 0 0 0;" data-attribute="{{ dat.PoliticaId }}" class="cDivMainCatProdPol">
+        <!--<div ng-if="dat.Politica" class="row" style="width: 100%; text-align: left;">-->
+        <div class="row">
+            <div id="focalizaciongrcapitulo1-{{vm.fuenteId}}-{{dat.PoliticaId}}-pregunta-error1" class="hidden uMensajeError "></div>
+
+        </div>
+        <br />
+        <div class="row">
+            <div id="focalizaciongrcapitulo1-{{vm.fuenteId}}-{{dat.PoliticaId}}-pregunta-error2" class="hidden uMensajeError "></div>
+        </div>
+        <div class="row" style="width: 100%; text-align: left;">
+            <div class="titulos" style="display: inline-block; font-size: 15pt;">
+                <span ng-if="dat.Politica">{{ dat.Politica }}. </span> <span class="titulosBold"> Categoría </span>
+            </div>
+        </div>
+
+        <!--Link Retorno tabla resumen-->
+        <!--<div ng-if="dat.Politica" class="row" style="width:100%;">-->
+        <div class="row" style="width:100%;">
+            <div style="display: inline-block; float: right;" class="lnkTablaResumen titulo">
+                <a ng-click="vm.retornar($event)" data-attribute="{{ vm.nombreElementoOrigen }}">IR A TABLA RESUMEN</a>
+                <!--<a ng-click="vm.retornar($event)" data-attribute="{{ vm.nombreElementoOrigen }}">INICIO {{ dat.Politica }}</a>-->
+            </div>
+        </div>
+
+        <!--Categoria-->
+        <!--<div id="dCategoriaProductosPolitica" ng-if="dat.Politica">-->
+        <div id="dCategoriaProductosPolitica">
+            <div ng-repeat="prod in dat.Productos" class="row" style="margin: 5px 0 0 -15px; width: 100%;">
+                <div class="cContentMainDiv2">
+                    <div style="padding: 0px 0 0 30px;">
+
+                        <div class="titleIP uLabelCampo" style="font-weight: bold; text-align: justify;">
+                            Producto: <span ng-if="prod.NombreProducto">{{ prod.NombreProducto }}.</span>
+                        </div>
+
+                        <!--Categorias-->
+                        <div id="dCategoriasIP" style="text-align:justify">
+                            <span class="parrafos"><b>Objetivo espec&iacute;fico:</b>&nbsp;</span>
+                            <input class="cObjetivoEspecifico" type="hidden" value="{{prod.ObjetivoEspecifico}}" />
+                            <span class="parrafos">{{vm.recortarTexto(prod.ObjetivoEspecifico, 80)}}</span>
+                            <a class="cVerMas" ng-if="prod.ObjetivoEspecifico.length > 80" data-toggle="modal" data-target="#cPPModal"
+                               ng-click="vm.verMasDescripcionCategoriaPP($event, 'Objetivo Específico:', 'cObjetivoEspecifico')">VER_MÁS.</a>
+
+                            <content ng-if="prod.Indicadores !== null && prod.Indicadores.length > 0"
+                                     ng-repeat="indPrincipal in prod.Indicadores">
+                                <content ng-if="indPrincipal.TipoIndicador == 'Principal'">
+                                    <span class="parrafos"><b>Indicador principal:</b>&nbsp;</span>
+                                    <input class="cIndicador" type="hidden" value="{{indPrincipal.Indicador}}" />
+                                    <span class="parrafos">{{vm.recortarTexto(indPrincipal.Indicador, 80)}}</span>
+                                    <a class="cVerMas" ng-if="indPrincipal.Indicador && indPrincipal.Indicador.length > 80" data-toggle="modal" data-target="#cPPModal"
+                                       ng-click="vm.verMasDescripcionCategoriaPP($event, 'Indicador:', 'cIndicador')">VER_MÁS.</a>
+
+                                    <span class="parrafos"><b>Unidad de medida:</b>&nbsp;</span>
+                                    <span ng-if="indPrincipal.UnidadMedida" class="parrafos">{{indPrincipal.UnidadMedida}}.</span>
+
+                                    <span class="parrafos"><b>Cantidad:</b>&nbsp;</span>
+                                    <span class="parrafos">{{vm.formatValores(indPrincipal.Cantidad)}}.</span>
+
+                                    <span class="parrafos"><b>Costo:</b>&nbsp;</span>
+                                    <!--<span ng-if="indPrincipal.Costo" class="parrafos">{{vm.formatValores(indPrincipal.Costo)}}.</span>-->
+                                    <span class="parrafos">{{indPrincipal.Costo}}.</span>
+                                    <span class="parrafos"><b>Es acumulativo:</b>&nbsp;</span>
+                                    <span class="parrafos">{{indPrincipal.Acumulable === 0 ? 'NO' : 'SI'}}.</span>
+                                </content>
+                            </content>
+
+
+                            <!-- Indicador Secundario - Equidad de la mujer - -->
+                            <content ng-if="prod.Indicadores !== null" ng-repeat="indSecundario in prod.Indicadores">
+                                <content ng-if="indSecundario.TipoIndicador == 'Secundario' && dat.PoliticaId === vm.politicaIdEquidadMujer">
+                                    <span class="parrafos"><b>Indicador secundario:</b>&nbsp;</span>
+                                    <input class="cIndSecIndicador" type="hidden" value="{{indSecundario.Indicador}}" />
+                                    <span class="parrafos">{{vm.recortarTexto(indSecundario.Indicador, 80)}}</span>
+                                    <a class="cVerMas" ng-if="indSecundario.Indicador && indSecundario.Indicador.length > 80" data-toggle="modal" data-target="#cPPModal"
+                                       ng-click="vm.verMasDescripcionCategoriaPP($event, 'Indicador secundario:', 'cIndSecIndicador')">VER_MÁS.</a>
+
+                                    <span class="parrafos"><b>Unidad de medida:</b>&nbsp;</span>
+                                    <span ng-if="indSecundario.UnidadMedida" class="parrafos">{{indSecundario.UnidadMedida}}.</span>
+
+                                    <span class="parrafos"><b>Cantidad:</b>&nbsp;</span>
+                                    <span class="parrafos">{{indSecundario.Cantidad}}.</span>
+
+                                    <span class="parrafos"><b>Costo:</b>&nbsp;</span>
+                                    <span class="parrafos">{{indSecundario.Costo}}.</span>
+
+                                    <span class="parrafos"><b>Es acumulativo:</b>&nbsp;</span>
+                                    <span class="parrafos">{{indSecundario.Acumulable === 0 ? 'NO' : 'SI'}}.</span>
+                                </content>
+                            </content>
+
+                        </div>
+                    </div>
+                    <i ng-click="vm.activarDescripcionIndicador($event)" class="cBtnUpDown2 fa fa-plus-square fa-lg">
+                        &nbsp;<span id="focalizaciongrcapitulo1-PRODUCTOCA-{{vm.fuenteId}}-{{dat.PoliticaId}}-{{prod.ProductoId}}" class="hidden text-left color-red"></span>
+                    </i>
+                    <div class="cConectorDiv" style="display:none">&nbsp;</div>
+                </div>
+                <!-- Localizaciones -->
+                <div class="dCPP" style="text-align: justify; display:none">
+                    <div>
+                        <div class="divNivel1">
+                            <div class="titleIP" style=" font-weight:bold;">Localizaciones</div>
+                        </div>
+                        <div ng-if="prod.Localizaciones !== null" ng-repeat="loc in prod.Localizaciones"
+                             style="margin: 10px 0 0 0;">
+
+                            <div class="dTableLocalizaciones">
+                                <table style="margin: 10px 0 0px 55px;">
+
+                                    <tr>
+                                        <td colspan="3" class="textoBold uLabelCampo">{{loc.Localizacion}}</td>
+                                    </tr>
+                                    <tr>
+                                    </tr>
+                                </table>
+                                <i style="cursor: pointer; margin: 0px 0 0 4px;"
+                                   ng-click="vm.activarDescripcionLocalizacion($event, 'dCPP3', 'cConectorDivNivelLoc', vm.fuenteId, dat.PoliticaId, prod.ProductoId, loc.LocalizacionId);"
+                                   class="iconPlusSegundoNivel">
+                                    <img />&nbsp;<span id="focalizaciongrcapitulo1-LOCALIZACIONCA-{{vm.fuenteId}}-{{dat.PoliticaId}}-{{prod.ProductoId}}-{{loc.LocalizacionId}}" class="hidden text-left color-red"></span>
+                                </i>
+                            </div>
+
+                            <div class="dCPP3" style="text-align: justify; display:none">
+                                <div ng-if="vm.fuenteConsultada == vm.fuenteId && vm.politicaConsultada == dat.PoliticaId && vm.productoConsultado == prod.ProductoId && vm.localizacionConsultada == loc.LocalizacionId">
+                                    <div class="cConectorDivNivelLoc" style="display:block">&nbsp;</div>
+                                    <div class="divNivelLocalizacion">
+                                        <div class="titleIP espacioTituloPrimerNivel" style=" font-weight:bold;">{{loc.Localizacion}}</div>
+                                    </div>
+                                    <div class="dMainCategoria" ng-if="loc.Categorias" ng-repeat="cat in loc.Categorias">
+
+                                        <div class="dTableLocalizaciones" style="margin: 10px 0 0 0; padding: 10px 10px 2px 10px;">
+                                            <table style="margin: 10px 0 20px 30px;">
+                                                <tr>
+                                                    <td colspan="3" class="textoBold uLabelCampo">{{loc.Localizacion}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>&nbsp;</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="td1">
+
+                                                        <span class="textoBold">Categoria:</span>
+                                                        <span class="parrafos">{{vm.recortarTexto(cat.Categoria1, 80)}}</span>
+                                                        <input class="cLocCategoria" type="hidden" value="{{cat.Categoria1}}" />
+                                                        <a class="cVerMas" ng-if="cat.Categoria1 && cat.Categoria1.length > 80" data-toggle="modal" data-target="#cPPModal"
+                                                           ng-click="vm.verMasDescripcionCategoriaPP($event, 'Categoria 1:', 'cLocCategoria')">VER_MÁS.</a>
+                                                    </td>
+                                                    <td class="td2">Costo total categoría MGA</td>
+                                                    <td class="td2">Costo total categoría Solicitud de recursos</td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td class="td1">
+                                                        <span class="textoBold">Subcategoria:</span>
+                                                        <input ng-if="cat.Categoria2" class="cLocCategoria2" type="hidden" value="{{cat.Categoria2}}" />
+                                                        <span ng-if="cat.Categoria2" class="parrafos">{{vm.recortarTexto(cat.Categoria2, 80)}}</span>
+                                                        <a class="cVerMas" ng-if="cat.Categoria2 && cat.Categoria2.length > 80" data-toggle="modal" data-target="#cPPModal"
+                                                           ng-click="vm.verMasDescripcionCategoriaPP($event, 'Categoria 2:', 'cLocCategoria2')">VER_MÁS.</a>
+                                                    </td>
+                                                    <td class="td2"><input type="text" class="inputCPP inpCostoTotalCatMGA" value="{{vm.formatValores(cat.CostoTotalCategoriaMGA)}}" disabled /></td>
+                                                    <td class="td2"><input type="text" class="inputCPP inpCostoTotalEnRec" value="{{vm.formatValores(cat.CostoTotalEnRecursos)}}" disabled /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="td1">
+                                                        <span class="textoBold">Meta total categoria:</span>
+                                                        <span class="parrafos">{{cat.MetaTotalCategoriaMGA}}</span>
+                                                    </td>
+                                                    <td colspan="2">&nbsp;</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="td1">
+                                                        <span class="textoBold">Unidad de medida:</span>
+                                                        <span class="parrafos">{{cat.UnidadMedida}}</span>
+                                                    </td>
+                                                    <td colspan="2">&nbsp;</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="td1">
+                                                        <span class="textoBold">Beneficiarios directos:</span>
+                                                        <span class="parrafos">{{vm.formatValores(cat.BeneficiariosDirectos)}}</span>
+                                                    </td>
+                                                    <td colspan="2">&nbsp;</td>
+                                                </tr>
+                                            </table>
+
+                                            <i style="cursor: pointer; margin: 0px 0 0 -7px;"
+                                               ng-click="vm.activarDescripcion($event, 'dCPP2', 'cConectorDivNivel3Vigencias'); vm.CalcularTotales($event)" class="iconPlusTercerNivel">
+                                                <img />&nbsp;<span id="focalizaciongrcapitulo1-DIMENSIONCA-{{vm.fuenteId}}-{{dat.PoliticaId}}-{{prod.ProductoId}}-{{loc.LocalizacionId}}-{{cat.DimensionId}}" class="hidden text-left color-red"></span>
+                                            </i>
+
+
+                                            <div class="cConectorDivNivel3Vigencias" style="display:none">&nbsp;</div>
+                                        </div>
+                                        <!-- Detalle Vigencia -->
+                                        <div class="dCPP2" style="text-align: justify; display:none">
+                                            <div>
+                                                <div class="divNivel2">
+                                                    <div class="titleIP espacioTituloPrimerNivel" style=" font-weight:bold;">Detalle vigencia {{loc.Localizacion}}</div>
+                                                    <div style="float: right; margin: -27px 0 0 0;">
+                                                        <button ng-if="!vm.soloLectura" type="button" class="btneditarDNP"
+                                                                uib-tooltip="Clic para editar la información"
+                                                                ng-click="vm.ActivarEditar($event)">
+                                                            EDITAR
+                                                        </button>
+
+                                                        <button ng-if="!vm.soloLectura" type="button" class="btnguardarDisabledDNP"
+                                                                uib-tooltip="Guardar modificación"
+                                                                ng-click="vm.ActivarEditar($event)" disabled>
+                                                            GUARDAR
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div style="margin: 10px 0 0 0; padding: 10px 10px 10px 10px;">
+                                                    <form>
+                                                        <table class="tablaDetalleVigencia">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th class="cTexto borderTabla">&nbsp;</th>
+                                                                    <th class="cTexto titulosBold cAlignRight">Vigencia</th>
+                                                                    <th class="cTexto titulosBold cAlignRight">Costos vigencia <br /> MGA $</th>
+                                                                    <th class="cTexto titulosBold cAlignRight">Costos categoría <br /> MGA $</th>
+                                                                    <th class="cTexto titulosBold cAlignRight">Meta categoría <br /> MGA</th>
+                                                                    <th class="cTexto titulosBold cAlignRight">Costos fuentes <br /> regionalización $</th>
+                                                                    <th class="cTexto titulosBold cAlignRight">Solicitud recursos <br /> para categoría $</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr ng-repeat="vig in cat.Vigencias">
+                                                                    <td class="cTexto">
+                                                                        <div ng-if="vig.AplicaDetalleEtnicos == true">
+                                                                            <div class="linkGrpEtnicos cTexto">Grupos étnicos</div>
+                                                                            <!--<i style="cursor: pointer; color: #3366cc; margin: 5px 4px 4px 7px;"
+                                                                            ng-click="vm.activarDescripcionAux($event, 'dCPP2' + $index, 'cConectorDivNivel2_' + $index, $index, vig.DetalleEtnicos); vm.CalcularTotales2('dCPP2' + ($index + 1))"
+                                                                            class="fa fa-plus-square fa-lg"></i>-->
+                                                                            <i style="cursor: pointer; margin: 5px 4px 4px 7px;"
+                                                                               ng-click="vm.activarDescripcionAux($event, 'dCPP2' + $index, 'cConectorDivNivel2_' + $index, $index, vig.DetalleEtnicos, vig.Vigencia); vm.CalcularTotales2('dCPP2' + ($index + 1))"
+                                                                               class="iconPlusTercerNivel">
+                                                                                <img />
+                                                                            </i>
+                                                                            <div class="cConectorDivNivel2_{{ $index }}" style="display:none">&nbsp;</div>
+                                                                        </div>
+                                                                        <div id="focalizaciongrcapitulo1-VIGENCIACA-{{vm.fuenteId}}-{{dat.PoliticaId}}-{{prod.ProductoId}}-{{loc.LocalizacionId}}-{{cat.DimensionId}}-{{vig.Vigencia}}" class="hidden iconoErrorDNP"></div>
+                                                                    </td>
+                                                                    <td class="cAlignCenter"><input type="text" class="cVigencia" value="{{vig.Vigencia}}" disabled /></td>
+                                                                    <td><input type="text" class="cInputTblDetalleCatBloq" value="{{vig.CostosVigenciaMGA   ? vm.formatValores(vig.CostosVigenciaMGA) : 0}}" disabled /></td>
+                                                                    <td><input type="text" class="cInputTblDetalleCatBloq" value="{{vig.CostosCategoriaMGA  ? vm.formatValores(vig.CostosCategoriaMGA) : 0}}" disabled /></td>
+                                                                    <td><input type="text" class="cInputTblDetalleCatBloq" value="{{vig.MetaCategoriaMGA    ? vm.formatValores(vig.MetaCategoriaMGA) : 0}}" disabled /></td>
+                                                                    <td><input type="text" class="cInputTblDetalleCatBloq" value="{{vig.CostosfuentesRegionalizacion ? vm.formatValores(vig.CostosfuentesRegionalizacion) : 0}}" disabled /></td>
+                                                                    <td class="cCellDetalleCat">
+                                                                        <!--<input type="number" class="cInputTblDetalleCatBloq"
+                                                                        value="{{vig.SolicitudRecursosCategoria}}"
+                                                                        ng-model="vig.SolicitudRecursosCategoria"
+                                                                        maxlength="15"
+                                                                        allow-numbers-only disabled
+                                                                        ng-keypress="vm.validateFormat($event)"
+                                                                        ng-keyup="vm.validarTamanio($event)"
+                                                                        ng-blur="vm.actualizaFila($event)"
+                                                                        />-->
+                                                                        <div id="idinput-{{vm.fuenteId}}-{{dat.PoliticaId}}-{{prod.ProductoId}}-{{loc.LocalizacionId}}-{{cat.DimensionId}}-{{vig.Vigencia}}"
+                                                                             style="text-align: right;padding-right: 3px; margin-left: 5px ">{{vm.formatValores(vig.SolicitudRecursosCategoria)}}</div>
+
+                                                                        <input type="number" string-to-number min="0.00"
+                                                                               class="form-control editInputDNP"
+                                                                               ng-keypress="vm.validateFormat($event)"
+                                                                               ng-keyup="vm.validarTamanio($event)"
+                                                                               ng-value="vig.SolicitudRecursosCategoria"
+                                                                               ng-model="vig.SolicitudRecursosCategoria"
+                                                                               ng-blur="vm.actualizaFila($event)" disabled style="display: none; background-color: transparent;text-align:right; " />
+
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                            <tfoot>
+                                                                <tr class="trFooterTableTotal">
+                                                                    <td class="cTextoBold columAcc icontotaldnp"><span style="margin: 0 0 0 6px;">=</span></td>
+                                                                    <td class="cTextoBold textRightDNP"><span>Total $</span></td>
+                                                                    <td class="cTextoBold"></td>
+                                                                    <td class="cTextoBold"></td>
+                                                                    <td class="cTextoBold"></td>
+                                                                    <td class="cTextoBold"></td>
+                                                                    <td class="cTextoBold"></td>
+                                                                </tr>
+                                                            </tfoot>
+                                                        </table>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="parrafos" ng-if="prod.Localizaciones === null" style="margin: 10px 0 0 0; padding: 10px 10px 10px 10px;">
+                            {{vm.mensajeSinDatosLoc}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="cMensajeCatPolitica">
+        <a ng-click="vm.retornar($event)" data-attribute="{{ vm.nombreElementoOrigen }}">IR A TABLA RESUMEN</a>
+        <!--<a ng-click="vm.retornar($event)" data-attribute="{{ vm.nombreElementoOrigen }}">INICIO {{ dat.Politica }}</a>-->
+        <div class="cMensajeCatPol"></div>
+    </div>
+    <div class="cMensajeCatProdPol parrafos"></div>
+    <!-- Modal IP -->
+    <div class="modal fade" id="cPPModal" tabindex="-1" role="dialog" aria-labelledby="IPModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="background: none !important;">
+                    <h5 class="modal-title titulos" id="cPPModalTitle"></h5>
+                    <button type="button" style="margin: -30px 0 0 150px;color: #5179a0 !important;" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="background: none !important;">
+                    <div id="dModalCPPContent" class="parrafos"
+                         style="text-align:justify; overflow:auto; max-height:300px;"></div>
+                </div>
+                <div class="modal-footer" style="text-align: center !important;">
+                    <button type="button" style=" background: #3366CC !important;" class="btn btn-sm btn-success" uib-tooltip="Cerrar ventana"
+                            data-dismiss="modal" ng-click="vm.cerrarModal('cPPModal')">
+                        Aceptar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

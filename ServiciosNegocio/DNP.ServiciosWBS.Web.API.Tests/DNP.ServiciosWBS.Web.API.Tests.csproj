@@ -1,0 +1,278 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C1E0F593-E010-4932-9FF3-4E0CAE2A71FC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DNP.ServiciosWBS.Web.API.Tests</RootNamespace>
+    <AssemblyName>DNP.ServiciosWBS.Web.API.Tests</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <IsCodedUITest>False</IsCodedUITest>
+    <TestProjectType>UnitTest</TestProjectType>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Dev|AnyCPU'">
+    <OutputPath>bin\Dev\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'QA|AnyCPU'">
+    <OutputPath>bin\QA\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'UAT|AnyCPU'">
+    <OutputPath>bin\UAT\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Local|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Local\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DevNT|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\DevNT\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'UatNT|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\UatNT\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'QA2|AnyCPU'">
+    <OutputPath>bin\QA2\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'QA3|AnyCPU'">
+    <OutputPath>bin\QA3\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'QA4|AnyCPU'">
+    <OutputPath>bin\QA4\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'SGR|AnyCPU'">
+    <OutputPath>bin\SGR\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'UATSGR|AnyCPU'">
+    <OutputPath>bin\UATSGR\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Core.4.2.1\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="CommonServiceLocator, Version=2.0.2.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.5.6\lib\net45\CommonServiceLocator.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.4\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.4\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Unity.Abstractions, Version=3.1.3.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.5.6\lib\net45\Unity.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Configuration, Version=5.1.3.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.5.6\lib\net45\Unity.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Container, Version=5.5.6.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.5.6\lib\net45\Unity.Container.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Interception, Version=5.3.1.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.5.6\lib\net45\Unity.Interception.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Interception.Configuration, Version=5.1.3.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.5.6\lib\net45\Unity.Interception.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RegistrationByConvention, Version=2.1.4.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.5.6\lib\net45\Unity.RegistrationByConvention.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ServiceLocation, Version=2.1.0.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.5.6\lib\net45\Unity.ServiceLocation.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Configuracion\UnityConfig.cs" />
+    <Compile Include="Controllers\AjusteFocalizacionPoliticasTransversalesAsociacionIndicadoresControllerTest.cs" />
+    <Compile Include="Controllers\AjustesCuantificacionBeneficiarioControllerTest.cs" />
+    <Compile Include="Controllers\AjustesPoliticasTransversalesMetasControllerTest.cs" />
+    <Compile Include="Controllers\AjustesPoliticaTransversalBeneficiarioControllerTest.cs" />
+    <Compile Include="Controllers\AjusteRegionalizacionMetasYRecursosController.cs" />
+    <Compile Include="Controllers\AjustesPoliticaTransversalCategoriaControllerTest.cs" />
+    <Compile Include="Controllers\AjustesRegionalizaFuentesControllerTest.cs" />
+    <Compile Include="Controllers\AjustesUbicacionControllerTest.cs" />
+    <Compile Include="Controllers\CadenaValorControllerTest.cs" />
+    <Compile Include="Controllers\CostosEntregablesControllerTest.cs" />
+    <Compile Include="Controllers\CuantificacionBeneficiarioControllerTest.cs" />
+    <Compile Include="Controllers\CuantificacionLocalizacioControllerTest.cs" />
+    <Compile Include="Controllers\FocalizacionPoliticasTransversalesAsociacionIndicadoresTest.cs" />
+    <Compile Include="Controllers\FocalizacionPoliticasTransversalesControllerTest.cs" />
+    <Compile Include="Controllers\FocalizacionPoliticasTransversalesRelacionadasControllerTest.cs" />
+    <Compile Include="Controllers\FocalizacionPoliticasTransversalesRelacionadasAjustesControllerTest.cs" />
+    <Compile Include="Controllers\FuentesFinanciacionAjusteControllerTest.cs" />
+    <Compile Include="Controllers\IncluitPoliticasTest.cs" />
+    <Compile Include="Controllers\LocalizacionControllerTest.cs" />
+    <Compile Include="Controllers\PoliticaTransversalBeneficiarioControllerTest.cs" />
+    <Compile Include="Controllers\PoliticaTransversalCategoriaControllerTest.cs" />
+    <Compile Include="Controllers\CostosActividadesControllerTest.cs" />
+    <Compile Include="Controllers\RegionalizaFuentesControllerTest.cs" />
+    <Compile Include="Controllers\ValidarViabilidadCompletarInfoControllerTest.cs" />
+    <Compile Include="Controllers\FocalizacionControllerTest.cs" />
+    <Compile Include="Controllers\FocalizacionCuantificacionLocalizacionControllerTest.cs" />
+    <Compile Include="Controllers\IndicadorProductoAgregarControllerTest.cs" />
+    <Compile Include="Controllers\ProductoControllerTest.cs" />
+    <Compile Include="Controllers\RegionalizacionIndicadorAgregarControllerTest.cs" />
+    <Compile Include="Controllers\RegionalizacionIndicadoresControllerTest.cs" />
+    <Compile Include="Controllers\FocalizacionProyectoControllerTest.cs" />
+    <Compile Include="Controllers\RegionalizacionProyectoControllerTest.cs" />
+    <Compile Include="Mocks\AjusteFocalizacionPoliticasTransversalesAsociacionIndicadoresMock.cs" />
+    <Compile Include="Mocks\AjustesCuantificacionBeneficiarioServiciosMock.cs" />
+    <Compile Include="Mocks\AjustesPoliticasTransversalesMetasServiciosMock.cs" />
+    <Compile Include="Mocks\AjustesPoliticaTransversalBeneficiarioServiciosMock.cs" />
+    <Compile Include="Mocks\AjusteRegionalizacionMetasYRecursosMock.cs" />
+    <Compile Include="Mocks\AjustesPoliticaTransversalCategoriaServiciosMock.cs" />
+    <Compile Include="Mocks\AjustesRegionalizaFuentesServiciosMock.cs" />
+    <Compile Include="Mocks\AjustesUbicacionServiciosMock.cs" />
+    <Compile Include="Mocks\AutorizacionUtilidadesMock.cs" />
+    <Compile Include="Mocks\CadenaValorServiciosMock.cs" />
+    <Compile Include="Mocks\CostosEntregablesServiciosMock.cs" />
+    <Compile Include="Mocks\CuantificacionBeneficiarioServiciosMock.cs" />
+    <Compile Include="Mocks\CuantificacionLocalizacionServiciosMock.cs" />
+    <Compile Include="Mocks\FocalizacionCuantificacionLocalizacionServiciosMock.cs" />
+    <Compile Include="Mocks\FocalizacionPoliticasTransversalesAsociacionIndicadoresMock.cs" />
+    <Compile Include="Mocks\FocalizacionPoliticasTransversalesMetasMock.cs" />
+    <Compile Include="Mocks\FocalizacionPoliticasTransversalesRelacionadasServiciosAjustesMock.cs" />
+    <Compile Include="Mocks\FocalizacionPoliticasTransversalesRelacionadasServiciosMock.cs" />
+    <Compile Include="Mocks\FuentesFinanciacionAjusteMock.cs" />
+    <Compile Include="Mocks\IncluirPoliticasMock.cs" />
+    <Compile Include="Mocks\LocalizacionServiciosMock.cs" />
+    <Compile Include="Mocks\PoliticaTransversalBeneficiarioServiciosMock.cs" />
+    <Compile Include="Mocks\PoliticaTransversalCategoriaServiciosMock.cs" />
+    <Compile Include="Mocks\CostosActividadesServiciosMock.cs" />
+    <Compile Include="Mocks\RegionalizaFuentesServicioMock.cs" />
+    <Compile Include="Mocks\ValidarViabilidadCompletarInfoServiciosMock.cs" />
+    <Compile Include="Mocks\FocalizacionServiciosMock.cs" />
+    <Compile Include="Mocks\IndicadorProductoAgregarServiciosMock.cs" />
+    <Compile Include="Mocks\ProductoServicioMock.cs" />
+    <Compile Include="Mocks\FocalizacionProyectoServiciosMock.cs" />
+    <Compile Include="Mocks\RegionalizacionIndicadorAgregarServiciosMock.cs" />
+    <Compile Include="Mocks\RegionalizacionIndicadoresServiciosMock.cs" />
+    <Compile Include="Mocks\RegionalizacionProyectoServiciosMock.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DNP.ServiciosNegocio.Comunes\DNP.ServiciosNegocio.Comunes.csproj">
+      <Project>{b20f5062-15b9-49e4-88c5-79f109f947ef}</Project>
+      <Name>DNP.ServiciosNegocio.Comunes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DNP.ServiciosNegocio.Dominio\DNP.ServiciosNegocio.Dominio.csproj">
+      <Project>{694221d1-e217-4d2e-87e3-b196c4c6be94}</Project>
+      <Name>DNP.ServiciosNegocio.Dominio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DNP.ServiciosNegocio.Servicios\DNP.ServiciosNegocio.Servicios.csproj">
+      <Project>{B54C4CB8-E564-49B9-B2D8-38CB8E585F41}</Project>
+      <Name>DNP.ServiciosNegocio.Servicios</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DNP.ServiciosWBS.Servicios\DNP.ServiciosWBS.Servicios.csproj">
+      <Project>{600d9da1-e31b-475c-ae02-e6d6419e66e8}</Project>
+      <Name>DNP.ServiciosWBS.Servicios</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DNP.ServiciosWBS.Web.API\DNP.ServiciosWBS.Web.API.csproj">
+      <Project>{417fa7e6-f744-4d72-b6fd-a0fb6eb418d3}</Project>
+      <Name>DNP.ServiciosWBS.Web.API</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

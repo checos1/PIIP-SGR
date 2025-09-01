@@ -1,0 +1,23 @@
+﻿namespace DNP.Backbone.Dominio.Dto.Monitoreo
+{
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using Comunes.Dto;
+
+    [ExcludeFromCodeCoverage]
+    //Se excluyen los DTO por ser clases POCO. Las clases POCO solo tienen propiedades y no tienen métodos para ser testeados.
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    public sealed class EntidadProyectoResumenDto
+    {
+
+        public int IdEntidad { get; set; }
+
+        public string NombreEntidad { get; set; }
+        public string TipoEntidad { get; set; }
+
+        public List<NegocioResumenDto> ObjetosNegocio { get; set; }
+        public RolAutorizacionDto Rol { get; set; }
+
+        public string SectorEntidad { get; set; }
+    }
+}

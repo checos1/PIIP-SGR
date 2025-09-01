@@ -1,0 +1,16 @@
+﻿<style>
+    .conpes-vigencia-futura-container {
+        padding-right: 1.3rem;
+    }
+</style>
+
+<section ng-init="vm.init()" class="conpes-vigencia-futura-container mb-3">
+    <div id="informacionpresupuestalconpes-conpes-error" class="hidden uMensajeError"></div>
+    <consulta-conpes 
+        guardarCompesEvent="vm.guardarCompes(compesList)"
+        removerconpesevent="vm.removerConpes(conpes)"
+        conpespreseleccionados="vm.conpesPreseleccionados"
+        clearconpesindex="vm.clearConpesIndex">
+    </consulta-conpes>
+</section>
+

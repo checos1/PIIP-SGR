@@ -1,0 +1,100 @@
+﻿<section class="ventana-ajsutes mt-4">
+    <div class="row m-0" ng-init="vm.initProgramacion()">
+        <div class="form-group">
+            <div class="tab-content">
+                <div class="tab-pane cont col-md-12 p-0" id="ddistribucion">
+                    <div class="mensajeAlerta" ng-if="vm.mostrarMesaje && vm.seccionactiva === 'distribucion'">
+                        <span>{{vm.textoMensaje}}</span>
+                    </div>
+                    <distribucion-pr callback="vm.notificarGuardado()"
+                                     guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                     notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                     notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente, handlerCapitulos)"
+                                     notificacioncambios="vm.notificacionCambiosAjustes(handler, nombreComponente)"
+                                     section="distribucion"
+                                     modificodatos="vm.modificoDatos"
+                                     modificardistribucion="vm.modificarDistribucion"
+                                     calendariodistribucioncuotas = "{{vm.calendarioDistribucionCuotas}}"
+                                     verificacalendario="vm.verificaCalendario(idEntidad, idNivel, idSeccionCapitulo, seccion)">
+                    </distribucion-pr>
+                </div>
+                <div class="tab-pane  cont col-md-12 p-0" id="dfuentes" >
+                    <div class="mensajeAlerta" ng-if="vm.mostrarMesaje && vm.seccionactiva === 'fuentes'">
+                        <span>{{vm.textoMensaje}}</span>
+                    </div>
+                    <fuentes-pr callback="vm.notificarGuardado()"
+                                guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)"
+                                notificacioncambios="vm.notificacionCambiosAjustes(handler, nombreComponente)"
+                                section="fuentes"
+                                modificardistribucion="vm.modificarDistribucion"
+                                calendariofuentes="{{vm.calendarioFuentes}}"
+                                verificacalendario="vm.verificaCalendario(idEntidad, idNivel, idSeccionCapitulo, seccion)">
+                    </fuentes-pr>
+                </div>
+                <div class="tab-pane  cont col-md-12 p-0" id="dregionalizacion">
+                    <div class="mensajeAlerta" ng-if="vm.mostrarMesaje && vm.seccionactiva === 'regionalizacion'">
+                        <span>{{vm.textoMensaje}}</span>
+                    </div>
+                    <regionalizacion-pr callback="vm.notificarGuardado()"
+                                        guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                        notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                        notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)"
+                                        notificacioncambios="vm.notificacionCambiosAjustes(handler, nombreComponente)"
+                                        section="regionalizacion"
+                                        modificardistribucion="vm.modificarDistribucion"
+                                        calendarioregionalizacion="{{vm.calendarioregionalizacion}}"
+                                        verificacalendario="vm.verificaCalendario(idEntidad, idNivel, idSeccionCapitulo, seccion)">
+                    </regionalizacion-pr>
+                </div>                
+                <div class="tab-pane  cont col-md-12 p-0" id="diniciativas" >
+                    <div class="mensajeAlerta" ng-if="vm.mostrarMesaje && vm.seccionactiva === 'iniciativas'">
+                        <span>{{vm.textoMensaje}}</span>
+                    </div>
+                    <iniciativas-pr callback="vm.notificarGuardado()"
+                                    guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                    notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                    notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)"
+                                    notificacioncambios="vm.notificacionCambiosAjustes(handler, nombreComponente)"
+                                    section="iniciativas"
+                                    modificardistribucion="vm.modificarDistribucion"
+                                    calendarioiniciativas="{{vm.calendarioIniciativas}}"
+                                    verificacalendario="vm.verificaCalendario(idEntidad, idNivel, idSeccionCapitulo, seccion)">
+                    </iniciativas-pr>
+                </div>
+                <div class="tab-pane cont col-md-12 p-0" id="dpoliticastransversales">
+                    <div class="mensajeAlerta" ng-if="vm.mostrarMesaje && vm.seccionactiva === 'politicastransversales'">
+                        <span>{{vm.textoMensaje}}</span>
+                    </div>
+                    <politicas-transversales-pr callback="vm.notificarGuardado()"
+                                                guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                                notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                                notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente, handlerCapitulos)"
+                                                notificacioncambios="vm.notificacionCambiosAjustes(handler, nombreComponente)"
+                                                section="politicastransversales"
+                                                modificardistribucion="vm.modificarDistribucion"
+                                                calendariopoliticastransversales="{{vm.calendarioPoliticasTransversales}}"
+                                                verificacalendario="vm.verificaCalendario(idEntidad, idNivel, idSeccionCapitulo, seccion)">
+                    </politicas-transversales-pr>
+                </div>
+                <div class="tab-pane  cont col-md-12 p-0" id="dproductos">
+                    <div class="mensajeAlerta" ng-if="vm.mostrarMesaje && vm.seccionactiva === 'productos'">
+                        <span>{{vm.textoMensaje}}</span>
+                    </div>
+                    <productos-pr callback="vm.notificarGuardado()"
+                                  guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                  notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                  notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)"
+                                  notificacioncambios="vm.notificacionCambiosAjustes(handler, nombreComponente)"
+                                  section="productos"
+                                  modificoData="vm.modificoData"
+                                  modificardistribucionprod ="vm.modificarDistribucionProd"
+                                  calendarioproductos="{{vm.calendarioProductos}}"
+                                  verificacalendario="vm.verificaCalendario(idEntidad, idNivel, idSeccionCapitulo, seccion)">
+                    </productos-pr>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

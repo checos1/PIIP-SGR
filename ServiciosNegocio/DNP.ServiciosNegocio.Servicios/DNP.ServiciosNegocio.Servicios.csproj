@@ -1,0 +1,296 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B54C4CB8-E564-49B9-B2D8-38CB8E585F41}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DNP.ServiciosNegocio.Servicios</RootNamespace>
+    <AssemblyName>DNP.ServiciosNegocio.Servicios</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Dev|AnyCPU'">
+    <OutputPath>bin\Dev\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'QA|AnyCPU' ">
+    <OutputPath>bin\Qa\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'UAT|AnyCPU' ">
+    <OutputPath>bin\Uat\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Local|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Local\</OutputPath>
+    <DefineConstants>CODE_ANALYSIS;DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DevNT|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\DevNT\</OutputPath>
+    <DefineConstants>CODE_ANALYSIS;CODE_ANALYSIS;DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'UatNT|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\UatNT\</OutputPath>
+    <DefineConstants>CODE_ANALYSIS;CODE_ANALYSIS;CODE_ANALYSIS;DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'QA2|AnyCPU'">
+    <OutputPath>bin\QA2\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'QA3|AnyCPU'">
+    <OutputPath>bin\QA3\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'QA4|AnyCPU'">
+    <OutputPath>bin\QA4\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'SGR|AnyCPU'">
+    <OutputPath>bin\SGR\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'UATSGR|AnyCPU'">
+    <OutputPath>bin\UATSGR\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=6.2.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.6.2.2\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.4\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Implementaciones\Acciones\EjecucionAccionTransaccionalEntidadServicios.cs" />
+    <Compile Include="Implementaciones\Administracion\AdministrarDocumentoServicio.cs" />
+    <Compile Include="Implementaciones\Administracion\EjecutorServicio.cs" />
+    <Compile Include="Implementaciones\CadenaValor\IndicadoresProductoServicio.cs" />
+    <Compile Include="Implementaciones\Catalogos\CatalogoServicio.cs" />
+    <Compile Include="Implementaciones\ClienteHttpServicios.cs" />
+    <Compile Include="Implementaciones\Entidades\OpcionCatalogoTipoEntidadServicios.cs" />
+    <Compile Include="Implementaciones\Entidades\EntidadAccionesServicio.cs" />
+    <Compile Include="Implementaciones\FuenteFinanciacion\FuentesProgramarSolicitadoServicio.cs" />
+    <Compile Include="Implementaciones\FuenteFinanciacion\FuenteCofinanciacionServicio.cs" />
+    <Compile Include="Implementaciones\FuenteFinanciacion\CofinanciacionAgregarServicio.cs" />
+    <Compile Include="Implementaciones\FuenteFinanciacion\DatosAdicionalesServicio.cs" />
+    <Compile Include="Implementaciones\FuenteFinanciacion\FuenteFinanciacionAgregarServicio.cs" />
+    <Compile Include="Implementaciones\FuenteFinanciacion\FuenteFinanciacionProyectoServicio.cs" />
+    <Compile Include="Implementaciones\CategoriaProductosPolitica\CategoriaProductosPoliticaServicio.cs" />
+    <Compile Include="Implementaciones\FuenteFinanciacion\FuentesAprobacionServicio.cs" />
+    <Compile Include="Implementaciones\IndicadoresPolitica\IndicadoresPoliticaServicio.cs" />
+    <Compile Include="Implementaciones\ModificacionLey\ModificacionLeyServicio.cs" />
+    <Compile Include="Implementaciones\Priorizacion\PriorizacionServicio.cs" />
+    <Compile Include="Implementaciones\Programacion\ProgramacionServicio.cs" />
+    <Compile Include="Implementaciones\ReportesPIIP\ReportesPIIPServicio.cs" />
+    <Compile Include="Implementaciones\SeguimientoControl\ProgramarProductosServicio.cs" />
+    <Compile Include="Implementaciones\SeguimientoControl\ProgramarActividadesServicio.cs" />
+    <Compile Include="Implementaciones\SeguimientoControl\DesagregarEdtServicio.cs" />
+    <Compile Include="Implementaciones\SeguimientoControl\GestionProyectoServicio.cs" />
+    <Compile Include="Implementaciones\SeguimientoControl\ReporteAvanceRegionalizacionServicio.cs" />
+    <Compile Include="Implementaciones\SeguimientoControl\ReporteAvanceProductoServicio.cs" />
+    <Compile Include="Implementaciones\SGP\AdministradorEntidad\AdministradorEntidadSgpServicio.cs" />
+    <Compile Include="Implementaciones\SGP\Ajustes\AjustesSgpServicio.cs" />
+    <Compile Include="Implementaciones\SGP\GestionRecursos\GestionRecursosSgpServicio.cs" />
+    <Compile Include="Implementaciones\SGP\Tramite\TramiteProyectoSGPServicio.cs" />
+    <Compile Include="Implementaciones\SGP\Tramite\TramiteSGPServicio.cs" />
+    <Compile Include="Implementaciones\SGP\Transversales\TransversalServicio.cs" />
+    <Compile Include="Implementaciones\SGR\Procesos\ProcesosSgrServicio.cs" />
+    <Compile Include="Implementaciones\SGR\CTUS\CTUSServicio.cs" />
+    <Compile Include="Implementaciones\SGP\Viabilidad\AcuerdoSGPServicio.cs" />
+    <Compile Include="Implementaciones\SGP\Viabilidad\PreguntasPersonalizadasSGPServicio.cs" />
+    <Compile Include="Implementaciones\SGP\Viabilidad\ViabilidadSGPServicio.cs" />
+    <Compile Include="Implementaciones\SGR\DelegarViabilidad\DelegarViabilidadServicio.cs" />
+    <Compile Include="Implementaciones\TramitesDistribucion\TramitesDistribucionServicio.cs" />
+    <Compile Include="Implementaciones\TramitesReprogramacion\TramitesReprogramacionServicio.cs" />
+    <Compile Include="Implementaciones\Transversales\DocumentoSoporteServicio.cs" />
+    <Compile Include="Implementaciones\Transversales\SeguridadServicio.cs" />
+    <Compile Include="Implementaciones\SGR\DelegarViabilidad\EjecutorEntidadServicio.cs" />
+    <Compile Include="Implementaciones\SGR\Transversales\ProyectoSgrServicio.cs" />
+    <Compile Include="Implementaciones\SGR\Transversales\TransversalRecursoServicio.cs" />
+    <Compile Include="Implementaciones\SGR\Transversales\TransversalServicio.cs" />
+    <Compile Include="Implementaciones\SGR\Viabilidad\ViabilidadServicio.cs" />
+    <Compile Include="Implementaciones\SGR\Viabilidad\AcuerdoServicio.cs" />
+    <Compile Include="Implementaciones\TramiteIncorporacion\TramiteIncorporacionServicio.cs" />
+    <Compile Include="Implementaciones\TramitesProyectos\CambiosJustificacionHorizonteServicio.cs" />
+    <Compile Include="Implementaciones\TramitesProyectos\CambiosRelacionPlanificacionServicio.cs" />
+    <Compile Include="Implementaciones\Preguntas\PreguntasPersonalizadasServicio.cs" />
+    <Compile Include="Implementaciones\Proyectos\AjusteIncluirPoliticasServicios.cs" />
+    <Compile Include="Implementaciones\Proyectos\DatosBasicosSGRServicio.cs" />
+    <Compile Include="Implementaciones\Proyectos\DefinirAlcanceServicios.cs" />
+    <Compile Include="Implementaciones\Proyectos\DevolverProyectoServicio.cs" />
+    <Compile Include="Implementaciones\Proyectos\IncluirPoliticasServicios.cs" />
+    <Compile Include="Implementaciones\Requisitos\RequisitosServicio.cs" />
+    <Compile Include="Implementaciones\ServicioBase.cs" />
+    <Compile Include="Implementaciones\Proyectos\ProyectoServicio.cs" />
+    <Compile Include="Implementaciones\Preguntas\PreguntasServicio.cs" />
+    <Compile Include="Implementaciones\TramitesProyectos\TramitesProyectosServicio.cs" />
+    <Compile Include="Implementaciones\Transversales\AuditoriaServicios.cs" />
+    <Compile Include="Implementaciones\Transversales\CacheServicio.cs" />
+    <Compile Include="Implementaciones\Transversales\EstadoServicio.cs" />
+    <Compile Include="Implementaciones\Transversales\SeccionCapituloServicio.cs" />
+    <Compile Include="Implementaciones\Transversales\SystemConfiguracionServicios.cs" />
+    <Compile Include="Implementaciones\Transversales\VigenciaServicio.cs" />
+    <Compile Include="Interfaces\Acciones\IEjecucionAccionTransaccionalServicios.cs" />
+    <Compile Include="Interfaces\Administracion\IAdministrarDocumentoServicio.cs" />
+    <Compile Include="Interfaces\Administracion\IEjecutorServicio.cs" />
+    <Compile Include="Interfaces\CadenaValor\IIndicadoresProductoServicio.cs" />
+    <Compile Include="Interfaces\Catalogos\ICatalogoServicio.cs" />
+    <Compile Include="Interfaces\Entidades\IEntidadAccionesServicio.cs" />
+    <Compile Include="Interfaces\Entidades\IEntidadServicios.cs" />
+    <Compile Include="Interfaces\FuenteFinanciacion\IFuenteCofinanciacionServicio.cs" />
+    <Compile Include="Interfaces\FuenteFinanciacion\ICofinanciacionAgregarServicio.cs" />
+    <Compile Include="Interfaces\FuenteFinanciacion\IDatosAdicionalesServicio.cs" />
+    <Compile Include="Interfaces\FuenteFinanciacion\IFuenteFinanciacionAgregarServicio.cs" />
+    <Compile Include="Interfaces\FuenteFinanciacion\IFuenteFinanciacionServicios.cs" />
+    <Compile Include="Interfaces\CategoriaProductosPolitica\ICategoriaProductosPoliticaServicio.cs" />
+    <Compile Include="Interfaces\FuenteFinanciacion\IFuentesAprobacionServicio.cs" />
+    <Compile Include="Interfaces\IClienteHttpServicios.cs" />
+    <Compile Include="Interfaces\IndicadoresPolitica\IIndicadoresPoliticaServicio.cs" />
+    <Compile Include="Interfaces\ModificacionLey\IModificacionLeyServicio.cs" />
+    <Compile Include="Interfaces\Priorizacion\IPriorizacionServicio.cs" />
+    <Compile Include="Interfaces\Programacion\IProgramacionServicio.cs" />
+    <Compile Include="Interfaces\ReportesPIIP\IReportesPIIPServicio.cs" />
+    <Compile Include="Interfaces\SeguimientoControl\IProgramarProductosServicio.cs" />
+    <Compile Include="Interfaces\SeguimientoControl\IProgramarActividadesServicio.cs" />
+    <Compile Include="Interfaces\SeguimientoControl\IGestionSeguimientoServicio.cs" />
+    <Compile Include="Interfaces\SeguimientoControl\IDesagregarEdtServicio.cs" />
+    <Compile Include="Interfaces\SeguimientoControl\IReporteAvanceRegionalizacionServicio.cs" />
+    <Compile Include="Interfaces\SeguimientoControl\IReporteAvanceProductoServicio.cs" />
+    <Compile Include="Interfaces\SGP\AdministradorEntidad\IAdministradorEntidadSgpServicio.cs" />
+    <Compile Include="Interfaces\SGP\GestionRecursos\IAjustesSgpServicio.cs" />
+    <Compile Include="Interfaces\SGP\GestionRecursos\IGestionRecursosSgpServicio.cs" />
+    <Compile Include="Interfaces\SGP\Tramite\ITramiteProyectoSGPServicio.cs" />
+    <Compile Include="Interfaces\SGP\Tramite\ITramiteSGPServicio.cs" />
+    <Compile Include="Interfaces\SGP\Transversales\ITransversalServicio.cs" />
+    <Compile Include="Interfaces\SGR\CTUS\ICTUSServicio.cs" />
+    <Compile Include="Interfaces\SGP\Viabilidad\IAcuerdoSGPServicio.cs" />
+    <Compile Include="Interfaces\SGP\Viabilidad\IPreguntasPersonalizadasSGPServicio.cs" />
+    <Compile Include="Interfaces\SGP\Viabilidad\IViabilidadSGPServicio.cs" />
+    <Compile Include="Interfaces\SGR\Procesos\IProcesosSgrServicio.cs" />
+    <Compile Include="Interfaces\TramitesDistribucion\ITramitesDistribucionServicio.cs" />
+    <Compile Include="Interfaces\TramitesReprogramacion\ITramitesReprogramacionServicio.cs" />
+    <Compile Include="Interfaces\Transversales\IDocumentoSoporteServicio.cs" />
+    <Compile Include="Interfaces\Transversales\ISeguridadServicio.cs" />
+    <Compile Include="Interfaces\SGR\DelegarViabilidad\IDelegarViabilidadServicio.cs" />
+    <Compile Include="Interfaces\SGR\DelegarViabilidad\IEjecutorEntidadServicio.cs" />
+    <Compile Include="Interfaces\TramiteIncorporacion\ITramiteIncorporacionServicio.cs" />
+    <Compile Include="Interfaces\SGR\Transversales\IProyectoSgrServicio.cs" />
+    <Compile Include="Interfaces\SGR\Transversales\ITransversalRecursoServicio.cs" />
+    <Compile Include="Interfaces\SGR\Transversales\ITransversalServicio.cs" />
+    <Compile Include="Interfaces\SGR\Viabilidad\IViabilidadServicio.cs" />
+    <Compile Include="Interfaces\SGR\Viabilidad\IAcuerdoServicio.cs" />
+    <Compile Include="Interfaces\TramitesProyectos\ICambiosJustificacionHorizonServicio.cs" />
+    <Compile Include="Interfaces\FuenteFinanciacion\IFuentesProgramarSolicitadoServicio.cs" />
+    <Compile Include="Interfaces\TramitesProyectos\ICambiosRelacionPlanificacionServicioo.cs" />
+    <Compile Include="Interfaces\Preguntas\IPreguntasPersonalizadasServicio.cs" />
+    <Compile Include="Interfaces\Proyectos\IAjusteIncluirPoliticasServicios.cs" />
+    <Compile Include="Interfaces\Proyectos\IDatosBasicosSGRServicio.cs" />
+    <Compile Include="Interfaces\Proyectos\IDefinirAlcanceServicios.cs" />
+    <Compile Include="Interfaces\Proyectos\IDevolverProyectoServicio.cs" />
+    <Compile Include="Interfaces\Proyectos\IIncluirPoliticasServicios.cs" />
+    <Compile Include="Interfaces\Proyectos\IProyectoServicio.cs" />
+    <Compile Include="Interfaces\Preguntas\IPreguntasServicio.cs" />
+    <Compile Include="Interfaces\Requisitos\IRequisitosServicio.cs" />
+    <Compile Include="Interfaces\TramitesProyectos\ITramitesProyectosServicio.cs" />
+    <Compile Include="Interfaces\Transversales\ICacheServicio.cs" />
+    <Compile Include="Interfaces\Transversales\IEstadoServicio.cs" />
+    <Compile Include="Interfaces\Transversales\ISeccionCapituloServicio.cs" />
+    <Compile Include="Interfaces\Transversales\ISystemConfiguracionServicios.cs" />
+    <Compile Include="Interfaces\Transversales\IVigenciaServicio.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Interfaces\Transversales\IAuditoriaServicios.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DNP.ServiciosNegocio.Comunes\DNP.ServiciosNegocio.Comunes.csproj">
+      <Project>{B20F5062-15B9-49E4-88C5-79F109F947EF}</Project>
+      <Name>DNP.ServiciosNegocio.Comunes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DNP.ServiciosNegocio.Dominio\DNP.ServiciosNegocio.Dominio.csproj">
+      <Project>{694221D1-E217-4D2E-87E3-B196C4C6BE94}</Project>
+      <Name>DNP.ServiciosNegocio.Dominio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DNP.ServiciosNegocio.Persistencia\DNP.ServiciosNegocio.Persistencia.csproj">
+      <Project>{8FFDC6BE-E5EA-4DCE-B91C-F22747128A8D}</Project>
+      <Name>DNP.ServiciosNegocio.Persistencia</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DNP.ServiciosTransaccional.Servicios\DNP.ServiciosTransaccional.Servicios.csproj">
+      <Project>{C1345774-D0C4-4626-8E1D-1FB6BA1EBF33}</Project>
+      <Name>DNP.ServiciosTransaccional.Servicios</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Interfaces\SGP\Ajustes\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

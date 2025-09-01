@@ -1,0 +1,23 @@
+﻿<modal-dialog cerrar="vm.cerrar" ng-init="vm.init()" guardar="vm.guardar">
+    <div class="row ">
+        <div class="col-md-12">
+            <div class="titulo-modal">
+                <span>ACTUALIZAR FECHAS - <span class="tipo-entidad-cor">{{vm.tipoEntidad}}</span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <span class="form-control rounded-right-2">{{vm.data.capitulo}}</span>
+        </div>
+        <div class="col-md-3 padding-left-off">
+            <input type="datetime-local" class="form-control" min="{{vm.fechaHoy}}" ng-if="!vm.creado && !vm.cerrado" ng-model="vm.data.fechaDesde" placeholder="Fecha Desde / Hora">
+            <span class="form-control rounded-right-2" ng-if="vm.cerrado || vm.cerrado">{{vm.data.fechaDesde | date:"dd/MM/yyyy HH:mm"}}</span>
+        </div>
+        <div class="col-md-3 padding-left-off">
+            <input type="datetime-local" class="form-control" min="{{vm.fechaHoy}}" ng-model="vm.data.fechaHasta" placeholder="Fecha Hasta / Hora">
+        </div>
+    </div>
+
+</modal-dialog>

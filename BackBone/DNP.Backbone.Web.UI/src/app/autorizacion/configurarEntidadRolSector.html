@@ -1,0 +1,70 @@
+﻿
+<div class="container-fluid inbox">
+    <nav class="breadcrumb">
+        <span class="breadcrumb-item active">Administración Rol Sector</span>
+    </nav>
+ 
+    <div class="rol-Sector">
+        <div class="form-group clearfix">
+            <div class="row">
+                <div class="col-md-3 col-lg-2">
+                    <label>Seleccione el tipo de entidad</label>
+                </div>
+                <div class="col-md-4 col-lg-3 radio radio-primary">
+                    <label tabindex="0" llamar-funcion-con-tecla="vm.cambioTipoEntidad(vm.tipoEntidad)">
+                        <input ng-model="vm.tipoEntidad"  type="radio" checked="checked" tabindex="0" value="Nacional" ng-change="vm.cambioTipoEntidad(vm.tipoEntidad)" ng-disabled="vm.deshabilitadoPorEdicion">
+                        <span class="circle"></span><span class="check"></span>
+                        Nacional
+                    </label>
+                    <label tabindex="0" llamar-funcion-con-tecla="vm.cambioTipoEntidad(vm.tipoEntidad)">
+                        <input ng-model="vm.tipoEntidad"  type="radio" value="Territorial" tabindex="0" ng-change="vm.cambioTipoEntidad(vm.tipoEntidad)" ng-disabled="vm.deshabilitadoPorEdicion">
+                        <span class="circle"></span><span class="check"></span>
+                        Territorial
+                    </label>
+                </div>
+                <div class="col-md-4 col-md-offset-1 col-lg-3 col-lg-offset-4 text-right">
+                    <button type="submit" class="btn btn-success" tabindex="0" uib-tooltip="Adicionar configuración" ng-click="vm.adicionarConfiguracion()" ng-disabled="vm.deshabilitadoPorEdicion"><span class="icon-add"></span>Adicionar configuración</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid-title">
+            Entidades Territoriales Rol
+            <a href="#" class="pull-right">Filtrar <span class="icon-filter"></span></a>
+        </div>
+
+        
+        <div class="container-table" ui-i18n="{{vm.lang}}">
+            <div class="clearfix grid-icon" id="uigExtenion" ui-grid="vm.gridOptions" ui-grid-resize-columns ui-grid-pagination="" style="height: 410px">
+                <div class="text-center intro-help  min-mh no-result-watermark" ng-show="!vm.filasFiltradas">
+                    <h3>{{ 'No Hay resultados para su búsqueda' }}</h3>
+                </div>
+            </div>
+                
+            <div id="contenedorCrearConfiguracion">
+                <crear-Modificar-Configuracion creando-Configuracion-Territorial="vm.creandoConfiguracionTerritorial"
+                                                creando-Configuracion-Nacional="vm.creandoConfiguracionNacional"
+                                                tipo-Entidad="vm.tipoEntidad"
+                                                retorno-Cancelar="vm.retornoCancelar()"
+                                                retorno-Guardar="vm.retornoGuardar()"
+                                                entidades-Territoriales="vm.entidadesTerritoriales"
+                                                sectores-Nacionales="vm.sectoresNacionales"
+                                                roles-Nacionales="vm.rolesNacionales" />
+            </div>
+        </div>
+        
+
+        <div id="totalRegistros" ng-show="vm.filasFiltradas"><span><strong>Total registros:</strong> {{vm.filasFiltradas}} / {{vm.totalRegistros}}</span></div>
+        <div class="text-center" ng-show="vm.filasFiltradas">
+            <ul uib-pagination previous-text="Anterior" next-text="Siguiente" items-per-page="vm.numeroPorPagina" total-items="vm.gridOptions.totalItems"
+                ng-model="vm.gridOptions.paginationCurrentPage" max-size="vm.maximoPaginas" class="pagination-sm m-0"
+                boundary-link-numbers="true" rotate="false"></ul>
+        </div>
+
+    </div>
+    <div class="footer-template fixed">
+        <div class="container-fluid text-right">
+            <button id="botonGuardar" type="button" tabindex="0" class="btn btn-success" uib-tooltip="Guardar">Guardar</button>
+        </div>
+    </div>
+</div>

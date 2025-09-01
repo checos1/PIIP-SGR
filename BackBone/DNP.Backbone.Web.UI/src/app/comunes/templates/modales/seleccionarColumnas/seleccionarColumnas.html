@@ -1,0 +1,52 @@
+﻿<!-- ReSharper disable once UnknownCssClass -->
+<div class="modal-dashboard">
+    <div class="modal-header">
+        <div class="col-md-12  text-right">
+            <!--<span class="top10 bottom10 pull-left"><img src="Img/logos/headerModalGobierno.png" /> </span>
+    <span class="top10 bottom10 pull-right"><img src="Img/logos/headerModalDNP.png" /> </span>-->
+            <button type="button" class="btn btn-sm btn-primary btnCloseModal" ng-click="cancel()">x</button>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12" style="padding-top: 15px">
+                <div class="titlebar">
+                    <span style="background: #FFF">Mostrar m&aacute;s columnas </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-body modal-body-mostrar-mas-columnas">
+        <h4><b>Selecionar columnas </b></h4>
+        <div class="row">
+            <div class="col-md-12">
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 serv">
+                <ul>
+                    <li ng-repeat="columna in vm.items.campos">
+                        <label >
+
+                        <input type="checkbox"
+                               ng-model="columna.visible"
+                               ng-checked="columna.visible"
+                               ng-click="vm.comprobarSeleccion(columna)"> {{columna.displayName}}
+                        </label>
+                        <br />
+                    </li>
+                </ul>                
+            </div>            
+        </div>
+
+    </div>
+    <div class="modal-footer" style="padding-right: 20px">
+        <div class="row">
+            <div class="col-md-12">
+                <button class="btn btn-success btn-modal" type="button" ng-click="ok()">Guardar</button>
+                <button class="btn btn-default btn-modal" type="button" ng-click="cancel()">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>

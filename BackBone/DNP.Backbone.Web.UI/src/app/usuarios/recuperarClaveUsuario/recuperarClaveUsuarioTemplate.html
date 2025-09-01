@@ -1,0 +1,42 @@
+<div class="container-fluid inbox">
+
+    <div ng-init="vm.init()">
+
+        <div>
+            <hr style="border-top: 1px solid #C4C7C9;" />
+            <h2>Recuperar contraseña</h2>
+            <br />
+            <br />
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="correo"><b>Tipo Identificación <span class="text-danger">*</span></b></label>
+                        <select id="tipoIdentificacion"
+                                class="form-control"
+                                ng-model="vm.model.tipoDocumento"
+                                required>
+                            <option ng-selected="vm.model.tipoDocumento == tipo.id"
+                                    ng-repeat="tipo in vm.tiposIdentificacion"
+                                    ng-value="tipo.id">
+                                {{ tipo.name }}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="apellido"><b>Identificación <span class="text-danger">*</span></b></label>
+                        <input type="text"
+                               class="form-control"
+                               id="inputIdentificacion"
+                               placeholder="Identificación"
+                               ng-model="vm.model.numeroDocumento"
+                               required>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>

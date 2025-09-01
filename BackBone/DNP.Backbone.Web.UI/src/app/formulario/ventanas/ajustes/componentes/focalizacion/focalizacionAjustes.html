@@ -1,0 +1,112 @@
+﻿<section>
+    <div class="container-fluid inbox" ng-init="vm.init();">
+        <div class="tab-content">
+            <div class="ui-accordion-container hidden" id="accordion-focalizacionpolpoliticastransv">
+                <div class="alert panel-heading row ui-accordion-header">
+                    <button type="button" data-toggle="collapse" data-target="#focalizacionpolpoliticastransv-1" ng-click="vm.changeArrow('focalizacionpolpoliticastransv-1')">
+                        <span class="d-inline-block" id="alert-focalizacionpolpoliticastransv-1"></span>
+                        <span id="name-capitulo-focalizacionpolpoliticastransv"></span>
+                        <span class="hidden" id="id-capitulo-focalizacionpolpoliticastransv"></span>
+                        <span id="arrow-focalizacionpolpoliticastransv-1" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#focalizacionpolpoliticastransv-1"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="focalizacionpolpoliticastransv-1">
+                    <div class="row m-0 mb-3">
+                        <politicas-Transversales guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                                 notificacioncambios="vm.notificacionCambiosCapitulosExternos(handler, nombreComponente)"
+                                                 notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                 notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"></politicas-Transversales>
+                        <!--<ajustes-fuentes guardadoevent="vm.guardado(nombreComponenteHijo)"
+                 notificacioncambios="vm.notificacionCambiosCapitulosExternos(handler, nombreComponente)"
+                 notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                 notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"
+                 notificarrefresco="vm.notificarRefresco(handler, nombreComponente)"></ajustes-fuentes>-->
+                    </div>
+                </div>
+            </div>
+
+            <div class="ui-accordion-container hidden" id="accordion-focalizacionpolresumendefocali">
+                <div class="alert panel-heading row ui-accordion-header">
+                    <button type="button" data-toggle="collapse" data-target="#focalizacionpolresumendefocali-1" ng-click="vm.changeArrow('focalizacionpolresumendefocali-1')">
+                        <span class="d-inline-block" id="alert-focalizacionpolresumendefocali-1"></span>
+                        <span id="name-capitulo-focalizacionpolresumendefocali"></span>
+                        <span class="hidden" id="id-capitulo-focalizacionpolresumendefocali"></span>
+                        <span id="arrow-focalizacionpolresumendefocali-1" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#focalizacionpolresumendefocali-1"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="focalizacionpolresumendefocali-1">
+                    <div class="row m-0 mb-3">
+                        <resumen-focalizacion guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                              notificacioncambios="vm.notificacionCambiosCapitulosExternos(handler, nombreComponente)"
+                                              notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                              notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"></resumen-focalizacion>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ui-accordion-container hidden" id="accordion-focalizacionpolcrucedepolitica">
+                <div class="alert panel-heading row ui-accordion-header">
+                    <button type="button" data-toggle="collapse" data-target="#focalizacionpolcrucedepolitica-1" ng-click="vm.changeArrow('focalizacionpolcrucedepolitica-1')">
+                        <span class="d-inline-block" id="alert-focalizacionpolcrucedepolitica-1"></span>
+                        <span id="name-capitulo-focalizacionpolcrucedepolitica"></span>
+                        <span class="hidden" id="id-capitulo-focalizacionpolcrucedepolitica"></span>
+                        <span id="arrow-focalizacionpolcrucedepolitica-1" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#focalizacionpolcrucedepolitica-1"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="focalizacionpolcrucedepolitica-1">
+                    <div class="row m-0 mb-3">
+                        <span>
+                            <cruce-Politicas-Transversales guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                                           notificacioncambios="vm.notificacionCambiosCapitulosExternos(handler, nombreComponente)"
+                                                           notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                           notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"></cruce-Politicas-Transversales>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ui-accordion-container hidden" id="accordion-focalizacionpolcategoriaspolit">
+                <div class="alert panel-heading row ui-accordion-header">
+                    <button type="button" data-toggle="collapse" data-target="#focalizacionpolcategoriaspolit-1" ng-click="vm.changeArrow('focalizacionpolcategoriaspolit-1')">
+                        <span class="d-inline-block" id="alert-categoriasPoliticasTrans-1"></span>
+                        <span id="name-capitulo-focalizacionpolcategoriaspolit"></span>
+                        <span class="hidden" id="id-capitulo-focalizacionpolcategoriaspolit"></span>
+                        <span id="arrow-focalizacionpolcategoriaspolit-1" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#focalizacionpolcategoriaspolit-1"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="focalizacionpolcategoriaspolit-1">
+                    <div class="row m-0 mb-3">
+                        <span>
+                            <resumen guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                     notificacioncambios="vm.notificacionCambiosCapitulosExternos(handler, nombreComponente)"
+                                     notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                     notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"></resumen>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ui-accordion-container hidden" id="accordion-focalizacionpolSolicitarConAju">
+                <div class="alert panel-heading row ui-accordion-header">
+                    <button type="button" data-toggle="collapse" data-target="#focalizacionpolSolicitarConAju-1" ng-click="vm.changeArrow('focalizacionpolSolicitarConAju-1')">
+                        <span class="d-inline-block" id="alert-focalizacionpolSolicitarConAju-1"></span>
+                        <span id="name-capitulo-focalizacionpolSolicitarConAju"></span>
+                        <span class="hidden" id="id-capitulo-focalizacionpolSolicitarConAju"></span>
+                        <span id="arrow-focalizacionpolSolicitarConAju-1" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#focalizacionpolSolicitarConAju-1"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="focalizacionpolSolicitarConAju-1">
+                    <div class="row m-0 mb-3">
+                        <span>
+                            <focalizacionconcepto guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                                           notificacioncambios="vm.notificacionCambiosCapitulosExternos(handler, nombreComponente)"
+                                                           notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                           notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"></focalizacionconcepto>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>

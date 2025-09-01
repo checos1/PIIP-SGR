@@ -1,0 +1,40 @@
+﻿<modal-dialog cerrar="vm.cerrar" guardar="vm.guardarRol" ng-init="vm.init()">
+    <div class="row ">
+        <div class="col-md-12">
+            <div class="titulo-modal">
+                <span>Crear roles</span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <input type="text" ng-model="vm.nombre" name="txtRol" id="txtRol" class="form-control input-lg"
+                placeholder="Nombre del Role" />
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-md-10 pr-0">
+            <select chosen options="vm.listaOpciones" ng-model="vm.idOpcion"
+                ng-options="x.IdOpcion as x.Nombre for x in vm.listaOpciones" name="selOpciones" id="selOpciones"
+                no-results-text="No hay ningún resultado para su búsqueda" placeholder-text-single="Opciones"
+                class="form-control">
+                <option value="" selected>Opciones</option>
+            </select>
+
+        </div>
+        <div class="col-md-2 mt-0">
+            <button type="button" class="btn btn-success btn-add-rol" ng-click="vm.addOpcion()" tooltip-placement="auto"
+                uib-tooltip="Agregar Opción">Agregar Opción</button>
+        </div>
+    </div>
+
+
+    <div class="row">
+       <div class="col-md-12 mt-2 ">
+           <div class="clearfix grid-rol" ui-grid="vm.gridOptions"></div>
+       </div>
+   </div>
+
+
+</modal-dialog>

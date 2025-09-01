@@ -1,0 +1,100 @@
+﻿<div ng-init="vm.init();">
+    <div class="container-fluid inbox">
+        <br>
+        <div id="seccionNoHabilitadaInvolucados" class="row hidden">
+            <div class="col-md-12 col-lg-12 col-sm-12 divPanelSecNoHabilitadaDNP">
+                <span style="text-align: left;font-family: 'Work Sans'; font-size: 14px; font-style: normal;">Este capítulo se activará cuando diligencie y guarde los campos de la sección 'Información básica'.</span>
+            </div>
+        </div>
+        <div id="seccionHabilitadaInvolucados" class="row hidden">
+            <div class="row" style="padding-left: 3rem;padding-right: 2rem;">
+                <div class="form-group" style=" padding-top: 2rem;width:98%;">
+                    <!--<div class="tab-content">-->
+
+                    <div class="row" ng-repeat="TipoRolConcepto in vm.TipoRolesConcepto">
+                        <h3 class="text-left ui-seccion-title">{{TipoRolConcepto.TipoRolConcepto}}  <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg" ng-click="vm.abrirToolTip(TipoRolConcepto.TipoRolConcepto)"></h3>
+                        <!--</div>-->
+
+                        <div class="row" style="margin: 0px 0px 0px 0px;">
+                            <div class="col-md-12 ">
+
+                                <table class="TableDNP">
+                                    <thead>
+                                        <tr>
+                                            <th class="columAcc" style="width:5%"></th>
+                                            <th style="width:40%" class="textLeftDNP">Nombres y apellidos del funcionario</th>
+                                            <th style="width:40%" class="textLeftDNP">Área / dependencia del funcionario</th>
+                                            <th class="columAcc" style="width:5%"></th>
+                                            <th class="columAcc" style="width:5%"></th>
+                                            <th class="columAcc" style="width:5%"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="involucrado in vm.involucrados | filter: { TipoRolConcepto: TipoRolConcepto.TipoRolConcepto, Id: '!!'  }">
+
+                                            <td colspan="1"></td>
+
+                                            <td style="width:40%">
+                                                <!--<span ng-show="!involucrado.Editando">{{involucrado.Nombre}}</span>-->
+                                                <input type="text"
+                                                       class="form-control editInputDNP"
+                                                       ng-model="involucrado.Nombre"
+                                                       value="{{involucrado.Nombre}}"
+                                                       disabled />
+                                                <div id="NombreObligatorio{{involucrado.Id}}_{{involucrado.TipoRolConceptoId}}" class="hidden">
+                                                    <img class="" src="Img/u4630.svg">
+                                                    <span class="messagealerttableDNP" style="text-align: left;font-family: 'Work Sans'; font-size: 14px; font-style: normal;">Campo obligatorio y mayor a 5 caracteres</span>
+                                                </div>
+                                            </td>
+                                            <td style="width:40%">
+                                                <!--<span ng-show="!involucrado.Editando">{{involucrado.Area}}</span>-->
+                                                <input type="text"
+                                                       class="form-control editInputDNP"
+                                                       ng-model="involucrado.Area"
+                                                       value="{{involucrado.Area}}"
+                                                       ng-disabled="!involucrado.Editando" />
+                                                <div id="AreaObligatoria{{involucrado.Id}}_{{involucrado.TipoRolConceptoId}}" class="hidden">
+                                                    <img class="" src="Img/u4630.svg">
+                                                    <span class="messagealerttableDNP" style="text-align: left;font-family: 'Work Sans'; font-size: 14px; font-style: normal;">Campo obligatorio y mayor a 5 caracteres</span>
+                                                </div>
+                                            </td>
+                                            <td style="width:2%" class="textCenterDNP" ng-show="!vm.accionActiva">
+                                                <button id="btnGuardar" class="btnaccion" tooltip-class="customClass" uib-tooltip="Guardar Registro" ng-show="involucrado.Editando" ng-click="vm.clickIconoGuardar(involucrado)" ng-if="vm.habilitaBotones">
+                                                    <span><img src="Img/IcoSave.svg"></span>
+                                                </button>
+                                            </td>
+                                            <td style="width:2%" class="textCenterDNP" ng-show="!vm.accionActiva" ng-if="vm.habilitaBotones">
+                                                <button id="btnEditar" class="btnaccion" tooltip-class="customClass" uib-tooltip="Editar Registro" ng-show="!involucrado.Editando" ng-click="vm.clickIconoEditar(involucrado)">
+                                                    <span><img src="Img/IcoEdit.svg"></span>
+                                                </button>
+                                                <button id="btnCancelar" class="btnaccion" tooltip-class="customClass" uib-tooltip="Cancelar Edición" ng-show="involucrado.Editando" ng-click="vm.clickIconoCancelar(involucrado)">
+                                                    <span> <img style="width: 16px;height:16px" src="Img/IcoX.svg"></span>
+                                                </button>
+                                            </td>
+                                            <td style="width:2%" class="textCenterDNP" ng-show="!vm.accionActiva" ng-if="vm.habilitaBotones">
+                                                <button id="btnEliminar" class="btnaccion" tooltip-class="customClass" uib-tooltip="Eliminar Registro" ng-click="vm.clickIconoEliminar(involucrado)">
+                                                    <span><img src="Img/IcoDelete.svg"></span>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <!--<tfoot>
+                                    <tr>
+                                        <td colspan="7" style="text-align: right;">
+                                            <a has-claim has-opciones="['involucradosProyecto:usuariosInvolucradosFormularioSgrAgregar']" ng-click="vm.abrirModalAgregarInvolucrado(involucrado)"> <span class="uLabelCampo_fp" style="text-decoration:underline">AGREGAR</span></a>
+                                        </td>
+                                    </tr>
+                                </tfoot>-->
+                                </table>
+                                <div class="add-new-fuente row mx-0 mt-4 text-right" ng-show="!vm.accionActiva" ng-if="vm.habilitaBotones">
+                                    <a ng-click="vm.abrirModalAgregarInvolucrado(TipoRolConcepto)"><span class="uLabelCampo_fp" style="text-decoration:underline">AGREGAR</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--</div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

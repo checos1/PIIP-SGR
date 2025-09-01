@@ -1,0 +1,42 @@
+﻿<section ng-init="vm.init();">
+    <div class="container-fluid inbox">
+        <div class="tab-content">
+            <div class="ui-accordion-container" id="accordion-sgrctusasignaciondelegar">
+                <div class="alert panel-heading row ui-accordion-header">
+                    <button type="button" data-toggle="collapse" data-target="#sgrctusasignaciondelegar" ng-click="vm.changeArrow('sgrctusasignaciondelegar')">
+                        <span class="d-inline-block" id="alert-sgrctusasignaciondelegar"></span>
+                        <span id="name-capitulo-sgrctusasignaciondelegar"></span>
+                        <span class="hidden" id="id-capitulo-sgrctusasignaciondelegar"></span>
+                        <span id="arrow-sgrctusasignaciondelegar" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#sgrctusasignaciondelegar"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="sgrctusasignaciondelegar">
+                    <div class="row m-0 mb-3">
+                        <div class="col-md-12 ">
+                            <delegar-ctus-sgr guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                              notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                              notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente,handlerCapitulos)">
+                            </delegar-ctus-sgr>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ui-accordion-container" id="accordion-sgrctusasignacionasignar">
+                <div class="alert panel-heading row ui-accordion-header">
+                    <button type="button" data-toggle="collapse" data-target="#sgrctusasignacionasignar" ng-click="vm.changeArrow('sgrctusasignacionasignar')">
+                        <span class="d-inline-block" id="alert-sgrctusasignacionasignar"></span>
+                        <span id="name-capitulo-sgrctusasignacionasignar"></span>
+                        <span class="hidden" id="id-capitulo-sgrctusasignacionasignar"></span>
+                        <span id="arrow-sgrctusasignacionasignar" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#sgrctusasignacionasignar"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="sgrctusasignacionasignar">
+                    <asignar-ctus-sgr guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                      notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                      notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)">
+                    </asignar-ctus-sgr>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

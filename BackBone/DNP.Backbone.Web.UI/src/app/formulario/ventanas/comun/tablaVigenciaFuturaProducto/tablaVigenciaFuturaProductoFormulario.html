@@ -1,0 +1,542 @@
+﻿<head>
+    <style type="text/css">
+        .module {
+            margin: 0 0 1em 0;
+            overflow: hidden;
+        }
+
+            .module p {
+                margin: 0;
+            }
+
+        .line-clamp {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+        }
+
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+
+        .modal-content {
+            left: 0px;
+            top: 0px;
+            width: 743px;
+            height: 440px;
+            background: inherit;
+            background-color: rgba(255, 255, 255, 1);
+            box-sizing: border-box;
+            border-width: 1px;
+            border-style: solid;
+            border-color: rgba(170, 170, 170, 1);
+            border-radius: 5px;
+            -moz-box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.349019607843137);
+            -webkit-box-shadow: 0px 0px 30px rgb(0 0 0 / 35%);
+            box-shadow: 0px 0px 30px rgb(0 0 0 / 35%);
+            font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans';
+            font-weight: 400;
+            font-style: normal;
+            font-size: 16px;
+            margin: auto;
+        }
+
+        .check2DNP[disabled] {
+            color: #AAAAAA;
+        }
+    </style>
+</head>
+<section>
+    <div class="container-fluid inbox" ng-init="vm.initTablaVigenciaFuturaProducto();">
+        <span class="pull-left" style="margin-left: 80px;"><span class="uLabelCampo">{{vm.mensaje1}}</span><span>{{vm.mensaje2}}</span></span>
+        <br />
+
+
+        <div ng-repeat="objetivo in vm.datosProducto.Objetivos" ng-init="objetivosIndex = $index">
+            <div class="row" style="color: #004884">
+                <div class="" style="padding: 0 !important">
+                    <div class="alert panel-heading" style="height: 50px;">
+                        <div class="card card-body pull-left  divAccordionDNP" style="line-height:22px;">
+                            <h4 style="color: #004884; margin-left: 55px">Objetivo {{objetivo.index}}:</h4>
+                            <!--<span class="uLabelCampo" style="margin-left: 55px">Objetivo {{objetivo.ObjetivoEspecificoId}}:</span>-->
+                            <br />
+                            <div class=" line-clamp" style="margin-left: 55px; max-height: 18px">
+                                <span id="nombreProyecto-{{objetivo.ObjetivoEspecificoId}}" class="InfoItemAccordDNP ng-binding  proyecto-nombreFP">
+                                    {{objetivo.NombreCorto}}
+                                </span>
+                                <a id="btnVerMasNombre-{{objetivo.ObjetivoEspecificoId}}" ng-if="objetivo.ObjetivoEspecifico !== objetivo.NombreCorto"
+                                   ng-click="vm.verNombreCompleto('nombreProyecto-'+ objetivo.ObjetivoEspecificoId, objetivo.ObjetivoEspecificoId)">
+                                    Ver más
+                                </a>
+
+                            </div>
+
+                            <button class="btnaccion btntablednp collapsed" type="button" data-toggle="collapse"
+                                    data-target="#obj-{{objetivo.ObjetivoEspecificoId}}"
+                                    ng-click="vm.BtnObjetivos(objetivo)" data="{{objetivo}}">
+
+                                <img ng-show="objetivo.LabelBotonObjetivo == '+'" src="Img/btnMas.svg">
+                                <img ng-show="objetivo.LabelBotonObjetivo == '-'" src="Img/btnMenos.svg">
+                                <span id="objetivo-{{objetivo.ObjetivoEspecificoId}}" class="img iconadverdnp hidden" style="margin-left:0px">
+                                    <img src="Img/u4630.svg">
+                                </span>
+                            </button>
+
+
+                        </div>
+                    </div>
+                    <br />
+                    <div class="collapse" id="obj-{{objetivo.ObjetivoEspecificoId}}">
+
+                        <div ng-repeat="prod in objetivo.Productos" ng-init="productosIndex = $index">
+                            <div class="alert panel-heading" style="height: 50px;padding-top: 0px">
+                                <div class="card card-body pull-left bordesencillo" style="border-color: #E6EFFD; text-align: left; width: 100%; padding-top: 10px;padding-bottom: 2px;">
+                                    <span class="uLabelCampo" style="margin-left: 55px">Producto {{prod.indexProducto}}.</span>
+
+                                    <div class=" line-clamp" style="margin-left: 55px;max-height:18px">
+                                        <span style="font-size: 16px; font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 400; color: #4B4B4B; ">
+                                            {{prod.NombreProducto| limitTo: 110}}<span ng-if="prod.NombreProducto.length > 110">...</span>
+                                            <button ng-if="prod.NombreProducto.length > 110" type="button" style="color: #3366CC;line-height:17px" class="btn btn-link btn-md  buttonhiper" tooltip-placement="top" uib-tooltip="ver más" tabindex="0" ng-click="vm.ProductoVerMas(prod)" data="{{prod}}">
+                                                VER MÁS
+                                            </button> <span class="NomItemAccordDNP">Etapa: </span>{{prod.Etapa}}
+                                            <!--<span class="NomItemAccordDNP">Fecha inicial:  </span>
+                                            <span class="NomItemAccordDNP">Fecha final: </span>-->
+
+                                        </span>
+                                    </div>
+
+
+                                    <button class="btnaccion btntablednp collapsed" type="button" data-toggle="collapse"
+                                            data-target="#prod-{{prod.ProductoId}}" ng-click="vm.BtnProductos(prod)"
+                                            data="{{prod}}">
+
+                                        <img style="width:18px;height:18px" ng-show="prod.LabelBotonProducto == '+'" src="Img/btnMasn2.svg">
+                                        <img style="width:18px;height:18px" ng-show="prod.LabelBotonProducto == '-'" src="Img/btnMenosn2.svg">
+                                        <span id="producto-{{prod.ProductoId}}" class="img iconadverdnp hidden" style="margin-left:0px">   <img src="Img/u4630.svg"> </span>
+                                    </button>
+
+
+                                    <span id="RVFC-{{prod.ProductoId}}" class="hidden uMensajeError error-vfproducto" style="padding-left:4rem;"></span>
+
+                                </div>
+                            </div>
+                            <br />
+                            <div class="collapse" id="prod-{{prod.ProductoId}}">
+                                <h3 class="row " style="margin-left: 3%;width: 85.7%;"></h3>
+                                <div class="LineaEncabezado2divDNP"></div>
+                                <div>
+                                    <div class="alert panel-heading" style="height: 50px;">
+
+                                        <div class="row">
+                                            <div class="card card-body pull-left col-md-12 ">
+                                                <h3 class="row tituloEncabezadodivDNP" style="margin-left:17%;width:83%">
+                                                    Detalle producto
+                                                    <span class="buttonbar pull-right" ng-if="(vm.datosProducto.EsConstante && vm.Origen == 1) || (!vm.datosProducto.EsConstante && vm.Origen == 2)">
+                                                        <button type="button" class="btneditarDNP" tooltip-placement="top" ng-click="prod.HabilitaEditarProducto ? vm.Cancelar(prod, prod.ProductoId, objetivo.ObjetivoId) : vm.habilitaEditar(prod)" uib-tooltip="{{prod.HabilitaEditarProducto ? 'CANCELAR' : 'EDITAR'}}" has-claim has-opciones="['Ajustes:GeneralComponente']">
+                                                            {{prod.HabilitaEditarProducto ? 'CANCELAR' : 'EDITAR'}}
+                                                        </button>
+                                                        <button ng-disabled="!prod.HabilitaEditarProducto" type="button" class="{{prod.HabilitaEditarProducto ? 'btnguardarDNP' : 'btnguardarDisabledDNP'}}" tooltip-placement="top" uib-tooltip="Guardar" tabindex="0" ng-click="vm.Guardar(prod)" has-claim has-opciones="['Ajustes:GeneralComponente']">
+                                                            GUARDAR
+                                                        </button>
+
+
+                                                    </span>
+                                                </h3>
+                                                <div>
+                                                    <div class="row">
+                                                        <div ng-if="vm.datosProducto.EsConstante">
+                                                            <div class="col-md-2" style="margin-top: 15px; text-align: left; height: 50px">
+                                                                <span class="uLabelCampo_fp" style="margin-left:2rem;">Año base</span>
+                                                            </div>
+
+                                                            <div class="col-md-2" style="text-align:left">
+                                                                <table class="table-white">
+                                                                    <thead>
+                                                                        <tr style="text-align:center;" class="utitulo-grilla">
+                                                                            <td style="width: 15%; text-align: center; height: 50px "><label class="col-form-label"><span class="uLabelCampo_fp">{{vm.datosProducto.AnioBase}}</span></label></td>
+                                                                        </tr>
+                                                                    </thead>
+                                                                </table>
+                                                            </div>
+                                                            <div class="col-md-8" style="text-align:left">
+                                                                &nbsp;
+                                                            </div>
+                                                            <br />
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab-container col-md-12" style="width:100%;">
+                                                        <ul class="nav nav-tabs" ng-if="vm.datosProducto.EsConstante">
+                                                            <li id="liPreinversion" ng-class="{active : 1 === vm.pagina}">
+                                                                <a href="" ng-click="vm.mostrarTab(1)" data-toggle="tab">
+                                                                    <img class="img-advertencia mr-2" src="Img/u11.svg" ng-if="vm.errores.constante" />
+                                                                    <b>Valores constantes</b>
+                                                                </a>
+                                                            </li>
+                                                            <li id="liInversion" ng-class="{active : 2 === vm.pagina}">
+                                                                <a href="" ng-click="vm.mostrarTab(2)" data-toggle="tab">
+                                                                    <img class="img-advertencia mr-2" src="Img/u11.svg" ng-if="vm.errores.corriente" />
+                                                                    <b>Valores corrientes</b>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+
+
+                                                    <div style="text-align: left;" ng-if="vm.Origen == 1">
+                                                        <div class="row">
+                                                            <div class="alert panel-heading">
+                                                                <span id="RVFC-{{prod.ProductoId}}" class="hidden uMensajeError error-vfproducto" style="padding-left:4rem;"></span>
+                                                                <table class="TableDNP">
+                                                                    <thead>
+                                                                        <tr ng-if="!datos.EsConstante">
+                                                                            <th class="columAcc" style="width:5%;"></th>
+                                                                            <th class="textleftDNP NomItemAccordDNP" style="width:7%;">
+                                                                                <span class="uLabelCampo">Vigencia</span>
+                                                                            </th>
+                                                                            <th class="NomItemAccordDNP" style="width:6%">
+                                                                                <span class="NomItemAccordDNP">Deflactor </span>
+                                                                            </th>
+                                                                            <th class="textRightDNP" style="width:7%;">Tipo Recurso</th>
+                                                                            <th class="textRightDNP NomItemAccordDNP" style="width:35%;">Utilizado $</th>
+                                                                            <th class="textRightDNP NomItemAccordDNP" style="width:35%;">Reprogramado $</th>
+                                                                            <th class="columAcc" style="width:5%;"></th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr ng-repeat="vig in prod.Valores | orderBy:'Vigencia'" ng-init="vigenciasindex = $index">
+                                                                            <td style="width:5%;">
+                                                                                <span id="RVFC-{{prod.ProductoId}}-{{vig.Vigencia}}" class="hidden uMensajeError  error-vfproducto"></span>
+                                                                            </td>
+                                                                            <td class="textRightDNP" style="width:7%;">
+                                                                                <div class="col-md-12" style="padding:0;">
+                                                                                    <span ng-if="true">{{vig.Vigencia}}</span>
+
+                                                                                </div>
+                                                                            </td>
+                                                                            <td class="textRightDNP" style="width:6%;">
+                                                                                <div class="col-md-12" style="padding:0;">
+                                                                                    <span ng-if="true">{{vig.Deflactor}}</span>
+
+                                                                                </div>
+                                                                            </td>
+                                                                            <td class="textRightDNP" style="width:7%;">
+                                                                                <div class="col-md-12" style="padding:0;">
+                                                                                    <div class="col-md-12 " style=" margin-bottom: 0.5rem; height: 30px !important;">
+                                                                                        <span class="textLeftDNP">Nación</span>
+                                                                                    </div>
+                                                                                    <div class="col-md-12  " style="height: 30px !important;">
+                                                                                        <span class="textLeftDNP">Propios</span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </td>
+                                                                            <td class="textRightDNP" style="width:35%;">
+                                                                                <div class="col-md-12 blockReferenciaDNP" style=" margin-bottom: 0.5rem; height: 30px !important;">
+                                                                                    <span class="textLeftDNP">{{vm.ConvertirNumero(vig.UtilizadoNacion)}}</span>
+                                                                                </div>
+                                                                                <div class="col-md-12 blockReferenciaDNP" style="height: 30px !important;">
+                                                                                    <span class="textLeftDNP">{{vm.ConvertirNumero(vig.UtilizadoPropios)}}</span>
+                                                                                </div>
+                                                                            </td>
+                                                                            <td class="textRightDNP" style="width:35%;">
+                                                                                <div class="col-md-12 blockReferenciaDNP" style=" margin-bottom: 0.5rem; height: 30px !important;">
+                                                                                    <div ng-if="!prod.HabilitaEditarProducto || (prod.HabilitaEditarProducto && vig.Vigencia < vm.vigenciaActual)">
+                                                                                        <span class="textLeftDNP">{{vm.ConvertirNumero(vig.ReprogramadoNacion)}}</span>
+                                                                                    </div>
+                                                                                    <input id="input-1" type="number" string-to-number min="0.00"
+                                                                                           ng-if="(prod.HabilitaEditarProducto && vig.Vigencia >= vm.vigenciaActual)  &&  ((vm.datosProducto.EsConstante && vm.Origen == 1) || (!vm.datosProducto.EsConstante && vm.Origen == 2))"
+                                                                                           ng-readonly="vig.Vigencia < vm.vigenciaActual ||  (vm.datosProducto.EsConstante && vm.Origen !== 1) || (!vm.datosProducto.EsConstante && vm.Origen !== 2)"
+                                                                                           ng-keypress="vm.validateFormat($event)"
+                                                                                           ng-keyup="vm.validarTamanio($event)"
+                                                                                           ng-value="vig.ReprogramadoNacion"
+                                                                                           ng-model="vig.ReprogramadoNacion"
+                                                                                           ng-blur="vm.actualizaFila($event, vig)"
+                                                                                           required class="form-control editInputDNP" style="height:30px !important;margin-top:0.5rem;" />
+                                                                                </div>
+                                                                                <div class="col-md-12 blockReferenciaDNP " style=" margin-bottom: 0.5rem; height: 30px !important;">
+                                                                                    <div ng-if="!prod.HabilitaEditarProducto || (prod.HabilitaEditarProducto && vig.Vigencia < vm.vigenciaActual)">
+                                                                                        <span class="textLeftDNP">{{vm.ConvertirNumero(vig.ReprogramadoPropios)}}</span>
+                                                                                    </div>
+                                                                                    <div ng-if="prod.HabilitaEditarProducto && vig.Vigencia < vm.vigenciaActual">{{vm.ConvertirNumero(vig.ReprogramadoPropios)}}</div>
+                                                                                    <input id="input-1" type="number" string-to-number min="0.00"
+                                                                                           ng-if="(prod.HabilitaEditarProducto && vig.Vigencia >= vm.vigenciaActual)   &&  ((vm.datosProducto.EsConstante && vm.Origen == 1) || (!vm.datosProducto.EsConstante && vm.Origen == 2))"
+                                                                                           ng-readonly="vig.Vigencia < vm.vigenciaActual ||  (vm.datosProducto.EsConstante && vm.Origen !== 1) || (!vm.datosProducto.EsConstante && vm.Origen !== 2)"
+                                                                                           ng-keypress="vm.validateFormat($event)"
+                                                                                           ng-keyup="vm.validarTamanio($event)"
+                                                                                           ng-value="vig.ReprogramadoPropios"
+                                                                                           ng-model="vig.ReprogramadoPropios"
+                                                                                           ng-blur="vm.actualizaFila($event, vig)"
+                                                                                           required class="form-control editInputDNP" style="height:30px !important;margin-top:0.5rem;" />
+                                                                                </div>
+
+                                                                            </td>
+                                                                            <td style="width:5%;"></td>
+                                                                        </tr>
+                                                                    </tbody>
+
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row" style="padding-top:4rem;">
+                                                            <table class="TableDNP" style=" margin-left: 1.5rem; width: 98%;">
+
+                                                                <tbody>
+
+                                                                    <tr>
+                                                                        <td style="width:5%;">
+                                                                        </td>
+                                                                        <td style="width:10%;">
+                                                                        </td>
+                                                                        <td class="textLeftDNP" style="width:10%;">
+                                                                            <div class="col-md-12" style="padding:0;">
+                                                                                <div class="col-md-12 " style=" margin-bottom: 0.5rem; height: 30px !important;">
+                                                                                    <span class="textLeftDNP">Nación</span>
+                                                                                </div>
+                                                                                <div class="col-md-12  " style="margin-bottom: 0.5rem; height: 30px !important;">
+                                                                                    <span class="textLeftDNP">Propios</span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td class="textRightDNP" style="width:35%;">
+                                                                            <div class="col-md-12" style="padding:0;">
+                                                                                <div class="col-md-12 blockReferenciaDNP" style=" margin-bottom: 0.5rem; height: 30px !important;">
+                                                                                    <span class="textRightDNP ">{{vm.ConvertirNumero(prod.valoresTotalesVigencia.ValorUtilizadoNacion)}}</span>
+                                                                                </div>
+                                                                                <div class="col-md-12 blockReferenciaDNP" style="height: 30px !important;">
+                                                                                    <span class="textRightDNP ">{{vm.ConvertirNumero(prod.valoresTotalesVigencia.ValorUtilizadoPropios)}}</span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td class="textRightDNP" style="width:35%;">
+                                                                            <div class="col-md-12" style="padding:0;">
+                                                                                <div class="col-md-12 blockReferenciaDNP" style=" margin-bottom: 0.5rem; height: 30px !important;">
+                                                                                    <span class="textRightDNP ">{{vm.ConvertirNumero(prod.valoresTotalesVigencia.ValorReprogramadoNacion)}}</span>
+                                                                                </div>
+                                                                                <div class="col-md-12 blockReferenciaDNP" style="height: 30px !important;">
+                                                                                    <span class="textRightDNP ">{{vm.ConvertirNumero(prod.valoresTotalesVigencia.ValorReprogramadoPropios)}}</span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td style="width:5%;">
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="width:5%;"><b>=</b></td>
+                                                                        <td style="width:10%;">
+                                                                            <span class="textLeftDNP NomItemAccordDNP">Total</span>
+                                                                        </td>
+                                                                        <td class="textLeftDNP" style="width:10%;">
+                                                                        </td>
+                                                                        <td class="textRightDNP" style="width:35%;">
+                                                                            <div class="col-md-12" style="padding:0;">
+                                                                                <div class="col-md-12 blockReferenciaDNP" style=" margin-bottom: 0.5rem; height: 30px !important;">
+                                                                                    <span class="textRightDNP" style="font-weight: 700;">{{vm.ConvertirNumero(prod.valoresTotalesVigencia.TotalValorUtilizado)}}</span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td class="textRightDNP" style="width:35%;">
+                                                                            <div class="col-md-12" style="padding:0;">
+                                                                                <div class="col-md-12 blockReferenciaDNP" style="height: 30px !important;">
+                                                                                    <span class="textRightDNP " style="font-weight: 700;">{{vm.ConvertirNumero(prod.valoresTotalesVigencia.TotalValorReprogramado)}}</span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+
+                                                                        <td style="width:5%;">
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+
+
+                                                            </table>
+
+                                                        </div>
+                                                    </div>
+                                                    <div style="text-align: left;" ng-if="vm.Origen == 2">
+                                                        <div class="row">
+                                                            <div class="alert panel-heading">
+
+                                                                <table class="TableDNP">
+                                                                    <thead>
+                                                                        <tr ng-if="!datos.EsConstante">
+                                                                            <th class="columAcc" style="width:5%;"></th>
+                                                                            <th class="textleftDNP NomItemAccordDNP" style="width:10%;"><span class="uLabelCampo">Vigencia</span></th>
+                                                                            <th class="textRightDNP NomItemAccordDNP" style="width:10%;">Tipo Recurso</th>
+                                                                            <th class="textRightDNP NomItemAccordDNP" style="width:35%;">Utilizado $</th>
+                                                                            <th class="textRightDNP NomItemAccordDNP" style="width:35%;">Reprogramado $</th>
+                                                                            <th class="columAcc" style="width:5%;"></th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr ng-repeat="vig in prod.ValoresCorrientes | orderBy:'Vigencia'" ng-init="vigenciasindex = $index">
+                                                                            <td style="width:5%;">
+                                                                                <span id="RVFC-{{prod.ProductoId}}-{{vig.Vigencia}}" class="hidden uMensajeError error-vfproducto"></span>
+                                                                            </td>
+                                                                            <td class="textRightDNP" style="width:10%;">
+                                                                                <div class="col-md-12" style="padding:0;">
+                                                                                    <span ng-if="true">{{vig.Vigencia}}</span>
+
+                                                                                </div>
+                                                                            </td>
+                                                                            <td class="textLeftDNP" style="width:10%;">
+                                                                                <div class="col-md-12" style="padding:0;">
+                                                                                    <div class="col-md-12 " style=" margin-bottom: 0.5rem; height: 30px !important;">
+                                                                                        <span class="textLeftDNP ">Nación</span>
+                                                                                    </div>
+                                                                                    <div class="col-md-12  " style="margin-bottom: 0.5rem; height: 30px !important;">
+                                                                                        <span class="textLeftDNP ">Propios</span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </td>
+                                                                            <td class="textRightDNP " style="width:35%;">
+                                                                                <div class="col-md-12 blockReferenciaDNP" style=" margin-bottom: 0.5rem; height: 30px !important;">
+                                                                                    <span class="textRightDNP">{{vm.ConvertirNumero(vig.UtilizadoNacion)}}</span>
+                                                                                </div>
+                                                                                <div class="col-md-12 blockReferenciaDNP" style=" margin-bottom: 0.5rem; height: 30px !important;">
+                                                                                    <span class="textRightDNP">{{vm.ConvertirNumero(vig.UtilizadoPropios)}}</span>
+                                                                                </div>
+                                                                            </td>
+                                                                            <td class="textRightDNP" style="width:35%;">
+                                                                                <div class="col-md-12 blockReferenciaDNP" style=" margin-bottom: 0.5rem; height: 30px !important;">
+                                                                                    <div ng-if="!prod.HabilitaEditarProducto || (prod.HabilitaEditarProducto && vig.Vigencia < vm.vigenciaActual) || (prod.HabilitaEditarProducto && ((vm.datosProducto.EsConstante && vm.Origen !== 1) || (!vm.datosProducto.EsConstante && vm.Origen !== 2))) ">
+                                                                                        <span class="textRightDNP">{{vm.ConvertirNumero(vig.ReprogramadoNacion)}}</span>
+                                                                                    </div>
+                                                                                    <input id="input-1" type="number" string-to-number min="0.00"
+                                                                                           ng-if="prod.HabilitaEditarProducto && vig.Vigencia >= vm.vigenciaActual  &&  ((vm.datosProducto.EsConstante && vm.Origen == 1) || (!vm.datosProducto.EsConstante && vm.Origen == 2))"
+                                                                                           ng-readonly="vig.Vigencia < vm.vigenciaActual ||  (vm.datosProducto.EsConstante && vm.Origen !== 1) || (!vm.datosProducto.EsConstante && vm.Origen !== 2)"
+                                                                                           ng-keypress="vm.validateFormat($event)"
+                                                                                           ng-keyup="vm.validarTamanio($event)"
+                                                                                           ng-value="vig.ReprogramadoNacion"
+                                                                                           ng-model="vig.ReprogramadoNacion"
+                                                                                           ng-blur="vm.actualizaFila($event, vig)"
+                                                                                           required class="form-control editInputDNP" style="height:30px !important;margin-top:0.5rem;" />
+                                                                                </div>
+                                                                                <div class="col-md-12 blockReferenciaDNP " style=" margin-bottom: 0.5rem; height: 30px !important;">
+                                                                                    <div ng-if="!prod.HabilitaEditarProducto || (prod.HabilitaEditarProducto && vig.Vigencia < vm.vigenciaActual) || (prod.HabilitaEditarProducto && ((vm.datosProducto.EsConstante && vm.Origen !== 1) || (!vm.datosProducto.EsConstante && vm.Origen !== 2))) ">
+                                                                                        <span class="textRightDNP">{{vm.ConvertirNumero(vig.ReprogramadoPropios)}}</span>
+                                                                                    </div>
+                                                                                    <input id="input-1" type="number" string-to-number min="0.00"
+                                                                                           ng-if="(prod.HabilitaEditarProducto && vig.Vigencia >= vm.vigenciaActual)  &&  ((vm.datosProducto.EsConstante && vm.Origen == 1) || (!vm.datosProducto.EsConstante && vm.Origen == 2))"
+                                                                                           ng-readonly="vig.Vigencia < vm.vigenciaActual ||  (vm.datosProducto.EsConstante && vm.Origen !== 1) || (!vm.datosProducto.EsConstante && vm.Origen !== 2)"
+                                                                                           ng-keypress="vm.validateFormat($event)"
+                                                                                           ng-keyup="vm.validarTamanio($event)"
+                                                                                           ng-value="vig.ReprogramadoPropios"
+                                                                                           ng-model="vig.ReprogramadoPropios"
+                                                                                           ng-blur="vm.actualizaFila($event, vig)"
+                                                                                           required class="form-control editInputDNP" style="height:30px !important;margin-top:0.5rem;" />
+                                                                                </div>
+
+                                                                            </td>
+                                                                            <td style="width:5%;"></td>
+                                                                        </tr>
+                                                                    </tbody>
+
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row" style="padding-top:4rem;">
+                                                            <table class="TableDNP " style=" margin-left: 1.5rem; width: 98%;">
+
+                                                                <tbody>
+
+                                                                    <tr>
+                                                                        <td style="width:5%;"></td>
+                                                                        <td style="width:10%;">
+                                                                        </td>
+                                                                        <td class="textLeftDNP" style="width:10%;">
+                                                                            <div class="col-md-12" style="padding:0;">
+                                                                                <div class="col-md-12 " style=" margin-bottom: 0.5rem; height: 30px !important;">
+                                                                                    <span class="textLeftDNP  ">Nación</span>
+                                                                                </div>
+                                                                                <div class="col-md-12  " style="height: 30px !important;">
+                                                                                    <span class="textLeftDNP ">Propios</span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td class="textRightDNP" style="width:35%;">
+                                                                            <div class="col-md-12" style="padding:0;">
+                                                                                <div class="col-md-12 blockReferenciaDNP" style=" margin-bottom: 0.5rem; height: 30px !important;">
+                                                                                    <span class="textLeftDNP ">{{vm.ConvertirNumero(prod.valoresTotalesCorrientesVigencia.ValorUtilizadoNacion)}}</span>
+                                                                                </div>
+                                                                                <div class="col-md-12 blockReferenciaDNP" style="height: 30px !important;">
+                                                                                    <span class="textLeftDNP ">{{vm.ConvertirNumero(prod.valoresTotalesCorrientesVigencia.ValorUtilizadoPropios)}}</span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td class="textRightDNP" style="width:35%;">
+                                                                            <div class="col-md-12" style="padding:0;">
+                                                                                <div class="col-md-12 blockReferenciaDNP" style=" margin-bottom: 0.5rem; height: 30px !important;">
+                                                                                    <span class="textLeftDNP ">{{vm.ConvertirNumero(prod.valoresTotalesCorrientesVigencia.ValorReprogramadoNacion)}}</span>
+                                                                                </div>
+                                                                                <div class="col-md-12 blockReferenciaDNP" style="height: 30px !important;">
+                                                                                    <span class="textLeftDNP ">{{vm.ConvertirNumero(prod.valoresTotalesCorrientesVigencia.ValorReprogramadoPropios)}}</span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td style="width:5%;">
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="width:5%;"><b>=</b></td>
+                                                                        <td style="width:10%;">
+                                                                            <span class="textLeftDNP NomItemAccordDNP">Total</span>
+                                                                        </td>
+                                                                        <td class="textLeftDNP" style="width:10%;">
+                                                                        </td>
+                                                                        <td class="textRightDNP" style="width:35%;">
+                                                                            <div class="col-md-12" style="padding:0;">
+                                                                                <div class="col-md-12 blockReferenciaDNP" style=" margin-bottom: 0.5rem; height: 30px !important;">
+                                                                                    <span class="textLeftDNP NomItemAccordDNP">{{vm.ConvertirNumero(prod.valoresTotalesCorrientesVigencia.TotalValorUtilizado)}}</span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td class="textRightDNP" style="width:35%;">
+                                                                            <div class="col-md-12" style="padding:0;">
+                                                                                <div class="col-md-12 blockReferenciaDNP" style="height: 30px !important;">
+                                                                                    <span class="textLeftDNP NomItemAccordDNP ">{{vm.ConvertirNumero(prod.valoresTotalesCorrientesVigencia.TotalValorReprogramado)}}</span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+
+                                                                        <td style="width:5%;">
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+
+
+                                                            </table>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <!--<button type="button" class="btn btn-link btn-md pull-right buttonhiper" tooltip-placement="top" uib-tooltip="Agregar Indicador Secundario" tabindex="0" ng-click="vm.AgregarIndSecundario(prod,objetivo.ObjetivoId)" data="{{prod}}" has-claim has-opciones="['Ajustes:GeneralComponente']">
+                                        Agregar Indicador Secundario
+                                    </button>-->
+                                    <!--</div>
+
+
+
+                                        </div>
+                                    </div>-->
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

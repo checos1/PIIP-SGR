@@ -1,0 +1,52 @@
+﻿<div ng-init="vm.init();">
+    <div id="SGRERRSEC{{vm.nombreComponente}}" class="hidden mb-3 ml-5 errorSeccionRequisitosGenerales" style="text-align: left; font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans'; font-size: 12px; font-style: normal; color: #A80521;"></div>
+    <div class="ui-accordion-container " id="accordion-sgrctuselaboraciondatosverificaciondatosadicionales">
+        <div class="alert panel-heading row ui-accordion-header">
+            <button type="button" data-toggle="collapse" data-target="#sgrctuselaboraciondatosverificaciondatosadicionales" ng-click="vm.changeArrow('sgrctuselaboraciondatosverificaciondatosadicionales')">
+                <span class="d-inline-block" id="alert-sgrctuselaboraciondatosverificaciondatosadicionales"></span>
+                <span id="name-capitulo-sgrctuselaboraciondatosverificaciondatosadicionales"></span>
+                <span class="hidden" id="id-capitulo-sgrctuselaboraciondatosverificaciondatosadicionales"></span>
+                <span id="arrow-sgrctuselaboraciondatosverificaciondatosadicionales" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#sgrctuselaboraciondatosverificaciondatosadicionales"></span>
+            </button>
+        </div>
+        <div class="collapse" id="sgrctuselaboraciondatosverificaciondatosadicionales">
+            <div class="row m-0 mb-3">
+                <div class="col-md-12 ">
+                    <datos-adicionales-ctus-sgr callback="vm.notificarGuardado()"
+                                           guardadocomponent="vm.guardadohijos(nombreComponenteHijo)"
+                                           notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                           notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"
+                                           notificarrefresco="vm.notificarRefresco(handler, nombreComponente)"
+                                           notificacioncambios="vm.notificacionCambiosCapitulosExternos(handler, nombreComponente)">
+                    </datos-adicionales-ctus-sgr>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ui-accordion-container " id="accordion-sgrctuselaboraciondatosverificacionagregarsectores">
+        <div class="alert panel-heading row ui-accordion-header">
+            <button type="button" data-toggle="collapse" data-target="#sgrctuselaboraciondatosverificacionagregarsectores" ng-click="vm.changeArrow('sgrctuselaboraciondatosverificacionagregarsectores')">
+                <span class="d-inline-block" id="alert-sgrctuselaboraciondatosverificacionagregarsectores"></span>
+                <span id="name-capitulo-sgrctuselaboraciondatosverificacionagregarsectores"></span>
+                <span class="hidden" id="id-capitulo-sgrctuselaboraciondatosverificacionagregarsectores"></span>
+                <span id="arrow-sgrctuselaboraciondatosverificacionagregarsectores" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#sgrctuselaboraciondatosverificacionagregarsectores"></span>
+            </button>
+        </div>
+        <div class="collapse" id="sgrctuselaboraciondatosverificacionagregarsectores">
+            <div class="row m-0 mb-3">
+                <div class="col-md-12 ">
+                    <agregar-sectores-ctus-sgr callback="vm.notificarGuardado()"
+                                          guardadocomponent="vm.guardadohijos(nombreComponenteHijo)"
+                                          notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                          notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"
+                                          notificarrefresco="vm.notificarRefresco(handler, nombreComponente)"
+                                          notificacioncambios="vm.notificacionCambiosCapitulosExternos(handler, nombreComponente)">
+                    </agregar-sectores-ctus-sgr>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

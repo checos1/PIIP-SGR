@@ -1,0 +1,28 @@
+﻿<div ng-init="vm.init();">
+    <form id="datosProyectoForm" name="datosProyectoForm">
+        <!--<div>  <strong>Datos del proyecto asociado</strong> </div>-->
+        <div><span class="uLabelCampo" style="color:#4B4B4B !important; ">Datos del proyecto asociado</span></div>
+        <div id="panel">
+            <br />
+            <p>
+                <span class="encabezadoTitulos">Entidad: </span>
+                <span class="encabezadoInfo">{{vm.datosProyecto.NombreEntidad }}.</span>
+                <span class="encabezadoTitulos">Sector: </span>
+                <span class="encabezadoInfo">{{vm.datosProyecto.Sector}}.</span>
+                <span class="encabezadoTitulos">Código BPIN: </span>
+                <span class="encabezadoInfo">{{vm.datosProyecto.BPIN}}. </span>
+                <span class="encabezadoTitulos">Proyecto: </span>
+                <span class="encabezadoInfo">{{vm.datosProyecto.NombreProyecto}}. </span>
+                <!--<span class="encabezadoTitulos">Código presupuestal: </span>
+                <span class="encabezadoInfo">{{vm.datosProyecto.CodigoPresupuestal}}. </span>-->
+                <span class="encabezadoTitulos">Vigencia inicial: </span>
+                <span class="encabezadoInfo">{{vm.datosProyecto.VigenciaInicial}}. </span>
+                <span class="encabezadoTitulos">Vigencia final: </span>
+                <span class="encabezadoInfo">{{vm.datosProyecto.VigenciaFinal}}. </span>
+            </p>
+            <!--<br />-->
+        </div>
+
+       
+    </form>
+</div>

@@ -1,0 +1,426 @@
+﻿#selOpciones_chosen > .chosen-drop .chosen-results {
+    color: #444;
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: auto;
+    margin: 0 4px 4px 0;
+    padding: 0 0 0 4px;
+    max-height: 140px !important;
+    -webkit-overflow-scrolling: touch;
+}
+
+.breadcrumb-header .titlebar span {
+    background: #F1F5F9 !important;
+}
+
+.container-modal-archivo .titlebarmodal span {
+    background: #EDF5FD !important;
+}
+
+footer {
+    background: #3366CC;
+    padding: 24px 0px;
+    position: absolute;
+    color: #fff;
+    font-size: 12px;
+    z-index: 900;
+    width: 100%;
+}
+
+.ui-grid-row, .ui-grid-cell {
+    height: 30px !important
+}
+
+#uigconsolamonitoreo .ui-grid-canvas .ui-grid-row, #uigconsolamonitoreo .ui-grid-canvas .ui-grid-cell {
+    min-height: 40px !important;
+    height: auto !important
+}
+
+.ui-grid-viewport .ui-grid-cell-contents {
+    white-space: nowrap !important;
+    /*height: 36px !important;*/
+}
+
+.grid-icon-accion {
+    width: 36px;
+    height: 35px;
+}
+
+.consola-proyectos .grid-proyectos .ui-grid-viewport .ui-grid .ui-grid-row .ui-grid-cell {
+    height: auto !important;
+}
+
+.panel_inicio {
+    margin-top: 5%;
+    height: 500px;
+}
+
+.panel_inicio .title {
+    text-align: center;
+    font: normal normal medium 20px/24px Montserrat;
+    letter-spacing: 0px;
+    color: #3266CC;
+    opacity: 1;
+}
+
+.panel_inicio .titlebold {
+    text-align: center;
+    font: normal normal bold 22px/16px Montserrat;
+    letter-spacing: 0px;
+    color: #3266CC;
+    opacity: 1;
+    margin-bottom: 30px;
+}
+
+.panel_inicio .bottom-banco-proyectos {
+    display: block;
+    margin: auto;
+    background: #3366CC 0% 0% no-repeat padding-box;
+    border-radius: 18px;
+    width: 211px;
+    height: 36px;
+    letter-spacing: 0px;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    opacity: 1;
+    text-align: center;
+    padding-top: 9px;
+    margin-top: 30px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.panel_inicio .estados {
+    background-image: url('../Img/estados.png');
+    background-repeat: no-repeat;
+    width: 670px;
+    height: 136px;
+    margin: auto;
+}
+
+.panel_inicio .sub-estados {
+    display: flex;
+    width: 25%;
+    text-align: center;
+    letter-spacing: 0px;
+    color: #FFFFFF;
+    opacity: 1;
+    float: left;
+    padding-right: 4%;
+    padding-left: 4%;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.panel_inicio .sub-estados.four {
+    padding-top: 10px;
+    font: normal normal 600 30px/30px Montserrat;
+}
+
+.panel_inicio .sub-estados.three {
+    padding-top: 15px;
+    font: normal normal 600 35px/35px Montserrat;
+}
+
+.modal_inicio_logo {
+    float: left;
+    width: 25%;
+    height: 409px;
+    background: #004884 0% 0% no-repeat padding-box;
+    border: 1px solid #707070;
+    border-radius: 10px;
+    opacity: 1;
+}
+
+.modal_inicio_logo.light {
+    background: #3366CC 0% 0% no-repeat padding-box!important;
+}
+
+.modal_inicio_logo p {
+    height: 29px;
+    text-align: center;
+    font: normal normal 600 24px/26px Montserrat;
+    letter-spacing: 0px;
+    color: #FFFFFF;
+    opacity: 1;
+    line-height: 17;
+}
+
+.modal_inicio_logo p.lines {
+    padding-top: 180px;
+    padding-left: 20px;
+    padding-right: 20px;
+    line-height: 29px;
+}
+
+.modal_inicio_content {
+    float: left;
+    width: 72%;
+    margin-left: 3%;
+}
+
+.modal_inicio_content h3 {
+    color: var(--unnamed-color-004884);
+    text-align: left;
+    font: normal normal bold 20px/24px Montserrat;
+    letter-spacing: 0px;
+    color: #004884;
+    opacity: 1;
+    margin-bottom: 20px;
+}
+
+.modal_inicio_content p {
+    text-align: left;
+    letter-spacing: 0px;
+    color: #4B4B4B;
+    opacity: 1;
+    font-size: 16px;
+    font-family: 'Work Sans' 
+}
+
+.modal_inicio_content .links {
+    bottom: 25px;
+    right: 25px;
+    display: block;
+    position: absolute;
+}
+
+.modal_inicio_content .links .active {
+    color: var(--unnamed-color-004884);
+    text-align: left;
+    letter-spacing: 0px;
+    color: #004884;
+    opacity: 1;
+    font-weight: bold;
+}
+
+.modal_inicio_content .links a {
+    cursor: default;
+    text-decoration: none;
+}
+
+.modal_inicio_content .links .link {
+    cursor: pointer;
+    text-decoration-line: underline;
+}
+
+.radius_10 {
+    border-radius: 10px!important;
+}
+
+.modal-body .close {
+    opacity: 1!important;
+}
+
+.mis-procesos-menu-proyectos {
+    display: block;
+    background-image: url(../Img/proyectos-demo.png);
+    background-repeat: no-repeat;
+    height: 47px;
+    margin-bottom: 10px;
+}
+
+.mis-procesos-menu-tramites {
+    display: block;
+    background-image: url('../Img/tramites-demo.png');
+    background-repeat: no-repeat;
+    height: 47px;
+    margin-bottom: 10px;
+}
+
+.mis-procesos-titulo-totales {
+    color: #004884 !important;
+    font-family: Montserrat;
+    letter-spacing: 0px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.breadcrumb a {
+    color: #46484D;
+    cursor: pointer;
+    color: #999;
+    font-weight: inherit;
+}
+
+.breadcrumb > .active {
+    color: #004884 !important;
+    font-weight: bold !important;
+}
+
+
+.consola-proceso-menu-proyectos {
+    display: block;
+    background-image: url(../Img/consola-proyectos-demo.png);
+    background-repeat: no-repeat;
+    height: 47px;
+    margin-bottom: 10px;
+}
+
+.consola-proceso-menu-tramites {
+    display: block;
+    background-image: url('../Img/consola-tramites-demo.png');
+    background-repeat: no-repeat;
+    height: 47px;
+    margin-bottom: 10px;
+}
+
+span.etapas.circle-noti.active {
+    z-index: 3;
+    top: -8px;
+    text-align: center;
+    right: 15px;
+    font-size: 10px;
+    padding: 1px 6px;
+    background: #ff5b5c;
+    color: #fff;
+    border-radius: 8px;
+    position: absolute;
+}
+
+span.etapas.circle-noti {
+    z-index: 3;
+    top: -8px;
+    text-align: center;
+    right: 15px;
+    font-size: 10px;
+    padding: 1px 6px;
+    background: #3366cc;
+    color: #fff;
+    border-radius: 8px;
+    position: absolute;
+}
+
+.btn.btn-secondary.border-0 {
+    border: 0px solid #004884;
+    font-size: 20px;
+}
+
+.pl {
+    background-image: url(/Img/etapas/inicioBlanco.svg);
+    background-color: transparent;
+    width: 56px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    padding-bottom: 11px;
+    z-index: 2;
+    background-repeat: no-repeat;
+}
+
+.pl.active {
+    background-image: url(/Img/etapas/inicioAzul.svg);
+    background-color: transparent;
+    width: 56px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    padding-bottom: 11px;
+    z-index: 1!important;
+    background-repeat: no-repeat;
+}
+
+.pr {
+    background-image: url(/Img/etapas/medioBlanco.svg);
+    left: -12px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    padding-bottom: 11px;
+    background-color: transparent;
+    z-index: 2;
+    background-repeat: no-repeat;
+}
+
+.pr.active {
+    background-image: url(/Img/etapas/medioAzul.svg);
+    left: -12px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    padding-bottom: 11px;
+    background-color: transparent;
+    z-index: 1!important;
+    background-repeat: no-repeat;
+}
+
+.ej {
+    background-image: url(/Img/etapas/medioBlanco.svg);
+    left: -25px;
+    width: 55px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    padding-bottom: 11px;
+    background-color: transparent;
+    z-index: 2;
+    background-repeat: no-repeat;
+}
+
+.ej.active {
+    background-image: url(/Img/etapas/medioAzul.svg);
+    left: -25px;
+    width: 55px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    padding-bottom: 11px;
+    background-color: transparent;
+    z-index: 1!important;
+    background-repeat: no-repeat;
+}
+
+.se {
+    background-image: url(/Img/etapas/medioBlanco.svg);
+    left: -38px;
+    width: 55px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    padding-bottom: 11px;
+    background-color: transparent;
+    z-index: 2;
+    background-repeat: no-repeat;
+}
+
+.se.active {
+    background-image: url(/Img/etapas/medioAzul.svg);
+    left: -38px;
+    width: 55px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    padding-bottom: 11px;
+    background-color: transparent;
+    z-index: 1!important;
+    background-repeat: no-repeat;
+}
+
+.ev {
+    background-image: url(/Img/etapas/finBlanco.svg);
+    left: -39px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    padding-bottom: 11px;
+    width: 54px;
+    background-color: transparent;
+    z-index: 2;
+    background-repeat: no-repeat;
+}
+
+.ev.active {
+    background-image: url(/Img/etapas/finAzul.svg);
+    left: -52px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    padding-bottom: 11px;
+    width: 54px;
+    background-color: transparent;
+    z-index: 1!important;
+    background-repeat: no-repeat;
+}
+
+.fix_ampliar span {
+    background-color: transparent !important;
+    color: #fff !important;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 14px;
+    padding: inherit;
+}

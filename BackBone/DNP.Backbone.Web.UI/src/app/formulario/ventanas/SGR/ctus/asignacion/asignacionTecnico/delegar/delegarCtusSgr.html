@@ -1,0 +1,142 @@
+﻿<div style="margin-left: 20px;" ng-init="vm.init();">
+    <form class="formCenter" id="generalesForm" name="generalesForm" novalidate>
+        <div ng-if="vm.tipoVisualizacionDelegar === 'tipo1'">
+            <div class="row">
+                &nbsp;
+            </div>
+            <div class="row">
+                &nbsp;
+            </div>
+            <div class="row">
+                &nbsp;
+            </div>
+            <div>
+                <span class="concepto-preliminar-contenedor" style="text-align: center; font-family: 'Work Sans'; font-size: 16px; font-style: normal; padding: 40px 0px 40px 0px; ">La entidad "{{vm.nombreEntidad}}" no podrá delegar debido a que no tiene entidades vinculadas o adscritas asociadas.</span>
+            </div>
+        </div>
+        <div ng-if="vm.tipoVisualizacionDelegar === 'tipo3'">
+            <div class="row">
+                &nbsp;
+            </div>
+            <div class="row">
+                &nbsp;
+            </div>
+            <div class="row">
+                &nbsp;
+            </div>
+            <div>
+                <span class="concepto-preliminar-contenedor" style="text-align: center; font-family: 'Work Sans'; font-size: 16px; font-style: normal; padding: 40px 0px 40px 0px; ">El capítulo no está habilitado para este rol.</span>
+            </div>
+        </div>
+        <div ng-if="vm.tipoVisualizacionDelegar === 'tipo2'">
+            <div style="padding-top:50px;">
+                <span class="buttonbar pull-right">
+                    <button has-opciones="['ctusAsignacionConceptoSGR:formularioEditar']"
+                            id="EditarD"
+                            type="button"
+                            class="btneditarDNP"
+                            tooltip-placement="top"
+                            uib-tooltip="Editar"
+                            tabindex="0"
+                            ng-click="vm.ActivarEditar()"
+                            ng-disabled="vm.disabled">
+                        {{vm.estadoBotonEdit}}
+                    </button>
+                    &nbsp;
+                    <button has-opciones="['ctusAsignacionConceptoSGR:formularioGuardar']"
+                            id="GuardarG"
+                            type="submit"
+                            class="{{vm.activar ? 'btnguardarDisabledDNP' : 'btnguardarDNP'}}"
+                            tooltip-placement="top"
+                            uib-tooltip="Guardar"
+                            ng-click="vm.guardar()"
+                            ng-disabled="vm.activar">
+                        GUARDAR
+                    </button>
+                </span>
+            </div>
+            <div class="col-md-12">
+                &nbsp;
+            </div>
+            <div class="row">
+                <div class="col-md-12" style="margin-bottom: 5px;">
+                    <span class="d-inline-block errorpregDatosPre2 ml-4" id="alert-sgrctusasignaciondelegar"></span>
+                    <span class="messagealerttableDNP" style="padding-left: 5px; display:flex;" id="DELECTUSsgrctusasignaciondelegar"></span>
+                    <span class="labelQuestions" style="padding-left: 5px;">¿Requiere delegar el concepto de viabilidad en una de las entidades adscritas o vinculadas al ministerio o departamento administrativo?*</span>
+                </div>
+            </div>
+            <div class="row">
+                <div id="PreguntaObligatoria" class="hidden" style="text-align: justify; margin-left: 20px;">
+                    <img class="" src="Img/u4630.svg">
+                    <span class="messagealerttableDNP" style="text-align: left;font-family: 'Work Sans'; font-size: 14px; font-style: normal;">Campo obligatorio.</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-3 form-check" style="text-align: left; padding-left: 6px;">
+                        <input type="radio" id="radio1" ng-disabled="vm.activar" name="optradio" ng-model="vm.asignacionTecnico.delegaViabilidad" value="true" ng-value="true" ng-change="vm.delegarConceptoENChange()">
+                        <label for="radio1" style="padding-right: 78px;">
+                            Si
+                        </label>
+                        <input type="radio" id="radio2" ng-disabled="vm.activar" name="optradio" ng-model="vm.asignacionTecnico.delegaViabilidad" value="false" ng-value="false" ng-change="vm.delegarConceptoENChange()">
+                        <label for="radio2">
+                            No
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                &nbsp;
+            </div>
+            <div class="row">
+                &nbsp;
+            </div>
+            <div class="col-md-12" style="margin-bottom: 5px; margin-left: -10px;">
+                <div class="col-md-1 divIcon" style="margin-left: 8px;" ng-if="!(vm.activar || (!vm.asignacionTecnico.delegaViabilidad || vm.asignacionTecnico.delegaViabilidad == 'false'))">
+                    <img id="u9_seg0" src="Img\iconsforms\u9_seg0.svg" alt="u9_seg0">
+                    <img id="u9_seg1" src="Img\iconsforms\u9_seg1.svg" alt="u9_seg1">
+                    <img id="u9_seg2" src="Img\iconsforms\u9_seg2.svg" alt="u9_seg2">
+                </div>
+                <div class="col-md-1 divIcon" style="margin-left: 8px;" ng-if="vm.activar || (!vm.asignacionTecnico.delegaViabilidad || vm.asignacionTecnico.delegaViabilidad == 'false')">
+                    <img id="u9_seg0" src="Img\iconsforms\u3_seg0.svg" alt="u9_seg0">
+                    <img id="u9_seg1" src="Img\iconsforms\u3_seg1.svg" alt="u9_seg1">
+                    <img id="u9_seg2" src="Img\iconsforms\u3_seg2.svg" alt="u9_seg2">
+                </div>
+                <span class="labelQuestions">¿Delegar a la siguiente entidad adscrita o vinculada al ministerio o departamento administrativo?*</span>
+            </div>
+            <div class="row">
+                <div class="row">
+                    <div id="EntidadObligatoria" class="hidden">
+                        <img class="" src="Img/u4630.svg">
+                        <span class="messagealerttableDNP" style="text-align: left;font-family: 'Work Sans'; font-size: 14px; font-style: normal;">Campo obligatorio. Debe seleccionar una entidad.</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6" style="padding-left: 54px;">
+                    <div class="SelectBuscadorDNP" style="width: 120%;">
+                        <select class="form-control selectDNP" chosen options="vm.ListaEntidades" ng-model="vm.asignacionTecnico.entidadSele" ng-change="vm.onChange()"
+                                ng-options="entidad.Id as entidad.NombreEntidad for entidad in vm.ListaEntidades"
+                                name="ddlUsuarioEncargadoSgr" id="ddlUsuarioEncargadoSgr"
+                                placeholder-text-single="Seleccione..."
+                                no-results-text="No hay ningún resultado para su búsqueda"
+                                ng-disabled="vm.activar || (!vm.asignacionTecnico.delegaViabilidad || vm.asignacionTecnico.delegaViabilidad == 'false')"
+                                required>
+                            <option value="" selected>Seleccione...</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Sesión Espacio Formulario-->
+        <div class="row">
+            &nbsp;
+        </div>
+        <div class="row">
+            &nbsp;
+        </div>
+        <div class="row">
+            &nbsp;
+        </div>
+    </form>
+</div>

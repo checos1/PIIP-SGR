@@ -1,0 +1,254 @@
+﻿<section>
+    <div style="margin-left:20px;" class="container-fluid inbox" ng-init="vm.init();">
+        <div>
+            <div style="text-align: left;">
+                <h3 class="row" style="padding-left: 2rem; padding-right: 2rem; text-align: left; color: #004884">&nbsp;&nbsp;Tabla de resumen</h3>
+            </div>
+            <div class="row">
+                <div class="" style="padding: 0 !important">
+                    <div class="alert panel-heading">
+                        <p class="col-md-12">
+                            <span class="NomItemAccordDNP">Código proceso:</span>
+                            <span class="InfoItemAccordDNP">{{datos.CodigoProceso}}. </span>
+                            <span class="NomItemAccordDNP">Fecha autorización:</span>
+                            <span class="InfoItemAccordDNP">{{datos.FechaAutorizacion}}.</span>
+                            <span class="NomItemAccordDNP">Código autorización:</span>
+                            <span class="InfoItemAccordDNP">{{datos.CodigoAutorizacion}}.</span>
+                        </p>
+                        <br />
+                    </div>
+                </div>
+                <div ng-if="datos.EsConstante">
+                    <div class="col-md-1" style="margin-top: 15px; text-align: left; height: 50px">
+                        <span class="uLabelCampo_fp">Año base</span>
+                    </div>
+                    <div class="col-md-1" style="text-align:left">
+                        <table class="table-white">
+                            <thead>
+                                <tr style="text-align:center;" class="utitulo-grilla">
+                                    <td style="width: 15%; text-align: center; height: 50px "><label class="col-form-label"><span class="uLabelCampo_fp">{{datos.AnioBase}}</span></label></td>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    <div class="col-md-10" style="text-align:left">
+                        &nbsp;
+                    </div>
+                    <br />
+                </div>
+            </div>
+            <div class="tab-container col-md-12" style="width:100%;">
+                <ul class="nav nav-tabs" ng-if="datos.EsConstante">
+                    <li id="liPreinversion" ng-class="{active : 1 === vm.pagina}">
+                        <a href="" ng-click="vm.mostrarTab(1)" data-toggle="tab">
+                            <img class="img-advertencia mr-2" src="Img/u11.svg" ng-if="vm.errores.constante" />
+                            <b>Valores constantes</b>
+                        </a>
+                    </li>
+                    <li id="liInversion" ng-class="{active : 2 === vm.pagina}">
+                        <a href="" ng-click="vm.mostrarTab(2)" data-toggle="tab">
+                            <img class="img-advertencia mr-2" src="Img/u11.svg" ng-if="vm.errores.corriente" />
+                            <b>Valores corrientes</b>
+                        </a>
+                    </li>
+                </ul>
+                <br />
+                <span ng-if="vm.habilitaBotones && vm.Origen == 1" class="buttonbar pull-right">
+                    <button type="button" class="btneditarDNP" tooltip-placement="top" ng-click="datos.EditarAjusteConTramite ? vm.CancelarValores(datos) : vm.EditarValores(datos)" uib-tooltip="{{datos.EditarAjusteConTramite ? 'CANCELAR' : 'EDITAR'}}">
+                        {{datos.EditarAjusteConTramite ? 'CANCELAR' : 'EDITAR'}}
+                    </button>
+                    <button ng-disabled="!datos.EditarAjusteConTramite" type="button" class="{{datos.EditarAjusteConTramite ? 'btnguardarDNP' : 'btnguardarDisabledDNP'}}" tooltip-placement="top" uib-tooltip="Guardar" tabindex="0" ng-click="vm.GuardarValores(datos)">
+                        GUARDAR
+                    </button>
+                </span>
+                <br />
+                <div id="reprogramacionvfreprogramacionporvigencia-error" class="hidden uMensajeError"></div>
+                <div style="text-align: left;" ng-if="vm.Origen == 1">
+                    <div class="row col-md-12">
+                        <div class="alert panel-heading">
+                            <table class="TableDNP">
+                                <thead>
+                                    <tr>
+                                        <th class="columAcc" style="width:4%"></th>
+                                        <th class="textleftDNP" style="width:10%">Vigencia</th>
+                                        <th class="textleftDNP" style="width:14%">Tipo de recurso</th>
+                                        <th class="textRightDNP" style="width:17%">Autorizado $</th>
+                                        <th class="textRightDNP" style="width:17%">Utilizado $</th>
+                                        <th class="textRightDNP" style="width:17%">Reprogramado $</th>
+                                        <th class="textRightDNP" style="width:17%">Modificado $ <br /> (cálculo automático)</th>
+                                        <th class="columAcc" style="width:4%"></th>
+                                    </tr>
+                                </thead>
+                                <tbody ng-repeat="detallevigencia in datos.Totales[0].TotalesTipoRecurso[0].DetalleVigencia" ng-init="detallevigenciaindex2 = $index">
+                                    <tr>
+                                        <td rowspan="2"></td>
+                                        <td rowspan="2" class="textleftDNP"><span>{{detallevigencia.Vigencia}}</span></td>
+                                        <td class="textleftDNP"><span>Nación</span></td>
+                                        <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(detallevigencia.AutorizadoNacion)}}</div></td>
+                                        <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(detallevigencia.UtilizadoNacion)}}</div></td>
+                                        <td ng-if="!datos.EditarAjusteConTramite || detallevigencia.Vigencia < datos.VigenciaActual" class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(detallevigencia.ReprogramadoNacion)}}</div></td>
+                                        <td ng-if="datos.EditarAjusteConTramite && detallevigencia.Vigencia >= datos.VigenciaActual" class="textRightDNP">
+                                            <input id="input-ReprogramadoNacion2" type="number" string-to-number min="0.00"
+                                                   ng-readonly="!datos.EditarAjusteConTramite"
+                                                   ng-keypress="vm.validateFormat($event)"
+                                                   ng-keyup="vm.validarTamanio($event)"
+                                                   ng-blur="vm.actualizaFila($event, datos,'Nacion')"
+                                                   ng-value="detallevigencia.ReprogramadoNacion"
+                                                   ng-model="datos.Totales[0].TotalesTipoRecurso[0].DetalleVigencia[detallevigenciaindex2].ReprogramadoNacion"
+                                                   required class="form-control editInputDNP" style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px; background-color:white" />
+                                        </td>
+                                        <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(detallevigencia.ModificadoNacion)}}</div></td>
+                                        <td rowspan="2">
+                                            <button class="button-column-action trash"
+                                                    title="Eliminar la vigencia"
+                                                    ng-click="vm.EliminarVigencia(datos, detallevigencia.Vigencia)"
+                                                    ng-if="datos.EditarAjusteConTramite && detallevigencia.Eliminar"
+                                                    ng-disabled="detallevigencia.Vigencia < datos.VigenciaActual">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="rgb(51, 102, 204)" class="bi bi-trash" viewBox="0 0 16 16">
+                                                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                                                    <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                                                </svg>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="textleftDNP"><span>Propios</span></td>
+                                        <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(detallevigencia.AutorizadoPropios)}}</div></td>
+                                        <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(detallevigencia.UtilizadoPropios)}}</div></td>
+                                        <td ng-if="!datos.EditarAjusteConTramite || detallevigencia.Vigencia < datos.VigenciaActual" class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(detallevigencia.ReprogramadoPropios)}}</div></td>
+                                        <td ng-if="datos.EditarAjusteConTramite && detallevigencia.Vigencia >= datos.VigenciaActual" class="textRightDNP">
+                                            <input id="input-ReprogramadoPropios2" type="number" string-to-number min="0.00"
+                                                   ng-readonly="!datos.EditarAjusteConTramite"
+                                                   ng-keypress="vm.validateFormat($event)"
+                                                   ng-keyup="vm.validarTamanio($event)"
+                                                   ng-blur="vm.actualizaFila($event, datos,'Propios')"
+                                                   ng-value="detallevigencia.ReprogramadoPropios"
+                                                   ng-model="datos.Totales[0].TotalesTipoRecurso[0].DetalleVigencia[detallevigenciaindex2].ReprogramadoPropios"
+                                                   required class="form-control editInputDNP" style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px; background-color:white" />
+                                        </td>
+                                        <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(detallevigencia.ModificadoPropios)}}</div></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div ng-if="datos.EditarAjusteConTramite && vm.habilitaBotones" class="add-new-fuente row mx-0 mt-4 text-right">
+                                <a ng-click="vm.AgregarVigencia(datos)"><span class="uLabelCampo_fp" style="text-decoration:underline">AGREGAR</span></a>
+                            </div>
+                            <br />
+                            <table class="TableDNP">
+                                <tbody ng-repeat="totalestiporecurso in datos.Totales[0].TotalesTipoRecurso" ng-init="totalestiporecursoindex = $index">
+                                    <tr>
+                                        <td rowspan="2" style="width:4%">&nbsp;</td>
+                                        <td rowspan="2" style="width:10%">&nbsp;</td>
+                                        <td class="textleftDNP" style="width:14%"><span>Nación</span></td>
+                                        <td class="textRightDNP" style="width:17%"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(totalestiporecurso.TotalAutorizadoNacion)}}</div></td>
+                                        <td class="textRightDNP" style="width:17%"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(totalestiporecurso.TotalUtilizadoNacion)}}</div></td>
+                                        <td class="textRightDNP" style="width:17%"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(totalestiporecurso.TotalReprogramadoNacion)}}</div></td>
+                                        <td class="textRightDNP" style="width:17%"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(totalestiporecurso.TotalModificadoNacion)}}</div></td>
+                                        <td rowspan="2" class="columAcc" style="width:4%"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="textleftDNP"><span>Propios</span></td>
+                                        <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(totalestiporecurso.TotalAutorizadoPropios)}}</div></td>
+                                        <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(totalestiporecurso.TotalUtilizadoPropios)}}</div></td>
+                                        <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(totalestiporecurso.TotalReprogramadoPropios)}}</div></td>
+                                        <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(totalestiporecurso.TotalModificadoPropios)}}</div></td>
+                                    </tr>
+                                </tbody>
+                                <tfoot ng-repeat="totales in datos.Totales" ng-init="totalesindex = $index">
+                                    <tr>
+                                        <td class="textleftDNP"><b>=</b></td>
+                                        <td class="textleftDNP"><b>Total</b></td>
+                                        <td class="textleftDNP">&nbsp;</td>
+                                        <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(totales.TotalAutorizado)}}</div></td>
+                                        <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(totales.TotalUtilizado)}}</div></td>
+                                        <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(totales.TotalReprogramado)}}</div></td>
+                                        <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(totales.TotalModificado)}}</div></td>
+                                        <td class="columAcc"></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align: left;" ng-if="vm.Origen == 2">
+                    <div class="row col-md-12">
+                        <div class="alert panel-heading">
+                            <table class="TableDNP">
+                                <thead>
+                                    <tr>
+                                        <th class="columAcc" style="width:4%"></th>
+                                        <th class="textleftDNP" style="width:8%">Vigencia</th>
+                                        <th class="textleftDNP" style="width:8%">Deflactor</th>
+                                        <th class="textleftDNP" style="width:12%">Tipo de recurso</th>
+                                        <th class="textRightDNP" style="width:16%">Autorizado $</th>
+                                        <th class="textRightDNP" style="width:16%">Utilizado $</th>
+                                        <th class="textRightDNP" style="width:16%">Reprogramado $</th>
+                                        <th class="textRightDNP" style="width:16%">Modificado $ <br /> (cálculo automático)</th>
+                                        <th class="columAcc" style="width:4%"></th>
+                                    </tr>
+                                </thead>
+                                <tbody ng-repeat="detallevigencia in datos.TotalesCorrientes[0].TotalesTipoRecurso[0].DetalleVigencia" ng-init="detallevigenciaindex1 = $index">
+                                    <tr>
+                                        <td rowspan="2"></td>
+                                        <td rowspan="2" class="textleftDNP"><span>{{detallevigencia.Vigencia}}</span></td>
+                                        <td rowspan="2" class="textleftDNP"><span>{{detallevigencia.Deflactor}}</span></td>
+                                        <td class="textleftDNP"><span>Nación</span></td>
+                                        <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(detallevigencia.AutorizadoNacion)}}</div></td>
+                                        <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(detallevigencia.UtilizadoNacion)}}</div></td>
+                                        <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(detallevigencia.ReprogramadoNacion)}}</div></td>
+                                        <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(detallevigencia.ModificadoNacion)}}</div></td>
+                                        <td rowspan="2">&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="textleftDNP"><span>Propios</span></td>
+                                        <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(detallevigencia.AutorizadoPropios)}}</div></td>
+                                        <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(detallevigencia.UtilizadoPropios)}}</div></td>
+                                        <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(detallevigencia.ReprogramadoPropios)}}</div></td>
+                                        <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(detallevigencia.ModificadoPropios)}}</div></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br />
+                            <br />
+                            <table class="TableDNP">
+                                <tbody ng-repeat="totalestiporecurso in datos.TotalesCorrientes[0].TotalesTipoRecurso" ng-init="totalestiporecursoindex = $index">
+                                    <tr>
+                                        <td rowspan="2" style="width:4%">&nbsp;</td>
+                                        <td rowspan="2" style="width:8%">&nbsp;</td>
+                                        <td rowspan="2" style="width:8%">&nbsp;</td>
+                                        <td class="textleftDNP" style="width:12%"><span>Nación</span></td>
+                                        <td class="textRightDNP" style="width:16%"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(totalestiporecurso.TotalAutorizadoNacion)}}</div></td>
+                                        <td class="textRightDNP" style="width:16%"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(totalestiporecurso.TotalUtilizadoNacion)}}</div></td>
+                                        <td class="textRightDNP" style="width:16%"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(totalestiporecurso.TotalReprogramadoNacion)}}</div></td>
+                                        <td class="textRightDNP" style="width:16%"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(totalestiporecurso.TotalModificadoNacion)}}</div></td>
+                                        <td rowspan="2" class="columAcc" style="width:4%"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="textleftDNP"><span>Propios</span></td>
+                                        <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(totalestiporecurso.TotalAutorizadoPropios)}}</div></td>
+                                        <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(totalestiporecurso.TotalUtilizadoPropios)}}</div></td>
+                                        <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(totalestiporecurso.TotalReprogramadoPropios)}}</div></td>
+                                        <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(totalestiporecurso.TotalModificadoPropios)}}</div></td>
+                                    </tr>
+                                </tbody>
+                                <tfoot ng-repeat="totales in datos.TotalesCorrientes" ng-init="totalesindex = $index">
+                                    <tr>
+                                        <td class="textleftDNP"><b>=</b></td>
+                                        <td class="textleftDNP"><b>Total</b></td>
+                                        <td class="textleftDNP">&nbsp;</td>
+                                        <td class="textleftDNP">&nbsp;</td>
+                                        <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(totales.TotalAutorizado)}}</div></td>
+                                        <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(totales.TotalUtilizado)}}</div></td>
+                                        <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(totales.TotalReprogramado)}}</div></td>
+                                        <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(totales.TotalModificado)}}</div></td>
+                                        <td class="columAcc"></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

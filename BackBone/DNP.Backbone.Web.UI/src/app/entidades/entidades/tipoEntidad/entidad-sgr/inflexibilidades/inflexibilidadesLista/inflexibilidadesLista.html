@@ -1,0 +1,105 @@
+<div class="container-fluid inbox container-inflexibilidades div-escopo">
+    <nav class="breadcrumb">
+        <a href="/">
+            <span class="breadcrumb-item active">
+                <i class="fa fa-home" aria-hidden="true"></i> Inicio
+            </span>
+        </a>
+        /
+        <span class="breadcrumb-item">Entidades</span>
+        /
+        <span class="breadcrumb-item active">Inflexibilidades</span>
+    </nav>  
+    <div class="row">
+        <div class="col-md-6 padding-right-off">
+            <div class="titlebarmodal">
+                <span class="buttonbar pull-left" role="header">
+                    <button class="btnaccion" ng-click="vm.volver()" tooltip-placement="Auto" uib-tooltip="Volver">
+                        <span><img src="Img/btn/btnVolver.png"></span>
+                    </button>
+                </span>
+                <span class="title">INFLEXIBILIDADES - </span>
+                <span ng-if="vm.entidad.NombreEntidad" class="tipo-entidad-cor subtitle ng-binding ng-scope">{{ vm.entidad.NombreEntidad }}</span>
+            </div>
+        </div>
+        
+        <div class="col-md-6 padding-left-off">
+        <span class="buttonbar pull-right">
+            <button type="button" class="btn btn-default btn-md" tooltip-placement="top" uib-tooltip="Agregar nueva Inflexibilidad" ng-click="vm.agregarNuevaInflexibilidad()" tabindex="0">
+                Agregar Inflexibilidad
+            </button>
+            <button type="button" class="btn btn-default btn-md" tooltip-placement="top" uib-tooltip="Adicionar Columna" ng-click="vm.abrirModalAdicionarColumnas()" tabindex="0">
+                Agregar columnas
+            </button>
+            <button type="button" class="btn btn-default btn-md" ng-click="vm.conmutadorFiltro()" tooltip-placement="auto" uib-tooltip="Filtro">
+                Filtro
+            </button>
+            <a href="" download="" target="_blank" ng-click="vm.downloadPdf()" tooltip-placement="auto" uib-tooltip="Exportar PDF" class="btn btn-default btn-md btnRedondo">PDF</a>
+            <a href="" download="" target="_blank" ng-click="vm.downloadExcel()" tooltip-placement="auto" uib-tooltip="Exportar XLS" class="btn btn-default btn-md btnRedondo">XLS</a>
+        </span>    
+        </div>
+    </div>
+    <div class="form-group clearfix">
+        <div class="filtro" ng-if="vm.mostrarFiltro">
+            <div class="clearfix">
+                <div class="row">
+                    <div class="col-md-10 padding-right-off">
+                        <!--<div class="col-md-2 padding-left-off" ng-if="vm.tieneColumna('Código')">
+                            <input type="text" numbers-only ng-model="vm.filtro.codigo" class="form-control" placeholder="Código" />
+                        </div>-->
+                        <div class="col-md-4 padding-left-off" ng-if="vm.tieneColumna('NOMBRE DE LA INFLEXIBILIDAD')">
+                            <input type="text" ng-model="vm.filtro.nombreInflexibilidad" class="form-control" placeholder="Nombre de la Inflexibilidad" />
+                        </div>
+                        <div class="col-md-2 padding-left-off" ng-if="vm.tieneColumna('Valor')">
+                            <input type="number" ng-model="vm.filtro.valor" class="form-control" placeholder="Valor" />
+                        </div>
+                        <div class="col-md-2 padding-left-off" ng-if="vm.tieneColumna('PERÍODO')">
+                            <input type="text" numbers-only ng-model="vm.filtro.anioInicio" class="form-control" 
+                            tooltip-placement="auto" uib-tooltip="Año de inicio do Período"
+                            placeholder="Año de inicio Período" />
+                        </div>
+                        <div class="col-md-2 padding-left-off" ng-if="vm.tieneColumna('PERÍODO')">
+                            <input type="text" numbers-only ng-model="vm.filtro.anioFin" class="form-control" 
+                            tooltip-placement="auto" uib-tooltip="Año de finalización do Período"
+                            placeholder="Año de finalización do Período" />
+                        </div>
+                        <div class="col-md-2 padding-left-off" ng-if="vm.tieneColumna('VALOR TOTAL')">
+                            <input type="number" ng-model="vm.filtro.valorTotal" class="form-control" placeholder="Valor Total" />
+                        </div>
+                        <div class="col-md-2 padding-left-off" ng-if="vm.tieneColumna('VALOR PAGADO')">
+                            <input type="number" ng-model="vm.filtro.valorPagado" class="form-control" placeholder="Valor Pagado" />
+                        </div>
+                        <div class="col-md-2 padding-left-off" ng-if="vm.tieneColumna('ESTADO')">
+                            <select ng-model="vm.filtro.estado" class="form-control">
+                                <option value="" disabled selected hidden>Estado</option>
+                                <option value="Activo">Activo</option>
+                                <option value="Finalizada">Finalizada</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-2 text-right padding-off ">
+                        <button type="button" class="btn btn-filtro" ng-click="vm.buscar()" tooltip-placement="auto" uib-tooltip="Buscar">Buscar</button>
+                        <button type="button" class="btn btn-filtro" ng-click="vm.limpiarCamposFiltro()"  tooltip-placement="auto" uib-tooltip="Limpiar">Limpiar</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="project" ng-init="vm.init();">
+        <div class="clearfix borderTop4 grid-inflexibilidades">
+            <div class="row">
+                <div class="col-xs-12 col-md-12">
+                    <div class="container-table" ui-i18n="{{vm.lang}}" ng-if="vm.gridOptions.data.length">
+                        <div class="clearfix grid-icon" ui-grid="vm.gridOptions" 
+                            ui-grid-resize-columns ui-grid-pagination></div>
+                    </div>
+        
+                    <div ng-if="!vm.gridOptions.data.length" class="text-center">
+                        <h3>No hay resultados para su búsqueda</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

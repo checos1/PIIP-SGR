@@ -1,0 +1,631 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AC3D2DF0-C366-4029-B8E0-99E3ECC9D4FD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DNP.Backbone.Dominio</RootNamespace>
+    <AssemblyName>DNP.Backbone.Dominio</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DEV|AnyCPU'">
+    <OutputPath>bin\DEV\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'QA|AnyCPU'">
+    <OutputPath>bin\QA\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'UAT|AnyCPU'">
+    <OutputPath>bin\UAT\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <LangVersion>7.3</LangVersion>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Local|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Local\</OutputPath>
+    <DefineConstants>CODE_ANALYSIS;DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DevNT|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\DevNT\</OutputPath>
+    <DefineConstants>CODE_ANALYSIS;CODE_ANALYSIS;DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'UatNT|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\UatNT\</OutputPath>
+    <DefineConstants>CODE_ANALYSIS;CODE_ANALYSIS;CODE_ANALYSIS;DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'PRO|AnyCPU'">
+    <OutputPath>bin\PRO\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Cap|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Cap\</OutputPath>
+    <DefineConstants>CODE_ANALYSIS;CODE_ANALYSIS;DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'QA2|AnyCPU'">
+    <OutputPath>bin\QA2\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'QA3|AnyCPU'">
+    <OutputPath>bin\QA3\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'QA4|AnyCPU'">
+    <OutputPath>bin\QA4\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'UATSGR|AnyCPU'">
+    <OutputPath>bin\UATSGR\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Office.Client.Policy, Version=16.1.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SharePointOnline.CSOM.16.1.20720.12000\lib\net45\Microsoft.Office.Client.Policy.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Client.TranslationServices, Version=16.1.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SharePointOnline.CSOM.16.1.20720.12000\lib\net45\Microsoft.Office.Client.TranslationServices.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.SharePoint.Tools, Version=16.1.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SharePointOnline.CSOM.16.1.20720.12000\lib\net45\Microsoft.Office.SharePoint.Tools.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Online.SharePoint.Client.Tenant, Version=16.1.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SharePointOnline.CSOM.16.1.20720.12000\lib\net45\Microsoft.Online.SharePoint.Client.Tenant.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.PowerBI.Api, Version=3.15.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.PowerBI.Api.3.15.0\lib\netstandard2.0\Microsoft.PowerBI.Api.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ProjectServer.Client, Version=16.1.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SharePointOnline.CSOM.16.1.20720.12000\lib\net45\Microsoft.ProjectServer.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Rest.ClientRuntime, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Rest.ClientRuntime.2.3.21\lib\net461\Microsoft.Rest.ClientRuntime.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SharePoint.Client, Version=16.1.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SharePointOnline.CSOM.16.1.20720.12000\lib\net45\Microsoft.SharePoint.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SharePoint.Client.DocumentManagement, Version=16.1.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SharePointOnline.CSOM.16.1.20720.12000\lib\net45\Microsoft.SharePoint.Client.DocumentManagement.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SharePoint.Client.Publishing, Version=16.1.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SharePointOnline.CSOM.16.1.20720.12000\lib\net45\Microsoft.SharePoint.Client.Publishing.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SharePoint.Client.Runtime, Version=16.1.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SharePointOnline.CSOM.16.1.20720.12000\lib\net45\Microsoft.SharePoint.Client.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SharePoint.Client.Runtime.Windows, Version=16.1.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SharePointOnline.CSOM.16.1.20720.12000\lib\net45\Microsoft.SharePoint.Client.Runtime.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SharePoint.Client.Search, Version=16.1.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SharePointOnline.CSOM.16.1.20720.12000\lib\net45\Microsoft.SharePoint.Client.Search.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SharePoint.Client.Search.Applications, Version=16.1.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SharePointOnline.CSOM.16.1.20720.12000\lib\net45\Microsoft.SharePoint.Client.Search.Applications.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SharePoint.Client.Taxonomy, Version=16.1.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SharePointOnline.CSOM.16.1.20720.12000\lib\net45\Microsoft.SharePoint.Client.Taxonomy.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SharePoint.Client.UserProfiles, Version=16.1.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SharePointOnline.CSOM.16.1.20720.12000\lib\net45\Microsoft.SharePoint.Client.UserProfiles.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SharePoint.Client.WorkflowServices, Version=16.1.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SharePointOnline.CSOM.16.1.20720.12000\lib\net45\Microsoft.SharePoint.Client.WorkflowServices.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Runtime" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security.Cryptography.Cng, Version=4.3.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Cng.4.7.0\lib\net47\System.Security.Cryptography.Cng.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Dto\Acciones\AccionFormularioDto.cs" />
+    <Compile Include="Dto\Administracion\AdministracionDocumentoDto.cs" />
+    <Compile Include="Dto\Administracion\AdministracionDocumentoUsoDto.cs" />
+    <Compile Include="Dto\Administracion\EjecutorDto.cs" />
+    <Compile Include="Dto\AutorizacionNegocio\AdherenciaDto.cs" />
+    <Compile Include="Dto\AutorizacionNegocio\EntidadFiltroConsolaDto.cs" />
+    <Compile Include="Dto\AutorizacionNegocio\ListadoPerfilDto.cs" />
+    <Compile Include="Dto\AutorizacionNegocio\ListadoEntidadDto.cs" />
+    <Compile Include="Dto\AutorizacionNegocio\InflexibilidadFiltroDto.cs" />
+    <Compile Include="Dto\AutorizacionNegocio\InflexibilidadPagosDto.cs" />
+    <Compile Include="Dto\AutorizacionNegocio\InflexibilidadDto.cs" />
+    <Compile Include="Dto\AutorizacionNegocio\MatrizEntidadDestinoAccionDto.cs" />
+    <Compile Include="Dto\AutorizacionNegocio\DelegadoDto.cs" />
+    <Compile Include="Dto\AutorizacionNegocio\DuplaDto.cs" />
+    <Compile Include="Dto\AutorizacionNegocio\EntidadFiltroDto.cs" />
+    <Compile Include="Dto\AutorizacionNegocio\EntidadPerfilDto.cs" />
+    <Compile Include="Dto\AutorizacionNegocio\InvitarUsuarioB2BRequestDto.cs" />
+    <Compile Include="Dto\AutorizacionNegocio\InvitarUsuarioDto.cs" />
+    <Compile Include="Dto\AutorizacionNegocio\CrTypeDto.cs" />
+    <Compile Include="Dto\AutorizacionNegocio\FaseDto.cs" />
+    <Compile Include="Dto\AutorizacionNegocio\OpcionDto.cs" />
+    <Compile Include="Dto\AutorizacionNegocio\PerfilDto.cs" />
+    <Compile Include="Dto\AutorizacionNegocio\EntidadUsuarioDto.cs" />
+    <Compile Include="Dto\AutorizacionNegocio\PerfilUsuarioDto.cs" />
+    <Compile Include="Dto\AutorizacionNegocio\PermisoDto.cs" />
+    <Compile Include="Dto\AutorizacionNegocio\PeticionCambioEstadoConfiguracionDto.cs" />
+    <Compile Include="Dto\AutorizacionNegocio\PeticionConfiguracionRolSectorDto.cs" />
+    <Compile Include="Dto\AutorizacionNegocio\RolDto.cs" />
+    <Compile Include="Dto\AutorizacionNegocio\RolNegocioDto.cs" />
+    <Compile Include="Dto\AutorizacionNegocio\RolNegocioEntidadDestino.cs" />
+    <Compile Include="Dto\AutorizacionNegocio\RolNegocioEntidadDestinoDto.cs" />
+    <Compile Include="Dto\AutorizacionNegocio\RolNegocioEntidadDto.cs" />
+    <Compile Include="Dto\AutorizacionNegocio\SectorNegocioDto.cs" />
+    <Compile Include="Dto\AutorizacionNegocio\TenantDto.cs" />
+    <Compile Include="Dto\AutorizacionNegocio\UsuarioCuentaDto.cs" />
+    <Compile Include="Dto\AutorizacionNegocio\UsuarioDto.cs" />
+    <Compile Include="Dto\AutorizacionNegocio\UsuarioPerfilDto.cs" />
+    <Compile Include="Dto\AutorizacionNegocio\UsuarioPerfilSectorDto.cs" />
+    <Compile Include="Dto\AutorizacionNegocio\UsuarioPerfilProyectoDto.cs" />
+    <Compile Include="Dto\AutorizacionNegocio\UsuarioPIIPTerritorioDto.cs" />
+    <Compile Include="Dto\AutorizacionNegocio\UsuarioPIIPDto.cs" />
+    <Compile Include="Dto\AutorizacionNegocio\UsuarioReportesDto.cs" />
+    <Compile Include="Dto\Beneficiarios\BeneficiarioProductoDto.cs" />
+    <Compile Include="Dto\Beneficiarios\BeneficiarioProductoLocalizacionCaracterizacionDto.cs" />
+    <Compile Include="Dto\Beneficiarios\BeneficiarioProductoLocalizacionDto.cs" />
+    <Compile Include="Dto\CadenaValor\AgregarIndicadoresSecundariosDto.cs" />
+    <Compile Include="Dto\CadenaValor\IndicadorCapituloModificadoDto.cs" />
+    <Compile Include="Dto\CadenaValor\IndicadoresIndicadorProductoDto.cs" />
+    <Compile Include="Dto\CadenaValor\IndicadoresIndicadorSecundarioProductoDto.cs" />
+    <Compile Include="Dto\CadenaValor\RegionalizacionDto.cs" />
+    <Compile Include="Dto\CadenaValor\IndicadorProductoDto.cs" />
+    <Compile Include="Dto\CadenaValor\IndicadorResponse.cs" />
+    <Compile Include="Dto\CadenaValor\ObjetivosIndicadorProductoDto.cs" />
+    <Compile Include="Dto\CadenaValor\ProductosIndicadorProductoDto.cs" />
+    <Compile Include="Dto\CadenaValor\VigenciaIndicadorProductoDto.cs" />
+    <Compile Include="Dto\CambiosFirme\JustificacionHorizonteDto.cs" />
+    <Compile Include="Dto\CargaDatosDto.cs" />
+    <Compile Include="Dto\Catalogos\CatalogoDto.cs" />
+    <Compile Include="Dto\Conpes\CentroAyuda\AyudaTemaFiltroDto.cs" />
+    <Compile Include="Dto\Conpes\CentroAyuda\AyudaTemaListaItemDto.cs" />
+    <Compile Include="Dto\Conpes\DocumentoCONPES.cs" />
+    <Compile Include="Dto\Conpes\ProyectoConpes.cs" />
+    <Compile Include="Dto\Conpes\RespuestaDocumentoCONPES.cs" />
+    <Compile Include="Dto\Consola\DocumentoDto.cs" />
+    <Compile Include="Dto\Consola\MacroProcesosCantidadDto.cs" />
+    <Compile Include="Dto\Consola\MacroProcesosDto.cs" />
+    <Compile Include="Dto\Beneficiarios\BeneficiarioTotalesDto.cs" />
+    <Compile Include="Dto\CostoActividades\ObjectivosAjusteDto.cs" />
+    <Compile Include="Dto\CostoActividades\ObjectivosAjusteJustificacionDto.cs" />
+    <Compile Include="Dto\DesignacionEjecutor\CampoItemValorDto.cs" />
+    <Compile Include="Dto\DesignacionEjecutor\ItemValorDto.cs" />
+    <Compile Include="Dto\DesignacionEjecutor\RespuestaDesignacionEjecutorDto.cs" />
+    <Compile Include="Dto\EntidadBasicaDto.cs" />
+    <Compile Include="Dto\EntidadCatalogoSTDto.cs" />
+    <Compile Include="Dto\Fichas\RecibirParametrosDto.cs" />
+    <Compile Include="Dto\Fichas\ReporteDto.cs" />
+    <Compile Include="Dto\FileToUploadDto.cs" />
+    <Compile Include="Dto\Flujos\AutorizacionAccionesPorInstanciaDto.cs" />
+    <Compile Include="Dto\Flujos\TrazaAccionDto.cs" />
+    <Compile Include="Dto\Flujos\SubpasoDto.cs" />
+    <Compile Include="Dto\Flujos\DevolucionAccionesDto.cs" />
+    <Compile Include="Dto\Flujos\FlujosLogsInstanciasDto.cs" />
+    <Compile Include="Dto\Flujos\EstadoFlujoResultado.cs" />
+    <Compile Include="Dto\Flujos\ParametrosEjecucionSubPasoDto.cs" />
+    <Compile Include="Dto\Flujos\LogDto.cs" />
+    <Compile Include="Dto\Flujos\ValidarRolAccionDto.cs" />
+    <Compile Include="Dto\Focalizacion\CategoriaProductoPoliticaDto.cs" />
+    <Compile Include="Dto\Focalizacion\CrucePoliticasAjustesDto.cs" />
+    <Compile Include="Dto\Focalizacion\FocalizacionCategoriasAjusteDto.cs" />
+    <Compile Include="Dto\Focalizacion\FocalizacionPoliticaTFuentesDto.cs" />
+    <Compile Include="Dto\Focalizacion\FocalizacionSolicitarConceptoDto.cs" />
+    <Compile Include="Dto\FuenteFinanciacion\FuenteFinanciacionAgregarAjusteDto.cs" />
+    <Compile Include="Dto\FuenteFinanciacion\FuenteFinanciacionAgregarDto.cs" />
+    <Compile Include="Dto\FuenteFinanciacion\DatosAdicionalesDto.cs" />
+    <Compile Include="Dto\FuenteFinanciacion\FuenteFinanciacionDto.cs" />
+    <Compile Include="Dto\FuenteFinanciacion\RespuestasSeguimientoProyectoDto.cs" />
+    <Compile Include="Dto\FuenteFinanciacion\VigenciaFuturaConstanteDto.cs" />
+    <Compile Include="Dto\FuenteFinanciacion\VigenciaFuturaConstanteFuenteDto.cs" />
+    <Compile Include="Dto\FuenteFinanciacion\VigenciaFuturaConstanteFuenteVigenciaDto.cs" />
+    <Compile Include="Dto\FuenteFinanciacion\VigenciaFuturaResponse.cs" />
+    <Compile Include="Dto\FuenteFinanciacion\PreguntasSeguimientoProyectoDto.cs" />
+    <Compile Include="Dto\FuenteFinanciacion\ProgramacionValorFuenteDto.cs" />
+    <Compile Include="Dto\FuenteFinanciacion\ProyectoFuenteFinanciacionAgregarDto.cs" />
+    <Compile Include="Dto\FuenteFinanciacion\ProyectoFuenteFinanciacionDto.cs" />
+    <Compile Include="Dto\FuenteFinanciacion\VigenciaFuturaCorrienteDto.cs" />
+    <Compile Include="Dto\FuenteFinanciacion\VigenciaFuturaCorrienteFuenteDto.cs" />
+    <Compile Include="Dto\FuenteFinanciacion\VigenciaFuturaCorrienteFuenteVigenciaDto.cs" />
+    <Compile Include="Dto\FuentePresupuestalDto.cs" />
+    <Compile Include="Dto\Identidad\UsuarioSTSDto.cs" />
+    <Compile Include="Dto\InstanciaResultado.cs" />
+    <Compile Include="Dto\ListadoUsuario.cs" />
+    <Compile Include="Dto\ManejadorArchivos\ArchivoEntidadDto.cs" />
+    <Compile Include="Dto\ManejadorArchivos\ArchivoInfoBsonDto.cs" />
+    <Compile Include="Dto\ManejadorArchivos\ArchivoInfoCargueDto.cs" />
+    <Compile Include="Dto\ManejadorArchivos\ArchivoInfoDto.cs" />
+    <Compile Include="Dto\ManejadorArchivos\ArchivoInfoViewModelDto.cs" />
+    <Compile Include="Dto\ManejadorArchivos\ArchivoViewModelDto.cs" />
+    <Compile Include="Dto\ManejadorArchivos\InfoBaseDto.cs" />
+    <Compile Include="Dto\ManejadorArchivos\ResponseArchivoViewModelDto.cs" />
+    <Compile Include="Dto\ManejadorArchivos\UsuariosArchivosLoginDto.cs" />
+    <Compile Include="Dto\ModificacionLey\InformacionPresupuestalMLDto.cs" />
+    <Compile Include="Dto\MunicipioCatalogoDto.cs" />
+    <Compile Include="Dto\Orfeo\CerrarRadicadoDto.cs" />
+    <Compile Include="Dto\Orfeo\CrearRadicadoResponseDto.cs" />
+    <Compile Include="Dto\Orfeo\DatosDocumentoElectronicoDSDto.cs" />
+    <Compile Include="Dto\Orfeo\DatosDocumentoElectronicoDto.cs" />
+    <Compile Include="Dto\Orfeo\DatosRadicadoDto.cs" />
+    <Compile Include="Dto\Orfeo\RadicadoSalidaRequestDto.cs" />
+    <Compile Include="Dto\Orfeo\ReasignacionRadicadoDto.cs" />
+    <Compile Include="Dto\Orfeo\UsuarioRadicacionDto.cs" />
+    <Compile Include="Dto\ParametrosInstanciaDto.cs" />
+    <Compile Include="Dto\InstanciaDto.cs" />
+    <Compile Include="Dto\PoliticasTransversalesCrucePoliticas\PoliticasTCrucePoliticasDto.cs" />
+    <Compile Include="Dto\Preguntas\ConceptosPreviosEmitidosDto.cs" />
+    <Compile Include="Dto\Preguntas\ConfiguracionEntidadDto.cs" />
+    <Compile Include="Dto\Preguntas\DatosGeneralesProyectosDto.cs" />
+    <Compile Include="Dto\Preguntas\ServicioPreguntasDto.cs" />
+    <Compile Include="Dto\Priorizacion\PriorizacionDatosBasicosDto.cs" />
+    <Compile Include="Dto\Priorizacion\ProyectoPriorizacionDetalleDto.cs" />
+    <Compile Include="Dto\Priorizacion\Viabilidad\BieniosSGRDto.cs" />
+    <Compile Include="Dto\Priorizacion\Viabilidad\DatosAdicionalesCofinanciadorDto.cs" />
+    <Compile Include="Dto\Priorizacion\Viabilidad\EntidadesNoSGRDto.cs" />
+    <Compile Include="Dto\Priorizacion\Viabilidad\EntidadesSGRDto.cs" />
+    <Compile Include="Dto\Priorizacion\Viabilidad\EtapaNoSGRDto.cs" />
+    <Compile Include="Dto\Priorizacion\Viabilidad\EtapaSGRDto.cs" />
+    <Compile Include="Dto\Priorizacion\Viabilidad\VigenciasFuentesNoSGRDto.cs" />
+    <Compile Include="Dto\Priorizacion\Viabilidad\VigenciasNoSGRDto.cs" />
+    <Compile Include="Dto\Priorizacion\Viabilidad\VigenciasSGRDto.cs" />
+    <Compile Include="Dto\Priorizacion\Viabilidad\VigenciasValoresNoSGRDto.cs" />
+    <Compile Include="Dto\Productos\ProductosCorrientesVF.cs" />
+    <Compile Include="Dto\Productos\ProductosConstantesVF.cs" />
+    <Compile Include="Dto\Programacion\DatosDimension.cs" />
+    <Compile Include="Dto\Programacion\DatosDistribucion.cs" />
+    <Compile Include="Dto\Programacion\EliminarCategoriasProyectoProgramacionDto.cs" />
+    <Compile Include="Dto\Programacion\FocalizacionCategoriasDto.cs" />
+    <Compile Include="Dto\Programacion\IncluirPoliticasDto.cs" />
+    <Compile Include="Dto\Programacion\PoliticasTransversalesCategoriasProgramacionDto.cs" />
+    <Compile Include="Dto\Programacion\ProgramacionProductoDto.cs" />
+    <Compile Include="Dto\Programacion\ProgramacionFuenteDto.cs" />
+    <Compile Include="Dto\Programacion\CalendarioExcepcionDto.cs" />
+    <Compile Include="Dto\Programacion\CalendarioProgramacionDto.cs" />
+    <Compile Include="Dto\Programacion\ProgramacionIniciativaDto.cs" />
+    <Compile Include="Dto\Programacion\ProgramacionRegionalizacionDto.cs" />
+    <Compile Include="Dto\Programacion\ProyectoSinPresupuestalDto.cs" />
+    <Compile Include="Dto\Programacion\TramitesResultado.cs" />
+    <Compile Include="Dto\Proyecto\DesagregarRegionalizacionDto.cs" />
+    <Compile Include="Dto\Proyecto\EntidadProyectoVerificacionOcadPazDto.cs" />
+    <Compile Include="Dto\Proyecto\GrupoEntidadProyectoVerificacionOcadPazDto.cs" />
+    <Compile Include="Dto\Proyecto\HorizonteProyectoDto.cs" />
+    <Compile Include="Dto\Proyecto\NegocioVerificacionOcadPazDto.cs" />
+    <Compile Include="Dto\Proyecto\PlanNacionalDesarrolloDto.cs" />
+    <Compile Include="Dto\Proyecto\ProjectDocumentDto.cs" />
+    <Compile Include="Dto\CambiosFirme\RelacionPlanificacionDto.cs" />
+    <Compile Include="Dto\Proyecto\ProyectoPriorizarDto.cs" />
+    <Compile Include="Dto\Proyecto\ProyectoVerificacionOcadPazDto.cs" />
+    <Compile Include="Dto\Proyecto\ProyectoInstanciaDto.cs" />
+    <Compile Include="Dto\Proyecto\ProyectoTramiteDto.cs" />
+    <Compile Include="Dto\Proyecto\ParametroProyectoTramiteDto.cs" />
+    <Compile Include="Dto\Proyecto\ProyectoCreditoDto.cs" />
+    <Compile Include="Dto\Proyecto\ProyectoCreditoParametroDto.cs" />
+    <Compile Include="Dto\Flujos\LogInstanciasDto.cs" />
+    <Compile Include="Dto\Flujos\ParametrosLogsInstanciasDto.cs" />
+    <Compile Include="Dto\Proyecto\RegionalizacionFuenteAjusteDto.cs" />
+    <Compile Include="Dto\Proyecto\ReprogramacionValores.cs" />
+    <Compile Include="Dto\ResponseDto.cs" />
+    <Compile Include="Dto\SeguimientoControl\AvanceMetaProductoDto.cs" />
+    <Compile Include="Dto\SeguimientoControl\AvanceRegionalizacionDto.cs" />
+    <Compile Include="Dto\SeguimientoControl\DesagregarIndicadoresPoliticasDto.cs" />
+    <Compile Include="Dto\SeguimientoControl\FocalizacionCrucePoliticaSeguimientoDto.cs" />
+    <Compile Include="Dto\SeguimientoControl\FocalizacionProgramacionSeguimientoDto.cs" />
+    <Compile Include="Dto\SeguimientoControl\GestionProyectoDto.cs" />
+    <Compile Include="Dto\SeguimientoControl\DesagregarEdtDto.cs" />
+    <Compile Include="Dto\SeguimientoControl\ProgramarActividadesDto.cs" />
+    <Compile Include="Dto\SeguimientoControl\TransversalSeguimientoDto.cs" />
+    <Compile Include="Dto\SGP\Ajustes\BeneficiarioProductoSgpDto.cs" />
+    <Compile Include="Dto\SGP\Transversal\EntidadDestinoResponsableFlujoSgpDto.cs" />
+    <Compile Include="Dto\SGR\AvalUso\DatosAvalUsoDto.cs" />
+    <Compile Include="Dto\SGR\CTEI\DatosAdicionalesCTEIDto.cs" />
+    <Compile Include="Dto\SGR\CTUS\ResultadoConceptoCTUSDto.cs" />
+    <Compile Include="Dto\SGR\CTUS\AsignacionUsuarioCTUSDto.cs" />
+    <Compile Include="Dto\SGR\CTUS\UsuarioEncargadoCTUSDto.cs" />
+    <Compile Include="Dto\SGR\CTUS\ConceptoCTUSDto.cs" />
+    <Compile Include="Dto\SGP\ListaDto.cs" />
+    <Compile Include="Dto\SGP\Transversal\ParametroDto.cs" />
+    <Compile Include="Dto\SGP\Transversal\ProyectoViabilidadInvolucradosSGPDto.cs" />
+    <Compile Include="Dto\SGP\Transversal\TipoDocumentoSoporteDto.cs" />
+    <Compile Include="Dto\SGP\Viabilidad\AcuerdoSectorClasificadorDto.cs" />
+    <Compile Include="Dto\SGP\Viabilidad\GenericoDto.cs" />
+    <Compile Include="Dto\SGP\Viabilidad\InformacionBasicaViabilidadDto.cs" />
+    <Compile Include="Dto\SGP\Viabilidad\LeerInformacionGeneralViabilidadDto.cs" />
+    <Compile Include="Dto\SGP\Viabilidad\LeerParametricasViabilidadDto.cs" />
+    <Compile Include="Dto\SGP\Viabilidad\ListaGenericaDto.cs" />
+    <Compile Include="Dto\SGP\Viabilidad\LstAcuerdoSectorClasificadorDto.cs" />
+    <Compile Include="Dto\SGR\EjecutorEntidadAsociado.cs" />
+    <Compile Include="Dto\SGR\FocalizacionPoliticaSgrDto.cs" />
+    <Compile Include="Dto\SGR\GestionRecursos\AprobacionProyectoCreditoDto.cs" />
+    <Compile Include="Dto\SGR\GestionRecursos\ProyectoResumenEstadoAprobacionCreditoDto.cs" />
+    <Compile Include="Dto\SGR\GestionRecursos\ProyectoAprobacionInstanciasDto.cs" />
+    <Compile Include="Dto\SGR\GestionRecursos\ProyectoAprobacionResumenDto.cs" />
+    <Compile Include="Dto\SGR\ListaDto.cs" />
+    <Compile Include="Dto\SGR\DelegarViabilidadDto.cs" />
+    <Compile Include="Dto\SGR\EjecutorCatalogoDto.cs" />
+    <Compile Include="Dto\SGR\EjecutorEntidadDto.cs" />
+    <Compile Include="Dto\SGR\ListaUsuarioDto.cs" />
+    <Compile Include="Dto\SGR\OcadPaz\AsignacionUsuarioOcadPazDto.cs" />
+    <Compile Include="Dto\SGR\OcadPaz\EntidadesSolicitarCtusDto.cs" />
+    <Compile Include="Dto\SGR\OcadPaz\ProyectoCtusDto.cs" />
+    <Compile Include="Dto\SGR\OcadPaz\UsuariosVerificacionOcadPazDto.cs" />
+    <Compile Include="Dto\SGR\OperacionCreditoDatosGeneralesDto.cs" />
+    <Compile Include="Dto\SGR\OperacionCreditoDetallesDto.cs" />
+    <Compile Include="Dto\SGR\Reportes\ConfiguracionReportesDto.cs" />
+    <Compile Include="Dto\SGR\Transversal\EntidadesAdscritasDto.cs" />
+    <Compile Include="Dto\SGR\Transversal\EstadosPriorizacionDto.cs" />
+    <Compile Include="Dto\SGR\Transversal\MensajeDto.cs" />
+    <Compile Include="Dto\SGR\Transversal\ListaParametrosDto.cs" />
+    <Compile Include="Dto\SGR\Transversal\ProyectoProcesoDto.cs" />
+    <Compile Include="Dto\SGR\Transversal\ProyectoViabilidadInvolucradosDto.cs" />
+    <Compile Include="Dto\SGR\Transversal\ParametroDto.cs" />
+    <Compile Include="Dto\SGR\Transversal\TipoDocumentoSoporteDto.cs" />
+    <Compile Include="Dto\SGR\Transversal\UsuariosProyectoDto.cs" />
+    <Compile Include="Dto\SGR\Transversal\ValidacionOCADPazDto.cs" />
+    <Compile Include="Dto\SGR\Viabilidad\InformacionBasicaViabilidadDto.cs" />
+    <Compile Include="Dto\SGR\Viabilidad\GenericoDto.cs" />
+    <Compile Include="Dto\SGR\Viabilidad\LeerParametricasViabilidadDto.cs" />
+    <Compile Include="Dto\SGR\Viabilidad\LeerInformacionGeneralViabilidadDto.cs" />
+    <Compile Include="Dto\SGR\Viabilidad\ListaGenericaDto.cs" />
+    <Compile Include="Dto\SGR\Viabilidad\LstAcuerdoSectorClasificadorDto.cs" />
+    <Compile Include="Dto\SGR\Viabilidad\AcuerdoSectorClasificadorDto.cs" />
+    <Compile Include="Dto\SGR\Viabilidad\UsuarioEncargadoDto.cs" />
+    <Compile Include="Dto\TipoCargaDatosDto.cs" />
+    <Compile Include="Dto\Consola\ConsolaTramiteDto.cs" />
+    <Compile Include="Dto\EntidadPermisoDto.cs" />
+    <Compile Include="Dto\EstadoDto.cs" />
+    <Compile Include="Dto\CatalogoDto.cs" />
+    <Compile Include="Dto\EntidadDto.cs" />
+    <Compile Include="Dto\AutorizacionNegocio\EntidadNegocioDto.cs" />
+    <Compile Include="Dto\Programacion\FlujosProgramacionDto.cs" />
+    <Compile Include="Dto\Inbox\EntidadInboxDto.cs" />
+    <Compile Include="Dto\Inbox\GrupoEntidadDto.cs" />
+    <Compile Include="Dto\Inbox\InboxDto.cs" />
+    <Compile Include="Dto\Inbox\NegocioDto.cs" />
+    <Compile Include="Dto\Inbox\ProyectoEntidadDto.cs" />
+    <Compile Include="Dto\MensajeMantenimiento\MensajeEntidadDto.cs" />
+    <Compile Include="Dto\MensajeMantenimiento\MensajeMantenimientoDto.cs" />
+    <Compile Include="Dto\MensajeMantenimiento\ParametrosMensajeMantenimiento.cs" />
+    <Compile Include="Dto\OpcionEntidadPermisoDto.cs" />
+    <Compile Include="Dto\PermisosEntidadDto.cs" />
+    <Compile Include="Dto\Proyecto\AuditoriaEntidadDto.cs" />
+    <Compile Include="Dto\Proyecto\ResultadoValidarProyectoItemDto.cs" />
+    <Compile Include="Dto\Proyecto\ValidarProyectosDto.cs" />
+    <Compile Include="Dto\RolEntidadPermisoDto.cs" />
+    <Compile Include="Dto\TipoRequisitoDto.cs" />
+    <Compile Include="Dto\TipoValorDto.cs" />
+    <Compile Include="Dto\Tramites\ActualizaEstadoAjusteProyectoDto.cs" />
+    <Compile Include="Dto\Tramites\CalendarioPeriodoDto.cs" />
+    <Compile Include="Dto\Tramites\Carta\CartaConcepto.cs" />
+    <Compile Include="Dto\Tramites\DetalleCartaConceptoALDto.cs" />
+    <Compile Include="Dto\Tramites\EntidadCatalogoDTDto.cs" />
+    <Compile Include="Dto\Tramites\EntidadesAsociarComunDto.cs" />
+    <Compile Include="Dto\Tramites\Incorporacion\ConvenioDonanteDto.cs" />
+    <Compile Include="Dto\Tramites\Incorporacion\ConvenioDto.cs" />
+    <Compile Include="Dto\Tramites\LiberacionVigenciasFuturasDto.cs" />
+    <Compile Include="Dto\Tramites\ModificacionLeyendaDto.cs" />
+    <Compile Include="Dto\Tramites\ActividadPreContractualDto.cs" />
+    <Compile Include="Dto\Tramites\Carta\CartaCampo.cs" />
+    <Compile Include="Dto\Tramites\Carta\CuerpoConceptoAutorizacion.cs" />
+    <Compile Include="Dto\Tramites\Carta\CuerpoConceptoCDP.cs" />
+    <Compile Include="Dto\Tramites\DatosConceptoDespedidaDto.cs" />
+    <Compile Include="Dto\Tramites\Carta\TipoCampo.cs" />
+    <Compile Include="Dto\Tramites\Carta\Campo.cs" />
+    <Compile Include="Dto\Tramites\Carta\PlantillaCartaSecciones.cs" />
+    <Compile Include="Dto\Tramites\Carta\PlantillaCarta.cs" />
+    <Compile Include="Dto\Tramites\Carta\Carta.cs" />
+    <Compile Include="Dto\Tramites\Carta\CartaSecciones.cs" />
+    <Compile Include="Dto\Tramites\Carta\UsuarioTramite.cs" />
+    <Compile Include="Dto\Tramites\CodigoPresupuestalDto.cs" />
+    <Compile Include="Dto\Tramites\ConceptoDireccionTecnicaTramiteDto.cs" />
+    <Compile Include="Dto\Tramites\DetalleTramiteDto.cs" />
+    <Compile Include="Dto\Tramites\OrigenRecursosDto.cs" />
+    <Compile Include="Dto\Tramites\PresupuestalProyectosAsociadosDto.cs" />
+    <Compile Include="Dto\Tramites\ProgramacionDistribucion\ProgramacionDistribucionDto.cs" />
+    <Compile Include="Dto\Tramites\ProyectoActividadCronogramaDto.cs" />
+    <Compile Include="Dto\Tramites\ProyectosCartaDto.cs" />
+    <Compile Include="Dto\Tramites\Proyectos\ProyectoFuentePresupuestalDto.cs" />
+    <Compile Include="Dto\Tramites\Proyectos\ProyectoFuentePresupuestalValoresDto.cs" />
+    <Compile Include="Dto\Tramites\Proyectos\ProyectoRequisitoDto.cs" />
+    <Compile Include="Dto\Tramites\Proyectos\ProyectoRequisitoValoresDto.cs" />
+    <Compile Include="Dto\Tramites\Proyectos\TramiteProyectoDto.cs" />
+    <Compile Include="Dto\Tramites\DatosUsuarioDto.cs" />
+    <Compile Include="Dto\Tramites\ProyectoTramiteFuenteDto.cs" />
+    <Compile Include="Dto\Tramites\Reprogramacion\DatosReprogramacionDto.cs" />
+    <Compile Include="Dto\Tramites\Reprogramacion\ReprogramacionDto.cs" />
+    <Compile Include="Dto\Tramites\Reprogramacion\TramiteRVFAutorizacionDto.cs" />
+    <Compile Include="Dto\Tramites\ValoresUtilizadosLiberacionVfDto.cs" />
+    <Compile Include="Dto\Tramites\TipoDocumentoTramiteDto.cs" />
+    <Compile Include="Dto\Tramites\TramiteDeflactoresDto.cs" />
+    <Compile Include="Dto\Tramites\ResumenLiberacionVfDto.cs" />
+    <Compile Include="Dto\Tramites\TramiteLiberacionVfDto.cs" />
+    <Compile Include="Dto\Tramites\TramiteModalidadContratacionDto.cs" />
+    <Compile Include="Dto\Tramites\TransversalActividadPrecontractualDto.cs" />
+    <Compile Include="Dto\Tramites\VigenciaFutura\InformacionPresupuestalValoresDto.cs" />
+    <Compile Include="Dto\Transferencias\ObjetoNegocioDto.cs" />
+    <Compile Include="Dto\Transversal\AlcanceTramiteDto.cs" />
+    <Compile Include="Dto\Transversal\ArchivoDto.cs" />
+    <Compile Include="Dto\Transversal\DocumentosDto.cs" />
+    <Compile Include="Dto\Transversal\DocumentosPIIPDto.cs" />
+    <Compile Include="Dto\Transversal\FiltroDocumentosDto.cs" />
+    <Compile Include="Dto\Transversal\ObjetoNegocio.cs" />
+    <Compile Include="Dto\Transversal\SoportesDto.cs" />
+    <Compile Include="Dto\Transversal\SystemConfigurationDto.cs" />
+    <Compile Include="Dto\Transversal\TipoMotivoAnulacionDto.cs" />
+    <Compile Include="Dto\Usuario\NombreInicioSesionDto.cs" />
+    <Compile Include="Dto\Usuario\NotificarInvitacionUsuarioSTSDto.cs" />
+    <Compile Include="Dto\Usuario\PerfilClaveDto.cs" />
+    <Compile Include="Dto\Usuario\UsuarioDNPDto.cs" />
+    <Compile Include="Dto\Usuario\UsuarioPerfilDto.cs" />
+    <Compile Include="Dto\Usuario\UsuarioSTSDto.cs" />
+    <Compile Include="Dto\VigenciasFuturas\TramiteProyectoVFODto.cs" />
+    <Compile Include="Dto\Tramites\TramiteValoresProyectoDto.cs" />
+    <Compile Include="Dto\Tramites\TramiteFuentePresupuestalDto.cs" />
+    <Compile Include="Dto\Tramites\TramiteRequitoDto.cs" />
+    <Compile Include="Dto\Transversal\SeccionCapituloDto.cs" />
+    <Compile Include="Dto\Transversal\SeccionesTramiteDto.cs" />
+    <Compile Include="Dto\UsuarioNotificacion\ProcedimientoAlmacenadoDto.cs" />
+    <Compile Include="Dto\UsuarioNotificacion\UsuarioNotificacionConfigDto.cs" />
+    <Compile Include="Dto\UsuarioNotificacion\UsuarioNotificacionConfigFiltroDto.cs" />
+    <Compile Include="Dto\UsuarioNotificacion\UsuarioNotificacionDto.cs" />
+    <Compile Include="Dto\UsuarioNotificacion\UsuarioNotificacionFiltroDto.cs" />
+    <Compile Include="Dto\UsuarioNotificacion\UsuarioNotificacionMensajesPDFDto.cs" />
+    <Compile Include="Dto\UsuarioNotificacion\UsuarioNotificacionMensajesFiltroDto.cs" />
+    <Compile Include="Dto\UsuarioProcedimentoAlmacenadoDto.cs" />
+    <Compile Include="Dto\Usuario\CredencialUsuarioDto.cs" />
+    <Compile Include="Dto\Usuario\UsuarioAnalistaConceptoDto.cs" />
+    <Compile Include="Dto\VigenciasFuturas\EliminacionAsociacionDto.cs" />
+    <Compile Include="Enums\CatalogoSimple.cs" />
+    <Compile Include="Enums\EstadoProceso.cs" />
+    <Compile Include="Enums\AyudaTipoEnum.cs" />
+    <Compile Include="Enums\TipoConfigNotificacion.cs" />
+    <Compile Include="Enums\TipoInflexibilidadEnum.cs" />
+    <Compile Include="Filtros\FiltroGeneral.cs" />
+    <Compile Include="Filtros\MensajeMantenimientoFIltroDto.cs" />
+    <Compile Include="Dto\MensajeMantenimiento\MensajeRolAutorizacionDto.cs" />
+    <Compile Include="Dto\Nivel\NivelDto.cs" />
+    <Compile Include="Dto\Programacion\ProgramacionDto.cs" />
+    <Compile Include="Dto\Programacion\ProgramacionExcepcionDto.cs" />
+    <Compile Include="Enums\ProyectoEstadoMga.cs" />
+    <Compile Include="Dto\Usuario\SetActivoUsuarioPerfilPorEntidadDto.cs" />
+    <Compile Include="Dto\Monitoreo\InfoFinancieroProyectoDto.cs" />
+    <Compile Include="Dto\Monitoreo\ProyectoResumenDto.cs" />
+    <Compile Include="Dto\Negocio\AtributosEntidadDto.cs" />
+    <Compile Include="Dto\Negocio\EntidadDto.cs" />
+    <Compile Include="Dto\NotificacionesDto.cs" />
+    <Compile Include="Dto\PdfDto.cs" />
+    <Compile Include="Dto\PeticionObtenerInboxDto.cs" />
+    <Compile Include="Dto\PowerBI\EmbedConfig.cs" />
+    <Compile Include="Dto\ProyectoDto.cs" />
+    <Compile Include="Dto\ProyectosEntidadesDto.cs" />
+    <Compile Include="Dto\Monitoreo\EntidadProyectoResumenDto.cs" />
+    <Compile Include="Dto\Proyecto\EntidadProyectoDto.cs" />
+    <Compile Include="Dto\Monitoreo\GrupoEntidadProyectoResumenDto.cs" />
+    <Compile Include="Dto\Proyecto\GrupoEntidadProyectoDto.cs" />
+    <Compile Include="Dto\Monitoreo\NegocioResumenDto.cs" />
+    <Compile Include="Dto\Proyecto\NegocioDto.cs" />
+    <Compile Include="Dto\Proyecto\ProyectoDto.cs" />
+    <Compile Include="Dto\ExcelDto .cs" />
+    <Compile Include="Dto\ResultadoDto.cs" />
+    <Compile Include="Dto\SectorDto.cs" />
+    <Compile Include="Dto\UsuarioLogadoDto.cs" />
+    <Compile Include="Dto\SolicitudDto.cs" />
+    <Compile Include="Dto\AutorizacionNegocio\TipoEntidadDto.cs" />
+    <Compile Include="Dto\Tramites\GrupoTramiteEntidad.cs" />
+    <Compile Include="Dto\Tramites\GrupoTramites.cs" />
+    <Compile Include="Dto\Tramites\InboxTramite.cs" />
+    <Compile Include="Dto\Tramites\Proyectos\ProyectosTramitesDTO.cs" />
+    <Compile Include="Dto\Tramites\TipoTramiteDto.cs" />
+    <Compile Include="Dto\Tramites\TramiteDto.cs" />
+    <Compile Include="Dto\Usuario\SetActivoUsuarioPerfilDto.cs" />
+    <Compile Include="Dto\Usuario\UsuarioDto.cs" />
+    <Compile Include="Dto\Usuario\UsuarioPerfilProyectoDto.cs" />
+    <Compile Include="Enums\EstadoMensajeMantenimiento.cs" />
+    <Compile Include="Enums\TipoMensajeMantenimiento.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegistrarPermisosAccionDto.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DNP.Backbone.Comunes\DNP.Backbone.Comunes.csproj">
+      <Project>{87a20ff9-1b43-4d3d-88ca-6fa9d92e882d}</Project>
+      <Name>DNP.Backbone.Comunes</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

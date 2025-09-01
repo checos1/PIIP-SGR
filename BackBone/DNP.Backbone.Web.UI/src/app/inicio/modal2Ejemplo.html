@@ -1,0 +1,273 @@
+﻿
+
+
+<div class="modal-header modaleDNP" ng-init="vm.init();">
+
+    <button type='button' class='swal2-close' aria-label='Close this dialog' ng-click="vm.cerrar()">×</button>
+    <div >
+        <h3 class="modal-title" id="modal-title">Procesos para BIN #. </h3>
+        <span class="modal-title22">  Nombre del proyecto. </span>
+    </div>
+   
+
+</div>
+<div class="modal-body modalebodyDNP moddnp2" id="modal-body">
+
+   
+        <div class="tab-container tabDNP col-md-12 " style="width:100%;">
+            <ul class="nav nav-tabs">
+                <li id="liAjustados" class="nav-item " ng-class="{active : 1===1}">
+                    <a href="" class="nav-link" data-target="#tabopcion1" data-toggle="tab">
+                        <b>Planeación</b>
+                    </a>
+                </li>
+                <li id="liAjustados" class="nav-item">
+                    <a href="" class="nav-link" data-target="#tabopcion2" data-toggle="tab">
+                        <b>Gestión de recursos</b>
+                    </a>
+                </li>
+                <li id="liAjustados" class="nav-item">
+                    <a href="" class="nav-link" data-target="#tabopcion3" data-toggle="tab">
+                        <b>Ejecución</b>
+                    </a>
+                </li>
+                <li id="liAjustados" class="nav-item">
+                    <a href="" class="nav-link" data-target="#tabopcion4" data-toggle="tab">
+                        <b>Evaluación</b>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!--<div class="tab-content tabContentDNP">
+
+            <div class="tab-pane active cont col-md-12" id="tabopcion1">
+                <span>Contenido pestaña 1 </span>
+            </div>
+            <div class="tab-pane  cont col-md-12" id="tabopcion2">
+                <span>Contenido pestaña 2</span>
+            </div>
+        </div>-->
+
+
+
+    <div>
+        <div class="row buscadormodalDNP">
+            <div class="col-md-8 text-right padding-right-off">
+                <p>
+                    <span class="lblbuscadorD">Filtrar por tipo de documento:</span>
+                </p>
+            </div>
+            <div class="col-md-4 text-right padding-right-off">
+                <select class="form-control selectDNP" required>
+                    <option value="" selected>Seleccione...</option>
+                    <option ng-value="1">Valor 1</option>
+                </select>
+            </div>
+        </div>
+        <div class="row contenedorejemplo tablaDetallesoportesDNP">
+            <table class="TableDNP ">
+                <thead>
+                    <tr>
+                        <th class="columAcc"></th>
+                        <th class="textLeftDNP" style="width:213px">Cargado en</th>
+                        <th class="textLeftDNP" style="width:206px">
+                            Tipo de
+                            documento
+                        </th>
+                        <th class="textLeftDNP" style="width:250px">
+                            Documento y datos
+                        </th>
+                        <th class="textLeftDNP">
+                            Descripción
+                        </th>
+                        <th class="columAcc"></th>
+                        <th class="columAcc"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td class="textLeftDNP ">
+                            <span class="contenedorejemplo">
+                                <span class="modalnegrita"> Paso X. Nombre del paso.</span> Nombre sección / Nombre capítulo.
+                            </span>
+
+                        </td>
+                        <td class="textLeftDNP ">
+                            <span class="contenedorejemplo">
+                                <span class="modalnegrita">  Versión 1.1 </span>Concepto del Ministerio de Hacienda Crédito Público de no objeción sobre las condiciones financieras y las cláusulas contractuales
+                            </span>
+
+                        </td>
+                        <td style="line-height: 18px; ">
+                            <a href="" class="buttonhiperDNP"> documento final analisis.pdf</a>
+                            17/06/2022 05:12. Formulador. Pedro Nel Gutiérrez Castro. pedroguti@ANT.gov.co.
+
+                        </td>
+                        <td class="textLeftDNP ">
+                            <span class="contenedorejemplo">
+                                Su avión cayó y todos murieron, menos ella: la historia de Juliane Diller La mujer sobrevivió, pero tuvo que lidiar con la selva de Perú durante 11 días para buscar ayuda.
+                            </span>
+                        </td>
+                        <td class="textCenterDNP">
+                            <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Descargar">
+                                <span> <img src="Img/IcoDownload.svg"></span>
+                            </button>
+                        </td>
+                        <td class="textCenterDNP">
+                            <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Eliminar">
+                                <span> <img src="Img/IcoDelete.svg"></span>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td class="textLeftDNP ">
+                            <span class="contenedorejemplo">
+                                <span class="modalnegrita"> Paso X. Nombre del paso.</span> Nombre sección / Nombre capítulo.
+                            </span>
+
+                        </td>
+                        <td class="textLeftDNP ">
+                            <span class="contenedorejemplo">
+                                <span class="modalnegrita">  Versión 1.1 </span>Concepto del Ministerio de Hacienda Crédito Público de no objeción sobre las condiciones financieras y las cláusulas contractuales
+                            </span>
+
+                        </td>
+                        <td style="line-height: 18px; ">
+                            <a href="" class="buttonhiperDNP"> documento final analisis.pdf</a>
+                            17/06/2022 05:12. Formulador. Pedro Nel Gutiérrez Castro. pedroguti@ANT.gov.co.
+
+                        </td>
+                        <td class="textLeftDNP ">
+                            <span class="contenedorejemplo">
+                                Su avión cayó y todos murieron, menos ella: la historia de Juliane Diller La mujer sobrevivió, pero tuvo que lidiar con la selva de Perú durante 11 días para buscar ayuda.
+                            </span>
+                        </td>
+                        <td class="textCenterDNP">
+                            <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Descargar">
+                                <span> <img src="Img/IcoDownload.svg"></span>
+                            </button>
+                        </td>
+                        <td class="textCenterDNP">
+                            <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Eliminar">
+                                <span> <img src="Img/IcoDelete.svg"></span>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td class="textLeftDNP ">
+                            <span class="contenedorejemplo">
+                                <span class="modalnegrita"> Paso X. Nombre del paso.</span> Nombre sección / Nombre capítulo.
+                            </span>
+
+                        </td>
+                        <td class="textLeftDNP ">
+                            <span class="contenedorejemplo">
+                                <span class="modalnegrita">  Versión 1.1 </span>Concepto del Ministerio de Hacienda Crédito Público de no objeción sobre las condiciones financieras y las cláusulas contractuales
+                            </span>
+
+                        </td>
+                        <td style="line-height: 18px; ">
+                            <a href="" class="buttonhiperDNP"> documento final analisis.pdf</a>
+                            17/06/2022 05:12. Formulador. Pedro Nel Gutiérrez Castro. pedroguti@ANT.gov.co.
+
+                        </td>
+                        <td class="textLeftDNP ">
+                            <span class="contenedorejemplo">
+                                Su avión cayó y todos murieron, menos ella: la historia de Juliane Diller La mujer sobrevivió, pero tuvo que lidiar con la selva de Perú durante 11 días para buscar ayuda.
+                            </span>
+                        </td>
+                        <td class="textCenterDNP">
+                            <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Descargar">
+                                <span> <img src="Img/IcoDownload.svg"></span>
+                            </button>
+                        </td>
+                        <td class="textCenterDNP">
+                            <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Eliminar">
+                                <span> <img src="Img/IcoDelete.svg"></span>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td class="textLeftDNP ">
+                            <span class="contenedorejemplo">
+                                <span class="modalnegrita"> Paso X. Nombre del paso.</span> Nombre sección / Nombre capítulo.
+                            </span>
+
+                        </td>
+                        <td class="textLeftDNP ">
+                            <span class="contenedorejemplo">
+                                <span class="modalnegrita">  Versión 1.1 </span>Concepto del Ministerio de Hacienda Crédito Público de no objeción sobre las condiciones financieras y las cláusulas contractuales
+                            </span>
+
+                        </td>
+                        <td style="line-height: 18px; ">
+                            <a href="" class="buttonhiperDNP"> documento final analisis.pdf</a>
+                            17/06/2022 05:12. Formulador. Pedro Nel Gutiérrez Castro. pedroguti@ANT.gov.co.
+
+                        </td>
+                        <td class="textLeftDNP ">
+                            <span class="contenedorejemplo">
+                                Su avión cayó y todos murieron, menos ella: la historia de Juliane Diller La mujer sobrevivió, pero tuvo que lidiar con la selva de Perú durante 11 días para buscar ayuda.
+                            </span>
+                        </td>
+                        <td class="textCenterDNP">
+                            <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Descargar">
+                                <span> <img src="Img/IcoDownload.svg"></span>
+                            </button>
+                        </td>
+                        <td class="textCenterDNP">
+                            <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Eliminar">
+                                <span> <img src="Img/IcoDelete.svg"></span>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td class="textLeftDNP ">
+                            <span class="contenedorejemplo">
+                                <span class="modalnegrita"> Paso X. Nombre del paso.</span> Nombre sección / Nombre capítulo.
+                            </span>
+
+                        </td>
+                        <td class="textLeftDNP ">
+                            <span class="contenedorejemplo">
+                                <span class="modalnegrita">  Versión 1.1 </span>Concepto del Ministerio de Hacienda Crédito Público de no objeción sobre las condiciones financieras y las cláusulas contractuales
+                            </span>
+
+                        </td>
+                        <td style="line-height: 18px; ">
+                            <a href="" class="buttonhiperDNP"> documento final analisis.pdf</a>
+                            17/06/2022 05:12. Formulador. Pedro Nel Gutiérrez Castro. pedroguti@ANT.gov.co.
+
+                        </td>
+                        <td class="textLeftDNP ">
+                            <span class="contenedorejemplo">
+                                Su avión cayó y todos murieron, menos ella: la historia de Juliane Diller La mujer sobrevivió, pero tuvo que lidiar con la selva de Perú durante 11 días para buscar ayuda.
+                            </span>
+                        </td>
+                        <td class="textCenterDNP">
+                            <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Descargar">
+                                <span> <img src="Img/IcoDownload.svg"></span>
+                            </button>
+                        </td>
+                        <td class="textCenterDNP">
+                            <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Eliminar">
+                                <span> <img src="Img/IcoDelete.svg"></span>
+                            </button>
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+
+</div>
+<div class="modal-footer textCenterDNP">
+    <!--<button class=" btneditarDNP" type="button" >CANCELAR</button>-->
+</div>

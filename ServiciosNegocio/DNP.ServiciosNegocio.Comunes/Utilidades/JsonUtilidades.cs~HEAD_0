@@ -1,0 +1,12 @@
+﻿namespace DNP.ServiciosNegocio.Comunes.Utilidades
+{
+    using Newtonsoft.Json;
+
+    public static class JsonUtilidades
+    {
+        public static string ACadenaJson<T>(T objeto)
+        {
+            return JsonConvert.SerializeObject(objeto);
+        }
+    }
+}

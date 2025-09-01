@@ -1,0 +1,12 @@
+﻿<div class="item">
+    <div ng-if="item === vm.models.selected">
+        <a ng-click="vm.eliminarElementoSeleccionado(item)" ng-init="count=0" class="pull-right">
+            <span class="icon-delete"></span>
+        </a>
+    </div>
+    <label>{{item.title}}</label>
+    <div class="input-group date">
+        <input type="text" tooltip-placement="top" uib-tooltip="{{item.tooltip}}" class="form-control no-border-right"  name="{{item.id}}">
+        <span class="input-group-addon"><i class="icon-calendar"></i></span>
+    </div>
+</div>

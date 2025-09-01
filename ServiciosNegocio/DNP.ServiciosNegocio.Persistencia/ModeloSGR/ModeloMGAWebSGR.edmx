@@ -1,0 +1,1848 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Parametros">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Parametro" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Valor" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="CreadoPor" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+          <Property Name="SStorage" Type="bit" />
+        </EntityType>
+        <Function Name="uspPostAutorizacionAccionesPorInstanciaSubFlujoOCADPaz" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="RolId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="Usuario" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="uspGetCrucePoliticas_JSONSgr" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="BPIN" Type="nvarchar" Mode="In" />
+          <Parameter Name="FuenteId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspGetCrucePoliticasAjustes_JSONSgr" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="uspGetPoliticasCategoriasIndicadores_JSONSgr" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="uspGetPoliticasTransversales_Ajustes_JSONSgr" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="BPIN" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="uspGetPoliticasTransversalesCategorias_Ajustes_JSONSgr" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="uspGetPoliticasTransversalesCategorias_Ajustes_Resumen_JSONSgr" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="InstanciaId" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="uspGetPoliticasTransversalesCategorias_JSONSgr" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="BPIN" Type="nvarchar" Mode="In" />
+          <Parameter Name="FuenteId" Type="int" Mode="In" />
+          <Parameter Name="PoliticaId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspGetPoliticasTransversalesFuentes_JSONSgr" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="BPIN" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="uspGetPoliticasTransversalesFuentesIndicadores_JSONSgr" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="BPIN" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="uspPostAgregarPoliticas_ajustesSgr" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="FormularioId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostCategoriasIndicadoresSgr" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Usuario" Type="nvarchar" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostEliminarCategoriasProyectoSgr" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="ProyectoId" Type="int" Mode="In" />
+          <Parameter Name="PoliticaId" Type="int" Mode="In" />
+          <Parameter Name="DimensionId" Type="int" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostPoliticasTransversalesCategoriasAjustesSgr" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostPoliticasTransversalesProyectoEliminarSgr" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="ProyectoId" Type="int" Mode="In" />
+          <Parameter Name="PoliticaId" Type="int" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="UspDeleteOperacionesCredito" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="FuentesFinanciacion">
+          <Parameter Name="ProyectoId" Type="int" Mode="In" />
+          <Parameter Name="Usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspGetConceptosEmitidos_JSON" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Preguntas">
+          <Parameter Name="BPIN" Type="nvarchar" Mode="In" />
+          <Parameter Name="TipoConcepto" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspGetObtenerPreguntasEspecificasComponenteCustom" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Preguntas">
+          <Parameter Name="BPIN" Type="nvarchar" Mode="In" />
+          <Parameter Name="NivelId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="NombreComponentePregunta" Type="varchar(max)" Mode="In" />
+          <Parameter Name="ListaRoles_Json" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="uspGetObtenerPreguntasEspecificasComponenteCustomSGR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Preguntas">
+          <Parameter Name="BPIN" Type="nvarchar" Mode="In" />
+          <Parameter Name="NivelId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="NombreComponentePregunta" Type="varchar(max)" Mode="In" />
+          <Parameter Name="ListaRoles_Json" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="uspGetObtenerPreguntasGeneralesComponenteCustom" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Preguntas">
+          <Parameter Name="BPIN" Type="nvarchar" Mode="In" />
+          <Parameter Name="NivelId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="NombreComponentePregunta" Type="varchar(max)" Mode="In" />
+          <Parameter Name="ListaRoles" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="uspGetObtenerPreguntasGeneralesComponenteCustomSGR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Preguntas">
+          <Parameter Name="BPIN" Type="nvarchar" Mode="In" />
+          <Parameter Name="NivelId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="NombreComponentePregunta" Type="varchar(max)" Mode="In" />
+          <Parameter Name="ListaRoles" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="uspPostGeneracionCuestionarioPreguntasPersonalizadasCustomSGR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Preguntas">
+          <Parameter Name="JsonData" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="SeccionCapituloId" Type="int" Mode="In" />
+          <Parameter Name="Usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Resultado" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="UspGetDesagregarRegionalizacion_JSONSgr" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Productos">
+          <Parameter Name="BPIN" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="uspGetAprobacionCredito" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="EntityTypeCatalogOptionId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspGetAvalUsoSgr_JSON" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="ProyectoId" Type="int" Mode="In" />
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="uspGetCumplimentoFlujoSGR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="uspGetDatosAdicionalesCTEI_JSON" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="ProyectoId" Type="int" Mode="In" />
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="uspGetEntidadesSolicitarCtus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="ProyectoId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspGetMensajeEstadoProyectoSgr" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="Mensaje" Type="nvarchar" Mode="InOut" />
+        </Function>
+        <Function Name="uspGetObtenerProyectoCtus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="ProyectoId" Type="int" Mode="In" />
+          <Parameter Name="Instancia" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="uspGetObtenerProyectosVerificacionOcadPazSgr" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="IdTipoObjetoNegocio" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="IdUsuarioDNP" Type="nvarchar" Mode="In" />
+          <Parameter Name="listRol" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="listNivel" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="listSubPasos" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="validarActual" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspGetObtenerProyectoViabilidadInvolucrados" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="ProyectoId" Type="int" Mode="In" />
+          <Parameter Name="TipoConceptoViabilidadId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspGetObtenerProyectoViabilidadInvolucradosFirma" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="TipoConceptoViabilidadId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspGetObtenerRolDirectorProyectoCtus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="ProyectoId" Type="int" Mode="In" />
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="uspGetObtenerUsuariosVerificacionOcadPazSgr" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="RolId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="EntidadId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspGetProyectoLeerValorAprobacionSGR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="proyectoId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspGetPuntajeProyecto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="EntityTypeCatalogOptionId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspGetResumenEstadoAprobacionCredito" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="ProyectoId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspGetSGR_Acuerdo_LeerProyecto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="ProyectoId" Type="int" Mode="In" />
+          <Parameter Name="NivelId" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="uspGetSGR_CTUS_LeerProyectoCtusConcepto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="ProyectoCtusId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspGetSGR_CTUS_LeerProyectoCtusUsuarioEncargado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="ProyectoCtusId" Type="int" Mode="In" />
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="uspGetSGR_Encabezado_LeerEncabezado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="idInstancia" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="idFlujo" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="idNivel" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="idProyecto" Type="varchar" Mode="In" />
+          <Parameter Name="tramite" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="uspGetSGR_Procesos_ConsultarEjecutorbyTipo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="proyectoId" Type="int" Mode="In" />
+          <Parameter Name="tipoEjecutorId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspGetSGR_Proyectos_LeerEntidadesAdscritas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="proyectId" Type="int" Mode="In" />
+          <Parameter Name="tipoEntidad" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="uspGetSGR_Proyectos_LeerListas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="nivelId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="proyectoId" Type="int" Mode="In" />
+          <Parameter Name="nombreLista" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="uspGetSGR_Proyectos_MostrarEstadosAprobacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="ProyectoId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspGetSGR_Proyectos_MostrarEstadosAprobacionCreditoParcial" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="ProyectoId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspGetSGR_Proyectos_MostrarEstadosPriorizacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="ProyectoId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspGetSGR_Proyectos_ValidarEntidadDelegada" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="proyectId" Type="int" Mode="In" />
+          <Parameter Name="tipo" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="uspGetSGR_ValidarAsignacionTecnicoOcadPaz" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="instanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="accionId" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="uspGetSGR_Viabilidad_LeerInformacionGeneral" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="ProyectoId" Type="int" Mode="In" />
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="TipoConceptoViabilidadCode" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="uspGetSGR_Viabilidad_LeerParametricas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="ProyectoId" Type="int" Mode="In" />
+          <Parameter Name="NivelId" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="uspGetSGR_Viabilidad_LeerProyectoUsuarioEncargado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="ProyectoId" Type="int" Mode="In" />
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="uspGetValidarInstanciaCTUSNoFinalizada_JSON" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="ProyectoId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspPostAplicarFlujoSgr" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="ObjetoNegocioId" Type="varchar" Mode="In" />
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="Usuario" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="uspPostAprobacionCredito" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostDatosAdicionalesCTEI_JSON" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostDevolverFlujoSgr" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="ObjetoNegocioId" Type="varchar" Mode="In" />
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="Usuario" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="uspPostEliminarFirmaUsuarioViabilidadSgp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostFirmaUsuarioViabilidadSgr" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostProyectoSolicitarCTUS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="JsonData" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="ProyectoId" Type="int" Mode="In" />
+          <Parameter Name="Usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Resultado" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostProyectoViabilidadInvolucrados" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="JsonData" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="ProyectoId" Type="int" Mode="In" />
+          <Parameter Name="Usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Resultado" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostProyectoViabilidadInvolucradosEliminar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostPuntajeProyecto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostRegistrarAvalUso_JSON" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostSGR_Acuerdo_GuardarProyecto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostSGR_CTUS_GuardarAsignacionUsuarioEncargado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostSGR_CTUS_GuardarProyectoCtusConcepto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostSGR_CTUS_GuardarResultadoConceptoCtus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostSGR_OCADPaz_GuardarAsignacionUsuarioEncargado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostSGR_Proyectos_ActualizarEntidadAdscrita" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="proyectId" Type="int" Mode="In" />
+          <Parameter Name="entityId" Type="int" Mode="In" />
+          <Parameter Name="user" Type="varchar" Mode="In" />
+          <Parameter Name="delegado" Type="bit" Mode="In" />
+          <Parameter Name="result" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostSGR_Proyectos_ActualizarEntidadAdscritaCTUS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="proyectId" Type="int" Mode="In" />
+          <Parameter Name="entityId" Type="int" Mode="In" />
+          <Parameter Name="tipo" Type="varchar" Mode="In" />
+          <Parameter Name="user" Type="varchar" Mode="In" />
+          <Parameter Name="result" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostSGR_Viabilidad_GuardarAsignacionUsuarioEncargado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostSGR_Viabilidad_GuardarInformacionBasica" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspGetConfiguracionReportesPorInstancia" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Reportes">
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="uspGetEjecutoresAsociados" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Transversal">
+          <Parameter Name="proyectoId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspGetSGR_ListaTipoDocumentosSoportePorRol" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Transversal">
+          <Parameter Name="tipoTramiteId" Type="int" Mode="In" />
+          <Parameter Name="rol" Type="varchar(max)" Mode="In" />
+          <Parameter Name="nivelId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="instanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="accionId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="tramiteId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspGetSGR_TipoDocumentosSoportePorRol" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Transversal">
+          <Parameter Name="tipoTramiteId" Type="int" Mode="In" />
+          <Parameter Name="rol" Type="varchar(max)" Mode="In" />
+          <Parameter Name="nivelId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="instanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="accionId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="tramiteId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspGetSGR_Transversal_LeerListaParametros" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Transversal" />
+        <Function Name="uspGetSGR_Transversal_LeerParametro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Transversal">
+          <Parameter Name="Parametro" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="uspGetTipoEjecutor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Transversal">
+          <Parameter Name="nit" Type="nvarchar" Mode="In" />
+          <Parameter Name="tipoEntidadId" Type="int" Mode="In" />
+          <Parameter Name="entidadId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="UspObtenerInformacionNotificacionInvolucrados" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Transversal">
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="UsuarioFirma" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="UspObtenerUsuariosNotificacionViabilidad" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Transversal">
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="uspPostEjecutoresAsociados" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Transversal">
+          <Parameter Name="proyectoId" Type="int" Mode="In" />
+          <Parameter Name="ejecutorId" Type="int" Mode="In" />
+          <Parameter Name="usuario" Type="nvarchar" Mode="In" />
+          <Parameter Name="tipoEjecutorId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspPostEliminarEjecutorAsociado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Transversal">
+          <Parameter Name="EjecutorAsociadoId" Type="int" Mode="In" />
+          <Parameter Name="usuario" Type="nvarchar" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="UspValidacionOCADPazSgr" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Transversal">
+          <Parameter Name="ProyectoId" Type="nvarchar" Mode="In" />
+          <Parameter Name="NivelId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="FlujoId" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <EntityContainer Name="DNPServiciosNegocioPersistenciaModeloSGRStoreContainer">
+          <EntitySet Name="Parametros" EntityType="Self.Parametros" Schema="Transversal" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DNP.ServiciosNegocio.Persistencia.ModeloSGR" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="MGAWebContextoSGR" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="Parametros" EntityType="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Parametros" />
+          <FunctionImport Name="uspGetSGR_Transversal_LeerParametro" ReturnType="Collection(String)">
+          <Parameter Name="Parametro" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetSGR_Acuerdo_LeerProyecto" ReturnType="Collection(String)">
+            <Parameter Name="ProyectoId" Mode="In" Type="Int32" />
+            <Parameter Name="NivelId" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostSGR_Acuerdo_GuardarProyecto">
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetSGR_Proyectos_LeerListas" ReturnType="Collection(String)">
+            <Parameter Name="nivelId" Mode="In" Type="Guid" />
+            <Parameter Name="proyectoId" Mode="In" Type="Int32" />
+            <Parameter Name="nombreLista" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetEjecutoresAsociados" ReturnType="Collection(DNP.ServiciosNegocio.Persistencia.ModeloSGR.uspGetEjecutoresAsociados_Result)">
+          <Parameter Name="proyectoId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetTipoEjecutor" ReturnType="Collection(DNP.ServiciosNegocio.Persistencia.ModeloSGR.uspGetTipoEjecutor_Result)">
+            <Parameter Name="nit" Mode="In" Type="String" />
+            <Parameter Name="tipoEntidadId" Mode="In" Type="Int32" />
+            <Parameter Name="entidadId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostEjecutoresAsociados">
+            <Parameter Name="proyectoId" Mode="In" Type="Int32" />
+            <Parameter Name="ejecutorId" Mode="In" Type="Int32" />
+            <Parameter Name="usuario" Mode="In" Type="String" />
+            <Parameter Name="tipoEjecutorId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostEliminarEjecutorAsociado">
+            <Parameter Name="EjecutorAsociadoId" Mode="In" Type="Int32" />
+            <Parameter Name="usuario" Mode="In" Type="String" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetCrucePoliticas_JSONSgr">
+            <Parameter Name="BPIN" Mode="In" Type="String" />
+            <Parameter Name="FuenteId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="DatosGeneralesProyectoSGR">
+            <Parameter Name="ProyectoId" Mode="In" Type="Int32" />
+            <Parameter Name="NivelId" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetPoliticasTransversalesFuentes_JSONSgr" ReturnType="Collection(String)">
+          <Parameter Name="BPIN" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetPoliticasTransversalesCategorias_JSONSgr">
+            <Parameter Name="BPIN" Mode="In" Type="String" />
+            <Parameter Name="FuenteId" Mode="In" Type="Int32" />
+            <Parameter Name="PoliticaId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetPoliticasTransversalesFuentesIndicadores_JSONSgr">
+          <Parameter Name="BPIN" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UspGetDesagregarRegionalizacion_JSONSgr" ReturnType="Collection(String)">
+          <Parameter Name="BPIN" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetCrucePoliticasAjustes_JSONSgr" ReturnType="Collection(String)">
+          <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetPoliticasCategoriasIndicadores_JSONSgr" ReturnType="Collection(String)">
+          <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetPoliticasTransversales_Ajustes_JSONSgr" ReturnType="Collection(String)">
+          <Parameter Name="BPIN" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetPoliticasTransversalesCategorias_Ajustes_JSONSgr" ReturnType="Collection(String)">
+          <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetPoliticasTransversalesCategorias_Ajustes_Resumen_JSONSgr" ReturnType="Collection(String)">
+          <Parameter Name="InstanciaId" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostAgregarPoliticas_ajustesSgr">
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="usuario" Mode="In" Type="String" />
+            <Parameter Name="FormularioId" Mode="In" Type="Guid" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostCategoriasIndicadoresSgr">
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostEliminarCategoriasProyectoSgr">
+            <Parameter Name="ProyectoId" Mode="In" Type="Int32" />
+            <Parameter Name="PoliticaId" Mode="In" Type="Int32" />
+            <Parameter Name="DimensionId" Mode="In" Type="Int32" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostPoliticasTransversalesProyectoEliminarSgr">
+            <Parameter Name="ProyectoId" Mode="In" Type="Int32" />
+            <Parameter Name="PoliticaId" Mode="In" Type="Int32" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetObtenerPreguntasEspecificasComponenteCustom" ReturnType="Collection(DNP.ServiciosNegocio.Persistencia.ModeloSGR.uspGetObtenerPreguntasEspecificasComponenteCustom_Result)">
+            <Parameter Name="BPIN" Mode="In" Type="String" />
+            <Parameter Name="NivelId" Mode="In" Type="Guid" />
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="NombreComponentePregunta" Mode="In" Type="String" />
+            <Parameter Name="ListaRoles_Json" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetObtenerPreguntasGeneralesComponenteCustom" ReturnType="Collection(DNP.ServiciosNegocio.Persistencia.ModeloSGR.uspGetObtenerPreguntasGeneralesComponenteCustom_Result)">
+            <Parameter Name="BPIN" Mode="In" Type="String" />
+            <Parameter Name="NivelId" Mode="In" Type="Guid" />
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="NombreComponentePregunta" Mode="In" Type="String" />
+            <Parameter Name="ListaRoles" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetSGR_Viabilidad_LeerInformacionGeneral" ReturnType="Collection(DNP.ServiciosNegocio.Persistencia.ModeloSGR.uspGetSGR_Viabilidad_LeerInformacionGeneral_Result)">
+            <Parameter Name="ProyectoId" Mode="In" Type="Int32" />
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="TipoConceptoViabilidadCode" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetSGR_Viabilidad_LeerParametricas" ReturnType="Collection(String)">
+            <Parameter Name="ProyectoId" Mode="In" Type="Int32" />
+            <Parameter Name="NivelId" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostSGR_Viabilidad_GuardarInformacionBasica">
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetObtenerPreguntasEspecificasComponenteCustomSGR" ReturnType="Collection(DNP.ServiciosNegocio.Persistencia.ModeloSGR.uspGetObtenerPreguntasEspecificasComponenteCustomSGR_Result)">
+            <Parameter Name="BPIN" Mode="In" Type="String" />
+            <Parameter Name="NivelId" Mode="In" Type="Guid" />
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="NombreComponentePregunta" Mode="In" Type="String" />
+            <Parameter Name="ListaRoles_Json" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetObtenerPreguntasGeneralesComponenteCustomSGR" ReturnType="Collection(DNP.ServiciosNegocio.Persistencia.ModeloSGR.uspGetObtenerPreguntasGeneralesComponenteCustomSGR_Result)">
+            <Parameter Name="BPIN" Mode="In" Type="String" />
+            <Parameter Name="NivelId" Mode="In" Type="Guid" />
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="NombreComponentePregunta" Mode="In" Type="String" />
+            <Parameter Name="ListaRoles" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostGeneracionCuestionarioPreguntasPersonalizadasCustomSGR">
+            <Parameter Name="JsonData" Mode="In" Type="String" />
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="SeccionCapituloId" Mode="In" Type="Int32" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="Resultado" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetSGR_TipoDocumentosSoportePorRol" ReturnType="Collection(DNP.ServiciosNegocio.Persistencia.ModeloSGR.uspGetSGR_TipoDocumentosSoportePorRol_Result)">
+            <Parameter Name="tipoTramiteId" Mode="In" Type="Int32" />
+            <Parameter Name="rol" Mode="In" Type="String" />
+            <Parameter Name="nivelId" Mode="In" Type="Guid" />
+            <Parameter Name="instanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="accionId" Mode="In" Type="Guid" />
+            <Parameter Name="tramiteId" Mode="In" Type="Int32" />
+          </FunctionImport>
+
+          <FunctionImport Name="uspPostProyectoViabilidadInvolucrados">
+            <Parameter Name="JsonData" Mode="In" Type="String" />
+            <Parameter Name="ProyectoId" Mode="In" Type="Int32" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="Resultado" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostProyectoViabilidadInvolucradosEliminar">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostPoliticasTransversalesCategoriasAjustesSgr" ReturnType="Collection(String)">
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="usuario" Mode="In" Type="String" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetObtenerProyectoViabilidadInvolucradosFirma" ReturnType="Collection(DNP.ServiciosNegocio.Persistencia.ModeloSGR.uspGetObtenerProyectoViabilidadInvolucradosFirma_Result)">
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="TipoConceptoViabilidadId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostFirmaUsuarioViabilidadSgr">
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetMensajeEstadoProyectoSgr">
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="Mensaje" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetEntidadesSolicitarCtus" ReturnType="Collection(DNP.ServiciosNegocio.Persistencia.ModeloSGR.uspGetEntidadesSolicitarCtus_Result)">
+          <Parameter Name="ProyectoId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetObtenerProyectoCtus" ReturnType="Collection(DNP.ServiciosNegocio.Persistencia.ModeloSGR.uspGetObtenerProyectoCtus_Result)">
+            <Parameter Name="ProyectoId" Mode="In" Type="Int32" />
+            <Parameter Name="Instancia" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostProyectoSolicitarCTUS">
+            <Parameter Name="JsonData" Mode="In" Type="String" />
+            <Parameter Name="ProyectoId" Mode="In" Type="Int32" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="Resultado" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostSGR_CTUS_GuardarProyectoCtusConcepto">
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetSGR_CTUS_LeerProyectoCtusConcepto" ReturnType="Collection(DNP.ServiciosNegocio.Persistencia.ModeloSGR.uspGetSGR_CTUS_LeerProyectoCtusConcepto_Result)">
+          <Parameter Name="ProyectoCtusId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetSGR_CTUS_LeerProyectoCtusUsuarioEncargado" ReturnType="Collection(DNP.ServiciosNegocio.Persistencia.ModeloSGR.uspGetSGR_CTUS_LeerProyectoCtusUsuarioEncargado_Result)">
+            <Parameter Name="ProyectoCtusId" Mode="In" Type="Int32" />
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostSGR_CTUS_GuardarResultadoConceptoCtus">
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetConceptosEmitidos_JSON" ReturnType="Collection(String)">
+            <Parameter Name="BPIN" Mode="In" Type="String" />
+            <Parameter Name="TipoConcepto" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetObtenerRolDirectorProyectoCtus" ReturnType="Collection(DNP.ServiciosNegocio.Persistencia.ModeloSGR.uspGetObtenerRolDirectorProyectoCtus_Result)">
+            <Parameter Name="ProyectoId" Mode="In" Type="Int32" />
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetObtenerProyectoViabilidadInvolucrados" ReturnType="Collection(DNP.ServiciosNegocio.Persistencia.ModeloSGR.uspGetObtenerProyectoViabilidadInvolucrados_Result)">
+            <Parameter Name="ProyectoId" Mode="In" Type="Int32" />
+            <Parameter Name="TipoConceptoViabilidadId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostAutorizacionAccionesPorInstanciaSubFlujoOCADPaz" ReturnType="Collection(Boolean)">
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="RolId" Mode="In" Type="Guid" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetSGR_ValidarAsignacionTecnicoOcadPaz" ReturnType="Collection(String)">
+            <Parameter Name="instanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="accionId" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="UspValidacionOCADPazSgr" ReturnType="Collection(DNP.ServiciosNegocio.Persistencia.ModeloSGR.UspValidacionOCADPazSgr_Result)">
+            <Parameter Name="ProyectoId" Mode="In" Type="String" />
+            <Parameter Name="NivelId" Mode="In" Type="Guid" />
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="FlujoId" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetObtenerProyectosVerificacionOcadPazSgr" ReturnType="Collection(DNP.ServiciosNegocio.Persistencia.ModeloSGR.uspGetObtenerProyectosVerificacionOcadPazSgr_Result)">
+            <Parameter Name="IdTipoObjetoNegocio" Mode="In" Type="Guid" />
+            <Parameter Name="IdUsuarioDNP" Mode="In" Type="String" />
+            <Parameter Name="listRol" Mode="In" Type="String" />
+            <Parameter Name="listNivel" Mode="In" Type="String" />
+            <Parameter Name="listSubPasos" Mode="In" Type="String" />
+            <Parameter Name="validarActual" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetObtenerUsuariosVerificacionOcadPazSgr" ReturnType="Collection(DNP.ServiciosNegocio.Persistencia.ModeloSGR.uspGetObtenerUsuariosVerificacionOcadPazSgr_Result)">
+            <Parameter Name="RolId" Mode="In" Type="Guid" />
+            <Parameter Name="EntidadId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostSGR_OCADPaz_GuardarAsignacionUsuarioEncargado">
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetExisteInstanciaCTUSNoFinalizada" ReturnType="Collection(Int32)">
+          <Parameter Name="ProyectoId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostSGR_Viabilidad_GuardarAsignacionUsuarioEncargado">
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetSGR_Viabilidad_LeerProyectoUsuarioEncargado" ReturnType="Collection(String)">
+            <Parameter Name="ProyectoId" Mode="In" Type="Int32" />
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetSGR_Proyectos_LeerEntidadesAdscritas" ReturnType="Collection(String)">
+            <Parameter Name="proyectId" Mode="In" Type="Int32" />
+            <Parameter Name="tipoEntidad" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostSGR_Proyectos_ActualizarEntidadAdscrita">
+            <Parameter Name="proyectId" Mode="In" Type="Int32" />
+            <Parameter Name="entityId" Mode="In" Type="Int32" />
+            <Parameter Name="user" Mode="In" Type="String" />
+            <Parameter Name="delegado" Mode="In" Type="Boolean" />
+            <Parameter Name="result" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetSGR_Proyectos_ValidarEntidadDelegada" ReturnType="Collection(String)">
+            <Parameter Name="proyectId" Mode="In" Type="Int32" />
+            <Parameter Name="tipo" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetValidarInstanciaCTUSNoFinalizada_JSON" ReturnType="Collection(String)">
+          <Parameter Name="ProyectoId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetDatosAdicionalesCTEI_JSON" ReturnType="Collection(String)">
+            <Parameter Name="ProyectoId" Mode="In" Type="Int32" />
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostDatosAdicionalesCTEI_JSON">
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UspObtenerInformacionNotificacionInvolucrados" ReturnType="Collection(DNP.ServiciosNegocio.Persistencia.ModeloSGR.UspObtenerInformacionNotificacionInvolucrados_Result)">
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="UsuarioFirma" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UspObtenerUsuariosNotificacionViabilidad" ReturnType="Collection(DNP.ServiciosNegocio.Persistencia.ModeloSGR.UspObtenerUsuariosNotificacionViabilidad_Result)">
+          <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetSGR_Transversal_LeerListaParametros" ReturnType="Collection(String)" />
+          <FunctionImport Name="uspPostRegistrarAvalUso_JSON">
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetAvalUsoSgr_JSON" ReturnType="Collection(String)">
+            <Parameter Name="ProyectoId" Mode="In" Type="Int32" />
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostSGR_Proyectos_ActualizarEntidadAdscritaCTUS">
+            <Parameter Name="proyectId" Mode="In" Type="Int32" />
+            <Parameter Name="entityId" Mode="In" Type="Int32" />
+            <Parameter Name="tipo" Mode="In" Type="String" />
+            <Parameter Name="user" Mode="In" Type="String" />
+            <Parameter Name="result" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostSGR_CTUS_GuardarAsignacionUsuarioEncargado">
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostEliminarFirmaUsuarioViabilidadSgp">
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetSGR_ListaTipoDocumentosSoportePorRol" ReturnType="Collection(DNP.ServiciosNegocio.Persistencia.ModeloSGR.uspGetSGR_ListaTipoDocumentosSoportePorRol_Result)">
+            <Parameter Name="tipoTramiteId" Mode="In" Type="Int32" />
+            <Parameter Name="rol" Mode="In" Type="String" />
+            <Parameter Name="nivelId" Mode="In" Type="Guid" />
+            <Parameter Name="instanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="accionId" Mode="In" Type="Guid" />
+            <Parameter Name="tramiteId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetCumplimentoFlujoSGR" ReturnType="Collection(Boolean)">
+          <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostAplicarFlujoSgr">
+            <Parameter Name="ObjetoNegocioId" Mode="In" Type="String" />
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetSGR_Proyectos_MostrarEstadosPriorizacion" ReturnType="Collection(String)">
+          <Parameter Name="ProyectoId" Mode="In" Type="Int32" />
+          </FunctionImport>
+		    <FunctionImport Name="uspGetSGR_Proyectos_MostrarEstadosAprobacion" ReturnType="Collection(String)">
+          <Parameter Name="ProyectoId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostDevolverFlujoSgr">
+            <Parameter Name="ObjetoNegocioId" Mode="In" Type="String" />
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetConfiguracionReportesPorInstancia" ReturnType="Collection(DNP.ServiciosNegocio.Persistencia.ModeloSGR.uspGetConfiguracionReportesPorInstancia_Result)">
+          <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetSGR_Encabezado_LeerEncabezado" ReturnType="Collection(DNP.ServiciosNegocio.Persistencia.ModeloSGR.uspGetSGR_Encabezado_LeerEncabezado_Result)">
+            <Parameter Name="idInstancia" Mode="In" Type="Guid" />
+            <Parameter Name="idFlujo" Mode="In" Type="Guid" />
+            <Parameter Name="idNivel" Mode="In" Type="Guid" />
+            <Parameter Name="idProyecto" Mode="In" Type="String" />
+            <Parameter Name="tramite" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetAprobacionCredito" ReturnType="Collection(String)">
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="EntityTypeCatalogOptionId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostAprobacionCredito">
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetResumenEstadoAprobacionCredito" ReturnType="Collection(String)">
+          <Parameter Name="ProyectoId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetSGR_Procesos_ConsultarEjecutorbyTipo" ReturnType="Collection(DNP.ServiciosNegocio.Persistencia.ModeloSGR.uspGetSGR_Procesos_ConsultarEjecutorbyTipo_Result)">
+            <Parameter Name="proyectoId" Mode="In" Type="Int32" />
+            <Parameter Name="tipoEjecutorId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetPuntajeProyecto" ReturnType="Collection(String)">
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="EntityTypeCatalogOptionId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostPuntajeProyecto">
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetProyectoLeerValorAprobacionSGR" ReturnType="Collection(String)">
+          <Parameter Name="proyectoId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UspDeleteOperacionesCredito">
+            <Parameter Name="ProyectoId" Mode="In" Type="Int32" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetSGR_Proyectos_MostrarEstadosAprobacionCreditoParcial" ReturnType="Collection(String)">
+          <Parameter Name="ProyectoId" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="Parametros">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Parametro" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Valor" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="CreadoPor" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <Property Name="SStorage" Type="Boolean" />
+        </EntityType>
+        <ComplexType Name="uspGetEjecutoresAsociados_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="Int32" Name="EjecutorId" Nullable="true" />
+          <Property Type="String" Name="NitEjecutor" Nullable="false" MaxLength="23" />
+          <Property Type="String" Name="nombreEntidad" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="TipoEntidad" Nullable="false" MaxLength="500" />
+        </ComplexType>
+        <ComplexType Name="uspGetTipoEjecutor_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Nit" Nullable="false" MaxLength="23" />
+          <Property Type="String" Name="TipoEntidad" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="Entidad" Nullable="false" MaxLength="500" />
+        </ComplexType>
+        <ComplexType Name="uspGetObtenerPreguntasEspecificasComponenteCustom_Result">
+          <Property Type="Int32" Name="IdPregunta" Nullable="true" />
+          <Property Type="String" Name="CodigoBPIN" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="Cuestionario" Nullable="true" />
+          <Property Type="Int32" Name="CR" Nullable="true" />
+          <Property Type="Guid" Name="Fase" Nullable="true" />
+          <Property Type="Int32" Name="EntidadDestino" Nullable="true" />
+          <Property Type="String" Name="ObservacionCuestionario" Nullable="true" MaxLength="250" />
+          <Property Type="Boolean" Name="Definitivo" Nullable="true" />
+          <Property Type="Boolean" Name="CumpleCuestionario" Nullable="true" />
+          <Property Type="DateTime" Name="Fecha" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Usuario" Nullable="true" MaxLength="250" />
+          <Property Type="Boolean" Name="AgregarRequisitos" Nullable="true" />
+          <Property Type="String" Name="Tipo" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="Subtipo" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Tematica" Nullable="false" MaxLength="500" />
+          <Property Type="Int32" Name="OrdenTematica" Nullable="false" />
+          <Property Type="String" Name="Pregunta" Nullable="true" />
+          <Property Type="Int32" Name="OrdenPregunta" Nullable="true" />
+          <Property Type="String" Name="Explicacion" Nullable="true" />
+          <Property Type="String" Name="TipoPregunta" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="OpcionesRespuesta" Nullable="true" />
+          <Property Type="String" Name="AyudaOpcionesRespuesta" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="Respuesta" Nullable="true" />
+          <Property Type="String" Name="ObligaObservacion" Nullable="true" />
+          <Property Type="String" Name="ObservacionPregunta" Nullable="true" />
+          <Property Type="String" Name="AyudaObservacion" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="Cabecera" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="Nota" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="CumpleEn" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="IdPreguntaPadre" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="HabilitaEn" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="Sector" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="Acuerdo" Nullable="false" MaxLength="250" />
+          <Property Type="String" Name="Clasificacion" Nullable="false" MaxLength="250" />
+        </ComplexType>
+        <ComplexType Name="uspGetObtenerPreguntasGeneralesComponenteCustom_Result">
+          <Property Type="Int32" Name="IdPregunta" Nullable="true" />
+          <Property Type="String" Name="CodigoBPIN" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="Cuestionario" Nullable="true" />
+          <Property Type="Int32" Name="CR" Nullable="true" />
+          <Property Type="Guid" Name="Fase" Nullable="true" />
+          <Property Type="Int32" Name="EntidadDestino" Nullable="true" />
+          <Property Type="String" Name="ObservacionCuestionario" Nullable="true" MaxLength="500" />
+          <Property Type="Boolean" Name="Definitivo" Nullable="true" />
+          <Property Type="Boolean" Name="CumpleCuestionario" Nullable="true" />
+          <Property Type="DateTime" Name="Fecha" Nullable="false" Precision="23" />
+          <Property Type="String" Name="Usuario" Nullable="true" MaxLength="500" />
+          <Property Type="Boolean" Name="AgregarRequisitos" Nullable="true" />
+          <Property Type="String" Name="Tipo" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="Subtipo" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="Tematica" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="OrdenTematica" Nullable="true" />
+          <Property Type="String" Name="Pregunta" Nullable="true" />
+          <Property Type="Int32" Name="OrdenPregunta" Nullable="true" />
+          <Property Type="String" Name="Explicacion" Nullable="true" />
+          <Property Type="String" Name="TipoPregunta" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="OpcionesRespuesta" Nullable="true" />
+          <Property Type="String" Name="AyudaOpcionesRespuesta" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="Respuesta" Nullable="true" />
+          <Property Type="String" Name="ObligaObservacion" Nullable="true" />
+          <Property Type="String" Name="ObservacionPregunta" Nullable="true" />
+          <Property Type="String" Name="AyudaObservacion" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="Cabecera" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="Nota" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="CumpleEn" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="IdPreguntaPadre" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="HabilitaEn" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="Sector" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="Acuerdo" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="Clasificacion" Nullable="false" MaxLength="500" />
+        </ComplexType>
+        <ComplexType Name="uspGetSGR_Viabilidad_LeerInformacionGeneral_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="CodigoBPIN" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="NumeroRevision" Nullable="true" />
+          <Property Type="String" Name="Categorias" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="Fase" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="RegionSgrId" Nullable="true" />
+          <Property Type="String" Name="EntidadPresenta" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="NombreEjecutor" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="DepartamentoEjecuta" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="MunicipioEjecuta" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="SectorInversion" Nullable="true" />
+          <Property Type="Int32" Name="SectorApoyo1Id" Nullable="true" />
+          <Property Type="Int32" Name="SectorApoyo2Id" Nullable="true" />
+          <Property Type="String" Name="InstanciaAprobacion" Nullable="true" />
+          <Property Type="Decimal" Name="TiempoEjecucion" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="ProyectoTipo" Nullable="true" MaxLength="10" />
+          <Property Type="Decimal" Name="ValorEstructuracion" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="ValorEmision" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="ValorInterventoria" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="ValorApoyoSupervision" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="ObjetivoGeneral" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="Alcance" Nullable="true" />
+          <Property Type="Int32" Name="PoblacionAfectada" Nullable="true" />
+          <Property Type="Int32" Name="PoblacionObjetivo" Nullable="true" />
+          <Property Type="Boolean" Name="PresentadoComunidadIndigena" Nullable="true" />
+          <Property Type="Boolean" Name="PresentadoComunidadNarp" Nullable="true" />
+          <Property Type="Boolean" Name="PresentadoComunidadRrom" Nullable="true" />
+          <Property Type="Boolean" Name="LocalizacionComunidadIndigena" Nullable="true" />
+          <Property Type="Boolean" Name="LocalizacionComunidadNarp" Nullable="true" />
+          <Property Type="Boolean" Name="LocalizacionComunidadRrom" Nullable="true" />
+          <Property Type="Int32" Name="TipoConceptoViabilidadId" Nullable="true" />
+          <Property Type="String" Name="AlcanceEspacial" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="Poblacion" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="NecesidadesSocioCulturales" Nullable="true" MaxLength="10" />
+		  <Property Type="String" Name="NormasLineamientosAdicionales" Nullable="true" />
+          <Property Type="Int32" Name="ProyectoViabilidadId" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="uspGetObtenerPreguntasEspecificasComponenteCustomSGR_Result">
+          <Property Type="Int32" Name="IdPregunta" Nullable="true" />
+          <Property Type="String" Name="CodigoBPIN" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="Cuestionario" Nullable="true" />
+          <Property Type="Int32" Name="CR" Nullable="true" />
+          <Property Type="Guid" Name="Fase" Nullable="true" />
+          <Property Type="Int32" Name="EntidadDestino" Nullable="true" />
+          <Property Type="String" Name="ObservacionCuestionario" Nullable="true" MaxLength="500" />
+          <Property Type="Boolean" Name="Definitivo" Nullable="true" />
+          <Property Type="Boolean" Name="CumpleCuestionario" Nullable="true" />
+          <Property Type="DateTime" Name="Fecha" Nullable="false" Precision="23" />
+          <Property Type="String" Name="Usuario" Nullable="true" MaxLength="500" />
+          <Property Type="Boolean" Name="AgregarRequisitos" Nullable="true" />
+          <Property Type="String" Name="Tipo" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="Subtipo" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="Tematica" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="OrdenTematica" Nullable="true" />
+          <Property Type="String" Name="Pregunta" Nullable="true" />
+          <Property Type="Int32" Name="OrdenPregunta" Nullable="true" />
+          <Property Type="String" Name="Explicacion" Nullable="true" />
+          <Property Type="String" Name="TipoPregunta" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="OpcionesRespuesta" Nullable="true" />
+          <Property Type="String" Name="AyudaOpcionesRespuesta" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="Respuesta" Nullable="true" />
+          <Property Type="String" Name="ObligaObservacion" Nullable="true" />
+          <Property Type="String" Name="ObservacionPregunta" Nullable="true" />
+          <Property Type="String" Name="AyudaObservacion" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="Cabecera" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="Nota" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="CumpleEn" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="IdPreguntaPadre" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="HabilitaEn" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="Sector" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="Acuerdo" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="Clasificacion" Nullable="false" MaxLength="500" />
+        </ComplexType>
+        <ComplexType Name="uspGetObtenerPreguntasGeneralesComponenteCustomSGR_Result">
+          <Property Type="Int32" Name="IdPregunta" Nullable="true" />
+          <Property Type="String" Name="CodigoBPIN" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="Cuestionario" Nullable="true" />
+          <Property Type="Int32" Name="CR" Nullable="true" />
+          <Property Type="Guid" Name="Fase" Nullable="true" />
+          <Property Type="Int32" Name="EntidadDestino" Nullable="true" />
+          <Property Type="String" Name="ObservacionCuestionario" Nullable="true" MaxLength="500" />
+          <Property Type="Boolean" Name="Definitivo" Nullable="true" />
+          <Property Type="Boolean" Name="CumpleCuestionario" Nullable="true" />
+          <Property Type="DateTime" Name="Fecha" Nullable="false" Precision="23" />
+          <Property Type="String" Name="Usuario" Nullable="true" MaxLength="500" />
+          <Property Type="Boolean" Name="AgregarRequisitos" Nullable="true" />
+          <Property Type="String" Name="Tipo" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="Subtipo" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="Tematica" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="OrdenTematica" Nullable="true" />
+          <Property Type="String" Name="Pregunta" Nullable="true" />
+          <Property Type="Int32" Name="OrdenPregunta" Nullable="true" />
+          <Property Type="String" Name="Explicacion" Nullable="true" />
+          <Property Type="String" Name="TipoPregunta" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="OpcionesRespuesta" Nullable="true" />
+          <Property Type="String" Name="AyudaOpcionesRespuesta" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="Respuesta" Nullable="true" />
+          <Property Type="String" Name="ObligaObservacion" Nullable="true" />
+          <Property Type="String" Name="ObservacionPregunta" Nullable="true" />
+          <Property Type="String" Name="AyudaObservacion" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="Cabecera" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="Nota" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="CumpleEn" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="IdPreguntaPadre" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="HabilitaEn" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="Sector" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="Acuerdo" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="Clasificacion" Nullable="false" MaxLength="500" />
+        </ComplexType>
+        <ComplexType Name="uspGetSGR_TipoDocumentosSoportePorRol_Result">
+          <Property Type="Int32" Name="Id" Nullable="true" />
+          <Property Type="Int32" Name="TipoDocumentoId" Nullable="true" />
+		  <Property Type="String" Name="TipoDocumentoCodigo" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TipoDocumento" Nullable="true" MaxLength="200" />
+          <Property Type="Boolean" Name="Obligatorio" Nullable="true" />
+          <Property Type="String" Name="CampoValidacion" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="FechaValidacion" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="uspGetObtenerProyectoViabilidadInvolucradosFirma_Result">
+          <Property Type="String" Name="IdUsuarioDNP" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Correo" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Area" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Accion" Nullable="false" MaxLength="100" />
+          <Property Type="Boolean" Name="Firmado" Nullable="false" />
+          <Property Type="DateTime" Name="FechaFirma" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="uspGetEntidadesSolicitarCtus_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="NombreEntidad" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="CodigoEntidad" Nullable="true" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="uspGetObtenerProyectoCtus_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="Int32" Name="ProyectoId" Nullable="true" />
+          <Property Type="Guid" Name="Instancia" Nullable="true" />
+          <Property Type="Int32" Name="TipoCtus" Nullable="false" />
+          <Property Type="Boolean" Name="SolicitaCtus" Nullable="true" />
+          <Property Type="String" Name="UsuarioSolicita" Nullable="true" MaxLength="100" />
+          <Property Type="Guid" Name="RolSolicita" Nullable="true" />
+          <Property Type="Int32" Name="EntidadConcepto" Nullable="true" />
+          <Property Type="Int32" Name="EntidadDestino" Nullable="true" />
+          <Property Type="Boolean" Name="Concepto" Nullable="true" />
+          <Property Type="DateTime" Name="FechaConcepto" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="Devolvio" Nullable="true" />
+          <Property Type="DateTime" Name="FechaDevolucion" Nullable="true" Precision="23" />
+          <Property Type="Guid" Name="usuarioDevolucion" Nullable="true" />
+          <Property Type="Guid" Name="RolDevolucion" Nullable="true" />
+          <Property Type="String" Name="CreadoPor" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ModificadoPor" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="VigenciaDesde" Nullable="true" />
+          <Property Type="DateTime" Name="VigenciaHasta" Nullable="true" />
+          <Property Type="Boolean" Name="EsProyectoTipo" Nullable="true" />
+          <Property Type="Boolean" Name="TieneCTUSVigente" Nullable="true" />
+          <Property Type="DateTime" Name="FechaCTUSVigente" Nullable="false" Precision="23" />
+          <Property Type="Guid" Name="RolDirectorId" Nullable="true" />
+          <Property Type="Guid" Name="RolTecnicoId" Nullable="true" />
+          <Property Type="Guid" Name="RolEmiteId" Nullable="true" />
+          <Property Type="String" Name="NombreEntidadDestino" Nullable="true" MaxLength="250" />
+        </ComplexType>
+        <ComplexType Name="uspGetSGR_CTUS_LeerProyectoCtusConcepto_Result">
+          <Property Type="Int32" Name="ProyectoCtusId" Nullable="false" />
+          <Property Type="String" Name="AspectosTecnicos" Nullable="false" />
+          <Property Type="String" Name="AspectosFinancieros" Nullable="false" />
+          <Property Type="String" Name="AspectosJuridicos" Nullable="false" />
+          <Property Type="String" Name="AspectosSociales" Nullable="false" />
+          <Property Type="String" Name="AspectosAmbientales" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="uspGetSGR_CTUS_LeerProyectoCtusUsuarioEncargado_Result">
+          <Property Type="String" Name="UsuarioEncargado" Nullable="false" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="uspGetObtenerRolDirectorProyectoCtus_Result">
+          <Property Type="Int32" Name="id" Nullable="true" />
+          <Property Type="Guid" Name="RolDirectorId" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="uspGetObtenerProyectoViabilidadInvolucrados_Result">
+          <Property Type="Int32" Name="Id" Nullable="true" />
+          <Property Type="Int32" Name="TipoConceptoViabilidadId" Nullable="false" />
+          <Property Type="String" Name="TipoConceptoViabilidad" Nullable="false" MaxLength="500" />
+          <Property Type="Int32" Name="TipoRolConceptoId" Nullable="false" />
+          <Property Type="String" Name="TipoRolConcepto" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="8000" />
+          <Property Type="String" Name="Area" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="ProyectoViabilidadId" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="UspValidacionOCADPazSgr_Result">
+          <Property Type="String" Name="Seccion" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Capitulo" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Error" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="Detalle" Nullable="true" MaxLength="500" />
+        </ComplexType>
+        <ComplexType Name="uspGetObtenerProyectosVerificacionOcadPazSgr_Result">
+          <Property Type="String" Name="IdObjetoNegocio" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ProyectoNombre" Nullable="false" MaxLength="1500" />
+          <Property Type="String" Name="CodigoBpin" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="EntidadNombre" Nullable="false" MaxLength="250" />
+          <Property Type="Int32" Name="EntidadId" Nullable="false" />
+          <Property Type="Guid" Name="IdInstancia" Nullable="true" />
+          <Property Type="Guid" Name="IdAccion" Nullable="true" />
+          <Property Type="String" Name="NombreAccion" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="TipoEntidad" Nullable="false" MaxLength="11" />
+          <Property Type="Int32" Name="SectorId" Nullable="false" />
+          <Property Type="String" Name="Estado" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="TipoEntidadId" Nullable="true" />
+          <Property Type="String" Name="DescripcionCR" Nullable="true" MaxLength="200" />
+          <Property Type="DateTime" Name="FechaCreacion" Nullable="true" Precision="23" />
+          <Property Type="String" Name="FechaCreacionStr" Nullable="true" MaxLength="120" />
+          <Property Type="Int32" Name="ProyectoId" Nullable="false" />
+          <Property Type="Int32" Name="EstadoId" Nullable="true" />
+          <Property Type="String" Name="SectorNombre" Nullable="false" MaxLength="200" />
+          <Property Type="Int32" Name="HorizonteInicio" Nullable="true" />
+          <Property Type="Int32" Name="HorizonteFin" Nullable="true" />
+          <Property Type="String" Name="NombreFlujo" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="IdEstadoInstancia" Nullable="true" />
+          <Property Type="String" Name="EstadoInstancia" Nullable="true" MaxLength="10" />
+          <Property Type="Guid" Name="FlujoId" Nullable="true" />
+          <Property Type="String" Name="CodigoProceso" Nullable="true" MaxLength="500" />
+          <Property Type="Guid" Name="IdNivel" Nullable="true" />
+          <Property Type="DateTime" Name="FechaPaso" Nullable="true" Precision="23" />
+          <Property Type="String" Name="FechaPasoStr" Nullable="true" MaxLength="120" />
+          <Property Type="String" Name="CodigoTramite" Nullable="true" MaxLength="500" />
+          <Property Type="Guid" Name="InstanciaPadreId" Nullable="true" />
+          <Property Type="Int32" Name="CRTypeId" Nullable="true" />
+          <Property Type="Int32" Name="ResourceGroupId" Nullable="true" />
+          <Property Type="Boolean" Name="AplicaAccion" Nullable="true" />
+          <Property Type="Int32" Name="UsuarioEncargadoOcadPazId" Nullable="true" />
+          <Property Type="String" Name="UsuarioEncargadoAsignadoOcadPaz" Nullable="true" MaxLength="100" />
+          <Property Type="Guid" Name="IdRol" Nullable="true" />
+          <Property Type="String" Name="AsignadoA" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="CorreoAsignadoA" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Cumple" Nullable="true" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="uspGetObtenerUsuariosVerificacionOcadPazSgr_Result">
+          <Property Type="String" Name="IdUsuarioDNP" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="NombreUsuario" Nullable="true" MaxLength="8000" />
+          <Property Type="String" Name="Correo" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="CantidadAsignaciones" Nullable="false" MaxLength="25" />
+        </ComplexType>
+        <ComplexType Name="UspObtenerInformacionNotificacionInvolucrados_Result">
+          <Property Type="String" Name="Usuario" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Notificacion" Nullable="false" MaxLength="1500" />
+        </ComplexType>
+        <ComplexType Name="UspObtenerUsuariosNotificacionViabilidad_Result">
+          <Property Type="String" Name="Usuario" Nullable="true" />
+          <Property Type="String" Name="Notificacion" Nullable="true" MaxLength="4000" />
+        </ComplexType>
+        <ComplexType Name="uspGetSGR_ListaTipoDocumentosSoportePorRol_Result">
+          <Property Type="Int32" Name="Id" Nullable="true" />
+          <Property Type="Int32" Name="TipoDocumentoId" Nullable="true" />
+          <Property Type="String" Name="TipoDocumentoCodigo" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TipoDocumento" Nullable="true" MaxLength="200" />
+          <Property Type="Boolean" Name="Obligatorio" Nullable="true" />
+          <Property Type="Int32" Name="VisualizacionId" Nullable="true" />
+          <Property Type="String" Name="CampoValidacion" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="FechaValidacion" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="uspGetConfiguracionReportesPorInstancia_Result">
+          <Property Type="String" Name="NombreRdl" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="TipoDocumentoId" Nullable="true" />
+          <Property Type="String" Name="NombreTipoDocumento" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Coleccion" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="NombreDocumento" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="NombrePaso" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="uspGetSGR_Encabezado_LeerEncabezado_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="CodigoBPIN" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="EntidadPresenta" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="EntidadDestino" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="Estado" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="Fase" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="VigenciaInicial" Nullable="true" />
+          <Property Type="Int32" Name="VigenciaFinal" Nullable="true" />
+          <Property Type="Decimal" Name="Valor" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="Int32" Name="AnioEstudio" Nullable="true" />
+          <Property Type="String" Name="Sector" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="TipoEntidadPresenta" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="ProyectoTipo" Nullable="true" MaxLength="1500" />
+          <Property Type="String" Name="ObjetivoGeneral" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="PoblacionObjetivo" Nullable="true" />
+          <Property Type="String" Name="Alcance" Nullable="true" />
+          <Property Type="Decimal" Name="ValorTotalSGR" Nullable="true" Precision="18" Scale="4" />
+          <Property Type="Int32" Name="AjustesRealizados" Nullable="true" />
+          <Property Type="Int32" Name="PuntajeSEP" Nullable="true" />
+          <Property Type="Decimal" Name="ValorTotalInversion" Nullable="true" Precision="18" Scale="4" />
+          <Property Type="Decimal" Name="ValorTotalPreInversion" Nullable="true" Precision="18" Scale="4" />
+          <Property Type="Decimal" Name="ValorTotalOperacion" Nullable="true" Precision="18" Scale="4" />
+          <Property Type="DateTime" Name="FechaPresentacion" Nullable="true" Precision="23" />
+          <Property Type="String" Name="ProgramaPresupuestal" Nullable="true" />
+          <Property Type="String" Name="SubProgramaPresupuestal" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="TipoTramiteId" Nullable="true" />
+          <Property Type="Int32" Name="EntidadAdscritaId" Nullable="true" />
+          <Property Type="Int32" Name="TipoProyectoCTUSId" Nullable="true" />
+          <Property Type="String" Name="CofinanciadoPGN" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="DelegoViabilidad" Nullable="true" MaxLength="30" />
+          <Property Type="Guid" Name="IdInstanciaViabiliad" Nullable="true" />
+          <Property Type="Boolean" Name="ProyectoTieneOPC" Nullable="true" />
+          <Property Type="Boolean" Name="TieneOPC" Nullable="true" />
+          <Property Type="Decimal" Name="PorcentajeCredito" Nullable="true" />
+          <Property Type="Boolean" Name="ProyectoTieneInstanciasNoOPC" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="uspGetResumenEstadoAprobacionCredito_Result">
+          <Property Type="String" Name="Etapa" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="TipoEntidad" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="Entidad" Nullable="false" MaxLength="250" />
+          <Property Type="Boolean" Name="EstadoAprobacion" Nullable="true" />
+          <Property Type="Decimal" Name="ValorSolicitado" Nullable="false" Precision="24" Scale="2" />
+          <Property Type="Decimal" Name="ValorCredito" Nullable="true" Precision="24" Scale="2" />
+          <Property Type="Decimal" Name="ValorFinanciar" Nullable="false" Precision="24" Scale="2" />
+          <Property Type="Int32" Name="ProyectoId" Nullable="false" />
+          <Property Type="String" Name="BienioSolicitado" Nullable="false" MaxLength="500" />
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="BienioCredito" Nullable="false" MaxLength="500" />
+        </ComplexType>
+        <ComplexType Name="uspGetSGR_Procesos_ConsultarEjecutorbyTipo_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="Int32" Name="EjecutorId" Nullable="true" />
+          <Property Type="String" Name="NitEjecutor" Nullable="false" MaxLength="23" />
+          <Property Type="String" Name="nombreEntidad" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="TipoEntidad" Nullable="false" MaxLength="500" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DNPServiciosNegocioPersistenciaModeloSGRStoreContainer" CdmEntityContainer="MGAWebContextoSGR" >
+          <EntitySetMapping Name="Parametros">
+            <EntityTypeMapping TypeName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Parametros">
+              <MappingFragment StoreEntitySet="Parametros">
+                <ScalarProperty Name="SStorage" ColumnName="SStorage" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="CreadoPor" ColumnName="CreadoPor" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Valor" ColumnName="Valor" />
+                <ScalarProperty Name="Parametro" ColumnName="Parametro" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="uspGetSGR_Transversal_LeerParametro" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspGetSGR_Transversal_LeerParametro" />
+          <FunctionImportMapping FunctionImportName="uspGetSGR_Acuerdo_LeerProyecto" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspGetSGR_Acuerdo_LeerProyecto" />
+          <FunctionImportMapping FunctionImportName="uspPostSGR_Acuerdo_GuardarProyecto" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspPostSGR_Acuerdo_GuardarProyecto" />
+          <FunctionImportMapping FunctionImportName="uspGetSGR_Proyectos_LeerListas" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspGetSGR_Proyectos_LeerListas" />
+          <FunctionImportMapping FunctionImportName="uspGetEjecutoresAsociados" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspGetEjecutoresAsociados">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.uspGetEjecutoresAsociados_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="EjecutorId" ColumnName="EjecutorId" />
+                <ScalarProperty Name="NitEjecutor" ColumnName="NitEjecutor" />
+                <ScalarProperty Name="nombreEntidad" ColumnName="nombreEntidad" />
+                <ScalarProperty Name="TipoEntidad" ColumnName="TipoEntidad" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="uspGetTipoEjecutor" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspGetTipoEjecutor">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.uspGetTipoEjecutor_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nit" ColumnName="Nit" />
+                <ScalarProperty Name="TipoEntidad" ColumnName="TipoEntidad" />
+                <ScalarProperty Name="Entidad" ColumnName="Entidad" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="uspPostEjecutoresAsociados" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspPostEjecutoresAsociados" />
+          <FunctionImportMapping FunctionImportName="uspPostEliminarEjecutorAsociado" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspPostEliminarEjecutorAsociado" />
+          <FunctionImportMapping FunctionImportName="uspGetCrucePoliticas_JSONSgr" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspGetCrucePoliticas_JSONSgr" />
+          <FunctionImportMapping FunctionImportName="uspGetPoliticasTransversalesFuentes_JSONSgr" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspGetPoliticasTransversalesFuentes_JSONSgr" />
+          <FunctionImportMapping FunctionImportName="uspGetPoliticasTransversalesCategorias_JSONSgr" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspGetPoliticasTransversalesCategorias_JSONSgr" />
+          <FunctionImportMapping FunctionImportName="uspGetPoliticasTransversalesFuentesIndicadores_JSONSgr" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspGetPoliticasTransversalesFuentesIndicadores_JSONSgr" />
+          <FunctionImportMapping FunctionImportName="UspGetDesagregarRegionalizacion_JSONSgr" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.UspGetDesagregarRegionalizacion_JSONSgr" />
+          <FunctionImportMapping FunctionImportName="uspGetCrucePoliticasAjustes_JSONSgr" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspGetCrucePoliticasAjustes_JSONSgr" />
+          <FunctionImportMapping FunctionImportName="uspGetPoliticasCategoriasIndicadores_JSONSgr" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspGetPoliticasCategoriasIndicadores_JSONSgr" />
+          <FunctionImportMapping FunctionImportName="uspGetPoliticasTransversales_Ajustes_JSONSgr" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspGetPoliticasTransversales_Ajustes_JSONSgr" />
+          <FunctionImportMapping FunctionImportName="uspGetPoliticasTransversalesCategorias_Ajustes_JSONSgr" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspGetPoliticasTransversalesCategorias_Ajustes_JSONSgr" />
+          <FunctionImportMapping FunctionImportName="uspGetPoliticasTransversalesCategorias_Ajustes_Resumen_JSONSgr" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspGetPoliticasTransversalesCategorias_Ajustes_Resumen_JSONSgr" />
+          <FunctionImportMapping FunctionImportName="uspPostAgregarPoliticas_ajustesSgr" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspPostAgregarPoliticas_ajustesSgr" />
+          <FunctionImportMapping FunctionImportName="uspPostCategoriasIndicadoresSgr" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspPostCategoriasIndicadoresSgr" />
+          <FunctionImportMapping FunctionImportName="uspPostEliminarCategoriasProyectoSgr" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspPostEliminarCategoriasProyectoSgr" />
+          <FunctionImportMapping FunctionImportName="uspPostPoliticasTransversalesProyectoEliminarSgr" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspPostPoliticasTransversalesProyectoEliminarSgr" />
+          <FunctionImportMapping FunctionImportName="uspGetObtenerPreguntasEspecificasComponenteCustom" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspGetObtenerPreguntasEspecificasComponenteCustom">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.uspGetObtenerPreguntasEspecificasComponenteCustom_Result">
+                <ScalarProperty Name="IdPregunta" ColumnName="IdPregunta" />
+                <ScalarProperty Name="CodigoBPIN" ColumnName="CodigoBPIN" />
+                <ScalarProperty Name="Cuestionario" ColumnName="Cuestionario" />
+                <ScalarProperty Name="CR" ColumnName="CR" />
+                <ScalarProperty Name="Fase" ColumnName="Fase" />
+                <ScalarProperty Name="EntidadDestino" ColumnName="EntidadDestino" />
+                <ScalarProperty Name="ObservacionCuestionario" ColumnName="ObservacionCuestionario" />
+                <ScalarProperty Name="Definitivo" ColumnName="Definitivo" />
+                <ScalarProperty Name="CumpleCuestionario" ColumnName="CumpleCuestionario" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="AgregarRequisitos" ColumnName="AgregarRequisitos" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Subtipo" ColumnName="Subtipo" />
+                <ScalarProperty Name="Tematica" ColumnName="Tematica" />
+                <ScalarProperty Name="OrdenTematica" ColumnName="OrdenTematica" />
+                <ScalarProperty Name="Pregunta" ColumnName="Pregunta" />
+                <ScalarProperty Name="OrdenPregunta" ColumnName="OrdenPregunta" />
+                <ScalarProperty Name="Explicacion" ColumnName="Explicacion" />
+                <ScalarProperty Name="TipoPregunta" ColumnName="TipoPregunta" />
+                <ScalarProperty Name="OpcionesRespuesta" ColumnName="OpcionesRespuesta" />
+                <ScalarProperty Name="AyudaOpcionesRespuesta" ColumnName="AyudaOpcionesRespuesta" />
+                <ScalarProperty Name="Respuesta" ColumnName="Respuesta" />
+                <ScalarProperty Name="ObligaObservacion" ColumnName="ObligaObservacion" />
+                <ScalarProperty Name="ObservacionPregunta" ColumnName="ObservacionPregunta" />
+                <ScalarProperty Name="AyudaObservacion" ColumnName="AyudaObservacion" />
+                <ScalarProperty Name="Cabecera" ColumnName="Cabecera" />
+                <ScalarProperty Name="Nota" ColumnName="Nota" />
+                <ScalarProperty Name="CumpleEn" ColumnName="CumpleEn" />
+                <ScalarProperty Name="IdPreguntaPadre" ColumnName="IdPreguntaPadre" />
+                <ScalarProperty Name="HabilitaEn" ColumnName="HabilitaEn" />
+                <ScalarProperty Name="Sector" ColumnName="Sector" />
+                <ScalarProperty Name="Acuerdo" ColumnName="Acuerdo" />
+                <ScalarProperty Name="Clasificacion" ColumnName="Clasificacion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="uspGetObtenerPreguntasGeneralesComponenteCustom" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspGetObtenerPreguntasGeneralesComponenteCustom">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.uspGetObtenerPreguntasGeneralesComponenteCustom_Result">
+                <ScalarProperty Name="IdPregunta" ColumnName="IdPregunta" />
+                <ScalarProperty Name="CodigoBPIN" ColumnName="CodigoBPIN" />
+                <ScalarProperty Name="Cuestionario" ColumnName="Cuestionario" />
+                <ScalarProperty Name="CR" ColumnName="CR" />
+                <ScalarProperty Name="Fase" ColumnName="Fase" />
+                <ScalarProperty Name="EntidadDestino" ColumnName="EntidadDestino" />
+                <ScalarProperty Name="ObservacionCuestionario" ColumnName="ObservacionCuestionario" />
+                <ScalarProperty Name="Definitivo" ColumnName="Definitivo" />
+                <ScalarProperty Name="CumpleCuestionario" ColumnName="CumpleCuestionario" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="AgregarRequisitos" ColumnName="AgregarRequisitos" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Subtipo" ColumnName="Subtipo" />
+                <ScalarProperty Name="Tematica" ColumnName="Tematica" />
+                <ScalarProperty Name="OrdenTematica" ColumnName="OrdenTematica" />
+                <ScalarProperty Name="Pregunta" ColumnName="Pregunta" />
+                <ScalarProperty Name="OrdenPregunta" ColumnName="OrdenPregunta" />
+                <ScalarProperty Name="Explicacion" ColumnName="Explicacion" />
+                <ScalarProperty Name="TipoPregunta" ColumnName="TipoPregunta" />
+                <ScalarProperty Name="OpcionesRespuesta" ColumnName="OpcionesRespuesta" />
+                <ScalarProperty Name="AyudaOpcionesRespuesta" ColumnName="AyudaOpcionesRespuesta" />
+                <ScalarProperty Name="Respuesta" ColumnName="Respuesta" />
+                <ScalarProperty Name="ObligaObservacion" ColumnName="ObligaObservacion" />
+                <ScalarProperty Name="ObservacionPregunta" ColumnName="ObservacionPregunta" />
+                <ScalarProperty Name="AyudaObservacion" ColumnName="AyudaObservacion" />
+                <ScalarProperty Name="Cabecera" ColumnName="Cabecera" />
+                <ScalarProperty Name="Nota" ColumnName="Nota" />
+                <ScalarProperty Name="CumpleEn" ColumnName="CumpleEn" />
+                <ScalarProperty Name="IdPreguntaPadre" ColumnName="IdPreguntaPadre" />
+                <ScalarProperty Name="HabilitaEn" ColumnName="HabilitaEn" />
+                <ScalarProperty Name="Sector" ColumnName="Sector" />
+                <ScalarProperty Name="Acuerdo" ColumnName="Acuerdo" />
+                <ScalarProperty Name="Clasificacion" ColumnName="Clasificacion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="uspGetObtenerPreguntasEspecificasComponenteCustomSGR" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspGetObtenerPreguntasEspecificasComponenteCustomSGR">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.uspGetObtenerPreguntasEspecificasComponenteCustomSGR_Result">
+                <ScalarProperty Name="IdPregunta" ColumnName="IdPregunta" />
+                <ScalarProperty Name="CodigoBPIN" ColumnName="CodigoBPIN" />
+                <ScalarProperty Name="Cuestionario" ColumnName="Cuestionario" />
+                <ScalarProperty Name="CR" ColumnName="CR" />
+                <ScalarProperty Name="Fase" ColumnName="Fase" />
+                <ScalarProperty Name="EntidadDestino" ColumnName="EntidadDestino" />
+                <ScalarProperty Name="ObservacionCuestionario" ColumnName="ObservacionCuestionario" />
+                <ScalarProperty Name="Definitivo" ColumnName="Definitivo" />
+                <ScalarProperty Name="CumpleCuestionario" ColumnName="CumpleCuestionario" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="AgregarRequisitos" ColumnName="AgregarRequisitos" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Subtipo" ColumnName="Subtipo" />
+                <ScalarProperty Name="Tematica" ColumnName="Tematica" />
+                <ScalarProperty Name="OrdenTematica" ColumnName="OrdenTematica" />
+                <ScalarProperty Name="Pregunta" ColumnName="Pregunta" />
+                <ScalarProperty Name="OrdenPregunta" ColumnName="OrdenPregunta" />
+                <ScalarProperty Name="Explicacion" ColumnName="Explicacion" />
+                <ScalarProperty Name="TipoPregunta" ColumnName="TipoPregunta" />
+                <ScalarProperty Name="OpcionesRespuesta" ColumnName="OpcionesRespuesta" />
+                <ScalarProperty Name="AyudaOpcionesRespuesta" ColumnName="AyudaOpcionesRespuesta" />
+                <ScalarProperty Name="Respuesta" ColumnName="Respuesta" />
+                <ScalarProperty Name="ObligaObservacion" ColumnName="ObligaObservacion" />
+                <ScalarProperty Name="ObservacionPregunta" ColumnName="ObservacionPregunta" />
+                <ScalarProperty Name="AyudaObservacion" ColumnName="AyudaObservacion" />
+                <ScalarProperty Name="Cabecera" ColumnName="Cabecera" />
+                <ScalarProperty Name="Nota" ColumnName="Nota" />
+                <ScalarProperty Name="CumpleEn" ColumnName="CumpleEn" />
+                <ScalarProperty Name="IdPreguntaPadre" ColumnName="IdPreguntaPadre" />
+                <ScalarProperty Name="HabilitaEn" ColumnName="HabilitaEn" />
+                <ScalarProperty Name="Sector" ColumnName="Sector" />
+                <ScalarProperty Name="Acuerdo" ColumnName="Acuerdo" />
+                <ScalarProperty Name="Clasificacion" ColumnName="Clasificacion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="uspGetObtenerPreguntasGeneralesComponenteCustomSGR" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspGetObtenerPreguntasGeneralesComponenteCustomSGR">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.uspGetObtenerPreguntasGeneralesComponenteCustomSGR_Result">
+                <ScalarProperty Name="IdPregunta" ColumnName="IdPregunta" />
+                <ScalarProperty Name="CodigoBPIN" ColumnName="CodigoBPIN" />
+                <ScalarProperty Name="Cuestionario" ColumnName="Cuestionario" />
+                <ScalarProperty Name="CR" ColumnName="CR" />
+                <ScalarProperty Name="Fase" ColumnName="Fase" />
+                <ScalarProperty Name="EntidadDestino" ColumnName="EntidadDestino" />
+                <ScalarProperty Name="ObservacionCuestionario" ColumnName="ObservacionCuestionario" />
+                <ScalarProperty Name="Definitivo" ColumnName="Definitivo" />
+                <ScalarProperty Name="CumpleCuestionario" ColumnName="CumpleCuestionario" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="AgregarRequisitos" ColumnName="AgregarRequisitos" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Subtipo" ColumnName="Subtipo" />
+                <ScalarProperty Name="Tematica" ColumnName="Tematica" />
+                <ScalarProperty Name="OrdenTematica" ColumnName="OrdenTematica" />
+                <ScalarProperty Name="Pregunta" ColumnName="Pregunta" />
+                <ScalarProperty Name="OrdenPregunta" ColumnName="OrdenPregunta" />
+                <ScalarProperty Name="Explicacion" ColumnName="Explicacion" />
+                <ScalarProperty Name="TipoPregunta" ColumnName="TipoPregunta" />
+                <ScalarProperty Name="OpcionesRespuesta" ColumnName="OpcionesRespuesta" />
+                <ScalarProperty Name="AyudaOpcionesRespuesta" ColumnName="AyudaOpcionesRespuesta" />
+                <ScalarProperty Name="Respuesta" ColumnName="Respuesta" />
+                <ScalarProperty Name="ObligaObservacion" ColumnName="ObligaObservacion" />
+                <ScalarProperty Name="ObservacionPregunta" ColumnName="ObservacionPregunta" />
+                <ScalarProperty Name="AyudaObservacion" ColumnName="AyudaObservacion" />
+                <ScalarProperty Name="Cabecera" ColumnName="Cabecera" />
+                <ScalarProperty Name="Nota" ColumnName="Nota" />
+                <ScalarProperty Name="CumpleEn" ColumnName="CumpleEn" />
+                <ScalarProperty Name="IdPreguntaPadre" ColumnName="IdPreguntaPadre" />
+                <ScalarProperty Name="HabilitaEn" ColumnName="HabilitaEn" />
+                <ScalarProperty Name="Sector" ColumnName="Sector" />
+                <ScalarProperty Name="Acuerdo" ColumnName="Acuerdo" />
+                <ScalarProperty Name="Clasificacion" ColumnName="Clasificacion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="uspGetSGR_Viabilidad_LeerInformacionGeneral" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspGetSGR_Viabilidad_LeerInformacionGeneral">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.uspGetSGR_Viabilidad_LeerInformacionGeneral_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="CodigoBPIN" ColumnName="CodigoBPIN" />
+                <ScalarProperty Name="NumeroRevision" ColumnName="NumeroRevision" />
+                <ScalarProperty Name="Categorias" ColumnName="Categorias" />
+                <ScalarProperty Name="Fase" ColumnName="Fase" />
+                <ScalarProperty Name="RegionSgrId" ColumnName="RegionSgrId" />
+                <ScalarProperty Name="EntidadPresenta" ColumnName="EntidadPresenta" />
+                <ScalarProperty Name="NombreEjecutor" ColumnName="NombreEjecutor" />
+                <ScalarProperty Name="DepartamentoEjecuta" ColumnName="DepartamentoEjecuta" />
+                <ScalarProperty Name="MunicipioEjecuta" ColumnName="MunicipioEjecuta" />
+                <ScalarProperty Name="SectorInversion" ColumnName="SectorInversion" />
+                <ScalarProperty Name="SectorApoyo1Id" ColumnName="SectorApoyo1Id" />
+                <ScalarProperty Name="SectorApoyo2Id" ColumnName="SectorApoyo2Id" />
+                <ScalarProperty Name="InstanciaAprobacion" ColumnName="InstanciaAprobacion" />
+                <ScalarProperty Name="TiempoEjecucion" ColumnName="TiempoEjecucion" />
+                <ScalarProperty Name="ProyectoTipo" ColumnName="ProyectoTipo" />
+                <ScalarProperty Name="ValorEstructuracion" ColumnName="ValorEstructuracion" />
+                <ScalarProperty Name="ValorEmision" ColumnName="ValorEmision" />
+                <ScalarProperty Name="ValorInterventoria" ColumnName="ValorInterventoria" />
+                <ScalarProperty Name="ValorApoyoSupervision" ColumnName="ValorApoyoSupervision" />
+                <ScalarProperty Name="ObjetivoGeneral" ColumnName="ObjetivoGeneral" />
+                <ScalarProperty Name="Alcance" ColumnName="Alcance" />
+                <ScalarProperty Name="PoblacionAfectada" ColumnName="PoblacionAfectada" />
+                <ScalarProperty Name="PoblacionObjetivo" ColumnName="PoblacionObjetivo" />
+                <ScalarProperty Name="PresentadoComunidadIndigena" ColumnName="PresentadoComunidadIndigena" />
+                <ScalarProperty Name="PresentadoComunidadNarp" ColumnName="PresentadoComunidadNarp" />
+                <ScalarProperty Name="PresentadoComunidadRrom" ColumnName="PresentadoComunidadRrom" />
+                <ScalarProperty Name="LocalizacionComunidadIndigena" ColumnName="LocalizacionComunidadIndigena" />
+                <ScalarProperty Name="LocalizacionComunidadNarp" ColumnName="LocalizacionComunidadNarp" />
+                <ScalarProperty Name="LocalizacionComunidadRrom" ColumnName="LocalizacionComunidadRrom" />
+                <ScalarProperty Name="TipoConceptoViabilidadId" ColumnName="TipoConceptoViabilidadId" />
+                <ScalarProperty Name="AlcanceEspacial" ColumnName="AlcanceEspacial" />
+                <ScalarProperty Name="Poblacion" ColumnName="Poblacion" />
+                <ScalarProperty Name="NecesidadesSocioCulturales" ColumnName="NecesidadesSocioCulturales" />
+                <ScalarProperty Name="NormasLineamientosAdicionales" ColumnName="NormasLineamientosAdicionales" />
+                <ScalarProperty Name="ProyectoViabilidadId" ColumnName="ProyectoViabilidadId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="uspGetSGR_Viabilidad_LeerParametricas" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspGetSGR_Viabilidad_LeerParametricas" />
+          <FunctionImportMapping FunctionImportName="uspPostSGR_Viabilidad_GuardarInformacionBasica" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspPostSGR_Viabilidad_GuardarInformacionBasica" />
+          <FunctionImportMapping FunctionImportName="uspPostGeneracionCuestionarioPreguntasPersonalizadasCustomSGR" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspPostGeneracionCuestionarioPreguntasPersonalizadasCustomSGR" />
+          <FunctionImportMapping FunctionImportName="uspGetSGR_TipoDocumentosSoportePorRol" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspGetSGR_TipoDocumentosSoportePorRol">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.uspGetSGR_TipoDocumentosSoportePorRol_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TipoDocumentoId" ColumnName="TipoDocumentoId" />
+                <ScalarProperty Name="TipoDocumentoCodigo" ColumnName="TipoDocumentoCodigo" />
+                <ScalarProperty Name="TipoDocumento" ColumnName="TipoDocumento" />
+                <ScalarProperty Name="Obligatorio" ColumnName="Obligatorio" />
+                <ScalarProperty Name="CampoValidacion" ColumnName="CampoValidacion" />
+                <ScalarProperty Name="FechaValidacion" ColumnName="FechaValidacion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="uspPostProyectoViabilidadInvolucrados" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspPostProyectoViabilidadInvolucrados" />
+          <FunctionImportMapping FunctionImportName="uspPostProyectoViabilidadInvolucradosEliminar" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspPostProyectoViabilidadInvolucradosEliminar" />
+          <FunctionImportMapping FunctionImportName="uspPostPoliticasTransversalesCategoriasAjustesSgr" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspPostPoliticasTransversalesCategoriasAjustesSgr" />
+          <FunctionImportMapping FunctionImportName="uspGetObtenerProyectoViabilidadInvolucradosFirma" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspGetObtenerProyectoViabilidadInvolucradosFirma">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.uspGetObtenerProyectoViabilidadInvolucradosFirma_Result">
+                <ScalarProperty Name="IdUsuarioDNP" ColumnName="IdUsuarioDNP" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Area" ColumnName="Area" />
+                <ScalarProperty Name="Accion" ColumnName="Accion" />
+                <ScalarProperty Name="Firmado" ColumnName="Firmado" />
+                <ScalarProperty Name="FechaFirma" ColumnName="FechaFirma" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="uspPostFirmaUsuarioViabilidadSgr" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspPostFirmaUsuarioViabilidadSgr" />
+          <FunctionImportMapping FunctionImportName="uspGetMensajeEstadoProyectoSgr" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspGetMensajeEstadoProyectoSgr" />
+          <FunctionImportMapping FunctionImportName="uspGetEntidadesSolicitarCtus" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspGetEntidadesSolicitarCtus">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.uspGetEntidadesSolicitarCtus_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="NombreEntidad" ColumnName="NombreEntidad" />
+                <ScalarProperty Name="CodigoEntidad" ColumnName="CodigoEntidad" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="uspGetObtenerProyectoCtus" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspGetObtenerProyectoCtus">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.uspGetObtenerProyectoCtus_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ProyectoId" ColumnName="ProyectoId" />
+                <ScalarProperty Name="Instancia" ColumnName="Instancia" />
+                <ScalarProperty Name="TipoCtus" ColumnName="TipoCtus" />
+                <ScalarProperty Name="SolicitaCtus" ColumnName="SolicitaCtus" />
+                <ScalarProperty Name="UsuarioSolicita" ColumnName="UsuarioSolicita" />
+                <ScalarProperty Name="RolSolicita" ColumnName="RolSolicita" />
+                <ScalarProperty Name="EntidadConcepto" ColumnName="EntidadConcepto" />
+                <ScalarProperty Name="EntidadDestino" ColumnName="EntidadDestino" />
+                <ScalarProperty Name="Concepto" ColumnName="Concepto" />
+                <ScalarProperty Name="FechaConcepto" ColumnName="FechaConcepto" />
+                <ScalarProperty Name="Devolvio" ColumnName="Devolvio" />
+                <ScalarProperty Name="FechaDevolucion" ColumnName="FechaDevolucion" />
+                <ScalarProperty Name="usuarioDevolucion" ColumnName="usuarioDevolucion" />
+                <ScalarProperty Name="RolDevolucion" ColumnName="RolDevolucion" />
+                <ScalarProperty Name="CreadoPor" ColumnName="CreadoPor" />
+                <ScalarProperty Name="ModificadoPor" ColumnName="ModificadoPor" />
+                <ScalarProperty Name="VigenciaDesde" ColumnName="VigenciaDesde" />
+                <ScalarProperty Name="VigenciaHasta" ColumnName="VigenciaHasta" />
+                <ScalarProperty Name="EsProyectoTipo" ColumnName="EsProyectoTipo" />
+                <ScalarProperty Name="TieneCTUSVigente" ColumnName="TieneCTUSVigente" />
+                <ScalarProperty Name="FechaCTUSVigente" ColumnName="FechaCTUSVigente" />
+                <ScalarProperty Name="RolDirectorId" ColumnName="RolDirectorId" />
+                <ScalarProperty Name="RolTecnicoId" ColumnName="RolTecnicoId" />
+                <ScalarProperty Name="RolEmiteId" ColumnName="RolEmiteId" />
+                <ScalarProperty Name="NombreEntidadDestino" ColumnName="NombreEntidadDestino" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="uspPostProyectoSolicitarCTUS" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspPostProyectoSolicitarCTUS" />
+          <FunctionImportMapping FunctionImportName="uspPostSGR_CTUS_GuardarProyectoCtusConcepto" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspPostSGR_CTUS_GuardarProyectoCtusConcepto" />
+          <FunctionImportMapping FunctionImportName="uspGetSGR_CTUS_LeerProyectoCtusConcepto" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspGetSGR_CTUS_LeerProyectoCtusConcepto">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.uspGetSGR_CTUS_LeerProyectoCtusConcepto_Result">
+                <ScalarProperty Name="ProyectoCtusId" ColumnName="ProyectoCtusId" />
+                <ScalarProperty Name="AspectosTecnicos" ColumnName="AspectosTecnicos" />
+                <ScalarProperty Name="AspectosFinancieros" ColumnName="AspectosFinancieros" />
+                <ScalarProperty Name="AspectosJuridicos" ColumnName="AspectosJuridicos" />
+                <ScalarProperty Name="AspectosSociales" ColumnName="AspectosSociales" />
+                <ScalarProperty Name="AspectosAmbientales" ColumnName="AspectosAmbientales" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="uspGetSGR_CTUS_LeerProyectoCtusUsuarioEncargado" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspGetSGR_CTUS_LeerProyectoCtusUsuarioEncargado">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.uspGetSGR_CTUS_LeerProyectoCtusUsuarioEncargado_Result">
+                <ScalarProperty Name="UsuarioEncargado" ColumnName="UsuarioEncargado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="uspPostSGR_CTUS_GuardarResultadoConceptoCtus" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspPostSGR_CTUS_GuardarResultadoConceptoCtus" />
+          <FunctionImportMapping FunctionImportName="uspGetConceptosEmitidos_JSON" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspGetConceptosEmitidos_JSON" />
+          <FunctionImportMapping FunctionImportName="uspGetObtenerRolDirectorProyectoCtus" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspGetObtenerRolDirectorProyectoCtus">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.uspGetObtenerRolDirectorProyectoCtus_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="RolDirectorId" ColumnName="RolDirectorId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="uspGetObtenerProyectoViabilidadInvolucrados" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspGetObtenerProyectoViabilidadInvolucrados">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.uspGetObtenerProyectoViabilidadInvolucrados_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TipoConceptoViabilidadId" ColumnName="TipoConceptoViabilidadId" />
+                <ScalarProperty Name="TipoConceptoViabilidad" ColumnName="TipoConceptoViabilidad" />
+                <ScalarProperty Name="TipoRolConceptoId" ColumnName="TipoRolConceptoId" />
+                <ScalarProperty Name="TipoRolConcepto" ColumnName="TipoRolConcepto" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Area" ColumnName="Area" />
+                <ScalarProperty Name="ProyectoViabilidadId" ColumnName="ProyectoViabilidadId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="uspPostAutorizacionAccionesPorInstanciaSubFlujoOCADPaz" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspPostAutorizacionAccionesPorInstanciaSubFlujoOCADPaz" />
+          <FunctionImportMapping FunctionImportName="uspGetSGR_ValidarAsignacionTecnicoOcadPaz" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspGetSGR_ValidarAsignacionTecnicoOcadPaz" />
+          <FunctionImportMapping FunctionImportName="UspValidacionOCADPazSgr" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.UspValidacionOCADPazSgr">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.UspValidacionOCADPazSgr_Result">
+                <ScalarProperty Name="Seccion" ColumnName="Seccion" />
+                <ScalarProperty Name="Capitulo" ColumnName="Capitulo" />
+                <ScalarProperty Name="Error" ColumnName="Error" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Detalle" ColumnName="Detalle" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="uspGetObtenerProyectosVerificacionOcadPazSgr" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspGetObtenerProyectosVerificacionOcadPazSgr">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.uspGetObtenerProyectosVerificacionOcadPazSgr_Result">
+                <ScalarProperty Name="IdObjetoNegocio" ColumnName="IdObjetoNegocio" />
+                <ScalarProperty Name="ProyectoNombre" ColumnName="ProyectoNombre" />
+                <ScalarProperty Name="CodigoBpin" ColumnName="CodigoBpin" />
+                <ScalarProperty Name="EntidadNombre" ColumnName="EntidadNombre" />
+                <ScalarProperty Name="EntidadId" ColumnName="EntidadId" />
+                <ScalarProperty Name="IdInstancia" ColumnName="IdInstancia" />
+                <ScalarProperty Name="IdAccion" ColumnName="IdAccion" />
+                <ScalarProperty Name="NombreAccion" ColumnName="NombreAccion" />
+                <ScalarProperty Name="TipoEntidad" ColumnName="TipoEntidad" />
+                <ScalarProperty Name="SectorId" ColumnName="SectorId" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="TipoEntidadId" ColumnName="TipoEntidadId" />
+                <ScalarProperty Name="DescripcionCR" ColumnName="DescripcionCR" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="FechaCreacionStr" ColumnName="FechaCreacionStr" />
+                <ScalarProperty Name="ProyectoId" ColumnName="ProyectoId" />
+                <ScalarProperty Name="EstadoId" ColumnName="EstadoId" />
+                <ScalarProperty Name="SectorNombre" ColumnName="SectorNombre" />
+                <ScalarProperty Name="HorizonteInicio" ColumnName="HorizonteInicio" />
+                <ScalarProperty Name="HorizonteFin" ColumnName="HorizonteFin" />
+                <ScalarProperty Name="NombreFlujo" ColumnName="NombreFlujo" />
+                <ScalarProperty Name="IdEstadoInstancia" ColumnName="IdEstadoInstancia" />
+                <ScalarProperty Name="EstadoInstancia" ColumnName="EstadoInstancia" />
+                <ScalarProperty Name="FlujoId" ColumnName="FlujoId" />
+                <ScalarProperty Name="CodigoProceso" ColumnName="CodigoProceso" />
+                <ScalarProperty Name="IdNivel" ColumnName="IdNivel" />
+                <ScalarProperty Name="FechaPaso" ColumnName="FechaPaso" />
+                <ScalarProperty Name="FechaPasoStr" ColumnName="FechaPasoStr" />
+                <ScalarProperty Name="CodigoTramite" ColumnName="CodigoTramite" />
+                <ScalarProperty Name="InstanciaPadreId" ColumnName="InstanciaPadreId" />
+                <ScalarProperty Name="CRTypeId" ColumnName="CRTypeId" />
+                <ScalarProperty Name="ResourceGroupId" ColumnName="ResourceGroupId" />
+                <ScalarProperty Name="AplicaAccion" ColumnName="AplicaAccion" />
+                <ScalarProperty Name="UsuarioEncargadoOcadPazId" ColumnName="UsuarioEncargadoOcadPazId" />
+                <ScalarProperty Name="UsuarioEncargadoAsignadoOcadPaz" ColumnName="UsuarioEncargadoAsignadoOcadPaz" />
+                <ScalarProperty Name="IdRol" ColumnName="IdRol" />
+                <ScalarProperty Name="AsignadoA" ColumnName="AsignadoA" />
+                <ScalarProperty Name="CorreoAsignadoA" ColumnName="CorreoAsignadoA" />
+                <ScalarProperty Name="Cumple" ColumnName="Cumple" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="uspGetObtenerUsuariosVerificacionOcadPazSgr" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspGetObtenerUsuariosVerificacionOcadPazSgr">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.uspGetObtenerUsuariosVerificacionOcadPazSgr_Result">
+                <ScalarProperty Name="IdUsuarioDNP" ColumnName="IdUsuarioDNP" />
+                <ScalarProperty Name="NombreUsuario" ColumnName="NombreUsuario" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="CantidadAsignaciones" ColumnName="CantidadAsignaciones" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="uspPostSGR_OCADPaz_GuardarAsignacionUsuarioEncargado" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspPostSGR_OCADPaz_GuardarAsignacionUsuarioEncargado" />
+          <FunctionImportMapping FunctionImportName="uspPostSGR_Viabilidad_GuardarAsignacionUsuarioEncargado" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspPostSGR_Viabilidad_GuardarAsignacionUsuarioEncargado" />
+          <FunctionImportMapping FunctionImportName="uspGetSGR_Viabilidad_LeerProyectoUsuarioEncargado" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspGetSGR_Viabilidad_LeerProyectoUsuarioEncargado" />
+          <FunctionImportMapping FunctionImportName="uspGetSGR_Proyectos_LeerEntidadesAdscritas" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspGetSGR_Proyectos_LeerEntidadesAdscritas" />
+          <FunctionImportMapping FunctionImportName="uspPostSGR_Proyectos_ActualizarEntidadAdscrita" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspPostSGR_Proyectos_ActualizarEntidadAdscrita" />
+          <FunctionImportMapping FunctionImportName="uspGetSGR_Proyectos_ValidarEntidadDelegada" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspGetSGR_Proyectos_ValidarEntidadDelegada" />
+          <FunctionImportMapping FunctionImportName="uspGetValidarInstanciaCTUSNoFinalizada_JSON" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspGetValidarInstanciaCTUSNoFinalizada_JSON" />
+          <FunctionImportMapping FunctionImportName="uspGetDatosAdicionalesCTEI_JSON" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspGetDatosAdicionalesCTEI_JSON" />
+          <FunctionImportMapping FunctionImportName="uspPostDatosAdicionalesCTEI_JSON" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspPostDatosAdicionalesCTEI_JSON" />
+          <FunctionImportMapping FunctionImportName="UspObtenerInformacionNotificacionInvolucrados" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.UspObtenerInformacionNotificacionInvolucrados">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.UspObtenerInformacionNotificacionInvolucrados_Result">
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Notificacion" ColumnName="Notificacion" />
+                </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UspObtenerUsuariosNotificacionViabilidad" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.UspObtenerUsuariosNotificacionViabilidad">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.UspObtenerUsuariosNotificacionViabilidad_Result">
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Notificacion" ColumnName="Notificacion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="uspGetSGR_Transversal_LeerListaParametros" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspGetSGR_Transversal_LeerListaParametros" />
+          <FunctionImportMapping FunctionImportName="uspPostRegistrarAvalUso_JSON" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspPostRegistrarAvalUso_JSON" />
+          <FunctionImportMapping FunctionImportName="uspGetAvalUsoSgr_JSON" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspGetAvalUsoSgr_JSON" />
+          <FunctionImportMapping FunctionImportName="uspPostSGR_Proyectos_ActualizarEntidadAdscritaCTUS" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspPostSGR_Proyectos_ActualizarEntidadAdscritaCTUS" />
+          <FunctionImportMapping FunctionImportName="uspPostSGR_CTUS_GuardarAsignacionUsuarioEncargado" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspPostSGR_CTUS_GuardarAsignacionUsuarioEncargado" />
+          <FunctionImportMapping FunctionImportName="uspPostEliminarFirmaUsuarioViabilidadSgp" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspPostEliminarFirmaUsuarioViabilidadSgp" />
+          <FunctionImportMapping FunctionImportName="uspGetSGR_ListaTipoDocumentosSoportePorRol" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspGetSGR_ListaTipoDocumentosSoportePorRol">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.uspGetSGR_ListaTipoDocumentosSoportePorRol_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TipoDocumentoId" ColumnName="TipoDocumentoId" />
+                <ScalarProperty Name="TipoDocumentoCodigo" ColumnName="TipoDocumentoCodigo" />
+                <ScalarProperty Name="TipoDocumento" ColumnName="TipoDocumento" />
+                <ScalarProperty Name="Obligatorio" ColumnName="Obligatorio" />
+                <ScalarProperty Name="VisualizacionId" ColumnName="VisualizacionId" />
+                <ScalarProperty Name="CampoValidacion" ColumnName="CampoValidacion" />
+                <ScalarProperty Name="FechaValidacion" ColumnName="FechaValidacion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="uspGetCumplimentoFlujoSGR" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspGetCumplimentoFlujoSGR" />
+          <FunctionImportMapping FunctionImportName="uspPostAplicarFlujoSgr" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspPostAplicarFlujoSgr" />
+          <FunctionImportMapping FunctionImportName="uspGetSGR_Proyectos_MostrarEstadosPriorizacion" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspGetSGR_Proyectos_MostrarEstadosPriorizacion" />
+		  <FunctionImportMapping FunctionImportName="uspGetSGR_Proyectos_MostrarEstadosAprobacion" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspGetSGR_Proyectos_MostrarEstadosAprobacion" />
+          <FunctionImportMapping FunctionImportName="uspPostDevolverFlujoSgr" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspPostDevolverFlujoSgr" />
+          <FunctionImportMapping FunctionImportName="uspGetConfiguracionReportesPorInstancia" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspGetConfiguracionReportesPorInstancia">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.uspGetConfiguracionReportesPorInstancia_Result">
+                <ScalarProperty Name="NombreRdl" ColumnName="NombreRdl" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="TipoDocumentoId" ColumnName="TipoDocumentoId" />
+                <ScalarProperty Name="NombreTipoDocumento" ColumnName="NombreTipoDocumento" />
+                <ScalarProperty Name="Coleccion" ColumnName="Coleccion" />
+                <ScalarProperty Name="NombreDocumento" ColumnName="NombreDocumento" />
+                <ScalarProperty Name="NombrePaso" ColumnName="NombrePaso" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="uspGetSGR_Encabezado_LeerEncabezado" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspGetSGR_Encabezado_LeerEncabezado">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.uspGetSGR_Encabezado_LeerEncabezado_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="CodigoBPIN" ColumnName="CodigoBPIN" />
+                <ScalarProperty Name="EntidadPresenta" ColumnName="EntidadPresenta" />
+                <ScalarProperty Name="EntidadDestino" ColumnName="EntidadDestino" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Fase" ColumnName="Fase" />
+                <ScalarProperty Name="VigenciaInicial" ColumnName="VigenciaInicial" />
+                <ScalarProperty Name="VigenciaFinal" ColumnName="VigenciaFinal" />
+                <ScalarProperty Name="Valor" ColumnName="Valor" />
+                <ScalarProperty Name="AnioEstudio" ColumnName="AnioEstudio" />
+                <ScalarProperty Name="Sector" ColumnName="Sector" />
+                <ScalarProperty Name="TipoEntidadPresenta" ColumnName="TipoEntidadPresenta" />
+                <ScalarProperty Name="ProyectoTipo" ColumnName="ProyectoTipo" />
+                <ScalarProperty Name="ObjetivoGeneral" ColumnName="ObjetivoGeneral" />
+                <ScalarProperty Name="PoblacionObjetivo" ColumnName="PoblacionObjetivo" />
+                <ScalarProperty Name="Alcance" ColumnName="Alcance" />
+                <ScalarProperty Name="ValorTotalSGR" ColumnName="ValorTotalSGR" />
+                <ScalarProperty Name="AjustesRealizados" ColumnName="AjustesRealizados" />
+                <ScalarProperty Name="PuntajeSEP" ColumnName="PuntajeSEP" />
+                <ScalarProperty Name="ValorTotalInversion" ColumnName="ValorTotalInversion" />
+                <ScalarProperty Name="ValorTotalPreInversion" ColumnName="ValorTotalPreInversion" />
+                <ScalarProperty Name="ValorTotalOperacion" ColumnName="ValorTotalOperacion" />
+                <ScalarProperty Name="FechaPresentacion" ColumnName="FechaPresentacion" />
+                <ScalarProperty Name="ProgramaPresupuestal" ColumnName="ProgramaPresupuestal" />
+                <ScalarProperty Name="SubProgramaPresupuestal" ColumnName="SubProgramaPresupuestal" />
+                <ScalarProperty Name="TipoTramiteId" ColumnName="TipoTramiteId" />
+                <ScalarProperty Name="EntidadAdscritaId" ColumnName="EntidadAdscritaId" />
+                <ScalarProperty Name="TipoProyectoCTUSId" ColumnName="TipoProyectoCTUSId" />
+                <ScalarProperty Name="CofinanciadoPGN" ColumnName="CofinanciadoPGN" />
+                <ScalarProperty Name="DelegoViabilidad" ColumnName="DelegoViabilidad" />
+                <ScalarProperty Name="IdInstanciaViabiliad" ColumnName="IdInstanciaViabiliad" />
+				<ScalarProperty Name="ProyectoTieneOPC" ColumnName="ProyectoTieneOPC" />
+				<ScalarProperty Name="TieneOPC" ColumnName="TieneOPC" />
+                <ScalarProperty Name="PorcentajeCredito" ColumnName="PorcentajeCredito" />
+                <ScalarProperty Name="ProyectoTieneInstanciasNoOPC" ColumnName="ProyectoTieneInstanciasNoOPC" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="uspGetAprobacionCredito" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspGetAprobacionCredito" />
+          <FunctionImportMapping FunctionImportName="uspPostAprobacionCredito" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspPostAprobacionCredito" />
+          <FunctionImportMapping FunctionImportName="uspGetResumenEstadoAprobacionCredito" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspGetResumenEstadoAprobacionCredito" />
+          <FunctionImportMapping FunctionImportName="uspGetSGR_Procesos_ConsultarEjecutorbyTipo" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspGetSGR_Procesos_ConsultarEjecutorbyTipo">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.uspGetSGR_Procesos_ConsultarEjecutorbyTipo_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="EjecutorId" ColumnName="EjecutorId" />
+                <ScalarProperty Name="NitEjecutor" ColumnName="NitEjecutor" />
+                <ScalarProperty Name="nombreEntidad" ColumnName="nombreEntidad" />
+                <ScalarProperty Name="TipoEntidad" ColumnName="TipoEntidad" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="uspGetPuntajeProyecto" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspGetPuntajeProyecto" />
+          <FunctionImportMapping FunctionImportName="uspPostPuntajeProyecto" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspPostPuntajeProyecto" />
+          <FunctionImportMapping FunctionImportName="uspGetProyectoLeerValorAprobacionSGR" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspGetProyectoLeerValorAprobacionSGR" />
+          <FunctionImportMapping FunctionImportName="UspDeleteOperacionesCredito" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.UspDeleteOperacionesCredito" />
+          <FunctionImportMapping FunctionImportName="uspGetSGR_Proyectos_MostrarEstadosAprobacionCreditoParcial" FunctionName="DNP.ServiciosNegocio.Persistencia.ModeloSGR.Store.uspGetSGR_Proyectos_MostrarEstadosAprobacionCreditoParcial" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

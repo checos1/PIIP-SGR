@@ -1,0 +1,16 @@
+﻿<div ng-controller="inputAccionController" class="form-group">
+    <label class="control-label " ng-class="{'sr-only': !showTitle()}" for="{{form.id}}">{{form.title}}</label>
+    <div class="row">
+        <div class="col-xs-9 padd-right">
+            <input name="{{form.id}}" id="{{form.id}}" type="text" class="form-control cursor" ng-click="clickInput()"
+                   readonly ng-value="form.contenidoInput" uib-tooltip="{{form.tooltip}}">
+        </div>
+        <div class="col-xs-3">
+            <button type="button" id="botonEliminar{{form.id}}" class="btnaccion" ng-click="eliminarInput()" tooltip-placement="bottom" uib-tooltip="Eliminar"
+                    ng-disabled="form.deshabilitaEliminar">
+                <span><img src="Img/iconsgrid/iconAccionEliminar.png" /></span>
+            </button>
+        </div>
+    </div>
+</div>
+

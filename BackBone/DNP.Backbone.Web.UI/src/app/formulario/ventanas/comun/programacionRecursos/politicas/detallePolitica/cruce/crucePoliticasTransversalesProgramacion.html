@@ -1,0 +1,170 @@
+﻿<div ng-init="vm.init();">
+    <form id="crucePoliticasTransversalesProgramacion" novalidate>
+        <div id="recursosfuentesdefinanc-validacionguardar-error" class="hidden text-left color-red">
+            <img class="img img-advertencia" src="Img/u11.svg" />
+        </div>
+        <div id="fuentes" class="collapsed panel-body">
+            <table class="TableDNP no-border">
+                <thead>
+                    <tr>
+                        <th class="columAcc"></th>
+                        <th class="textLeftDNP">Política Principal</th>
+                        <th class="textLeftDNP">Política Contenida</th>
+                        <th class="columAcc"></th>
+                    </tr>
+                </thead>
+                <tbody ng-repeat="objPoliticas in vm.listaPoliticasProyectos">
+                    <tr>
+                        <td class="columAcc"
+                            style="background: transparent">
+                            <span id="Cruce-{{vm.tramiteproyectoid}}-{{objPoliticas.PoliticaIdP}}" class="hidden uMensajeError"></span>
+                        </td>
+                        <td>
+                            {{objPoliticas.PoliticaP}}<br />
+                        </td>
+                        <td>
+                            {{objPoliticas.PoliticaD}}<br />
+                        </td>
+                        <td>
+                            <div>
+                                <a ng-click="vm.ingresarCrucePolitica(objPoliticas.PoliticaIdP,objPoliticas.PoliticaIdD,objPoliticas.DimensionPrincipalId,objPoliticas.PoliticaP,objPoliticas.PoliticaD)"><span class="uLabelCampo_fp" style="text-decoration:underline" >INGRESAR</span></a>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="row" style="width:100%;">
+            <span class="uLabelCampo_fp">
+                {{vm.NombrePoliticaIdP}} en {{vm.NombrePoliticaIdD}}
+            </span>
+        </div>
+        <div ng-if="vm.mostrarcrucepoliticas">
+            <div class="tab-container col-md-12" style="width:100%;">
+                <br />
+                <span class="buttonbar pull-right" ng-if="vm.mostrarcrucepoliticas && vm.habilitaBotones">
+                    <button type="button" class="btneditarDNP" tooltip-placement="top" ng-click="vm.EditarCrucePolitica ? vm.CancelarValores(regionalizacion) : vm.EditarValores()" uib-tooltip="{{vm.EditarCrucePolitica ? 'CANCELAR' : 'EDITAR'}}">
+                        {{vm.EditarCrucePolitica ? 'CANCELAR' : 'EDITAR'}}
+                    </button>
+                    <button ng-disabled="!vm.EditarCrucePolitica" type="button" class="{{vm.EditarCrucePolitica ? 'btnguardarDNP' : 'btnguardarDisabledDNP'}}" tooltip-placement="top" uib-tooltip="Guardar" tabindex="0" ng-click="vm.GuardarValores(regionalizacion)">
+                        GUARDAR
+                    </button>
+                </span>
+                <br />
+                <div style="text-align: left;">
+                    <div class="row col-md-12">
+                        <div class="alert panel-heading">
+                            <table class="TableDNP">
+                                <thead>
+                                    <tr>
+                                        <th class="columAcc" style="width:4%"></th>
+                                        <th class="textLeftDNP" style="width:38%">Localización/Organización - acuerdo</th>
+                                        <th class="textRightDNP" style="width:18%">{{vm.NombrePoliticaIdP}} $</th>
+                                        <th class="textRightDNP" style="width:18%">{{vm.NombrePoliticaIdD}} $</th>
+                                        <th class="textRightDNP" style="width:18%">{{vm.NombrePoliticaIdP}} en {{vm.NombrePoliticaIdD}} $</th>
+                                        <th class="columAcc" style="width:4%"></th>
+                                    </tr>
+                                </thead>
+                                <tbody ng-repeat="recursos in regionalizacion.Recursos" ng-init="recursosindex = $index">
+                                    <tr>
+                                        <td></td>
+                                        <td class="textleftDNP">
+                                            {{recursos.Localizacion}}
+                                        </td>
+                                        <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(recursos.SolicitadoPolPrincipal)}}</div></td>
+                                        <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(recursos.SolicitadoPolContenida)}}</div></td>
+                                        <td ng-if="!vm.EditarCrucePolitica || recursos.bloqueado == 1" class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(recursos.Valor)}}</div></td>
+                                        <td ng-if="vm.EditarCrucePolitica && recursos.bloqueado == 0" class="textRightDNP">
+                                            <input id="input-NacionCSF" type="number" string-to-number min="0.00"
+                                                   ng-readonly="!vm.EditarCrucePolitica"
+                                                   ng-keypress="vm.validateFormat($event)"
+                                                   ng-keyup="vm.validarTamanio($event)"
+                                                   ng-blur="vm.actualizaFila($event, regionalizacion)"
+                                                   ng-value="recursos.Valor"
+                                                   ng-model="regionalizacion.Recursos[recursosindex].Valor"
+                                                   required class="form-control editInputDNP" style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px; background-color:white" />
+                                        </td>
+                                    </tr>
+                                    <div class="col-md-6">
+                                        <p style="padding: 0px; margin-bottom: 0px; ">
+                                            <span id="ErrorCruce-{{recursos.LocalizacionId}}" class="hidden text-left color-red">
+                                                <img class="img img-advertencia" src="Img/u11.svg" />
+                                                <span id="ErrorCruceMsg-{{recursos.LocalizacionId}}"></span>
+                                                <span id="ErrorCruceMsgGuardar"></span>
+                                            </span>
+                                        </p>
+                                    </div>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td class="textleftDNP"><b>=</b></td>
+                                        <td class="textleftDNP"><b>Total</b></td>
+                                        <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(regionalizacion.TSolicitadoPolPrincipal)}}</div></td>
+                                        <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(regionalizacion.TSolicitadoPolContenida)}}</div></td>
+                                        <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(regionalizacion.TValor)}}</div></td>
+                                        <td class="textRightDNP"></td>
+                                        <td class="columAcc"></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                            <br />
+                            <div class="row" ng-if="vm.habilitaBotones">
+                                <div class="col-md-12 DetacolumnDNP">
+                                    <span>
+                                        Archivo plantilla carga masiva <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg">
+                                    </span>
+                                    <button type="button" class="btn btn-link btn-md buttonhiperDNP" ng-click="vm.descargarPlantila()">
+                                        DESCARGAR PLANTILLA
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="row" ng-if="vm.habilitaBotones">
+                                <div class="col-md-7">
+                                    <div class="divpanelcargarchivoDNP" style="">
+
+                                        <button class="btncargarch" id="btnExaminarArchivo" type="button" uib-tooltip="Editar" ng-click="vm.adjuntarArchivo()">
+                                            EXAMINAR
+                                        </button>
+                                        <input type="file" style="display:none" id="filecruce" name='filesfocalizacion[]' onchange="angular.element(this).scope().filefocalizacionNameChanged(this)" accept=".xlsx, .xls, .csv" multiple />
+                                        <input type="search" style="display:none" id="regionalizacionnombrearchivo" ng-model="vm.nombrearchivo" class="form-control InputSearchDNP " placeholder="">
+                                        <span>{{vm.nombrearchivo}}</span>
+                                        <button class="btncancearch" type="button" uib-tooltip="Cancelar" ng-click="vm.limpiarArchivo()">
+                                            X
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <span class="buttonbar pull-right">
+                                        <button id="btnCruceValidarArchivo" type="button" class="btn btnguardarDNP" tooltip-placement="top" uib-tooltip="Editar" tabindex="0" ng-click="vm.validarArchivo()">
+                                            VALIDAR
+                                        </button>
+                                        <button id="btnCruceLimpiarArchivo" type="button" class="btn btnguardarDNP" tooltip-placement="top" uib-tooltip="Cancelar" tabindex="0" ng-click="vm.limpiarArchivo()">
+                                            CANCELAR
+                                        </button>
+                                        <button id="btnCruceArchivoSeleccionado" class="btn btnguardarDNP" type="button" tooltip-placement="top" uib-tooltip="Guardar" tabindex="0" ng-click="vm.RegistrarCargaCruce()">
+                                            CARGAR
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="row" ng-if="vm.habilitaBotones">
+                                <div class="col-md-12 DetacolumnDNP">
+                                    <span class="detapregun">
+                                        Nota:
+                                    </span>
+                                    <span class="notapregun">
+                                        Los datos cargados previamente en las localizaciones se reescribiran si se realiza una carga masiva.
+                                    </span>
+                                </div>
+                            </div>
+
+                            <br />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </form>
+</div>

@@ -1,0 +1,10 @@
+﻿<div ng-controller="listaAutocompletableController">
+    <input id="form.type"
+           name="form.type"
+           type="text" 
+           ng-model="model[form.type]"
+           class="form-control " 
+           uib-typeahead="elemento.name for elemento in form.titleMap | filter:$viewValue | limitTo:8" 
+           typeahead-editable="true" 
+    >
+</div>

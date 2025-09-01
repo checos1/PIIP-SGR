@@ -1,0 +1,33 @@
+﻿<div class="tab-content" ng-init="vm.init();">
+    <div>
+        <table class="TableDNP" style="width:100%">
+            <thead>
+                <tr>
+                    <th class="columAcc"></th>
+                    <th class="textLeftDNP"><label>Departamento</label></th>
+                    <th class="textLeftDNP"><label>Municipio</label></th>
+                    <th class="textLeftDNP"><label>Tipo agrupación</label></th>
+                    <th class="textLeftDNP"><label>Agrupación</label></th>
+                </tr>
+            </thead>
+            <tbody ng-repeat="objLocalizacion in vm.DatosLocalizacion">
+                <tr>
+                    <td></td>
+                    <td>
+                        <span class="textLeftDNP">{{objLocalizacion.Departamento}}</span>
+                    </td>
+                    <td>
+                        <span class="textLeftDNP">{{objLocalizacion.Municipio}}</span>
+                    </td>
+                    <td>
+                        <span class="textLeftDNP">{{objLocalizacion.Tipo}}</span>
+                    </td>
+                    <td>
+                        <span class="textLeftDNP">{{objLocalizacion.Agrupacion}}</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>

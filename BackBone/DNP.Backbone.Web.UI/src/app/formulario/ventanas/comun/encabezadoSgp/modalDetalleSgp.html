@@ -1,0 +1,64 @@
+﻿<div id="modal-diagrama" ng-cloak role="dialog">
+    <div class="modal-header">
+        <button type="button" class="close" uib-tooltip="Cancelar" ng-click="modal.dismiss()">&times;</button>
+        <h3 class="modal-title">Información detallada del proyecto</h3>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <table class="TableDNP" border="0">
+                <tbody>
+                    <tr>
+                        <td colspan="1"></td>
+                        <td class="encabezadoTitulos">Año de estudio</td>
+                        <td class="encabezadoInfo"> {{this.detalle.AnioEstudio}} </td>
+                    </tr>
+                    <tr>
+                        <td colspan="1"></td>
+                        <td class="encabezadoTitulos">Sector</td>
+                        <td class="encabezadoInfo"> {{this.detalle.Sector}} </td>
+                    </tr>
+                    <tr>
+                        <td colspan="1"></td>
+                        <td class="encabezadoTitulos">Tipo de entidad</td>
+                        <td class="encabezadoInfo"> {{this.detalle.TipoEntidadPresenta}} </td>
+                    </tr>
+                    <tr>
+                        <td colspan="1"></td>
+                        <td class="encabezadoTitulos">Proyecto tipo</td>
+                        <td class="encabezadoInfo"> {{this.detalle.ProyectoTipo}} </td>
+                    </tr>
+                    <tr>
+                        <td colspan="1"></td>
+                        <td class="encabezadoTitulos">Objetivo general</td>
+                        <td class="encabezadoInfo"> {{this.detalle.ObjetivoGeneral}} </td>
+                    </tr>
+                    <tr>
+                        <td colspan="1"></td>
+                        <td class="encabezadoTitulos">Población objetivo</td>
+                        <td class="encabezadoInfo"> {{this.detalle.PoblacionObjetivo | number}} </td>
+                    </tr>
+                    <tr>
+                        <td colspan="1"></td>
+                        <td class="encabezadoTitulos">Alcance</td>
+                        <td class="encabezadoInfo"> {{this.detalle.Alcance}} </td>
+                    </tr>                    
+                    <tr>
+                        <td colspan="1"></td>
+                        <td class="encabezadoTitulos">Fecha de presentación</td>
+                        <td class="encabezadoInfo"> {{this.detalle.FechaPresentacion | date : "dd/MM/yyyy hh:mm a"}} </td>
+                    </tr>
+                    <tr>
+                        <td colspan="1"></td>
+                        <td class="encabezadoTitulos">Programa presupuestal</td>
+                        <td class="encabezadoInfo"> {{this.detalle.ProgramaPresupuestal}} </td>
+                    </tr>
+                    <tr>
+                        <td colspan="1"></td>
+                        <td class="encabezadoTitulos">Subprograma presupuestal</td>
+                        <td class="encabezadoInfo"> {{this.detalle.SubProgramaPresupuestal}} </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

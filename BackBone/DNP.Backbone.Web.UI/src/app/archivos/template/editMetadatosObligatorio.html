@@ -1,0 +1,10 @@
+﻿<div>
+    <div style="height: 10px">&nbsp;</div>
+    <form name="inputForm" ng-class="{true: 'has-error'}[!inputForm.$valid  && grid.appScope.vm.faltanDatosMetadatos ]">
+        <!--<input class="form-control" ng-focus="vm.focoControl" id="col{{$index}}" type="INPUT_TYPE" ng-class="'colt' + col.uid" ui-grid-editor ng-model="MODEL_COL_FIELD" maxlength="200" style="height:33px" ng-required="true">-->
+        <input id="col{{$index}}" type="INPUT_TYPE" ng-model="MODEL_COL_FIELD" maxlength="200" style="height:33px" ng-required="true">
+        <div href="#" data-toggle="tooltip" data-placement="top" ng-show="!inputForm.$valid  && grid.appScope.vm.faltanDatosMetadatos">
+            <span class="error">Campo requerido</span>
+        </div>
+    </form>
+</div>

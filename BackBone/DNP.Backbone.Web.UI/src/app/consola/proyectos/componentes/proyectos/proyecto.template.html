@@ -1,0 +1,297 @@
+﻿
+<div class="dashboard">
+    <div class="project consola-proyectos">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="titlebar">
+                    <span>Banco de proyectos </span>
+                    
+                </div>
+            </div>
+        </div>
+
+    <div class="form-group clearfix">
+
+        <div class="row">
+            <div class="col-sm-12 tabs radio radio-primary">
+                <ul class="nav nav-tabs">
+                    <li tabindex="0" class="{{$index == 0 ? 'active' : ''}}" ng-repeat="tipo in vm.listaTipoEntidad">
+                        <a data-toggle="tab" ng-click="vm.cambioTipoEntidad(tipo.Nombre)" ng-disabled="{{tipo.Deshabilitado}}"
+                           ng-if="!tipo.Deshabilitado" llamar-funcion-con-tecla="vm.cambioTipoEntidad(tipo.Nombre)">
+                            {{tipo.Descripcion}}
+                        </a>
+                        <a ng-if="tipo.Deshabilitado" class="disabled">{{tipo.Descripcion}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-6">
+                    <p class="mis-procesos-titulo-totales">{{vm.tipoEntidad}}. Total: {{ vm.cantidadDeProyectos }}</p>
+                </div>
+                <div class="row rowbotonesicoDNP">
+
+                    <div class="col-md-12 text-right nopadding">
+                        <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Limpiar" ng-click="vm.restablecerBusqueda()">
+                            <span> <img id="icoLimpiarBusqueda" class="icoBusquedasDNP" src="Img/IcolimpiarBusqD.svg"></span>
+                        </button>
+                        <button tooltip-class="customClass" uib-tooltip="Buscar" class="btnicobuscarDNP" type="button" data-toggle="collapse" data-target="#IdPanelBuscador" ng-click="vm.conmutadorFiltro()">
+                            <span> <img id="arrow-IdPanelBuscador" class="icoBusquedas2DNP glyphicon-chevron-down-busqDNP" src="Img/IcoBusqDow.svg" data-toggle="collapse" data-target="#IdPanelBuscador"></span>
+                        </button>
+                        <button class="btnaccion" ng-click="vm.aExportarPDF_onClick($event, $event.target)">
+                            <span> <img class="icoBusquedasDNP" src="Img/etapas/u1089.svg"></span>
+                        </button>
+                        <button class="btnaccion" ng-click="vm.aExportarExcel_onClick($event, $event.target)">
+                            <span> <img class="icoBusquedasDNP" src="Img/etapas/u1090.svg"></span>
+                        </button>
+                    </div>
+                </div>
+              
+            </div>
+        </div>
+
+        <!--inicio filtro-->
+        <br />
+        <div class="row panelbuscadorDNP" id="IdPanelBuscador">
+
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="labelbuscadorDNP"> <span>ID <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg"></span></div>
+                    <input type="text" ng-model="vm.proyectoFiltro.identificador" name="txtIdentificador"
+                           id="txtIdentificador" class="form-control InputBuscadorDNP" />
+                </div>
+                <div class="col-md-2">
+                    <div class="labelbuscadorDNP"> <span>BPIN <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg"></span></div>
+                    <input type="text" class="form-control InputBuscadorDNP" ng-model="vm.proyectoFiltro.bpin" numbers-only name="txtBpin" id="txtBpin" />
+                </div>
+                <div class="col-md-5">
+                    <div class="labelbuscadorDNP"> <span>Nombre del proyecto</span></div>
+                    <input type="text" class="form-control InputBuscadorDNP" placeholder="Escriba palabra o frase" ng-model="vm.proyectoFiltro.nombre" name="txtNombreFlujo"
+                           id="txtNombreFlujo" />
+                </div>
+                <div class="col-md-3">
+                    <div class="labelbuscadorDNP"> <span>Marca</span></div>
+                    <select class="form-control selectDNP" ng-model="vm.proyectoFiltro.marca"
+                            ng-options="x.Nombre as x.Nombre for x in vm.ListaMarcas" name="ddlSector" id="ddlSector">
+                        <option value="" selected>Seleccione...</option>
+                    </select>
+                </div>
+            </div>
+            <div class="" style="height:20px">
+            </div>
+            <div class="row">
+                <div ng-if="vm.tipoEntidad === 'Nacional'">
+                    <div class="col-md-3">
+                        <div class="labelbuscadorDNP"> <span>Sector</span></div>
+                        <select class="form-control selectDNP" ng-model="vm.proyectoFiltro.sectorId" ng-change="vm.listarFiltroEntidadesProyecto()"
+                                ng-options="x.Id as x.Name for x in vm.listaFiltroSectores" name="ddlSector" id="ddlSector">
+                            <option value="" selected>Seleccione...</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4 SelectBuscadorDNP">
+                        <div class="labelbuscadorDNP"> <span>Entidad</span></div>
+                        <select class="form-control selectDNP" chosen options="vm.ListaEntidadesProyectos" ng-model="vm.proyectoFiltro.entidadId"
+                                ng-options="x.Id as x.Nombre for x in vm.ListaEntidadesProyectos" name="ddlEntidadProyecto" id="ddlEntidadProyecto" no-results-text="No hay ningún resultado para su búsqueda"
+                                placeholder-text-single="Entidades">
+                            <option value="" selected>Seleccione...</option>
+                        </select>
+                    </div>
+                </div>
+                <div ng-if="vm.tipoEntidad !== 'Nacional'">
+                    <div class="col-md-4 SelectBuscadorDNP">
+                        <div class="labelbuscadorDNP"> <span>Entidad</span></div>
+                        <select class="form-control selectDNP" chosen options="vm.ListaEntidadesProyectos" ng-model="vm.proyectoFiltro.entidadId"
+                                ng-options="x.Id as x.Nombre for x in vm.ListaEntidadesProyectos" name="ddlEntidadProyecto" id="ddlEntidadProyecto" no-results-text="No hay ningún resultado para su búsqueda"
+                                placeholder-text-single="Entidades">
+                            <option value="" selected>Seleccione...</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="labelbuscadorDNP"> <span>Sector</span></div>
+                        <select class="form-control selectDNP" ng-model="vm.proyectoFiltro.sectorId" ng-change="vm.listarFiltroEntidadesProyecto()"
+                                ng-options="x.Id as x.Name for x in vm.listaFiltroSectores" name="ddlSector" id="ddlSector">
+                            <option value="" selected>Seleccione...</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="labelbuscadorDNP"> <span>Estado del Proyecto</span></div>
+                    <select class="form-control selectDNP" ng-model="vm.proyectoFiltro.estadoProyectoId"
+                            ng-options="x.Id as x.Estado for x in vm.listaFiltroEstadoProyectos"
+                            name="ddlEstadoDelProyecto" id="ddlEstadoDelProyecto">
+                        <option value="" selected>Seleccione...</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <div class="labelbuscadorDNP"> <span>Vigencia (dentro del horizonte)</span></div>
+                    <select class="form-control selectDNP" ng-model="vm.proyectoFiltro.vigenciaProyectoId"
+                            ng-options="x for x in vm.listaFiltroVigenciasProyectos"
+                            name="ddlVigenciasProyecto" id="ddlVigenciasProyecto">
+                        <option value="" selected>Seleccione...</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 pull-left text-left" ng-if="vm.BusquedaRealizada">
+                    <span class="spanresultadobusquedaDNP pull-left" ng-if="vm.cantidadDeProyectos > 0">
+                        Se encontraron ({{vm.cantidadDeProyectos}}) resultados.
+                    </span>
+                    <span class="spanresultadobusqueda2DNP pull-left" style="margin-top: 0px;" ng-if="vm.cantidadDeProyectos == 0">
+                        No se encontraron resultados.
+                    </span>
+                </div>
+                <div class="col-md-6 pull-right text-right">
+                    <span class="pull-right">
+                        <button type="button" class=" btnBuscarDNP " tooltip-class="customClass" uib-tooltip="Buscar" ng-click="vm.buscar()">
+                            BUSCAR
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <!--<div class="filtro" ng-if="vm.mostrarFiltro">
+        <div class="clearfix">
+            <div class="row">
+                <div class="col-md-10">
+                    <div class="col-md-3" ng-if="vm.puedeVerFiltroEntidad">
+                        <select chosen options="vm.listaFiltroEntidades" ng-model="vm.proyectoFiltro.entidadId"
+                                ng-options="x.Id as x.Name for x in vm.listaFiltroEntidades" name="ddlEntidad" id="ddlEntidad"
+                                no-results-text="No hay ningún resultado para su búsqueda" placeholder-text-single="Entidades" class="form-control">
+                            <option value="" selected>Entidad</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3" ng-if="vm.puedeVerFiltroBpin">
+                        <input type="text" ng-model="vm.proyectoFiltro.bpin" numbers-only name="txtBpin" id="txtBpin" class="form-control" placeholder="BPIN" />
+                    </div>
+
+                    <div class="col-md-3" ng-if="vm.puedeVerFiltroNombre">
+                        <input type="text" ng-model="vm.proyectoFiltro.nombre" name="txtNombreFlujo" id="txtNombreFlujo" class="form-control" placeholder="Nombre Proyecto" />
+                    </div>
+
+                    <div class="col-md-3" ng-if="vm.puedeVerFiltroEstadoProyecto">
+                        <select chosen ng-model="vm.proyectoFiltro.estadoProyectoId" ng-options="x.Id as x.Estado for x in vm.listaFiltroEstadoProyectos"
+                                name="ddlEstadoDelProyecto" id="ddlEstadoDelProyecto" class="form-control"
+                                no-results-text="No hay ningún resultado para su búsqueda" placeholder-text-single="Estado del Proyecto">
+                            <option value="" selected>Estado del Proyecto</option>
+                        </select>
+
+                    </div>
+                    <br /><br />
+                    <div class="col-md-3" ng-if="vm.puedeVerFiltroSector">
+                        <select chosen ng-model="vm.proyectoFiltro.sectorId" ng-options="x.Id as x.Name for x in vm.listaFiltroSectores"
+                                name="ddlSector" id="ddlSector" class="form-control"
+                                no-results-text="No hay ningún resultado para su búsqueda" placeholder-text-single="Sector del Proyecto">
+                            <option value="" selected>Sector del proyecto</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="col-md-2 text-right">
+                    <button type="button" class="btn btn-filtro" ng-click="vm.buscar()" tooltip-placement="auto" uib-tooltip="Buscar">Buscar</button>
+                    <button type="button" class="btn btn-filtro" ng-click="vm.limpiarCamposFiltro()" tooltip-placement="auto" uib-tooltip="Limpiar">Limpiar</button>
+                </div>
+            </div>
+        </div>
+    </div>-->
+
+    </div>
+        <!--Fin de tabs-->
+        <!--<div class="row grid-proyectos">
+            <div class="col-md-12">
+                <div class="container-table" ui-i18n="{{vm.lang}}">
+
+                    <div ng-if="vm.filasFiltradas" class="clearfix grid-icon" id="uigprojecto" ui-grid="vm.gridOptions"
+                         ui-grid-resize-columns ui-grid-pagination ui-grid-expandable>
+                    </div>
+
+                    <div class="text-center intro-help min-mh no-result-watermark" ng-if="!vm.tipoEntidad && !vm.filasFiltradas">
+                        <h4>{{ 'Buscando resultados'}}</h4>
+                    </div>
+
+                    <div class="text-center intro-help min-mh no-result-watermark" ng-if="vm.tipoEntidad && !vm.filasFiltradas">
+                        <h4>{{ 'No hay ningún resultado para su búsqueda por el tipo de entidad' }} {{vm.tipoEntidad}}</h4>
+                    </div>
+                </div>
+            </div>
+            <div ng-if="vm.mostrarMensajeProyectos" ng-cloak>
+                <div class="text-center intro-help no-result-watermark">
+                    <img src="Img/image-help.png" alt="Sin resultados" />
+                    <h2 id="idLabelMensajeResultados">{{vm.Mensaje}}</h2>
+                </div>
+            </div>
+        </div>-->
+        <!--Inicio Nueva Grilla-->
+        <div class="row">
+            <div class="" style="padding: 0 !important" ng-repeat="entidad in vm.listaEntidades | orderBy:'sector'">
+                <div class="alert panel-headingAccDNP">
+                    <div class="card card-body pull-left  divAccordionDNP">
+                        <span class="uLabelCampo">{{entidad.sector}}</span> - {{entidad.entidad}}
+                        <p class="panelbtnalertAcordnp">
+                            <button class="btnaccion btnAccordionDNP" type="button" data-toggle="collapse" data-target="#obj_{{entidad.idEntidad}}" ng-click="vm.AbrilNivel(entidad.idEntidad)">
+                                <img ng-show="entidad.estadoEntidad == '+'" src="Img/btnMas.svg">
+                                <img ng-show="entidad.estadoEntidad == '-'" src="Img/btnMenos.svg">
+                            </button>
+                        </p>
+                    </div>
+                </div>
+                <br />
+                <div class="collapse" id="obj_{{entidad.idEntidad}}" style="margin-top: -20px;">
+                    <div class="LineaEncabezadodivDNP"></div>
+                    <div class="row">
+                        <h3 class="tituloEncabezadodivDNP">
+                            Proyectos: {{entidad.subGridOptions.data.length}}
+                        </h3>
+                    </div>
+
+                    <div class="row" style="margin: 0px 0px 0px 0px;">
+                        <div class="col-md-12 ">
+
+                            <table class="TableDNP">
+                                <thead>
+                                    <tr>
+                                        <th class="columAcc"></th>
+                                        <th class="textLeftDNP">ID / BPIN / estado</th>
+                                        <th class="textLeftDNP">Nombre del proyecto</th>
+                                        <th class="textLeftDNP">Sector </th>
+                                        <th class="textLeftDNP">Horizonte</th>
+                                        <th class="columAcc"></th>
+                                        <th class="columAcc"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="datos in entidad.subGridOptions.data | orderBy:'-FechaCreacion'">
+                                        <td></td>
+                                        <td class="textLeftDNP">
+                                            {{datos.ProyectoId}}<br />
+                                            {{datos.IdObjetoNegocio}}<br />
+                                            {{datos.EstadoProyecto}}
+                                        </td>
+                                        <td class="textLeftDNP">{{datos.NombreObjetoNegocio}}</td>
+                                        <td class="textLeftDNP">
+                                            {{datos.SectorNombre}}
+                                        </td>
+                                        <td class="textLeftDNP">{{datos.Horizonte}}</td>
+                                        <td class="textCenterDNP" >
+                                            <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Ver documentos del proyecto" ng-click="vm.abrirModalDocumentosAdjuntos(datos)">
+                                                <span><img src="Img/u1709.svg" style="width:22px; height:16px" /></span>
+                                            </button>
+                                        </td>
+                                        <td class="textCenterDNP">
+                                            <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Ver procesos" ng-click="vm.abrirModalInstanciasProyecto(datos.IdObjetoNegocio)">
+                                                <span><img src="Img/u1713.svg" style="width:22px; height:16px" /></span>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Fin Nueva Grilla-->
+    </div>
+</div>

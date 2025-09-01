@@ -1,0 +1,36 @@
+﻿<div ng-init="vm.inicaliazarAsociacion()">
+
+    <buscar-proyectoal guardadoevent="vm.deshabilitarBotonDevolverSeccionProyecto()"> </buscar-proyectoal>
+
+
+
+
+    <div class="row">
+
+        <div class="col-md-12" style="padding-top:2rem;">
+            <div id="asociarproyectoseleccionproyec-proyecto-error" class="hidden uMensajeError"></div>
+            <span class="uLabelCampoNegro" style="padding-left:0rem;">{{vm.titulogrilla}}</span>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="tab-pane active cont col-md-12" style="padding-top:20px !important" id="dasocarProyecto">
+
+        </div>
+    </div>
+    
+    <div class="row" style="padding-top:2rem;">
+        <div class="col-md-8"></div>
+        <div class="col-md-2">
+            <!--<span class="buttonbar pull-right">
+                <a ng-click="vm.crearAjuste()" has-claim has-opciones="['TramitesVigenciaFutura:AccionesPasoUno']"><span class="uLabelCampo_fp1" style="text-decoration:underline">CREAR AJUSTE</span></a>
+            </span>-->
+        </div>
+        <div class="col-md-2">
+            <span class="buttonbar pull-right" ng-if="vm.estadoAjusteCreado">
+                <a ng-click="vm.eliminarAsociacion()" has-claim has-opciones="['TramitesVigenciaFutura:AccionesPasoUno']"><span class="uLabelCampoNegro1" style="text-decoration: underline; color: #337ab7;">ELIMINAR ASOCIACIÓN</span></a>
+            </span>
+        </div>
+    </div>
+</div>

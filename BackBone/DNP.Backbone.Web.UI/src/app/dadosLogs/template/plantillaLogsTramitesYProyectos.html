@@ -1,0 +1,130 @@
+﻿
+<div class="container-fluid inbox container-logs">
+    <nav class="breadcrumb">
+        <a href="/">
+            <span class="breadcrumb-item active">
+                <i class="fa fa-home" aria-hidden="true"></i> Inicio
+            </span>
+        </a>
+        /
+        <span class="breadcrumb-item active" ng-if="vm.esTramite()">LOG de instancias de tramites</span>
+        <span class="breadcrumb-item active" ng-if="!vm.esTramite()">LOG de instancias de proyectos</span>
+    </nav>
+    <div class="dashboard">
+        <div id="logs" class="project" ng-init="vm.init();">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="titlebar">
+                        <span ng-if="vm.esTramite()">LOG DE INSTANCIAS DE TRAMITES</span>
+                        <span ng-if="!vm.esTramite()">LOG DE INSTANCIAS DE PROYECTOS</span>
+                        <span class="buttonbar pull-right">
+                            <button type="button" class="btn btn-default btn-md" tooltip-placement="top" uib-tooltip="Adicionar Columna" ng-click="vm.abrirModalAdicionarColumnas()" tabindex="0">
+                                Agregar columnas
+                            </button>
+                            <button type="button" class="btn btn-default btn-md" ng-click="vm.conmutadorFiltro()" tooltip-placement="auto" uib-tooltip="Filtro">Filtro</button>
+                            <a href="" class="btn btn-default btn-md btnRedondo" download target="_blank" ng-click="vm.downloadPdf()" tooltip-placement="auto" uib-tooltip="Exportar PDF">PDF</a>
+                            <a href="" class="btn btn-default btn-md btnRedondo" download target="_blank" ng-click="vm.downloadExcel()" tooltip-placement="auto" uib-tooltip="Exportar XLS">XLS</a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group clearfix">
+                <div class="row">
+                    <div class="col-md-12 radio radio-primary">
+                        <ul class="nav nav-tabs">
+                            <li tabindex="0" class="{{$index == 0 ? 'active' : ''}}" ng-repeat="tipo in vm.listaTipoEntidad">
+                                <a data-toggle="tab" ng-click="vm.cambioTipoEntidad(tipo.Nombre)"
+                                   ng-disabled="{{tipo.Deshabilitado}}" ng-if="!tipo.Deshabilitado"
+                                   llamar-funcion-con-tecla="vm.cambioTipoEntidad(tipo.Nombre)">
+                                    {{tipo.Descripcion}}
+                                </a>
+                                <a ng-if="tipo.Deshabilitado" class="disabled" disabled>{{tipo.Descripcion}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!--inicio filtro-->
+                <div class="filtro filtro-logs" ng-if="vm.mostrarFiltro">
+                    <div class="clearfix">  
+                        <div class="row">
+                            <div class="col-md-10 padding-right-off">
+                                <div class="col-md-2 padding-left-off" ng-if="vm.puedeVerFiltroCodigo">
+                                    <input type="text" ng-model="vm.filtro.Codigo" class="form-control" placeholder="Código" />
+                                </div>
+                                <div class="col-md-3 padding-left-off" ng-if="vm.puedeVerFiltroFechaInicio">
+                                    <div class="input-group">
+                                        <span class="input-group-btn" placeholder="Fecha Inicio">
+                                            <button class="btn btn-default" type="button" ></button>
+                                        </span>
+                                        <input type="date" ng-model="vm.filtro.FechaInicio" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-3 padding-left-off" ng-if="vm.puedeVerFechaFin">
+                                    <div class="input-group">
+                                        <span class="input-group-btn" placeholder="Fecha Fin">
+                                            <button class="btn btn-default" type="button" ></button>
+                                        </span>
+                                        <input type="date" ng-model="vm.filtro.FechaFin" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 padding-left-off" ng-if="vm.puedeVerFiltroEntidad">
+
+                                    <!-- // Entidades. -->
+                                    <div class="form-group">
+                                        <ui-select ng-model="vm.uiSelect.selected" theme="bootstrap" ng-change="vm.filtro.EntityTypeCatalogOptionId = '{{$select.selected.EntityTypeCatalogOptionId}}'">
+                                            <ui-select-match placeholder="Entidad">{{$select.selected.Entidad}}</ui-select-match>
+                                            <ui-select-choices repeat="item in vm.entidades | filter: $select.search">
+                                              <div class="select-choices-title" ng-bind-html="item.Entidad | highlight: $select.search"></div>
+                                              <small ng-bind-html="item.NombreCompleto | highlight: $select.search"></small>
+                                            </ui-select-choices>
+                                          </ui-select>
+                                    </div>
+
+                                    <!-- <select ng-model="vm.filtro.EntityTypeCatalogOptionId" class="form-control">
+                                        <option value="" disabled selected hidden>Entidad</option>
+                                        <option ng-repeat="entidad in vm.entidades" ng-value="entidad.EntityTypeCatalogOptionId">{{ entidad.Entidad }} </option>
+                                    </select> -->
+                                </div>
+                            </div>
+                            <div class="col-md-10 padding-right-off">
+                                <div class="col-md-2 padding-left-off" ng-if="vm.puedeVerFiltroBPIN">
+                                    <input type="text" ng-model="vm.filtro.BPIN" class="form-control" placeholder="BPIN" />
+                                </div>
+                                <div class="col-md-6 padding-left-off" ng-if="vm.puedeVerFiltroDescripcion">
+                                    <input type="text" ng-model="vm.filtro.Descripcion" class="form-control" placeholder="Descripcion" />
+                                </div>
+                                <div class="col-md-2 padding-left-off" ng-if="vm.puedeVerFiltroEstado">
+                                    <select ng-model="vm.filtro.Estado" class="form-control">
+                                        <option value="" disabled selected hidden>Estado</option>
+                                        <option>Instanciado</option>
+                                        <option>Error</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-2 padding-left-off" ng-if="vm.puedeVerFiltroUsuarioId">
+                                    <input type="text" ng-model="vm.filtro.UsuarioId" class="form-control" placeholder="Usuario" />
+                                </div>
+                            </div>
+                            <div class="col-md-2 text-right padding-off ">
+                                <button type="button" class="btn btn-filtro" ng-click="vm.buscar()" tooltip-placement="auto" uib-tooltip="Buscar">Buscar</button>
+                                <button type="button" class="btn btn-filtro" ng-click="vm.limpiarCamposFiltro()" tooltip-placement="auto" uib-tooltip="Limpiar">Limpiar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--fim filtro-->
+            </div>
+            <div class="clearfix div-escopo">
+                <div class="row">
+                    <div class="col-xs-12" ng-if="vm.gridOptions.data.length">
+                        <div class="clearfix grid-icon" id="uiglistalogs" ui-grid="vm.gridOptions"
+                             ui-grid-resize-columns ui-grid-pagination>
+                        </div>
+                    </div>
+                    <div ng-if="!vm.gridOptions.data.length" class="text-center intro-help min-mh no-result-watermark">
+                        <h3> No hay ningún resultado para su búsqueda por el tipo de entidad {{ vm.tipoEntidad }} </h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>  

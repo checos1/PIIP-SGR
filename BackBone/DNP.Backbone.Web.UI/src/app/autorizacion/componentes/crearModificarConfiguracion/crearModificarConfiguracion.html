@@ -1,0 +1,121 @@
+﻿<form ng-if="vm.creandoConfiguracionNacional  && vm.tipoEntidad == 'Nacional'" name="vm.configuracionNacionalForm" novalidate>
+    <div class="formulario-editar-configuracion clearfix">
+        <div class="container-24">
+            <select name="rol"
+                    ng-options="rol as rol.Nombre for rol in vm.rolesNacionales track by rol.Id"
+                    ng-model="vm.configuracionNacional.rol"
+                    class="form-control"
+                    required
+                    tabindex="0">
+                <option value="" selected disabled>Seleccione Rol</option>
+            </select>
+        </div>
+        <div class="container-24">
+            <select name="sector"
+                    ng-options="sector as sector.Nombre for sector in vm.sectoresNacionales track by sector.Id"
+                    ng-model="vm.configuracionNacional.sector"
+                    class="form-control"
+                    ng-change="vm.seleccionarSectorNacional(vm.sectorNacional)"
+                    required tabindex="0">
+                <option value="" selected disabled>Seleccione Sector</option>
+            </select>
+        </div>
+        <div class="container-24">
+            <select name="entidad"
+                    ng-options="entidadDestino as entidadDestino.Nombre for entidadDestino in vm.entidadesDestinoNacionales track by entidadDestino.Id"
+                    ng-model="vm.configuracionNacional.entidadDestino"
+                    class="form-control"
+                    ng-disabled="vm.entidadesDestinoNacionales.length === 0"
+                    required tabindex="0">
+                <option value="" selected disabled>Seleccione Entidad</option>
+            </select>
+        </div>
+        <div class="container-14">
+            <div class="text-center">
+                <label class="switch">
+                    <input id="check" type="checkbox"
+                           ng-model="vm.configuracionTerritorial.activado"
+                           ng-checked="vm.configuracionTerritorial.activado" tabindex="0">
+                    <span class="slider-true"><i class="icon-tick"></i></span><span class="slider-false"><i class="icon-inactive"></i></span>
+                </label>
+            </div>
+        </div>
+        <div class="container-14 grid-icon">
+            <button class="btn btn-default" tabindex="0" tooltip-placement="bottom" uib-tooltip="Guardar" ng-click="vm.confirmarGuardarNacional()">
+                <span class="icon-save" aria-hidden="true"></span>
+            </button>
+            <button class="btn btn-default" tabindex="0" tooltip-placement="bottom" uib-tooltip="Cerrar" ng-click="vm.confirmarSalirSinGuardar()">
+                <span class="icon-close" aria-hidden="true"></span>
+            </button>
+        </div>
+    </div>
+</form>
+<form ng-if="vm.creandoConfiguracionTerritorial && vm.tipoEntidad == 'Territorial'" name="vm.configuracionTerritorialForm" novalidate>
+    <div class="formulario-editar-configuracion clearfix">
+        <div class="container-20">
+            <select name="entidadTerritorial"
+                    ng-options="entidadTerritorial as entidadTerritorial.Nombre for entidadTerritorial in vm.entidadesTerritoriales track by entidadTerritorial.Id"
+                    ng-model="vm.configuracionTerritorial.entidadTerritorial"
+                    class="form-control"
+                    ng-change="vm.seleccionarEntidadTerritorial(vm.configuracionTerritorial.entidadTerritorial)"
+                    required
+                    tabindex="0">
+                <option value="" selected disabled>Seleccione Entidad Territorial</option>
+            </select>
+        </div>
+        <div class="container-20">
+            <select name="rol"
+                    ng-options="rol as rol.Nombre for rol in vm.rolesTerritoriales track by rol.Id"
+                    ng-model="vm.configuracionTerritorial.rol"
+                    class="form-control"
+                    ng-disabled="vm.rolesTerritoriales.length === 0"
+                    required
+                    tabindex="0">
+                <option value="" selected disabled>Seleccione Rol</option>
+            </select>
+        </div>
+        <div class="container-20">
+            <select name="sector"
+                    ng-options="sector as sector.Nombre for sector in vm.sectoresTerritoriales track by sector.Id"
+                    ng-model="vm.configuracionTerritorial.sector"
+                    class="form-control"
+                    ng-disabled="vm.sectoresTerritoriales.length === 0"
+                    ng-change="vm.seleccionarSectorTerritorial(vm.sectorTerritorial)"
+                    required
+                    tabindex="0">
+                <option value="" selected disabled>Seleccione Sector</option>
+            </select>
+        </div>
+        <div class="container-20">
+            <select name="entidad"
+                    ng-options="entidadDestino as entidadDestino.Nombre for entidadDestino in vm.entidadesDestinoTerritoriales track by entidadDestino.Id"
+                    ng-model="vm.configuracionTerritorial.entidadDestino"
+                    class="form-control"
+                    ng-disabled="vm.entidadesDestinoTerritoriales.length === 0"
+                    required
+                    tabindex="0">
+                <option value="" selected disabled>Seleccione Entidad</option>
+            </select>
+        </div>
+        <div class="container-10">
+            <div class="text-center">
+                <div class="text-center">
+                    <label class="switch">
+                        <input id="check" type="checkbox" tabindex="0"
+                               ng-model="vm.configuracionTerritorial.activado"
+                               ng-checked="vm.configuracionTerritorial.activado">
+                        <span class="slider-true"><i class="icon-tick"></i></span><span class="slider-false"><i class="icon-inactive"></i></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="container-10 grid-icon">
+            <button class="btn btn-default" tabindex="0" tooltip-placement="bottom" uib-tooltip="Guardar" ng-click="vm.confirmarGuardarTerritorial()">
+                <span class="icon-save" aria-hidden="true"></span>
+            </button>
+            <button class="btn btn-default" tabindex="0" tooltip-placement="bottom" uib-tooltip="Cerrar" ng-click="vm.confirmarSalirSinGuardar()">
+                <span class="icon-close" aria-hidden="true"></span>
+            </button>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,70 @@
+﻿@using DNP.Backbone.Dominio.Dto.Tramites.Proyectos;
+@model ProyectosTramitesDTO
+@{
+    Layout = null;
+    ViewBag.Title = "ProyectosPDF";
+}
+<html>
+<head>
+    @Html.Partial("_IncludeEstilosRelatorios")
+</head>
+<body class="pdf">
+    @Html.Partial("_CabecalhoRelatorio", "Informe del Proyectos de Tramites")
+
+    <div class="mt-5">
+        @if (Model.ListaProyectos == null)
+        {
+            <table class="table table-sm table-borderless">
+                <thead>
+                    <tr>
+                        <th class="text-left">
+                            No hubo registros para los filtros seleccionados.
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+        }
+        else
+        {
+            <div>
+                <div class="marginTop10">
+                    <table class="table">
+                        <tr>
+                            <td><b>Tramite:</b> <span class="agr-blue">@Model.ListaProyectos.FirstOrDefault().TramiteDto.Id </span></td>
+                            <td><b>Tramite:</b> <span class="agr-blue"> @Model.ListaProyectos.FirstOrDefault().TramiteDto.Descripcion </span></td>
+                            <td><b>Tramite:</b> <span class="agr-blue">@Model.ListaProyectos.FirstOrDefault().TramiteDto.TipoTramite.Nombre </span></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div id="containerbody">
+                <table class="table  table-borderless border-table">
+                    <thead>
+                        <tr>
+                            <th>Tipo</th>
+                            <th>Sector</th>
+                            <th>Entidad</th>
+                            <th>Proyecto/BPIN</th>
+                            <th>Operación</th>
+                            <th>Valor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var proyectos in Model.ListaProyectos)
+                        {
+                            <tr>
+                                <td>@proyectos.TipoProyecto</td>
+                                <td>@proyectos.SectorNombre</td>
+                                <td>@proyectos.NombreEntidad</td>
+                                <td>@proyectos.NombreObjetoNegocio - @proyectos.IdObjetoNegocio</td>
+                                <td>@proyectos.Operacion</td>
+                                <td>@proyectos.ValorTotal</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </div>
+</body>
+</html>

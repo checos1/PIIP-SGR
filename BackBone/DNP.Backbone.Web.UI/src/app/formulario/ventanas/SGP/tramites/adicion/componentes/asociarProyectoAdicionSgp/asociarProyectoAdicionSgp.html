@@ -1,0 +1,80 @@
+﻿<div ng-init="vm.inicialiazarAsociacion();">
+
+    <div class="ui-accordion-container " id="accordion-proyectostramitesgpdatosadiciontramitesgp">
+        <div class="alert panel-heading row ui-accordion-header">
+            <button type="button" data-toggle="collapse"
+                    data-target="#proyectostramitesgpdatosadiciontramitesgp"
+                    ng-click="vm.changeArrow('proyectostramitesgpdatosadiciontramitesgp')">
+                <span class="d-inline-block" id="alert-proyectostramitesgpdatosadiciontramitesgp"></span>
+                <span id="name-capitulo-proyectostramitesgpdatosadiciontramitesgp"></span>
+                <span class="hidden" id="id-capitulo-proyectostramitesgpdatosadiciontramitesgp"></span>
+                <span id="arrow-proyectostramitesgpdatosadiciontramitesgp" class="glyphicon-chevron-down glyphicon pull-right"
+                      data-toggle="collapse"
+                      data-target="#proyectostramitesgpdatosadiciontramitesgp"></span>
+            </button>
+        </div>
+        <div class="collapse" id="proyectostramitesgpdatosadiciontramitesgp">
+            <div class="row m-0 mb-3">
+                <br>
+                <div class="col-md-12 ">
+                    <datos-adicion-sgp tramiteid="{{vm.tramiteid}}"
+                                       guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                       notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                       notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"
+                                       callback="vm.notificarGuardado(botonDevolver, botonSiguiente, ocultarDevolver)">
+                    </datos-adicion-sgp>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="ui-accordion-container " id="accordion-{{vm.nombreComponenteHijo}}">
+        <div class="alert panel-heading row ui-accordion-header">
+            <button type="button" data-toggle="collapse"
+                    data-target="#proyectostramitesgp"
+                    ng-click="vm.changeArrow(vm.nombreComponenteHijo)">
+                <span class="d-inline-block" id="alert-{{vm.nombreComponenteHijo}}"></span>
+                <span id="name-capitulo-{{vm.nombreComponenteHijo}}"></span>
+                <span class="hidden" id="id-capitulo-{{vm.nombreComponenteHijo}}"></span>
+                <span id="arrow-{{vm.nombreComponenteHijo}}" class="glyphicon-chevron-down glyphicon pull-right"
+                      data-toggle="collapse"
+                      data-target="#proyectostramitesgp"></span>
+            </button>
+        </div>
+        <div class="collapse" id="proyectostramitesgp">
+            <div class="row m-0 mb-3">
+                <br>
+                <div class="col-md-12 ">
+                    <!--<asociar-proyectos-sgp-formulario tramiteid="{{vm.tramiteid}}"
+                                                      nombrecomponentepaso="{{vm.nombreComponenteHijo}}"
+                                                      tipotramiteid="{{vm.tipotramiteid}}"
+                                                      deshabilitar="{{vm.deshabilitar}}"
+                                                      rolanalista="{{vm.rolanalista}}"
+                                                      actualizacomponentes="vm.actualizacomponentes"
+                                                      guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                                      callback="vm.callback()"
+                                                      notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                      notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)">
+                    </asociar-proyectos-sgp-formulario>-->
+
+                    <asociar-proyectos-un-tipo-formulario-sgp tramiteid="{{vm.tramiteid}}"
+                                                              tipotramiteid="{{vm.tipotramiteid}}"
+                                                              nombrecomponentepaso="{{vm.nombreComponenteHijo}}"
+                                                              actualizacomponentes="vm.actualizacomponentes"
+                                                              guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                                              notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                              notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"
+                                                              callback="vm.notificarGuardado(botonDevolver, botonSiguiente, ocultarDevolver)"
+                                                              deshabilitarconcepto="vm.deshabilitarConcepto(estado)"
+                                                              tipoaccion="D"
+                                                              tipoconsulta=""
+                                                              tipoproyecto="Credito">
+                    </asociar-proyectos-un-tipo-formulario-sgp>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

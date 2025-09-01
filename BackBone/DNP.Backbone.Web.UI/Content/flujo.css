@@ -1,0 +1,273 @@
+﻿.content-macroprocesos {
+    border-width: 0px;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    height: 48px;
+    background: inherit;
+    background-color: rgba(246, 248, 249, 1);
+    box-sizing: border-box;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(0, 72, 132, 1);
+    border-radius: 5px;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    position: relative;
+    display: inline-flex;
+    z-index: 1;
+}
+.conProgramacion {
+    width: 480px !important;
+}
+
+.content-macroprocesos-consola {
+    border-width: 0px;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    height: 48px;
+    width: 100%;
+    /*background: inherit;*/
+    background-image: url(../Img/FondoConsola.svg) !important;
+    background-repeat: no-repeat;
+    /*background-color: rgba(246, 248, 249, 1);*/
+    box-sizing: border-box;
+    /*border-width: 1px;
+    border-style: solid;
+    border-color: rgba(0, 72, 132, 1);
+    border-radius: 5px;*/
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    position: relative;
+    display: inline-flex;
+    z-index: 1;
+}
+
+
+
+.div-accion-seleccionada {
+    border-width: 0px;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100px;
+    height: 35px;
+    background: inherit;
+    background-color: rgba(255, 255, 255, 1);
+    box-sizing: border-box;
+    border-width: 1px;
+    border-style: solid;
+    border-bottom: 0px;
+    border-color: rgba(0, 72, 132, 1);
+    border-radius: 10px;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 14px;
+    color: #004884;
+}
+
+.accion-seleccionada {
+    border-width: 0px;
+    position: absolute;
+    left: 20px;
+    bottom: -1px;
+    width: 100px;
+    height: 35px;
+    display: flex;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 14px;
+    color: #004884;
+}
+
+.div-accion-sin-seleccion {
+    border-width: 0px;
+    position: absolute;
+    left: 0px;
+    bottom: 50%;
+    width: 100px;
+    height: 25px;
+    background: inherit;
+    background-color: rgba(255, 255, 255, 1);
+    box-sizing: border-box;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(0, 72, 132, 1);
+    border-radius: 15px;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 14px;
+    color: #004884;
+}
+
+.accion-sin-seleccion {
+    border-width: 0px;
+    position: absolute;
+    left: 20px;
+    top: 24px;
+    width: 100px;
+    height: 25px;
+    display: flex;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 14px;
+    color: #004884;
+}
+
+span.macroproceso.circle-noti {
+    z-index: 3;
+    top: -10px;
+    text-align: center;
+    right: 40%;
+    font-size: 10px;
+    padding: 1px 6px;
+    background: #3366cc;
+    color: #fff;
+    border-radius: 8px;
+    position: absolute;
+}
+
+    span.macroproceso.circle-noti.active {
+        z-index: 3;
+        top: -10px;
+        text-align: center;
+        right: 40%;
+        font-size: 10px;
+        padding: 1px 6px;
+        background: #ff5b5c;
+        color: #fff;
+        border-radius: 8px;
+        position: absolute;
+    }
+
+.planeacionSeleccionado {
+}
+
+    .planeacionSeleccionado #dvFlechaRecursos {
+        left: -40px;
+    }
+
+    .planeacionSeleccionado #dvFlechaEjecucion {
+        left: -60px;
+    }
+
+    .planeacionSeleccionado #dvFlechaEvaluacion {
+        left: -80px;
+    }
+
+    .planeacionSeleccionado #dvPlaneacionDatos {
+        width: 200px;
+        left: -20px;
+    }
+
+    .planeacionSeleccionado label {
+        font-family: 'Montserrat Bold', 'Montserrat Regular', 'Montserrat', sans-serif;
+        font-weight: 700;
+        font-style: normal;
+        font-size: 16px;
+        color: #004884;
+        text-align: left;
+        cursor:pointer;
+    }
+
+.ejecucionSeleccionado {
+}
+
+    .ejecucionSeleccionado #dvFlechaRecursos {
+        left: -20px;
+    }
+
+    .ejecucionSeleccionado #dvFlechaEjecucion {
+        left: -40px;
+    }
+
+    .ejecucionSeleccionado #dvFlechaEvaluacion {
+        left: -80px;
+    }
+
+    .ejecucionSeleccionado #dvEjecucionDatos {
+        width: 310px;
+        left: -60px;
+    }
+
+    .ejecucionSeleccionado label {
+        font-family: 'Montserrat Bold', 'Montserrat Regular', 'Montserrat', sans-serif;
+        font-weight: 700;
+        font-style: normal;
+        font-size: 16px;
+        color: #004884;
+        text-align: left;
+        cursor: pointer;
+    }
+
+
+.recursosSeleccionado {
+}
+
+    .recursosSeleccionado #dvFlechaRecursos {
+        left: -20px;
+    }
+
+    .recursosSeleccionado #dvFlechaEjecucion {
+        left: -60px;
+    }
+
+    .recursosSeleccionado #dvFlechaEvaluacion {
+        left: -80px;
+    }
+
+    .recursosSeleccionado #dvRecursosDatos {
+        width: 200px;
+        left: -40px;
+    }
+
+    .recursosSeleccionado label {
+        font-family: 'Montserrat Bold', 'Montserrat Regular', 'Montserrat', sans-serif;
+        font-weight: 700;
+        font-style: normal;
+        font-size: 16px;
+        color: #004884;
+        text-align: left;
+        cursor: pointer;
+    }
+
+.evaluacionSeleccionado {
+}
+
+    .evaluacionSeleccionado #dvFlechaRecursos {
+        left: -20px;
+    }
+
+    .evaluacionSeleccionado #dvFlechaEjecucion {
+        left: -40px;
+    }
+
+    .evaluacionSeleccionado #dvFlechaEvaluacion {
+        left: -60px;
+    }
+
+    .evaluacionSeleccionado #dvEvaluacionDatos {
+        width: 200px;
+        left: -80px;
+    }
+
+    .evaluacionSeleccionado label {
+        font-family: 'Montserrat Bold', 'Montserrat Regular', 'Montserrat', sans-serif;
+        font-weight: 700;
+        font-style: normal;
+        font-size: 16px;
+        color: #004884;
+        text-align: left;
+        cursor: pointer;
+    }

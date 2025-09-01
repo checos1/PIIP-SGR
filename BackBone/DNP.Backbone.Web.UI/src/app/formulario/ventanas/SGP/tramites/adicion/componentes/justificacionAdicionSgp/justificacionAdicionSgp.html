@@ -1,0 +1,32 @@
+﻿<section>
+    <div class="container-fluid inbox" ng-init="vm.initJustificacion()">
+        <div class="tab-content">
+            <div class="row" style="margin-left: 0px; margin-right: 0px;padding-bottom:1rem">
+                <div class="alert panel-heading row ui-accordion-header" style="">
+
+                    <button class="button" type="button" data-toggle="collapse" data-target="#justificacionsgpjustificaciontramitesgp"
+                            ng-click="vm.changeArrow(vm.nombreComponenteHijo)">
+                        <span class="d-inline-block" id="alert-{{vm.nombreComponenteHijo}}"></span>
+                        <span class="hidden" id="id-capitulo-{{vm.nombreComponenteHijo}}"></span>
+                        <span class="hidden" id="id-capitulo-justificacionjustificacion"></span>
+                        <span id="name-capitulo-{{vm.nombreComponenteHijo}}"></span>
+                        <span id="arrow-{{vm.nombreComponenteHijo}}" class="glyphicon glyphicon-chevron-down pull-right" data-toggle="collapse" data-target="#justificacionsgpjustificaciontramitesgp"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="justificacionsgpjustificaciontramitesgp" style="padding-right: 15px; padding-left: 0px;">
+                    <div ng-if="!vm.mostrarjustificacion" style="margin-left:20px;">
+                        <justificacion-tramite-sgp tramiteid="{{vm.tramiteid}}"
+                                                  tipotramiteid="{{vm.tipotramiteid}}"
+                                                  actualizacomponentes="{{vm.actualizacomponentes}}"
+                                                  idnivel="{{vm.idnivel}}"
+                                                  vm.nombrecomponentepaso="{{vm.nombreComponenteHijo}}"
+                                                  guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                                  notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                  notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)">
+                        </justificacion-tramite-sgp>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

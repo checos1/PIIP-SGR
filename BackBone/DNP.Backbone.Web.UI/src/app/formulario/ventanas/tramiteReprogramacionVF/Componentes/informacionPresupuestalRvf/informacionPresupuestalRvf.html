@@ -1,0 +1,128 @@
+﻿<section>
+    <div class="container-fluid inbox" ng-init="vm.init();">
+        <div class="tab-content">
+            <div class="ui-accordion-container hidden" id="accordion-informacionpresupuestalresumenreprogramacion">
+                <div class="alert panel-heading row ui-accordion-header" style="">
+                    <button class="button" type="button" data-toggle="collapse" data-target="#informacionpresupuestalresumenreprogramacion" ng-click="vm.changeArrow('informacionpresupuestalreprogramacionporvigencia')">
+                        <span class="d-inline-block" id="alert-informacionpresupuestalresumenreprogramacion"></span>
+                        <span id="name-capitulo-informacionpresupuestalresumenreprogramacion"></span>
+                        <span class="hidden" id="id-capitulo-informacionpresupuestalresumenreprogramacion"></span>
+                        <span id="arrow-informacionpresupuestalresumenreprogramacion" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#informacionpresupuestalreprogramacionporvigencia"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="informacionpresupuestalresumenreprogramacion" style="padding-right: 15px; padding-left: 0px; margin-left: -15px;">
+                    <div class="row" style="margin-left:20px" ng-if="!vm.mostrar">
+                        <resumen-rvf tramiteid="{{vm.tramiteid}}" tipotramiteid="{{vm.tipotramiteid}}"
+                                     mostrar="{{'contractual'}}"
+                                     guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                     notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                     notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)">
+
+                        </resumen-rvf>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="ui-accordion-container hidden" id="accordion-informacionpresupuestalreprogramacionporvigencia">
+                <div class="alert panel-heading row ui-accordion-header" style="">
+                    <button class="button" type="button" data-toggle="collapse" data-target="#informacionpresupuestalreprogramacionporvigencia" ng-click="vm.changeArrow('informacionpresupuestalreprogramacionporvigencia')">
+                        <span class="d-inline-block" id="alert-informacionpresupuestalreprogramacionporvigencia"></span>
+                        <span id="name-capitulo-informacionpresupuestalreprogramacionporvigencia"></span>
+                        <span class="hidden" id="id-capitulo-informacionpresupuestalreprogramacionporvigencia"></span>
+                        <span id="arrow-informacionpresupuestalreprogramacionporvigencia" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#informacionpresupuestalreprogramacionporvigencia"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="informacionpresupuestalreprogramacionporvigencia" style="padding-right: 15px; padding-left: 0px; margin-left: -15px;">
+                    <div class="row" style="margin-left:20px" ng-if="!vm.mostrar">
+                        <!--AQUI VA EL CONTROL-->
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="ui-accordion-container hidden" id="accordion-informacionpresupuestalreprogramacionporproducto">
+                <div class="alert panel-heading row ui-accordion-header" style="">
+                    <button class="button" type="button" data-toggle="collapse" data-target="#informacionpresupuestalreprogramacionporproducto" ng-click="vm.changeArrow('informacionpresupuestalreprogramacionporproducto')">
+                        <span class="d-inline-block" id="alert-informacionpresupuestalreprogramacionporproducto"></span>
+                        <span id="name-capitulo-informacionpresupuestalreprogramacionporproducto"></span>
+                        <span class="hidden" id="id-capitulo-informacionpresupuestalreprogramacionporproducto"></span>
+                        <span id="arrow-informacionpresupuestalreprogramacionporproducto" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#informacionpresupuestalreprogramacionporproducto"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="informacionpresupuestalreprogramacionporproducto" style="padding-right: 15px; padding-left: 0px; margin-left: -15px;">
+                    <div class="row" style="margin-left:20px" ng-if="!vm.mostrar">
+                        <!--AQUI VA EL CONTROL-->
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="ui-accordion-container hidden" id="accordion-informacionpresupuestalcronograma">
+                <div class="alert panel-heading row ui-accordion-header" style="">
+                    <button class="button" type="button" data-toggle="collapse" data-target="#informacionpresupuestalcronograma" ng-click="vm.changeArrow('informacionpresupuestalcronograma')">
+                        <span class="d-inline-block" id="alert-informacionpresupuestalcronograma"></span>
+                        <span id="name-capitulo-informacionpresupuestalcronograma"></span>
+                        <span class="hidden" id="id-capitulo-informacionpresupuestalcronograma"></span>
+                        <span id="arrow-informacionpresupuestalcronograma" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#informacionpresupuestalcronograma"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="informacionpresupuestalcronograma" style="padding-right: 15px; padding-left: 0px; margin-left: -15px;">
+                    <div class="row" style="margin-left:20px" ng-if="!vm.mostrar">
+                        <cronograma tramiteid="{{vm.tramiteid}}" tipotramiteid="{{vm.tipotramiteid}}"
+                                    mostrar="{{'contractual'}}"
+                                    guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                    notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                    notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)">
+
+                        </cronograma>
+                    </div>
+
+                </div>
+            </div>
+            <span class="hidden" id="id-capitulo-informacionpresupuestalconpes"></span>
+            <div class="ui-accordion-container hidden" id="accordion-informacionpresupuestalconpes" ng-show="vm.showConpes">
+                <div class="alert panel-heading row ui-accordion-header" style="">
+                    <button class="button" type="button" data-toggle="collapse" data-target="#informacionpresupuestalconpes" ng-click="vm.changeArrow('informacionpresupuestalconpes')">
+                        <span class="d-inline-block" id="alert-informacionpresupuestalconpes"></span>
+                        <span id="name-capitulo-informacionpresupuestalconpes"></span>
+
+                        <span id="arrow-informacionpresupuestalconpes" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#informacionpresupuestalconpes"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="informacionpresupuestalconpes" style="padding-right: 15px; padding-left: 0px; margin-left: -15px;">
+                    <div class="row" style="margin-left:20px" ng-if="!vm.mostrar">
+                        <conpes-rvf tramiteid="{{vm.tramiteid}}"
+                                    guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                    notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                    notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)">
+                        </conpes-rvf>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="ui-accordion-container hidden" id="accordion-informacionpresupuestalrp">
+                <div class="alert panel-heading row ui-accordion-header" style="">
+                    <button class="button" type="button" data-toggle="collapse" data-target="#informacionpresupuestalrp" ng-click="vm.changeArrow('informacionpresupuestalrp')">
+                        <span class="d-inline-block" id="alert-informacionpresupuestalrp"></span>
+                        <span id="name-capitulo-informacionpresupuestalrp"></span>
+                        <span class="hidden" id="id-capitulo-informacionpresupuestalrp"></span>
+                        <span id="arrow-informacionpresupuestalrp" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#informacionpresupuestalrp"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="informacionpresupuestalrp" style="padding-right: 15px; padding-left: 0px; margin-left: -15px;">
+                    <div class="row" style="margin-left:20px" ng-if="!vm.mostrar">
+                        <agregar-registro-presupuestal-formulario tramiteid="{{vm.tramiteid}}"
+                                                                  tipotramiteid="{{vm.tipotramiteid}}"
+                                                                  guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                                                  notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                                  notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)">
+                        </agregar-registro-presupuestal-formulario>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

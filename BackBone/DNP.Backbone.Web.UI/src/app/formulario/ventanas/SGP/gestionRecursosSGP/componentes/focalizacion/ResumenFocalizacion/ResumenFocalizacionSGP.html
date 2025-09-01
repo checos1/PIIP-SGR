@@ -1,0 +1,729 @@
+﻿<div ng-init="vm.init();">
+    <div id="seccionNoHabilitadaFocalizacionCategorias" class="hidden">
+        <div class="col-md-12 col-lg-12 col-sm-12 divPanelSecNoHabilitadaDNP" style="width: 1161px; margin-left: 0px; margin-top: 10px;">
+            <span style="text-align: left;font-family: 'Work Sans'; font-size: 14px; font-style: normal;">Este capítulo se activará cuando diligencie y guarde la información de la sección 'Recursos / Fuentes de financiación'.</span>
+        </div>
+    </div>
+    <div id="seccionHabilitadaFocalizacionCategorias" class="hidden">
+        <form id="resumenPoliticas" novalidate>
+            <div id="recursosfuentesdefinanc-validacionguardar-error" class="hidden text-left color-red">
+                <img class="img img-advertencia" src="Img/u11.svg" />
+                <span id="recursosfuentesdefinanc-validacionguardar-error-mns"></span>
+            </div>
+            <div id="fuentes" class="collapsed panel-body">
+                <h3 class="text-left ui-seccion-title">Resumen focalización</h3>
+                <div class="col-md-12" style="padding-left:0px">
+                    <span>Para cargar focalización de forma masiva, todas las políticas deben tener por lo menos una categoría asociada</span>
+                </div>
+                <div class="col-md-12 text-left" style="padding-left:0px">
+                    <span>*La opción para focalizar en indicadores específicos asociados a la política transversal solamente está disponible para “Equidad de la Mujer” y “Construcción de Paz" </span>
+                </div>
+                <br />
+                <table class="TableDNP no-border">
+                    <thead>
+                        <tr>
+                            <th class="columAcc"></th>
+                            <th class="textLeftDNP">Política</th>
+                            <th class="textLeftDNP">Categoría</th>
+                            <th class="textLeftDNP">Indicadores de la política *</th>
+                            <th class="columAcc"></th>
+                        </tr>
+                    </thead>
+                    <tbody ng-repeat="objPoliticas in vm.listaPoliticasProyectos">
+                        <tr>
+                            <td class="columAcc" style="background: transparent">
+                                <span ng-if="objPoliticas.presentaError || objPoliticas.presentaErrorVacio">
+                                    <img class="img img-advertencia" src="Img/u11.svg" />
+                                </span>
+                            </td>
+                            <td>
+                                {{objPoliticas.politica}}
+                            </td>
+                            <td><a class="cVerMas" ng-click="vm.VerPolitica(objPoliticas.politicaId)">INGRESAR</a></td>
+                            <td>
+                                <a class="cVerMas" ng-if="objPoliticas.politicaId == 7 || objPoliticas.politicaId == 4" ng-click="vm.VerPoliticaIndicadores(objPoliticas.politicaId)">INGRESAR</a>
+                                <label ng-if="objPoliticas.politicaId != 7 && objPoliticas.politicaId != 4" style="color:lightgray"><u>N/A</u></label>
+                            </td>
+                            <td class="columAcc" style="background: transparent">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </form>
+        <div id="{{vm.nombreComponente}}CategoriaRecursos1" style="padding-left: 0.5rem;" class="col-md-12 hidden uMensajeError"></div>
+        <div class="row" ng-repeat="politicasIndicadores in vm.listaPoliticasCategorias.Politicas" ng-init="indexPoliticas = $index">
+            <div ng-if="!vm.TieneCategorias(politicasIndicadores)" id="politica-{{politicasIndicadores.PoliticaId}}" class="panel-body">
+                <span class="buttonbar pull-right">
+                    <button class="btnaccion btnAccordionDNP" type="button" ng-click="vm.volver()">
+                        <img src="Img/scroll_to.svg">
+                    </button>
+                </span>
+
+                <h3 class="text-left ui-seccion-title">Política {{politicasIndicadores.Politica}}. <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg" ng-click="vm.abrirMensajeInformacionRegionalizacion()"></h3>
+                <!--vm.abrirMensajeInformacionRegionalizacion()-->
+                <div class="add-new-fuente row mx-0 mt-4 text-right" ng-if="politicasIndicadores.TieneConceptoPendiente == false">
+                    <a ng-click="vm.abrirModalAgregarCategoriaPolitica(politicasIndicadores)" ng-if="!vm.soloLectura"><span class="uLabelCampo_fp" style="text-decoration:underline">AGREGAR CATEGORÍA</span></a>
+                </div>
+            </div>
+            <div ng-if="vm.TieneCategorias(politicasIndicadores)" id="politica-{{politicasIndicadores.PoliticaId}}-titulo" class="panel-body text-left">
+                <h3 class="text-left ui-seccion-title">
+                    <span ng-if="politicasIndicadores.presentaError"><img class="img img-advertencia" src="Img/u11.svg" /></span>
+                    Política {{politicasIndicadores.Politica}}. Categoría
+                    <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg" ng-click="vm.abrirMensajeInformacionRegionalizacion()">
+                </h3>
+
+                <div class="col-md-12" style="padding-left:0px">
+                    <span class="pull-left">Las categorías sobre las que ya registró información sobre su ejecución no se encuentran disponibles para ser eliminadas.</span>
+                </div>
+                <br />
+                <div class="col-md-12" ng-if="politicasIndicadores.TieneConceptoPendiente == true">
+                    <span class="DetalleFormularioDNP pull-left">La política no se puede eliminar ni editar porque se encuentra en proceso de aprobación de modificación por parte de la dirección técnica del DNP o porque fue aprobada para modificación</span>
+                </div>
+
+            </div>
+
+            <div id="politica-{{politicasIndicadores.PoliticaId}}" class="panel-body" ng-repeat="itemCategorias in politicasIndicadores.Categorias" ng-init="indexCategorias = $index">
+                <!--***************************************************************************************
+                ***************************************************************************************
+                ***************************************************************************************
+                ***************************************************************************************
+                ***************************************************************************************
+                ***************************************************************************************-->
+                <!--vm.abrirMensajeInformacionRegionalizacion()-->
+                <!--<span class="encabezadoTitulos">Fuentes</span>-->
+
+                <span class="buttonbar pull-right">
+                    <button class="btnaccion btnAccordionDNP" type="button" ng-click="vm.volver()">
+                        <img src="Img/scroll_to.svg">
+                    </button>
+                </span>
+                <div class="row" style="color: #004884">
+                    <div class="" style="padding: 0 !important">
+                        <div class="alert panel-heading" style="height:50px">
+                            <div class="card card-body pull-left  divAccordionDNP" style="line-height: 18px; max-height: 140px; background-color: rgba(249, 252, 253, 1);">
+                                <div class="col-md-12">
+                                    <div class="col-md-8">
+                                        <div class="col-md-12">
+                                            <span ng-if="itemCategorias.presentaError1Categoria || itemCategorias.presentaError2Categoria"><img class="img img-advertencia" src="Img/u11.svg" /></span>
+                                            <span class="encabezadoTitulos">Focalizar </span>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <span class="encabezadoTitulos">Categoría: </span>
+                                            <span style="font-family:'Work Sans  Roman', 'Work Sans Regular Roman', 'Work Sans';font-weight:400;color:#4B4B4B;">{{itemCategorias.Categoria}}. </span>
+
+                                        </div>
+                                        <div class="col-md-12">
+                                            <span class="encabezadoTitulos">Subcategoría: </span>
+                                            <span style="font-family:'Work Sans  Roman', 'Work Sans Regular Roman', 'Work Sans';font-weight:400;color:#4B4B4B;">{{itemCategorias.SubCategoria | limitTo: 200}}. </span><span ng-if="itemCategorias.SubCategoria.length > 200">...</span>  <button ng-if="itemCategorias.SubCategoria.length > 110" type="button" style="color: #3366CC;line-height:20px " class="btn btn-link btn-md  buttonhiper" tooltip-placement="top" uib-tooltip="ver más" tabindex="0" ng-click="vm.SubcategoriaVerMas(itemCategorias.SubCategoria)" data="{{itemCategorias.SubCategoria}}">
+                                                VER MÁS
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="col-md-12" style="text-align:right">
+                                            <span>Total focalizado $ </span>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="blockReferenciaDNP" style="text-align:right">{{(itemCategorias.TotalFocalizadoCategoriaF)}}</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-1" ng-if="politicasIndicadores.TieneConceptoPendiente == false && politicasIndicadores.FocalizadaSeguimiento == false">
+                                        <button class="button-column-action trash" title="Eliminar Categoría" ng-click="vm.eliminarCategoriaPolitica(politicasIndicadores.PoliticaId,politicasIndicadores,itemCategorias)" ng-if="!vm.soloLectura">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="rgb(51, 102, 204)" class="bi bi-trash" viewBox="0 0 16 16">
+                                                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                                                <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                                            </svg>
+                                        </button>
+                                        <!--<button class="button-column-action trash" title="Eliminar Politica Transversal" ng-disabled="true" ng-if="objPoliticas.enSeguimiento">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#BABABA" class="bi bi-trash" viewBox="0 0 16 16">
+                                                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                                                <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                                            </svg>
+                                        </button>-->
+                                    </div>
+                                </div>
+
+                                <!--<p style="padding: 0px; margin-bottom: 0px;" ng-if="itemCategorias.TotalFocalizadoCategoria == 0">
+                                    <span id="fuente-{{item.FuenteId}}-{{indexPoliticas}}-{{indexCategorias}}" class="img iconadverdnp text-left color-red" style="margin-left:0px">   <img src="Img/u4630.svg"> Revisar que todas las políticas transversales asociadas al proyecto tengan, por lo menos una categoría focalizada con recursos y metas en al menos una vigencia del horizonte del proyecto. </span>
+                                </p>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div ng-repeat="item in itemCategorias.Fuentes" ng-init="indexFuentes = $index">
+                    <div class="row" style="color: #004884">
+                        <div class="" style="padding: 0 !important">
+                            <div class="alert panel-heading" style="height:50px">
+                                <div class="card card-body pull-left  divAccordionDNP" style="line-height:18px;max-height:140px">
+                                    <div class="col-md-12">
+                                        <div class="col-md-6">
+                                            <div class="col-md-12">
+                                                <span ng-if="item.presentaError1Fuente || item.presentaError2Fuente"><img class="img img-advertencia" src="Img/u11.svg" /></span>
+                                                <span class="encabezadoTitulos">Etapa: </span>
+                                                <span style="font-family:'Work Sans  Roman', 'Work Sans Regular Roman', 'Work Sans';font-weight:400;color:#4B4B4B;">{{item.Etapa}}. </span>
+                                                <span class="encabezadoTitulos">Tipo financiador: </span>
+                                                <span style="font-family:'Work Sans  Roman', 'Work Sans Regular Roman', 'Work Sans';font-weight:400;color:#4B4B4B;">{{item.TipoFinanciador}}.</span>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <span class="encabezadoTitulos">Financiador: </span>
+                                                <span style="font-family:'Work Sans  Roman', 'Work Sans Regular Roman', 'Work Sans';font-weight:400;color:#4B4B4B;">{{item.Financiador}}.</span>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <span class="encabezadoTitulos">Recurso: </span>
+                                                <span style="font-family:'Work Sans  Roman', 'Work Sans Regular Roman', 'Work Sans';font-weight:400;color:#4B4B4B;">{{item.Recurso}}.</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="col-md-12" style="text-align:right">
+                                                <span>Total fuente $ </span>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="blockReferenciaDNP" style="text-align:right">{{(item.TotalFuente)}}</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="col-md-12" style="text-align:right">
+                                                <span>Total focalizado fuente $ </span>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="blockReferenciaDNP" style="text-align:right">{{(item.TotalFocalizadoFuenteF)}}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <p style="padding: 0px; margin-bottom: 0px;">
+                                        <button class="btnaccion btnAccordionDNP" type="button" data-toggle="collapse" data-target="#obj-{{item.FuenteId}}-{{indexPoliticas}}-{{indexCategorias}}" ng-click="vm.AbrilNivel1(item.FuenteId, indexPoliticas, indexCategorias)">
+                                            <img id="imgmas-{{item.FuenteId}}-{{indexPoliticas}}-{{indexCategorias}}" src="Img/btnMas.svg">
+                                            <img id="imgmenos-{{item.FuenteId}}-{{indexPoliticas}}-{{indexCategorias}}" style="display:none" src="Img/btnMenos.svg">
+                                            <span id="ico-{{item.FuenteId}}-{{indexPoliticas}}-{{indexCategorias}}" style="display:none">+</span>
+                                        </button>
+                                        <span id="categoriaError1-{{item.FuenteId}}" class="text-left color-red err-categoria-validacion" ng-if="item.presentaError1Fuente">
+                                            <img class="img img-advertencia" src="Img/u11.svg" />
+                                            <span id="categoriaError1Msg-{{item.FuenteId}}">{{item.mensajeError1Fuente}}</span>
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="collapse" id="obj-{{item.FuenteId}}-{{indexPoliticas}}-{{indexCategorias}}">
+                                <div class="LineaEncabezadodivDNP" style="margin-top:62px"></div>
+                                <h3 class="row tituloEncabezadodivDNP">Productos</h3>
+                                <div ng-repeat="producto in item.Productos" ng-init="indexProducto = $index" style="">
+                                    <div class="row" style="margin-left: 0px; margin-right: 0px">
+                                        <div class="alert panel-heading" style="height: 50px">
+                                            <div class="card card-body pull-left bordesencillo" style="border-color: #E6EFFD; text-align: left; width: 100%; padding-top: 10px;padding-bottom: 10px;">
+                                                <div class="col-md-12">
+                                                    <div class="col-md-6">
+
+                                                        <div class="col-md-12" id="div-producto-ver-{{indexPoliticas}}-{{indexCategorias}}-{{indexFuentes}}-{{indexProducto}}" style="min-height: 120px; max-height: 220px;">
+
+                                                            <span class="encabezadoTitulos"><span ng-if="producto.presentaError1producto"><img class="img img-advertencia" src="Img/u11.svg" /></span>Producto: </span>
+                                                            <span id="focaliza-producto-nombre-{{indexPoliticas}}-{{indexCategorias}}-{{indexFuentes}}-{{indexProducto}}-min"> {{producto.NombreProductoCorto}}</span>
+                                                            <span class="hidden" id="focaliza-producto-nombre-{{indexPoliticas}}-{{indexCategorias}}-{{indexFuentes}}-{{indexProducto}}-max"> {{producto.NombreProducto}}</span>
+                                                            <span class="encabezadoTitulos">Objetivo específico: </span>
+                                                            <span id="focaliza-objetivo-nombre-{{indexPoliticas}}-{{indexCategorias}}-{{indexFuentes}}-{{indexProducto}}-min"> {{producto.ObjetivoEspecificoCorto}}</span>
+                                                            <span class="hidden" id="focaliza-objetivo-nombre-{{indexPoliticas}}-{{indexCategorias}}-{{indexFuentes}}-{{indexProducto}}-max"> {{producto.ObjetivoEspecifico}}</span>
+                                                            <span class="encabezadoTitulos">Indicador principal: </span>
+                                                            <span id="focaliza-indicadorPpal-nombre-{{indexPoliticas}}-{{indexCategorias}}-{{indexFuentes}}-{{indexProducto}}-min"> {{producto.NombreIndicadorPrincipalCorto}}</span>
+                                                            <span class="hidden" id="focaliza-indicadorPpal-nombre-{{indexPoliticas}}-{{indexCategorias}}-{{indexFuentes}}-{{indexProducto}}-max"> {{producto.NombreIndicadorPrincipal}}</span>
+                                                            <span class="encabezadoTitulos">Unidad de medida: </span>
+                                                            <span>{{producto.UnidadMedidaProducto}}. </span>
+                                                            <span class="encabezadoTitulos">Meta total: </span>
+                                                            <span>{{(producto.Cantidad)}}. </span>
+                                                            <span class="encabezadoTitulos">Costo: </span>
+                                                            <span>{{vm.ConvertirNumero2decimales(producto.TotalCostoProducto)}}. </span>
+
+                                                            <span class="encabezadoTitulos">Es acumulativo: </span>
+                                                            <span>{{(producto.EsAcumulableIndicadorPrincipal)}}. </span>
+                                                            <span class="encabezadoTitulos">Población beneficiaria del producto: </span>
+                                                            <span>{{(producto.PoblacionBeneficiaria)}}. </span>
+                                                            <span class="encabezadoTitulos">No. personas-Es acumulativo: </span>
+                                                            <span>{{producto.EsAcumulativo}}. </span>
+                                                            <span class="encabezadoTitulos">Indicador secundario: </span>
+                                                            <span id="focaliza-IndicadorSeclId-nombre-{{indexPoliticas}}-{{indexCategorias}}-{{indexFuentes}}-{{indexProducto}}-min"> {{producto.NombreIndicadorSecundarioEquidadCorto}}</span>
+                                                            <span class="hidden" id="focaliza-IndicadorSeclId-nombre-{{indexPoliticas}}-{{indexCategorias}}-{{indexFuentes}}-{{indexProducto}}-max"> {{producto.NombreIndicadorSecundarioEquidad}}</span>
+                                                            <span class="encabezadoTitulos">Unidad de medida: </span>
+                                                            <span>{{producto.UnidadMedidaIndicadorSecundarioEquidad}}. </span>
+                                                            <span class="encabezadoTitulos">Meta: </span>
+                                                            <span>{{producto.MetaIndicadorSecundarioEquidad}}. </span>
+                                                            <span class="encabezadoTitulos">Es acumulativo: </span>
+                                                            <span>{{producto.EsAcumulableIndicadorSecundarioEquidad}}. </span>
+
+                                                            <a id="focaliza-verNombres-{{indexPoliticas}}-{{indexCategorias}}-{{indexFuentes}}-{{indexProducto}}-val" ng-click="vm.verNombresCompleto('focaliza-verNombres-','focaliza-objetivo-nombre-', 'focaliza-producto-nombre-', 'focaliza-indicadorPpal-nombre-', 'focaliza-IndicadorSeclId-nombre-', producto.ObjetivoEspecificoId, producto.ProductoId, producto.IndicadorPpalId, producto.IndicadorSeclId, indexPoliticas,indexCategorias,indexFuentes,indexProducto )">...VER MÁS</a>
+
+                                                        </div>
+
+                                                        <span id="productoError1-{{indexProducto}}" class="text-left color-red err-producto-validacion" ng-if="producto.presentaError1producto">
+                                                            <img class="img img-advertencia" src="Img/u11.svg" />
+                                                            <span id="productoError1Msg-{{indexProducto}}">{{producto.mensajeError1producto}}</span>
+                                                        </span>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="col-md-12" style="text-align:right">
+                                                            <span>Total costo producto $ </span>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <div class="blockReferenciaDNP" style="text-align:right">{{(producto.TotalCostoProductoF)}}</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="col-md-12" style="text-align:right">
+                                                            <span>Total focalizado producto $ </span>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <div class="blockReferenciaDNP" style="text-align:right">{{(producto.TotalFocalizadoProductoF)}}</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <p style="padding: 0px; margin-bottom: 0px; ">
+                                                    <button class="btnaccion btnAccordionDNP" type="button" data-toggle="collapse" data-target="#prod{{item.FuenteId}}-{{producto.ProductoId}}-{{indexPoliticas}}-{{indexCategorias}}" ng-click="vm.AbrilNivel2(item.FuenteId,producto.ProductoId, indexPoliticas, indexCategorias,itemCategorias.CategoriaId,politicasIndicadores.PoliticaId)">
+                                                        <img id="imgmas{{item.FuenteId}}-{{producto.ProductoId}}-{{indexPoliticas}}-{{indexCategorias}}" style="width:18px;height:18px" src="Img/btnMasn2.svg">
+                                                        <img id="imgmenos{{item.FuenteId}}-{{producto.ProductoId}}-{{indexPoliticas}}-{{indexCategorias}}" style="width:18px;height:18px;display:none" src="Img/btnMenosn2.svg">
+                                                        <span id="ico{{item.FuenteId}}-{{producto.ProductoId}}-{{indexPoliticas}}-{{indexCategorias}}" style="display:none">+</span>
+                                                    </button>
+
+                                                    <span id="producto-{{item.FuenteId}}-{{producto.ProductoId}}" class="img iconadverdnp hidden" style="margin-left:0px">   <img src="Img/u4630.svg"> </span>
+                                                    <span id="regionalizacionError-{{item.FuenteId}}-{{producto.ProductoId}}" class="text-left color-red" ng-show="vm.mostrarMensajeError(producto.TotalCostoProducto,producto.TotalFocalizadoProducto)">
+                                                        <img class="img img-advertencia" src="Img/u11.svg" />
+                                                        <span id="regionalizacionErrorMsg-{{item.FuenteId}}-{{producto.ProductoId}}">
+                                                            La sumatoria de los valores focalizados en las localizaciones, no puede superar el costo del total del producto.
+                                                        </span>
+                                                    </span>
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        <br />
+                                        <div ng-if="vm.CategoriaConsultada == itemCategorias.CategoriaId && vm.FuenteConsultada == item.FuenteId  && vm.ProductoConsultado == producto.ProductoId ">
+
+                                            <div class="collapse" id="prod{{item.FuenteId}}-{{producto.ProductoId}}-{{indexPoliticas}}-{{indexCategorias}}">
+                                                <div>
+                                                    <div class="LineaEncabezado2divDNP" id="linea-encabezado-{{producto.ProductoId}}" style="margin-top:102px"></div>
+                                                    <h3 class="row tituloEncabezadodiv2DNP">Localizaciones</h3>
+                                                    <div>
+                                                        <div class="alert panel-heading">
+                                                            <table class="TableDNP no-border">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th class="columAcc" style="width:2%"></th>
+                                                                        <th class="textLeftDNP" style="width:26%"><span>Departamento </span></th>
+                                                                        <th class="textLeftDNP" style="width:24%"><span>Municipio </span></th>
+                                                                        <th class="textLeftDNP" style="width:24%"><span>Tipo de Agrupación </span></th>
+                                                                        <th class="textLeftDNP" style="width:24%"><span>Agrupación </span></th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <!--<tbody ng-repeat="localizacion in producto.Localizaciones">-->
+                                                                <tbody ng-repeat="localizacion in vm.listaPoliticasCategorias.Localizaciones">
+                                                                    <tr>
+                                                                        <td class="columAcc"
+                                                                            style="background: transparent">
+                                                                            <button class="btnaccion " style="margin-left: -5px" type="button" ng-click="vm.AbrilNivel3(producto.ProductoId, item.FuenteId,localizacion.LocalizacionId, itemCategorias.CategoriaId, indexPoliticas, indexCategorias,indexFuentes, indexProducto, politicasIndicadores.PoliticaId)" data-toggle="collapse"
+                                                                                    data-target="#detalleLocalizacion{{producto.ProductoId}}-{{item.FuenteId}}-{{localizacion.LocalizacionId}}-{{indexPoliticas}}-{{indexCategorias}}">
+
+                                                                                <img id="imgmas-{{producto.ProductoId}}-{{item.FuenteId}}-{{localizacion.LocalizacionId}}-{{indexPoliticas}}-{{indexCategorias}}" style="width:18px;height:18px" src="Img/btnMasTb.svg">
+                                                                                <img id="imgmenos-{{producto.ProductoId}}-{{item.FuenteId}}-{{localizacion.LocalizacionId}}-{{indexPoliticas}}-{{indexCategorias}}" style="width:18px;height:18px;display:none" src="Img/btnMenosTb.svg">
+
+
+                                                                                <span id="ico{{producto.ProductoId}}-{{item.FuenteId}}-{{localizacion.LocalizacionId}}-{{indexPoliticas}}-{{indexCategorias}}" style="display:none">+</span>
+                                                                            </button>
+                                                                            <div id="indicadoricon-{{producto.ProductoId}}-{{item.FuenteId}}-{{localizacion.LocalizacionId}}-{{indexPoliticas}}-{{indexCategorias}}" class="img pull-right iconadverdnp hidden">   <img class="" src="Img/u4630.svg"> </div>
+                                                                        </td>
+                                                                        <td><span>{{localizacion.Departamento}}</span></td>
+                                                                        <td><span>{{localizacion.Municipio}}</span></td>
+                                                                        <td><span>{{localizacion.NombreTipoAgrupacion}}</span></td>
+                                                                        <td><span>{{localizacion.Agrupacion}}</span></td>
+                                                                    </tr>
+                                                                    <tr class="no-border hidden" id="detail-{{producto.ProductoId}}-{{item.FuenteId}}-{{localizacion.LocalizacionId}}-{{indexPoliticas}}-{{indexCategorias}}">
+                                                                        <td colspan="8" class="p-0">
+                                                                            <div ng-if="vm.CategoriaConsultada == itemCategorias.CategoriaId && vm.FuenteConsultada == item.FuenteId  && vm.ProductoConsultado == producto.ProductoId && vm.localizacionConsultada == localizacion.LocalizacionId">
+                                                                                <div class="LineaEncabezado2divDNP" style="margin-top: 0px;margin-left: 11px "></div>
+                                                                                <h3 ng-if="vm.CategoriaConsultada == itemCategorias.CategoriaId && vm.FuenteConsultada == item.FuenteId  && vm.ProductoConsultado == producto.ProductoId && vm.localizacionConsultada == localizacion.LocalizacionId" class="row tituloEncabezadodivDNP" style="margin-left:17%;width:83%">
+                                                                                    Focalizar Localización
+                                                                                </h3>
+                                                                                <div class="tab-container col-md-12" style="width:100%;">
+                                                                                    <ul class="nav nav-tabs">
+                                                                                        <li id="liAjustados" class="nav-item" ng-class="{active : 1===1}">
+                                                                                            <a href="" ng-click="vm.mostrarBotones(1,localizacion,indexPoliticas,indexCategorias,indexFuentes,indexProducto)" class="nav-link" data-target="#tabAjustados-{{producto.ProductoId}}-{{item.FuenteId}}-{{localizacion.LocalizacionId}}-{{indexPoliticas}}-{{indexCategorias}}" data-toggle="tab">
+                                                                                                <b>Focalización solicitada</b>
+                                                                                            </a>
+                                                                                        </li>
+                                                                                        <!--<li id="liFirmes" class="nav-item">
+                                                                                            <a href="" ng-click="vm.mostrarBotones(2,localizacion,indexPoliticas,indexCategorias,indexFuentes,indexProducto)" class="nav-link" data-target="#tabFirme-{{producto.ProductoId}}-{{item.FuenteId}}-{{localizacion.LocalizacionId}}-{{indexPoliticas}}-{{indexCategorias}}" data-toggle="tab">
+                                                                                                <b>Focalización en firme</b>
+                                                                                            </a>
+                                                                                        </li>-->
+                                                                                    </ul>
+                                                                                    <div ng-if="politicasIndicadores.TieneConceptoPendiente == false">
+                                                                                        <span class="buttonbar pull-right">
+                                                                                            <button id="Editar{{localizacion.LocalizacionId}}-{{indexPoliticas}}-{{indexCategorias}}-{{indexFuentes}}-{{indexProducto}}"
+                                                                                                    type="button"
+                                                                                                    class="btn btncancelarHorizonte"
+                                                                                                    tooltip-placement="top"
+                                                                                                    ng-if="!vm.soloLectura"
+                                                                                                    ng-click="vm.listaDetalleLocalizacion.HabilitaEditarLocalizador ? vm.cancelarEdicion(politicasIndicadores.PoliticaId,itemCategorias.CategoriaId,item.FuenteId,producto.ProductoId, localizacion,indexPoliticas, indexCategorias, indexFuentes, indexProducto) : vm.habilitarEditar(producto.ProductoId, item.FuenteId,localizacion,indexPoliticas, indexCategorias, indexFuentes, indexProducto, vm.listaDetalleLocalizacion)"
+                                                                                                    uib-tooltip="{{vm.listaDetalleLocalizacion.HabilitaEditarLocalizador ? 'CANCELAR' : 'EDITAR'}}">
+                                                                                                {{vm.listaDetalleLocalizacion.HabilitaEditarLocalizador  ? 'CANCELAR' : 'EDITAR'}}
+                                                                                            </button>
+                                                                                            <button id="Guardar{{localizacion.LocalizacionId}}{{indexPoliticas}}{{indexCategorias}}{{indexFuentes}}{{indexProducto}}" type="submit"
+                                                                                                    ng-class="vm.listaDetalleLocalizacion.HabilitaEditarLocalizador  ? 'btn btn-default btn-mdHorizonte' : 'btn btnguardarHorizonte' "
+                                                                                                    tooltip-placement="top" ng-click="vm.GuardarAjustes(politicasIndicadores.PoliticaId,itemCategorias.CategoriaId,item, producto, localizacion.LocalizacionId,vm.listaDetalleLocalizacion.FocalizacionAjustada, localizacion, indexPoliticas, indexCategorias, indexFuentes, indexProducto)"
+                                                                                                    disabled="disabled"
+                                                                                                    ng-if="!vm.soloLectura">
+                                                                                                GUARDAR
+                                                                                            </button>
+                                                                                        </span>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="tab-content">
+                                                                                    <div class="tab-pane active level-1-content mt-4" id="tabAjustados-{{producto.ProductoId}}-{{item.FuenteId}}-{{localizacion.LocalizacionId}}-{{indexPoliticas}}-{{indexCategorias}}">
+                                                                                        <div class="col-md-12 text-left" style="padding-left:0px" ng-if="itemCategorias.TextoInformativo != ''">
+                                                                                            <span class="pull-left">Los valores iniciales de esta tabla (antes de editar) corresponden a los valores de la focalización en firme.</span>
+                                                                                        </div>
+                                                                                        <br />
+                                                                                        <table class="TableDNP no-border">
+                                                                                            <thead>
+                                                                                                <tr>
+                                                                                                    <th class="columAcc"></th>
+                                                                                                    <th class="textRightDNP" style="width: 136px;"><span>Vigencia </span></th>
+                                                                                                    <th class="textRightDNP" style="width: 260px;"><span>Valor solicitado $ </span></th>
+                                                                                                    <th class="textRightDNP" style="width: 260px;">
+                                                                                                        <span>Meta categoría </span>
+                                                                                                        <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg" ng-click="vm.abrirMensajeMetaCategoria()">
+                                                                                                    </th>
+                                                                                                    <th class="textRightDNP" style="width: 260px;"><span>Personas categoría </span></th>
+                                                                                                    <th class="textRightDNP" style="width: 260px;">
+                                                                                                        <span>Meta indicador secundario </span>
+                                                                                                        <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg" ng-click="vm.abrirMensajeMetaIndicador()">
+                                                                                                    </th>
+                                                                                                    <th class="columAcc"></th>
+                                                                                                </tr>
+                                                                                            </thead>
+                                                                                            <tbody ng-repeat="vigencia in vm.listaDetalleLocalizacion.FocalizacionAjustada">
+                                                                                                <tr>
+                                                                                                    <td></td>
+                                                                                                    <td class="textRightDNP">
+                                                                                                        <span class="textRightDNP">{{vigencia.Vigencia}}</span>
+                                                                                                    </td>
+                                                                                                    <td class="textRightDNP">
+                                                                                                        <div class="blockReferenciaDNP" ng-if="!vm.listaDetalleLocalizacion.HabilitaEditarLocalizador">{{(vigencia.EnAjusteF)}}</div>
+                                                                                                        <input id="input-1" type="text" min="0.00" class="form-control editInputDNP"
+                                                                                                               name="vigenciaLocalizacion{{producto.ProductoId}}{{item.FuenteId}}{{localizacion.LocalizacionId}}"
+                                                                                                               ng-if="vm.listaDetalleLocalizacion.HabilitaEditarLocalizador && vigencia.Vigencia >= vm.currentYear"
+                                                                                                               ng-readonly="vigencia.Vigencia < vm.currentYear"
+                                                                                                               ng-keypress="vm.validateFormat($event, 2)"
+                                                                                                               ng-keyup="vm.validarTamanio($event, 2)"
+                                                                                                               ng-value="vigencia.EnAjuste"
+                                                                                                               ng-blur="vm.actualizaFila(localizacion, item, producto.ProductoId, vigencia.Vigencia, politicasIndicadores, itemCategorias.CategoriaId, indexPoliticas, indexCategorias, $event, 2)"
+                                                                                                               ng-model="vigencia.EnAjuste" style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px" />
+                                                                                                    </td>
+                                                                                                    <td class="textRightDNP">
+                                                                                                        <div class="blockReferenciaDNP" ng-if="!vm.listaDetalleLocalizacion.HabilitaEditarLocalizador">{{(vigencia.MetaCategoriaF)}}</div>
+                                                                                                        <input id="input-1" type="text" min="0.0000" class="form-control editInputDNP"
+                                                                                                               name="vigenciaLocalizacion{{producto.ProductoId}}{{item.FuenteId}}{{localizacion.LocalizacionId}}"
+                                                                                                               ng-if="vm.listaDetalleLocalizacion.HabilitaEditarLocalizador && vigencia.Vigencia >= vm.currentYear"
+                                                                                                               ng-readonly="vigencia.Vigencia < vm.currentYear"
+                                                                                                               ng-keypress="vm.validateFormat($event, 4)"
+                                                                                                               ng-keyup="vm.validarTamanio($event, 4)"
+                                                                                                               ng-value="vigencia.MetaCategoria"
+                                                                                                               ng-blur="vm.actualizaFila(localizacion, item, producto.ProductoId, vigencia.Vigencia, politicasIndicadores, itemCategorias.CategoriaId, indexPoliticas, indexCategorias, $event, 4)"
+                                                                                                               ng-model="vigencia.MetaCategoria" style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px" />
+                                                                                                    </td>
+
+                                                                                                    <td class="textRightDNP">
+                                                                                                        <div class="blockReferenciaDNP" ng-if="!politicasIndicadores.CuantificaPersonasCategoria">N/A</div>
+                                                                                                        <div class="blockReferenciaDNP" ng-if="!localizacion.HabilitaEditarLocalizador && politicasIndicadores.CuantificaPersonasCategoria">{{(vigencia.PersonasCategoriaF)}}</div>
+                                                                                                        <input id="input-1" type="text" min="0" class="form-control editInputDNP"
+                                                                                                               name="vigenciaLocalizacion{{producto.ProductoId}}{{item.FuenteId}}{{localizacion.LocalizacionId}}"
+                                                                                                               ng-if="vm.listaDetalleLocalizacion.HabilitaEditarLocalizador && vigencia.Vigencia >= vm.currentYear && politicasIndicadores.CuantificaPersonasCategoria"
+                                                                                                               ng-readonly="vigencia.Vigencia < vm.currentYear"
+                                                                                                               ng-keypress="vm.validateFormat($event, 0)"
+                                                                                                               ng-keyup="vm.validarTamanio($event, 0)"
+                                                                                                               ng-value="vigencia.PersonasCategoria"
+                                                                                                               ng-blur="vm.actualizaFila(localizacion, item, producto.ProductoId, vigencia.Vigencia, politicasIndicadores, itemCategorias.CategoriaId, indexPoliticas, indexCategorias, $event, 0)"
+                                                                                                               ng-model="vigencia.PersonasCategoria" style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px" />
+                                                                                                    </td>
+                                                                                                    <td class="textRightDNP">
+                                                                                                        <div class="blockReferenciaDNP" ng-if="!politicasIndicadores.CuantificaMetaIndicadorSecundario">N/A</div>
+                                                                                                        <div class="blockReferenciaDNP" ng-if="!vm.listaDetalleLocalizacion.HabilitaEditarLocalizador && politicasIndicadores.CuantificaMetaIndicadorSecundario">{{(vigencia.MetaIndicadorSecundarioF)}}</div>
+                                                                                                        <input id="input-1" type="text" min="0.0000" class="form-control editInputDNP"
+                                                                                                               ng-if="vm.listaDetalleLocalizacion.HabilitaEditarLocalizador && vigencia.Vigencia >= vm.currentYear && vigencia.esEquidadMujer"
+                                                                                                               ng-readonly="vigencia.Vigencia < vm.currentYear"
+                                                                                                               name="vigenciaLocalizacion{{producto.ProductoId}}{{item.FuenteId}}{{localizacion.LocalizacionId}}"
+                                                                                                               ng-keypress="vm.validateFormat($event, 4)"
+                                                                                                               ng-keyup="vm.validarTamanio($event, 4)"
+                                                                                                               ng-value="vigencia.MetaIndicadorSecundario"
+                                                                                                               ng-blur="vm.actualizaFila(localizacion, item, producto.ProductoId, vigencia.Vigencia, politicasIndicadores, itemCategorias.CategoriaId, indexPoliticas, indexCategorias, $event, 4)"
+                                                                                                               ng-model="vigencia.MetaIndicadorSecundario" style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px" />
+                                                                                                    </td>
+                                                                                                    <td></td>
+                                                                                                </tr>
+                                                                                            </tbody>
+                                                                                            <tfoot>
+                                                                                                <tr>
+                                                                                                    <td class="columAcc icontotaldnp"><span>=</span></td>
+                                                                                                    <td class="textRightDNP">Total</td>
+                                                                                                    <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.listaDetalleLocalizacion.valorTotalEnAjuste}}</div></td>
+                                                                                                    <td class="textRightDNP">
+                                                                                                        <div class="blockReferenciaDNP" ng-if="!localiizacion.habilitarValoresTotales">N/A</div>
+                                                                                                        <div class="blockReferenciaDNP" ng-if="localiizacion.habilitarValoresTotales">{{(localizacion.valorTotalMetaCategoria)}}</div>
+                                                                                                    </td>
+                                                                                                    <td class="textRightDNP">
+                                                                                                        <div class="blockReferenciaDNP" ng-if="!localiizacion.habilitarValoresTotales">N/A</div>
+                                                                                                        <div class="blockReferenciaDNP" ng-if="localiizacion.habilitarValoresTotales">{{(localizacion.valorTotalPersonasCategoria)}}</div>
+                                                                                                    </td>
+                                                                                                    <td class="textRightDNP">
+                                                                                                        <div class="blockReferenciaDNP" ng-if="!localiizacion.habilitarValoresTotales">N/A</div>
+                                                                                                        <div class="blockReferenciaDNP" ng-if="localiizacion.habilitarValoresTotales">{{(localizacion.valorTotalMetaIndicadorSecundario)}}</div>
+                                                                                                    </td>
+                                                                                                    <td></td>
+                                                                                                </tr>
+                                                                                                <tr>
+                                                                                                    <td colspan="7">
+                                                                                                        <div id="errortottal{{politicasIndicadores.PoliticaId}}-{{itemCategorias.CategoriaId}}-{{producto.ProductoId}}-{{item.FuenteId}}-{{localizacion.LocalizacionId}}-{{indexPoliticas}}-{{indexCategorias}}" class=" text-left color-red" style="display: none">
+                                                                                                            <img class="img img-advertencia" src="Img/u11.svg" />
+                                                                                                            <span id="errortottalmsn{{politicasIndicadores.PoliticaId}}-{{itemCategorias.CategoriaId}}-{{producto.ProductoId}}-{{item.FuenteId}}-{{localizacion.LocalizacionId}}-{{indexPoliticas}}-{{indexCategorias}}"></span>
+                                                                                                        </div>
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                            </tfoot>
+                                                                                        </table>
+                                                                                        <br />
+                                                                                        <div class="row m-0" ng-if="politicasIndicadores.TieneConceptoPendiente == false">
+                                                                                            <span class="buttonbar pull-right">
+                                                                                                <button id="ValoresCero{{producto.ProductoId}}{{item.FuenteId}}{{localizacion.LocalizacionId}}" type="submit" ng-if="!vm.soloLectura" class="btn btncancelarHorizonte" tooltip-placement="top" ng-click="vm.valoresEnCero(politicasIndicadores.PoliticaId, itemCategorias.CategoriaId, item.FuenteId, producto.ProductoId, localizacion.LocalizacionId, vm.listaDetalleLocalizacion.FocalizacionAjustada, localiizacion, indexPoliticas, indexCategorias, indexFuentes, indexProducto)">
+                                                                                                    Asignar Valores en Cero
+                                                                                                </button>
+                                                                                            </span>
+                                                                                        </div>
+                                                                                        <br />
+                                                                                    </div>
+                                                                                    <!--<div class="tab-pane level-1-content mt-4" id="tabFirme-{{producto.ProductoId}}-{{item.FuenteId}}-{{localizacion.LocalizacionId}}-{{indexPoliticas}}-{{indexCategorias}}">
+                                                                                        <table class="TableDNP no-border">
+                                                                                            <thead>
+                                                                                                <tr>
+                                                                                                    <th class="columAcc"></th>
+                                                                                                    <th class="textRightDNP" style="width: 136px;"><span>Vigencia </span></th>
+                                                                                                    <th class="textRightDNP" style="width: 260px;"><span>En firme $ </span></th>
+                                                                                                    <th class="textRightDNP" style="width: 260px;"><span>Meta categoría </span></th>
+                                                                                                    <th class="textRightDNP" style="width: 260px;"><span>Personas categoría </span></th>
+                                                                                                    <th class="textRightDNP" style="width: 260px;"><span>Meta indicador secundario </span></th>
+                                                                                                    <th class="columAcc"></th>
+                                                                                                </tr>
+                                                                                            </thead>
+                                                                                            <tbody ng-repeat="vigencia in vm.listaDetalleLocalizacion.FocalizacionFirme">
+                                                                                                <tr>
+                                                                                                    <td></td>
+                                                                                                    <td class="textRightDNP"><div class="blockReferenciaDNP">{{vigencia.Vigencia}}</div></td>
+                                                                                                    <td class="textRightDNP">
+                                                                                                        <div class="blockReferenciaDNP">{{(vigencia.EnFirme)}}</div>
+                                                                                                    </td>
+                                                                                                    <td class="textRightDNP"><div class="blockReferenciaDNP">{{(vigencia.MetaCategoria)}}</div></td>
+
+                                                                                                    <td class="textRightDNP">
+                                                                                                        <div class="blockReferenciaDNP" ng-if="!politicasIndicadores.CuantificaPersonasCategoria">N/A</div>
+                                                                                                        <div class="blockReferenciaDNP" ng-if="politicasIndicadores.CuantificaPersonasCategoria">{{(vigencia.PersonasCategoria)}}</div>
+                                                                                                    </td>
+                                                                                                    <td class="textRightDNP">
+                                                                                                        <div class="blockReferenciaDNP" ng-if="!politicasIndicadores.CuantificaMetaIndicadorSecundario">N/A</div>
+                                                                                                        <div class="blockReferenciaDNP" ng-if="politicasIndicadores.CuantificaMetaIndicadorSecundario">{{(vigencia.MetaIndicadorSecundario)}}</div>
+                                                                                                    </td>
+                                                                                                    <td></td>
+                                                                                                </tr>
+                                                                                            </tbody>
+                                                                                            <tfoot>
+                                                                                                <tr>
+                                                                                                    <td class="columAcc icontotaldnp"><span>=</span></td>
+                                                                                                    <td class="textRightDNP">Total</td>
+                                                                                                    <td class="textRightDNP"><div class="blockReferenciaDNP">{{(0)}}</div></td>
+                                                                                                    <td class="textRightDNP"><div class="blockReferenciaDNP">{{(0)}}</div></td>
+                                                                                                    <td class="textRightDNP">
+                                                                                                        <div class="blockReferenciaDNP" ng-if="!politicasIndicadores.CuantificaPersonasCategoria">N/A</div>
+                                                                                                        <div class="blockReferenciaDNP" ng-if="politicasIndicadores.CuantificaPersonasCategoria">{{(0)}}</div>
+                                                                                                    </td>
+                                                                                                    <td class="textRightDNP">
+                                                                                                        <div class="blockReferenciaDNP" ng-if="!politicasIndicadores.CuantificaMetaIndicadorSecundario">N/A</div>
+                                                                                                        <div class="blockReferenciaDNP" ng-if="politicasIndicadores.CuantificaMetaIndicadorSecundario">{{(0)}}</div>
+                                                                                                    </td>
+                                                                                                    <td></td>
+                                                                                                </tr>
+                                                                                            </tfoot>
+                                                                                        </table>
+                                                                                        <br />
+                                                                                    </div>-->
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                        <br />
+                                                        <!--<button type="button" class="btn btn-link btn-md pull-right buttonhiper" tooltip-placement="top" uib-tooltip="Agregar Indicador Secundario" tabindex="0" ng-click="vm.AgregarIndSecundario(prod,objetivo.ObjetivoId)" data="{{prod}}" has-claim has-opciones="['Ajustes:GeneralComponente']">
+                                                            Agregar Indicador Secundario
+                                                        </button>-->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            >
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-right: 20px !important">
+                <div class="add-new-fuente row mx-0 mt-5 text-right" ng-if="politicasIndicadores.TieneConceptoPendiente == false">
+                    <a ng-click="vm.abrirModalAgregarCategoriaPolitica(politicasIndicadores)" ng-if="!vm.soloLectura"><span class="uLabelCampo_fp" style="text-decoration:underline">AGREGAR CATEGORÍA</span></a>
+                </div>
+                <div class="add-new-fuente row mx-0 mt-5 text-right">
+                    <button type="button" class="btn btn-link btn-md buttonhiperDNP" ng-click="vm.ejecutarConsultaCargueMasivo(politicasIndicadores.PoliticaId)">
+                        DESCARGAR PLANTILLA PARA {{politicasIndicadores.Politica}}
+                    </button>
+                </div>
+            </div>
+        </div>
+        <br />
+
+        <!--Manuel desarrollo indicadores de politicas-->
+        <div class="row" ng-repeat="politicasCategoriasIndicadores in vm.listaPoliticasCategoriasIndicadores.Politicas" ng-init="indexPoliticas = $index">
+            <div id="politicaI-{{politicasCategoriasIndicadores.PoliticaId}}" class="panel-body">
+
+                <h3 class="text-left ui-seccion-title">
+                    Política {{politicasCategoriasIndicadores.Politica}}. <span class="encabezadoTitulos">Indicadores de la política </span> <img id="u1275_img" class="imgTituloAccion" src="Img/u1275.svg" ng-click="vm.abrirMensajeInformacionRegionalizacion()">
+                </h3>
+                <div id="indicadores-{{politicasCategoriasIndicadores.Categorias.Categoria1Id}}" class="panel-body">
+                    <span class="buttonbar pull-right">
+                        <button class="btnaccion btnAccordionDNP" type="button" ng-click="vm.volver()">
+                            <img src="Img/scroll_to.svg">
+                        </button>
+                    </span>
+                    <div class="row" style="color: #004884" ng-repeat="politicasCategorias in politicasCategoriasIndicadores.Categorias">
+                        <div class="" style="padding: 0 !important">
+                            <div class="alert panel-heading" style="height:50px">
+                                <div class="card card-body pull-left divAccordionDNP">
+                                    <div class="col-md-12">
+                                        <span class="encabezadoTitulos">Categoría: </span>
+                                        <span class="encabezadoTitulos">{{politicasCategorias.Categoria1}}. </span>
+                                        <span class="encabezadoTitulos">Subcategoría: </span>
+                                        <span class="encabezadoTitulos">{{politicasCategorias.Categoria2}}. </span>
+
+                                    </div>
+                                    <p class="panelbtnalertAcordnp">
+                                        <button class="btnaccion btnAccordionDNP" type="button" data-toggle="collapse" data-target="#obj-{{politicasCategoriasIndicadores.PoliticaId
+									}}-{{politicasCategorias.Categoria1Id}}-{{politicasCategorias.Categoria2Id}}" ng-click="vm.AbrilNivelIndicadores(politicasCategoriasIndicadores.PoliticaId,politicasCategorias.Categoria1Id,politicasCategorias.Categoria2Id)">
+                                            <img id="imgmas-{{politicasCategoriasIndicadores.PoliticaId}}-{{politicasCategorias.Categoria1Id}}-{{politicasCategorias.Categoria2Id}}" src="Img/btnMas.svg">
+                                            <img id="imgmenos-{{politicasCategoriasIndicadores.PoliticaId}}-{{politicasCategorias.Categoria1Id}}-{{politicasCategorias.Categoria2Id}}" style="display:none" src="Img/btnMenos.svg">
+                                            <span id="ico2-{{politicasCategoriasIndicadores.PoliticaId}}-{{politicasCategorias.Categoria1Id}}-{{politicasCategorias.Categoria2Id}}" style="display:none">+</span>
+                                        </button>
+                                    </p>
+                                </div>
+                            </div>
+                            <br />
+                            <br />
+                            <div class="collapse" id="obj-{{politicasCategoriasIndicadores.PoliticaId}}-{{politicasCategorias.Categoria1Id}}-{{politicasCategorias.Categoria2Id}}">
+                                <div class="LineaEncabezadodivDNP"></div>
+                                <h3 ng-if="politicasCategoriasIndicadores.PoliticaId == 7" class="row tituloEncabezadodivDNP">{{vm.lblIndicadores1}}</h3>
+                                <h3 ng-if="politicasCategoriasIndicadores.PoliticaId == 4" class="row tituloEncabezadodivDNP">{{vm.lblIndicadores2}}</h3>
+                                <div class="alert panel-heading">
+                                    <div class="card card-body pull-left BordeSencillo">
+                                        <table class="TableDNP no-border">
+                                            <thead>
+                                                <tr>
+                                                    <th class="columAcc" style="width:2%"></th>
+                                                    <th class="textLeftDNP" style="width:70%"><span>Indicador </span></th>
+                                                    <th class="columAcc" style="width:2%"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody ng-repeat="Indicadores in politicasCategorias.ListaIndicadores">
+                                                <tr ng-if="Indicadores.IndicadorId > 0">
+                                                    <td>
+                                                    </td>
+                                                    <td>
+                                                        {{Indicadores.Indicador}}
+                                                    </td>
+                                                    <td>
+                                                        <div ng-if="Indicadores.EliminaEnAjuste == true">
+                                                            <button class="btnaccion" tooltip-placement="Auto" uib-tooltip="Eliminar" ng-click="vm.eliminarIndicador(Indicadores.IndicadorId,politicasCategorias.DimensionId,politicasCategorias.FocalizacionId)" ng-if="!vm.soloLectura">
+                                                                <span style="cursor:pointer"> <img src="Img/u928.svg"></span>
+                                                            </button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="add-new-fuente text-right" ng-if="!vm.soloLectura">
+                                        <a ng-if="politicasCategorias.EstaFocalizada == true" ng-click="vm.abrirModalAgregarIndicador(politicasCategorias.Categoria1Id,politicasCategorias.Categoria2Id,politicasCategorias.Categoria1,politicasCategorias.Categoria2,politicasCategoriasIndicadores.Politica,politicasCategorias.FocalizacionId)"><span class="uLabelCampo_fp" style="text-decoration:underline">AGREGAR INDICADOR</span></a>
+                                        <label ng-if="!politicasCategorias.EstaFocalizada == true" style="color:lightgray"><u>AGREGAR INDICADOR</u></label>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br />
+        <!--Manuel desarrollo indicadores de politicas-->
+
+        <div id="focalizacioncargamasiva" ng-if="vm.existeFocalizacion">
+            <div class="row" style="text-align:left">
+                <div class="col-md-12 DetacolumnDNP">
+                    <span>
+                        Archivo plantilla carga masiva <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg" ng-click="vm.abrirMensajeArchivoFocalizacion()">
+                    </span>
+                    <!--<button type="button" class="btn btn-link btn-md buttonhiperDNP" ng-click="vm.ejecutarConsultaCargueMasivo()">
+                        DESCARGAR PLANTILLA
+                    </button>-->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="divpanelcargarchivoDNP" style="">
+                        <button class="btncargarch" type="button" uib-tooltip="Editar" ng-click="vm.adjuntarArchivo()">
+                            EXAMINAR
+                        </button>
+                        <input type="file" style="display:none" id="filefocalizacion" name='filesfocalizacion[]' onchange="angular.element(this).scope().filefocalizacionNameChanged(this)" accept="{{vm.Focalizacion.ext}}" multiple />
+                        <input type="search" style="display:none" id="focalizacionnombrearchivo" ng-model="vm.nombrearchivo" class="form-control InputSearchDNP " placeholder="" ng-change="ChangeFocalizacionSet()">
+                        <span>{{vm.nombrearchivo}}</span>
+                        <button class="btncancearch" type="button" uib-tooltip="Cancelar" ng-click="vm.limpiarArchivo()">
+                            X
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-4" ng-if="!vm.BloquearCargue">
+                    <span class="buttonbar pull-right">
+                        <button disabled="disabled" id="btnFocalizacionValidarArchivo" type="button" class="btn btnguardarDNP" tooltip-placement="top" uib-tooltip="Validar" tabindex="1" ng-click="vm.validarArchivo()" ng-if="!vm.soloLectura">
+                            VALIDAR
+                        </button>
+                        <button disabled="disabled" id="btnFocalizacionLimpiarArchivo" type="button" class="btn btnguardarDNP" tooltip-placement="top" uib-tooltip="Cancelar" tabindex="2" ng-click="vm.limpiarArchivo()" ng-if="!vm.soloLectura">
+                            CANCELAR
+                        </button>
+                        <button disabled="disabled" id="btnFocalizacionArchivoSeleccionado" class="btn btnguardarDNP" type="button" tooltip-placement="top" uib-tooltip="Cargar" tabindex="3" ng-click="vm.GuardarArchivoFocalizacion(false,1)" ng-if="!vm.soloLectura">
+                            CARGAR
+                        </button>
+                    </span>
+                </div>
+            </div>
+            <br />
+        </div>
+        <div class="row">
+            <div class="col-lg-offset-1 col-md-11">
+                <div id="focalizacionpolresumendefocali-focFuenteProducto-error" class="hidden text-left color-red"></div>
+            </div>
+            <div class="col-lg-offset-1 col-md-11">
+                <div id="focalizacionpolresumendefocali-focProducto-error" class="hidden text-left color-red"></div>
+            </div>
+        </div>
+    </div>
+</div>

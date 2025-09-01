@@ -1,0 +1,30 @@
+﻿<div id="contenedorModificarFilaPrevisulaizar" ng-if="vm.editarFila" grid="grid" 
+class="ui-grid-draggable-row ui-grid-cell-fixed-height clearfix " 
+draggable="true">
+    <div ng-repeat="columna in vm.colContainer.renderedColumns track by columna.colDef.name" ng-if="columna.colDef.name !== 'ColumnaAcciones'" style="min-width: {{columna.colDef.width}}px; max-width: {{columna.colDef.width}}px" class="pull-left ui-grid-cell" ng-class="{ 'ui-grid-row-header-cell': col.isRowHeader, 'custom': true }" ui-grid-cell>
+        <div ng-if="columna.colDef.habilitarEdicion && columna.colDef.originalType ==='date-time' " class="dropdown dropdown{{vm.filaAEditar.$$hashKey}} ui-grid-cell" ng-class="{ 'ui-grid-row-header-cell': col.isRowHeader, 'custom': true }" ui-grid-cell>
+            <a class="dropdown-toggle" id="dropdown{{vm.filaAEditar.$$hashKey}}" role="button" data-toggle="dropdown" data-target=".test{{vm.filaAEditar.$$hashKey}}">
+                <div class="input-group date">
+                    <input type="text" class="text-center form-control no-border-right" ng-model="vm.filaAEditarLocal[columna.colDef.field]" date-time-input="D/M/YYYY  hh:mm:ss" name="{{vm.filaAEditar.$$hashKey}}" id="{{vm.filaAEditar.$$hashKey}}" />
+                    <span class="input-group-addon"><i class="icon-calendar"></i></span>
+                </div>
+            </a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                <datetimepicker data-ng-model="vm.filaAEditarLocal[columna.colDef.field]" data-datetimepicker-config="{ dropdownSelector: '#dropdown' + vm.filaAEditar.$$hashKey}" />
+            </ul>
+        </div>
+        <input ng-if="columna.colDef.habilitarEdicion && columna.colDef.originalType !== 'date-time'" type="{{vm.parseador[columna.colDef.type]}}" name="{{columna.colDef.field}}" ng-model="vm.filaAEditarLocal[columna.colDef.field]" ng-maxlength="{{columna.colDef.maxLength}}" ng-pattern="vm.alfaNumericoConCaracteresEspecialesCompleto" style="min-width: {{columna.colDef.width}}px; max-width: {{columna.colDef.width}}px" class="text-center ui-grid-cell-contents" ng-click="vm.manejarCambio(columna.colDef.field)" />
+        <span ng-if="!columna.colDef.habilitarEdicion && columna.colDef.originalType === 'number'" class="value ui-grid-cell-contents">{{vm.filaAEditarLocal[columna.colDef.field] | number : 2}}</span>
+        <span ng-if="!columna.colDef.habilitarEdicion && columna.colDef.originalType !== 'number'" class="value ui-grid-cell-contents">{{vm.filaAEditarLocal[columna.colDef.field]}}</span>
+        <input ng-if="!columna.colDef.habilitarEdicion && columna.colDef.originalType === 'date-time'" type="{{vm.parseador[columna.colDef.type]}}" name="{{columna.colDef.field}}" ng-model="vm.filaAEditarLocal[columna.colDef.field]" ng-maxlength="{{columna.colDef.maxLength}}" ng-pattern="vm.alfaNumericoConCaracteresEspecialesCompleto" style="min-width: {{columna.colDef.width}}px; max-width: {{columna.colDef.width}}px" class="text-center ui-grid-cell-contents" disabled="disabled" date-time-input="D/M/YYYY hh:mm:ss" />
+    </div>
+    <div class="text-center">
+        <button type="button" class="btnaccion" ng-click="vm.confirmarEdicionFila()" tooltip-placement="bottom" uib-tooltip="Guardar">
+            <span><img src="img/iconsgrid/iconAccionSave.png" /></span>
+        </button>
+        <button type="button" class="btnaccion" ng-click="vm.confirmarCancelar()" tooltip-placement="bottom" uib-tooltip="Cancelar">
+            <span><img src="img/iconsgrid/iconAccionCancelar.png" /></span>
+        </button>
+    </div>
+</div>
+

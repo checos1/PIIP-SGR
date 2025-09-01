@@ -1,0 +1,206 @@
+﻿<div class="modal-header modaleDNP" ng-init="vm.init();">
+    <div class="row">
+        <div style="display:inline-flex">
+            <h3 class="modal-title" id="modal-title">
+                Soportes ID: {{vm.Proyecto.ProyectoId}} BPIN: {{vm.Proyecto.IdObjetoNegocio}}. {{vm.Proyecto.NombreObjetoNegocio | limitTo:50 }}...
+            </h3>
+            <div id="cmpNombreProyecto" class="dropdown new-tar">
+                <div class="dropdown-toggle" data-toggle="dropdown">
+                    <img src="Img/IcoAdd.svg" style="width:12px; margin-top:15px;" />
+                </div>
+                <div class="dropdown-menu arrow_box accesso-rapido pull-right" role="menu" style="width:400px !important">
+                    <div style=" font-family: 'Work Sans SemiBold Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif; font-weight: 500; font-style: normal; font-size: 12px; color: #4B4B4B; letter-spacing: normal;margin:15px"> <span>{{vm.Proyecto.NombreObjetoNegocio}}</span></div>
+                </div>
+            </div>
+            <div id="u1005" class="totalRegistrosModalDocumentosDivContorno" style="padding-left:20px;">
+                <div id="u1005_div" class="totalRegistrosModalDocumentosDivRelleno">
+                    <div id="u1005_text" class="totalRegistrosModalDocumentosDivTexto">
+                        <p><span>{{vm.totalRegistros}}</span></p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <button type='button' class='swal2-close' aria-label='Close this dialog' ng-click="vm.cerrar()">×</button>
+    </div>
+
+</div>
+
+<script type="text/ng-template" id="nombreProyecto.html">
+
+    <div>
+        {{vm.Proyecto.NombreObjetoNegocio}}
+    </div>
+</script>
+<div class="modal-body modalebodyDNP moddnp2" id="modal-body">
+    <div class="tab-container tabDNP col-md-12 " style="width:100%;">
+        <ul class="nav nav-tabs">
+            <li id="liAjustados" class="nav-item " ng-class="">
+                <a href="" ng-click="vm.cambioProceso('Planeación')" class="nav-link" data-target="#tblMigracion" data-toggle="tab">
+                    <b>Planeación</b>
+                </a>
+            </li>
+            <li id="liAjustados" class="nav-item " ng-class="">
+                <a href="" ng-click="vm.cambioProceso('Gestión de Recursos')" class="nav-link" data-target="#tblMigracion" data-toggle="tab">
+                    <b>Gestión de Recursos</b>
+                </a>
+            </li>
+            <li id="liAjustados" class="nav-item " ng-class="">
+                <a href="" ng-click="vm.cambioProceso('Ejecución')" class="nav-link" data-target="#tblMigracion" data-toggle="tab">
+                    <b>Ejecución-Ajustes</b>
+                </a>
+            </li>
+            <li id="liAjustados" class="nav-item " ng-class="">
+                <a href="" ng-click="vm.cambioProceso('Evaluación')" class="nav-link" data-target="#tblMigracion" data-toggle="tab">
+                    <b>Ejecución-Seguimiento</b>
+                </a>
+            </li>
+            <li id="liAjustados" class="nav-item " ng-class="{active : 1===1}">
+                <a href="" ng-click="vm.cambioProceso('Migracion')" class="nav-link" data-target="#tblMigracion" data-toggle="tab">
+                    <b>Migración SUIPF a PIIP</b>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div id="tblMigracion">
+        <br />
+        <br />
+        <div class="row panelbuscadorPequeñoDNP" id="IdPanelBuscador">
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="labelbuscadorPequeñoDNP"> <span>Origen</span></div>
+                    <select class="form-control selectDNPequeño" ng-model="vm.filtro.origen"
+                            ng-options="x as x for x in vm.listaOrigenes">
+                        <option value="" selected>Todos</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <div class="labelbuscadorPequeñoDNP"> <span>Vigencia</span></div>
+                    <select class="form-control selectDNPequeño" ng-model="vm.filtro.vigencia"
+                            ng-options="x as x for x in vm.listaVigencias">
+                        <option value="" selected>Todos</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <div class="labelbuscadorPequeñoDNP"> <span>Periodo</span></div>
+                    <select class="form-control selectDNPequeño" ng-model="vm.filtro.periodo"
+                            ng-options="x as x for x in vm.listaPeriodos">
+                        <option value="" selected>Todos</option>
+                    </select>
+                </div>
+                <div class="col-md-2" ng-if="vm.filtro.proceso === 'Migracion'">
+                    <div class="labelbuscadorPequeñoDNP"> <span>Numero de ficha   <img id="u1275_img" class="imgTituloAccion" src="Img/u1275.svg" tooltip-class="customClass" uib-tooltip="Exclusivo para SUIFP. Requiere una cifra de 6 numeros sin espacios"></span></div>
+                    <input type="text" class="form-control InputBuscadorPequeñoDNP" ng-model="vm.filtro.ficha" numbers-only maxlength="6" />
+                </div>
+                <div class="col-md-2" ng-if="vm.filtro.proceso === 'Migracion'">
+                    <div class="labelbuscadorPequeñoDNP"> <span>Numero de trámite   <img id="u1275_img" class="imgTituloAccion" src="Img/u1275.svg" tooltip-class="customClass" uib-tooltip="Requiere una cifra numerica sin espacios"></span></div>
+                    <input type="text" id="txtBuscaNumeroTramite" class="form-control InputBuscadorPequeñoDNP" ng-model="vm.filtro.tramite" maxlength="6" numbers-only />
+                </div>
+                <div class="col-md-2" ng-if="vm.filtro.proceso === 'Migracion'">
+                    <div class="labelbuscadorPequeñoDNP"> <span>Proceso interno</span></div>
+                    <select class="form-control selectDNPequeño" ng-model="vm.filtro.procesoOrigen"
+                            ng-options="x as x for x in vm.listaProcesos">
+                        <option value="" selected>Todos</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="labelbuscadorPequeñoDNP"> <span>Numero de subproceso<img id="u1275_img" class="imgTituloAccion "></span></div>
+                    <input type="text" class="form-control InputBuscadorPequeñoDNP" ng-model="vm.filtro.numeroProceso" />
+                </div>
+                <div class="col-md-4">
+                    <div class="labelbuscadorPequeñoDNP"> <span>Tipo de documento</span></div>
+                    <select class="form-control selectDNPequeño" ng-model="vm.filtro.tipoDocumento"
+                            ng-options="x.NombreTipoDocumento as x.NombreTipoDocumento for x in vm.listaTiposDocumento">
+                        <option value="" selected>Todos</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <div class="labelbuscadorPequeñoDNP"> <span>Nombre del documento</span></div>
+                    <input type="text" class="form-control InputBuscadorPequeñoDNP" ng-model="vm.filtro.NombreDocumento" />
+                </div>
+                <div class="col-md-2 pull-right text-right">
+                    <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Buscar" ng-click="vm.buscar()">
+                        <span> <img id="icoBusqueda" class="icoBusquedasDNP" src="Img/IcoBuscar.svg"></span>
+                    </button>
+                    <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Limpiar" ng-click="vm.restablecerFiltros()">
+                        <span> <img id="icoLimpiarBusqueda" class="icoBusquedasDNP" src="Img/IcolimpiarBusq.svg"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div>
+            <div class="row contenedorejemplo tablaDetallesoportesDNP">
+                <table class="TablePequeñaDNP ">
+                    <thead>
+                        <tr>
+                            <th class="columAcc"></th>
+                            <th class="textLeftPequeñoDNP" style="width:213px">Origen / Espacio de carga</th>
+                            <th class="textLeftPequeñoDNP" style="width:206px">
+                                Tipo de documento
+                            </th>
+                            <th class="textLeftPequeñoDNP" style="width:250px">
+                                Documento y datos
+                            </th>
+                            <th class="textLeftPequeñoDNP">
+                                Descripción
+                            </th>
+                            <!--<th class="columAcc">
+                                <input type="checkbox" ng-model="vm.seleccionar" ng-change="vm.seleccionarTodo()" />
+                            </th>-->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="datos in vm.listaDatos">
+                            <td></td>
+                            <td class="textLeftPequeñoDNP " style="max-width:100px; overflow-wrap:break-word">
+                                <span class="contenedorejemplo" ng-bind-html="datos.OrigenCompleto">
+                                    
+                                </span>
+                            </td>
+                            <td class="textLeftPequeñoDNP " style="max-width:100px; overflow-wrap:break-word">
+                                <span class="contenedorejemplo">
+                                    {{datos.TipoDocumento}}
+                                </span>
+
+                            </td>
+                            <td class="textLeftPequeñoDNP" style="max-width:200px; overflow-wrap:break-word">
+                                <span class="contenedorejemplo">
+                                    <a ng-if="vm.filtro.proceso === 'Migracion'" href="{{datos.UrlArchivo}}" target="_blank">
+                                        {{datos.NombreDocumento}}
+                                        <br />
+                                    </a>
+                                    <span ng-if="vm.filtro.proceso === 'Migracion'">{{datos.FechaCreacion}}</span>
+                                    <a ng-if="vm.filtro.proceso !== 'Migracion'" ng-click="vm.descargarArchivoBlob(datos)">
+                                        {{datos.NombreDocumento}}
+                                        <br />
+                                    </a>
+                                    <span ng-if="vm.filtro.proceso !== 'Migracion'">{{datos.DocumentoDatos}}</span>
+                                </span>
+                            </td>
+                            <td class="textLeftPequeñoDNP " style="max-width:200px; overflow-wrap:break-word">
+                                <span class="contenedorejemplo">
+                                    {{datos.Descripcion}}
+                                </span>
+                            </td>
+                            <!--<td class="textCenterPequeñoDNP">
+                                <input type="checkbox" ng-model="datos.Seleccionado" />
+                            </td>-->
+                        </tr>
+
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="modal-footer">
+    <!--<div class="col-md-12">
+        <a class="link pull-right" ng-click="vm.descargar()">Descargar</a>
+    </div>-->
+</div>

@@ -1,0 +1,113 @@
+﻿<div ng-init="vm.init();" style="text-align: left;">
+    <div id="DI001-error" class="hidden uMensajeError"></div>
+    <div id="fuentes">
+        <div class="row">
+            <div id="datosAdicionDonacion-validacionAdicionErrores2-error" src="Img/u11.svg" class=" img hidden text-left color-red">
+                <span id="datosdicionDonacion-validacionAdicionErrores2-error-mns" style="font-size:!important 16px"></span>
+            </div>
+
+        </div>
+        <div style="text-align: left;">
+            <span class="uTituloTab">Tabla de resumen</span>
+        </div>
+
+        <div style="text-align: right;">
+            <span class="uTituloTab">Total: {{vm.CantidadConvenios}}</span>
+        </div>
+
+        <div class="row">
+            <table class="TableDNP" style="width:100%">
+                <thead>
+                    <tr style="text-align:center;">
+                        <th class="columAcc" style="width:5%;"></th>
+                        <th style="width:20%;" class="textLeftDNP"><label>Donante /  Numero del convenio </label></th>
+                        <th style="width:20%;" class="textLeftDNP"><label>Objeto</label></th>
+                        <th style="width:10%;" class="textLeftDNP"><label>Valor convenio $</label></th>
+                        <th style="width:10%;" class="textLeftDNP"><label>Valor convenio vigencia actual $</label></th>
+                        <th style="width:15%;" class="textLeftDNP"><label>Fecha inicio - fecha fin</label></th>
+                        <th style="width:5%;" class="columAcc"></th>
+                    </tr>
+                </thead>
+                <tbody ng-repeat="objDatosAdicion in vm.listaDatosAdicion">
+                    <tr class="bottontransDNP">
+                        <td style="width: !important 5%; text-align: left;"></td>
+                        <td style="width: !important 20%; text-align: left; word-break: break-all;">
+                            <span class="textRightDNP">
+                                {{objDatosAdicion.NombreDonante | limitTo: 110}}<span style="margin-left:0px" ng-if="objDatosAdicion.NombreDonante.length > 110">...</span>
+                                <button ng-if="objDatosAdicion.NombreDonante.length > 110" type="button" class="btn btn-link btn-md buttonhiperDNP" 
+                                        tooltip-placement="top" uib-tooltip="ver más" tabindex="0" data-titlevalue="Donante" data-textvalue="{{objDatosAdicion.NombreDonante}}"
+                                        data-toggle="modal" data-target="#IPModalVermas" ng-click="vm.verMas($event)">
+                                    VER MÁS
+                                </button>
+                                / {{objDatosAdicion.NumeroConvenio}}
+                            </span>
+                        </td>
+                        <td style="width: !important 20%; text-align: left; word-break: break-all;">
+                            <span class="textRightDNP">
+                                {{objDatosAdicion.ObjetoConvenio | limitTo: 110}}<span style="margin-left:0px" ng-if="objDatosAdicion.ObjetoConvenio.length > 110">...</span>
+                                <button ng-if="objDatosAdicion.ObjetoConvenio.length > 110" type="button" class="btn btn-link btn-md buttonhiperDNP"
+                                        tooltip-placement="top" uib-tooltip="ver más" tabindex="0" data-titlevalue="Objeto" data-textvalue="{{objDatosAdicion.ObjetoConvenio}}"
+                                        data-toggle="modal" data-target="#IPModalVermas" ng-click="vm.verMas($event)">
+                                    VER MÁS
+                                </button>
+                            </span>
+                        </td>
+                        <td style="width:10% !important; text-align: left;"><span class="textRightDNP">{{vm.ConvertirNumero(objDatosAdicion.ValorConvenio)}}</span></td>
+                        <td style="width:10%; text-align: left;"><span class="textRightDNP">{{vm.ConvertirNumero(objDatosAdicion.ValorConvenioVigencia)}}</span></td>
+                        <td style="width:15%; text-align: left;"><span class="textRightDNP">{{objDatosAdicion.Periodo}}</span></td>
+                        <td style="width:5%; text-align:center;" has-claim has-opciones="['TramitesVigenciaFutura:AccionesPasoUno']">
+                            <div>
+                                <button type="submit"
+                                        class="btnaccion"
+                                        title="Editar Datos incorporación"
+                                        ng-click="vm.AbrirModalEditarDatosAdicionDonacion(objDatosAdicion.ConvenioId)">
+                                    <span><img src="Img/IcoEdit.svg"></span>
+                                </button>
+
+                                <button type="submit"
+                                        class="btnaccion"
+                                        title="Eliminar Datos incorporación"
+                                        ng-click="vm.eliminarDatosAdicionDonacion(objDatosAdicion.ConvenioId)">
+                                    <span><img src="Img/u928.svg"></span>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>                    
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="7" style="text-align: right;" has-claim has-opciones="['TramitesVigenciaFutura:AccionesPasoUno']">
+                            <a ng-click="vm.abrirModalAgregarDatosAdicionDonacion()"> <span class="uLabelCampo_fp" style="text-decoration:underline">AGREGAR</span></a>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+            <br />
+            <div class="col-md-12">
+                <div id="datosAdicionDonacion-validacionAdicionErrores3-error" src="Img/u11.svg" class=" img hidden text-left color-red">
+                    <span id="datosAdicionDonacion-validacionAdicionErrores3-error-mns" style="font-size:!important 16px"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal " id="IPModalVermas" tabindex="-1" role="dialog" aria-labelledby="IPModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content modal-contentDNP">
+            <div class="modal-header">
+
+                <button type='button' class='swal2-close closemodalDNP' aria-label='Close this dialog' data-dismiss="modal">×</button>
+                <h3 class="modal-title TituloModal1DNP" id="modal-title"><span id="modal-titlevalue"></span></h3>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <textarea id="modal-textvalue" class="form-control " rows="10" cols="50" disabled="disabled"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer textCenterDNP">
+                <button class="btnguardarDNP" data-dismiss="modal" type="button">ACEPTAR</button>
+            </div>
+        </div>
+    </div>
+</div>

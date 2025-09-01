@@ -1,0 +1,14 @@
+<div ng-if="vm.useHtmlNotification" class="dropdown notif">
+    <a href="/proyectos/verificacion/revision-coordinador" class="dropdown-toggle" data-toggle="dropdown" tooltip-placement="auto" uib-tooltip="Mis procesos - Revisi&oacute;n coordinador">
+        <img src="/Img/iconsheader/iconMisprocesos.svg" />
+    </a>
+    <span class="circle-noti green">{{vm.totalProcesos}}</span>
+</div>
+
+<div ng-if="vm.useHtmlMenu" class="dropdown notif">
+    <a href="/proyectos/verificacion/revision-coordinador" class="first-level long-text-menu" tooltip-placement="auto" uib-tooltip="Mis procesos - Revisi&oacute;n coordinador">
+        <img src="/Img/iconsmenu/iconMisproyectosRevision.svg" style="width: 70px;">
+        <span class="circle-noti ng-binding">{{vm.totalProcesos}}</span>
+        Mis procesos - Revisi&oacute;n coordinador
+    </a>
+</div>

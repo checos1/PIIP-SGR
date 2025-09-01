@@ -1,0 +1,174 @@
+﻿<section>
+    <div class="container-fluid inbox" ng-init="vm.init();">
+        <form id="preguntasLiderForm" name="preguntasLiderForm" novalidate>
+            <div class="row">
+                <div class="col-md-10">
+                    &nbsp;
+                </div>
+                <div class="col-md-2" style="text-align:left" ng-if="vm.activo">
+                    <button id="btnEnviar" class="btn btn-default btn-md" type="submit" activo="vm.activo" ng-click="vm.GuardarPreguntasConceptoDireccionTecnica(vm.ConceptoDireccionTecnicaTramite)">Guardar Modificación</button>
+                </div>
+            </div>
+            <br />
+            <div class="tab-content">
+                <div class="row">
+                    <div class="alert panel-heading" style="border-color:#E6EFFD;height: 50px;">
+                        <span class="label label-primary pull-left" style="width: 22px;height: 50px;">&nbsp;</span>
+                        <button class="btn btn-link pull-left " type="button" data-toggle="collapse" data-target="#cdirecciontId">
+                            Cuestionario Dirección Técnica
+                        </button>
+                        <span class="glyphicon glyphicon-chevron-up pull-right" data-toggle="collapse" data-target="#cdirecciontId"> </span>
+                    </div>
+                    <div class="collapse" id="cdirecciontId">
+                        <div class="row" ng-repeat="concepto in vm.concepto" ng-if="vm.cantpreguntasabiertas > 0">
+                            <div ng-if="concepto.Visible">
+                                <div class="row">
+                                    <div class="col-md-2"><span class="uLabelCampo">Usuario: </span></div>
+                                    <div class="col-md-2"><span class="uLabelDetalle">{{concepto.Usuario}}</span></div>
+                                    <div class="col-md-2"><span class="uLabelCampo">Rol: </span></div>
+                                    <div class="col-md-2"><span class="uLabelDetalle">{{vm.rol}}</span></div>
+                                    <div class="col-md-2"><span class="uLabelCampo">Fecha: </span></div>
+                                    <div class="col-md-2"><span class="uLabelDetalle">{{concepto.FechaCreacion | date:'medium'}}</span></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        &nbsp;
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div ng-repeat="pregunta in vm.ConceptoDireccionTecnicaTramite">
+                                        <div class="row" ng-if="pregunta.EsPreguntaAbierta === 1 && (concepto.IdUsuarioDNP == pregunta.Usuario || pregunta.Usuario == null)">
+                                            <div class="col-md-1">
+
+                                            </div>
+                                            <div class="col-md-6">
+                                                <span class="uLabelDetalle">{{pregunta.Pregunta}}</span>
+                                            </div>
+                                            <div ng-if="vm.activo">
+                                                <div class="col-md-5">
+                                                    <input type="text" style="text-align:justify" size="60" class="formulario-texto" ng-model="pregunta.ObservacionPregunta" name="text{{concepto.Id}}{{pregunta.PreguntaId}}" value="{{pregunta.ObservacionPregunta}}">
+                                                </div>
+                                            </div>
+                                            <div ng-if="!vm.activo">
+                                                <div class="col-md-5">
+                                                    <input type="text" readonly size="60" class="formulario-texto" ng-model="pregunta.ObservacionPregunta" name="text{{concepto.Id}}{{pregunta.PreguntaId}}" value="{{pregunta.ObservacionPregunta}}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr style="border-top: 2px solid #BF360C; " />
+                                <br />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="alert panel-heading" style="border-color:#E6EFFD;height: 50px;">
+                    <span class="label label-primary pull-left" style="width: 22px;height: 50px;">&nbsp;</span>
+                    <button class="btn btn-link pull-left " type="button" data-toggle="collapse" data-target="#conceptoaltramiteId">
+                        Concepto al Trámite
+                    </button>
+                    <span class="glyphicon glyphicon-chevron-up pull-right" data-toggle="collapse" data-target="#conceptoaltramiteId"> </span>
+                </div>
+                <div class="collapse" id="conceptoaltramiteId">
+                    <div class="row" ng-repeat="concepto in vm.concepto">
+                        <div ng-if="concepto.Visible">
+                            <div class="row">
+                                <div class="col-md-2"><span class="uLabelCampo">Usuario: </span></div>
+                                <div class="col-md-2"><span class="uLabelDetalle">{{concepto.Usuario}}</span></div>
+                                <div class="col-md-2"><span class="uLabelCampo">Rol: </span></div>
+                                <div class="col-md-2"><span class="uLabelDetalle">{{vm.rol}}</span></div>
+                                <div class="col-md-2"><span class="uLabelCampo">Fecha: </span></div>
+                                <div class="col-md-2"><span class="uLabelDetalle">{{concepto.FechaCreacion| date:'medium'}}</span></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    &nbsp;
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div ng-repeat="pregunta in vm.ConceptoDireccionTecnicaTramite">
+                                    <div class="row" ng-if="pregunta.EsPreguntaAbierta === 2 && (concepto.IdUsuarioDNP == pregunta.Usuario || pregunta.Usuario == null)">
+                                        <div class="col-md-10">
+                                            <span class="uLabelDetalle">{{pregunta.Pregunta}}</span>
+                                        </div>
+                                        <div ng-if="vm.activo">
+                                            <div class="col-md-2">
+                                                <div class="col-md-6 form-check" ng-repeat="opciones in pregunta.OpcionesRespuesta">
+                                                    <input type="radio" class="form-check" ng-model="pregunta.Respuesta" name="radio{{pregunta.CuestionarioProyectoId}}{{pregunta.PreguntaId}}" ng-value="{{opciones.OpcionId}}"> {{opciones.ValorOpcion}}
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div ng-if="!vm.activo">
+                                            <div class="col-md-2">
+                                                <div class="col-md-6 form-check" ng-repeat="opciones in pregunta.OpcionesRespuesta">
+                                                    <input type="radio" disabled class="form-check" ng-model="pregunta.Respuesta" name="radio{{pregunta.CuestionarioProyectoId}}{{pregunta.PreguntaId}}" ng-value="{{opciones.OpcionId}}">{{opciones.ValorOpcion}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                &nbsp;
+                                            </div>
+                                        </div>
+                                        <div class="row" ng-if="pregunta.EsConcepto === 0">
+                                            <div class="col-md-1">
+                                                &nbsp;
+                                            </div>
+                                            <div ng-if="vm.activo">
+                                                <div class="col-md-10">
+                                                    <p>
+                                                        <textarea id="observacion"
+                                                                  name="observacion"
+                                                                  placeholder="(Exponer argumentos que sustentan la respuesta seleccionada)"
+                                                                  ng-model="pregunta.Observaciones"
+                                                                  ng-value="pregunta.Observaciones"
+                                                                  ng-required="commentBox.textRequired"
+                                                                  cols="80"
+                                                                  rows="10"
+                                                                  minlength="1"
+                                                                  maxlength="1000"
+                                                                  class="form-control ">
+                                            </textarea>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div ng-if="!vm.activo">
+                                                <div class="col-md-10">
+                                                    <p>
+                                                        <textarea id="observacion"
+                                                                  name="observacion"
+                                                                  placeholder="(Exponer argumentos que sustentan la respuesta seleccionada)"
+                                                                  ng-model="pregunta.Observaciones"
+                                                                  ng-value="pregunta.Observaciones"
+                                                                  ng-required="commentBox.textRequired"
+                                                                  cols="80"
+                                                                  rows="10"
+                                                                  minlength="1"
+                                                                  maxlength="1000"
+                                                                  class="form-control "
+                                                                  readonly>
+                                            </textarea>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-1">
+                                                &nbsp;
+                                            </div>
+                                        </div>
+                                        <hr style="border-top: 2px solid #BF360C; " />
+                                        <br />
+                                    </div>
+                                </div>                               
+                            </div>                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+

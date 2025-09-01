@@ -1,0 +1,55 @@
+﻿<div class="dashboard">
+
+    <div id="proyectos" class="project">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div class="titlebar">
+                    <span>Tablero de control</span>
+                    <span class="buttonbar pull-right">
+                        <button class="btn btn-default btn-md btnFiltroHeader" ng-click="vm.fulscreen($event)">
+                            Pantalla Completa
+                        </button>
+                        <button class="btn btn-default btn-md btnFiltroHeader fix_ampliar" ng-click="vm.toogleFullScreen()">
+                            <span ng-if="!vm.toogleAmpliar">Ampliar</span>
+                            <span ng-if="vm.toogleAmpliar">Reducir</span>
+                        </button>
+                    </span>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-12">
+                <div class="btn-group btn-group-toggle btnsFiltrosAgrupados" data-toggle="buttons">
+                    <label class="btn btn-secondary">                                
+                        <a href="tableroControlProyectos">Proyectos</a>
+                    </label>
+                    <label class="btn btn-secondary active">
+                        <input type="radio" name="options" id="option1" autocomplete="off" checked> Entidades                        
+                    </label>                    
+                </div>
+            </div>
+
+        </div>
+        
+        <!--inicio grid-->
+        <div class="row">
+            <div class="col-md-3 col-xs-12 monitoreo-entidad" id="myLista">
+                <div class="borderTop4" ui-i18n="{{vm.lang}}">
+                    <div class="clearfix grid-icon" id="uigprojecto" ui-grid="vm.gridOptions"
+                         ui-grid-resize-columns ui-grid-pagination ui-grid-expandable>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9 col-xs-12" id="element">
+                <powerbi-embed opciones="vm.embedConfig" filtro="vm.embedFiltro" type="vm.embedType" style="background:white"></powerbi-embed>
+            </div>
+        </div>
+    </div>
+
+</div>
+

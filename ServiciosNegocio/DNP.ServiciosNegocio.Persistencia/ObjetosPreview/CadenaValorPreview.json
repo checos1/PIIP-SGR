@@ -1,0 +1,140 @@
+﻿{
+  "ProyectoId": 1234,
+  "Bpin": "1234567890",
+  "Vigencias": [
+    {
+      "Vigencia": "2017",
+      "ObjetivosEspecificos": [
+        {
+          "Id": 1,
+          "ObjetivoEspecifico": "Construción puente",
+          "Productos": [
+            {
+              "Id": 1,
+              "Producto": "Administración",
+              "Etapas": [
+                {
+                  "Id": 1,
+                  "NombreEtapa": "Inversión",
+                  "TotalEtapaValorSolicitado": 222.00,
+                  "TotalEtapaApropiacionInicial": 22222.00,
+                  "TotalEtapaApropiacionVigente": 222.00,
+                  "Actividades": [
+                    {
+                      "Id": 1,
+                      "Nombre": "MANTENIMIENTO EQUIPOS DE OFICINA (AIRES ACONDICIONADOS)*",
+                      "IdActividadPorInsumo": 12,
+                      "IdInsumo": 1,
+                      "NombreInsumo": "Materiales",
+                      "ValorSolicitado": 222.00,
+                      "ApropiacionInicial": 222.00,
+                      "ApropiacionVigente": 222.00,
+                      "Ejecucuiones": [
+                        {
+                          "Mes": 1,
+                          "ApropiacionInicialMes": 222.00,
+                          "ApropiacionVigenteMes": 222.00,
+                          "Compromiso": "",
+                          "Obligacion": "",
+                          "Pago": "",
+                          "IdGrupoRecurso": 1,
+                          "GrupoRecurso": "SGR"
+                        },
+                        {
+                          "Mes": 2,
+                          "ApropiacionInicialMes": 222.00,
+                          "ApropiacionVigenteMes": 222.00,
+                          "Compromiso": "",
+                          "Obligacion": "",
+                          "Pago": "",
+                          "IdGrupoRecurso": 1,
+                          "GrupoRecurso": "PGN"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Id": 2,
+              "Valor": "OPERACION",
+              "Etapas": [
+                {
+                  "Id": 1,
+                  "Valor": "Inversión"
+                },
+                {
+                  "Id": 2,
+                  "Valor": "Ejecución"
+                }
+              ]
+            },
+            {
+              "Id": 3,
+              "Valor": "MANTENIMIENTO",
+              "Etapas": [
+                {
+                  "Id": 1,
+                  "Valor": "Inversión"
+                },
+                {
+                  "Id": 2,
+                  "Valor": "Ejecución"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ObjetivoEspecifico": "Realizar Mantenimiento Puente",
+          "Productos": [
+            {
+              "Id": 1,
+              "Valor": "Administracion",
+              "Etapas": [
+                {
+                  "Id": 1,
+                  "Valor": "Inversión"
+                },
+                {
+                  "Id": 2,
+                  "Valor": "Ejecución"
+                }
+              ]
+            },
+            {
+              "Id": 2,
+              "Valor": "OPERACION",
+              "Etapas": [
+                {
+                  "Id": 1,
+                  "Valor": "Inversión"
+                },
+                {
+                  "Id": 2,
+                  "Valor": "Ejecución"
+                }
+              ]
+            },
+            {
+              "Id": 3,
+              "Valor": "MANTENIMIENTO",
+              "Etapas": [
+                {
+                  "Id": 1,
+                  "Valor": "Inversión"
+                },
+                {
+                  "Id": 2,
+                  "Valor": "Ejecución"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "GranTotalPorVigencia": 333
+    }
+  ]
+}

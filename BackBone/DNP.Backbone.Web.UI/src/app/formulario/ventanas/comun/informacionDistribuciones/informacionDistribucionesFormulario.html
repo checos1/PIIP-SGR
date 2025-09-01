@@ -1,0 +1,208 @@
+﻿<div style="background-color:white;padding-top:2rem;padding-bottom:0px !important;max-width:auto !important;" ng-init="vm.init()">
+    <div class="row">
+        <div class="col-md-10">
+            <span ng-if="vm.listaProyectos.length === 0">
+                No se ha asociado ningún proyecto de distribución. Realice esta acción desde el capítulo "Asociar proyectos"
+            </span>
+        </div>
+        <div ng-repeat="objTramiteDistribucion in vm.listaProyectos">
+            <div class="row">
+                <div class="col-md-12 ">
+                    <span class="TituloPincFormularioDNP">
+                        Información saldo por distribuir <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg">
+                    </span>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-12">
+                    <span class="uLabelCampo">BPIN: </span>
+                    <span class="InfoItemAccordDNP">{{objTramiteDistribucion.BPINContracredito}}</span>
+                    <span class="uLabelCampo">Nombre Proyecto: </span>
+                    <span class="InfoItemAccordDNP">{{objTramiteDistribucion.NombreProyectoContracredito}}</span>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-12 ">
+                    <table class="TableDNP">
+                        <thead>
+                            <tr>
+                                <th class="textRightDNP"></th>
+                                <th class="textRightDNP">Valor inicial $</th>
+                                <th class="textRightDNP">Valor distribuciones autorizadas $</th>
+                                <th class="textRightDNP">Saldo por distribuir $</th>
+                                <th class="columAcc"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="textRightDNP"><span class="uLabelCampo"><b>Nación</b></span></td>
+                                <td class="textRightDNP"><input type="text" class="form-control editInputDNP " disabled value="{{objTramiteDistribucion.ValorInicialNacion | number}}" style="text-align:right;" /></td>
+                                <td class="textRightDNP"><input type="text" class="form-control editInputDNP " disabled value="{{objTramiteDistribucion.ValorDistribucionesNacion | number}}" style="text-align:right;" /></td>
+                                <td class="textRightDNP"><input type="text" class="form-control editInputDNP " disabled value="{{objTramiteDistribucion.SaldoPorDistribuirNacion | number}}" style="text-align:right;" /></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td class="textRightDNP"><span class="uLabelCampo"><b>Propios</b></span></td>
+                                <td class="textRightDNP"><input type="text" class="form-control editInputDNP " disabled value="{{objTramiteDistribucion.ValorInicialPropios | number}}" style="text-align:right;" /></td>
+                                <td class="textRightDNP"><input type="text" class="form-control editInputDNP " disabled value="{{objTramiteDistribucion.ValorDistribucionesPropios | number}}" style="text-align:right;" /></td>
+                                <td class="textRightDNP"><input type="text" class="form-control editInputDNP " disabled value="{{objTramiteDistribucion.SaldoPorDistribuirPropios | number}}" style="text-align:right;" /></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+            <br />
+            <br />
+            <div class="row">
+                <div class="col-md-12 ">
+                    <span class="TituloPincFormularioDNP">
+                        Distribuciones autorizadas <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg">
+                    </span>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="TableDNP">
+                        <tbody>
+                            <tr>
+                                <td class="textLeftDNP" colspan="3">
+                                    <span><b>Gran total nación autorizado $</b></span>
+                                </td>
+                                <td class="textLeftDNP">
+                                    <span><b>Gran total propios autorizado $</b></span>
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <td class="textLeftDNP" rowspan="2">
+                                    <div ng-repeat="objTotalesNacion in objTramiteDistribucion.TotalesNacion">
+                                        <input type="text" class="form-control editInputDNP " disabled value="{{objTotalesNacion.GranTotalNacion | number}}" style="text-align:right;" />
+                                    </div>
+                                </td>
+                                <td><span class="NomItemAccordDNP">SSF</span></td>
+                                <td ng-repeat="objTotalesNacion in objTramiteDistribucion.TotalesNacion">
+                                    <div ng-repeat="objDetNacionSSF in objTotalesNacion.DetalleNacion">
+                                        <input type="text" class="form-control editInputDNP " disabled value="{{objDetNacionSSF.TotalNacionSSF | number}}" style="text-align:right;" />
+                                    </div>
+                                </td>
+                                <td class="textLeftDNP" rowspan="2">
+                                    <div ng-repeat="objTotalesPropios in objTramiteDistribucion.TotalesPropios">
+                                        <input type="text" class="form-control editInputDNP " disabled value="{{objTotalesPropios.GranTotalPropios | number}}" style="text-align:right;" />
+                                    </div>
+                                </td>
+                                <td><span class="NomItemAccordDNP">SSF</span></td>
+                                <td ng-repeat="objTotalesNacion in objTramiteDistribucion.TotalesPropios">
+                                    <div ng-repeat="objDetPropiosSSF in objTotalesNacion.DetallePropios">
+                                        <input type="text" class="form-control editInputDNP " disabled value="{{objDetPropiosSSF.TotalPropiosSSF | number}}" style="text-align:right;" />
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><span class="NomItemAccordDNP">CSF</span></td>
+                                <td ng-repeat="objTotalesNacion in objTramiteDistribucion.TotalesNacion">
+                                    <div ng-repeat="objDetNacionSSF in objTotalesNacion.DetalleNacion">
+                                        <input type="text" class="form-control editInputDNP " disabled value="{{objDetNacionSSF.TotalNacionCSF | number}}" style="text-align:right;" />
+                                    </div>
+                                </td>
+                                <td><span class="NomItemAccordDNP">CSF</span></td>
+                                <td ng-repeat="objTotalesNacion in objTramiteDistribucion.TotalesPropios">
+                                    <div ng-repeat="objDetPropiosSSF in objTotalesNacion.DetallePropios">
+                                        <input type="text" class="form-control editInputDNP " disabled value="{{objDetPropiosSSF.TotalPropiosCSF | number}}" style="text-align:right;" />
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <br />
+            <div class="row" ng-repeat="objProyectosCredito in objTramiteDistribucion.ProyectosCreditos">
+                <div class="col-md-12 ">
+                    <table class="TableDNP">
+                        <tbody>
+                            <tr>
+                                <td class="textLeftDNP" style="width:40%" rowspan="6">
+                                    <div style="overflow-y: scroll; height: 200px">
+                                        <span class="uLabelCampo">Código proceso: </span>
+                                        <span class="InfoItemAccordDNP">{{objProyectosCredito.CodigoProcesoTramite}}</span>
+                                        <span class="uLabelCampo"> Fecha: </span>
+                                        <span class="InfoItemAccordDNP">{{objProyectosCredito.FechaTramite}}</span>
+                                        <span class="uLabelCampo"> BPIN: </span>
+                                        <span class="InfoItemAccordDNP">{{objProyectosCredito.BPINCredito}}</span>
+                                        <span class="uLabelCampo"> Nombre proyecto: </span>
+                                        <span class="InfoItemAccordDNP">{{objProyectosCredito.NombreProyectoCredito}}</span>
+                                        <span class="uLabelCampo"> Sector: </span>
+                                        <span class="InfoItemAccordDNP">{{objProyectosCredito.SectorCredito}}</span>
+                                        <span class="uLabelCampo"> Entidad: </span>
+                                        <span class="InfoItemAccordDNP">{{objProyectosCredito.EntidadCredito}}</span>
+                                        <span class="uLabelCampo"> Descripción del trámite: </span>
+                                        <span class="InfoItemAccordDNP">{{objProyectosCredito.DescripcionTramite}}</span>
+                                    </div>
+                                </td>
+                                <td class="textRightDNP" colspan="2">
+                                    <span><b>Total nación autorizado $</b></span>
+                                </td>
+                                <td class="textRightDNP" colspan="2">
+                                    <span><b>Total propios autorizado $</b></span>
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td class="textRightDNP" colspan="2" ng-repeat="objCreditoNacion in objProyectosCredito.TotaleCreditoNacion">
+                                    <input type="text" class="form-control editInputDNP" disabled value="{{objCreditoNacion.TotalAutorizadoNacion | number}}" />
+                                </td>
+                                <td class="textRightDNP" colspan="2" ng-repeat="objCreditoNacion in objProyectosCredito.TotaleCreditoPropios">
+                                    <input type="text" class="form-control editInputDNP " disabled value="{{objCreditoNacion.TotalAutorizadoPropios | number}}" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="textLeftDNP"><span class="NomItemAccordDNP">SSF</span></td>
+                                <td class="textRightDNP" ng-repeat="objCreditoNacion in objProyectosCredito.TotaleCreditoNacion">
+                                    <div ng-repeat="objCreditoNacionDet in objCreditoNacion.DetalleCreditoNacion">
+                                        <input type="text" class="form-control editInputDNP " disabled value="{{objCreditoNacionDet.TotalCreditoNacionSSF | number}}" />
+                                    </div>
+                                </td>
+                                <td class="textLeftDNP"><span class="NomItemAccordDNP">SSF</span></td>
+                                <td class="textRightDNP" ng-repeat="objCreditoPropios in objProyectosCredito.TotaleCreditoPropios">
+                                    <div ng-repeat="objCreditoPropiosDet in objCreditoPropios.DetalleCreditoPropios">
+                                        <input type="text" class="form-control editInputDNP " disabled value="{{objCreditoPropiosDet.TotalCreditoPropiosSSF | number}}" />
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="textLeftDNP"><span class="NomItemAccordDNP">CSF</span></td>
+                                <td class="textRightDNP" ng-repeat="objCreditoNacion in objProyectosCredito.TotaleCreditoNacion">
+                                    <div ng-repeat="objCreditoNacionDet in objCreditoNacion.DetalleCreditoNacion">
+                                        <input type="text" class="form-control editInputDNP " disabled value="{{objCreditoNacionDet.TotalCreditoNacionCSF | number}}" />
+                                    </div>
+                                </td>
+                                <td class="textLeftDNP"><span class="NomItemAccordDNP">CSF</span></td>
+                                <td class="textRightDNP" ng-repeat="objCreditoPropios in objProyectosCredito.TotaleCreditoPropios">
+                                    <div ng-repeat="objCreditoPropiosDet in objCreditoPropios.DetalleCreditoPropios">
+                                        <input type="text" class="form-control editInputDNP " disabled value="{{objCreditoPropiosDet.TotalCreditoPropiosCSF | number}}" />
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="textRightDNP" colspan="4">
+                                    <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Concepto" ng-click="vm.descargarConcepto(objProyectosCredito.TramiteId)">
+                                        <span> <img src="Img/IcoDownload.svg"></span>
+                                    </button>
+                                    <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Documento" ng-click="vm.descargarDocumentoSoporte(objProyectosCredito.InstanciaTramiteId)">
+                                        <span> <img src="Img/IcoDocument.svg"></span>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

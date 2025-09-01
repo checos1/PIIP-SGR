@@ -1,0 +1,131 @@
+﻿<style>
+    .editInputDNP {
+        transition: none !important;
+    }
+</style>
+
+<div style="margin-left: 20px;" ng-init="vm.init();">
+    <form class="formCenter" id="generalesForm" name="generalesForm" novalidate>
+        <div ng-if="vm.tipoVisualizacion === 'tipo1'">
+            <div class="row">
+                &nbsp;
+            </div>
+            <div class="row">
+                &nbsp;
+            </div>
+            <div class="row">
+                &nbsp;
+            </div>
+            <div>
+                <span class="concepto-preliminar-contenedor" style="text-align: center; font-family: 'Work Sans'; font-size: 16px; font-style: normal; padding: 40px 0px 40px 0px; ">Esta sección NO aplica ya que, según el capitulo inicial, el proyecto no aplica para el reconocimiento de costos de estructuración.</span>
+            </div>
+        </div>
+        <div ng-if="vm.tipoVisualizacion === 'tipo2'">
+            <div>
+                <!--Inicio botones-->
+                <div style="padding-top:50px;">
+                    <span class="buttonbar pull-right">
+                        <button id="EditarD"
+                                type="button"
+                                class="btneditarDNP"
+                                tooltip-placement="top"
+                                uib-tooltip="Editar"
+                                tabindex="0"
+                                ng-click="vm.ActivarEditar()"
+                                ng-disabled="vm.disabled">
+                            {{vm.estadoBotonEdit}}
+                        </button>
+                        &nbsp;
+                        <button id="GuardarG"
+                                type="submit"
+                                class="{{vm.activar ? 'btnguardarDisabledDNP' : 'btnguardarDNP'}}"
+                                tooltip-placement="top"
+                                uib-tooltip="Guardar"
+                                ng-click="vm.guardar()"
+                                ng-disabled="vm.activar">
+                            GUARDAR
+                        </button>
+                    </span>
+                </div>
+                <!--Fin botones-->
+                <div class="row">
+                    &nbsp;
+                </div>
+                <div class="row">
+                    &nbsp;
+                </div>
+                <div class="row">
+                    &nbsp;
+                </div>
+                <!--Inicio Formulario-->
+                <div style="margin-left:-70px; margin-right:-50px;">
+                    <div class="row">
+                        <div class="col-md-12" style="margin-bottom: 5px;">
+                            <span class="d-inline-block errorpregDatosPre2 ml-4" id="alert-sgrejecutordesignacioncostosvalorestructuracion"></span>
+                            <span class="messagealerttableDNP" style="padding-left: 5px; display:flex;" id="VALESTsgrejecutordesignacioncostosvalorestructuracion"></span>
+                        </div>
+                    </div>
+                    <table class="TableDNP">
+                        <thead>
+                            <tr>
+                                <th class="columAcc"></th>
+                                <th class="textRightDNP" style="display:none;">Id</th>
+                                <th class="textRightDNP">Etapa</th>
+                                <th class="textLeftDNP">Tipo Entidad / entidad</th>
+                                <th class="textLeftDNP">Tipo recurso</th>
+                                <th class="textLeftDNP">Bienio</th>
+                                <th class="textRightDNP">Valor aprobado $</th>
+                                <th class="textRightDNP">Valor de la estructuración $</th>
+                                <th class="columAcc"></th>
+                            </tr>
+                        </thead>
+                        <tbody class="table">
+                            <tr ng-repeat="valAprobacion in vm.valoresAprobacion" style="width:99%" ng-init="valAprobacionIndex = $index">
+                                <td class="textLeftDNP"><span> </span></td>
+                                <td class="textLeftDNP" style="display:none;"><span>{{valAprobacion.Id}} </span></td>
+                                <td class="textRightDNP"><span>{{valAprobacion.Etapa}} </span></td>
+                                <td class="textLeftDNP"><span>{{valAprobacion.TipoEnEntidad}}</span></td>
+                                <td class="textLeftDNP"><span>{{valAprobacion.TipoRecurso}}</span></td>
+                                <td class="textLeftDNP"><span>{{valAprobacion.Bienio}}</span></td>
+                                <td class="textRightDNP" style="min-width: 190px;">
+                                    <input type="text" class="form-control editInputDNP" disabled value="{{valAprobacion.ValorAprobado | currency}}" />
+                                </td>
+                                <td class="textRightDNP" style="position: relative; min-width: 190px;">
+                                    <span ng-show="vm.activar" ng-bind="valAprobacion.ValorEstructuracion | currency"></span>
+                                    <input type="text"
+                                           class="form-control editInputDNP"
+                                           ng-hide="vm.activar"
+                                           ng-model="valAprobacion.ValorEstructuracion"
+                                           ng-change="vm.actualizarValor(valAprobacion)" />
+                                </td>
+                                <td class="textLeftDNP"><span> </span></td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td class="columAcc icontotaldnp"><span>=</span></td>
+                                <td class="textLeftDNP" colspan="4"><span>Total</span></td>
+                                <td class="textRightDNP">
+                                    <input type="text" class="form-control editInputDNP" disabled value="{{vm.totalValorAprobado | currency}}" />
+                                </td>
+                                <td class="textRightDNP">
+                                    <input type="text" class="form-control editInputDNP" disabled value="{{vm.totalValorEstructuracion | currency}}" />
+                                </td>
+                                <td></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <!--Fin Formulario-->
+            </div>
+        </div>
+        <!--Inicio Espacio Formulario-->
+        <div class="row">
+            &nbsp;
+        </div>
+        <div class="row">
+            &nbsp;
+        </div>
+        <!--Fin Espacio Formulario-->
+    </form>
+</div>

@@ -1,0 +1,5 @@
+<div class="columna-estado">
+    <div ng-show="!row.entity.creado && !row.entity.cerrado" class="background-estado atencion"><i class="fa fa-circle " aria-hidden="true"></i> <b>Espera</b></div>
+    <div ng-show="row.entity.creado && !row.entity.cerrado" class="background-estado activo"><i class="fa fa-circle " aria-hidden="true"></i> <b>Ejecutado</b></div>
+    <div ng-show="row.entity.cerrado" class="background-estado inactivo"><i class="fa fa-circle " aria-hidden="true"></i> <b>Terminado</b></div>
+</div>

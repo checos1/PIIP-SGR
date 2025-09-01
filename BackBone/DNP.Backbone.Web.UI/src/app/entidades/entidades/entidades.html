@@ -1,0 +1,159 @@
+﻿<div class="container-fluid inbox" ng-init="vm.init();">
+    <div class="div-escopo">
+
+        <!-- #region breadcrumb -->
+        <nav class="breadcrumb">
+            <a href="/">
+                <span class="breadcrumb-item">
+                    <i class="fa fa-home" aria-hidden="true"></i> Inicio
+                </span>
+            </a>
+            /
+            <span class="breadcrumb-item active">Administración Entidades</span>
+        </nav>
+        <!-- #endregion breadcrumb -->
+        
+        <div class="dashboard">
+
+            <!-- #region Título e accíon -->
+            <div class="row">
+                <div class="col-md-12">
+                    
+                    <div class="titlebar">
+                        <span>Administración <i>/ Entidades</i></span>
+                        <span class="buttonbar pull-right">
+                            <button type="button" class="btn btn-default btn-md" tooltip-placement="top" uib-tooltip="Adicionar Columna" ng-click="vm.abrirModalAdicionarColumnas()" tabindex="0">
+                                Agregar columnas
+                            </button>
+                            <button has-claim has-opciones="['Entidades:Crear']" type="button" class="btn btn-default btn-md btnFiltroHeader" ng-click="vm.accionCrearEditarEntidad()" 
+                                    tooltip-placement="auto" uib-tooltip="Crear entidad">
+                                Crear Entidad
+                            </button>
+                            <button type="button" class="btn btn-default btn-md btnFiltroHeader" ng-click="vm.conmutadorFiltro()" 
+                                    tooltip-placement="auto" uib-tooltip="Filtro">
+                                Filtro
+                            </button>
+                            <a href="" download class="btn btn-default btn-md btnRedondo btnFiltroHeader" target="_blank" ng-click="vm.downloadPdf()" 
+                                tooltip-placement="auto" uib-tooltip="Exportar PDF">
+                                PDF
+                            </a>
+                            <a href="" download class="btn btn-default btn-md btnRedondo btnFiltroHeader" target="_blank" ng-click="vm.downloadExcel()" 
+                                tooltip-placement="auto" uib-tooltip="Exportar XLS">
+                                XLS
+                            </a>
+                        </span>                        
+                    </div>
+
+                </div>
+
+            </div>
+                        
+            <!-- #endregion -->
+
+            <!-- #region Tabs -->
+            <div class="form-group clearfix">
+                
+                <div class="row" ng-if="vm.cambiarTipoEntidadFiltroTab">
+                    <div class="col-md-12 radio radio-primary">
+                        <ul class="nav nav-tabs tabsFiltro">
+                            <li ng-repeat="entidad in vm.tiposEntidad" ng-class="{'active' : vm.tipoEntidadSeleccionada === entidad.clave }">
+                                <a data-toggle="tab" ng-click="vm.cambiarFiltroEntidad1(entidad.clave)">                                        
+                                    {{entidad.nombre}}
+                                </a>
+                                <!-- <a data-toggle="tab" ng-click="vm.cambiarFiltroEntidad1(entidad.clave)">
+                                    <div class="upper-selection"></div>
+                                    <span>{{entidad.nombre}}</span>
+                                </a> -->
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            <!--inicio filtro-->
+            <div class="filtro filtro-entidades" ng-if="vm.mostrarFiltro">
+                <div class="clearfix">
+                    <div class="row">
+                        <div class="col-md-10">
+                            <div class="col-md-9" ng-if="vm.tieneColumna('Entidades')">
+                                <select id="chosenEntidades" chosen ng-change="vm.filtrarEntidades()"
+                                    options="vm.listaEntidadesFiltro"
+                                    ng-model="vm.entidadFiltro"
+                                    ng-options="entidad for entidad in vm.listaEntidadesFiltro"
+                                    no-results-text="No hay ningún resultado para su búsqueda"
+                                    placeholder-text-single="Entidades">
+                                </select>
+                            </div>
+                            <div class="col-md-3 padding-left-off" ng-if="vm.tieneColumna('Codigo')" >
+                                <input type="text" ng-model="vm.codigo" class="form-control" placeholder="Codigo"/>
+                            </div>
+                            <div class="col-md-3 padding-left-off" ng-if="vm.tieneColumna('Sigla')" >
+                                <input type="text" ng-model="vm.sigla" class="form-control" placeholder="Sigla" />
+                            </div>
+                            <div class="col-md-3 mt-2" ng-if="vm.tieneColumna('Agrupador')">
+                                <div class="col-md-6" ng-if="vm.tipoEntidad == 'Nacional' || vm.tipoEntidad == 'Territorial'">
+                                    <div class="form-check">
+                                        <input class="form-check-input" ng-model="vm.agrupador" ng-click="vm.filtrarAgrupador()" type="checkbox" value="" id="agrupador">
+                                        <label class="form-check-label" for="agrupador">
+                                            Filtrar agrupador
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6" ng-if="vm.tipoEntidad == 'Nacional' && vm.tieneColumna('Cabeza Sector')">
+                                    <div class="form-check">
+                                        <input class="form-check-input" ng-model="vm.cabezaSector" ng-click="vm.filtrarEntidades()" type="checkbox" value="" id="cabezaSector">
+                                        <label class="form-check-label" for="cabezaSector">
+                                            Cabeza sector
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>                            
+                        </div>
+                        <div class="col-md-2 text-right">
+                            <button type="button" class="btn btn-filtro" ng-click="vm.filtrarEntidades()" tooltip-placement="auto" uib-tooltip="Buscar">Buscar</button>
+                            <button type="button" class="btn btn-filtro" ng-click="vm.limpiarFiltro()" tooltip-placement="auto" uib-tooltip="Limpiar">Limpiar</button>
+                        </div>
+                    </div>
+                </div>
+                <!--fim filtro-->
+            </div>
+            <!-- #endregion Tabs -->
+            <!-- #region Tabla -->
+            <div class="row">
+                <nacional accion-crear-editar-entidad="vm.accionCrearEditarEntidad($row)"
+                        accion-eliminar-entidad="vm.accionEliminarEntidad($row)"
+                        accion-crear-sub-entidad="vm.accionCrearSubEntidad($row)"
+                        accion-editar-sub-entidad="vm.accionEditarSubEntidad($row)"
+                        accion-flujos-viabilidad="vm.accionFlujosViabilidad($row)"
+                        ng-if="vm.tipoEntidad == 'Nacional'"></nacional>
+                <territorial accion-crear-editar-entidad="vm.accionCrearEditarEntidad($row)"
+                            accion-eliminar-entidad="vm.accionEliminarEntidad($row)"
+                            accion-crear-sub-entidad="vm.accionCrearSubEntidad($row)"
+                            accion-editar-sub-entidad="vm.accionEditarSubEntidad($row)"
+                            accion-flujos-viabilidad="vm.accionFlujosViabilidad($row)"
+                            ng-if="vm.tipoEntidad == 'Territorial'"></territorial>
+                <sgr accion-crear-editar-entidad="vm.accionCrearEditarEntidad($row)"
+                    accion-eliminar-entidad="vm.accionEliminarEntidad($row)"
+                    accion-crear-sub-entidad="vm.accionCrearSubEntidad($row)"
+                    accion-editar-sub-entidad="vm.accionEditarSubEntidad($row)"
+                    accion-flujos-viabilidad="vm.accionFlujosViabilidad($row)"
+                    ng-if="vm.tipoEntidad == 'SGR'"></sgr>
+                <privadas accion-crear-editar-entidad="vm.accionCrearEditarEntidad($row)"
+                        accion-eliminar-entidad="vm.accionEliminarEntidad($row)"
+                        accion-crear-sub-entidad="vm.accionCrearSubEntidad($row)"
+                        accion-editar-sub-entidad="vm.accionEditarSubEntidad($row)"
+                        accion-flujos-viabilidad="vm.accionFlujosViabilidad($row)"
+                        ng-if="vm.tipoEntidad == 'Privadas'"></privadas>
+                <publicas accion-crear-editar-entidad="vm.accionCrearEditarEntidad($row)"
+                        accion-eliminar-entidad="vm.accionEliminarEntidad($row)"
+                        accion-crear-sub-entidad="vm.accionCrearSubEntidad($row)"
+                        accion-editar-sub-entidad="vm.accionEditarSubEntidad($row)"
+                        accion-flujos-viabilidad="vm.accionFlujosViabilidad($row)"
+                        ng-if="vm.tipoEntidad == 'Publicas'"></publicas>
+            </div>
+            <!-- #endregion Tabla -->
+        
+        </div>
+
+    </div>
+</div>
+

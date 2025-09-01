@@ -1,0 +1,47 @@
+﻿<section>
+    <div class="container-fluid inbox" ng-init="vm.init();">
+        <div class="tab-content">
+            <div class="ui-accordion-container hidden" id="accordion-financieroavancefinanciero">
+                <div class="alert panel-heading row ui-accordion-header">
+                    <button type="button" data-toggle="collapse" data-target="#financieroavancefinanciero" ng-click="vm.changeArrow('financieroavancefinanciero')">
+                        <span class="d-inline-block" id="alert-financieroavancefinanciero"></span>
+                        <span id="name-capitulo-financieroavancefinanciero"></span>
+                        <span class="hidden" id="id-capitulo-financieroavancefinanciero"></span>
+                        <span id="arrow-financieroavancefinanciero" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#financieroavancefinanciero"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="financieroavancefinanciero">
+                    <div class="row m-0 mb-3">
+                        <avance-financiero bpin="{{vm.globalVariables.bpin}}"
+                                           guardadoevent="vm.guardadoevent(nombreComponenteHijo)"
+                                           notificacioncambios="vm.notificacionCambiosCapitulosExternos(handler,nombreComponente)"
+                                           notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                           notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)">
+                        </avance-financiero>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ui-accordion-container hidden" id="accordion-financieroavancepresupuestal">
+                <div class="alert panel-heading row ui-accordion-header">
+                    <button type="button" data-toggle="collapse" data-target="#financieroavancepresupuestal" ng-click="vm.changeArrow('financieroavancepresupuestal')">
+                        <span class="d-inline-block" id="alert-financieroavancepresupuestal"></span>
+                        <span id="name-capitulo-financieroavancepresupuestal"></span>
+                        <span class="hidden" id="id-capitulo-financieroavancepresupuestal"></span>
+                        <span id="arrow-financieroavancepresupuestal" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#financieroavancepresupuestal"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="financieroavancepresupuestal">
+                    <div class="row m-0 mb-3">
+                        <reporte-act-cap bpin="{{vm.globalVariables.bpin}}"
+                                           guardadoevent="vm.guardadoevent(nombreComponenteHijo)"
+                                           notificacioncambios="vm.notificacionCambiosCapitulosExternos(handler,nombreComponente)"
+                                           notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                           notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)">
+                        </reporte-act-cap>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

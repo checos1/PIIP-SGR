@@ -1,0 +1,120 @@
+﻿<!--<div ng-if="(!vm.modelo.disabled && vm.modelo.tituloObservacion != '') || (vm.observacion.length > 0 && vm.modelo.tituloObservacion != '')">-->
+<div style="margin-left:20px;">
+    <!--<div class="row" style="padding-bottom:20px; padding-top:20px">
+        <div class="col-md-12">
+            <div class="titlebar">
+                <span>{{vm.modelo.tituloObservacion}}</span>
+            </div>
+        </div>
+    </div>-->
+    <div class="row">
+        <div class="col-md-12 form-group text-right" style="padding-right: 2rem;">
+            <div style="text-align: right;">
+                <div ng-if="vm.VerEditarObervacion" class="col-md-12 form-group text-right" style="padding-right:2rem;">
+                    <!--<button id="Editar"-->
+                    <button id="Editar" name="Editar"
+                            type="button" class="btneditarDNP"
+                            tooltip-placement="top"
+                            uib-tooltip="Clic para editar la información"
+                            ng-click="vm.ActivarEditar()">
+                        {{vm.Editar}}
+                    </button>
+                    &nbsp;
+                    <!--<button id="Guardar"-->
+                    <button id="Guardar"
+                            type="submit" class="btnguardarDNP"
+                            tooltip-placement="top"
+                            uib-tooltip="Guardar observación"
+                            ng-click="vm.registrarObservacion()"
+                            ng-disabled="vm.disabled">
+                        GUARDAR
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--/////////-->
+    <div class="row">
+        <div class="col-md-12 DetacolumnDNP">
+            <span class="detapregun">{{vm.modelo.tituloObservacion}}&nbsp; </span>
+            <span class="notapregun">(Máximo 5.000 caracteres)</span>
+            &nbsp;<img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg">
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div id="observacion-pregunta-error" class="hidden uMensajeError col-md-12"></div>
+        <div class="col-md-12" style="padding-bottom: 55px !important;padding-right: 4rem !important">
+            <div id="u5226_div" class="divPanelPregRespDNP" style="width: 100% !important">
+                <div class="respAdon">
+                   <span style="vertical-align: middle; display: table-cell;font-weight: 400; font-style: normal; font-size: 20px;">Observación</span>
+                  
+                </div>
+
+                <div class="textAreDivRes" style="width: 73% !important">
+                    <textarea rows="3"
+                              id="observacionAprobacion"
+                              name="observacionAprobacion"
+                              ng-model="vm.observacion"
+                              ng-change="vm.ActualizarObservacion()"
+                              placeholder="Maximo 5.000 caracteres"
+                              minlength="1"
+                              maxlength="5000"
+                              ng-disabled="vm.disabled"
+                              class="textareObservaDNP" ng-required="true"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/////////-->
+
+
+    <!--<div class="row" style="padding-top:2rem;">
+        <div class="col-md-8" style="display:inline-flex;">
+            <span style="color: #004884; font-size: 24px; font-weight: 400;">{{vm.modelo.tituloObservacion}} </span>
+        </div>
+        <div class="col-md-4" style="display:inline-flex;">
+            <span class="textRightDNP" style="font-weight: 400 !important;">&nbsp;</span>
+        </div>
+    </div>
+
+    <br />
+    <div class="row" style="padding-bottom:20px">
+        <div id="observacion-pregunta-error" class="hidden uMensajeError"></div>-->
+        <!--<label class="col-md-12 col-form-label" style="text-align:left">Observación </label>-->
+        <!--<div class="col-md-12 form-group ">
+            <textarea rows="3"
+                      id="observacionAprobacion"
+                      name="observacionAprobacion"
+                      ng-model="vm.observacion"
+                      ng-change="vm.ActualizarObservacion()"
+                      placeholder="Maximo 5.000 caracteres"
+                      minlength="1"
+                      maxlength="5000"
+                      ng-disabled="vm.disabled"
+                      class="form-control " ng-required="true"></textarea>
+        </div>
+        <div class="col-md-8" style="display:inline-flex;">
+            <span class="textRightDNP" style="font-weight: 400 !important;">&nbsp;</span>
+        </div>
+
+    </div>-->
+
+
+    <div class="row" style="padding-top:2rem;" ng-if="vm.AccionDiferente">
+        <div class="col-md-8" style="display:inline-flex;">
+            <span style="color: #004884; font-size: 24px; font-weight: 400;">{{vm.modelo.tituloObservacionAnterior}} </span>
+        </div>
+        <div class="col-md-4" style="display:inline-flex;">
+            <span class="textRightDNP" style="font-weight: 400 !important;">&nbsp;</span>
+        </div>
+    </div>
+    <div class="row" style="padding-bottom:20px" ng-if="vm.AccionDiferente">
+        <!--<label class="col-md-12 col-form-label" style="text-align:left">Observación</label>-->
+        <div class="col-md-12" style="border-style: outset; background: #eee;">
+            <label rows="3"> {{vm.observacionAnterior}} </label>
+        </div>
+
+    </div>
+</div>

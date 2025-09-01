@@ -1,0 +1,174 @@
+.radio-color(@blue, @opacity) {
+    & ~ .check,
+    & ~ .circle {
+        opacity: @opacity;
+    }
+
+    & ~ .check {
+        background-color: @blue;
+    }
+
+    & ~ .circle {
+        border-color: @blue;
+    }
+}
+
+.radio label, label.radio-inline {
+    cursor: pointer;
+    padding-left: 45px;
+    position: relative;
+    color: @blue;
+}
+
+.radio, label.radio-inline {
+    span {
+        display: block;
+        position: absolute;
+        left: 10px;
+        top: 2px;
+        transition-duration: 0.2s;
+    }
+
+    .circle {
+        border: 2px solid @gray-text;
+        height: 15px;
+        width: 15px;
+        border-radius: 100%;
+    }
+
+    .check {
+        height: 15px;
+        width: 15px;
+        border-radius: 100%;
+        background-color: @blue;
+        transform: scale3d(0, 0, 0);
+    }
+
+    .check:after {
+        display: block;
+        position: absolute;
+        content: "";
+        background-color: transparent;
+        left: -18px;
+        top: -18px;
+        height: 50px;
+        width: 50px;
+        border-radius: 100%;
+        z-index: 1;
+        opacity: 0;
+        margin: 0;
+        transform: scale3d(1.5, 1.5, 1);
+    }
+
+    input[type=radio]:focus:not(:checked) ~ .check {
+        transform: scale3d(1.5, 1.5, 1);
+        opacity: 0.2;
+        background: @gray;
+    }
+
+    input[type=radio]:focus:checked ~ .circle {
+        transform: scale3d(1.5, 1.5, 1);
+        opacity: 0.2;
+        background: @gray;
+    }
+
+    input[type=radio]:focus:not(:checked) ~ .check:after {
+        animation: rippleOff 500ms;
+    }
+
+    input[type=radio]:focus:checked ~ .check:after {
+        animation: rippleOn 500ms;
+    }
+
+    input[type=radio] {
+        opacity: 0;
+        height: 0;
+        width: 0;
+        overflow: hidden;
+
+        &:checked {
+            .radio-color(@blue, 1);
+        }
+
+        &:checked ~ .check {
+            transform: scale3d(0.55, 0.55, 1);
+        }
+    }
+
+    input[type=radio][disabled] {
+        // light theme spec: Disabled: #000000, Opacity  26%
+        .radio-color(@blue, 0.26);
+        // dark theme spec: Disabled: #FFFFFF, Opacity  30%
+        .theme-dark & {
+            .radio-color(@white, 0.30);
+        }
+    }
+
+    .text-warning {
+        color: @warning;
+    }
+
+    .text-success {
+        color: @success;
+    }
+
+    .text-danger {
+        color: @danger;
+    }
+
+    .border-warning {
+        border: 2px solid @warning !important;
+    }
+
+    .border-success {
+        border: 2px solid @success !important;
+    }
+
+    .border-danger {
+        border: 2px solid @danger !important;
+    }
+
+    .check-success {
+        background-color: @success !important;
+    }
+
+    .check-warning {
+        background-color: @warning !important;
+    }
+
+    .check-danger {
+        background-color: @danger !important;
+    }
+}
+
+@keyframes rippleOn {
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 0.2;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes rippleOff {
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 0.2;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+.radiofix {
+    margin-top: 5px !important;
+}

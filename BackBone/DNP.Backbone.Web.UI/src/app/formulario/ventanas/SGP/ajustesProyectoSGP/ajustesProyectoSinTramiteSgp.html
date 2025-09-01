@@ -1,0 +1,50 @@
+﻿<section class="ventana-ajsutes mt-4" ng-init="vm.init()">
+    <div class="row m-0">
+        <div class="form-group">
+                <div class="tab-content">
+                    <div class="tab-pane active cont col-md-12 p-0" id="ddatosgeneralessgp">
+                        <datosgenerales-Sin-Tramite-Sgp verificacion="vm.verificaConpes(arg,aprueba,titulo)" modelo="vm.infoArchivo"
+                                        guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                        notificacioncambios="vm.notificacionCambiosAjustes(handler, nombreComponente)"
+                                        notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                        notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente, handlerCapitulos)"></datosgenerales-Sin-Tramite-Sgp>
+                    </div>
+                    <div class="tab-pane cont col-md-12 p-0" id="drecursossgp">
+                        <recursos-Ajustes-Sin-Tramite-Sgp guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                          notificacioncambios="vm.notificacionCambiosAjustes(handler,nombreComponente)"
+                                          notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                          notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente, handlerCapitulos)"></recursos-Ajustes-Sin-Tramite-Sgp>
+                    </div>
+                    <div class="tab-pane cont col-md-12 p-0" id="dfocalizacionpolsgp">
+                        <focalizacion-Ajustes-Sin-Tramite-Sgp guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                              notificacioncambios="vm.notificacionCambiosAjustes(handler,nombreComponente)"
+                                              notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                              notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente, handlerCapitulos)">
+                        </focalizacion-Ajustes-Sin-Tramite-Sgp>
+                    </div>
+                    <div class="tab-pane cont col-md-12 p-0" id="djustificacionsintramitesgp">
+                        <justificacion-Cambios-Sin-Tramite-Sgp notificacioncambios="vm.notificacionCambiosAjustes(handler, nombreComponente)"
+                                              notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                              notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente)">
+                        </justificacion-Cambios-Sin-Tramite-Sgp>
+                    </div>
+                    <div class="tab-pane  cont col-md-12" style="padding-left:0 !important;padding-top:20px !important" id="dsoportesintramitesgp">
+                        <documentos-Soporte-Vi-Sin-Tramite-Sgp tipotramiteid="{{vm.tipoTramiteId}}"
+                                               tramiteid="{{vm.tramiteId}}"
+                                               idtipotramitepresupuestal="{{vm.idtipotramitepresupuestal}}"
+                                               nivel="{{vm.IdNivel}}"
+                                               rol="{{vm.IdRol}}"
+                                               section="{{vm.section}}"
+                                               nivelarchivo="{{vm.NivelArchivo}}"
+                                               tipoarchivo="{{vm.TipoArchivo}}"
+                                               callback="vm.notificarGuardado()"
+                                               guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                               notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                               notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)"
+                                               notificacioncambios="vm.notificacionCambiosAjustes(handler, nombreComponente)">
+                        </documentos-Soporte-Vi-Sin-Tramite-Sgp>
+                    </div>
+                </div>            
+        </div>
+    </div>
+</section>

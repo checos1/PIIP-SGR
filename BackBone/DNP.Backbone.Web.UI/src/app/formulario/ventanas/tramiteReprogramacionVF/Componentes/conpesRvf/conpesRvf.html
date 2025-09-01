@@ -1,0 +1,14 @@
+﻿<style>
+    .conpes-rvf-container {
+        padding-right: 1.3rem;
+    }
+</style>
+
+<section ng-init="vm.init()" class="conpes-rvf-container mb-3">
+    <div id="informacionpresupuestalconpes-conpes-error" class="hidden uMensajeError"></div>
+    <consulta-conpes-formulario guardarCompesEvent="vm.guardarCompes(compesList)"
+                     removerconpesevent="vm.removerConpes(conpes)"
+                     conpespreseleccionados="vm.conpesPreseleccionados"
+                     clearconpesindex="vm.clearConpesIndex">
+    </consulta-conpes-formulario>
+</section>

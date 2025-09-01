@@ -1,0 +1,121 @@
+﻿<section ng-init="vm.init();" class="mx-5">
+    <div class="row">
+        <div class="col-md-8 text-left">
+            <h4 class="text-left ui-seccion-title">Modificación Indicadores</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 text-left">
+            <span>
+                <strong>Ruta: </strong> Datos Generales / Indicadores
+            </span>
+        </div>
+    </div>
+    <br />
+    <br />
+    <input type="hidden" id="id-capitulo-datosgeneralesindicadoresdepr" value="902" />
+    <div ng-if="datosTabla != null" class="LineaEncabezado2divDNP"></div>
+    <h3 ng-if="datosTabla != null" class="row tituloEncabezadodivDNP" style="margin-left: 13%;width: 85.7%;">Indicadores</h3>
+    <label ng-if="datosTabla != null" class="col-md-6 pull-right" style="text-align: right; font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; color: #4B4B4B; font-style: normal; font-size: 14px;">
+        *Tipo: P= Principal, S= Secundario *
+    </label>
+       <div ng-if="datosTabla != null" style="text-align: left;" id="justifIndicadores" class="mt-5">
+        <table class="TableDNP">
+            <thead>
+                <tr>
+                    <th class="columAcc"></th>
+                    <th class="textLeftDNP" style="width: 8%;">Vigencia</th>
+                    <th class="textLeftDNP" style="width: 37%;">Código / Tipo*/ Acumulativo / Indicador</th>
+                    <th class="textRightDNP" style="width: 15%;">Meta Firme</th>
+                    <th class="textRightDNP" style="width: 15%;">Meta Ajuste</th>
+                    <th class="textRightDNP" style="width: 15%;">Diferencia</th>
+                    <th class="columAcc"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="uTexto-grilla" ng-repeat="indicador in datos | filter:myFilter">
+                    <td></td>
+                    <td class="textLeftDNP">
+                        <div>{{indicador.Vigencia}}</div>
+                    </td>
+                    <td class="textLeftDNP">
+                        <div>{{indicador.CodigoIndicador}} / {{indicador.TipoIndicador}} / {{indicador.IndicadorAcumula}} / {{indicador.NombreIndicador}}</div>
+                    </td>
+                    <td class="textRightDNP">
+                        <div ng-if="indicador.Ajuste == 'Nuevo'" class="editReferenciaDNP textRightDNP" style="line-height: 43px;">{{indicador.MetaEnFirme}}</div>
+                        <div ng-if="indicador.Ajuste == 'Meta Ajustada'" class="blockReferenciaDNP" style="line-height: 43px;">{{indicador.MetaEnFirme}}</div>
+                        <!--<div ng-if="indicador.Ajuste == 'Eliminado'" class="blockReferenciaDNP" style="line-height: 43px;">{{indicador.MetaEnFirme}}</div>-->
+                    </td>
+                    <td class="textRightDNP">
+                        <div ng-if="indicador.Ajuste == 'Nuevo'" class="editReferenciaDNP textRightDNP" style="line-height: 43px;">{{indicador.MetaEnAjuste}}</div>
+                        <div ng-if="indicador.Ajuste == 'Meta Ajustada'" class="editReferenciaDNP textRightDNP" style="line-height: 43px;">{{indicador.MetaEnAjuste}}</div>
+                        <!--<div ng-if="indicador.Ajuste == 'Eliminado'" class="blockReferenciaDNP" style="line-height: 43px;">{{indicador.MetaEnAjuste}}</div>-->
+                    </td>
+                    <td class="textRightDNP">
+                        <div ng-if="indicador.Ajuste == 'Nuevo'" class="editReferenciaDNP textRightDNP" style="line-height: 43px;">{{indicador.Diferencia}}</div>
+                        <div ng-if="indicador.Ajuste == 'Meta Ajustada'" class="blockReferenciaDNP" style="line-height: 43px;">{{indicador.Diferencia}}</div>
+                        <!--<div ng-if="indicador.Ajuste == 'Eliminado'" class="blockReferenciaDNP" style="line-height: 43px;">{{indicador.Diferencia}}</div>-->
+                    </td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <br />
+    <div class="row">
+        <div class="row mb-4">
+            <div class="col-md-12 text-left">
+                <h4 class="uLabelCampo">Detalle del ajuste</h4>
+                <ul class="pl-4">
+                    <li ng-repeat="indicador in datos | filter:myFilter2">
+                        <span>{{indicador.Mensaje}}</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <br />
+        <div class="row my-4">
+            <div class="col-md-12 mt-3 mb-3">
+                <div class="row">
+                    <div class="col-md-8 text-left">
+                        <h4 class="text-left ui-seccion-title">Justificación</h4>
+                    </div>
+                    <div class="col-md-11" ng-if="vm.habilitaBotones">
+                        <span class="buttonbar pull-right">
+                            <button type="button" class="btneditarDNP" tooltip-placement="top" ng-click="vm.isEdicion ? vm.cancelar(tramite) : vm.editar(tramite)" uib-tooltip="{{vm.isEdicion ? 'CANCELAR' : 'EDITAR'}}">
+                                {{vm.isEdicion ? 'CANCELAR' : 'EDITAR'}}
+                            </button>
+                            <button ng-disabled="!vm.isEdicion" type="button" class="{{vm.isEdicion ? 'btnguardarDNP' : 'btnguardarDisabledDNP'}}" tooltip-placement="top" uib-tooltip="Guardar" tabindex="0" ng-click="vm.guardar(tramite)">
+                                GUARDAR
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 text-left">
+                        <span>
+                            <strong>Justifique la modificación* </strong> (Máximo 8.000 caracteres)
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-12">
+                <div id="justificacionindicadores-justificacion-error" class="hidden text-left color-red">
+                    <img class="img img-advertencia" src="Img/u11.svg" />
+                    <span id="justificacionindicadores-justificacion-error-mns"></span>
+                </div>
+                <textarea rows="3"
+                          id="justificacion"
+                          name="justificacion"
+                          ng-model="vm.justificacion"
+                          placeholder="Maximo 8.000 caracteres"
+                          minlength="1"
+                          maxlength="8000"
+                          class="form-control" ng-required="true"
+                          ng-disabled="vm.isEdicion == false"></textarea>
+            </div>
+        </div>
+    </div>
+
+</section>

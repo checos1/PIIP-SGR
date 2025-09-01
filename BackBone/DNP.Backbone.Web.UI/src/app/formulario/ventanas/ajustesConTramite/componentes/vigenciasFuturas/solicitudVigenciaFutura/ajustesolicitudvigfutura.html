@@ -1,0 +1,59 @@
+﻿<section>
+    <div class="container-fluid inbox" ng-init="vm.init();">
+        <div class="col-md-12 mt-3 mb-3">
+            <div class="row">
+                <div class="col-md-8 text-left">
+                    <h4 class="text-left ui-seccion-title"></h4>
+                </div>
+                <!--<div class="col-md-4 text-right">
+            <button ng-if="vm.isEdicion == true" ng-click="vm.cancelar()" id="btn-cancelar-edicion" type="button" class="btn btncancelarHorizonte" tooltip-placement="auto" uib-tooltip="Cancelar">CANCELAR</button>
+            <button ng-if="vm.isEdicion == false" ng-click="vm.editar()" id="btn-editar-edicion" type="button" class="btn btncancelarHorizonte" tooltip-placement="auto" uib-tooltip="Editar">EDITAR</button>
+            <button ng-disabled="vm.isEdicion == false" ng-click="vm.guardar()" type="button" id="btn-guardar-edicion-ff" ng-class="vm.ClasesbtnGuardar" tooltip-placement="auto" uib-tooltip="Guardar">GUARDAR</button>
+        </div>-->
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-left">
+                    <div class="form-row">
+                        <div class="col-md-4 mb-3">
+                            <label for="vTipoValor"><strong>Tipo de Valores*</strong></label>
+                            <select class="form-control selectDNP" name="vTipoValor" id="vTipoValor" ng-model="datosProyecto.Constante" ng-value="datosProyecto.Constante" ng-change="vm.cambiaTipoValor(datosProyecto.Constante)">
+                                <option value="0" selected ng-if="vm.valorOriginal == 0">Seleccione</option>
+                                <option ng-repeat="option in data.availableOptions" value="{{option.id}}">{{option.name}}</option>
+                            </select>
+                        </div>
+                        <div class="col-md-1 mb-1">
+                            <br />
+                            <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg" ng-click="vm.abrirMensajeInformacionTipoValor()">
+                        </div>
+                        <div ng-show="vm.isConstante == true" class="col-md-2 mb-3">
+                            <label for="vAnioBase"><strong>Año Base*</strong></label>
+                            <select class="form-control selectDNP" name="vAnioBase" id="vAnioBase" ng-model="datosProyecto.AnioBase" ng-value="datosProyecto.AnioBase" ng-change="vm.cambiaAnioBase(datosProyecto.AnioBase)">
+                                <option value="null" selected>Seleccione</option>
+                                <option ng-repeat="option2 in datos" value="{{option2.AnioConstante}}">{{option2.AnioConstante}}</option>
+                            </select>
+                        </div>
+                        <div ng-show="vm.isConstante == true" class="col-md-1 mb-1">
+                            <br />
+                            <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg" ng-click="vm.abrirMensajeInformacionAnioBase()">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row" ng-if="vm.isCorriente == true">
+                <vigfuturavalcorrientes refresh="vm.refresh(handler, nombreComponente)" 
+                                        errores="vm.setErrores(handler, nombreComponente)"
+                                        guardadoevent="vm.guardadoHijos(nombreComponenteHijo)"></vigfuturavalcorrientes>
+            </div>
+            <div class="row" ng-if="vm.isConstante == true && datosProyecto.AnioBase > 1990">
+                <vigfuturavalconstantes refresh="vm.refresh(handler, nombreComponente)" 
+                                        errores="vm.setErrores(handler, nombreComponente)" 
+                                        aniobase="{{vm.isAnio}}"
+                                        guardadoevent="vm.guardadoHijos(nombreComponenteHijo)"
+                                        ></vigfuturavalconstantes>
+            </div>
+        </div>
+    </div>
+</section>
+<link href="/Content/ui-gridDNP.css" rel="stylesheet" />
+

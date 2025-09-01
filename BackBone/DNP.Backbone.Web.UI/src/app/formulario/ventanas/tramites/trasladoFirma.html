@@ -1,0 +1,140 @@
+﻿
+<div class="container-fluid inbox" ng-init="vm.init();" style="overflow: scroll;">
+    <nav class="breadcrumb">
+        <!-- ReSharper disable UnknownCssClass -->
+        <a href="/">
+            <span class="breadcrumb-item active">
+                <i class="fa fa-home" aria-hidden="true"></i> Inicio
+            </span>
+        </a>
+        /
+        <span class="breadcrumb-item active">Banco de Proyectos</span>
+    </nav>
+
+    <div class="project consola-proyectos">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="titlebar">
+                    <span>Asociar proyectos a Trámite </span>
+                </div>
+            </div>
+            <!--<div ng-if="vm.verbotonsolicitarconcepto">-->
+            <div>
+                <div ng-if="!vm.conceptoenviado">
+                    <div class="col-md-2">
+                        <button class="btn btn-default btn-md" ng-click="vm.VerConcepto()">{{vm.NombreVerConcepto}}</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <br /><br />
+        <div class="row uDetalleSeccion">
+
+            <div class="col-md-3">
+                <span class="uLabelCampo">Proceso: </span><span class="uLabelDetalle">{{vm.numeroTramite}}</span>
+            </div>
+            <div class="col-md-3">
+                <span class="uLabelCampo">Fecha: </span><span class="uLabelDetalle">{{vm.FechaCreacionTramite}}</span>
+            </div>
+            <div class="col-md-3">
+                <span class="uLabelCampo">Sector: </span><span class="uLabelDetalle">{{vm.nombreSectorTramite}}</span>
+            </div>
+            <div class="col-md-3">
+                <span class="uLabelCampo">Tipo: </span><span class="uLabelDetalle">{{vm.nombreTipoTramite}}</span>
+            </div>
+            <div class="col-md-6">
+                <span class="uLabelCampo">Entidad: </span><span class="uLabelDetalle">{{vm.nombreEntidad}} </span>
+            </div>
+
+
+
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-12">
+                    <span class="uLabelCampo">Descripción: </span>
+                    <span class="uLabelDetalle" style="background-color:white;">{{vm.DescripcionTramite}}</span>
+                </div>
+            </div>
+        </div>
+        <br />
+    </div>
+    <div class="dashboard" ng-if="!vm.activartraslados">
+
+        <div class="project consola-proyectos">
+
+
+            <!--<div class="dashboard" >
+                <div class="row">
+                    <div class="col-md-12" id="SolCon" ng-if="vm.analista && vm.solicitaconcepto">
+                        <solicitar-concepto callback="vm.validaHabilita(arg)"></solicitar-concepto>
+                    </div>
+                </div>
+            </div>-->
+
+            <div ng-if="!vm.solicitaconcepto" style="width:98%;overflow:scroll;">
+                <div class="row" >
+                    <div class="col-md-12">
+            <span class="buttonbar pull-left">
+                <button type="button" class="btn btn-default btn-md" tooltip-placement="top" uib-tooltip="Ver requisitos tramite" ng-click="vm.verRequisitosTramite()" tabindex="0">
+                    Ver requisitos tramite
+                </button>
+            </span>
+        </div>
+                    <div class="col-md-12" >
+                        <div class="row grid-proyectos">
+
+                            <div class="col-md-12">
+                                <div class="container-table" ui-i18n="{{vm.lang}}" style="height:250px; overflow-y: scroll;display: inline-block;width:95%; padding-right: 10px !important;">
+
+                                    <div class="clearfix grid-icon grid2" id="uigprojecto" ui-grid="vm.gridOptions" style="text-align: center;"
+                                         ui-grid-resize-columns ui-grid-pinning ng-class="!vm.activargrilla? 'disablegrid':''">
+                                    </div>
+
+                                    <div class="text-center intro-help min-mh no-result-watermark" ng-if="!vm.tipoEntidad && !vm.filasFiltradas">
+                                        <h4>{{ 'Buscando resultados'}}</h4>
+                                    </div>
+
+                                    <div class="text-center intro-help min-mh no-result-watermark" ng-if="vm.tipoEntidad && !vm.filasFiltradas">
+                                        <h4>{{ 'No hay ningún resultado para su búsqueda por el tipo de entidad' }} {{vm.tipoEntidad}}</h4>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div ng-if="vm.mostrarMensajeProyectos" ng-cloak>
+                                <div class="text-center intro-help no-result-watermark">
+                                    <img src="Img/image-help.png" alt="Sin resultados" />
+                                    <h2 id="idLabelMensajeResultados">{{vm.Mensaje}}</h2>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <br /><br />
+                      <div style="<!--width:1280px;-->margin-left:auto;margin-right:auto;">
+                          <div class="row" style="padding-right: 10px;padding-left:4rem;">
+                              <firma-tramite desactivarcarta="vm.desactivarcarta()" ProyectoId="vm.ProyectoId"></firma-tramite>
+                          </div>
+                          
+                          <br /><br />
+                      </div>
+               
+            </div>
+        </div>
+    </div>
+    <br />
+
+
+    <div ng-if="!vm.solicitaconcepto" style="width:98%;overflow:scroll;">
+        <div class="row" ng-if="vm.activartraslados" style="overflow:scroll; min-height: 600px; padding-right: 10px;">
+            <requisitos-aprobacion desactivartraslados="vm.desactivartraslados()" ProyectoId="vm.ProyectoId"></requisitos-aprobacion>
+        </div>
+    </div>
+    
+</div>
+
+

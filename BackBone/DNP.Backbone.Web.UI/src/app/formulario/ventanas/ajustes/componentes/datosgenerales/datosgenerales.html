@@ -1,0 +1,101 @@
+﻿<section>
+	<div class="container-fluid inbox" ng-init="vm.init();">
+		<div class="tab-content">
+
+
+			<div class="ui-accordion-container hidden" id="accordion-datosgeneraleshorizonte">
+				<div class="alert panel-heading row ui-accordion-header">
+					<button type="button" data-toggle="collapse" data-target="#datosgeneraleshorizonte-1" ng-click="vm.changeArrow('datosgeneraleshorizonte-1')">
+						<span class="d-inline-block" id="alert-datosgeneraleshorizonte-1"></span>
+						<span id="name-capitulo-datosgeneraleshorizonte"></span>
+						<span class="hidden" id="id-capitulo-datosgeneraleshorizonte"></span>
+						<span id="arrow-datosgeneraleshorizonte-1" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#datosgeneraleshorizonte-1"></span>
+					</button>
+				</div>
+				<div class="collapse" id="datosgeneraleshorizonte-1">
+					<div class="row m-0 mb-3">
+						<horizonte-proyecto guardadoevent="vm.guardado(nombreComponenteHijo)"
+											notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+											notificacioncambios="vm.notificacionCambiosCapitulosExternos(handler, nombreComponente)"
+											notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"></horizonte-proyecto>
+					</div>
+				</div>
+			</div>
+
+			<div class="ui-accordion-container hidden" id="accordion-datosgeneralesrelacionconlapl">
+				<div class="alert panel-heading row ui-accordion-header">
+					<button type="button" data-toggle="collapse" data-target="#datosgeneralesrelacionconlapl-1" ng-click="vm.changeArrow('datosgeneralesrelacionconlapl-1')">
+						<span class="d-inline-block" id="alert-datosgeneralesrelacionconlapl-1"></span>
+						<span id="name-capitulo-datosgeneralesrelacionconlapl"></span>
+						<span class="hidden" id="id-capitulo-datosgeneralesrelacionconlapl"></span>
+						<span id="arrow-datosgeneralesrelacionconlapl-1" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#datosgeneralesrelacionconlapl-1"></span>
+					</button>
+				</div>
+				<div class="collapse" id="datosgeneralesrelacionconlapl-1">
+					<div class="row m-0 mb-3">
+						<conpes guardadoevent="vm.guardado(nombreComponenteHijo)"
+								notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+								notificacioncambios="vm.notificacionCambiosCapitulosExternos(handler, nombreComponente)"
+								notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"></conpes>
+					</div>
+				</div>
+			</div>
+			<div class="ui-accordion-container hidden" id="accordion-datosgeneralesindicadoresdepr">
+				<div class="alert panel-heading row ui-accordion-header">
+					<button type="button" data-toggle="collapse" data-target="#datosgeneralesindicadoresdepr-1" ng-click="vm.changeArrow('datosgeneralesindicadoresdepr-1')">
+						<span class="d-inline-block" id="alert-datosgeneralesindicadoresdepr-1"></span>
+						<span id="name-capitulo-datosgeneralesindicadoresdepr"></span>
+						<span class="hidden" id="id-capitulo-datosgeneralesindicadoresdepr"></span>
+						<span id="arrow-datosgeneralesindicadoresdepr-1" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#datosgeneralesindicadoresdepr-1"></span>
+					</button>
+				</div>
+				<div class="collapse" id="datosgeneralesindicadoresdepr-1">
+					<div class="row m-0 mb-3">
+						<indicadores-proyecto guardadoevent="vm.guardado(nombreComponenteHijo)"
+											  notificacioncambios="vm.notificacionCambiosCapitulosExternos(handler, nombreComponente)"
+											  notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+											  notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"></indicadores-proyecto>
+					</div>
+				</div>
+			</div>
+			<div class="ui-accordion-container hidden" id="accordion-datosgeneralesbeneficiarios">
+				<div class="alert panel-heading row ui-accordion-header">
+					<button type="button" data-toggle="collapse" data-target="#datosgeneralesbeneficiarios-1" ng-click="vm.changeArrow('datosgeneralesbeneficiarios-1')">
+						<span class="d-inline-block" id="alert-datosgeneralesbeneficiariosTotales-1"></span>
+						<span id="name-capitulo-datosgeneralesbeneficiarios">Beneficiarios</span>
+						<span class="hidden" id="id-capitulo-datosgeneralesbeneficiarios"></span>
+						<span id="arrow-datosgeneralesbeneficiarios-1" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#datosgeneralesbeneficiarios-1"></span>
+					</button>
+				</div>
+				<div class="collapse" id="datosgeneralesbeneficiarios-1">
+					<div class="row m-0 mb-3">
+						<!--<span>Beneficiarios</span>-->
+						<beneficiarios-totales-proyecto guardadoevent="vm.guardado(nombreComponenteHijo)"
+														notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+														notificacioncambios="vm.notificacionCambiosCapitulosExternos(handler, nombreComponente)"
+														notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"></beneficiarios-totales-proyecto>
+					</div>
+				</div>
+			</div>
+			<div class="ui-accordion-container hidden" id="accordion-datosgeneraleslocalizaciones">
+				<div class="alert panel-heading row ui-accordion-header">
+					<button type="button" data-toggle="collapse" data-target="#datosgeneraleslocalizaciones-1" ng-click="vm.changeArrow('datosgeneraleslocalizaciones-1')">
+						<span class="d-inline-block" id="alert-datosgeneraleslocalizaciones-1"></span>
+						<span id="name-capitulo-datosgeneraleslocalizaciones"></span>
+						<span class="hidden" id="id-capitulo-datosgeneraleslocalizaciones"></span>
+						<span class="hidden" id="id-seccioncapitulo-datosgeneraleslocalizaciones"></span>
+						<span id="arrow-datosgeneraleslocalizaciones-1" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#datosgeneraleslocalizaciones-1"></span>
+					</button>
+				</div>
+				<div class="collapse" id="datosgeneraleslocalizaciones-1">
+					<div class="row m-0 mb-3">
+						<localizacion-justificacion guardadoevent="vm.guardado(nombreComponenteHijo)"
+													notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+													notificacioncambios="vm.notificacionCambiosCapitulosExternos(handler, nombreComponente)"
+													notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"></localizacion-justificacion>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

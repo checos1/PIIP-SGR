@@ -1,0 +1,431 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DBE1BC0F-E99D-4F10-85FA-59A9D6E95793}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DNP.ServiciosWBS.Persistencia</RootNamespace>
+    <AssemblyName>DNP.ServiciosWBS.Persistencia</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Dev|AnyCPU'">
+    <OutputPath>bin\Dev\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'QA|AnyCPU'">
+    <OutputPath>bin\QA\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'UAT|AnyCPU'">
+    <OutputPath>bin\UAT\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Local|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Local\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DevNT|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\DevNT\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'UatNT|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\UatNT\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'QA2|AnyCPU'">
+    <OutputPath>bin\QA2\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'QA3|AnyCPU'">
+    <OutputPath>bin\QA3\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'QA4|AnyCPU'">
+    <OutputPath>bin\QA4\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'SGR|AnyCPU'">
+    <OutputPath>bin\SGR\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'UATSGR|AnyCPU'">
+    <OutputPath>bin\UATSGR\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=7.0.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.7.0.1\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ConstructorDeConexion.cs" />
+    <Compile Include="Implementaciones\AjusteFocalizacionPoliticasTransversalesAsociacionIndicadoresPersistencia.cs" />
+    <Compile Include="Implementaciones\AjusteRegionalizacionMetasyRecursosPersistencia.cs" />
+    <Compile Include="Implementaciones\AjustesCuantificacionBeneficiarioPersistencia.cs" />
+    <Compile Include="Implementaciones\AjustesPoliticasTransversalesMetasPersistencia.cs" />
+    <Compile Include="Implementaciones\AjustesPoliticaTransversalBeneficiarioPersistencia.cs" />
+    <Compile Include="Implementaciones\AjustesPoliticaTransversalCategoriaPersistencia.cs" />
+    <Compile Include="Implementaciones\AjustesRegionalizaFuentesPersistencia.cs" />
+    <Compile Include="Implementaciones\AjustesUbicacionPersistencia.cs" />
+    <Compile Include="Implementaciones\CadenaValorPersistencia.cs" />
+    <Compile Include="Implementaciones\ContextoFactory.cs" />
+    <Compile Include="Implementaciones\CostosEntregablesPersistencia.cs" />
+    <Compile Include="Implementaciones\CartaConceptoDatosDespediaPersistencia.cs" />
+    <Compile Include="Implementaciones\DesagregarRegionalizacionPersistencia.cs" />
+    <Compile Include="Implementaciones\DiligenciarFuentesPersistencia.cs" />
+    <Compile Include="Implementaciones\CuantificacionBeneficiarioPersistencia.cs" />
+    <Compile Include="Implementaciones\FocalizacionCuantificacionLocalizacionPersistencia.cs" />
+    <Compile Include="Implementaciones\FocalizacionPoliticasTransversalesAsociacionIndicadoresPersistencia.cs" />
+    <Compile Include="Implementaciones\PoliticasTransversalesCrucePoliticasPersistencia.cs" />
+    <Compile Include="Implementaciones\FocalizacionPoliticasTransversalesFuentesPersistencia.cs" />
+    <Compile Include="Implementaciones\FocalizacionPoliticasTransversalesMetasPersistencia.cs" />
+    <Compile Include="Implementaciones\FocalizacionPoliticasTransversalesPersistencia.cs" />
+    <Compile Include="Implementaciones\FocalizacionPoliticasTransversalesRelacionadasAjustesPersistencia.cs" />
+    <Compile Include="Implementaciones\FocalizacionPoliticasTransversalesRelacionadasPersistencia.cs" />
+    <Compile Include="Implementaciones\AjusteDiligenciarFuentesFinanciacionPersistencia.cs" />
+    <Compile Include="Implementaciones\IncluirPoliticasPersistencia.cs" />
+    <Compile Include="Implementaciones\PoliticaTransversalBeneficiarioPersistencia.cs" />
+    <Compile Include="Implementaciones\CostosActividadesPersistencia.cs" />
+    <Compile Include="Implementaciones\RegionalizacionMetasyRecursosPersistencia.cs" />
+    <Compile Include="Implementaciones\LocalizacionPersistencia.cs" />
+    <Compile Include="Implementaciones\PoliticaTransversalCategoriaPersistencia.cs" />
+    <Compile Include="Implementaciones\RegionalizaFuentesPersistencia.cs" />
+    <Compile Include="Implementaciones\TramitesDistribucionesAnterioresPersistencia.cs" />
+    <Compile Include="Implementaciones\Transversales\FasePersistencia.cs" />
+    <Compile Include="Implementaciones\Transversales\SeccionCapituloPersistencia.cs" />
+    <Compile Include="Implementaciones\ValidarViabilidadCompletarInfoPersistencia.cs" />
+    <Compile Include="Implementaciones\FocalizacionPersistencia.cs" />
+    <Compile Include="Implementaciones\CuantificacionLocalizacionPersistencia.cs" />
+    <Compile Include="Implementaciones\IndicadorProductoAgregarPersistencia.cs" />
+    <Compile Include="Implementaciones\ProductoPersistencia.cs" />
+    <Compile Include="Implementaciones\FocalizacionProyectoPersistencia.cs" />
+    <Compile Include="Implementaciones\RegionalizacionIndicadorAgregarPersistencia.cs" />
+    <Compile Include="Implementaciones\RegionalizacionIndicadoresPersistencia.cs" />
+    <Compile Include="Implementaciones\RegionalizacionProyectoPersistencia.cs" />
+    <Compile Include="Implementaciones\Transversales\PersistenciaTemporal.cs" />
+    <Compile Include="Interfaces\IAjusteFocalizacionPoliticasTransversalesAsociacionIndicadoresPersistencia.cs" />
+    <Compile Include="Interfaces\IAjustesCuantificacionBeneficiarioPersistencia.cs" />
+    <Compile Include="Interfaces\IAjustesPoliticasTransversalesMetasPersistencia.cs" />
+    <Compile Include="Interfaces\IAjustesPoliticaTransversalBeneficiarioPersistencia.cs" />
+    <Compile Include="Interfaces\IAjusteRegionalizacionMetasyRecursosPersistencia.cs" />
+    <Compile Include="Interfaces\IAjustesPoliticaTransversalCategoriaPersistencia.cs" />
+    <Compile Include="Interfaces\IAjustesUbicacionPersistencia.cs" />
+    <Compile Include="Interfaces\ICadenaValorPersistencia.cs" />
+    <Compile Include="Interfaces\IPoliticasTransversalesCrucePoliticasPersistencia.cs" />
+    <Compile Include="Interfaces\IContextoFactory.cs" />
+    <Compile Include="Interfaces\ICostosEntregablesPersistencia.cs" />
+    <Compile Include="Interfaces\ICartaConceptoDatosDespediaPersistencia.cs" />
+    <Compile Include="Interfaces\IDesagregarRegionalizacionPersistencia.cs" />
+    <Compile Include="Interfaces\IDiligenciarFuentesPersistencia.cs" />
+    <Compile Include="Interfaces\ICuantificacionBeneficiarioPersistencia.cs" />
+    <Compile Include="Interfaces\IFocalizacionCuantificacionLocalizacionPersistencia.cs" />
+    <Compile Include="Interfaces\IFocalizacionPoliticasTransversalesAsociacionIndicadoresPersistencia.cs" />
+    <Compile Include="Interfaces\IFocalizacionPoliticasTransversalesFuentesPersistencia.cs" />
+    <Compile Include="Interfaces\IFocalizacionPoliticasTransversalesMetasPersistencia.cs" />
+    <Compile Include="Interfaces\IFocalizacionPoliticasTransversalesPersistencia.cs" />
+    <Compile Include="Interfaces\IFocalizacionPoliticasTransversalesRelacionadasAjustesPersistencia.cs" />
+    <Compile Include="Interfaces\IFocalizacionPoliticasTransversalesRelacionadasPersistencia.cs" />
+    <Compile Include="Interfaces\IAjusteDiligenciarFuentesFinanciacionPersistencia.cs" />
+    <Compile Include="Interfaces\IIncluirPoliticasPersistencia.cs" />
+    <Compile Include="Interfaces\IPoliticaTransversalBeneficiarioPersistencia.cs" />
+    <Compile Include="Interfaces\ICostosActividadesPersistencia.cs" />
+    <Compile Include="Interfaces\IRegionalizacionMetasyRecursosPersistencia.cs" />
+    <Compile Include="Interfaces\ILocalizacionPersistencia.cs" />
+    <Compile Include="Interfaces\IPoliticaTransversalCategoriaPersistencia.cs" />
+    <Compile Include="Interfaces\IRegionalizaFuentesPersistencia.cs" />
+    <Compile Include="Interfaces\ITramitesDistribucionesAnterioresPersistencia.cs" />
+    <Compile Include="Interfaces\IValidarViabilidadCompletarInfoPersistencia.cs" />
+    <Compile Include="Interfaces\IFocalizacionPersistencia.cs" />
+    <Compile Include="Interfaces\ICuantificacionLocalizacionPersistencia.cs" />
+    <Compile Include="Interfaces\IIndicadorProductoAgregarPersistencia.cs" />
+    <Compile Include="Interfaces\IProductoPersistencia.cs" />
+    <Compile Include="Interfaces\IRegionalizacionIndicadorAgregarPersistencia.cs" />
+    <Compile Include="Interfaces\IRegionalizacionIndicadoresPersistencia.cs" />
+    <Compile Include="Interfaces\IFocalizacionProyectoPersistencia.cs" />
+    <Compile Include="Interfaces\IRegionalizacionProyectoPersistencia.cs" />
+    <Compile Include="Interfaces\IAjustesRegionalizaFuentesPersistencia.cs" />
+    <Compile Include="Interfaces\Transversales\IFasePersistencia.cs" />
+    <Compile Include="Interfaces\Transversales\IPersistenciaTemporal.cs" />
+    <Compile Include="Interfaces\Transversales\ISeccionCapituloPersistencia.cs" />
+    <Compile Include="Modelo\AlmacenamientoTemporal.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\Capitulo.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\MacroprocesoSeccion.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\ModeloMGAWebParcial.cs" />
+    <Compile Include="Modelo\ModeloMGAWeb.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModeloMGAWeb.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\ModeloMGAWeb.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\ModeloMGAWeb.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModeloMGAWeb.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\Seccion.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\SeccionCapitulos.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetCadenaValor_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetCuantificacionLocalizacionPoblacion_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetFocalizacionCuantificacionLocalizacion_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetIndicadorProductoAgregar_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetProductosPorProyecto_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetProyectoCompletarInformacion_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetProyectoFocalizacionVA_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetRecursosFocalizacionVA_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetRecursosFocalizacion_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetProductosRegionalizacionPorProyecto_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetRecursosRegionalizacion_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetRecursos_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetRegionalizacionIndicadorAgregar_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetRegionalizacionIndicadoresProgramacion_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\VGetFase.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistencia.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Modelo\ModeloMGAWeb.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModeloMGAWeb.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Modelo\ModeloMGAWeb.edmx.diagram">
+      <DependentUpon>ModeloMGAWeb.edmx</DependentUpon>
+    </None>
+    <Content Include="ObjetosPreview\RegionalizacionPreview.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ObjetosPreview\CadenaValorPreview.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ObjetosPreview\FocalizacionProyectoPreview.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ObjetosPreview\FocalizacionCuantificacionLocalizacionPreview.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ObjetosPreview\IndicadorProductoAgregarPreview.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ObjetosPreview\RegionalizacionIndicadorAgregarPreview.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ObjetosPreview\ValidacionViabilidadCompletarInfo.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ObjetosPreview\DiligenciarFuentesPreview.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ObjetosPreview\CuantificacionBeneficiarioPreview.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ObjetosPreview\LocalizacionPreview.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ObjetosPreview\PoliticaTCategoriaPreview.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ObjetosPreview\PoliticaRelacionadasPreview.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ObjetosPreview\PoliticaTBeneficiarioPreview.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ObjetosPreview\FocalizacionPoliticasTransversalesMetas.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ObjetosPreview\IncluirPoliticas.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ObjetosPreview\FocalizacionPoliticasTransversalesAsociacionIndicadores.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ObjetosPreview\FocalizacionPoliticasTransversalesRelacionadas.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ObjetosPreview\AjustesUbicacionPreview.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ObjetosPreview\AjustesRegionalizacionMetasyRecursosPreview.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ObjetosPreview\FuentesFinanciacionAjustePreview.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ObjetosPreview\AjustesPoliticaTBeneficiarioPreview.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ObjetosPreview\AjustesCuantificacionBeneficiarioPreview.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ObjetosPreview\AjustesPoliticaTCategoriaPreview.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ObjetosPreview\AjusteFocalizacionPoliticasTransversalesAsociacionIndicadoresPreview.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ObjetosPreview\AjustesPoliticaTMetasPreview.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="ObjetosPreview\AjustesRegionalizaFuentesPreview.json" />
+    <Content Include="ObjetosPreview\FocalizacionPoliticasTransversalesRelacionadasAjustes.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="ObjetosPreview\CostosEntregablesPreview.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <Content Include="ObjetosPreview\DesagregarRegionalizacionPreview.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="ObjetosPreview\ProductoPreview.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <Content Include="ObjetosPreview\FocalizacionPreview.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ObjetosPreview\RegionalizacionIndicadoresPreview.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ObjetosPreview\CuantificacionLocalizacionPreview.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ObjetosPreview\RegionalizacionMetasyRecursos.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ObjetosPreview\RegionalizaFuentesPreview.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ObjetosPreview\CostosActividadesPreview.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DNP.ServiciosNegocio.Comunes\DNP.ServiciosNegocio.Comunes.csproj">
+      <Project>{b20f5062-15b9-49e4-88c5-79f109f947ef}</Project>
+      <Name>DNP.ServiciosNegocio.Comunes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DNP.ServiciosNegocio.Dominio\DNP.ServiciosNegocio.Dominio.csproj">
+      <Project>{694221d1-e217-4d2e-87e3-b196c4c6be94}</Project>
+      <Name>DNP.ServiciosNegocio.Dominio</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Modelo\ModeloMGAWeb.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModeloMGAWeb.edmx</DependentUpon>
+      <LastGenOutput>ModeloMGAWeb.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Modelo\ModeloMGAWeb.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModeloMGAWeb.edmx</DependentUpon>
+      <LastGenOutput>ModeloMGAWeb.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

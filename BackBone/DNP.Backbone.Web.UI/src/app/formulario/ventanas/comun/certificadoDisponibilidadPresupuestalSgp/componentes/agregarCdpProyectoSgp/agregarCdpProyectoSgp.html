@@ -1,0 +1,169 @@
+﻿<style>
+    agregarCdpProyectoSgp .search-file-input {
+        width: auto;
+    }
+
+    agregarCdpProyectoSgp .file-detail {
+        margin-top: -23px !important;
+        margin-left: 110px !important;
+    }
+
+    agregarCdpProyectoSgp .titulo-control {
+        color: #004884;
+        font-size: 24px;
+        font-weight: 400;
+    }
+</style>
+
+<article class="agregarCdpProyectoSgp" ng-init="vm.init()">
+    <div class="mb-4">
+        <span class="titulo-control">Agregar acto administrativo o resolución</span>
+    </div>
+
+    <div class="row col-md-12 mb-3">
+        <div class="col-md-10">
+            <span ng-if="vm.cdpList.length === 0">
+                Aún no se ha agregado acto administrativo o resolución
+            </span>
+        </div>
+
+        <div class="col-md-2 text-right">
+            <span class="DetalleFormularioDNP totaldespleDNP">
+                Total: <span> {{vm.cdpList.length}}</span>
+            </span>
+        </div>
+    </div>
+    <div class="tab-container tabDNP col-md-12 w-100">
+        <table class="TableDNP no-border">
+            <thead>
+                <tr>
+                    <th class="columAcc"></th>
+                    <th class="textRightDNP">Número del acto administrativo</th>
+                    <th class="textRightDNP">Objeto del acto administrativo</th>
+                    <th class="textLeftDNP">Fecha</th>
+                    <th class="textRightDNP">Valor del acto administrativo</th>
+                    <th class="textRightDNP">Valor para la vigencia</th>
+                    <th class="columAcc"></th>
+                    <th class="columAcc"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="cdp in vm.cdpList">
+                    <td>
+                        <div class="filaAnidada row-errores d-none" id="seccion-validacion-{{cdp.Id}}">
+                            <div id="indicador-" class="img pull-right iconadverdnp">   <img class="" src="Img/u4630.svg"> </div>
+                            <span class="messagealerttableDNP" id="seccion-txt-validacion-{{cdp.Id}}"></span>
+                        </div>
+                        <div id="ErrorGrilla-{{cdp.NumeroCDP}}" class="hidden uMensajeError"></div>
+                    </td>
+                    <td class="textRightDNP">{{cdp.NumeroCDP}}</td>
+                    <td class="textRightDNP">
+                        <span>{{cdp.show  ? cdp.NumeroContratoCDPcorto:cdp.NumeroContratoCDP}}</span>
+
+                        <button type="button" style="color: #3366CC;line-height:20px " class="btn btn-link btn-md  buttonhiper" tooltip-placement="top" tabindex="0"
+                                ng-if="cdp.NumeroContratoCDP.length > 78"
+                                ng-click="cdp.show=!cdp.show">
+                            {{ cdp.show ? "...Ver más" : "Ver menos"}}
+                        </button>
+                    </td>
+                    <td>{{cdp.FechaCDP | date}}</td>
+                    <td class="textRightDNP">{{cdp.ValorTotalCDP | number: 2}}</td>
+                    <td class="textRightDNP">{{cdp.ValorCDP | number: 2}} </td>
+                    <td style="text-align:center">
+                        <button class="btn"
+                                title="Editar CDP"
+                                ng-click="vm.editarCDP(cdp.Id)"
+                                style="background-color: Window"
+                                ng-if="!vm.soloLectura">
+                            <img src="Img/u475.svg" />
+                        </button>
+                    </td>
+                    <td style="text-align:center">
+                        <button class="btn"
+                                title="Eliminar CDP"
+                                ng-click="vm.eliminarCdp(cdp.Id)"
+                                style="background-color: Window"
+                                ng-if="!vm.soloLectura">
+                            <img src="Img/u928.svg" />
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col-md-12 mt-2 text-right">
+        <button ng-if="!vm.soloLectura"  data-toggle="collapse" class="btn btn-link btn-md buttonhiperDNP" ng-click="vm.crearCdp()">
+            AGREGAR ACTO ADMINISTRATIVO
+        </button>
+    </div>
+
+  <!--  <div class="row">
+        <div class="col-md-12 DetacolumnDNP">
+            <span>
+                Archivo plantilla carga masiva <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg">
+            </span>
+            <button ng-if="vm.habilitaBotones" type="button" class="btn btn-link btn-md buttonhiperDNP" ng-click="vm.generarPlantillaEjemplo()">
+                DESCARGAR PLANTILLA
+            </button>
+        </div>
+    </div>
+
+    <div class="col-12 row">
+        <div class="col-md-7">
+            <div class="divpanelcargarchivoDNP search-file-input" style="">
+                <label for="subirArchivo" class="btncargarch" uib-tooltip="Editar">EXAMINAR </label>
+                <input type="file"
+                       style="opacity: 0"
+                       id="subirArchivo-{{vm.proyectoid}}"
+                       name="subirArchivo-{{vm.proyectoid}}"
+                       ng-model="vm.files"
+                       ng-change="vm.seleccionarArchivo()"
+                       accept=".csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" />
+
+                <div class="file-detail">
+                    <label ng-if="vm.files.length>0" style="width: auto">{{vm.files[0].name}}</label>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <span class="buttonbar pull-right">
+                <button ng-disabled="vm.files == null || vm.files.length === 0"
+                        type="button"
+                        ng-class="{'btnguardarDisabledDNP': vm.files == null || vm.files.length === 0, 'btnguardarDNP': vm.files != null || vm.files.length > 0}"
+                        tooltip-placement="top"
+                        uib-tooltip="Editar"
+                        tabindex="0"
+                        ng-click="vm.validarArchivo()">
+                    VALIDAR
+                </button>
+                <button ng-disabled="vm.files == null || vm.files.length === 0"
+                        type="button"
+                        ng-class="{'btnguardarDisabledDNP': vm.files == null || vm.files.length === 0, 'btnguardarDNP': vm.files != null || vm.files.length > 0}"
+                        tooltip-placement="top"
+                        uib-tooltip="Cancelar"
+                        tabindex="0"
+                        ng-click="vm.removerArchivo()">
+                    CANCELAR
+                </button>
+                <button ng-disabled="!vm.archivoCargaMasivaValido"
+                        class="btnguardarDisabledDNP"
+                        ng-class="{'btnguardarDisabledDNP': !vm.archivoCargaMasivaValido, 'btnguardarDNP': vm.archivoCargaMasivaValido}"
+                        type="button"
+                        tooltip-placement="top"
+                        uib-tooltip="Guardar"
+                        tabindex="0"
+                        ng-click="vm.cargarArchivo()">
+                    CARGAR
+                </button>
+            </span>
+        </div>-->
+
+        <div class="col-md-12 mt-2">
+            <div class="messagealerttableDNP" ng-repeat="error in vm.archivoErrorList">
+                <span class="img iconadverdnp mr-2"><img src="Img/u4630.svg"></span>
+                {{error}}
+            </div>
+        </div>
+    </div>
+</article>

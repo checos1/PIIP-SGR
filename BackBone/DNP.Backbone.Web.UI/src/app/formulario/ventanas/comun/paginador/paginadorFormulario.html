@@ -1,0 +1,17 @@
+﻿<ul ng-if="pagina.paginas.length" class="pager">
+    <li ng-class="{disabled:pagina.actualPagina === 1}">
+        <a ng-click="cargaPagina(1)">Primer</a>
+    </li>
+    <li ng-class="{disabled:pagina.actualPagina === 1}">
+        <a ng-click="cargaPagina(pagina.actualPagina - 1)">Anterior</a>
+    </li>
+    <li ng-repeat="page in pagina.paginas" ng-class="{active:pagina.actualPagina === page}">
+        <a ng-click="cargaPagina(page)">{{page}}</a>
+    </li>
+    <li ng-class="{disabled:pagina.actualPagina === pagina.totalPaginas}">
+        <a ng-click="cargaPagina(pagina.actualPagina + 1)">Siguiente</a>
+    </li>
+    <li ng-class="{disabled:pagina.actualPagina === pagina.totalPaginas}">
+        <a ng-click="cargaPagina(pagina.totalPaginas)">Ultimo</a>
+    </li>
+</ul>

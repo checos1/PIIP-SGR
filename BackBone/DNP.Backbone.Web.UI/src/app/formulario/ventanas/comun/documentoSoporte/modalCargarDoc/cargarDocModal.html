@@ -1,0 +1,106 @@
+﻿<style>
+    .modal-header {
+        border-bottom: 0px !important;
+    }
+
+    .modal-body {
+        margin-bottom: -20px !important;
+    }
+
+    .modal-footer {
+        padding-bottom: 35px !important;
+        border-radius: 20px;
+    } 
+</style>
+<modal-dialog cerrar="vm.cerrar" guardar="vm.guardar" txt-cerrar="CANCELAR" txt-guardar="ACEPTAR" ng-init="vm.initCargarArchivosModal()">
+    <div class="col-md-12" style="padding-bottom: 5rem;">
+        <div class="row" style="padding-top: 2rem; padding-left: 0;">
+            <div style="display: inline-flex; padding-left: 0;">
+                <span class="label" style="color: #004884; font-size: 24px; font-weight: 400;padding-left:0;">Nuevo documento</span>
+            </div>
+            <div style="padding-left: 0;">
+                <span style="padding-left:2px;">El documento a agregar será identificado como una </span>
+                <span class="uLabelCampoNegro">Versión 1.</span>
+            </div>
+        </div>
+        <div class="row" style="padding-top:2rem;">
+            <div id="{{vm.nombreComponente}}-archivo-error" style="padding-left: 0.5rem;" class="col-md-12 hidden uMensajeError"></div>
+            <div id="{{vm.nombreComponente}}A-archivo-error" style="padding-left: 0.5rem;" class="col-md-12 hidden uMensajeError"></div>
+            <div id="{{vm.nombreComponente}}B-archivo-error" style="padding-left: 0.5rem;" class="col-md-12 hidden uMensajeError"></div>
+            <div class="col-md-12" style="padding-top: 2rem; height: 170px; padding-left: 0px">
+                <div class="form-group" style="height: 100% !important;">
+                    <div class="row" style="height: 100% !important; padding-left: 2rem; text-align: left;">
+                        <div class="col-md-6" style="padding-left: 0px;">
+                            <span class="uLabelCampoNegro">Tipo documento*</span>
+                        </div>
+                        <div class="col-md-6">
+                            <span class="uLabelCampoNegro" style="padding-left:2rem;">Descripción</span>
+                            <span style="padding-left: 2px; font-size: 12px;">(Máximo 150 caracteres).</span>
+                        </div>
+                        <div class="col-md-12" style="padding-left: 0px;">
+                            <div id="tipoarchivo-error" class="hidden uMensajeError" style="width:100%;padding-left:1.5rem;">
+                                <span style=" padding-left: 2rem;">Campo obligatorio</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6" style="padding-top: 0.5rem;">
+                            <div class="row">
+                                <div class="col-md-12" style="padding-top: 3rem; margin-left: -16px">
+                                    <select name="ddlTipoArchivo" ng-change="vm.onChangeTipoArchivo(this)" class="select" id="ddlTipoArchivo" style="width: 98%; border-color: rgba(170, 170, 170, 1);" ng-model="vm.idTipoArchivoSeleccionado">
+                                        <option class="option" value='0' selected>Seleccione...</option>
+                                        <option class="option" ng-repeat="tipoArchivo in vm.listaTipoArchivos" ng-value="tipoArchivo.Id">{{ tipoArchivo.TipoDocumento }} </option>
+                                    </select>
+                                </div>
+                                <div class="col-md-12" style="padding-top: 15px; padding-left: 0;">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <span class="uLabelCampoNegro">Archivo*</span>
+                                            <span style="padding-left: 2px; font-size:12px;">Se permiten archivos de tipo pdf, zip y rar. Peso máximo 2MB.</span>
+                                        </div>
+                                        <div class="col-md-12" style="padding-bottom: 1rem;">
+                                            <div id="soporte-error" class="hidden uMensajeError" style="width: 100%; padding-left: 1.5rem;">
+                                                <span style=" padding-left: 2rem;">Campo obligatorio</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 divpanelcargarchivoDNP" style="width: 95% !important; margin-left: 14px">
+                                            <button ng-class="{'my-disable':vm.archivo !== undefined && vm.archivo !== ''}" style="padding-top: 0px !important;" class="btncargarch" type="button" uib-tooltip="Examinar" ng-disabled="vm.disabled" id="btnExaminar" ng-click="vm.adjuntarArchivo()">
+                                                EXAMINAR
+                                            </button>
+                                            <input type="file" style="display:none" id="file-{{vm.section}}" ng-model="vm.nombre" name='files[]' onchange="angular.element(this).scope().fileNameChanged(this)" multiple />
+                                            <input type="search" style="display:none" id="firmaNombreArchivo" ng-model="vm.nombreArchivo" class="form-control InputSearchDNP " placeholder="" ng-change="ChangeArchivoSet()">
+                                            <span>{{vm.nombreArchivoEdit}}</span>
+                                            <button style="padding-top: 0px !important; background: none !important;" class="btncancearch" ng-class="{'my-disable':vm.archivo === undefined || vm.archivo === ''}" type="button" uib-tooltip="Cancelar" ng-click="vm.onClickCancelar()">
+                                                <img style="width: 23px; height: 23px; margin-left: -3px;" src="Img/DocumentoSoporte/normal_u411.svg">
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6" style="padding-left: 4.5rem; height: 100%">
+                            <div class="row" style="height:100%;">
+                                <div class="textAreDivRes" style="border: solid 1px gray; border-radius: 6px; border-color: rgba(170, 170, 170, 1); height: 100%; width: 100%;">
+                                    <textarea rows="3"
+                                              id="pregunta"
+                                              name="observacion"
+                                              ng-model="vm.descripcion"
+                                              ng-value="vm.descripcion"
+                                              minlength="1"
+                                              maxlength="150"
+                                              class="uTextAreaSinBorde text-justificado"
+                                              style="height: 98%; width: 98%; margin-left: 3px;">
+
+                                    </textarea>
+                                </div>
+                            </div>
+                            <!--<div class="row" style="padding-left: 0px;">
+                                <div id="descripcion-error" class="hidden uMensajeError" style="width: 100%; padding-left: 1.5rem; margin-top: 3px;">
+                                    <span style=" padding-left: 2rem;">Campo obligatorio</span>
+                                </div>
+                            </div>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</modal-dialog>

@@ -1,0 +1,264 @@
+﻿<section>
+    <div class="container-fluid inbox" ng-init="vm.init();">
+        <div>
+            <div style="text-align: left;">
+                <h3 class="row" style="padding-left: 2rem; padding-right: 2rem; text-align: left; color: #004884">
+                    &nbsp;&nbsp;Lista de proyectos registrados
+                    <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg" ng-click="vm.abrirTooltip()">
+                </h3>
+            </div>
+            <div class="tab-container col-md-12" style="width:100%;">
+                <br />
+                <span class="buttonbar pull-right" ng-if="vm.mostrardistribucion && vm.habilitaBotones">
+                    <button type="button" class="btneditarDNP" id="btn-agregar-proyecto" tooltip-placement="top" uib-tooltip="Agregar proyecto" tabindex="0" ng-click="vm.abrirModalAgregarProyecto()">
+                        AGREGAR
+                    </button>
+                    <button type="button" class="btneditarDNP" tooltip-placement="top" ng-click="datos.EAjCT ? vm.CancelarValores(datos) : vm.EditarValores(datos)" uib-tooltip="{{datos.EAjCT ? 'CANCELAR' : 'EDITAR'}}">
+                        {{datos.EAjCT ? 'CANCELAR' : 'EDITAR'}}
+                    </button>
+                    <button ng-disabled="!datos.EAjCT" type="button" class="{{datos.EAjCT ? 'btnguardarDNP' : 'btnguardarDisabledDNP'}}" tooltip-placement="top" uib-tooltip="Guardar" tabindex="0" ng-click="vm.GuardarValores(datos)">
+                        GUARDAR
+                    </button>
+                </span>
+                <br />
+                <div style="text-align: left;">
+                    <div class="row col-md-12">
+                        <div class="alert panel-heading">
+                            <div id="{{vm.nombreComponente}}-error1" class="hidden uMensajeError"></div>
+                            <div id="{{vm.nombreComponente}}-error2" class="hidden uMensajeError"></div>
+                            <div id="{{vm.nombreComponente}}-error3" class="hidden uMensajeError"></div>
+                            <div id="{{vm.nombreComponente}}-error4" class="hidden uMensajeError"></div>
+                            <table class="TableDNP" ng-init='configPages()'>
+                                <thead>
+                                    <tr>
+                                        <th class="columAcc" style="width:4%"></th>
+                                        <th class="textLeftDNP" style="width:21%">Código BPIN / <br /> Nombre del proyecto</th>
+                                        <th class="textRightDNP" style="width:18%">Solicitud <br />de recursos $</th>
+                                        <th class="textRightDNP" style="width:18%">Distribución <br />comunicada $</th>
+                                        <th class="textRightDNP" style="width:18%">Recursos <br />aprobados $</th>
+                                        <th class="textRightDNP" style="width:19%">Completitud por <br /> sección pasos 1 y 3</th>
+                                        <th class="columAcc" style="width:4%"></th>
+                                    </tr>
+                                </thead>
+                                <tbody ng-repeat="proyecto in datos.Proyectos | startFromGrid: currentPage * pageSize | limitTo: pageSize" ng-init="proyectoindex = $index">
+                                    <tr>
+                                        <td rowspan="3"></td>
+                                        <td rowspan="3" class="textleftDNP">
+                                            <span>&nbsp;</span><br />
+                                            <div class="blockReferenciaDNP">{{proyecto.CodigoBPIN}}</div>
+                                            <textarea rows="7" minlength="1" maxlength="5000" style="border: white; width:100%;background-color:white" disabled>
+                                                {{proyecto.NombreProyecto}}
+                                            </textarea>
+                                        </td>
+                                        <td class="textRightDNP"><span>Nación</span><br /><div class="blockReferenciaDNP">{{vm.ConvertirNumero(proyecto.RSNacion)}}</div></td>
+                                        <td class="textRightDNP"><span>Nación CSF</span><br /><div class="blockReferenciaDNP">{{vm.ConvertirNumero(proyecto.NacionCSF)}}</div></td>
+                                        <td ng-if="!datos.EAjCT" class="textRightDNP"><span>Nación CSF</span><br /><div class="blockReferenciaDNP">{{vm.ConvertirNumero(proyecto.NacionCSFA)}}</div></td>
+                                        <td ng-if="datos.EAjCT" class="textRightDNP">
+                                            <span>Nación CSF</span><br />
+                                            <input id="input-NacionCSF" type="number" string-to-number min="0.00"
+                                                   ng-readonly="!datos.EAjCT"
+                                                   ng-keypress="vm.validateFormat($event)"
+                                                   ng-keyup="vm.validarTamanio($event)"
+                                                   ng-blur="vm.actualizaFila($event, datos,'NacionCSFAP',proyecto.ProyectoId)"
+                                                   ng-value="proyecto.NacionCSFA"
+                                                   ng-model="proyecto.NacionCSFA"
+                                                   required class="form-control editInputDNP" style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px; background-color:white" />
+                                        </td>
+                                        <td rowspan="3" class="textRightDNP">
+                                            <br />                                            
+                                            Distribución
+                                            <button class="btnaccion" tooltip-placement="Auto" disabled="disabled">
+                                                <span ng-show="proyecto.D1" style="cursor:pointer"> <img src="Img/iconsgrid/u1278.svg"></span>
+                                                <span ng-show="!proyecto.D1" style="cursor:pointer"> <img src="Img/iconsgrid/u1279.svg"></span>
+                                            </button>
+                                            <button class="btnaccion" tooltip-placement="Auto" disabled="disabled">
+                                                <span ng-show="proyecto.D3" style="cursor:pointer"> <img src="Img/iconsgrid/u1278.svg"></span>
+                                                <span ng-show="!proyecto.D3" style="cursor:pointer"> <img src="Img/iconsgrid/u1279.svg"></span>
+                                            </button>
+                                            <br />
+                                            <br />
+                                            Fuentes
+                                            <button class="btnaccion" tooltip-placement="Auto" disabled="disabled">
+                                                <span ng-show="proyecto.F1" style="cursor:pointer"> <img src="Img/iconsgrid/u1278.svg"></span>
+                                                <span ng-show="!proyecto.F1" style="cursor:pointer"> <img src="Img/iconsgrid/u1279.svg"></span>
+                                            </button>
+                                            <button class="btnaccion" tooltip-placement="Auto" disabled="disabled">
+                                                <span ng-show="proyecto.F3" style="cursor:pointer"> <img src="Img/iconsgrid/u1278.svg"></span>
+                                                <span ng-show="!proyecto.F3" style="cursor:pointer"> <img src="Img/iconsgrid/u1279.svg"></span>
+                                            </button>
+                                            <br />
+                                            <br />
+                                            Regionalización
+                                            <button class="btnaccion" tooltip-placement="Auto" disabled="disabled">
+                                                <span ng-show="proyecto.R1" style="cursor:pointer"> <img src="Img/iconsgrid/u1278.svg"></span>
+                                                <span ng-show="!proyecto.R1" style="cursor:pointer"> <img src="Img/iconsgrid/u1279.svg"></span>
+                                            </button>
+                                            <button class="btnaccion" tooltip-placement="Auto" disabled="disabled">
+                                                <span ng-show="proyecto.R3" style="cursor:pointer"> <img src="Img/iconsgrid/u1278.svg"></span>
+                                                <span ng-show="!proyecto.R3" style="cursor:pointer"> <img src="Img/iconsgrid/u1279.svg"></span>
+                                            </button>
+                                            <br />
+                                            <br />                                            
+                                            Pol. transversales
+                                            <button class="btnaccion" tooltip-placement="Auto" disabled="disabled">
+                                                <span ng-show="proyecto.Po1" style="cursor:pointer"> <img src="Img/iconsgrid/u1278.svg"></span>
+                                                <span ng-show="!proyecto.Po1" style="cursor:pointer"> <img src="Img/iconsgrid/u1279.svg"></span>
+                                            </button>
+                                            <button class="btnaccion" tooltip-placement="Auto" disabled="disabled">
+                                                <span ng-show="proyecto.Po3" style="cursor:pointer"> <img src="Img/iconsgrid/u1278.svg"></span>
+                                                <span ng-show="!proyecto.Po3" style="cursor:pointer"> <img src="Img/iconsgrid/u1279.svg"></span>
+                                            </button>
+                                            <br />
+                                            <br />
+                                            <br />
+                                        </td>
+                                        <td rowspan="4" style="vertical-align: top;">                                           
+                                            <br />
+                                            <button ng-if="proyecto.Borrar" class="btnaccion" tooltip-class="customClass" uib-tooltip="Eliminar Registro" ng-click="vm.eliminarProyecto(proyecto)">
+                                                <span> <img src="Img/IcoDelete.svg"></span>
+                                            </button>
+                                            <button ng-if="!proyecto.Borrar" class="btnaccion" tooltip-class="customClass" uib-tooltip="Eliminar Registro">
+                                                <span> <img src="Img/IcoDeleteD.svg"></span>
+                                            </button>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="textRightDNP">&nbsp;<br />&nbsp;</td>
+                                        <td class="textRightDNP"><span>Nación SSF</span><br /><div class="blockReferenciaDNP">{{vm.ConvertirNumero(proyecto.NacionSSF)}}</div></td>
+                                        <td ng-if="!datos.EAjCT" class="textRightDNP"><span>Nación SSF</span><br /><div class="blockReferenciaDNP">{{vm.ConvertirNumero(proyecto.NacionSSFA)}}</div></td>
+                                        <td ng-if="datos.EAjCT" class="textRightDNP">
+                                            <span>Nación SSF</span><br />
+                                            <input id="input-NacionSSF" type="number" string-to-number min="0.00"
+                                                   ng-readonly="!datos.EAjCT"
+                                                   ng-keypress="vm.validateFormat($event)"
+                                                   ng-keyup="vm.validarTamanio($event)"
+                                                   ng-blur="vm.actualizaFila($event, datos,'NacionSSFAP',proyecto.ProyectoId)"
+                                                   ng-value="proyecto.NacionSSFA"
+                                                   ng-model="proyecto.NacionSSFA"
+                                                   required class="form-control editInputDNP" style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px; background-color:white" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="textRightDNP"><span>Propios</span><br /><div class="blockReferenciaDNP">{{vm.ConvertirNumero(proyecto.RSPropios)}}</div></td>
+                                        <td class="textRightDNP"><span>Propios</span><br /><div class="blockReferenciaDNP">{{vm.ConvertirNumero(proyecto.DCC)}}</div></td>
+                                        <td ng-if="!datos.EAjCT" class="textRightDNP"><span>Propios</span><br /><div class="blockReferenciaDNP">{{vm.ConvertirNumero(proyecto.DCCA)}}</div></td>
+                                        <td ng-if="datos.EAjCT" class="textRightDNP">
+                                            <span>Propios</span><br />
+                                            <input id="input-DCC" type="number" string-to-number min="0.00"
+                                                   ng-readonly="!datos.EAjCT"
+                                                   ng-keypress="vm.validateFormat($event)"
+                                                   ng-keyup="vm.validarTamanio($event)"
+                                                   ng-blur="vm.actualizaFila($event, datos,'DCCAP',proyecto.ProyectoId)"
+                                                   ng-value="proyecto.DCCA"
+                                                   ng-model="proyecto.DCCA"
+                                                   required class="form-control editInputDNP" style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px; background-color:white" />
+                                        </td>
+                                    </tr>
+                                    <tr style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-style: normal; font-size: 16px; color: #004884;">
+                                        <td style="width: !important 4%; text-align: center; vertical-align: bottom;">
+                                            <span id="{{vm.nombreComponente}}-{{vm.section}}{{proyecto.ProyectoId}}" class="hidden uMensajeError"></span>
+                                            <div ng-if="vm.mostrarfuentes || vm.mostrarregionalizacion || vm.mostrariniciativas || vm.mostrarpoliticas">
+                                                <button class="btnaccion btntablednp collapsed"
+                                                        type="button" data-toggle="collapse"
+                                                        ng-click="vm.mostrarOcultarFuentes(proyecto.ProyectoId, proyecto.tramiteProyectoid,proyecto.CodigoBPIN)"
+                                                        data-target="#{{vm.section}}{{proyecto.ProyectoId}}">
+                                                    <img id="ico{{vm.section}}{{proyecto.ProyectoId}}" src="Img/btnMas.svg" class="" style="">
+
+                                                </button>
+                                            </div>
+                                        </td>
+                                        <td><span>Vigencias Futuras $</span><br /><b>{{vm.ConvertirNumero(proyecto.TVF)}}</b></td>
+                                        <td class="textRightDNP"><div class="blockReferenciaDNP"><b>{{vm.ConvertirNumero(proyecto.TRS)}}</b></div></td>
+                                        <td class="textRightDNP"><div class="blockReferenciaDNP"><b>{{vm.ConvertirNumero(proyecto.TDCC)}}</b></div></td>
+                                        <td class="textRightDNP"><div class="blockReferenciaDNP"><b>{{vm.ConvertirNumero(proyecto.TDCCA)}}</b></div></td>
+                                    </tr>
+                                    <tr class="bottontransDNP" ng-if="vm.mostrarfuentes ">
+                                        <td colspan="6" style="width: !important 8%; text-align: center; vertical-align: bottom;">
+                                            <div class="collapse" id="{{vm.section}}{{proyecto.ProyectoId}}" style="margin-top: -18px; margin-left: -10px;">
+                                                <div class="LineaEncabezadodivDNP"></div>
+                                                <h3 class="row tituloEncabezadodivDNP">
+                                                    Detalle por tipos de recurso
+                                                </h3>
+                                                <programacion-fuentes-formulario-paso-tres tramiteproyectoid="{{vm.TramiteProyectoId}}"
+                                                                                           origen="{{vm.section}}"
+                                                                                           calendariofuentes="{{vm.calendariofuentes}}"
+                                                                                           modificardistribucion="vm.modificardistribucion">
+
+                                                </programacion-fuentes-formulario-paso-tres>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="bottontransDNP" ng-if="vm.mostrarregionalizacion ">
+                                        <td colspan="6" style="width: !important 8%; text-align: center; vertical-align: bottom;">
+                                            <div class="collapse" id="{{vm.section}}{{proyecto.ProyectoId}}" style="margin-top: -18px; margin-left: -10px;">
+                                                <div class="LineaEncabezadodivDNP"></div>
+                                                <h3 class="row tituloEncabezadodivDNP">
+                                                    Detalle por localización
+                                                </h3>
+                                                <programacion-regionalizacion-formulario-paso-tres tramiteproyectoid="{{vm.TramiteProyectoId}}"
+                                                                                                   proyectoid="{{proyecto.ProyectoId}}"
+                                                                                                   CodigoBPIN="{{proyecto.CodigoBPIN}}"
+                                                                                                   origen="{{vm.section}}"
+                                                                                                   calendarioregionalizacion="{{vm.calendarioregionalizacion}}">
+
+                                                </programacion-regionalizacion-formulario-paso-tres>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="bottontransDNP" ng-if="vm.mostrariniciativas ">
+                                        <td colspan="6" style="width: !important 8%; text-align: center; vertical-align: bottom;">
+                                            <div class="collapse" id="{{vm.section}}{{proyecto.ProyectoId}}" style="margin-top: -18px; margin-left: -10px;">
+                                                <div class="LineaEncabezadodivDNP"></div>
+                                                <h3 class="row tituloEncabezadodivDNP">
+                                                    Detalle de iniciativas
+                                                </h3>
+                                                <programacion-iniciativas-formulario tramiteproyectoid="{{vm.TramiteProyectoId}}"
+                                                                                     origen="{{vm.section}}"
+                                                                                     calendarioiniciativas="{{vm.calendarioiniciativas}}"
+                                                                                     modificardistribucion="vm.modificardistribucion">
+
+                                                </programacion-iniciativas-formulario>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="bottontransDNP" ng-if="vm.mostrarpoliticas ">
+                                        <td colspan="6" style="width: !important 8%; text-align: left; vertical-align: bottom;">
+                                            <div class="collapse" id="{{vm.section}}{{proyecto.ProyectoId}}" style="margin-top: -18px; margin-left: -10px;">
+                                                <div class="LineaEncabezadodivDNP"></div>
+                                                <h3 class="row tituloEncabezadodivDNP">
+                                                    Detalle de políticas
+                                                </h3>
+                                                <detalle-politica-paso-tres-Formulario tramiteproyectoid="{{vm.TramiteProyectoId}}"
+                                                                  proyectoid="{{proyecto.ProyectoId}}"
+                                                                  codigobpin="{{proyecto.CodigoBPIN}}"
+                                                                  origen="{{vm.section}}"
+                                                                  calendarioiniciativas="{{vm.calendarioiniciativas}}"
+                                                                  calendariopoliticastransversales="{{vm.calendariopoliticastransversales}}"
+                                                                  modificardistribucion="vm.modificardistribucion">
+                                                </detalle-politica-paso-tres-Formulario>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="row">
+                                <div class="col-md-12" style="display: flex; justify-content: center; align-items: center;">
+                                    <div class='btn-group'>
+                                        <button type='button' class='btn ' ng-disabled='currentPage == 0' ng-click='currentPage = currentPage - 1'>
+                                            <span style="text-decoration:underline">Anterior</span>
+                                        </button>
+                                        <button type='button' class='btn btn-default' ng-disabled='currentPage == page.no - 1' ng-click='setPage(page.no)' ng-repeat='page in pages'>{{page.no}}</button>
+                                        <button type='button' class='btn ' ng-disabled='currentPage >= datos.Proyectos.length/pageSize - 1' , ng-click='currentPage = currentPage + 1'>
+                                            <span style="text-decoration:underline">Siguiente</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

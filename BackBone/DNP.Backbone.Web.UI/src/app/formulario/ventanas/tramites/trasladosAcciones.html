@@ -1,0 +1,153 @@
+﻿<script src="../../../../../Scripts/ui-grid.auto-resize.min.js"></script>
+<div style="min-height:700px;overflow:scroll;">
+    <div class="row" style="width:100%;" ng-init="vm.inicializar();">
+        <div class="row" style="padding-left: 3rem;padding-right: 2rem;">
+            <div class="form-group" style="border:1px solid #aecbea;width:100%;">
+                <div class="text-justify" style="padding-right: 1em; display: -webkit-inline-box;">
+                    <div>
+                        <img ng-click="vm.retornar()" class="btnRegresar" src="../../../../../Img/flechaAtras.png" alt="Regresar" align="left">
+                    </div>
+                    <div ng-hide="vm.ocultarRequisitosProyecto">
+                        <p>
+                            <span class="ng-binding">
+                                <span>Requisitos&nbsp {{vm.TipoProyecto}}.&nbsp BPIN&nbsp{{vm.Bpin}}.&nbsp {{vm.NombreProyecto}}</span>
+                            </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="form-group" style=" padding-top: 2rem;width:100%;">
+                <div class="tab-container col-md-12" style="width:100%;">
+                    <ul class="nav nav-tabs">
+                        <li ng-hide="vm.ocultarRequisitosProyecto" ng-class="{active : !vm.TabActived}"><a data-target="#Proyecto" data-toggle="tab">   </a></li>
+                        <li ng-hide="vm.ocultarRequisitosTramite" ng-class="{active : vm.TabActived}"><a data-target="#Tramite" data-toggle="tab" ng-click="vm.cambioTipoRequisito(vm.tipoFiltroTramite)" llamar-funcion-con-tecla="vm.cambioTipoRequisito(vm.tipoFiltroTramite)"></a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane cont col-md-12" style="padding-left:0 !important;padding-top:20px !important" id="Proyecto" ng-class="{active : !vm.TabActived}">
+                            <div class="tab-container" style="padding-left:0 !important;">
+                                <ul class="nav nav-tabs" style="font-size:11px;">
+                                    <li class="active" style="width: 250px;padding: 0 15px 0 0px;height:45px !important;display:flex;align-items: center;"><a data-target="#Fuentes" data-toggle="tab">Información Presupuestal</a></li>
+                                    <li ng-click="vm.tabcdpEsActivo()" ng-if="vm.TipoProyecto !== 'Credito'" style="width: 250px;padding: 0 15px 0 0px;height:45px !important;display:flex;align-items: center;"><a data-target="#CDP" data-toggle="tab">CDP</a></li>
+                                    <li style="width: 250px;padding: 0 15px 0 0px;height:45px !important;display:flex;align-items: center;"><a data-target="#JustificacionProyecto" data-toggle="tab">Justificación</a></li>
+                                    <li style="width: 250px;padding: 0 15px 0 0px;height:45px !important;display:flex;align-items: center;"><a data-target="#DocumentoSoporte" data-toggle="tab">Documentos Soporte</a></li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="tab-pane active cont" id="Fuentes">
+                                        <div class="row">
+                                            <div class="col-md-12 form-group text-left" style="padding-left:2em;">
+                                                <span class="uLabelCampo">Valor Nación: $ </span><span class="uLabelDetalle">{{vm.valorFuenteNacion}}</span>&nbsp;&nbsp;&nbsp;
+                                                <span class="uLabelCampo">Valor Propios: $ </span><span class="uLabelDetalle">{{vm.valorFuentePropios}}</span>
+                                            </div>
+                                            <div class="col-md-12 form-group text-right" style="padding-right:2rem;">
+                                                <button type="button" class="btn btn-default btn-md btnFiltroHeader" has-claim has-opciones="['Tramites:ActualizarTramitesFuentes']" tooltip-placement="top" uib-tooltip="Guardar modifición" ng-click="vm.actualizarTramitesFuentes()" tabindex="0"
+                                                        ng-show="vm.noJefePlaneacion">
+                                                    Guardar modificación
+                                                </button>
+                                            </div>
+
+
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                </div>
+                                                <div class="col-md-8 row" style="padding-right: 7rem;">
+                                                    <div class="row headerrowDNP">
+                                                        <div class="col-md-2 text-center headerColumnDNP " style=""> <label style="font-weight: 500;"> </label> </div>
+                                                        <div class="col-md-2 text-center headerColumnDNP" style=""> <label style="font-weight: 500;">Apropiación Inicial </label> </div>
+                                                        <div class="col-md-2 text-center headerColumnDNP" style=""> <label style="font-weight: 500;">Apropiación Vigente</label> </div>
+                                                        <div class="col-md-2 text-center headerColumnDNP" style=""> <label style="font-weight: 500;">Valor Disponible</label> </div>
+                                                        <div class="col-md-2 text-center headerColumnDNP" style=""> <label style="font-weight: 500;">Vigencias Futuras</label> </div>
+                                                    </div>
+                                                    <div class="row bodyrowDNP">
+                                                        <div class="col-md-2 text-center bodycolumnDNP" style=""> <label>Nación </label> </div>
+                                                        <div class="col-md-2 text-center bodycolumnDNP" style=""> <label style="">{{vm.ValorInicialNacion}}</label> </div>
+                                                        <div class="col-md-2 text-center bodycolumnDNP" style=""> <label style="">{{vm.ValorVigenteNacion}}</label> </div>
+                                                        <div class="col-md-2 text-center bodycolumnDNP" style=""> <label style="">{{vm.ValorDisponibleNacion}}</label> </div>
+                                                        <div class="col-md-2 text-center bodycolumnDNP" style=""> <label style="">{{vm.ValorVigenciasFuturasNacion}}</label> </div>
+                                                    </div>
+                                                    <div class="row bodyrowDNP">
+                                                        <div class="col-md-2 text-center bodycolumnDNP" style=""> <label>Propios </label> </div>
+                                                        <div class="col-md-2 text-center bodycolumnDNP" style=""> <label style="">{{vm.ValorInicialPropios}}</label> </div>
+                                                        <div class="col-md-2 text-center bodycolumnDNP" style=""> <label style="">{{vm.ValorVigentePropios}}</label> </div>
+                                                        <div class="col-md-2 text-center bodycolumnDNP" style=""> <label style="">{{vm.ValorDisponiblePropios}}</label> </div>
+                                                        <div class="col-md-2 text-center bodycolumnDNP" style=""> <label style="">{{vm.ValorVigenciasFuturasPropios}}</label> </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-md-2">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-12 grid-proyectos " style="padding-top:2em;padding-bottom: 2em;">
+                                                <div ui-grid="vm.gridFuentes" ng-style="vm.getTableHeightFuentes()"></div>
+                                            </div>
+
+                                            <!--<div class="col-md-12  form-group grid-proyectos" style="padding-top:4em;padding-left:20rem;width:80%;">
+                                                <div id="tntGridTiposRecursos" ui-grid="vm.gridTiposRecurso" ui-grid-selection ng-style="vm.getTableHeightTiposRecurso()"></div>
+                                            </div>-->
+
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                </div>
+                                                <div class="col-md-6 row" style="padding-right: 7rem;">
+                                                    <div class="row headerrowDNP">
+                                                        <div class="col-md-4 text-center headerColumnDNP" style=""> <label>Tipo Recurso </label> </div>
+                                                        <div class="col-md-4 text-center headerColumnDNP" style=""> <label>CSF </label> </div>
+                                                        <div class="col-md-4 text-center headerColumnDNP" style=""> <label style="">SSF</label> </div>
+                                                    </div>
+                                                    <div class="row bodyrowDNP">
+                                                        <div class="col-md-4 text-center bodycolumnDNP" style=""> <label>Nación </label> </div>
+                                                        <div class="col-md-4 text-center bodycolumnDNP" style=""> <label>{{vm.ValorTotalMontoCSFNacion}} </label> </div>
+                                                        <div class="col-md-4 text-center bodycolumnDNP" style=""> <label style="">{{vm.ValorTotalMontoSSFNacion}}</label> </div>
+                                                    </div>
+                                                    <div class="row bodyrowDNP">
+                                                        <div class="col-md-4 text-center bodycolumnDNP" style=""> <label>Propios </label> </div>
+                                                        <div class="col-md-4 text-center bodycolumnDNP" style=""> <label>{{vm.ValorTotalMontoCSFPropios}} </label> </div>
+                                                        <div class="col-md-4 text-center bodycolumnDNP" style=""> <label style="">{{vm.ValorTotalMontoSSFPropios}}</label> </div>
+                                                    </div>
+                                                    <div class="row bodyrowDNP">
+                                                        <div class="col-md-4 text-center bodycolumnDNP" style=""> <label>Total </label> </div>
+                                                        <div class="col-md-4 text-center bodycolumnDNP" style=""> <label>{{vm.ValorTotalCSF}} </label> </div>
+                                                        <div class="col-md-4 text-center bodycolumnDNP" style=""> <label style="">{{vm.ValorTotalSSF}}</label> </div>
+                                                    </div>
+
+
+
+
+                                                </div>
+                                                <div class="col-md-3">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="tab-pane cont" id="CDP">
+                                        <cdp-tramite></cdp-tramite>
+                                    </div>
+
+                                    <div class="tab-pane" id="JustificacionProyecto">
+                                        <justificacion-proyecto></justificacion-proyecto>
+                                    </div>
+                                    <div class="tab-pane" id="DocumentoSoporte">
+                                        <documento-soporte></documento-soporte>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane" id="Tramite" ng-class="{active : vm.TabActived}">
+                            <requerimientos-tramite></requerimientos-tramite>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+

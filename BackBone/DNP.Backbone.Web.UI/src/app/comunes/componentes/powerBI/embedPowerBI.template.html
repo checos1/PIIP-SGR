@@ -1,0 +1,18 @@
+<style>
+    .fullscreen-powerbi{
+        height: 100% !important;
+    }    
+</style>
+    
+
+<div class="container-fluid borderTop4" style="height:700px;" id="fluidEmbed">
+    <div ng-if="vm.mesageError">
+        <h4 class="padleft15"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> - <b>{{vm.mesageError}}</b></h4>
+    </div>
+    <div ng-if="!vm.mesageError" id="embedContainer" style="height:100%;">
+        <div ng-if="vm.mesajeInicial">
+            <h4 class="padleft15"><i class="fa fa-area-chart menu-arrow" aria-hidden="true"></i> - <b> {{vm.mesajeInicial}} </b></h4>
+        </div>
+    </div>
+
+</div>

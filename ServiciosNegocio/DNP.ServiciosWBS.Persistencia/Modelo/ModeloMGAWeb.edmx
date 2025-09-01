@@ -1,0 +1,2190 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AlmacenamientoTemporal">
+          <Key>
+            <PropertyRef Name="InstanciaId" />
+            <PropertyRef Name="AccionId" />
+          </Key>
+          <Property Name="InstanciaId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AccionId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Json" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Capitulo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Created" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Modified" Type="datetime" />
+          <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+          <Property Name="NombreModificado" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="MacroprocesoSeccion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="FaseId" Type="int" Nullable="false" />
+          <Property Name="SeccionId" Type="int" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+          <Property Name="Created" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Modified" Type="datetime" />
+          <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+          <Property Name="TipoTramiteId" Type="int" />
+          <Property Name="orden" Type="int" />
+        </EntityType>
+        <EntityType Name="Seccion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Created" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Modified" Type="datetime" />
+          <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+          <Property Name="NombreModificado" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="SeccionCapitulos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MacroprocesoSeccionId" Type="int" Nullable="false" />
+          <Property Name="CapituloId" Type="int" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+          <Property Name="Created" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Modified" Type="datetime" />
+          <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+          <Property Name="FaseId" Type="int" />
+          <Property Name="Editable" Type="bit" />
+          <Property Name="orden" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DB-PIIP-DEV-MgaWeb.dbo.VGetFase' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VGetFase">
+          <Key>
+            <PropertyRef Name="NombreFase" />
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="NombreFase" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FaseGUID" Type="uniqueidentifier" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <Function Name="uspGetCadenaValor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="CadenaValor">
+          <Parameter Name="BPIN" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="UspGetCadenaValor_Ajustes_JSON" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="CadenaValor">
+          <Parameter Name="BPIN" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="UspGetCadenaValorEntregables_Ajustes_JSON" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="CadenaValor">
+          <Parameter Name="BPIN" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="uspPostCadenaValor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="CadenaValor">
+          <Parameter Name="Json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="ErrorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostCadenaValor_Ajustes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="CadenaValor">
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="FormularioId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostCadenaValorEntregables_Ajustes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="CadenaValor">
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="FormularioId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostCadenaValorTemp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="CadenaValor">
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="AccionId" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="uspGetAgregarPoliticas_Ajustar_JSON" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="BPIN" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="uspGetAgregarPoliticas_JSON" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="BPIN" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="uspGetCrucePoliticas_JSON" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="BPIN" Type="nvarchar" Mode="In" />
+          <Parameter Name="FuenteId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspGetFocalizacionCuantificacionLocalizacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="BPIN" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="uspGetPoliticasCategoriasIndicadores_JSON" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="BPIN" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="uspGetPoliticasTransversales_JSON" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="BPIN" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="UspGetPoliticasTransversalesBeneficiarios_Ajustar_JSON" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="BPIN" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="UspGetPoliticasTransversalesBeneficiarios_JSON" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="BPIN" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="UspGetPoliticasTransversalesBeneficiariosCategorias_Ajustes_JSON" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="BPIN" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="UspGetPoliticasTransversalesBeneficiariosCategorias_JSON" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="BPIN" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="uspGetPoliticasTransversalesFuentes_JSON" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="BPIN" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="uspGetPoliticasTransversalesIndicadores_Ajustes_JSON" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="BPIN" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="uspGetPoliticasTransversalesIndicadores_JSON" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="BPIN" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="UspGetPoliticasTransversalesMetas_Ajustar_JSON" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="BPIN" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="UspGetPoliticasTransversalesMetas_JSON" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="BPIN" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="uspGetPoliticasTransversalesRelacionadas_Ajustes_JSON" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="BPIN" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="uspGetPoliticasTransversalesRelacionadas_JSON" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="BPIN" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="uspGetProyectoFocalizacionVA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="BPIN" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="uspGetProyectoValoresFocalizacionVA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="BPIN" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="uspGetRecursosFocalizacionVA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="BPIN" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="uspPostAgregarPoliticas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="FormularioId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostAgregarPoliticas_Ajustar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="FormularioId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostAgregarPoliticas_AjustarTemp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="AccionId" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="uspPostAgregarPoliticasTemp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="AccionId" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="uspPostCrucePoliticas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="FormularioId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostFocalizacionCuantificacionLocalizacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="AccionId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="FormularioId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostFocalizacionCuantificacionLocalizacionTemp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="AccionId" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="uspPostInsertarFocalizacionVA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="AccionId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="FormularioId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostInsertarProyectoFocalizacionVA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="AccionId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="FormularioId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostPoliticasTransversales" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="FormularioId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostPoliticasTransversalesBeneficiario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="AccionId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="FormularioId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostPoliticasTransversalesBeneficiario_Ajustar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="AccionId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="FormularioId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostPoliticasTransversalesBeneficiariosCategorias" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="AccionId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="FormularioId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostPoliticasTransversalesBeneficiariosCategorias_Ajustes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="AccionId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="FormularioId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostPoliticasTransversalesBeneficiariosCategoriasTemp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="AccionId" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="uspPostPoliticasTransversalesBeneficiariosCategoriasTemp_Ajustes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="AccionId" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="uspPostPoliticasTransversalesBeneficiarioTemp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="AccionId" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="uspPostPoliticasTransversalesBeneficiarioTemp_Ajustar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="AccionId" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="uspPostPoliticasTransversalesIndicadores" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="FormularioId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostPoliticasTransversalesIndicadores_Ajustes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="FormularioId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostPoliticasTransversalesIndicadores_AjustesTemp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="AccionId" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="uspPostPoliticasTransversalesIndicadoresTemp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="AccionId" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="UspPostPoliticasTransversalesMetas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="FormularioId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="UspPostPoliticasTransversalesMetas_Ajustar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="FormularioId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="UspPostPoliticasTransversalesMetasTemp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="AccionId" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="UspPostPoliticasTransversalesMetasTemp_Ajustar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="AccionId" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="uspPostPoliticasTransversalesRelacionadas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="FormularioId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostPoliticasTransversalesRelacionadasAjustes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="FormularioId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostPoliticasTransversalesRelacionadasAjustesTemp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="AccionId" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="uspPostPoliticasTransversalesRelacionadasTemp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="AccionId" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="uspPostPoliticasTransversalesTemp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="AccionId" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="uspPostProyectosValoresFocalizacionTemp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="AccionId" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="uspPostRecursosValoresFocalizacionTemp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Focalizacion">
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="AccionId" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="uspGetFuentesFinanciacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="FuentesFinanciacion">
+          <Parameter Name="BPIN" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="uspGetFuentesFinanciacion_Ajustes_JSON" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="FuentesFinanciacion">
+          <Parameter Name="BPIN" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="uspGetFuentesFinanciacion_JSON" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="FuentesFinanciacion">
+          <Parameter Name="BPIN" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="UspGetRegionalizacion_Ajustar_JSON" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="FuentesFinanciacion">
+          <Parameter Name="BPIN" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="UspGetRegionalizaicion_JSON" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="FuentesFinanciacion">
+          <Parameter Name="BPIN" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="uspPostFuentesFinanciacion_Ajustes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="FuentesFinanciacion">
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="FormularioId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostFuentesFinanciacion_AjustesTemp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="FuentesFinanciacion">
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="AccionId" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="uspPostFuentesFinanciacion_JSON" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="FuentesFinanciacion">
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="FormularioId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostFuentesFinanciacionTemp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="FuentesFinanciacion">
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="AccionId" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="uspPostRegionalizacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="FuentesFinanciacion">
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="AccionId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="FormularioId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostRegionalizacion_Ajustar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="FuentesFinanciacion">
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="AccionId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="FormularioId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostRegionalizacionTemp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="FuentesFinanciacion">
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="AccionId" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="uspPostRegionalizacionTemp_Ajustar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="FuentesFinanciacion">
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="AccionId" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="UspGetDesagregarRegionalizacion_JSON" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Productos">
+          <Parameter Name="BPIN" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="uspGetIndicadorProductoAgregar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Productos">
+          <Parameter Name="BPIN" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="uspGetProductosPorProyecto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Productos">
+          <Parameter Name="BPIN" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="uspGetRegionalizacionIndicadorAgregar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Productos">
+          <Parameter Name="BPIN" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="uspGetRegionalizacionIndicadoresProgramacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Productos">
+          <Parameter Name="BPIN" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="UspGetRegionalizacionMetasRecursos_Ajustes_JSON" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Productos">
+          <Parameter Name="BPIN" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="UspGetRegionalizacionMetasRecursos_JSON" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Productos">
+          <Parameter Name="BPIN" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="UspPostDesagregarRegionalizacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Productos">
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostIndicadorProductoAgregar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Productos">
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="AccionId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="FormularioId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostIndicadorProductoAgregarTemp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Productos">
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="AccionId" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="uspPostProductosPorProyecto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Productos">
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostRegionalizacionIndicadorAgregar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Productos">
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="AccionId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="FormularioId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostRegionalizacionIndicadorAgregarTemp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Productos">
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="AccionId" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="uspPostRegionalizacionIndicadoresProgramacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Productos">
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="AccionId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="FormularioId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostRegionalizacionIndicadoresProgramacionTemp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Productos">
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="AccionId" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="UspPostRegionalizacionMetasRecursos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Productos">
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="FormularioId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="UspPostRegionalizacionMetasRecursos_Ajustes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Productos">
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="FormularioId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="UspPostRegionalizacionMetasRecursos_AjustesTemp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Productos">
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="AccionId" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="UspPostRegionalizacionMetasRecursosTemp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Productos">
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="AccionId" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="uspGetCuantificacionBeneficiarios_Ajustar_JSON" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="BPIN" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="uspGetCuantificacionBeneficiarios_JSON" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="BPIN" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="uspGetCuantificacionLocalizacionPoblacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="BPIN" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="UspGetLocalizacion_Ajustar_JSON" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="BPIN" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="UspGetLocalizacion_JSON" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="BPIN" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="uspPostCuantificacionBeneficiario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="AccionId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="FormularioId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostCuantificacionBeneficiario_Ajustar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="AccionId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="FormularioId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostCuantificacionBeneficiarioTemp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="AccionId" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="uspPostCuantificacionBeneficiarioTemp_Ajustar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="AccionId" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="uspPostCuantificacionLocalizacionPoblacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="AccionId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="FormularioId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostCuantificacionLocalizacionPoblacionTemp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="AccionId" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="uspPostLocalizacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="AccionId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="FormularioId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostLocalizacion_Ajustes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostLocalizacionTemp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="AccionId" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="uspGetRecursosRegionalizacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Regionalizacion">
+          <Parameter Name="BPIN" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="uspPostInsertarRecursos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Regionalizacion">
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostRecursosValoresFuentesTemp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Regionalizacion">
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="AccionId" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="uspGetDatosCartaConceptoDespedida_JSON" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Tramites">
+          <Parameter Name="tramiteId" Type="int" Mode="In" />
+          <Parameter Name="plantillaCartaSeccionId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspGetProyectoCompletarInformacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Tramites">
+          <Parameter Name="BPIN" Type="nvarchar" Mode="In" />
+          <Parameter Name="Usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="AccionId" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="uspGetResumenDistribucionesAnteriores_JSON" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Tramites">
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="uspPostActualizaCartaDatosDespedida" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Tramites">
+          <Parameter Name="CartaId" Type="int" Mode="In" />
+          <Parameter Name="CartaSeccionId" Type="int" Mode="In" />
+          <Parameter Name="TramiteId" Type="int" Mode="In" />
+          <Parameter Name="TipoTramite" Type="int" Mode="In" />
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostProyectoCompletarInformacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Tramites">
+          <Parameter Name="json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="AccionId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="FormularioId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostActualizaCapituloModificado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Transversal">
+          <Parameter Name="ProyectoId" Type="int" Mode="In" />
+          <Parameter Name="Usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Justificacion" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="SeccionCapituloId" Type="int" Mode="In" />
+          <Parameter Name="AplicaJustificacion" Type="int" Mode="In" />
+          <Parameter Name="Cuenta" Type="bit" Mode="In" />
+          <Parameter Name="Modificado" Type="bit" Mode="In" />
+        </Function>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="AlmacenamientoTemporal" EntityType="Self.AlmacenamientoTemporal" Schema="Temporal" store:Type="Tables" />
+          <EntitySet Name="Capitulo" EntityType="Self.Capitulo" Schema="Transversal" store:Type="Tables" />
+          <EntitySet Name="MacroprocesoSeccion" EntityType="Self.MacroprocesoSeccion" Schema="Transversal" store:Type="Tables" />
+          <EntitySet Name="Seccion" EntityType="Self.Seccion" Schema="Transversal" store:Type="Tables" />
+          <EntitySet Name="SeccionCapitulos" EntityType="Self.SeccionCapitulos" Schema="Transversal" store:Type="Tables" />
+          <EntitySet Name="VGetFase" EntityType="Self.VGetFase" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VGetFase].[NombreFase] AS [NombreFase], 
+    [VGetFase].[FaseGUID] AS [FaseGUID], 
+    [VGetFase].[Id] AS [Id]
+    FROM [dbo].[VGetFase] AS [VGetFase]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="MGAWebContexto" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="uspGetProductosPorProyecto" ReturnType="Collection(Model.uspGetProductosPorProyecto_Result)">
+          <Parameter Name="BPIN" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostProductosPorProyecto">
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="usuario" Mode="In" Type="String" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostCadenaValor">
+            <Parameter Name="Json" Mode="In" Type="String" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="ErrorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetRecursos" ReturnType="Collection(Model.uspGetRecursos_Result)">
+          <Parameter Name="BPIN" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostInsertarRecursos">
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetRecursosRegionalizacion" ReturnType="Collection(Model.uspGetRecursosRegionalizacion_Result)">
+          <Parameter Name="BPIN" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetFuentesFinanciacion">
+          <Parameter Name="BPIN" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetCadenaValor" ReturnType="Collection(Model.uspGetCadenaValor_Result)">
+          <Parameter Name="BPIN" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetRecursosFocalizacion" ReturnType="Collection(Model.uspGetRecursosFocalizacion_Result)">
+          <Parameter Name="BPIN" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetRecursosFocalizacionVA" ReturnType="Collection(Model.uspGetRecursosFocalizacionVA_Result)">
+          <Parameter Name="BPIN" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostRecursosValoresFocalizacionTemp">
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="AccionId" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostRecursosValoresFuentesTemp">
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="AccionId" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostCadenaValorTemp">
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="AccionId" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetProductosRegionalizacionPorProyecto" ReturnType="Collection(Model.uspGetProductosRegionalizacionPorProyecto_Result)">
+          <Parameter Name="BPIN" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetRegionalizacionIndicadoresProgramacion" ReturnType="Collection(Model.uspGetRegionalizacionIndicadoresProgramacion_Result)">
+          <Parameter Name="BPIN" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostRegionalizacionIndicadoresProgramacionTemp">
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="AccionId" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostInsertarFocalizacionVA">
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="AccionId" Mode="In" Type="Guid" />
+            <Parameter Name="FormularioId" Mode="In" Type="Guid" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostRegionalizacionIndicadoresProgramacion">
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="AccionId" Mode="In" Type="Guid" />
+            <Parameter Name="FormularioId" Mode="In" Type="Guid" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetProyectoFocalizacionVA" ReturnType="Collection(Model.uspGetProyectoFocalizacionVA_Result)">
+          <Parameter Name="BPIN" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetProyectoValoresFocalizacionVA">
+          <Parameter Name="BPIN" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostProyectosValoresFocalizacionTemp">
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="AccionId" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetCuantificacionLocalizacionPoblacion" ReturnType="Collection(Model.uspGetCuantificacionLocalizacionPoblacion_Result)">
+          <Parameter Name="BPIN" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostCuantificacionLocalizacionPoblacionTemp">
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="AccionId" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostCuantificacionLocalizacionPoblacion">
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="AccionId" Mode="In" Type="Guid" />
+            <Parameter Name="FormularioId" Mode="In" Type="Guid" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostInsertarProyectoFocalizacionVA">
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="AccionId" Mode="In" Type="Guid" />
+            <Parameter Name="FormularioId" Mode="In" Type="Guid" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetFocalizacionCuantificacionLocalizacion" ReturnType="Collection(Model.uspGetFocalizacionCuantificacionLocalizacion_Result)">
+          <Parameter Name="BPIN" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostFocalizacionCuantificacionLocalizacionTemp">
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="AccionId" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostFocalizacionCuantificacionLocalizacion">
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="AccionId" Mode="In" Type="Guid" />
+            <Parameter Name="FormularioId" Mode="In" Type="Guid" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetIndicadorProductoAgregar" ReturnType="Collection(Model.uspGetIndicadorProductoAgregar_Result)">
+          <Parameter Name="BPIN" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostIndicadorProductoAgregarTemp">
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="AccionId" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostIndicadorProductoAgregar">
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="AccionId" Mode="In" Type="Guid" />
+            <Parameter Name="FormularioId" Mode="In" Type="Guid" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetRegionalizacionIndicadorAgregar" ReturnType="Collection(Model.uspGetRegionalizacionIndicadorAgregar_Result)">
+          <Parameter Name="BPIN" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostRegionalizacionIndicadorAgregarTemp">
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="AccionId" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostRegionalizacionIndicadorAgregar">
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="AccionId" Mode="In" Type="Guid" />
+            <Parameter Name="FormularioId" Mode="In" Type="Guid" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetProyectoCompletarInformacion" ReturnType="Collection(Model.uspGetProyectoCompletarInformacion_Result)">
+            <Parameter Name="BPIN" Mode="In" Type="String" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="AccionId" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostProyectoCompletarInformacion">
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="AccionId" Mode="In" Type="Guid" />
+            <Parameter Name="FormularioId" Mode="In" Type="Guid" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetCuantificacionBeneficiarios_JSON" ReturnType="Collection(String)">
+          <Parameter Name="BPIN" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostCuantificacionBeneficiario">
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="AccionId" Mode="In" Type="Guid" />
+            <Parameter Name="FormularioId" Mode="In" Type="Guid" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostCuantificacionBeneficiarioTemp">
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="AccionId" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetFuentesFinanciacion_JSON" ReturnType="Collection(String)">
+          <Parameter Name="BPIN" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostFuentesFinanciacion_JSON">
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="usuario" Mode="In" Type="String" />
+            <Parameter Name="FormularioId" Mode="In" Type="Guid" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostFuentesFinanciacionTemp">
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="AccionId" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetPoliticasTransversales_JSON" ReturnType="Collection(String)">
+          <Parameter Name="BPIN" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UspGetRegionalizacionMetasRecursos_JSON" ReturnType="Collection(String)">
+          <Parameter Name="BPIN" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostLocalizacion">
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="AccionId" Mode="In" Type="Guid" />
+            <Parameter Name="FormularioId" Mode="In" Type="Guid" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UspGetLocalizacion_JSON" ReturnType="Collection(String)">
+          <Parameter Name="BPIN" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetPoliticasCategorias_JSON" ReturnType="Collection(String)">
+          <Parameter Name="BPIN" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostPoliticasCategorias">
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="AccionId" Mode="In" Type="Guid" />
+            <Parameter Name="FormularioId" Mode="In" Type="Guid" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostPoliticasCategoriasTemp">
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="AccionId" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <EntitySet Name="AlmacenamientoTemporal" EntityType="Model.AlmacenamientoTemporal" />
+          <FunctionImport Name="uspPostLocalizacionTemp">
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="AccionId" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="UspPostRegionalizacionMetasRecursos">
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="usuario" Mode="In" Type="String" />
+            <Parameter Name="FormularioId" Mode="In" Type="Guid" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UspGetPoliticasTransversalesBeneficiarios_JSON" ReturnType="Collection(String)">
+          <Parameter Name="BPIN" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostPoliticasTransversalesBeneficiario">
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="AccionId" Mode="In" Type="Guid" />
+            <Parameter Name="FormularioId" Mode="In" Type="Guid" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostPoliticasTransversalesBeneficiarioTemp">
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="AccionId" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostPoliticasTransversales">
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="usuario" Mode="In" Type="String" />
+            <Parameter Name="FormularioId" Mode="In" Type="Guid" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostPoliticasTransversalesTemp">
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="AccionId" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="UspGetPoliticasTransversalesMetas_JSON" ReturnType="Collection(String)">
+          <Parameter Name="BPIN" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UspPostPoliticasTransversalesMetas">
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="usuario" Mode="In" Type="String" />
+            <Parameter Name="FormularioId" Mode="In" Type="Guid" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UspPostPoliticasTransversalesMetasTemp">
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="AccionId" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="UspPostRegionalizacionMetasRecursosTemp">
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="AccionId" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetAgregarPoliticas_JSON" ReturnType="Collection(String)">
+          <Parameter Name="BPIN" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostAgregarPoliticas">
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="usuario" Mode="In" Type="String" />
+            <Parameter Name="FormularioId" Mode="In" Type="Guid" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostAgregarPoliticasTemp">
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="AccionId" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetPoliticasTransversalesIndicadores_JSON" ReturnType="Collection(String)">
+          <Parameter Name="BPIN" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostPoliticasTransversalesIndicadores">
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="usuario" Mode="In" Type="String" />
+            <Parameter Name="FormularioId" Mode="In" Type="Guid" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostPoliticasTransversalesIndicadoresTemp">
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="AccionId" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="UspGetRegionalizaicion_JSON" ReturnType="Collection(String)">
+          <Parameter Name="BPIN" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostRegionalizacion">
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="AccionId" Mode="In" Type="Guid" />
+            <Parameter Name="FormularioId" Mode="In" Type="Guid" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostRegionalizacionTemp">
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="AccionId" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="UspGetPoliticasTransversalesBeneficiariosCategorias_JSON" ReturnType="Collection(String)">
+          <Parameter Name="BPIN" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostPoliticasTransversalesBeneficiariosCategorias">
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="AccionId" Mode="In" Type="Guid" />
+            <Parameter Name="FormularioId" Mode="In" Type="Guid" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostPoliticasTransversalesBeneficiariosCategoriasTemp">
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="AccionId" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetPoliticasTransversalesRelacionadas_JSON" ReturnType="Collection(String)">
+          <Parameter Name="BPIN" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostPoliticasTransversalesRelacionadas">
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="usuario" Mode="In" Type="String" />
+            <Parameter Name="FormularioId" Mode="In" Type="Guid" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostPoliticasTransversalesRelacionadasTemp">
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="AccionId" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="UspGetLocalizacion_Ajustar_JSON" ReturnType="Collection(String)">
+          <Parameter Name="BPIN" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UspGetRegionalizacion_Ajustar_JSON" ReturnType="Collection(String)">
+          <Parameter Name="BPIN" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostRegionalizacion_Ajustar">
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="AccionId" Mode="In" Type="Guid" />
+            <Parameter Name="FormularioId" Mode="In" Type="Guid" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostRegionalizacionTemp_Ajustar">
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="AccionId" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostFuentesFinanciacion_Ajustes">
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="usuario" Mode="In" Type="String" />
+            <Parameter Name="FormularioId" Mode="In" Type="Guid" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostFuentesFinanciacion_AjustesTemp">
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="AccionId" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetFuentesFinanciacion_Ajustes_JSON" ReturnType="Collection(String)">
+          <Parameter Name="BPIN" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UspPostRegionalizacionMetasRecursos_AjustesTemp">
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="AccionId" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="UspGetRegionalizacionMetasRecursos_Ajustes_JSON" ReturnType="Collection(String)">
+          <Parameter Name="BPIN" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UspPostRegionalizacionMetasRecursos_Ajustes">
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="usuario" Mode="In" Type="String" />
+            <Parameter Name="FormularioId" Mode="In" Type="Guid" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UspGetPoliticasTransversalesBeneficiarios_Ajustar_JSON" ReturnType="Collection(String)">
+          <Parameter Name="BPIN" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostPoliticasTransversalesBeneficiario_Ajustar">
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="AccionId" Mode="In" Type="Guid" />
+            <Parameter Name="FormularioId" Mode="In" Type="Guid" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostPoliticasTransversalesBeneficiarioTemp_Ajustar">
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="AccionId" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostAgregarPoliticas_AjustarTemp">
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="AccionId" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetAgregarPoliticas_Ajustar_JSON" ReturnType="Collection(String)">
+          <Parameter Name="BPIN" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostAgregarPoliticas_Ajustar">
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="usuario" Mode="In" Type="String" />
+            <Parameter Name="FormularioId" Mode="In" Type="Guid" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetCuantificacionBeneficiarios_Ajustar_JSON" ReturnType="Collection(String)">
+          <Parameter Name="BPIN" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostCuantificacionBeneficiario_Ajustar">
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="AccionId" Mode="In" Type="Guid" />
+            <Parameter Name="FormularioId" Mode="In" Type="Guid" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostCuantificacionBeneficiarioTemp_Ajustar">
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="AccionId" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="UspGetPoliticasTransversalesBeneficiariosCategorias_Ajustes_JSON" ReturnType="Collection(String)">
+          <Parameter Name="BPIN" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostPoliticasTransversalesBeneficiariosCategorias_Ajustes">
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="AccionId" Mode="In" Type="Guid" />
+            <Parameter Name="FormularioId" Mode="In" Type="Guid" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostPoliticasTransversalesBeneficiariosCategoriasTemp_Ajustes">
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="AccionId" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetPoliticasTransversalesIndicadores_Ajustes_JSON" ReturnType="Collection(String)">
+          <Parameter Name="BPIN" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostPoliticasTransversalesIndicadores_Ajustes">
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="usuario" Mode="In" Type="String" />
+            <Parameter Name="FormularioId" Mode="In" Type="Guid" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostPoliticasTransversalesIndicadores_AjustesTemp">
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="AccionId" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="UspGetCadenaValor_Ajustes_JSON" ReturnType="Collection(String)">
+          <Parameter Name="BPIN" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetPoliticasTransversalesRelacionadas_Ajustes_JSON" ReturnType="Collection(String)">
+          <Parameter Name="BPIN" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostPoliticasTransversalesRelacionadasAjustes">
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="usuario" Mode="In" Type="String" />
+            <Parameter Name="FormularioId" Mode="In" Type="Guid" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostPoliticasTransversalesRelacionadasAjustesTemp">
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="AccionId" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="UspGetPoliticasTransversalesMetas_Ajustar_JSON" ReturnType="Collection(String)">
+          <Parameter Name="BPIN" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UspPostPoliticasTransversalesMetas_Ajustar">
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="usuario" Mode="In" Type="String" />
+            <Parameter Name="FormularioId" Mode="In" Type="Guid" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UspPostPoliticasTransversalesMetasTemp_Ajustar">
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="AccionId" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="UspGetCadenaValorEntregables_Ajustes_JSON" ReturnType="Collection(String)">
+          <Parameter Name="BPIN" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostCadenaValorEntregables_Ajustes">
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="usuario" Mode="In" Type="String" />
+            <Parameter Name="FormularioId" Mode="In" Type="Guid" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostCadenaValor_Ajustes">
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="usuario" Mode="In" Type="String" />
+            <Parameter Name="FormularioId" Mode="In" Type="Guid" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UspGetDesagregarRegionalizacion_JSON" ReturnType="Collection(String)">
+          <Parameter Name="BPIN" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UspPostDesagregarRegionalizacion">
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetDatosCartaConceptoDespedida_JSON" ReturnType="Collection(String)">
+            <Parameter Name="tramiteId" Mode="In" Type="Int32" />
+            <Parameter Name="plantillaCartaSeccionId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostActualizaCartaDatosDespedida">
+            <Parameter Name="CartaId" Mode="In" Type="Int32" />
+            <Parameter Name="CartaSeccionId" Mode="In" Type="Int32" />
+            <Parameter Name="TramiteId" Mode="In" Type="Int32" />
+            <Parameter Name="TipoTramite" Mode="In" Type="Int32" />
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetPoliticasTransversalesFuentes_JSON" ReturnType="Collection(String)">
+          <Parameter Name="BPIN" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="Capitulo" EntityType="Model.Capitulo" />
+          <EntitySet Name="MacroprocesoSeccion" EntityType="Model.MacroprocesoSeccion" />
+          <EntitySet Name="Seccion" EntityType="Model.Seccion" />
+          <EntitySet Name="SeccionCapitulos" EntityType="Model.SeccionCapitulos" />
+          <EntitySet Name="VGetFase" EntityType="Model.VGetFase" />
+          <FunctionImport Name="uspPostActualizaCapituloModificado">
+            <Parameter Name="ProyectoId" Mode="In" Type="Int32" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="Justificacion" Mode="In" Type="String" />
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+            <Parameter Name="SeccionCapituloId" Mode="In" Type="Int32" />
+            <Parameter Name="AplicaJustificacion" Mode="In" Type="Int32" />
+            <Parameter Name="Cuenta" Mode="In" Type="Boolean" />
+            <Parameter Name="Modificado" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostCrucePoliticas">
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="usuario" Mode="In" Type="String" />
+            <Parameter Name="FormularioId" Mode="In" Type="Guid" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostLocalizacion_Ajustes">
+            <Parameter Name="json" Mode="In" Type="String" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetCrucePoliticas_JSON" ReturnType="Collection(String)">
+            <Parameter Name="BPIN" Mode="In" Type="String" />
+            <Parameter Name="FuenteId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetPoliticasCategoriasIndicadores_JSON" ReturnType="Collection(String)">
+          <Parameter Name="BPIN" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetResumenDistribucionesAnteriores_JSON" ReturnType="Collection(String)">
+            <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="uspGetProductosPorProyecto_Result">
+          <Property Type="Int32" Name="ProyectoId" Nullable="false" />
+          <Property Type="String" Name="ProyectoBPIN" Nullable="true" MaxLength="100" />
+          <Property Type="Int64" Name="Vigencia" Nullable="true" />
+          <Property Type="Int32" Name="ProblemaCentralId" Nullable="false" />
+          <Property Type="String" Name="ProblemaCentral" Nullable="true" MaxLength="2000" />
+          <Property Type="Int32" Name="CausaId" Nullable="false" />
+          <Property Type="String" Name="Causa" Nullable="false" MaxLength="2000" />
+          <Property Type="Int32" Name="ObjetivoEspecificoId" Nullable="false" />
+          <Property Type="String" Name="ObjetivoEspecifico" Nullable="true" MaxLength="2000" />
+          <Property Type="Int32" Name="ProductoId" Nullable="true" />
+          <Property Type="Int32" Name="ProductoTipoMedidaId" Nullable="true" />
+          <Property Type="Int32" Name="ProductoCatalogoId" Nullable="true" />
+          <Property Type="Int32" Name="ProductoAlternativaId" Nullable="true" />
+          <Property Type="String" Name="Producto" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="ProductoComplemento" Nullable="true" MaxLength="500" />
+          <Property Type="Decimal" Name="ProductoCantidad" Nullable="true" Precision="20" Scale="4" />
+          <Property Type="Int32" Name="IndicadorId" Nullable="true" />
+          <Property Type="Int32" Name="IndicadorBISId" Nullable="true" />
+          <Property Type="Int32" Name="IndicadorUnidadMedidaId" Nullable="true" />
+          <Property Type="Int32" Name="IndicadorProgramaId" Nullable="true" />
+          <Property Type="Int32" Name="IndicadorTipoOrigenId" Nullable="true" />
+          <Property Type="String" Name="IndicadorProducto" Nullable="true" MaxLength="2000" />
+          <Property Type="Decimal" Name="IndicadorMetaTotal" Nullable="true" Precision="20" Scale="4" />
+          <Property Type="String" Name="IndicadorFuenteVerificacionId" Nullable="true" MaxLength="500" />
+          <Property Type="Boolean" Name="IndicadorAcumula" Nullable="true" />
+          <Property Type="Boolean" Name="IndicadorAsociado" Nullable="true" />
+          <Property Type="Boolean" Name="IndicadorDelPrograma" Nullable="true" />
+          <Property Type="String" Name="IndicadorTipo" Nullable="true" MaxLength="1" />
+          <Property Type="Boolean" Name="IndicadorProyectoBase" Nullable="true" />
+          <Property Type="Int32" Name="MetaId" Nullable="true" />
+          <Property Type="Decimal" Name="Meta" Nullable="true" Precision="20" Scale="4" />
+          <Property Type="Int32" Name="RegionalizacionMetaId" Nullable="true" />
+          <Property Type="Int32" Name="RegionalizacionMetaRegionId" Nullable="true" />
+          <Property Type="Int32" Name="RegionalizacionMetaDepartamentoId" Nullable="true" />
+          <Property Type="Int32" Name="RegionalizacionMetaMunicipioId" Nullable="true" />
+          <Property Type="Int32" Name="RegionalizacionMetaAgrupacionId" Nullable="true" />
+          <Property Type="Decimal" Name="RegionalizacionMetaVigente" Nullable="true" Precision="20" Scale="4" />
+          <Property Type="Decimal" Name="RegionalizacionMetaTotalRegionalizado" Nullable="true" Precision="20" Scale="4" />
+          <Property Type="String" Name="CreadoPor" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ModificadoPor" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="uspGetRecursos_Result">
+          <Property Type="Int32" Name="ProyectoId" Nullable="false" />
+          <Property Type="String" Name="BPIN" Nullable="true" MaxLength="100" />
+          <Property Type="Decimal" Name="ValorTotalProyecto" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Int64" Name="Vigencia" Nullable="true" />
+          <Property Type="Int32" Name="Fuenteid" Nullable="false" />
+          <Property Type="Int32" Name="FuenteFinanciacionId" Nullable="false" />
+          <Property Type="String" Name="FuenteFinanciacion" Nullable="true" MaxLength="956" />
+          <Property Type="Int32" Name="FuenteFinanciacionEtapaId" Nullable="false" />
+          <Property Type="Int32" Name="FFProgramacionId" Nullable="false" />
+          <Property Type="Decimal" Name="FFProgramacionValorSolicitado" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="RegRecursosId" Nullable="true" />
+          <Property Type="Int32" Name="RegRecursosRegionId" Nullable="true" />
+          <Property Type="Int32" Name="RegRecursosDepartamentoId" Nullable="true" />
+          <Property Type="Int32" Name="RegRecursosMunicipioId" Nullable="true" />
+          <Property Type="Int32" Name="RegRecursosAgrupacionId" Nullable="true" />
+          <Property Type="Decimal" Name="Valor_Vigente" Nullable="true" Precision="38" Scale="4" />
+          <Property Type="Decimal" Name="Valor_Inicial" Nullable="true" Precision="38" Scale="4" />
+          <Property Type="Decimal" Name="Valor_Socilitado" Nullable="true" Precision="38" Scale="4" />
+          <Property Type="Int32" Name="Mes" Nullable="true" />
+          <Property Type="Decimal" Name="Ejecucion_Valor_Inicial" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="Ejecucion_Valor_Vigente" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="Ejecucion_Compromiso" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="Ejecucion_Obligacion" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="Ejecucion_Pago" Nullable="true" Precision="38" Scale="2" />
+        </ComplexType>
+        <ComplexType Name="uspGetRecursosRegionalizacion_Result">
+          <Property Type="String" Name="BPIN" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="Vigencia" Nullable="true" />
+          <Property Type="Int32" Name="Mes" Nullable="true" />
+          <Property Type="String" Name="NomMes" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="GrupoRecurso" Nullable="true" MaxLength="300" />
+          <Property Type="Int32" Name="FuenteId" Nullable="true" />
+          <Property Type="String" Name="Fuente" Nullable="true" MaxLength="1500" />
+          <Property Type="Decimal" Name="ValorSolicitado" Nullable="true" Precision="24" Scale="2" />
+          <Property Type="Decimal" Name="ValorInicial" Nullable="true" Precision="24" Scale="2" />
+          <Property Type="Decimal" Name="ValorVigente" Nullable="true" Precision="24" Scale="2" />
+          <Property Type="Decimal" Name="Compromiso" Nullable="true" Precision="24" Scale="2" />
+          <Property Type="Decimal" Name="Obligacion" Nullable="true" Precision="24" Scale="2" />
+          <Property Type="Decimal" Name="Pago" Nullable="true" Precision="24" Scale="2" />
+          <Property Type="Int32" Name="RegionalizacionRecursosId" Nullable="true" />
+          <Property Type="Int32" Name="RegRecursosRegionId" Nullable="true" />
+          <Property Type="Int32" Name="RegRecursosDepartamentoId" Nullable="true" />
+          <Property Type="Int32" Name="RegRecursosMunicipioId" Nullable="true" />
+          <Property Type="Int32" Name="RegAgrupacionId" Nullable="true" />
+          <Property Type="Decimal" Name="RegValorSolicitado" Nullable="true" Precision="24" Scale="2" />
+          <Property Type="Decimal" Name="RegValorInicial" Nullable="true" Precision="24" Scale="2" />
+          <Property Type="Decimal" Name="RegValorVigente" Nullable="true" Precision="24" Scale="2" />
+          <Property Type="Decimal" Name="RegCompromiso" Nullable="true" Precision="24" Scale="2" />
+          <Property Type="Decimal" Name="RegObligacion" Nullable="true" Precision="24" Scale="2" />
+          <Property Type="Decimal" Name="RegPago" Nullable="true" Precision="24" Scale="2" />
+          <Property Type="Int32" Name="EjecucionRecursosId" Nullable="true" />
+          <Property Type="String" Name="RegRecursosRegion" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="RegRecursosDepartamento" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="RegRecursosMunicipio" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="RegRecursosAgrupacion" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="RegRecursosRegionalizacionNombre" Nullable="false" MaxLength="2003" />
+        </ComplexType>
+        <ComplexType Name="uspGetCadenaValor_Result">
+          <Property Type="String" Name="BPIN" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="Vigencia" Nullable="true" />
+          <Property Type="Int32" Name="MesId" Nullable="true" />
+          <Property Type="String" Name="Mes" Nullable="true" MaxLength="30" />
+          <Property Type="Int32" Name="GRGrupoRecursoId" Nullable="true" />
+          <Property Type="String" Name="GRGrupoRecurso" Nullable="true" MaxLength="200" />
+          <Property Type="Decimal" Name="GRValorSolicitado" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="GRValorInicial" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="GRValorVigente" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="GRCompromiso" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="GRObligacion" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="GRPago" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Int32" Name="ObjetivoEspecificoId" Nullable="true" />
+          <Property Type="String" Name="ObjetivoEspecifico" Nullable="true" MaxLength="2000" />
+          <Property Type="Int32" Name="ProductoId" Nullable="true" />
+          <Property Type="Int32" Name="CatalogoProductoId" Nullable="true" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="TipoMedidaId" Nullable="true" />
+          <Property Type="Decimal" Name="Cantidad" Nullable="true" Precision="24" Scale="4" />
+          <Property Type="Int32" Name="ActividadId" Nullable="true" />
+          <Property Type="DateTime" Name="FechaInicio" Nullable="true" />
+          <Property Type="DateTime" Name="FechaFin" Nullable="true" />
+          <Property Type="String" Name="Etapa" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ActividadInsumoId" Nullable="true" />
+          <Property Type="Int32" Name="TipoInsumoId" Nullable="true" />
+          <Property Type="Decimal" Name="ValorSolicitado" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="ValorInicial" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="ValorVigente" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="Compromiso" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="Obligacion" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="Pago" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="String" Name="Observacion" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="NombreActividad" Nullable="true" MaxLength="500" />
+        </ComplexType>
+        <ComplexType Name="uspGetProductosRegionalizacionPorProyecto_Result">
+          <Property Type="Int32" Name="ProyectoId" Nullable="false" />
+          <Property Type="String" Name="ProyectoBPIN" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="Vigencia" Nullable="false" />
+          <Property Type="Int32" Name="ProblemaCentralId" Nullable="false" />
+          <Property Type="String" Name="ProblemaCentral" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="CausaId" Nullable="false" />
+          <Property Type="String" Name="Causa" Nullable="false" MaxLength="2000" />
+          <Property Type="Int32" Name="ObjetivoEspecificoId" Nullable="false" />
+          <Property Type="String" Name="ObjetivoEspecifico" Nullable="true" MaxLength="2000" />
+          <Property Type="Int32" Name="ProductoId" Nullable="true" />
+          <Property Type="Int32" Name="ProductoTipoMedidaId" Nullable="true" />
+          <Property Type="Int32" Name="ProductoCatalogoId" Nullable="true" />
+          <Property Type="Int32" Name="ProductoAlternativaId" Nullable="true" />
+          <Property Type="String" Name="Producto" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="ProductoComplemento" Nullable="true" MaxLength="100" />
+          <Property Type="Decimal" Name="ProductoCantidad" Nullable="true" Precision="24" Scale="4" />
+          <Property Type="Int32" Name="IndicadorId" Nullable="true" />
+          <Property Type="Int32" Name="IndicadorBISId" Nullable="true" />
+          <Property Type="Int32" Name="IndicadorUnidadMedidaId" Nullable="true" />
+          <Property Type="Int32" Name="IndicadorProgramaId" Nullable="true" />
+          <Property Type="Int32" Name="IndicadorTipoOrigenId" Nullable="true" />
+          <Property Type="String" Name="IndicadorProducto" Nullable="true" MaxLength="2000" />
+          <Property Type="Decimal" Name="IndicadorMetaTotal" Nullable="true" Precision="20" Scale="4" />
+          <Property Type="String" Name="IndicadorFuenteVerificacionId" Nullable="true" MaxLength="500" />
+          <Property Type="Boolean" Name="IndicadorAcumula" Nullable="true" />
+          <Property Type="Boolean" Name="IndicadorAsociado" Nullable="true" />
+          <Property Type="Boolean" Name="IndicadorDelPrograma" Nullable="true" />
+          <Property Type="String" Name="IndicadorTipo" Nullable="true" MaxLength="1" />
+          <Property Type="Boolean" Name="IndicadorProyectoBase" Nullable="true" />
+          <Property Type="Int32" Name="MetaId" Nullable="true" />
+          <Property Type="Decimal" Name="Meta" Nullable="true" Precision="20" Scale="4" />
+          <Property Type="Int32" Name="RegionalizacionMetaId" Nullable="true" />
+          <Property Type="Int32" Name="RegionalizacionMetaRegionId" Nullable="true" />
+          <Property Type="Int32" Name="RegionalizacionMetaDepartamentoId" Nullable="true" />
+          <Property Type="Int32" Name="RegionalizacionMetaMunicipioId" Nullable="true" />
+          <Property Type="Int32" Name="RegionalizacionMetaAgrupacionId" Nullable="true" />
+          <Property Type="String" Name="Region" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="Departamento" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="Municipio" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="Agrupacion" Nullable="true" MaxLength="500" />
+          <Property Type="Decimal" Name="RegionalizacionMetaVigente" Nullable="true" Precision="20" Scale="4" />
+          <Property Type="Decimal" Name="RegionalizacionMetaTotalRegionalizado" Nullable="true" Precision="20" Scale="4" />
+          <Property Type="Decimal" Name="RegionalizacionMetaRezagada" Nullable="true" Precision="20" Scale="4" />
+          <Property Type="Decimal" Name="RegionalizacionMetaTotalRezagada" Nullable="true" Precision="20" Scale="4" />
+          <Property Type="Decimal" Name="RegionalizacionMetaAvance" Nullable="true" Precision="20" Scale="4" />
+          <Property Type="Decimal" Name="RegionalizacionMetaTotalAvance" Nullable="true" Precision="20" Scale="4" />
+          <Property Type="Decimal" Name="RegionalizacionMetaAvanceRezago" Nullable="true" Precision="20" Scale="4" />
+          <Property Type="Decimal" Name="RegionalizacionMetaTotalAvanceRezago" Nullable="true" Precision="20" Scale="4" />
+          <Property Type="Decimal" Name="RegionalizacionMetaAvanceAcumulado" Nullable="true" Precision="20" Scale="4" />
+          <Property Type="Decimal" Name="RegionalizacionMetaTotalAvanceAcumulado" Nullable="true" Precision="20" Scale="4" />
+          <Property Type="String" Name="CreadoPor" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ModificadoPor" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="uspGetRegionalizacionIndicadoresProgramacion_Result">
+          <Property Type="String" Name="BPIN" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="ProyectoId" Nullable="true" />
+          <Property Type="Int32" Name="Vigencia" Nullable="true" />
+          <Property Type="Int32" Name="ObjetivoId" Nullable="true" />
+          <Property Type="String" Name="ObjetivoEspecifico" Nullable="true" />
+          <Property Type="Int32" Name="ProductoId" Nullable="true" />
+          <Property Type="String" Name="NombreProducto" Nullable="true" />
+          <Property Type="Int32" Name="ProductoUnidadMedidaId" Nullable="true" />
+          <Property Type="String" Name="ProductoUnidadMedida" Nullable="true" MaxLength="200" />
+          <Property Type="Decimal" Name="Cantidad" Nullable="true" Precision="24" Scale="2" />
+          <Property Type="Int32" Name="IndicadorId" Nullable="true" />
+          <Property Type="String" Name="NombreIndicador" Nullable="true" />
+          <Property Type="String" Name="CodigoIndicador" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="IndicadorTipo" Nullable="true" MaxLength="1" />
+          <Property Type="Boolean" Name="IndicadorAcumula" Nullable="true" />
+          <Property Type="Int32" Name="IndicadorUnidadMedidaId" Nullable="true" />
+          <Property Type="String" Name="NombreUnidadMedida" Nullable="true" MaxLength="200" />
+          <Property Type="Decimal" Name="MetaTotal" Nullable="true" Precision="24" Scale="4" />
+          <Property Type="Decimal" Name="MetaVigenteVigencia" Nullable="true" Precision="24" Scale="4" />
+          <Property Type="Int32" Name="RegionalizacionMetasId" Nullable="true" />
+          <Property Type="Int32" Name="RegionId" Nullable="true" />
+          <Property Type="String" Name="NombreRegion" Nullable="true" />
+          <Property Type="String" Name="CodigoRegion" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="DepartmentId" Nullable="true" />
+          <Property Type="String" Name="NombreDepartamento" Nullable="true" />
+          <Property Type="String" Name="CodigoDepto" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="MunicipalityId" Nullable="true" />
+          <Property Type="String" Name="NombreMunicipio" Nullable="true" />
+          <Property Type="String" Name="CodigoMunicipio" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="AgrupacionId" Nullable="true" />
+          <Property Type="String" Name="NombreAgrupacion" Nullable="true" />
+          <Property Type="String" Name="CodigoAgrupacion" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="MetaVigenteReg" Nullable="true" Precision="24" Scale="4" />
+        </ComplexType>
+        <ComplexType Name="uspGetRecursosFocalizacion_Result">
+          <Property Type="String" Name="BPIN" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="Vigencia" Nullable="true" />
+          <Property Type="Int32" Name="FuenteId" Nullable="true" />
+          <Property Type="String" Name="Fuente" Nullable="true" MaxLength="1500" />
+          <Property Type="Int32" Name="PoliticaId" Nullable="true" />
+          <Property Type="String" Name="Politica" Nullable="true" MaxLength="1500" />
+          <Property Type="Int32" Name="DimensionId" Nullable="true" />
+          <Property Type="String" Name="Dimension" Nullable="true" MaxLength="1500" />
+          <Property Type="Decimal" Name="ValorSolicitado" Nullable="true" Precision="24" Scale="2" />
+          <Property Type="Decimal" Name="ValorInicial" Nullable="true" Precision="24" Scale="2" />
+          <Property Type="Decimal" Name="ValorVigente" Nullable="true" Precision="24" Scale="2" />
+          <Property Type="Int32" Name="MesId" Nullable="true" />
+          <Property Type="String" Name="NomMes" Nullable="true" MaxLength="30" />
+          <Property Type="Int32" Name="FocalizacionRecursosId" Nullable="true" />
+          <Property Type="Decimal" Name="FocValorInicial" Nullable="true" Precision="24" Scale="2" />
+          <Property Type="Decimal" Name="FocValorVigente" Nullable="true" Precision="24" Scale="2" />
+          <Property Type="Decimal" Name="FocCompromiso" Nullable="true" Precision="24" Scale="2" />
+          <Property Type="Decimal" Name="FocObligacion" Nullable="true" Precision="24" Scale="2" />
+          <Property Type="Decimal" Name="FocPago" Nullable="true" Precision="24" Scale="2" />
+        </ComplexType>
+        <ComplexType Name="uspGetRecursosFocalizacionVA_Result">
+          <Property Type="String" Name="BPIN" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="Vigencia" Nullable="true" />
+          <Property Type="Int32" Name="FuenteId" Nullable="true" />
+          <Property Type="String" Name="Fuente" Nullable="true" MaxLength="1500" />
+          <Property Type="Decimal" Name="FSolicitado" Nullable="true" Precision="24" Scale="2" />
+          <Property Type="Decimal" Name="FInicial" Nullable="true" Precision="24" Scale="2" />
+          <Property Type="Decimal" Name="FVigente" Nullable="true" Precision="24" Scale="2" />
+          <Property Type="Int32" Name="FocalizacionRecursosId" Nullable="true" />
+          <Property Type="Int32" Name="PoliticaId" Nullable="true" />
+          <Property Type="String" Name="Politica" Nullable="true" MaxLength="1500" />
+          <Property Type="Int32" Name="DimensionId" Nullable="true" />
+          <Property Type="String" Name="Dimension" Nullable="true" MaxLength="1500" />
+          <Property Type="Decimal" Name="ValorSolicitado" Nullable="true" Precision="24" Scale="2" />
+          <Property Type="Decimal" Name="ValorInicial" Nullable="true" Precision="24" Scale="2" />
+          <Property Type="Decimal" Name="ValorVigente" Nullable="true" Precision="24" Scale="2" />
+        </ComplexType>
+        <ComplexType Name="uspGetProyectoFocalizacionVA_Result">
+          <Property Type="String" Name="BPIN" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="ProyectoId" Nullable="true" />
+          <Property Type="Int32" Name="PoliticaId" Nullable="true" />
+          <Property Type="String" Name="Politica" Nullable="true" MaxLength="1500" />
+          <Property Type="Int32" Name="DimensionId" Nullable="true" />
+          <Property Type="String" Name="Dimension" Nullable="true" MaxLength="1500" />
+          <Property Type="Int32" Name="FocalizacionProyectoId" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="uspGetCuantificacionLocalizacionPoblacion_Result">
+          <Property Type="String" Name="BPIN" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="ProyectoId" Nullable="true" />
+          <Property Type="Decimal" Name="Cantidad" Nullable="true" Precision="24" Scale="4" />
+          <Property Type="Int32" Name="Vigencia" Nullable="true" />
+          <Property Type="Int32" Name="LocalizacionId" Nullable="true" />
+          <Property Type="Int32" Name="RegionId" Nullable="true" />
+          <Property Type="String" Name="NombreRegion" Nullable="true" />
+          <Property Type="String" Name="CodigoRegion" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="DepartamentoId" Nullable="true" />
+          <Property Type="String" Name="NombreDepartamento" Nullable="true" />
+          <Property Type="String" Name="CodigoDepto" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="MunicipioId" Nullable="true" />
+          <Property Type="String" Name="NombreMunicipio" Nullable="true" />
+          <Property Type="String" Name="CodigoMunicipio" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="AgrupacionId" Nullable="true" />
+          <Property Type="String" Name="NombreAgrupacion" Nullable="true" />
+          <Property Type="String" Name="CodigoAgrupacion" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="CantidadLocalizada" Nullable="true" Precision="24" Scale="4" />
+        </ComplexType>
+        <ComplexType Name="uspGetFocalizacionCuantificacionLocalizacion_Result">
+          <Property Type="String" Name="BPIN" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="ProyectoId" Nullable="true" />
+          <Property Type="Decimal" Name="PoblacionObjetivo" Nullable="true" Precision="24" Scale="4" />
+          <Property Type="Int32" Name="PoliticaId" Nullable="true" />
+          <Property Type="Int32" Name="DimensionId" Nullable="true" />
+          <Property Type="String" Name="NombreDescripcion" Nullable="true" />
+          <Property Type="Decimal" Name="CantidadMGA" Nullable="true" Precision="24" Scale="4" />
+          <Property Type="Int32" Name="Vigencia" Nullable="true" />
+          <Property Type="Int32" Name="LocalizacionId" Nullable="true" />
+          <Property Type="Int32" Name="RegionId" Nullable="true" />
+          <Property Type="String" Name="NombreRegion" Nullable="true" />
+          <Property Type="String" Name="CodigoRegion" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="DepartamentoId" Nullable="true" />
+          <Property Type="String" Name="NombreDepartamento" Nullable="true" />
+          <Property Type="String" Name="CodigoDepto" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="MunicipioId" Nullable="true" />
+          <Property Type="String" Name="NombreMunicipio" Nullable="true" />
+          <Property Type="String" Name="CodigoMunicipio" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="AgrupacionId" Nullable="true" />
+          <Property Type="String" Name="NombreAgrupacion" Nullable="true" />
+          <Property Type="String" Name="CodigoAgrupacion" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="CantidadCuantificada" Nullable="true" Precision="24" Scale="4" />
+          <Property Type="Decimal" Name="CantidadFocalizada" Nullable="true" Precision="24" Scale="4" />
+        </ComplexType>
+        <ComplexType Name="uspGetIndicadorProductoAgregar_Result">
+          <Property Type="String" Name="BPIN" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="ProyectoId" Nullable="true" />
+          <Property Type="Int32" Name="ObjetivoId" Nullable="true" />
+          <Property Type="String" Name="ObjetivoEspecifico" Nullable="true" />
+          <Property Type="Int32" Name="ProductoId" Nullable="true" />
+          <Property Type="String" Name="NombreProducto" Nullable="true" />
+          <Property Type="String" Name="CodigoProducto" Nullable="true" />
+          <Property Type="Int32" Name="ProductoUnidadMedidaId" Nullable="true" />
+          <Property Type="String" Name="ProductoUnidadMedida" Nullable="true" MaxLength="200" />
+          <Property Type="Decimal" Name="Cantidad" Nullable="true" Precision="24" Scale="2" />
+          <Property Type="Int32" Name="IndicadorId" Nullable="true" />
+          <Property Type="String" Name="NombreIndicador" Nullable="true" />
+          <Property Type="String" Name="CodigoIndicador" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="IndicadorTipo" Nullable="true" MaxLength="2" />
+          <Property Type="Boolean" Name="IndicadorAcumula" Nullable="true" />
+          <Property Type="Int32" Name="IndicadorUnidadMedidaId" Nullable="true" />
+          <Property Type="String" Name="NombreUnidadMedida" Nullable="true" MaxLength="200" />
+          <Property Type="Decimal" Name="MetaTotal" Nullable="true" Precision="24" Scale="4" />
+        </ComplexType>
+        <ComplexType Name="uspGetRegionalizacionIndicadorAgregar_Result">
+          <Property Type="String" Name="BPIN" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="ProyectoId" Nullable="true" />
+          <Property Type="Int32" Name="ObjetivoId" Nullable="true" />
+          <Property Type="String" Name="ObjetivoEspecifico" Nullable="true" />
+          <Property Type="Int32" Name="ProductoId" Nullable="true" />
+          <Property Type="String" Name="NombreProducto" Nullable="true" />
+          <Property Type="String" Name="CodigoProducto" Nullable="true" />
+          <Property Type="Int32" Name="ProductoUnidadMedidaId" Nullable="true" />
+          <Property Type="String" Name="ProductoUnidadMedida" Nullable="true" MaxLength="200" />
+          <Property Type="Decimal" Name="Cantidad" Nullable="true" Precision="24" Scale="2" />
+          <Property Type="Int32" Name="IndicadorId" Nullable="true" />
+          <Property Type="String" Name="NombreIndicador" Nullable="true" />
+          <Property Type="String" Name="CodigoIndicador" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="IndicadorTipo" Nullable="true" MaxLength="2" />
+          <Property Type="Boolean" Name="IndicadorAcumula" Nullable="true" />
+          <Property Type="Int32" Name="IndicadorUnidadMedidaId" Nullable="true" />
+          <Property Type="String" Name="NombreUnidadMedida" Nullable="true" MaxLength="200" />
+          <Property Type="Decimal" Name="MetaTotal" Nullable="true" Precision="24" Scale="4" />
+          <Property Type="Int32" Name="Vigencia" Nullable="true" />
+          <Property Type="Decimal" Name="MetaVigencia" Nullable="true" Precision="24" Scale="4" />
+          <Property Type="Int32" Name="RegionId" Nullable="true" />
+          <Property Type="String" Name="NombreRegion" Nullable="true" />
+          <Property Type="String" Name="CodigoRegion" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="DepartamentoId" Nullable="true" />
+          <Property Type="String" Name="NombreDepartamento" Nullable="true" />
+          <Property Type="String" Name="CodigoDepto" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="MunicipioId" Nullable="true" />
+          <Property Type="String" Name="NombreMunicipio" Nullable="true" />
+          <Property Type="String" Name="CodigoMunicipio" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="AgrupacionId" Nullable="true" />
+          <Property Type="String" Name="NombreAgrupacion" Nullable="true" />
+          <Property Type="String" Name="CodigoAgrupacion" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="MetaRegionalizada" Nullable="true" Precision="24" Scale="4" />
+        </ComplexType>
+        <ComplexType Name="uspGetProyectoCompletarInformacion_Result">
+          <Property Type="String" Name="Bpin" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Mensaje" Nullable="true" />
+          <Property Type="String" Name="Tematica" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="MensajeError" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="AlmacenamientoTemporal">
+          <Key>
+            <PropertyRef Name="InstanciaId" />
+            <PropertyRef Name="AccionId" />
+          </Key>
+          <Property Name="InstanciaId" Type="Guid" Nullable="false" />
+          <Property Name="AccionId" Type="Guid" Nullable="false" />
+          <Property Name="Json" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Capitulo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Modified" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NombreModificado" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="MacroprocesoSeccion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="FaseId" Type="Int32" Nullable="false" />
+          <Property Name="SeccionId" Type="Int32" Nullable="false" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Modified" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TipoTramiteId" Type="Int32" />
+          <Property Name="orden" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Seccion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Modified" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NombreModificado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="SeccionCapitulos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MacroprocesoSeccionId" Type="Int32" Nullable="false" />
+          <Property Name="CapituloId" Type="Int32" Nullable="false" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Modified" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FaseId" Type="Int32" />
+          <Property Name="Editable" Type="Boolean" />
+          <Property Name="orden" Type="Int32" />
+        </EntityType>
+        <EntityType Name="VGetFase">
+          <Key>
+            <PropertyRef Name="NombreFase" />
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="NombreFase" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FaseGUID" Type="Guid" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="MGAWebContexto">
+          <FunctionImportMapping FunctionImportName="uspGetProductosPorProyecto" FunctionName="Model.Store.uspGetProductosPorProyecto">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.uspGetProductosPorProyecto_Result">
+                <ScalarProperty Name="ProyectoId" ColumnName="ProyectoId" />
+                <ScalarProperty Name="ProyectoBPIN" ColumnName="ProyectoBPIN" />
+                <ScalarProperty Name="Vigencia" ColumnName="Vigencia" />
+                <ScalarProperty Name="ProblemaCentralId" ColumnName="ProblemaCentralId" />
+                <ScalarProperty Name="ProblemaCentral" ColumnName="ProblemaCentral" />
+                <ScalarProperty Name="CausaId" ColumnName="CausaId" />
+                <ScalarProperty Name="Causa" ColumnName="Causa" />
+                <ScalarProperty Name="ObjetivoEspecificoId" ColumnName="ObjetivoEspecificoId" />
+                <ScalarProperty Name="ObjetivoEspecifico" ColumnName="ObjetivoEspecifico" />
+                <ScalarProperty Name="ProductoId" ColumnName="ProductoId" />
+                <ScalarProperty Name="ProductoTipoMedidaId" ColumnName="ProductoTipoMedidaId" />
+                <ScalarProperty Name="ProductoCatalogoId" ColumnName="ProductoCatalogoId" />
+                <ScalarProperty Name="ProductoAlternativaId" ColumnName="ProductoAlternativaId" />
+                <ScalarProperty Name="Producto" ColumnName="Producto" />
+                <ScalarProperty Name="ProductoComplemento" ColumnName="ProductoComplemento" />
+                <ScalarProperty Name="ProductoCantidad" ColumnName="ProductoCantidad" />
+                <ScalarProperty Name="IndicadorId" ColumnName="IndicadorId" />
+                <ScalarProperty Name="IndicadorBISId" ColumnName="IndicadorBISId" />
+                <ScalarProperty Name="IndicadorUnidadMedidaId" ColumnName="IndicadorUnidadMedidaId" />
+                <ScalarProperty Name="IndicadorProgramaId" ColumnName="IndicadorProgramaId" />
+                <ScalarProperty Name="IndicadorTipoOrigenId" ColumnName="IndicadorTipoOrigenId" />
+                <ScalarProperty Name="IndicadorProducto" ColumnName="IndicadorProducto" />
+                <ScalarProperty Name="IndicadorMetaTotal" ColumnName="IndicadorMetaTotal" />
+                <ScalarProperty Name="IndicadorFuenteVerificacionId" ColumnName="IndicadorFuenteVerificacionId" />
+                <ScalarProperty Name="IndicadorAcumula" ColumnName="IndicadorAcumula" />
+                <ScalarProperty Name="IndicadorAsociado" ColumnName="IndicadorAsociado" />
+                <ScalarProperty Name="IndicadorDelPrograma" ColumnName="IndicadorDelPrograma" />
+                <ScalarProperty Name="IndicadorTipo" ColumnName="IndicadorTipo" />
+                <ScalarProperty Name="IndicadorProyectoBase" ColumnName="IndicadorProyectoBase" />
+                <ScalarProperty Name="MetaId" ColumnName="MetaId" />
+                <ScalarProperty Name="Meta" ColumnName="Meta" />
+                <ScalarProperty Name="RegionalizacionMetaId" ColumnName="RegionalizacionMetaId" />
+                <ScalarProperty Name="RegionalizacionMetaRegionId" ColumnName="RegionalizacionMetaRegionId" />
+                <ScalarProperty Name="RegionalizacionMetaDepartamentoId" ColumnName="RegionalizacionMetaDepartamentoId" />
+                <ScalarProperty Name="RegionalizacionMetaMunicipioId" ColumnName="RegionalizacionMetaMunicipioId" />
+                <ScalarProperty Name="RegionalizacionMetaAgrupacionId" ColumnName="RegionalizacionMetaAgrupacionId" />
+                <ScalarProperty Name="RegionalizacionMetaVigente" ColumnName="RegionalizacionMetaVigente" />
+                <ScalarProperty Name="RegionalizacionMetaTotalRegionalizado" ColumnName="RegionalizacionMetaTotalRegionalizado" />
+                <ScalarProperty Name="CreadoPor" ColumnName="CreadoPor" />
+                <ScalarProperty Name="ModificadoPor" ColumnName="ModificadoPor" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="uspPostProductosPorProyecto" FunctionName="Model.Store.uspPostProductosPorProyecto" />
+          <FunctionImportMapping FunctionImportName="uspPostCadenaValor" FunctionName="Model.Store.uspPostCadenaValor" />
+          <FunctionImportMapping FunctionImportName="uspPostInsertarRecursos" FunctionName="Model.Store.uspPostInsertarRecursos" />
+          <FunctionImportMapping FunctionImportName="uspGetFuentesFinanciacion" FunctionName="Model.Store.uspGetFuentesFinanciacion" />
+          <FunctionImportMapping FunctionImportName="uspGetRecursosRegionalizacion" FunctionName="Model.Store.uspGetRecursosRegionalizacion">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.uspGetRecursosRegionalizacion_Result">
+                <ScalarProperty Name="BPIN" ColumnName="BPIN" />
+                <ScalarProperty Name="Vigencia" ColumnName="Vigencia" />
+                <ScalarProperty Name="Mes" ColumnName="Mes" />
+                <ScalarProperty Name="NomMes" ColumnName="NomMes" />
+                <ScalarProperty Name="GrupoRecurso" ColumnName="GrupoRecurso" />
+                <ScalarProperty Name="FuenteId" ColumnName="FuenteId" />
+                <ScalarProperty Name="Fuente" ColumnName="Fuente" />
+                <ScalarProperty Name="ValorSolicitado" ColumnName="ValorSolicitado" />
+                <ScalarProperty Name="ValorInicial" ColumnName="ValorInicial" />
+                <ScalarProperty Name="ValorVigente" ColumnName="ValorVigente" />
+                <ScalarProperty Name="Compromiso" ColumnName="Compromiso" />
+                <ScalarProperty Name="Obligacion" ColumnName="Obligacion" />
+                <ScalarProperty Name="Pago" ColumnName="Pago" />
+                <ScalarProperty Name="RegionalizacionRecursosId" ColumnName="RegionalizacionRecursosId" />
+                <ScalarProperty Name="RegRecursosRegionId" ColumnName="RegRecursosRegionId" />
+                <ScalarProperty Name="RegRecursosDepartamentoId" ColumnName="RegRecursosDepartamentoId" />
+                <ScalarProperty Name="RegRecursosMunicipioId" ColumnName="RegRecursosMunicipioId" />
+                <ScalarProperty Name="RegAgrupacionId" ColumnName="RegAgrupacionId" />
+                <ScalarProperty Name="RegValorSolicitado" ColumnName="RegValorSolicitado" />
+                <ScalarProperty Name="RegValorInicial" ColumnName="RegValorInicial" />
+                <ScalarProperty Name="RegValorVigente" ColumnName="RegValorVigente" />
+                <ScalarProperty Name="RegCompromiso" ColumnName="RegCompromiso" />
+                <ScalarProperty Name="RegObligacion" ColumnName="RegObligacion" />
+                <ScalarProperty Name="RegPago" ColumnName="RegPago" />
+                <ScalarProperty Name="EjecucionRecursosId" ColumnName="EjecucionRecursosId" />
+                <ScalarProperty Name="RegRecursosRegion" ColumnName="RegRecursosRegion" />
+                <ScalarProperty Name="RegRecursosDepartamento" ColumnName="RegRecursosDepartamento" />
+                <ScalarProperty Name="RegRecursosMunicipio" ColumnName="RegRecursosMunicipio" />
+                <ScalarProperty Name="RegRecursosAgrupacion" ColumnName="RegRecursosAgrupacion" />
+                <ScalarProperty Name="RegRecursosRegionalizacionNombre" ColumnName="RegRecursosRegionalizacionNombre" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="uspGetCadenaValor" FunctionName="Model.Store.uspGetCadenaValor">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.uspGetCadenaValor_Result">
+                <ScalarProperty Name="BPIN" ColumnName="BPIN" />
+                <ScalarProperty Name="Vigencia" ColumnName="Vigencia" />
+                <ScalarProperty Name="MesId" ColumnName="MesId" />
+                <ScalarProperty Name="Mes" ColumnName="Mes" />
+                <ScalarProperty Name="GRGrupoRecursoId" ColumnName="GRGrupoRecursoId" />
+                <ScalarProperty Name="GRGrupoRecurso" ColumnName="GRGrupoRecurso" />
+                <ScalarProperty Name="GRValorSolicitado" ColumnName="GRValorSolicitado" />
+                <ScalarProperty Name="GRValorInicial" ColumnName="GRValorInicial" />
+                <ScalarProperty Name="GRValorVigente" ColumnName="GRValorVigente" />
+                <ScalarProperty Name="GRCompromiso" ColumnName="GRCompromiso" />
+                <ScalarProperty Name="GRObligacion" ColumnName="GRObligacion" />
+                <ScalarProperty Name="GRPago" ColumnName="GRPago" />
+                <ScalarProperty Name="ObjetivoEspecificoId" ColumnName="ObjetivoEspecificoId" />
+                <ScalarProperty Name="ObjetivoEspecifico" ColumnName="ObjetivoEspecifico" />
+                <ScalarProperty Name="ProductoId" ColumnName="ProductoId" />
+                <ScalarProperty Name="CatalogoProductoId" ColumnName="CatalogoProductoId" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="TipoMedidaId" ColumnName="TipoMedidaId" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="ActividadId" ColumnName="ActividadId" />
+                <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
+                <ScalarProperty Name="FechaFin" ColumnName="FechaFin" />
+                <ScalarProperty Name="Etapa" ColumnName="Etapa" />
+                <ScalarProperty Name="ActividadInsumoId" ColumnName="ActividadInsumoId" />
+                <ScalarProperty Name="TipoInsumoId" ColumnName="TipoInsumoId" />
+                <ScalarProperty Name="ValorSolicitado" ColumnName="ValorSolicitado" />
+                <ScalarProperty Name="ValorInicial" ColumnName="ValorInicial" />
+                <ScalarProperty Name="ValorVigente" ColumnName="ValorVigente" />
+                <ScalarProperty Name="Compromiso" ColumnName="Compromiso" />
+                <ScalarProperty Name="Obligacion" ColumnName="Obligacion" />
+                <ScalarProperty Name="Pago" ColumnName="Pago" />
+                <ScalarProperty Name="Observacion" ColumnName="Observacion" />
+                <ScalarProperty Name="NombreActividad" ColumnName="NombreActividad" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="uspPostRecursosValoresFuentesTemp" FunctionName="Model.Store.uspPostRecursosValoresFuentesTemp" />
+          <FunctionImportMapping FunctionImportName="uspPostCadenaValorTemp" FunctionName="Model.Store.uspPostCadenaValorTemp" />
+          <FunctionImportMapping FunctionImportName="uspGetRegionalizacionIndicadoresProgramacion" FunctionName="Model.Store.uspGetRegionalizacionIndicadoresProgramacion">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.uspGetRegionalizacionIndicadoresProgramacion_Result">
+                <ScalarProperty Name="BPIN" ColumnName="BPIN" />
+                <ScalarProperty Name="ProyectoId" ColumnName="ProyectoId" />
+                <ScalarProperty Name="Vigencia" ColumnName="Vigencia" />
+                <ScalarProperty Name="ObjetivoId" ColumnName="ObjetivoId" />
+                <ScalarProperty Name="ObjetivoEspecifico" ColumnName="ObjetivoEspecifico" />
+                <ScalarProperty Name="ProductoId" ColumnName="ProductoId" />
+                <ScalarProperty Name="NombreProducto" ColumnName="NombreProducto" />
+                <ScalarProperty Name="ProductoUnidadMedidaId" ColumnName="ProductoUnidadMedidaId" />
+                <ScalarProperty Name="ProductoUnidadMedida" ColumnName="ProductoUnidadMedida" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="IndicadorId" ColumnName="IndicadorId" />
+                <ScalarProperty Name="NombreIndicador" ColumnName="NombreIndicador" />
+                <ScalarProperty Name="CodigoIndicador" ColumnName="CodigoIndicador" />
+                <ScalarProperty Name="IndicadorTipo" ColumnName="IndicadorTipo" />
+                <ScalarProperty Name="IndicadorAcumula" ColumnName="IndicadorAcumula" />
+                <ScalarProperty Name="IndicadorUnidadMedidaId" ColumnName="IndicadorUnidadMedidaId" />
+                <ScalarProperty Name="NombreUnidadMedida" ColumnName="NombreUnidadMedida" />
+                <ScalarProperty Name="MetaTotal" ColumnName="MetaTotal" />
+                <ScalarProperty Name="MetaVigenteVigencia" ColumnName="MetaVigenteVigencia" />
+                <ScalarProperty Name="RegionalizacionMetasId" ColumnName="RegionalizacionMetasId" />
+                <ScalarProperty Name="RegionId" ColumnName="RegionId" />
+                <ScalarProperty Name="NombreRegion" ColumnName="NombreRegion" />
+                <ScalarProperty Name="CodigoRegion" ColumnName="CodigoRegion" />
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="NombreDepartamento" ColumnName="NombreDepartamento" />
+                <ScalarProperty Name="CodigoDepto" ColumnName="CodigoDepto" />
+                <ScalarProperty Name="MunicipalityId" ColumnName="MunicipalityId" />
+                <ScalarProperty Name="NombreMunicipio" ColumnName="NombreMunicipio" />
+                <ScalarProperty Name="CodigoMunicipio" ColumnName="CodigoMunicipio" />
+                <ScalarProperty Name="AgrupacionId" ColumnName="AgrupacionId" />
+                <ScalarProperty Name="NombreAgrupacion" ColumnName="NombreAgrupacion" />
+                <ScalarProperty Name="CodigoAgrupacion" ColumnName="CodigoAgrupacion" />
+                <ScalarProperty Name="MetaVigenteReg" ColumnName="MetaVigenteReg" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="uspPostRegionalizacionIndicadoresProgramacionTemp" FunctionName="Model.Store.uspPostRegionalizacionIndicadoresProgramacionTemp" />
+          <FunctionImportMapping FunctionImportName="uspGetRecursosFocalizacionVA" FunctionName="Model.Store.uspGetRecursosFocalizacionVA">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.uspGetRecursosFocalizacionVA_Result">
+                <ScalarProperty Name="BPIN" ColumnName="BPIN" />
+                <ScalarProperty Name="Vigencia" ColumnName="Vigencia" />
+                <ScalarProperty Name="FuenteId" ColumnName="FuenteId" />
+                <ScalarProperty Name="Fuente" ColumnName="Fuente" />
+                <ScalarProperty Name="FSolicitado" ColumnName="FSolicitado" />
+                <ScalarProperty Name="FInicial" ColumnName="FInicial" />
+                <ScalarProperty Name="FVigente" ColumnName="FVigente" />
+                <ScalarProperty Name="FocalizacionRecursosId" ColumnName="FocalizacionRecursosId" />
+                <ScalarProperty Name="PoliticaId" ColumnName="PoliticaId" />
+                <ScalarProperty Name="Politica" ColumnName="Politica" />
+                <ScalarProperty Name="DimensionId" ColumnName="DimensionId" />
+                <ScalarProperty Name="Dimension" ColumnName="Dimension" />
+                <ScalarProperty Name="ValorSolicitado" ColumnName="ValorSolicitado" />
+                <ScalarProperty Name="ValorInicial" ColumnName="ValorInicial" />
+                <ScalarProperty Name="ValorVigente" ColumnName="ValorVigente" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="uspPostRecursosValoresFocalizacionTemp" FunctionName="Model.Store.uspPostRecursosValoresFocalizacionTemp" />
+          <FunctionImportMapping FunctionImportName="uspPostInsertarFocalizacionVA" FunctionName="Model.Store.uspPostInsertarFocalizacionVA" />
+          <FunctionImportMapping FunctionImportName="uspPostRegionalizacionIndicadoresProgramacion" FunctionName="Model.Store.uspPostRegionalizacionIndicadoresProgramacion" />
+          <FunctionImportMapping FunctionImportName="uspGetProyectoFocalizacionVA" FunctionName="Model.Store.uspGetProyectoFocalizacionVA">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.uspGetProyectoFocalizacionVA_Result">
+                <ScalarProperty Name="BPIN" ColumnName="BPIN" />
+                <ScalarProperty Name="ProyectoId" ColumnName="ProyectoId" />
+                <ScalarProperty Name="PoliticaId" ColumnName="PoliticaId" />
+                <ScalarProperty Name="Politica" ColumnName="Politica" />
+                <ScalarProperty Name="DimensionId" ColumnName="DimensionId" />
+                <ScalarProperty Name="Dimension" ColumnName="Dimension" />
+                <ScalarProperty Name="FocalizacionProyectoId" ColumnName="FocalizacionProyectoId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="uspGetProyectoValoresFocalizacionVA" FunctionName="Model.Store.uspGetProyectoValoresFocalizacionVA" />
+          <FunctionImportMapping FunctionImportName="uspPostProyectosValoresFocalizacionTemp" FunctionName="Model.Store.uspPostProyectosValoresFocalizacionTemp" />
+          <FunctionImportMapping FunctionImportName="uspGetCuantificacionLocalizacionPoblacion" FunctionName="Model.Store.uspGetCuantificacionLocalizacionPoblacion">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.uspGetCuantificacionLocalizacionPoblacion_Result">
+                <ScalarProperty Name="BPIN" ColumnName="BPIN" />
+                <ScalarProperty Name="ProyectoId" ColumnName="ProyectoId" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Vigencia" ColumnName="Vigencia" />
+                <ScalarProperty Name="LocalizacionId" ColumnName="LocalizacionId" />
+                <ScalarProperty Name="RegionId" ColumnName="RegionId" />
+                <ScalarProperty Name="NombreRegion" ColumnName="NombreRegion" />
+                <ScalarProperty Name="CodigoRegion" ColumnName="CodigoRegion" />
+                <ScalarProperty Name="DepartamentoId" ColumnName="DepartamentoId" />
+                <ScalarProperty Name="NombreDepartamento" ColumnName="NombreDepartamento" />
+                <ScalarProperty Name="CodigoDepto" ColumnName="CodigoDepto" />
+                <ScalarProperty Name="MunicipioId" ColumnName="MunicipioId" />
+                <ScalarProperty Name="NombreMunicipio" ColumnName="NombreMunicipio" />
+                <ScalarProperty Name="CodigoMunicipio" ColumnName="CodigoMunicipio" />
+                <ScalarProperty Name="AgrupacionId" ColumnName="AgrupacionId" />
+                <ScalarProperty Name="NombreAgrupacion" ColumnName="NombreAgrupacion" />
+                <ScalarProperty Name="CodigoAgrupacion" ColumnName="CodigoAgrupacion" />
+                <ScalarProperty Name="CantidadLocalizada" ColumnName="CantidadLocalizada" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="uspPostCuantificacionLocalizacionPoblacionTemp" FunctionName="Model.Store.uspPostCuantificacionLocalizacionPoblacionTemp" />
+          <FunctionImportMapping FunctionImportName="uspPostCuantificacionLocalizacionPoblacion" FunctionName="Model.Store.uspPostCuantificacionLocalizacionPoblacion" />
+          <FunctionImportMapping FunctionImportName="uspPostInsertarProyectoFocalizacionVA" FunctionName="Model.Store.uspPostInsertarProyectoFocalizacionVA" />
+          <FunctionImportMapping FunctionImportName="uspGetFocalizacionCuantificacionLocalizacion" FunctionName="Model.Store.uspGetFocalizacionCuantificacionLocalizacion">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.uspGetFocalizacionCuantificacionLocalizacion_Result">
+                <ScalarProperty Name="BPIN" ColumnName="BPIN" />
+                <ScalarProperty Name="ProyectoId" ColumnName="ProyectoId" />
+                <ScalarProperty Name="PoblacionObjetivo" ColumnName="PoblacionObjetivo" />
+                <ScalarProperty Name="PoliticaId" ColumnName="PoliticaId" />
+                <ScalarProperty Name="DimensionId" ColumnName="DimensionId" />
+                <ScalarProperty Name="NombreDescripcion" ColumnName="NombreDescripcion" />
+                <ScalarProperty Name="CantidadMGA" ColumnName="CantidadMGA" />
+                <ScalarProperty Name="Vigencia" ColumnName="Vigencia" />
+                <ScalarProperty Name="LocalizacionId" ColumnName="LocalizacionId" />
+                <ScalarProperty Name="RegionId" ColumnName="RegionId" />
+                <ScalarProperty Name="NombreRegion" ColumnName="NombreRegion" />
+                <ScalarProperty Name="CodigoRegion" ColumnName="CodigoRegion" />
+                <ScalarProperty Name="DepartamentoId" ColumnName="DepartamentoId" />
+                <ScalarProperty Name="NombreDepartamento" ColumnName="NombreDepartamento" />
+                <ScalarProperty Name="CodigoDepto" ColumnName="CodigoDepto" />
+                <ScalarProperty Name="MunicipioId" ColumnName="MunicipioId" />
+                <ScalarProperty Name="NombreMunicipio" ColumnName="NombreMunicipio" />
+                <ScalarProperty Name="CodigoMunicipio" ColumnName="CodigoMunicipio" />
+                <ScalarProperty Name="AgrupacionId" ColumnName="AgrupacionId" />
+                <ScalarProperty Name="NombreAgrupacion" ColumnName="NombreAgrupacion" />
+                <ScalarProperty Name="CodigoAgrupacion" ColumnName="CodigoAgrupacion" />
+                <ScalarProperty Name="CantidadCuantificada" ColumnName="CantidadCuantificada" />
+                <ScalarProperty Name="CantidadFocalizada" ColumnName="CantidadFocalizada" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="uspPostFocalizacionCuantificacionLocalizacionTemp" FunctionName="Model.Store.uspPostFocalizacionCuantificacionLocalizacionTemp" />
+          <FunctionImportMapping FunctionImportName="uspPostFocalizacionCuantificacionLocalizacion" FunctionName="Model.Store.uspPostFocalizacionCuantificacionLocalizacion" />
+          <FunctionImportMapping FunctionImportName="uspGetIndicadorProductoAgregar" FunctionName="Model.Store.uspGetIndicadorProductoAgregar">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.uspGetIndicadorProductoAgregar_Result">
+                <ScalarProperty Name="BPIN" ColumnName="BPIN" />
+                <ScalarProperty Name="ProyectoId" ColumnName="ProyectoId" />
+                <ScalarProperty Name="ObjetivoId" ColumnName="ObjetivoId" />
+                <ScalarProperty Name="ObjetivoEspecifico" ColumnName="ObjetivoEspecifico" />
+                <ScalarProperty Name="ProductoId" ColumnName="ProductoId" />
+                <ScalarProperty Name="NombreProducto" ColumnName="NombreProducto" />
+                <ScalarProperty Name="CodigoProducto" ColumnName="CodigoProducto" />
+                <ScalarProperty Name="ProductoUnidadMedidaId" ColumnName="ProductoUnidadMedidaId" />
+                <ScalarProperty Name="ProductoUnidadMedida" ColumnName="ProductoUnidadMedida" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="IndicadorId" ColumnName="IndicadorId" />
+                <ScalarProperty Name="NombreIndicador" ColumnName="NombreIndicador" />
+                <ScalarProperty Name="CodigoIndicador" ColumnName="CodigoIndicador" />
+                <ScalarProperty Name="IndicadorTipo" ColumnName="IndicadorTipo" />
+                <ScalarProperty Name="IndicadorAcumula" ColumnName="IndicadorAcumula" />
+                <ScalarProperty Name="IndicadorUnidadMedidaId" ColumnName="IndicadorUnidadMedidaId" />
+                <ScalarProperty Name="NombreUnidadMedida" ColumnName="NombreUnidadMedida" />
+                <ScalarProperty Name="MetaTotal" ColumnName="MetaTotal" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="uspPostIndicadorProductoAgregarTemp" FunctionName="Model.Store.uspPostIndicadorProductoAgregarTemp" />
+          <FunctionImportMapping FunctionImportName="uspPostIndicadorProductoAgregar" FunctionName="Model.Store.uspPostIndicadorProductoAgregar" />
+          <FunctionImportMapping FunctionImportName="uspGetRegionalizacionIndicadorAgregar" FunctionName="Model.Store.uspGetRegionalizacionIndicadorAgregar">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.uspGetRegionalizacionIndicadorAgregar_Result">
+                <ScalarProperty Name="BPIN" ColumnName="BPIN" />
+                <ScalarProperty Name="ProyectoId" ColumnName="ProyectoId" />
+                <ScalarProperty Name="ObjetivoId" ColumnName="ObjetivoId" />
+                <ScalarProperty Name="ObjetivoEspecifico" ColumnName="ObjetivoEspecifico" />
+                <ScalarProperty Name="ProductoId" ColumnName="ProductoId" />
+                <ScalarProperty Name="NombreProducto" ColumnName="NombreProducto" />
+                <ScalarProperty Name="CodigoProducto" ColumnName="CodigoProducto" />
+                <ScalarProperty Name="ProductoUnidadMedidaId" ColumnName="ProductoUnidadMedidaId" />
+                <ScalarProperty Name="ProductoUnidadMedida" ColumnName="ProductoUnidadMedida" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="IndicadorId" ColumnName="IndicadorId" />
+                <ScalarProperty Name="NombreIndicador" ColumnName="NombreIndicador" />
+                <ScalarProperty Name="CodigoIndicador" ColumnName="CodigoIndicador" />
+                <ScalarProperty Name="IndicadorTipo" ColumnName="IndicadorTipo" />
+                <ScalarProperty Name="IndicadorAcumula" ColumnName="IndicadorAcumula" />
+                <ScalarProperty Name="IndicadorUnidadMedidaId" ColumnName="IndicadorUnidadMedidaId" />
+                <ScalarProperty Name="NombreUnidadMedida" ColumnName="NombreUnidadMedida" />
+                <ScalarProperty Name="MetaTotal" ColumnName="MetaTotal" />
+                <ScalarProperty Name="Vigencia" ColumnName="Vigencia" />
+                <ScalarProperty Name="MetaVigencia" ColumnName="MetaVigencia" />
+                <ScalarProperty Name="RegionId" ColumnName="RegionId" />
+                <ScalarProperty Name="NombreRegion" ColumnName="NombreRegion" />
+                <ScalarProperty Name="CodigoRegion" ColumnName="CodigoRegion" />
+                <ScalarProperty Name="DepartamentoId" ColumnName="DepartamentoId" />
+                <ScalarProperty Name="NombreDepartamento" ColumnName="NombreDepartamento" />
+                <ScalarProperty Name="CodigoDepto" ColumnName="CodigoDepto" />
+                <ScalarProperty Name="MunicipioId" ColumnName="MunicipioId" />
+                <ScalarProperty Name="NombreMunicipio" ColumnName="NombreMunicipio" />
+                <ScalarProperty Name="CodigoMunicipio" ColumnName="CodigoMunicipio" />
+                <ScalarProperty Name="AgrupacionId" ColumnName="AgrupacionId" />
+                <ScalarProperty Name="NombreAgrupacion" ColumnName="NombreAgrupacion" />
+                <ScalarProperty Name="CodigoAgrupacion" ColumnName="CodigoAgrupacion" />
+                <ScalarProperty Name="MetaRegionalizada" ColumnName="MetaRegionalizada" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="uspPostRegionalizacionIndicadorAgregarTemp" FunctionName="Model.Store.uspPostRegionalizacionIndicadorAgregarTemp" />
+          <FunctionImportMapping FunctionImportName="uspPostRegionalizacionIndicadorAgregar" FunctionName="Model.Store.uspPostRegionalizacionIndicadorAgregar" />
+          <FunctionImportMapping FunctionImportName="uspGetProyectoCompletarInformacion" FunctionName="Model.Store.uspGetProyectoCompletarInformacion">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.uspGetProyectoCompletarInformacion_Result">
+                <ScalarProperty Name="Bpin" ColumnName="Bpin" />
+                <ScalarProperty Name="Mensaje" ColumnName="Mensaje" />
+                <ScalarProperty Name="Tematica" ColumnName="Tematica" />
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="uspPostProyectoCompletarInformacion" FunctionName="Model.Store.uspPostProyectoCompletarInformacion" />
+          <FunctionImportMapping FunctionImportName="uspGetCuantificacionBeneficiarios_JSON" FunctionName="Model.Store.uspGetCuantificacionBeneficiarios_JSON" />
+          <FunctionImportMapping FunctionImportName="uspPostCuantificacionBeneficiario" FunctionName="Model.Store.uspPostCuantificacionBeneficiario" />
+          <FunctionImportMapping FunctionImportName="uspPostCuantificacionBeneficiarioTemp" FunctionName="Model.Store.uspPostCuantificacionBeneficiarioTemp" />
+          <FunctionImportMapping FunctionImportName="uspGetFuentesFinanciacion_JSON" FunctionName="Model.Store.uspGetFuentesFinanciacion_JSON" />
+          <FunctionImportMapping FunctionImportName="uspPostFuentesFinanciacion_JSON" FunctionName="Model.Store.uspPostFuentesFinanciacion_JSON" />
+          <FunctionImportMapping FunctionImportName="uspPostFuentesFinanciacionTemp" FunctionName="Model.Store.uspPostFuentesFinanciacionTemp" />
+          <FunctionImportMapping FunctionImportName="uspGetPoliticasTransversales_JSON" FunctionName="Model.Store.uspGetPoliticasTransversales_JSON" />
+          <FunctionImportMapping FunctionImportName="UspGetRegionalizacionMetasRecursos_JSON" FunctionName="Model.Store.UspGetRegionalizacionMetasRecursos_JSON" />
+          <FunctionImportMapping FunctionImportName="uspPostLocalizacion" FunctionName="Model.Store.uspPostLocalizacion" />
+          <FunctionImportMapping FunctionImportName="UspGetLocalizacion_JSON" FunctionName="Model.Store.UspGetLocalizacion_JSON" />
+          <EntitySetMapping Name="AlmacenamientoTemporal">
+            <EntityTypeMapping TypeName="Model.AlmacenamientoTemporal">
+              <MappingFragment StoreEntitySet="AlmacenamientoTemporal">
+                <ScalarProperty Name="Json" ColumnName="Json" />
+                <ScalarProperty Name="AccionId" ColumnName="AccionId" />
+                <ScalarProperty Name="InstanciaId" ColumnName="InstanciaId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="uspPostLocalizacionTemp" FunctionName="Model.Store.uspPostLocalizacionTemp" />
+          <FunctionImportMapping FunctionImportName="UspPostRegionalizacionMetasRecursos" FunctionName="Model.Store.UspPostRegionalizacionMetasRecursos" />
+          <FunctionImportMapping FunctionImportName="UspGetPoliticasTransversalesBeneficiarios_JSON" FunctionName="Model.Store.UspGetPoliticasTransversalesBeneficiarios_JSON" />
+          <FunctionImportMapping FunctionImportName="uspPostPoliticasTransversalesBeneficiario" FunctionName="Model.Store.uspPostPoliticasTransversalesBeneficiario" />
+          <FunctionImportMapping FunctionImportName="uspPostPoliticasTransversalesBeneficiarioTemp" FunctionName="Model.Store.uspPostPoliticasTransversalesBeneficiarioTemp" />
+          <FunctionImportMapping FunctionImportName="uspPostPoliticasTransversales" FunctionName="Model.Store.uspPostPoliticasTransversales" />
+          <FunctionImportMapping FunctionImportName="uspPostPoliticasTransversalesTemp" FunctionName="Model.Store.uspPostPoliticasTransversalesTemp" />
+          <FunctionImportMapping FunctionImportName="UspGetPoliticasTransversalesMetas_JSON" FunctionName="Model.Store.UspGetPoliticasTransversalesMetas_JSON" />
+          <FunctionImportMapping FunctionImportName="UspPostPoliticasTransversalesMetas" FunctionName="Model.Store.UspPostPoliticasTransversalesMetas" />
+          <FunctionImportMapping FunctionImportName="UspPostPoliticasTransversalesMetasTemp" FunctionName="Model.Store.UspPostPoliticasTransversalesMetasTemp" />
+          <FunctionImportMapping FunctionImportName="UspPostRegionalizacionMetasRecursosTemp" FunctionName="Model.Store.UspPostRegionalizacionMetasRecursosTemp" />
+          <FunctionImportMapping FunctionImportName="uspGetAgregarPoliticas_JSON" FunctionName="Model.Store.uspGetAgregarPoliticas_JSON" />
+          <FunctionImportMapping FunctionImportName="uspPostAgregarPoliticas" FunctionName="Model.Store.uspPostAgregarPoliticas" />
+          <FunctionImportMapping FunctionImportName="uspPostAgregarPoliticasTemp" FunctionName="Model.Store.uspPostAgregarPoliticasTemp" />
+          <FunctionImportMapping FunctionImportName="uspGetPoliticasTransversalesIndicadores_JSON" FunctionName="Model.Store.uspGetPoliticasTransversalesIndicadores_JSON" />
+          <FunctionImportMapping FunctionImportName="uspPostPoliticasTransversalesIndicadores" FunctionName="Model.Store.uspPostPoliticasTransversalesIndicadores" />
+          <FunctionImportMapping FunctionImportName="uspPostPoliticasTransversalesIndicadoresTemp" FunctionName="Model.Store.uspPostPoliticasTransversalesIndicadoresTemp" />
+          <FunctionImportMapping FunctionImportName="UspGetRegionalizaicion_JSON" FunctionName="Model.Store.UspGetRegionalizaicion_JSON" />
+          <FunctionImportMapping FunctionImportName="uspPostRegionalizacion" FunctionName="Model.Store.uspPostRegionalizacion" />
+          <FunctionImportMapping FunctionImportName="uspPostRegionalizacionTemp" FunctionName="Model.Store.uspPostRegionalizacionTemp" />
+          <FunctionImportMapping FunctionImportName="UspGetPoliticasTransversalesBeneficiariosCategorias_JSON" FunctionName="Model.Store.UspGetPoliticasTransversalesBeneficiariosCategorias_JSON" />
+          <FunctionImportMapping FunctionImportName="uspPostPoliticasTransversalesBeneficiariosCategorias" FunctionName="Model.Store.uspPostPoliticasTransversalesBeneficiariosCategorias" />
+          <FunctionImportMapping FunctionImportName="uspPostPoliticasTransversalesBeneficiariosCategoriasTemp" FunctionName="Model.Store.uspPostPoliticasTransversalesBeneficiariosCategoriasTemp" />
+          <FunctionImportMapping FunctionImportName="uspGetPoliticasTransversalesRelacionadas_JSON" FunctionName="Model.Store.uspGetPoliticasTransversalesRelacionadas_JSON" />
+          <FunctionImportMapping FunctionImportName="uspPostPoliticasTransversalesRelacionadas" FunctionName="Model.Store.uspPostPoliticasTransversalesRelacionadas" />
+          <FunctionImportMapping FunctionImportName="uspPostPoliticasTransversalesRelacionadasTemp" FunctionName="Model.Store.uspPostPoliticasTransversalesRelacionadasTemp" />
+          <FunctionImportMapping FunctionImportName="UspGetLocalizacion_Ajustar_JSON" FunctionName="Model.Store.UspGetLocalizacion_Ajustar_JSON" />
+          <FunctionImportMapping FunctionImportName="UspGetRegionalizacion_Ajustar_JSON" FunctionName="Model.Store.UspGetRegionalizacion_Ajustar_JSON" />
+          <FunctionImportMapping FunctionImportName="uspPostRegionalizacion_Ajustar" FunctionName="Model.Store.uspPostRegionalizacion_Ajustar" />
+          <FunctionImportMapping FunctionImportName="uspPostRegionalizacionTemp_Ajustar" FunctionName="Model.Store.uspPostRegionalizacionTemp_Ajustar" />
+          <FunctionImportMapping FunctionImportName="uspPostFuentesFinanciacion_Ajustes" FunctionName="Model.Store.uspPostFuentesFinanciacion_Ajustes" />
+          <FunctionImportMapping FunctionImportName="uspPostFuentesFinanciacion_AjustesTemp" FunctionName="Model.Store.uspPostFuentesFinanciacion_AjustesTemp" />
+          <FunctionImportMapping FunctionImportName="uspGetFuentesFinanciacion_Ajustes_JSON" FunctionName="Model.Store.uspGetFuentesFinanciacion_Ajustes_JSON" />
+          <FunctionImportMapping FunctionImportName="UspPostRegionalizacionMetasRecursos_AjustesTemp" FunctionName="Model.Store.UspPostRegionalizacionMetasRecursos_AjustesTemp" />
+          <FunctionImportMapping FunctionImportName="UspGetRegionalizacionMetasRecursos_Ajustes_JSON" FunctionName="Model.Store.UspGetRegionalizacionMetasRecursos_Ajustes_JSON" />
+          <FunctionImportMapping FunctionImportName="UspPostRegionalizacionMetasRecursos_Ajustes" FunctionName="Model.Store.UspPostRegionalizacionMetasRecursos_Ajustes" />
+          <FunctionImportMapping FunctionImportName="UspGetPoliticasTransversalesBeneficiarios_Ajustar_JSON" FunctionName="Model.Store.UspGetPoliticasTransversalesBeneficiarios_Ajustar_JSON" />
+          <FunctionImportMapping FunctionImportName="uspPostPoliticasTransversalesBeneficiario_Ajustar" FunctionName="Model.Store.uspPostPoliticasTransversalesBeneficiario_Ajustar" />
+          <FunctionImportMapping FunctionImportName="uspPostPoliticasTransversalesBeneficiarioTemp_Ajustar" FunctionName="Model.Store.uspPostPoliticasTransversalesBeneficiarioTemp_Ajustar" />
+          <FunctionImportMapping FunctionImportName="uspPostAgregarPoliticas_AjustarTemp" FunctionName="Model.Store.uspPostAgregarPoliticas_AjustarTemp" />
+          <FunctionImportMapping FunctionImportName="uspGetAgregarPoliticas_Ajustar_JSON" FunctionName="Model.Store.uspGetAgregarPoliticas_Ajustar_JSON" />
+          <FunctionImportMapping FunctionImportName="uspPostAgregarPoliticas_Ajustar" FunctionName="Model.Store.uspPostAgregarPoliticas_Ajustar" />
+          <FunctionImportMapping FunctionImportName="uspGetCuantificacionBeneficiarios_Ajustar_JSON" FunctionName="Model.Store.uspGetCuantificacionBeneficiarios_Ajustar_JSON" />
+          <FunctionImportMapping FunctionImportName="uspPostCuantificacionBeneficiario_Ajustar" FunctionName="Model.Store.uspPostCuantificacionBeneficiario_Ajustar" />
+          <FunctionImportMapping FunctionImportName="uspPostCuantificacionBeneficiarioTemp_Ajustar" FunctionName="Model.Store.uspPostCuantificacionBeneficiarioTemp_Ajustar" />
+          <FunctionImportMapping FunctionImportName="UspGetPoliticasTransversalesBeneficiariosCategorias_Ajustes_JSON" FunctionName="Model.Store.UspGetPoliticasTransversalesBeneficiariosCategorias_Ajustes_JSON" />
+          <FunctionImportMapping FunctionImportName="uspPostPoliticasTransversalesBeneficiariosCategorias_Ajustes" FunctionName="Model.Store.uspPostPoliticasTransversalesBeneficiariosCategorias_Ajustes" />
+          <FunctionImportMapping FunctionImportName="uspPostPoliticasTransversalesBeneficiariosCategoriasTemp_Ajustes" FunctionName="Model.Store.uspPostPoliticasTransversalesBeneficiariosCategoriasTemp_Ajustes" />
+          <FunctionImportMapping FunctionImportName="UspGetPoliticasTransversalesMetas_Ajustar_JSON" FunctionName="Model.Store.UspGetPoliticasTransversalesMetas_Ajustar_JSON" />
+          <FunctionImportMapping FunctionImportName="UspPostPoliticasTransversalesMetas_Ajustar" FunctionName="Model.Store.UspPostPoliticasTransversalesMetas_Ajustar" />
+          <FunctionImportMapping FunctionImportName="UspPostPoliticasTransversalesMetasTemp_Ajustar" FunctionName="Model.Store.UspPostPoliticasTransversalesMetasTemp_Ajustar" />
+          <FunctionImportMapping FunctionImportName="uspGetPoliticasTransversalesIndicadores_Ajustes_JSON" FunctionName="Model.Store.uspGetPoliticasTransversalesIndicadores_Ajustes_JSON" />
+          <FunctionImportMapping FunctionImportName="uspPostPoliticasTransversalesIndicadores_Ajustes" FunctionName="Model.Store.uspPostPoliticasTransversalesIndicadores_Ajustes" />
+          <FunctionImportMapping FunctionImportName="uspPostPoliticasTransversalesIndicadores_AjustesTemp" FunctionName="Model.Store.uspPostPoliticasTransversalesIndicadores_AjustesTemp" />
+          <FunctionImportMapping FunctionImportName="UspGetCadenaValor_Ajustes_JSON" FunctionName="Model.Store.UspGetCadenaValor_Ajustes_JSON" />
+          <FunctionImportMapping FunctionImportName="uspGetPoliticasTransversalesRelacionadas_Ajustes_JSON" FunctionName="Model.Store.uspGetPoliticasTransversalesRelacionadas_Ajustes_JSON" />
+          <FunctionImportMapping FunctionImportName="uspPostPoliticasTransversalesRelacionadasAjustes" FunctionName="Model.Store.uspPostPoliticasTransversalesRelacionadasAjustes" />
+          <FunctionImportMapping FunctionImportName="uspPostPoliticasTransversalesRelacionadasAjustesTemp" FunctionName="Model.Store.uspPostPoliticasTransversalesRelacionadasAjustesTemp" />
+          <FunctionImportMapping FunctionImportName="UspGetCadenaValorEntregables_Ajustes_JSON" FunctionName="Model.Store.UspGetCadenaValorEntregables_Ajustes_JSON" />
+          <FunctionImportMapping FunctionImportName="uspPostCadenaValorEntregables_Ajustes" FunctionName="Model.Store.uspPostCadenaValorEntregables_Ajustes" />
+          <FunctionImportMapping FunctionImportName="uspPostCadenaValor_Ajustes" FunctionName="Model.Store.uspPostCadenaValor_Ajustes" />
+          <FunctionImportMapping FunctionImportName="UspGetDesagregarRegionalizacion_JSON" FunctionName="Model.Store.UspGetDesagregarRegionalizacion_JSON" />
+          <FunctionImportMapping FunctionImportName="UspPostDesagregarRegionalizacion" FunctionName="Model.Store.UspPostDesagregarRegionalizacion" />
+          <FunctionImportMapping FunctionImportName="uspGetDatosCartaConceptoDespedida_JSON" FunctionName="Model.Store.uspGetDatosCartaConceptoDespedida_JSON" />
+          <FunctionImportMapping FunctionImportName="uspPostActualizaCartaDatosDespedida" FunctionName="Model.Store.uspPostActualizaCartaDatosDespedida" />
+          <FunctionImportMapping FunctionImportName="uspGetPoliticasTransversalesFuentes_JSON" FunctionName="Model.Store.uspGetPoliticasTransversalesFuentes_JSON" />
+          <EntitySetMapping Name="Capitulo">
+            <EntityTypeMapping TypeName="Model.Capitulo">
+              <MappingFragment StoreEntitySet="Capitulo">
+                <ScalarProperty Name="NombreModificado" ColumnName="NombreModificado" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="Modified" ColumnName="Modified" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MacroprocesoSeccion">
+            <EntityTypeMapping TypeName="Model.MacroprocesoSeccion">
+              <MappingFragment StoreEntitySet="MacroprocesoSeccion">
+                <ScalarProperty Name="orden" ColumnName="orden" />
+                <ScalarProperty Name="TipoTramiteId" ColumnName="TipoTramiteId" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="Modified" ColumnName="Modified" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="SeccionId" ColumnName="SeccionId" />
+                <ScalarProperty Name="FaseId" ColumnName="FaseId" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Seccion">
+            <EntityTypeMapping TypeName="Model.Seccion">
+              <MappingFragment StoreEntitySet="Seccion">
+                <ScalarProperty Name="NombreModificado" ColumnName="NombreModificado" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="Modified" ColumnName="Modified" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SeccionCapitulos">
+            <EntityTypeMapping TypeName="Model.SeccionCapitulos">
+              <MappingFragment StoreEntitySet="SeccionCapitulos">
+                <ScalarProperty Name="orden" ColumnName="orden" />
+                <ScalarProperty Name="Editable" ColumnName="Editable" />
+                <ScalarProperty Name="FaseId" ColumnName="FaseId" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="Modified" ColumnName="Modified" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="CapituloId" ColumnName="CapituloId" />
+                <ScalarProperty Name="MacroprocesoSeccionId" ColumnName="MacroprocesoSeccionId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VGetFase">
+            <EntityTypeMapping TypeName="Model.VGetFase">
+              <MappingFragment StoreEntitySet="VGetFase">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FaseGUID" ColumnName="FaseGUID" />
+                <ScalarProperty Name="NombreFase" ColumnName="NombreFase" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="uspPostActualizaCapituloModificado" FunctionName="Model.Store.uspPostActualizaCapituloModificado" />
+          <FunctionImportMapping FunctionImportName="uspPostCrucePoliticas" FunctionName="Model.Store.uspPostCrucePoliticas" />
+          <FunctionImportMapping FunctionImportName="uspPostLocalizacion_Ajustes" FunctionName="Model.Store.uspPostLocalizacion_Ajustes" />
+          <FunctionImportMapping FunctionImportName="uspGetCrucePoliticas_JSON" FunctionName="Model.Store.uspGetCrucePoliticas_JSON" />
+          <FunctionImportMapping FunctionImportName="uspGetPoliticasCategoriasIndicadores_JSON" FunctionName="Model.Store.uspGetPoliticasCategoriasIndicadores_JSON" />
+          <FunctionImportMapping FunctionImportName="uspGetResumenDistribucionesAnteriores_JSON" FunctionName="Model.Store.uspGetResumenDistribucionesAnteriores_JSON" />
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

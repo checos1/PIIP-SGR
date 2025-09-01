@@ -1,0 +1,147 @@
+﻿<link href="/Content/dropzone.css" rel="stylesheet">
+
+<div ng-controller="cargaArchivoController as vm">
+    <div class="row">
+        <div class="col-md-12 text-right">
+            <button type="button" uib-tooltip="Cargar archivos" class="btn btn-primary" ng-click="vm.iniciarModalCarga()">
+                {{ 'BotonCargarConsultarArchivos' | language }}
+            </button>
+        </div>
+    </div>
+
+    <div class="modal fade in dialog-modal-archivo" id="myModal" role="dialog" tabindex="-1" data-backdrop="static" data-keyboard="false" style="display: none">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="archivo-container-form">
+                    <!--Cabecera institucional-->
+                    <div class="header-modal-archivo">
+                        <div class="col-md-12 text-right">
+                            <button type="button" class="btn btn-sm btn-primary btnCloseModal" ng-click="vm.cancelarCarga()">x</button>
+                        </div>
+                    </div>
+
+                    <div class="container-modal-archivo">
+                        <!--Encabezado-->
+                        <!--<div class="tittlebar titlebarmodal">
+                            <span>Metadatos</span>
+                        </div>-->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="titlebarmodal fndAzul">
+                                    <span>Metadatos </span>
+                                    <span class="buttonbar pull-right">
+                                        <button type="button" class="btn btn-default btn-md btn-filtro"
+                                                ng-click="vm.descargarSeleccionados()" ng-disabled="vm.botonDescargarInactivo"
+                                                tooltip-placement="auto" uib-tooltip="Descargar seleccionados">
+                                            Descargar seleccionados <i class="fa fa-download"></i>
+                                        </button>
+
+                                        <button type="button" class="btn btn-default btn-md btn-filtro"
+                                                ng-click="vm.conmutadorFiltro()" ng-disabled="vm.botonInactivo"
+                                                tooltip-placement="auto" uib-tooltip="Filtro">
+                                            Filtro <i class="fa fa-sliders"></i>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="cuerpo-modal-archivo">
+                            <div class="archivos">
+                                <!--Dropzone-->
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="well">
+                                            <form action="#" deshabilitar-control-dropzone class="dropzone dz-clickable" id="dropzone" ng-if="vm.dataHasLoaded">
+                                                <div class="dz-message">
+                                                    <button type="button" class="btnaccion">
+                                                        <span aria-hidden="true"><img src="img/iconsgrid/iconAccionUpload.png" alt="Eliminar" /></span>
+                                                    </button>
+                                                    <span>{{ 'EtiquetaSeleccionArchivos' | language }}</span>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!--Filtros-->
+                                <div class="form-group clearfix">
+                                    <div class="filtro" ng-if="vm.filtroActivado">
+                                        <div class="clearfix">
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label class="sr-only" for="inputNombre">Nombre</label>
+                                                        <input type="text" class="form-control" id="inputNombre" ng-model="vm.filtro.Nombre" placeholder="Nombre">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label class="sr-only" for="inputExtension">Extensión</label>
+                                                        <input type="text" class="form-control" id="inputExtension" ng-model="vm.filtro.Extension" placeholder="Extensión">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text">Inicio</span>
+                                                        </div>
+                                                        <input type="date" ng-model="vm.filtro.FechaInicio" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text">Fin</span>
+                                                        </div>
+                                                        <input type="date" ng-model="vm.filtro.FechaFin" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2 text-right">
+                                                    <div class="form-group">
+                                                        <button type="button" uib-tooltip="Cancelar carga" class="btn btn-filtro" ng-click="vm.ejecutarFiltro()">
+                                                            {{ 'BotonBuscarFiltro' | language }}
+                                                        </button>
+                                                        <button type="button" uib-tooltip="Cargar archivos" class="btn btn-filtro" ng-click="vm.limpiarFiltro()">
+                                                            {{ 'BotonLimpiarFiltro' | language }}
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br />
+
+                                    <!--Tabla de Metadatos-->
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="aplicarTablaArchivos">
+                                                <div id="uigMetadatos" ui-grid="vm.grillaMetadatos" ui-grid-pagination ui-grid-edit ui-grid-cellNav ui-grid-resize-columns />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <button type="button" id="botonCancelarCarga" uib-tooltip="Cerrar ventana" class="btn btn-sm btn-success" ng-click="vm.cancelarCarga()">
+                                    {{ 'BotonCerrarCarga' | language }}
+                                </button>
+                                <button type="button" id="botonProcesarCarga" uib-tooltip="Procesar archivos" class="btn btn-sm btn-success" ng-click="vm.guardarArchivos()" ng-disabled="vm.botonInactivo">
+                                    {{ 'BotonCargarArchivos' | language }}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

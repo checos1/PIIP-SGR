@@ -1,0 +1,15 @@
+<div class="text-center">
+    <!--<button  has-claim has-entidades="[row.entity.IdEntidad]" has-opciones="['Entidades:CrearSub']" class="btnaccion" ng-click="grid.appScope.vm.accionCrearSubEntidad({$row: row.entity})" tooltip-placement="Auto" uib-tooltip="Crear sub-entidad">-->
+    <button ng-if="grid.appScope.vm.consultarPermiso(row.entity.IdEntidad, 'Entidades:CrearSub')" class="btnaccion" ng-click="grid.appScope.vm.accionCrearSubEntidad({$row: row.entity})" tooltip-placement="Auto" uib-tooltip="Crear sub-entidad">
+        <span><img class="grid-icon-accion"  src="Img/iconsgrid/iconAccionAdicionar.png"></span>
+    </button> 
+    <button ng-if="grid.appScope.vm.consultarPermiso(row.entity.IdEntidad, 'Entidades:EditarMatrizFlujos')" class="btnaccion" ng-click="grid.appScope.vm.accionFlujosViabilidad({$row: row.entity})" tooltip-placement="Auto" uib-tooltip="Matriz de fluzo">
+        <span><img class="grid-icon-accion"  src="Img/iconsgrid/iconAccionConfigurar.png"></span>
+    </button> 
+    <button ng-if="grid.appScope.vm.consultarPermiso(row.entity.IdEntidad, 'Entidades:Editar')" class="btnaccion" ng-click="grid.appScope.vm.accionCrearEditarEntidad({$row: row.entity})" tooltip-placement="Auto" uib-tooltip="Editar">
+        <span><img class="grid-icon-accion"  src="Img/iconsgrid/iconAccionEditar.png"></span>
+    </button>
+    <button ng-if="grid.appScope.vm.consultarPermiso(row.entity.IdEntidad, 'Entidades:Eliminar')" class="btnaccion" ng-click="grid.appScope.vm.accionEliminarEntidad({$row: row.entity})" tooltip-placement="Auto" uib-tooltip="Eliminar">
+        <span><img class="grid-icon-accion"  src="Img/iconsgrid/iconAccionEliminar.png"></span>
+    </button>
+</div>

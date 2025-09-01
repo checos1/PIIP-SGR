@@ -1,0 +1,9 @@
+﻿<div class="tab-content" style=" height:100%; overflow: scroll;" ng-init="vm.obtener();">
+    <div class="container-table" ui-i18n="{{vm.lang}}" style="width:100%">
+        <div class="grid" id="uigprojectoArchivo" ui-grid="vm.gridOptions" ui-grid-resize-columns style="width:100%">
+        </div>
+        <div class="text-center intro-help min-mh no-result-watermark" ng-if="!vm.filasFiltradas" style="width:100%">
+            <h4>{{ 'Buscando resultados'}}</h4>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,14 @@
+﻿<div class="form-group schema-form-select {{form.htmlClass}}" ng-class="{'has-error': form.disableErrorState !== true && hasError(), 'has-success': form.disableSuccessState !== true && hasSuccess()}">
+    <label class="control-label {{form.labelHtmlClass}}" ng-show="showTitle()">{{form.title}}</label>
+    <ui-select ng-model="$$value$$" dropdownlistdirectiva
+               ng-model-options="form.ngModelOptions"
+               ng-disabled="opciones.deshabilitarControles" sf-changed="form" schema-validate="form"
+               name="{{form.key.slice(-1)[0]}}"
+               theme="bootstrap" search-enabled="form.habilitarBusqueda" sf-field-model
+               ng-required="{{form.required}}" uib-tooltip="{{form.tooltip}}">
+        <ui-select-match placeholder="{{form.placeholder}}" style="width: 100%">{{$select.selected.name}}</ui-select-match>
+        <ui-select-choices repeat="elemento in form.titleMap | filter: $select.search">{{elemento.name}}</ui-select-choices>
+    </ui-select>
+    <span class="help-block" sf-message="(form.key[0]!==form.description)?form.description:''"></span>
+    <span class="help-inline" ng-show="$scope.errorCargaItems">$scope.errorCargaItems</span>
+</div>

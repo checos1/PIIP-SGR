@@ -1,0 +1,41 @@
+.ui-grid .ui-grid-row .ui-grid-cell {
+    border: none !important;
+}
+
+.ui-grid-cell {
+    font-size: 12px !important;
+}
+
+.ui-grid-cell a {
+    padding-left: 9px !important;
+}
+
+.entidad-selected { 
+    color:black; 
+    text-decoration: none !important;
+    line-height: 2.2; 
+}
+
+.entidad-selected:link    { color:black; }
+.entidad-selected:visited { color:black;  }
+.entidad-selected:hover   { color:black; }
+.entidad-selected:active  { color:black;    }
+
+.ui-grid-cell-contents {
+    font-size: 15px;
+}
+
+.ui-grid-viewport[role="rowgroup"] {
+    overflow: hidden !important;
+}
+
+.ng-scope .scrollFiller {
+    height: 150px !important;
+}
+
+
+.grid-icon .ui-grid-contents-wrapper .ui-grid-viewport {
+    max-height: 380px !important;
+}
+
+.container-pw { }

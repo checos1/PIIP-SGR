@@ -1,0 +1,107 @@
+﻿<div style="margin-left:20px;" class="container-fluid inbox" ng-init="vm.init();">
+    <div ng-if="datos == null">
+        <div class="col-md-12" style="padding-bottom: 55px !important;padding-right: 4rem !important">
+            <div id="u5226_div" class="divPanelPregRespDNP" style="width: 100% !important">
+                <div class="respAdon" style="width: 100% !important">
+                    <span style="vertical-align: middle; display: table-cell;font-style: normal; font-size: 15px; color:black">Para visualizar los datos de este capitulo, es necesario hacer selección del tipo de valores en el capitulo anterior "Solicitud vigencia futura"</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-if="datos != null">
+        <div ng-repeat="tramite in datos.TramitesALiberar" ng-init="tramitesIndex = $index">
+            <div class="row" style="color: #004884">
+                <div class="" style="padding: 0 !important">
+                    <div class="alert panel-heading" style="height: 50px;">
+                        <div class="card card-body pull-left  divAccordionDNP" style="max-height:250px;">
+                            <p style="line-height: 1.1; margin-left: 55px">
+                                <span style="font-weight: 500; font-style: normal; font-size: 16px; color: #004884"><strong>Código proceso: </strong></span> {{tramite.CodigoProceso}}. <span style="font-weight: 500; font-style: normal; font-size: 16px; color: #004884"><strong>Nombre proceso: </strong></span> {{tramite.NombreProceso}}.
+                                <span style="font-weight: 500; font-style: normal; font-size: 16px; color: #004884"><strong>Fecha: </strong></span> {{vm.convertToDate(tramite.Fecha) | date: 'dd/MM/yyyy'}}.
+                                <span style="font-weight: 500; font-style: normal; font-size: 16px; color: #004884"><strong>Objeto: </strong></span> {{tramite.Objeto | limitTo: 110}} <span ng-if="tramite.Objeto.length > 110">...</span>  <button ng-if="tramite.Objeto.length > 110" type="button" style="color: #3366CC;line-height:20px " class="btn btn-link btn-md  buttonhiper" tooltip-placement="top" uib-tooltip="ver más" tabindex="0" ng-click="vm.ObjetoVerMas(tramite)" data="{{tramite.objeto}}">Ver más</button>
+                                <span style="font-weight: 500; font-style: normal; font-size: 16px; color: #004884"><strong>Fecha autorización: </strong></span> {{tramite.FechaAutorizacion == null ? 'Pendiente' : vm.convertToDate(tramite.FechaAutorizacion) | date: 'dd/MM/yyyy'}}. <span style="font-weight: 500; font-style: normal; font-size: 16px; color: #004884"><strong>Código autorización: </strong></span> {{tramite.CodigoAutorizacion == '0' ? 'Pendiente' : tramite.CodigoAutorizacion}}.
+                            </p>
+
+                            <p style="padding: 0px; margin-bottom: 0px;">
+                                <button class="btnaccion btnAccordionDNP" type="button" data-toggle="collapse" data-target="#altra{{tramite.LiberacionVigenciasFuturasId}}" ng-click="vm.changeBoton(tramite)" data="{{tramite}}">
+
+                                    <img ng-show="tramite.LabelBoton == '+'" src="Img/btnMas.svg">
+                                    <img ng-show="tramite.LabelBoton == '-'" src="Img/btnMenos.svg">
+                                </button>
+
+                                <span id="objetivo-{{tramite.LiberacionVigenciasFuturasId}}" class="img iconadverdnp hidden" style="margin-left:0px">   <img src="Img/u4630.svg"> </span>
+
+                            </p>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="collapse" id="altra{{tramite.LiberacionVigenciasFuturasId}}">
+                        <div class="LineaEncabezadodivDNP"></div>
+                        <h3 class="row tituloEncabezadodivDNP">Datos autorización</h3>
+                        <h2 class="row" style="padding-left: 0rem; padding-right: 2rem; text-align: left; color: #004884">&nbsp;&nbsp;Datos autorización <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg" ng-click="vm.abrirMensajeInformacion()"></h2>
+                        <div class="col-md-11" ng-if="vm.habilitaBotones">
+                            <span class="buttonbar pull-right">
+                                <button type="button" class="btneditarDNP" tooltip-placement="top" ng-click="tramite.EditarTramiteLiberacion ? vm.Cancelar(tramite) : vm.Editar(tramite)" uib-tooltip="{{tramite.EditarTramiteLiberacion ? 'CANCELAR' : 'EDITAR'}}">
+                                    {{tramite.EditarTramiteLiberacion ? 'CANCELAR' : 'EDITAR'}}
+                                </button>
+                                <button ng-disabled="!tramite.EditarTramiteLiberacion" type="button" class="{{tramite.EditarTramiteLiberacion ? 'btnguardarDNP' : 'btnguardarDisabledDNP'}}" tooltip-placement="top" uib-tooltip="Guardar" tabindex="0" ng-click="vm.Guardar(tramite)">
+                                    GUARDAR
+                                </button>
+                            </span>
+                        </div>
+
+                        <div class="row col-md-11">
+                            <div class="alert panel-heading">
+                                <div id="validacion-AMTL001-{{tramite.LiberacionVigenciasFuturasId}}" class="hidden text-left color-red"></div>
+                                <div id="validacion-AMTL002-{{tramite.LiberacionVigenciasFuturasId}}" class="hidden text-left color-red"></div>
+                                <div id="validacion-AMTL003-{{tramite.LiberacionVigenciasFuturasId}}" class="hidden text-left color-red"></div>
+                                <table class="TableDNP">
+                                    <thead>
+                                        <tr>
+                                            <th class="columAcc"></th>
+                                            <th class="textLeftDNP">Fecha autorización</th>
+                                            <th class="textRightDNP">Código autorización</th>
+                                            <th class="columAcc"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td></td>
+                                            <td class="textLeftDNP">
+                                                <input ng-if="!tramite.EditarTramiteLiberacion" type="text" value="{{tramite.FechaAutorizacion == null ? '' : vm.convertToDate(tramite.FechaAutorizacion) | date: 'dd/MM/yyyy'}}" class="form-control editInputDNP " style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px; background-color:white" readonly />
+                                                <input ng-if="tramite.EditarTramiteLiberacion" type="date" class="form-control editInputDNP " style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px; background-color:white"
+                                                       ng-model="datos.TramitesALiberar[tramitesIndex].FechaAutorizacion" ng-value="tramite.FechaAutorizacion | date: 'yyyy-MM-dd'" />
+                                            </td>
+                                            <td class="textRightDNP">
+                                                <input id="input-CodigoAutorizacion" type="text" maxlength="48"
+                                                       ng-readonly="!tramite.EditarTramiteLiberacion"
+                                                       ng-keypress="vm.validateFormat($event)"
+                                                       ng-value="tramite.CodigoAutorizacion"
+                                                       ng-model="datos.TramitesALiberar[tramitesIndex].CodigoAutorizacion"
+                                                       required class="form-control editInputDNP" style="text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px; background-color: white" />
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="col-md-11">
+                                    <div id="validacion-AMTL004-autorizacionliberacion" class="hidden text-left color-red"></div>
+                                    <archivos-formulario indiceTabla="alvf{{tramite.LiberacionVigenciasFuturasId}}"
+                                                         tipotramiteid="{{vm.tipotramiteid}}"
+                                                         tramiteid="{{vm.tramiteid}}"
+                                                         nivel="{{vm.nivel}}"
+                                                         rol="da595aa3-cf59-46d3-a22a-0d96da5c7371"
+                                                         section="{{vm.nombreComponente}}"
+                                                         nombrecomponentepaso="{{vm.nombreComponente}}"
+                                                         guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                                         notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                         notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)">
+                                    </archivos-formulario>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

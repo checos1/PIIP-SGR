@@ -1,0 +1,32 @@
+﻿<section>
+    <div id="SGRERRSEC{{vm.nombreComponente}}" class="hidden mb-3 ml-5 errorSeccionProcesoFirmaViabilidad" style="text-align: left; font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans'; font-size: 12px; font-style: normal; color: #A80521;"></div>
+    <div class="container-fluid inbox" ng-init="vm.init();">
+        <div class="tab-content">
+            <div class="ui-accordion-container" id="accordion-{{vm.nombreComponenteHijo}}">
+                <div class="alert panel-heading row ui-accordion-header" style="border-color: #E6EFFD; border-left-color: #004884; height: 50px;">
+                    <button type="button"
+                            data-toggle="collapse"
+                            data-target="#{{vm.nombreComponenteHijo}}"
+                            ng-click="vm.changeArrow(vm.nombreComponenteHijo)">
+                        <span id="arrow-{{vm.nombreComponenteHijo}}" class="glyphicon glyphicon-chevron-up pull-right"
+                              data-toggle="collapse"
+                              data-target="#{{vm.nombreComponenteHijo}}"></span>
+                        <span class="d-inline-block" id="alert-{{vm.nombreComponenteHijo}}"></span>
+                        <span id="name-capitulo-{{vm.nombreComponenteHijo}}"></span>
+                        <span class="hidden" id="id-capitulo-{{vm.nombreComponenteHijo}}"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="{{vm.nombreComponenteHijo}}">
+                    <div>
+                        <proceso-firma-gestion-recursos-firma-sgp    callback="vm.notificarGuardado()"
+                                                          guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                                          notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                          notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"
+                                                          notificarsiguiente="vm.habilitaFinalizar(estado)">
+                        </proceso-firma-gestion-recursos-firma-sgp>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

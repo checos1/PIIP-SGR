@@ -1,0 +1,480 @@
+﻿<div ng-init="vm.init();">
+    <form id="crucepoliticastranversalesajustes" novalidate>
+        <div id="fuentes" class="collapsed panel-body">
+            <div ng-if="vm.CantidadFuentes > 0">
+                <div class="row" ng-repeat="fuente in vm.CrucePoliticasAjustes.Fuentes" ng-init="indexFuentes = $index">
+                    <div ng-if="vm.TienePoliticas(fuente)" id="fuente-{{fuente.FuenteID}}">
+
+                        <div class="row">
+                            <div class="" style="padding: 0 !important">
+                                <div class="alert panel-headingAccDNP" style="padding-bottom: 65px;">
+                                    <div class="card card-body pull-left  divAccordionDNP" >                                        
+                                        <!--<div class="line-clamp">-->
+                                            <span style="margin-left: 3px !important;" class="encabezadoTitulos">Etapa:</span><span class="encabezadoInfo ng-binding">{{fuente.Etapa}}. </span><span class="encabezadoTitulos">Tipo Financiador:</span><span class="encabezadoInfo ng-binding">{{fuente.TipoEntidad}}. </span><span class="encabezadoTitulos">Financiador:</span><span class="encabezadoInfo ng-binding">{{fuente.Entidad}}. </span><span class="encabezadoTitulos">Recursos: </span><span class="encabezadoInfo ng-binding">{{fuente.Recurso}}</span>
+                                        <!--</div>-->
+                                        <p class="panelbtnalertAcordnp">
+                                            <button class="btnaccion btnAccordionDNP" type="button" data-toggle="collapse" data-target="#obj-{{fuente.FuenteID}}-{{indexFuentes}}" ng-click="vm.AbrilNivel1(fuente.FuenteID, indexFuentes)">
+                                                <img id="imgmas-{{fuente.FuenteID}}-{{indexFuentes}}" src="Img/btnMas.svg">
+                                                <img id="imgmenos-{{fuente.FuenteID}}-{{indexFuentes}}" style="display:none" src="Img/btnMenos.svg">
+                                                <span id="ico-{{fuente.FuenteID}}-{{indexFuentes}}" style="display:none">+</span>
+                                            </button>
+                                            <span class="img iconadverdnp" hidden="hidden">   <img src="Img/u4630.svg"> </span>
+                                            <span class="messagealerttableDNP" hidden="hidden">Espacio reservado para información de validaciones. </span>
+
+                                        </p>
+                                        <div id="objetivo-1"></div>
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="collapse" id="obj-{{fuente.FuenteID}}-{{indexFuentes}}">
+                                    <div class="LineaEncabezadodivDNP"></div>
+                                    <h3 class="row tituloEncabezadodivDNP">
+                                        Políticas transversales
+                                    </h3>
+                                    <div ng-repeat="politicaprincipal in fuente.PoliticaPrincipal" ng-init="indexpp = $index">
+                                        <div class="alert panel-headingAcc2DNP" style="padding-bottom:65px">
+                                            <div class="card card-body pull-left bordesencillo">
+                                                <div style="padding-bottom:5px">
+                                                    <span class="uLabelCampo">{{politicaprincipal.Politica}}</span>
+
+                                                    <p class="panelbtnalertAcordnp">
+                                                        <button class="btnaccion btnAccordionDNP" type="button" data-toggle="collapse" data-target="#obj-{{fuente.FuenteID}}-{{indexFuentes}}-{{politicaprincipal.PoliticaId}}-{{indexpp}}" ng-click="vm.AbrilNivel2(fuente.FuenteID, indexFuentes, politicaprincipal.PoliticaId, indexpp)">
+                                                            <img id="imgmas-{{fuente.FuenteID}}-{{indexFuentes}}-{{politicaprincipal.PoliticaId}}-{{indexpp}}" src="Img/btnMasTb.svg">
+                                                            <img id="imgmenos-{{fuente.FuenteID}}-{{indexFuentes}}-{{politicaprincipal.PoliticaId}}-{{indexpp}}" style="display:none" src="Img/btnMenosTb.svg">
+                                                            <span id="ico-{{fuente.FuenteID}}-{{indexFuentes}}-{{politicaprincipal.PoliticaId}}-{{indexpp}}" style="display:none">+</span>
+                                                        </button>
+                                                        <span class="img iconadverdnp" hidden="hidden">   <img src="Img/u4630.svg"> </span>
+                                                        <span class="messagealerttableDNP" hidden="hidden">Espacio reservado para información de validaciones. </span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="collapse" id="obj-{{fuente.FuenteID}}-{{indexFuentes}}-{{politicaprincipal.PoliticaId}}-{{indexpp}}">
+                                            <div class="LineaEncabezado2divDNP"></div>
+                                            <h3 class="row tituloEncabezadodiv2DNP">Localizaciones</h3>
+                                            <div style="margin:20px;">
+                                                <table class="TableDNP no-border">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="columAcc"></th>
+                                                            <th class="textLeftDNP">Departamento</th>
+                                                            <th class="textLeftDNP">Municipio</th>
+                                                            <th class="textLeftDNP">Tipo de agrupación</th>
+                                                            <th class="textLeftDNP">Agrupación</th>
+                                                            <th class="columAcc"></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody ng-repeat="localizacion in politicaprincipal.Localizaciones" ng-init="indexlocalizacion = $index" style="padding-bottom:60px">
+                                                        <tr class="bottontransDNP">
+                                                            <td class="columAcc textdespleDNP">
+                                                                <a data-toggle="collapse" data-target="#ind1">
+                                                                </a>
+                                                            </td>
+                                                            <td>{{localizacion.Depatamento}}</td>
+                                                            <td>{{localizacion.Municipio}}</td>
+                                                            <td>{{localizacion.TipoAgruapacion}}</td>
+                                                            <td>{{localizacion.Agrupacion}}</td>
+                                                            <td class="columAcc" style="background: transparent">
+                                                        </tr>
+                                                        <tr class="filaAnidada">
+                                                            <td colspan="1">
+                                                                <button class="btnaccion btntablednp" type="button" data-toggle="collapse" data-target="#obj-{{fuente.FuenteID}}-{{indexFuentes}}-{{politicaprincipal.PoliticaId}}-{{indexpp}}-{{localizacion.LocalizacionId}}-{{indexlocalizacion}}" ng-click="vm.AbrilNivel3(fuente.FuenteID, indexFuentes, politicaprincipal.PoliticaId, indexpp, localizacion.LocalizacionId, indexlocalizacion)">
+                                                                    <img id="imgmas-{{fuente.FuenteID}}-{{indexFuentes}}-{{politicaprincipal.PoliticaId}}-{{indexpp}}-{{localizacion.LocalizacionId}}-{{indexlocalizacion}}" src="Img/btnMasTb.svg">
+                                                                    <img id="imgmenos-{{fuente.FuenteID}}-{{indexFuentes}}-{{politicaprincipal.PoliticaId}}-{{indexpp}}-{{localizacion.LocalizacionId}}-{{indexlocalizacion}}" style="display:none" src="Img/btnMenosTb.svg">
+                                                                    <span id="ico-{{fuente.FuenteID}}-{{indexFuentes}}-{{politicaprincipal.PoliticaId}}-{{indexpp}}-{{localizacion.LocalizacionId}}-{{indexlocalizacion}}" style="display:none">+</span>
+                                                                </button>
+                                                                <div id="indicador-" class="img pull-right iconadverdnp" hidden="hidden">   <img class="" src="Img/u4630.svg"> </div>
+                                                            </td>
+                                                            <td colspan="5">
+                                                                <span class="messagealerttableDNP" hidden="hidden">Espacio reservado para información de validaciones. </span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="no-border collapse alert panel-heading" id="obj-{{fuente.FuenteID}}-{{indexFuentes}}-{{politicaprincipal.PoliticaId}}-{{indexpp}}-{{localizacion.LocalizacionId}}-{{indexlocalizacion}}">
+                                                            <td colspan="6" class="p-0">
+                                                                <div class="LineaEncabezado2tabDNP"></div>
+                                                                <h3 class="row tituloEncabezadotabDNP">
+                                                                    Políticas transversales
+                                                                </h3>
+
+
+                                                                <div class="row" ng-if="politicaprincipal.Politica !== 'Víctimas'">
+                                                                    <div class="alert panel-heading">
+                                                                        <table class="TableDNP no-border">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th class="columAcc"></th>
+                                                                                    <th class="textLeftDNP">Política principal</th>
+                                                                                    <th class="textLeftDNP">Política contenida</th>
+                                                                                    <th class="columAcc"></th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody ng-repeat="politicaContenida in localizacion.RelacionPoliticas" ng-init="indexpoliticacontenida = $index" style="padding-bottom:60px">
+                                                                                <tr class="bottontransDNP">
+                                                                                    <td class="columAcc textdespleDNP">
+                                                                                        <button class="btnaccion btntablednp" type="button" data-toggle="collapse" data-target="#obj-{{fuente.FuenteID}}-{{indexFuentes}}-{{politicaprincipal.PoliticaId}}-{{indexpp}}-{{localizacion.LocalizacionId}}-{{indexlocalizacion}}-{{politicaContenida.PoliticaDependienteId}}-{{indexpoliticacontenida}}" ng-click="vm.AbrilNivel4(fuente.FuenteID, indexFuentes, politicaprincipal.PoliticaId, indexpp, localizacion.LocalizacionId, indexlocalizacion, politicaContenida.PoliticaDependienteId, indexpoliticacontenida)">
+                                                                                            <img id="imgmas-{{fuente.FuenteID}}-{{indexFuentes}}-{{politicaprincipal.PoliticaId}}-{{indexpp}}-{{localizacion.LocalizacionId}}-{{indexlocalizacion}}-{{politicaContenida.PoliticaDependienteId}}-{{indexpoliticacontenida}}" src="Img/btnMasTb.svg">
+                                                                                            <img id="imgmenos-{{fuente.FuenteID}}-{{indexFuentes}}-{{politicaprincipal.PoliticaId}}-{{indexpp}}-{{localizacion.LocalizacionId}}-{{indexlocalizacion}}-{{politicaContenida.PoliticaDependienteId}}-{{indexpoliticacontenida}}" style="display:none" src="Img/btnMenosTb.svg">
+                                                                                            <span id="ico-{{fuente.FuenteID}}-{{indexFuentes}}-{{politicaprincipal.PoliticaId}}-{{indexpp}}-{{localizacion.LocalizacionId}}-{{indexlocalizacion}}-{{politicaContenida.PoliticaDependienteId}}-{{indexpoliticacontenida}}" style="display:none">+</span>
+                                                                                        </button>
+                                                                                    </td>
+                                                                                    <td>{{politicaprincipal.Politica}}</td>
+                                                                                    <td>{{politicaContenida.PoliticaDependiente}}</td>
+                                                                                    <td class="columAcc" style="background: transparent">
+                                                                                </tr>
+                                                                                <tr class="no-border collapse alert panel-heading" id="obj-{{fuente.FuenteID}}-{{indexFuentes}}-{{politicaprincipal.PoliticaId}}-{{indexpp}}-{{localizacion.LocalizacionId}}-{{indexlocalizacion}}-{{politicaContenida.PoliticaDependienteId}}-{{indexpoliticacontenida}}">
+                                                                                    <td colspan="6" class="p-0">
+                                                                                        <div class="LineaEncabezado2tabDNP"></div>
+                                                                                        <h3 class="row tituloEncabezadotabDNP">
+                                                                                            Política Principal:<span class="totaldespleDNP">{{politicaprincipal.Politica}}.</span>
+                                                                                            Política contenida:<span class="totaldespleDNP">{{politicaContenida.PoliticaDependiente}}.</span>
+                                                                                        </h3>
+
+                                                                                        <div class="row" style="margin:15px;">
+                                                                                            <span class="buttonbar pull-right">
+                                                                                                <button id="Editar{{fuente.FuenteID}}-{{indexFuentes}}-{{politicaprincipal.PoliticaId}}-{{indexpp}}-{{localizacion.LocalizacionId}}-{{indexlocalizacion}}-{{politicaContenida.PoliticaDependienteId}}-{{indexpoliticacontenida}}"
+                                                                                                        type="button"
+                                                                                                        class="btn btneditarDNP"
+                                                                                                        tooltip-placement="top"
+                                                                                                        ng-disabled="vm.disabled"
+                                                                                                        ng-click="politicaContenida.HabilitaEditarLocalizador ? vm.cancelarEdicion(fuente.FuenteID,indexFuentes,politicaprincipal.PoliticaId,indexpp,localizacion.LocalizacionId,indexlocalizacion,politicaContenida, politicaContenida.PoliticaDependienteId, indexpoliticacontenida)
+                                                                                                                : vm.habilitarEditar(fuente.FuenteID,indexFuentes,politicaprincipal.PoliticaId,indexpp,localizacion.LocalizacionId,indexlocalizacion, politicaContenida, politicaContenida.PoliticaDependienteId,indexpoliticacontenida)"
+                                                                                                        uib-tooltip="{{politicaContenida.HabilitaEditarLocalizador ? 'CANCELAR' : 'EDITAR'}}">
+                                                                                                    {{politicaContenida.HabilitaEditarLocalizador  ? 'CANCELAR' : 'EDITAR'}}
+                                                                                                </button>
+                                                                                                <button id="Guardar{{fuente.FuenteID}}{{indexFuentes}}{{politicaprincipal.PoliticaId}}{{indexpp}}{{localizacion.LocalizacionId}}{{indexlocalizacion}}{{politicaContenida.PoliticaDependienteId}}{{indexpoliticacontenida}}" type="submit"
+                                                                                                        ng-class="politicaContenida.HabilitaEditarLocalizador  ? 'btn btn-default btn-mdHorizonte' : 'btn btnguardarHorizonte' "
+                                                                                                        tooltip-placement="top" ng-click="vm.GuardarAjustes(fuente.FuenteID,indexFuentes, politicaprincipal.PoliticaId,indexpp, localizacion.LocalizacionId,indexlocalizacion,politicaContenida,politicaContenida.PoliticaDependienteId, politicaContenida.CrucePoliticasVigencias, indexpoliticacontenida)"
+                                                                                                        disabled="disabled">
+                                                                                                    GUARDAR
+                                                                                                </button>
+                                                                                            </span>
+
+                                                                                            <div class="tab-container col-md-12" style="width:100%;">
+                                                                                                <ul class="nav nav-tabs">
+                                                                                                    <li id="licpAjuste" class="nav-item" ng-class="{active : 1===1}">
+                                                                                                        <a href="" ng-click="vm.mostrarTab(1,fuente.FuenteID,indexFuentes,politicaprincipal.PoliticaId,indexpp,localizacion.LocalizacionId,indexlocalizacion,politicaContenida.PoliticaDependienteId,indexpoliticacontenida)"
+                                                                                                           class="nav-link" data-target="#tabAjustados-{{fuente.FuenteID}}-{{indexFuentes}}-{{politicaprincipal.PoliticaId}}-{{indexpp}}-{{localizacion.LocalizacionId}}-{{indexlocalizacion}}-{{politicaContenida.PoliticaDependienteId}}-{{indexpoliticacontenida}}" data-toggle="tab">
+                                                                                                            <b>Solicitado</b>
+                                                                                                        </a>
+                                                                                                    </li>
+                                                                                                </ul>
+
+                                                                                            </div>
+                                                                                            <div class="tab-content">
+                                                                                                <div class="tab-pane active level-1-content mt-4" id="tabAjustados-{{fuente.FuenteID}}-{{indexFuentes}}-{{politicaprincipal.PoliticaId}}-{{indexpp}}-{{localizacion.LocalizacionId}}-{{indexlocalizacion}}-{{politicaContenida.PoliticaDependienteId}}-{{indexpoliticacontenida}}">
+                                                                                                    <table class="TableDNP">
+                                                                                                        <thead>
+                                                                                                            <tr>
+                                                                                                                <th class="columAcc"></th>
+                                                                                                                <th class="textRightDNP">Vigencia</th>
+                                                                                                                <th class="textRightDNP">{{politicaContenida.TituloPoliticaPrincipal}} $</th>
+                                                                                                                <th class="textRightDNP">{{politicaContenida.PoliticaDependiente}} $</th>
+                                                                                                                <th class="textRightDNP">Personas {{politicaContenida.TituloPoliticaPrincipal}}</th>
+                                                                                                                <th class="textRightDNP">Personas {{politicaContenida.PoliticaDependiente}}</th>
+                                                                                                                <th class="columAcc"></th>
+                                                                                                            </tr>
+                                                                                                        </thead>
+                                                                                                        <tbody>
+                                                                                                            <tr class="uTexto-grilla" ng-repeat="vigencia in politicaContenida.CrucePoliticasVigencias" ng-init="indexvigencia = $index">
+                                                                                                                <td>
+                                                                                                                    <img id="imgcptj{{vigencia.Vigencia}}{{fuente.FuenteID}}{{indexFuentes}}{{politicaprincipal.PoliticaId}}{{indexpp}}{{localizacion.LocalizacionId}}{{indexlocalizacion}}{{politicaContenida.PoliticaDependienteId}}{{indexpoliticacontenida}}" class="iconoErrorDNP" src="Img/u4630.svg" style="display:none;">
+                                                                                                                    <div id="icocptj{{vigencia.Vigencia}}{fuente.FuenteID}}{{indexFuentes}}{{politicaprincipal.PoliticaId}}{{indexpp}}{{localizacion.LocalizacionId}}{{indexlocalizacion}}{{politicaContenida.PoliticaDependienteId}}{{indexpoliticacontenida}}" class="hidden iconoErrorDNP"></div>
+                                                                                                                </td>
+                                                                                                                <td class="textRightDNP">{{vigencia.Vigencia}}</td>
+                                                                                                                <td class="textRightDNP">{{vm.ConvertirNumero2decimales(vigencia.ValorPoliticaPrincipal)}}</td>
+                                                                                                                <td class="textRightDNP">
+                                                                                                                    <div class="blockReferenciaDNP" ng-if="!politicaContenida.HabilitaEditarLocalizador">{{vm.ConvertirNumero2decimales(vigencia.ValorCruceDependientePrincipal)}}</div>
+                                                                                                                    <input id="inputvalorcp{{fuente.FuenteID}}-{{indexFuentes}}-{{politicaprincipal.PoliticaId}}-{{indexpp}}-{{localizacion.LocalizacionId}}-{{indexlocalizacion}}-{{politicaContenida.PoliticaDependienteId}}-{{indexpoliticacontenida}}-{{indexvigencia}}"
+                                                                                                                           type="number" string-to-number min="0.00"
+                                                                                                                           name="vigenciaLocalizacion{{producto.ProductoId}}{{item.FuenteId}}{{localizacion.LocalizacionId}}"
+                                                                                                                           ng-if="politicaContenida.HabilitaEditarLocalizador && vigencia.Vigencia >= vm.currentYear"
+                                                                                                                           ng-readonly="vigencia.Vigencia < vm.currentYear"
+                                                                                                                           ng-keypress="vm.validateFormat($event, 2)"
+                                                                                                                           ng-keyup="vm.validarTamanio($event, 2)"
+                                                                                                                           ng-value="vigencia.ValorCruceDependientePrincipal"
+                                                                                                                           ng-blur="vm.actualizaFila(politicaContenida,1,fuente.FuenteID,indexFuentes,politicaprincipal.PoliticaId,indexpp,localizacion.LocalizacionId,indexlocalizacion,politicaContenida.PoliticaDependienteId,indexpoliticacontenida)"
+                                                                                                                           ng-model="vigencia.ValorCruceDependientePrincipal" />
+                                                                                                                </td>
+                                                                                                                <td class="textRightDNP">{{vigencia.PersonaPoliticaPrincipal}}</td>
+                                                                                                                <td class="textRightDNP">
+                                                                                                                    <div class="blockReferenciaDNP" ng-if="!politicaContenida.HabilitaEditarLocalizador">{{vm.ConvertirNumero(vigencia.PersonaCruce)}}</div>
+                                                                                                                    <input id="inputpersonascp{{fuente.FuenteID}}-{{indexFuentes}}-{{politicaprincipal.PoliticaId}}-{{indexpp}}-{{localizacion.LocalizacionId}}-{{indexlocalizacion}}-{{politicaContenida.PoliticaDependienteId}}-{{indexpoliticacontenida}}-{{indexvigencia}}"
+                                                                                                                           type="number" string-to-number min="0"
+                                                                                                                           name="vigenciaLocalizacion{{producto.ProductoId}}{{item.FuenteId}}{{localizacion.LocalizacionId}}"
+                                                                                                                           ng-if="politicaContenida.HabilitaEditarLocalizador && vigencia.Vigencia >= vm.currentYear"
+                                                                                                                           ng-readonly="vigencia.Vigencia < vm.currentYear"
+                                                                                                                           ng-keypress="vm.validateFormat($event, 0)"
+                                                                                                                           ng-keyup="vm.validarTamanio($event, 0)"
+                                                                                                                           ng-value="vigencia.PersonaCruce"
+                                                                                                                           ng-blur="vm.actualizaFila(politicaContenida,1,fuente.FuenteID,indexFuentes,politicaprincipal.PoliticaId,indexpp,localizacion.LocalizacionId,indexlocalizacion,politicaContenida.PoliticaDependienteId,indexpoliticacontenida)"
+                                                                                                                           ng-model="vigencia.PersonaCruce" />
+                                                                                                                </td>
+                                                                                                                <td></td>
+                                                                                                            </tr>
+                                                                                                        </tbody>
+                                                                                                        <tfoot>
+                                                                                                            <tr>
+                                                                                                                <td class="columAcc icontotaldnp"><span>=</span></td>
+                                                                                                                <td class="textRightDNP">Total</td>
+                                                                                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero2decimales(politicaContenida.valorPP)}}</div></td>
+                                                                                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero2decimales(politicaContenida.valorPC)}}</div></td>
+                                                                                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(politicaContenida.personasPP)}}</div></td>
+                                                                                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(politicaContenida.personasPC)}}</div></td>
+                                                                                                                <td></td>
+                                                                                                            </tr>
+                                                                                                            <tr>
+                                                                                                                <td colspan="7">
+                                                                                                                    <div id="errortottal{{fuente.FuenteID}}-{{indexFuentes}}-{{politicaprincipal.PoliticaId}}-{{indexpp}}-{{localizacion.LocalizacionId}}-{{indexlocalizacion}}-{{politicaContenida.PoliticaDependienteId}}-{{indexpoliticacontenida}}" class=" text-left color-red">
+                                                                                                                        <img class="img img-advertencia" src="Img/u11.svg" />
+                                                                                                                        <span id="errortottalmsn{{fuente.FuenteID}}-{{indexFuentes}}-{{politicaprincipal.PoliticaId}}-{{indexpp}}-{{localizacion.LocalizacionId}}-{{indexlocalizacion}}-{{politicaContenida.PoliticaDependienteId}}-{{indexpoliticacontenida}}"></span>
+                                                                                                                    </div>
+                                                                                                                </td>
+                                                                                                            </tr>
+                                                                                                        </tfoot>
+                                                                                                    </table>
+                                                                                                </div>
+                                                                                                <div class="tab-pane level-1-content mt-4" id="tabFirme-{{fuente.FuenteID}}-{{indexFuentes}}-{{politicaprincipal.PoliticaId}}-{{indexpp}}-{{localizacion.LocalizacionId}}-{{indexlocalizacion}}-{{politicaContenida.PoliticaDependienteId}}-{{indexpoliticacontenida}}">
+                                                                                                    <table class="TableDNP">
+                                                                                                        <thead>
+                                                                                                            <tr>
+                                                                                                                <th class="columAcc"></th>
+                                                                                                                <th class="textRightDNP">Vigencia</th>
+                                                                                                                <th class="textRightDNP">{{politicaContenida.TituloPoliticaPrincipal}} $</th>
+                                                                                                                <th class="textRightDNP">{{politicaContenida.PoliticaDependiente}} $</th>
+                                                                                                                <th class="textRightDNP">Personas {{politicaContenida.TituloPoliticaPrincipal}}</th>
+                                                                                                                <th class="textRightDNP">Personas {{politicaContenida.PoliticaDependiente}}</th>
+                                                                                                                <th class="columAcc"></th>
+                                                                                                            </tr>
+                                                                                                        </thead>
+                                                                                                        <tbody>
+                                                                                                            <tr class="uTexto-grilla" ng-repeat="vigencia in politicaContenida.CrucePoliticasVigenciasFirme">
+                                                                                                                <td>
+                                                                                                                    <img id="imgcptj{{vigencia.Vigencia}}{{fuente.FuenteID}}{{indexFuentes}}{{politicaprincipal.PoliticaId}}{{indexpp}}{{localizacion.LocalizacionId}}{{indexlocalizacion}}{{politicaContenida.PoliticaDependienteId}}{{indexpoliticacontenida}}" class="iconoErrorDNP" src="Img/u4630.svg" style="display:none;">
+                                                                                                                    <div id="icocptj{{vigencia.Vigencia}}{{fuente.FuenteID}}{{indexFuentes}}{{politicaprincipal.PoliticaId}}{{indexpp}}{{localizacion.LocalizacionId}}{{indexlocalizacion}}{{politicaContenida.PoliticaDependienteId}}{{indexpoliticacontenida}}" class="hidden iconoErrorDNP"></div>
+                                                                                                                </td>
+                                                                                                                <td class="textRightDNP">{{vigencia.Vigencia}}</td>
+                                                                                                                <td class="textRightDNP">{{vm.ConvertirNumero2decimales(vigencia.ValorPoliticaPrincipal)}}</td>
+                                                                                                                <td class="textRightDNP">{{vm.ConvertirNumero2decimales(vigencia.ValorCruceDependientePrincipal)}}</td>
+                                                                                                                <td class="textRightDNP">{{vigencia.PersonaPoliticaPrincipal}}</td>
+                                                                                                                <td class="textRightDNP">{{vigencia.PersonaCruce}}</td>
+                                                                                                                <td></td>
+                                                                                                            </tr>
+                                                                                                        </tbody>
+                                                                                                        <tfoot>
+                                                                                                            <tr>
+                                                                                                                <td class="columAcc icontotaldnp"><span>=</span></td>
+                                                                                                                <td class="textRightDNP">Total</td>
+                                                                                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero2decimales(politicaContenida.valorPP)}}</div></td>
+                                                                                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero2decimales(politicaContenida.valorPC)}}</div></td>
+                                                                                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(politicaContenida.personasPP)}}</div></td>
+                                                                                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(politicaContenida.personasPC)}}</div></td>
+                                                                                                                <td></td>
+                                                                                                            </tr>
+                                                                                                        </tfoot>
+                                                                                                    </table>
+                                                                                                </div>
+                                                                                            </div>
+
+
+
+                                                                                        </div>
+
+                                                                                    </td>
+                                                                                </tr>
+
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="row" ng-if="politicaprincipal.Politica === 'Víctimas'">
+                                                                    <div class="alert panel-heading">
+                                                                        <table class="TableDNP no-border">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th class="columAcc"></th>
+                                                                                    <th class="textLeftDNP">Política principal</th>
+                                                                                    <th class="textLeftDNP">Categoria</th>
+                                                                                    <th class="textLeftDNP">Subcategoria</th>
+                                                                                    <th class="textLeftDNP">Política contenida</th>
+                                                                                    <th class="columAcc"></th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody ng-repeat="politicaContenida in localizacion.RelacionPoliticas" ng-init="indexpoliticacontenida = $index" style="padding-bottom:60px">
+                                                                                <tr class="bottontransDNP">
+                                                                                    <td class="columAcc textdespleDNP">
+                                                                                        <button class="btnaccion btntablednp" type="button" data-toggle="collapse" data-target="#obj-{{fuente.FuenteID}}-{{indexFuentes}}-{{politicaprincipal.PoliticaId}}-{{indexpp}}-{{localizacion.LocalizacionId}}-{{indexlocalizacion}}-{{politicaContenida.PoliticaDependienteId}}-{{indexpoliticacontenida}}" ng-click="vm.AbrilNivel4(fuente.FuenteID, indexFuentes, politicaprincipal.PoliticaId, indexpp, localizacion.LocalizacionId, indexlocalizacion, politicaContenida.PoliticaDependienteId, indexpoliticacontenida)">
+                                                                                            <img id="imgmas-{{fuente.FuenteID}}-{{indexFuentes}}-{{politicaprincipal.PoliticaId}}-{{indexpp}}-{{localizacion.LocalizacionId}}-{{indexlocalizacion}}-{{politicaContenida.PoliticaDependienteId}}-{{indexpoliticacontenida}}" src="Img/btnMasTb.svg">
+                                                                                            <img id="imgmenos-{{fuente.FuenteID}}-{{indexFuentes}}-{{politicaprincipal.PoliticaId}}-{{indexpp}}-{{localizacion.LocalizacionId}}-{{indexlocalizacion}}-{{politicaContenida.PoliticaDependienteId}}-{{indexpoliticacontenida}}" style="display:none" src="Img/btnMenosTb.svg">
+                                                                                            <span id="ico-{{fuente.FuenteID}}-{{indexFuentes}}-{{politicaprincipal.PoliticaId}}-{{indexpp}}-{{localizacion.LocalizacionId}}-{{indexlocalizacion}}-{{politicaContenida.PoliticaDependienteId}}-{{indexpoliticacontenida}}" style="display:none">+</span>
+                                                                                        </button>
+                                                                                    </td>
+                                                                                    <td>{{politicaprincipal.Politica}}</td>
+                                                                                    <td ng-if="politicaContenida.PoliticaDependienteId > 8 && politicaContenida.PoliticaDependienteId < 15">{{politicaContenida.CategoriaDependiente}}</td>
+                                                                                    <td ng-if="politicaContenida.PoliticaDependienteId > 8 && politicaContenida.PoliticaDependienteId < 15">{{politicaContenida.SubCategoriaDependiente}}</td>
+                                                                                    <td ng-if="politicaContenida.PoliticaDependienteId < 9 || politicaContenida.PoliticaDependienteId > 14">N/A</td>
+                                                                                    <td ng-if="politicaContenida.PoliticaDependienteId < 9 || politicaContenida.PoliticaDependienteId > 14">N/A</td>
+                                                                                    <td>{{politicaContenida.PoliticaDependiente}}</td>
+                                                                                    <td class="columAcc" style="background: transparent">
+                                                                                </tr>
+                                                                                <tr class="no-border collapse alert panel-heading" id="obj-{{fuente.FuenteID}}-{{indexFuentes}}-{{politicaprincipal.PoliticaId}}-{{indexpp}}-{{localizacion.LocalizacionId}}-{{indexlocalizacion}}-{{politicaContenida.PoliticaDependienteId}}-{{indexpoliticacontenida}}">
+                                                                                    <td colspan="6" class="p-0">
+                                                                                        <div class="LineaEncabezado2tabDNP"></div>
+                                                                                        <h3 class="row tituloEncabezadotabDNP">
+                                                                                            Política Principal:<span class="totaldespleDNP">{{politicaprincipal.Politica}}.</span>
+                                                                                            Categoria:<span ng-if="politicaContenida.PoliticaDependienteId > 8 && politicaContenida.PoliticaDependienteId < 15" class="totaldespleDNP">{{politicaContenida.CategoriaDependiente}}.</span><span ng-if="politicaContenida.PoliticaDependienteId < 9 || politicaContenida.PoliticaDependienteId > 14" class="totaldespleDNP">N/A</span>
+                                                                                            Subcategoria:<span ng-if="politicaContenida.PoliticaDependienteId > 8 && politicaContenida.PoliticaDependienteId < 15" class="totaldespleDNP">{{politicaContenida.SubCategoriaDependiente}}.</span><span ng-if="politicaContenida.PoliticaDependienteId < 9 || politicaContenida.SubCategoriaDependiente > 14" class="totaldespleDNP">N/A</span>
+                                                                                            Política contenida:<span class="totaldespleDNP">{{politicaContenida.PoliticaDependiente}}.</span>
+                                                                                        </h3>
+
+                                                                                        <div class="row" style="margin:15px;">
+
+                                                                                            <span class="buttonbar pull-right">
+                                                                                                <button id="Editar{{fuente.FuenteID}}-{{indexFuentes}}-{{politicaprincipal.PoliticaId}}-{{indexpp}}-{{localizacion.LocalizacionId}}-{{indexlocalizacion}}-{{politicaContenida.PoliticaDependienteId}}-{{indexpoliticacontenida}}"
+                                                                                                        type="button"
+                                                                                                        class="btn btneditarDNP"
+                                                                                                        tooltip-placement="top"
+                                                                                                        ng-click="politicaContenida.HabilitaEditarLocalizador ? vm.cancelarEdicion(fuente.FuenteID,indexFuentes,politicaprincipal.PoliticaId,indexpp,localizacion.LocalizacionId,indexlocalizacion,politicaContenida, politicaContenida.PoliticaDependienteId, indexpoliticacontenida)
+                                                                                                                : vm.habilitarEditar(fuente.FuenteID,indexFuentes,politicaprincipal.PoliticaId,indexpp,localizacion.LocalizacionId,indexlocalizacion, politicaContenida, politicaContenida.PoliticaDependienteId,indexpoliticacontenida)"
+                                                                                                        uib-tooltip="{{politicaContenida.HabilitaEditarLocalizador ? 'CANCELAR' : 'EDITAR'}}">
+                                                                                                    {{politicaContenida.HabilitaEditarLocalizador  ? 'CANCELAR' : 'EDITAR'}}
+                                                                                                </button>
+                                                                                                <button id="Guardar{{fuente.FuenteID}}{{indexFuentes}}{{politicaprincipal.PoliticaId}}{{indexpp}}{{localizacion.LocalizacionId}}{{indexlocalizacion}}{{politicaContenida.PoliticaDependienteId}}{{indexpoliticacontenida}}" type="submit"
+                                                                                                        ng-class="politicaContenida.HabilitaEditarLocalizador  ? 'btn btn-default btn-mdHorizonte' : 'btn btnguardarHorizonte' "
+                                                                                                        tooltip-placement="top" ng-click="vm.GuardarAjustes(fuente.FuenteID,indexFuentes, politicaprincipal.PoliticaId,indexpp, localizacion.LocalizacionId,indexlocalizacion,politicaContenida,politicaContenida.PoliticaDependienteId, politicaContenida.CrucePoliticasVigencias, indexpoliticacontenida)"
+                                                                                                        disabled="disabled">
+                                                                                                    GUARDAR
+                                                                                                </button>
+                                                                                            </span>
+
+                                                                                            <div class="tab-container col-md-12" style="width:100%;">
+                                                                                                <ul class="nav nav-tabs">
+                                                                                                    <li id="licpAjuste" class="nav-item" ng-class="{active : 1===1}">
+                                                                                                        <a href="" ng-click="vm.mostrarTab(1,fuente.FuenteID,indexFuentes,politicaprincipal.PoliticaId,indexpp,localizacion.LocalizacionId,indexlocalizacion,politicaContenida.PoliticaDependienteId,indexpoliticacontenida)"
+                                                                                                           class="nav-link" data-target="#tabAjustados-{{fuente.FuenteID}}-{{indexFuentes}}-{{politicaprincipal.PoliticaId}}-{{indexpp}}-{{localizacion.LocalizacionId}}-{{indexlocalizacion}}-{{politicaContenida.PoliticaDependienteId}}-{{indexpoliticacontenida}}" data-toggle="tab">
+                                                                                                            <b>Solicitado</b>
+                                                                                                        </a>
+                                                                                                    </li>
+                                                                                                </ul>
+
+                                                                                            </div>
+                                                                                            <div class="tab-content">
+                                                                                                <div class="tab-pane active level-1-content mt-4" id="tabAjustados-{{fuente.FuenteID}}-{{indexFuentes}}-{{politicaprincipal.PoliticaId}}-{{indexpp}}-{{localizacion.LocalizacionId}}-{{indexlocalizacion}}-{{politicaContenida.PoliticaDependienteId}}-{{indexpoliticacontenida}}">
+                                                                                                    <table class="TableDNP">
+                                                                                                        <thead>
+                                                                                                            <tr>
+                                                                                                                <th class="columAcc"></th>
+                                                                                                                <th class="textRightDNP">Vigencia</th>
+                                                                                                                <th class="textRightDNP">Categoria/SubCategoria víctimas $</th>
+                                                                                                                <th class="textRightDNP">{{politicaContenida.PoliticaDependiente}} $</th>
+                                                                                                                <th class="textRightDNP">Categoria/SubCategoria personas víctimas</th>
+                                                                                                                <th class="textRightDNP">Personas {{politicaContenida.PoliticaDependiente}}</th>
+                                                                                                                <th class="columAcc"></th>
+                                                                                                            </tr>
+                                                                                                        </thead>
+                                                                                                        <tbody>
+                                                                                                            <tr class="uTexto-grilla" ng-repeat="vigencia in politicaContenida.CrucePoliticasVigencias" ng-init="indexvigencia = $index">
+                                                                                                                <td>
+                                                                                                                    <img id="imgcptj{{vigencia.Vigencia}}{{fuente.FuenteID}}{{indexFuentes}}{{politicaprincipal.PoliticaId}}{{indexpp}}{{localizacion.LocalizacionId}}{{indexlocalizacion}}{{politicaContenida.PoliticaDependienteId}}{{indexpoliticacontenida}}" class="iconoErrorDNP" src="Img/u4630.svg" style="display:none;">
+                                                                                                                    <div id="icocptj{{vigencia.Vigencia}}{{fuente.FuenteID}}{{indexFuentes}}{{politicaprincipal.PoliticaId}}{{indexpp}}{{localizacion.LocalizacionId}}{{indexlocalizacion}}{{politicaContenida.PoliticaDependienteId}}{{indexpoliticacontenida}}" class="hidden iconoErrorDNP"></div>
+                                                                                                                </td>
+                                                                                                                <td class="textRightDNP">{{vigencia.Vigencia}}</td>
+                                                                                                                <td class="textRightDNP">{{vm.ConvertirNumero2decimales(vigencia.ValorPoliticaPrincipal)}}</td>
+                                                                                                                <td class="textRightDNP">
+                                                                                                                    <div class="blockReferenciaDNP" ng-if="!politicaContenida.HabilitaEditarLocalizador">{{vm.ConvertirNumero2decimales(vigencia.ValorCruceDependientePrincipal)}}</div>
+                                                                                                                    <input id="inputvalorcp{{fuente.FuenteID}}-{{indexFuentes}}-{{politicaprincipal.PoliticaId}}-{{indexpp}}-{{localizacion.LocalizacionId}}-{{indexlocalizacion}}-{{politicaContenida.PoliticaDependienteId}}-{{indexpoliticacontenida}}-{{indexvigencia}}"
+                                                                                                                           type="number" string-to-number min="0.00"
+                                                                                                                           name="vigenciaLocalizacion{{producto.ProductoId}}{{item.FuenteId}}{{localizacion.LocalizacionId}}"
+                                                                                                                           ng-if="politicaContenida.HabilitaEditarLocalizador && vigencia.Vigencia >= vm.currentYear"
+                                                                                                                           ng-readonly="vigencia.Vigencia < vm.currentYear"
+                                                                                                                           ng-keypress="vm.validateFormat($event, 2)"
+                                                                                                                           ng-keyup="vm.validarTamanio($event, 2)"
+                                                                                                                           ng-value="vigencia.ValorCruceDependientePrincipal"
+                                                                                                                           ng-blur="vm.actualizaFila(politicaContenida,1,fuente.FuenteID,indexFuentes,politicaprincipal.PoliticaId,indexpp,localizacion.LocalizacionId,indexlocalizacion,politicaContenida.PoliticaDependienteId,indexpoliticacontenida)"
+                                                                                                                           ng-model="vigencia.ValorCruceDependientePrincipal" />
+                                                                                                                </td>
+                                                                                                                <td class="textRightDNP">{{vigencia.PersonaPoliticaPrincipal}}</td>
+                                                                                                                <td class="textRightDNP">
+                                                                                                                    <div class="blockReferenciaDNP" ng-if="!politicaContenida.HabilitaEditarLocalizador">{{vm.ConvertirNumero(vigencia.PersonaCruce)}}</div>
+                                                                                                                    <input id="inputpersonascp{{fuente.FuenteID}}-{{indexFuentes}}-{{politicaprincipal.PoliticaId}}-{{indexpp}}-{{localizacion.LocalizacionId}}-{{indexlocalizacion}}-{{politicaContenida.PoliticaDependienteId}}-{{indexpoliticacontenida}}-{{indexvigencia}}"
+                                                                                                                           type="number" string-to-number min="0"
+                                                                                                                           name="vigenciaLocalizacion{{producto.ProductoId}}{{item.FuenteId}}{{localizacion.LocalizacionId}}"
+                                                                                                                           ng-if="politicaContenida.HabilitaEditarLocalizador && vigencia.Vigencia >= vm.currentYear"
+                                                                                                                           ng-readonly="vigencia.Vigencia < vm.currentYear"
+                                                                                                                           ng-keypress="vm.validateFormat($event, 0)"
+                                                                                                                           ng-keyup="vm.validarTamanio($event, 0)"
+                                                                                                                           ng-value="vigencia.PersonaCruce"
+                                                                                                                           ng-blur="vm.actualizaFila(politicaContenida,1,fuente.FuenteID,indexFuentes,politicaprincipal.PoliticaId,indexpp,localizacion.LocalizacionId,indexlocalizacion,politicaContenida.PoliticaDependienteId,indexpoliticacontenida)"
+                                                                                                                           ng-model="vigencia.PersonaCruce" />
+                                                                                                                </td>
+                                                                                                                <td></td>
+                                                                                                            </tr>
+                                                                                                        </tbody>
+                                                                                                        <tfoot>
+                                                                                                            <tr>
+                                                                                                                <td class="columAcc icontotaldnp"><span>=</span></td>
+                                                                                                                <td class="textRightDNP">Total</td>
+                                                                                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero2decimales(politicaContenida.valorPP)}}</div></td>
+                                                                                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero2decimales(politicaContenida.valorPC)}}</div></td>
+                                                                                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(politicaContenida.personasPP)}}</div></td>
+                                                                                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(politicaContenida.personasPC)}}</div></td>
+                                                                                                                <td></td>
+                                                                                                            </tr>
+                                                                                                            <tr>
+                                                                                                                <td colspan="7">
+                                                                                                                    <div id="errortottal{{fuente.FuenteID}}-{{indexFuentes}}-{{politicaprincipal.PoliticaId}}-{{indexpp}}-{{localizacion.LocalizacionId}}-{{indexlocalizacion}}-{{politicaContenida.PoliticaDependienteId}}-{{indexpoliticacontenida}}" class=" text-left color-red">
+                                                                                                                        <img class="img img-advertencia" src="Img/u11.svg" />
+                                                                                                                        <span id="errortottalmsn{{fuente.FuenteID}}-{{indexFuentes}}-{{politicaprincipal.PoliticaId}}-{{indexpp}}-{{localizacion.LocalizacionId}}-{{indexlocalizacion}}-{{politicaContenida.PoliticaDependienteId}}-{{indexpoliticacontenida}}"></span>
+                                                                                                                    </div>
+                                                                                                                </td>
+                                                                                                            </tr>
+                                                                                                        </tfoot>
+                                                                                                    </table>
+                                                                                                </div>
+                                                                                            </div>
+
+
+
+                                                                                        </div>
+
+                                                                                    </td>
+                                                                                </tr>
+
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
+
+
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+
+                                                <br />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br />
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div ng-if="vm.CantidadFuentes === 0">
+                <span style="vertical-align: middle; display: table-cell;">
+
+                </span>
+                <div style="height:50px" class="blockReferencia2DNP">
+                    <span style="font-family:'Work Sans  Roman', 'Work Sans Regular Roman', 'Work Sans';font-weight:400;color:#4B4B4B;">
+                        En esta sección se presentan las políticas transversales que hayan cumplido con las validaciones definidas
+                        en el capítulo "Categorías políticas transversales"
+                    </span>
+                </div>
+
+            </div>
+        </div>
+    </form>
+</div>

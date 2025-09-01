@@ -1,0 +1,24 @@
+﻿<section ng-init="vm.init();">
+    <div id="SGRERRSEC{{vm.nombreComponente}}" class="hidden mb-3 ml-5" style="text-align: left; font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans'; font-size: 12px; font-style: normal; color: #A80521;"></div>
+    <div class="container-fluid inbox">
+        <div class="tab-content">
+            <div class="ui-accordion-container" id="accordion-sgrviabilidadpreviosregionalizacionregionalizacion">
+                <div class="alert panel-heading row ui-accordion-header">
+                    <button type="button" data-toggle="collapse" data-target="#sgrviabilidadpreviosregionalizacionregionalizacion" ng-click="vm.changeArrow('sgrviabilidadpreviosregionalizacionregionalizacion')">
+                        <span class="d-inline-block" id="alert-sgrviabilidadpreviosregionalizacionregionalizacion"></span>
+                        <span id="name-capitulo-sgrviabilidadpreviosregionalizacionregionalizacion"></span>
+                        <span class="hidden" id="id-capitulo-sgrviabilidadpreviosregionalizacionregionalizacion"></span>
+                        <span id="arrow-sgrviabilidadpreviosregionalizacionregionalizacion" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#sgrviabilidadpreviosregionalizacionregionalizacion"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="sgrviabilidadpreviosregionalizacionregionalizacion">
+                    <regionalizacion-sgr-sgr guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                             notificacioncambios="vm.notificacionCambiosCapitulosExternos(handler, nombreComponente)"
+                                             notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                             notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)">
+                    </regionalizacion-sgr-sgr>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

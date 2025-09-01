@@ -1,0 +1,58 @@
+﻿<section>
+    <div class="row">
+        <div class="col-md-12" ng-show="vm.camposGrillaVisibles.length > 0">
+            <div class="titlebar "  >
+                <span>Previsualizar </span>
+                <span class="buttonbar pull-right">
+                    <button type="button" class="btn btn-default btn-md" tooltip-placement="top" uib-tooltip="Adicionar Columna" ng-click="vm.abrirModalAdicionarColumnas()" tabindex="0">
+                        Adicionar columnas
+                    </button>
+                    <button type="button" class="btn btn-default btn-md"
+                            tooltip-placement="auto" uib-tooltip="Filtro" tabindex="0">
+                        Filtrar
+                    </button>
+                    <a href="" download target="_blank" tooltip-placement="auto"
+                       uib-tooltip="Exportar PDF" class="btn btn-default btn-md btnRedondo">PDF</a>
+                    <a href="" download target="_blank" tooltip-placement="auto"
+                       uib-tooltip="Exportar XLS" class="btn btn-default btn-md btnRedondo">XLS</a>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="previsualizar-form">
+        <div class="container-fluid">
+            <div class="container-fluid wbs encabezado-preview" ng-if="vm.formEncabezado !== null">
+                <div class="panel-group" id="accordion">
+                    <div class="panel panel-default min-width24">
+                        <div class="panel-default wbs">
+                                <div class="panel-title">
+                                    <button class="accordian-button" ng-click="vm.encabezadoColapsado = !vm.encabezadoColapsado"
+                                            ng-class="{ 'collapsed' : vm.encabezadoColapsado }">
+                                        <div class="accordian-arrow">
+                                            <i class="icon-less" aria-hidden="true"></i>
+                                            <i class="icon-add" aria-hidden="true"></i>
+                                        </div>
+                                    </button>
+                                    <span class="label-value bpin ng-binding" tooltip-placement="" uib-tooltip=""><b>ENCABEZADO</b> </span>
+                                </div>
+                                <div class="panel-collapse border-left-drop abrir header-form" ng-class="{ 'collapse' : vm.encabezadoColapsado }">
+                                    <form name="formularioEncabezado" sf-schema="vm.schemaEncabezado" sf-form="vm.formEncabezado" sf-model="vm.modelEncabezado"></form>
+                                 </div>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+            <div id="cuerpoPreview" class="body-form">
+                <div class="container-form-shadow">
+                    <s-alert options="{fixedOnTop: false}" instance="mensaje"></s-alert>
+                    <form name="formulario" sf-schema="vm.schema" sf-form="vm.form" sf-model="vm.model"></form>
+                </div>
+            </div>       
+            <div id="piePaginaPreview" class="footer-form" ng-if="vm.formPie !== null">
+                <div>
+                    <form name="formularioPie" sf-schema="vm.schemaPie" sf-form="vm.formPie" sf-model="vm.modelPie"></form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

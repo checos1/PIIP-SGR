@@ -1,0 +1,101 @@
+﻿<div ng-init="vm.init();">
+    <table class="TableDNP no-border">
+        <tbody>
+            <tr class="no-border alert panel-heading" id="ind1">
+                <td colspan="8" class="p-0">
+                    <div class="row">
+                        <div class="alert panel-heading">
+                            <table class="TableDNP" ng-repeat="itemPolitica in vm.listaPoliticasCategorias.Politicas" ng-init="indexPolitica = $index">
+                                <thead ng-if="indexPolitica == 0">
+                                    <tr>
+                                        <th class="columAcc"></th>
+                                        <th class="textLeftDNP" style="width:323px;"><span class="uLabelCampo">Política </span></th>
+                                        <th class="textLeftDNP" style="width:336px;">Categoría </th>
+                                        <th class="textLeftDNP" style="width:337px;">Subcategoría </th>
+                                        <th class="textRightDNP" style="width:180px;">Total focalizado $ </th>
+                                        <th class="columAcc"></th>
+                                    </tr>
+                                </thead>
+                                <thead ng-if="indexPolitica > 0" hidden>
+                                    <tr>
+                                        <th class="columAcc"></th>
+                                        <th class="textRightDNP" style="width:323px;"><span class="uLabelCampo">Política </span></th>
+                                        <th class="textRightDNP" style="width:336px;">Categoría </th>
+                                        <th class="textRightDNP" style="width:337px;">Subcategoría </th>
+                                        <th class="textRightDNP" style="width:180px;">Total focalizado $ </th>
+                                        <th class="columAcc"></th>
+                                    </tr>
+                                </thead>
+                                <tbody ng-repeat="itemCategoria in itemPolitica.Categorias" ng-init="indexCategoria = $index">
+                                    <!-- categoria -->
+                                    <tr ng-repeat="itemSubcategoria in itemCategoria.SubCategorias" ng-init="indexSubCategorias = $index">
+                                        <!-- Subcategoria -->
+                                        <td rowspan="{{itemCategoria.totalFilas}}"></td>
+                                        <td class="textLeftDNP" rowspan="{{itemCategoria.totalFilas}}" style="width:323px;">
+                                            <div class="blockReferenciaDNP" style="height: {{ itemCategoria .totalFilas * 55 }}px; padding-top: 5px; padding-bottom: 5px;">
+                                                {{itemPolitica.Politica}}.
+                                            </div>
+                                        </td>
+                                        <td class="textLeftDNP" style="width:336px;">
+                                            <textarea class="textAreatableDNP">{{itemCategoria.Categoria}}.</textarea>
+                                        </td>
+                                        <td class="textLeftDNP" style="width:337px;">
+                                            <textarea class="textAreatableDNP">{{itemSubcategoria.SubCategoria}}</textarea>
+                                        </td>
+                                        <td ng-if="itemSubcategoria.SubCategoria" class="textRightDNP" style="width:180px;">
+                                            {{vm.ConvertirNumero2decimales(itemSubcategoria.TotalFocalizadoCategoria)}}
+                                        </td>
+                                        <td ng-if="!itemSubcategoria.SubCategoria" class="textRightDNP" style="width:180px;">
+                                            {{vm.ConvertirNumero2decimales(itemCategoria.TotalCategoria)}}
+                                        </td>
+                                        <td></td>
+                                    </tr>
+
+                                    <tr class="CustomTDTable">
+                                        <td class="columAcc icontotaldnp"><span>=</span></td>
+                                        <td class="textRightDNP" colspan="3"><span>Total categoría $</span></td>
+                                        <td class="textRightDNP">
+                                            <input type="text" class="form-control editInputDNP " disabled value="{{vm.ConvertirNumero2decimales(itemCategoria.TotalCategoria)}}" />
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td class="columAcc icontotaldnp"><span>=</span></td>
+                                        <td class="textRightDNP" colspan="3"><span>TOTAL POLÍTICA {{itemPolitica.Politica | uppercase}} $</span></td>
+                                        <td class="textRightDNP">
+                                            <input type="text" class="form-control editInputDNP " disabled value="{{vm.ConvertirNumero2decimales(itemPolitica.TotalPolitica)}}" />
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+
+<style>
+
+    .CustomTDTable td input {
+        font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans' !important;
+        font-weight: 500 !important;
+        font-style: normal !important;
+        font-size: 16px !important;
+        color: #004884 !important;
+    }
+
+    .CustomTDTable td {
+        font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans' !important;
+        font-weight: 500 !important;
+        font-style: normal !important;
+        font-size: 16px !important;
+        color: #004884 !important;
+    }
+</style>

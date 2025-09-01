@@ -1,0 +1,43 @@
+﻿<section ng-init="vm.obtener();">
+    <div id="SGRERRSEC{{vm.nombreComponente}}" class="hidden mb-3 ml-5 errorSeccionOperacionCreditoPrevios" style="text-align: left; font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans'; font-size: 12px; font-style: normal; color: #A80521;"></div>
+    <div class="container-fluid inbox">
+        <div class="tab-content">
+            <div class="ui-accordion-container">
+                <div class="alert panel-heading row ui-accordion-header">
+                    <button type="button" data-toggle="collapse" data-target="#sgrviabilidadpreviosoperacioncreditoinformaciongeneralcredito" ng-click="vm.changeArrow('sgrviabilidadpreviosoperacioncreditoinformaciongeneralcredito')">
+                        <span class="d-inline-block" id="alert-sgrviabilidadpreviosoperacioncreditoinformaciongeneralcredito"></span>
+                        <span id="name-capitulo-sgrviabilidadpreviosoperacioncreditoinformaciongeneralcredito"></span>
+                        <span class="hidden" id="id-capitulo-sgrviabilidadpreviosoperacioncreditoinformaciongeneralcredito"></span>
+                        <span id="arrow-sgrviabilidadpreviosoperacioncreditoinformaciongeneralcredito" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#sgrviabilidadpreviosoperacioncreditoinformaciongeneralcredito"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="sgrviabilidadpreviosoperacioncreditoinformaciongeneralcredito">
+                    <datos-generales-sgr guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                         notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                         notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"
+                                         notificacioncambios="vm.notificacionCambiosCapitulosExternos(handler, nombreComponente)"
+                                         notificacioninicio="vm.notificacionInicioHijos(handlerInicio, nombreComponente)">
+                    </datos-generales-sgr>
+                </div>
+            </div>
+            <div class="ui-accordion-container">
+                <div class="alert panel-heading row ui-accordion-header">
+                    <button type="button" data-toggle="collapse" data-target="#sgrviabilidadpreviosoperacioncreditoinformaciondetalladacredito" ng-click="vm.changeArrow('sgrviabilidadpreviosoperacioncreditoinformaciondetalladacredito')">
+                        <span class="d-inline-block" id="alert-sgrviabilidadpreviosoperacioncreditoinformaciondetalladacredito"></span>
+                        <span id="name-capitulo-sgrviabilidadpreviosoperacioncreditoinformaciondetalladacredito"></span>
+                        <span class="hidden" id="id-capitulo-sgrviabilidadpreviosoperacioncreditoinformaciondetalladacredito"></span>
+                        <span id="arrow-sgrviabilidadpreviosoperacioncreditoinformaciondetalladacredito" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#sgrviabilidadpreviosoperacioncreditoinformaciondetalladacredito"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="sgrviabilidadpreviosoperacioncreditoinformaciondetalladacredito">
+                    <informacion-detallada-sgr guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                               notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                               notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"
+                                               notificacioncambios="vm.notificacionCambiosCapitulosExternos(handler, nombreComponente)"
+                                               notificacioninicio="vm.notificacionInicioHijos(handlerInicio, nombreComponente)">
+                    </informacion-detallada-sgr>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

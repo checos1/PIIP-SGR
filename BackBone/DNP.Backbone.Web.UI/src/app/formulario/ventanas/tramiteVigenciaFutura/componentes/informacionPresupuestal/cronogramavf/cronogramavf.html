@@ -1,0 +1,90 @@
+﻿<style>
+    .uTextAreaSinBorde {
+        border-style: none;
+        border-color: Transparent;
+        overflow: auto;
+        width: 100%;
+        resize: none;
+    }
+</style>
+<div ng-init="vm.init()">
+    <div>
+        <div class="row" style="padding-top:2rem;">
+            <div class="col-md-3" style="display:inline-flex;">
+                <span style="color: #004884; font-size: 24px; font-weight: 400;">Etapa precontractual</span>
+            </div>
+            <div ng-click="vm.abrirTooltipPrec()" style="padding-left: 1rem; padding-top: 1rem; ">
+                <svg class="mi-card__tooltip-icon" xmlns="http://www.w3.org/2000/svg" width="17.037" height="17.037" viewBox="0 0 17.037 17.037">
+                    <g id="Grupo_5110" data-name="Grupo 5110" transform="translate(0 0)">
+                        <path id="Caminho_9243" data-name="Caminho 9243" d="M8.552,0A8.552,8.552,0,0,0,0,8.485a8.609,8.609,0,0,0,8.552,8.552A8.519,8.519,0,0,0,8.552,0Zm0,14.542a1,1,0,1,1,1-1A1,1,0,0,1,8.552,14.542Zm1.769-6.136A2.663,2.663,0,0,0,9.55,10.22v.262a1,1,0,0,1-2,0V10.22A4.614,4.614,0,0,1,9.141,6.8,1,1,0,1,0,7.554,5.99a1,1,0,0,1-2,0,2.995,2.995,0,1,1,4.764,2.416Z" transform="translate(0 0)" fill="#36c"></path>
+                    </g>
+                </svg>
+            </div>
+        </div>
+        <br />
+        <table class="TableDNP">
+            <thead>
+                <tr>
+                    <!--<th class="columAcc"></th>-->
+                    <th class="textLeftDNP">Actividad precontractual</th>
+                    <th class="textLeftDNP">Fecha estimada inicio (mes/año)</th>
+                    <th class="textLeftDNP">Fecha estimada finalización (mes/año)</th>
+                    <th class="columAcc"></th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="objValor in vm.listaPrecontractual">
+
+                    <!--<td></td>-->
+                    <td>
+                        <textarea rows="3" cols="120" class="uTextAreaSinBorde"> {{objValor.NombreActividad}}</textarea>
+                    </td>
+                    <td class="textLeftDNP"> {{objValor.FechaInicial}}</td>
+                    <td class="textLeftDNP"> {{objValor.FechaFinal}}</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+        <br />
+        <div class="row" style="padding-top:2rem;">
+            <div class="col-md-3" style="display:inline-flex;">
+                <span style="color: #004884; font-size: 24px; font-weight: 400;">Etapa contractual</span>
+            </div>
+            <div ng-click="vm.abrirTooltipCont()" style="padding-left: 1rem; padding-top: 1rem; ">
+                <svg class="mi-card__tooltip-icon" xmlns="http://www.w3.org/2000/svg" width="17.037" height="17.037" viewBox="0 0 17.037 17.037">
+                    <g id="Grupo_5110" data-name="Grupo 5110" transform="translate(0 0)">
+                        <path id="Caminho_9243" data-name="Caminho 9243" d="M8.552,0A8.552,8.552,0,0,0,0,8.485a8.609,8.609,0,0,0,8.552,8.552A8.519,8.519,0,0,0,8.552,0Zm0,14.542a1,1,0,1,1,1-1A1,1,0,0,1,8.552,14.542Zm1.769-6.136A2.663,2.663,0,0,0,9.55,10.22v.262a1,1,0,0,1-2,0V10.22A4.614,4.614,0,0,1,9.141,6.8,1,1,0,1,0,7.554,5.99a1,1,0,0,1-2,0,2.995,2.995,0,1,1,4.764,2.416Z" transform="translate(0 0)" fill="#36c"></path>
+                    </g>
+                </svg>
+            </div>
+        </div>
+        <br />
+        <table class="TableDNP">
+            <thead>
+                <tr>
+                    <!--<th class="columAcc"></th>-->
+                    <th class="textLeftDNP">Actividad contractual</th>
+                    <th class="textLeftDNP">Fecha estimada inicio (mes/año)</th>
+                    <th class="textLeftDNP">Fecha estimada finalización (mes/año)</th>
+                    <th class="columAcc"></th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="objValor in vm.listaContractual">
+
+                    <!--<td></td>-->
+                    <td>
+                        <textarea rows="3" cols="120" class="uTextAreaSinBorde"> {{objValor.NombreActividad}}</textarea>
+                    </td>
+                    <td class="textLeftDNP"> {{objValor.FechaInicial}}</td>
+                    <td class="textLeftDNP"> {{objValor.FechaFinal}}</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+        <br />
+        <br />
+    </div>
+</div>

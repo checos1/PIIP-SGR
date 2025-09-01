@@ -1,0 +1,173 @@
+﻿<style>
+    .uLabelDetalle_FP {
+        color: #004884 !important;
+        font-family: 'Work Sans';
+        letter-spacing: 0px;
+        font-size: 16px;
+    }
+
+    .uLabelCampo_fp {
+        color: #004884 !important;
+        font-family: 'Work Sans';
+        letter-spacing: 0px;
+        font-weight: 600;
+        font-size: 16px;
+    }
+
+
+    .uLabelCampo_fp1 {
+        color: #004884 !important;
+        font-family: 'Work Sans';
+        letter-spacing: 0px;
+        font-weight: 600;
+        font-size: 14px;
+    }
+
+    .btn-primary,
+    .btn-primary:hover,
+    .btn-primary:active,
+    .btn-primary:visited {
+        background-color: #8064A2 !important;
+    }
+</style>
+<div ng-init="vm.init()">
+    <form id="cdpVigenciaForm" name="cdpVigenciaForm" novalidate>
+        <span class="uLabelCampoAzul">Agregar CDP</span>
+        <br />
+        <br />
+        <span class="uLabelCampoNegro1">CDP agregados</span>
+        <p align="right">
+            <span class="uLabelCampoNegro0">Total: {{vm.listaCDP.length}}</span>
+        </p>
+        <div class="row">
+            <div class="col-md-1">&nbsp;</div>
+            <div class="col-md-12">
+                <div id="recursosfuentesdefinanc-validacionguardar-error" src="Img/u11.svg" class=" img hidden text-left color-red"></div>
+            </div>
+        </div>
+        <br />
+        <div id="fuentes" class="collapsed panel-body">
+            <div class="col-md-12" style="padding-top:0.2rem;">
+                <div class="row">
+                    <div class="filtro filtro-entidades">
+                        <div class="clearfix">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="col-md-2" style="text-align:right;">
+                                        <span class="columAcc"></span>
+                                    </div>
+                                    <div class="col-md-2" style="text-align:right;">
+                                        <span class="uLabelCampo_fp">Número</span>
+                                    </div>
+                                    <div class="col-md-2" style="text-align:left;">
+                                        <span class="uLabelCampo_fp">Fecha</span>
+                                    </div>
+                                    <div class="col-md-2" style="text-align:right;">
+                                        <span class="uLabelCampo_fp">Valor total $</span>
+                                    </div>
+                                    <div class="col-md-2" style="text-align:right;">
+                                        <span class="uLabelCampo_fp">Valor CDP para trámite $</span>
+                                    </div>
+                                    <div class="col-xs-1" style="text-align: left;">
+                                        <span></span>
+                                    </div>
+                                    <div class="col-xs-1" style="text-align: left;">
+                                        <span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-repeat="objCDP in vm.listaCDP">
+                        <div class="col-md-12 form-group text-right" style="padding-right:2rem;">
+                            <div class="col-md-12" style="border: 1px solid #ddd;">
+                                <div class="col-md-2" style="text-align:right;">
+                                    <div id="informacionpresupuestalcdp-{{objCDP.numeroCDP}}" class="hidden text-left color-red"></div>
+                                </div>
+                                <div class="col-md-2" style="text-align:right;">
+                                    <span class="uLabelDetalle_FP">{{objCDP.numeroCDP}} </span>
+                                </div>
+                                <div class="col-md-2" style="text-align:left">
+                                    <span class="uLabelDetalle_FP">{{objCDP.fechaCDP}}</span>
+                                </div>
+                                <div class="col-md-2" style="text-align:right">
+                                    <span class="uLabelDetalle_FP">{{objCDP.valortotalCDP}}</span>
+                                </div>
+                                <div class="col-md-2" style="text-align:right">
+                                    <span class="uLabelDetalle_FP">{{objCDP.valorCDP}}</span>
+                                </div>
+                                <div class="col-xs-1" style="text-align:right">
+                                    <button class="btn" title="Editar CDP" ng-click="vm.editarCDP(objCDP.id)" style="background-color: Window" has-claim has-opciones="['TramitesVigenciaFutura:AccionesPasoUno']">
+                                        <img src="Img/u475.svg" />
+                                    </button>
+                                </div>
+                                <div class="col-xs-1" style="text-align:center">
+                                    <button class="btn" title="Eliminar CDP" ng-click="vm.eliminarCDP(objCDP.id)" style="background-color: Window" has-claim has-opciones="['TramitesVigenciaFutura:AccionesPasoUno']">
+                                        <img src="Img/u928.svg" />
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div id="informacionpresupuestalcdp-CDP-error" class="hidden uMensajeError"></div>
+            <div id="informacionpresupuestalcdp-CDPrecursosNación-error" class="hidden uMensajeError"></div>
+            <p align="right">
+                <a ng-click="vm.abrirModalEditarCDP()" has-claim has-opciones="['TramitesVigenciaFutura:AccionesPasoUno']"><span class="uLabelCampo_fp1" style="text-decoration:underline">AGREGAR CDP</span></a>
+            </p>
+        </div>
+        <div class="col-md-12" style="display:inline-flex;">
+            <span class="uLabelCampoNegro1" has-claim has-opciones="['TramitesVigenciaFutura:AccionesPasoUno']">Archivo plantilla carga masiva</span>
+            <div ng-click="vm.informacionCDP()" has-claim has-opciones="['TramitesVigenciaFutura:AccionesPasoUno']">
+                <svg class="mi-card__tooltip-icon" xmlns="http://www.w3.org/2000/svg" width="17.037" height="17.037" viewBox="0 0 17.037 17.037">
+                    <g id="Grupo_5110" data-name="Grupo 5110" transform="translate(0 0)">
+                        <path id="Caminho_9243" data-name="Caminho 9243" d="M8.552,0A8.552,8.552,0,0,0,0,8.485a8.609,8.609,0,0,0,8.552,8.552A8.519,8.519,0,0,0,8.552,0Zm0,14.542a1,1,0,1,1,1-1A1,1,0,0,1,8.552,14.542Zm1.769-6.136A2.663,2.663,0,0,0,9.55,10.22v.262a1,1,0,0,1-2,0V10.22A4.614,4.614,0,0,1,9.141,6.8,1,1,0,1,0,7.554,5.99a1,1,0,0,1-2,0,2.995,2.995,0,1,1,4.764,2.416Z" transform="translate(0 0)" fill="#36c"></path>
+                    </g>
+                </svg>
+            </div>
+            <a ng-click="vm.exportExcel()" has-claim has-opciones="['TramitesVigenciaFutura:AccionesPasoUno']"><span class="uLabelCampo_fp1" style="text-decoration:underline">DESCARGAR PLANTILLA</span></a>
+        </div>
+        <div class="col-md-12  form-group">
+            <div class="col-md-8  file-drop-zone" file-dropzone files-to-upload="files" valida-nombre-archivo="validaNombreArchivo" data="nombreArchivo">
+                Arrastre aquí su(s) archivo(s)
+                <div ng-repeat="file in files" has-claim has-opciones="['TramitesVigenciaFutura:AccionesPasoUno']"><span>Nombre archivo:</span><span class="uLabelDetalle">{{file.nombreArchivo}}</span></div>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+
+
+        <div class="col-md-12  form-group" style="padding-bottom:1em;">
+            <div class="col-md-2">
+                <span class="buttonbar pull-left">
+                    <button type="button" class="btn btn-default btn-md btnFiltroHeader" tooltip-placement="top" ng-click="vm.limpiarArchivo()" uib-tooltip="Eliminar archivo de caja" tabindex="0" has-claim has-opciones="['TramitesVigenciaFutura:AccionesPasoUno']">
+                        Limpiar
+                    </button>
+                </span>
+            </div>
+            <div class="col-md-3">
+                <div class="upload-btn-wrapper pull-left">
+                    <button class="btn btn-default btn-md btnFiltroHeader" has-claim has-opciones="['TramitesVigenciaFutura:AccionesPasoUno']">Seleccionar un archivo</button>
+                    <input type="file" onchange="angular.element(this).scope().SelectFile(event)" file-model-no-preview="data.file" id="control" />
+                </div>
+            </div>
+            <div class="col-md-3">
+                <span class="buttonbar pull-left">
+                    <button type="button" class="btn btn-default btn-md btnFiltroHeader"
+                            tooltip-placement="top"
+                            ng-click="vm.archivoSeleccionado()"
+                            uib-tooltip="Procesar archivo"
+                            tabindex="0"
+                            has-claim has-opciones="['TramitesVigenciaFutura:AccionesPasoUno']">
+                        Agregar datos a Tabla
+                    </button>
+                </span>
+            </div>
+            <div class="col-md-4">
+            </div>
+        </div>
+    </form>
+    <br />
+</div>

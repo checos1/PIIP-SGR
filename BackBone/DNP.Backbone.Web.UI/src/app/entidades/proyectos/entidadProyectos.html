@@ -1,0 +1,163 @@
+<!-- ReSharper disable All -->
+<style>
+    .modal.fade .modal-header{
+        background-color: transparent !important;
+        height: unset !important;
+    }
+</style>
+
+<div class="container-fluid inbox">
+    <nav class="breadcrumb">
+        <!-- ReSharper disable UnknownCssClass -->
+        <a href="/">
+            <span class="breadcrumb-item active">
+                <i class="fa fa-home" aria-hidden="true"></i> Inicio
+            </span>
+        </a>
+        /
+        <a href="/entidades">
+            <span class="breadcrumb-item active">
+                    Entidades
+            </span>
+        </a>
+        /
+        <span class="breadcrumb-item active">Proyectos</span>
+    </nav>
+   
+    <!-- // inicio: content -->
+    <div ng-init="entidadProyectosCtrl.eventos.init($event)">
+        <div class="dashboard">
+
+            <div class="project">
+                <div class="row">
+    
+                    <div class="col-md-12">
+                        <div class="titlebar">
+                            <span>Proyectos </span>
+                            <span class="buttonbar pull-right">
+                                <button id="btnAgregaColumna" type="button" class="btn btn-default btn-md" tooltip-placement="top" uib-tooltip="Adicionar Columna" tabindex="0" ng-click="entidadProyectosCtrl.eventos.btnAgregaColumna_onClick($event, $event.target)">
+                                    Adicionar columna
+                                </button>
+                                <button id="btnFiltro" type="button" class="btn btn-default btn-md" tooltip-placement="auto" uib-tooltip="Filtro" ng-click="entidadProyectosCtrl.eventos.btnFiltro_onClick($event)">Filtro</button>
+                                <!-- <a href="" download target="_blank" tooltip-placement="auto" uib-tooltip="Exportar PDF"><img src="/Img/btn/btnExportPDF.png" alt="PDF" /></a>
+                                <a href="" download target="_blank" tooltip-placement="auto" uib-tooltip="Exportar XLS"><img src="/Img/btn/btnExportXLS.png" alt="XLS" /></a> -->
+                               
+                            </span>
+                        </div>
+                    </div>
+    
+                </div>
+            </div>
+    
+            <!-- // inicio: tabs-->
+            <div class="form-group clearfix">
+                <div class="row">
+                    
+                    <div class="col-sm-12 tabs radio radio-primary">
+                        <ul class="nav nav-tabs">
+                            <li tabindex="0" class="{{$index == 0 ? 'active' : ''}}" ng-repeat="tipo in entidadProyectosCtrl.control.tabLista">
+                                <a  data-toggle="tab"
+                                    ng-if="tipo.habilitado"
+                                    ng-click="entidadProyectosCtrl.eventos.navTab_onClick($event, $event.target)">
+                                     {{tipo.nombre}}
+                                </a>
+                                <a ng-if="!tipo.habilitado" class="disabled" disabled>{{tipo.nombre}}</a>
+                            </li>
+    
+                        </ul>
+                    </div>
+
+                </div>
+
+                <!-- // inicio: filtro -->
+                <div class="filtro" ng-if="entidadProyectosCtrl.control.filtros.mostrarPanel">
+                    <div class="clearfix">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <div class="row">
+
+                                    <!-- // TipoEntidades -->
+                                    <div class="col-md-2" ng-if="entidadProyectosCtrl.columnas.indiceFiltros[0]">
+                                        <select id="cmbTipoEntidad" name="cmbTipoEntidad" ng-model="entidadProyectosCtrl.modelo.filtro.entidadId" ng-options="entidad.Id as entidad.Nombre for entidad in entidadProyectosCtrl.control.filtros.entidadLista" class="form-control">
+                                            <option value="" selected>Entidad</option>
+                                        </select>
+                                    </div>
+
+                                    <!-- // proyectos -->
+                                    <div class="col-md-2" ng-if="entidadProyectosCtrl.columnas.indiceFiltros[1]">
+                                        <select id="cmbProyecto" name="cmbProyecto" ng-model="entidadProyectosCtrl.modelo.filtro.proyectoId" ng-options="proyecto.Id as proyecto.Descripcion for proyecto in entidadProyectosCtrl.control.filtros.proyectoLista"  class="form-control">
+                                            <option value="" selected>Proyecto/BPIN</option>
+                                        </select>
+                                    </div>
+
+                                    <!-- // estado del proyecto -->
+                                    <div class="col-md-2" ng-if="entidadProyectosCtrl.columnas.indiceFiltros[2]">
+                                        <select id="cmbEstadoProyecto" name="cmbEstadoProyecto" ng-model="entidadProyectosCtrl.modelo.filtro.estadoProyectoId" ng-options="estado.Id as estado.Nombre for estado in entidadProyectosCtrl.control.filtros.estadoProyectoLista"  class="form-control">
+                                            <option value="" selected>Estado del proyecto</option>
+                                        </select>
+                                    </div>
+
+                                    <!-- // inicio filtro por fecha -->
+                                    <div class="col-md-3" ng-if="entidadProyectosCtrl.columnas.indiceFiltros[3]">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">Fecha Desde</span>
+                                            </div>
+                                            <input id="dtFechaInicioFiltro" name="dtFechaInicioFiltro" ng-model="entidadProyectosCtrl.modelo.filtro.fechaInicio" type="date" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3" ng-if="entidadProyectosCtrl.columnas.indiceFiltros[3]">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">Fecha Hasta</span>
+                                            </div>
+                                            <input id="dtFechaFinFiltro" name="dtFechaInicioFiltro" ng-model="entidadProyectosCtrl.modelo.filtro.fechaTermino" type="date" class="form-control">
+                                        </div>
+                                    </div>
+                                    <!-- // fin: filtro por fecha -->
+
+                                </div>
+                            </div>
+
+                            <div class="col-md-2 text-right">
+                                <button id="btnAccionFiltrar" type="button" class="btn btn-filtro" tooltip-placement="auto" uib-tooltip="Buscar" ng-click="entidadProyectosCtrl.eventos.btnAccionFiltrar_onClick($event, $event.target)">
+                                    Buscar
+                                </button>
+                                <button id="btnLimpiarFiltro" type="button" class="btn btn-filtro" tooltip-placement="auto" uib-tooltip="Limpiar" ng-click="entidadProyectosCtrl.eventos.btnLimpiarFiltro_onClick($event, $event.target)">
+                                    Limpiar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- // fin: filtro -->
+            </div>
+            <!-- // fin: tabs -->
+
+            <!-- // inicio: tabla -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="container-table">
+
+                         <div 
+                              ng-if = "entidadProyectosCtrl.control.filtrados === true"
+                              class="clearfix grid-icon" 
+                              ui-grid="entidadProyectosCtrl.grid.proyectoOptions" 
+                              ui-grid-resize-columns 
+                              ui-grid-pinning 
+                              ui-grid-pagination
+                              ui-grid-expandable>
+                         </div>
+                         
+                         <div class="text-center intro-help  min-mh no-result-watermark" ng-if="entidadProyectosCtrl.control.filtrados === false">
+                            <h4>{{ 'No hay ningún resultado para su búsqueda por el tipo de entidad' }} {{ entidadProyectosCtrl.control.entidadClaveSeleccionada }}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- // fin: tabla -->
+
+        </div>
+    </div>
+    <!-- // fin: content -->
+</div>

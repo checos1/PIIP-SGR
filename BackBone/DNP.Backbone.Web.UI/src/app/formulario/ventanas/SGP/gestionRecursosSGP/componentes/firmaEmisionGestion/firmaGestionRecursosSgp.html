@@ -1,0 +1,33 @@
+﻿<section class="ventana-ajsutes mt-4" ng-init="vm.init()">
+    <div class="row m-0">
+        <div class="form-group">
+            <div class="tab-container col-md-12">
+                <div ng-class="{'v': 'row py-4 FilaEstadocumpleDNP', 'nv': 'row py-4 FilaEstadoNocumpleDNP', 'obs': 'row py-4 FilaEstadoConObservacionesDNP', 'nvobs': 'row py-4 FilaEstadoNoViableConObservacionesDNP'}[vm.cumple]">
+                    <div class="col-md-12 text-center">
+                        <span> <img ng-class="{'v': 'lineaverdeRight', 'nv': 'linearojaRight', 'obs': 'lineaamarillaRight', 'nvobs': 'linearojaRight'}[vm.cumple]" data-ng-src="{{vm.iconCumple('Img/IcoLineaVerdeRight.svg','Img/IcoLineaRojaRight.svg', 'Img/IcoLineaAmarillaRight.svg', 'Img/IcoLineaRojaRight.svg')}}"></span>
+                        <span> <img ng-class="{'v':'FlechaverdeRight', 'nv': 'FlecharojaRight', 'obs': 'FlechaamarillaRight', 'nvobs': 'FlecharojaRight'}[vm.cumple]" data-ng-src="{{vm.iconCumple('Img/IcoFlechaGreen.svg','Img/IcoFlechaRed.svg', 'Img/IcoFlechaAmarilla.svg','Img/IcoFlechaRed.svg')}}"></span>
+                        <span ng-bind-html="vm.textEstadoValidacion"></span>
+                        <span> <img ng-class="{'v':'lineaverdeLeft', 'nv': 'linearojaLeft', 'obs': 'lineaamarillaLeft', 'nvobs': 'lineaamarillaLeft'}[vm.cumple]" data-ng-src="{{vm.iconCumple('Img/IcoFlechaGreen.svg','Img/IcoFlechaRed.svg', 'Img/IcoFlechaAmarilla.svg', 'Img/IcoFlechaAmarilla.svg')}}"></span>
+                        <span> <img ng-class="{'v':'FlechaverdeLeft', 'nv': 'FlecharojaLeft', 'obs': 'FlechaamarillaLeft', 'nvobs': 'FlechaamarillaLeft'}[vm.cumple]" data-ng-src="{{vm.iconCumple('Img/IcoLineaVerdeLeft.svg','Img/IcoLineaRojaLeft.svg', 'Img/IcoLineaAmarillaLeft.svg', 'Img/IcoLineaAmarillaLeft.svg')}}"></span>
+                    </div>
+                    <div class="col-md-12 text-center py-4" ng-show="vm.cumple">
+                        <p class="detalleViabilidadDNP">
+                            <span ng-bind-html="vm.textDetalleValidacion"></span>
+                        </p>
+                    </div>
+                </div>
+                <div class="tab-content">
+                    <div class="tab-pane active cont col-md-12" style="padding-left:0 !important;padding-top:20px !important" id="dsgpsolicitudrecursosfirmaresponsables">
+                        <proceso-firma-gestion-recursos-sgp callback="vm.notificarGuardado()"
+                                                      guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                                      notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                                      notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)"
+                                                      notificacioncambios="vm.notificacionCambiosAjustes(handler, nombreComponente)"
+                                                      notificarsiguiente="vm.habilitaFinalizar(estado)">
+                        </proceso-firma-gestion-recursos-sgp>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

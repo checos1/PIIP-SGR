@@ -1,0 +1,133 @@
+﻿<div ng-init="vm.init();">
+    <section id="tramites" >
+        <div class="wizard">
+            <div class="wizard-inner">
+                <div class="connecting-line"></div>
+                <ul class="nav nav-tabs" role="tablist">
+
+                    <li role="presentation" class="active" id="step1li">
+                        <a href="" title="Step 1">
+                            <span class="round-tab">
+                                <b>1</b>
+                            </span>
+                        </a>
+                        <b>Selecionar proyectos contracrédito</b>
+                    </li>
+
+                    <li role="presentation" class="disabled" id="step2li">
+                        <a href="" title="Step 2">
+                            <span class="round-tab">
+                                <b>2</b>
+                            </span>
+                        </a>
+                        <b>Selecionar proyectos crédito</b>
+                    </li>
+                </ul>
+            </div>
+
+            <form role="form" class="mt-5">
+                <div class="tab-content">
+                    <div ng-if="vm.paso1visible">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="titulo-modal">
+                                    <span>PROYECTOS</span>
+                                    <span class="button-bar">
+                                        <button type="button" class="btn btn-success btn-sm " ng-click="vm.paso2()">Siguiente</button>
+                                    </span>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="">
+                                <div class="col-md-4 col-sm-4">
+                                    <select ng-model="vm.entidadFiltroContra" ng-change="vm.filtrarEntidades()" class="form-control" ng-init="vm.entidadFiltroContra=0">
+                                        <option value="0">Entidades</option>
+                                        <option ng-repeat="entidad in vm.listaEntidadesFiltro" value="{{entidad}}">
+                                            {{entidad}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="col-md-2 col-sm-2">
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="form-control" placeholder="BPIN" ng-model="vm.bpinFiltroContra" />
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-4">
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="form-control" placeholder="Proyectos" ng-model="vm.proyectosFiltroContra" />
+                                    </div>
+                                </div>
+                                <div class="col-md-2 col-sm-2">
+                                    <span class="buttonbar pull-right">
+                                        <button type="button" class="btn btn-primary btn-sm" ng-click="vm.filtrarContraCredito()">Buscar</button>
+                                        <button type="button" class="btn btn-default btn-sm" ng-click="vm.limparfiltroContraCredito()">Limpiar</button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="dashboard">
+                                <div id="proyectos" class="project">
+                                    <div class="clearfix background-white div-escopo">
+                                        <div class="row">
+                                            <div class="col-xs-12" ng-if="vm.gridOptions.data.length">
+                                                <div class="ui-grid" ui-grid="vm.gridOptions" ui-grid-selection ui-grid-pinning ui-grid-resize-columns ui-grid-pagination></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="" id="step2" ng-if="vm.paso2visible">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="titulo-modal">
+                                    <span>PROYECTOS</span>
+                                    <span class="button-bar">
+                                        <button type="button" class="btn btn-default btn-sm " ng-click="vm.paso1()">Volver</button>
+                                        <button type="button" class="btn btn-success btn-sm " ng-click="vm.guardarProyectos()">Guardar y validar</button>
+                                    </span>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="">
+
+                                <div class="col-md-5 col-sm-5">
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="form-control" placeholder="BPIN" ng-model="vm.bpinFiltroCredito" />
+                                    </div>
+                                </div>
+                                <div class="col-md-5 col-sm-5">
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="form-control" placeholder="Proyectos" ng-model="vm.proyectosFiltroCredito" />
+                                    </div>
+                                </div>
+                                <div class="col-md-2 col-sm-2">
+                                    <span class="buttonbar pull-right">
+                                        <button type="button" class="btn btn-primary btn-sm" ng-click="vm.filtrarCredito()">Buscar</button>
+                                        <button type="button" class="btn btn-default btn-sm" ng-click="vm.limparfiltroCredito()">Limpiar</button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="dashboard">
+                                <div id="proyectos" class="project">
+                                    <div class="clearfix background-white div-escopo">
+                                        <div class="row">
+                                            <div class="col-xs-12" ng-if="vm.gridOptionsCreditos.data.length">
+                                                <div class="ui-grid" ui-grid="vm.gridOptionsCreditos" ui-grid-selection ui-grid-pinning ui-grid-resize-columns ui-grid-pagination></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </form>
+        </div>
+    </section>
+</div>

@@ -1,0 +1,404 @@
+﻿<div class="container-fluid inbox">
+    <nav class="breadcrumb">
+        <a href="/" style="text-decoration: auto;">
+            <span class="breadcrumb-item active btn-link InicioMigaDNP">
+                <!--<i class="fa fa-home" aria-hidden="true"></i>--> Inicio
+            </span>
+        </a>
+        <img class="ImgMigaDNP" src="Img/IcoMiga.svg">
+        <span class=" DetalleMigaDNP " style="">Mis procesos</span>
+    </nav>
+    <div class="dashboard">
+        <div id="acciones" class="acciones">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="titlebar">
+                        <span>{{vm.nombreFlujo}} </span>
+                        <!--<span ng-show="vm.nombreAccion!==''">/</span>
+                        <span>{{vm.nombreAccion}}</span>-->
+                        <span class="buttonbar pull-right">
+                            <!--<button type="button" uib-popover popover-trigger="mouseenter" popover-placement="bottom" uib-popover-template="'simbologia.html'" class="btn btn-default btn-md" tooltip-placement="top" uib-tooltip="Simbología" tabindex="0">
+                                SIMBOLOGÍA
+                            </button>-->
+                            <button type="button" class="btn-circle-xl" tooltip-placement="auto" uib-tooltip="Ver todo el flujo" ng-click="vm.abrirModalFlujos()">
+                                <i class="fa fa-sitemap"></i>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="container-fluid carrusel flow">
+    <script type="text/ng-template" id="simbologia.html">
+        <simbologia fuente="'Montserrat'"></simbologia>
+    </script>
+    <script class="slide" type="text/ng-template" id="menuContextual.html">
+        <div class="arrow-left"></div>
+        <div class="text-medium">
+            <label class="titslide">{{accion.Nombre}}</label>
+            <div class="text-medium-group">
+                <div class="icon-left"><i class="{{accion.IconoEstado}}"></i></div>
+                <div ng-if="accion.TipoAccion === vm.constantesAcciones.tipo.scopeRamas">
+                    <div class="no-block">
+                        <span tooltip-placement="auto" uib-tooltip="{{accion.NumeroAccionesRama}}">{{accion.NumeroAccionesRama}}</span>
+                        <span tooltip-placement="auto" uib-tooltip="{{accion.NumeroAccionesRama === 1 ? 'acción' : 'acciones'}}">{{accion.NumeroAccionesRama === 1 ? 'acción' : 'acciones'}} más</span>
+                    </div>
+                    <div ng-if="accion.EsObligatoria" class="no-block"><span class="asterisk">*</span> <span>Obligatoria</span></div>
+                </div>
+                <div ng-if="accion.TipoAccion !== vm.constantesAcciones.tipo.scopeRamas">
+                    <div ng-if="accion.Estado === vm.constantesAcciones.estado.ejecutada">
+                        <span>{{accion.FechaModificacion | date : "dd/MM/yyyy" }}</span>
+                        <span class="ellipsis-text" tooltip-placement="auto" uib-tooltip="{{accion.ModificadoPor}}">{{accion.ModificadoPor}}</span>
+                    </div>
+                    <div ng-if="accion.Estado !== vm.constantesAcciones.estado.ejecutada">
+                        <span tooltip-placement="auto" uib-tooltip="{{accion.EstadoDescripcion}}">{{accion.EstadoDescripcion}}</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div ng-if="vm.tieneMigaPan(accion)" class="icon-right">
+            <span class="anidada" ng-click="vm.abrirMigaPan($event, accion)"><i ng-class="{'icon-workflow' : accion.TipoAccion === vm.constantesAcciones.tipo.accionTipoAnidada,'icon-paralelo' : accion.TipoAccion === vm.constantesAcciones.tipo.scopeRamas }"></i></span>
+        </div>
+
+        <div class="arrow-right"></div>
+
+    </script>
+
+    <script type="text/ng-template" id="migaPan.html">
+        <div class="arrow-left"></div>
+        <div class="icon-left">
+            <i class="icon-tick"></i>
+        </div>
+        <label>{{accion.Nombre}}</label>
+        <div class="close-anidada" ng-click="vm.cerrarMigaPan(accion)">
+            <span><i ng-class="{'icon-workflow' : accion.TipoAccion === vm.constantesAcciones.tipo.accionTipoAnidada,'icon-paralelo' : accion.TipoAccion === vm.constantesAcciones.tipo.scopeRamas }"></i></span>
+        </div>
+        <div class="arrow-right"></div>
+    </script>
+
+    <encabezado-SGR ng-if="vm.isSGR" modelovigencias="vm.vigencias"></encabezado-SGR>
+    <encabezado-General ng-if="!vm.isSGR && !vm.isSGP" modelovigencias="vm.vigencias"></encabezado-General>
+    <encabezado-SGP ng-if="vm.isSGP" modelovigencias="vm.vigencias"></encabezado-SGP>
+    <div class="row" ng-if="vm.ProyectoId > 0">
+        <div class="col-md-12">
+            <a class="link pull-right" ng-click="vm.abrirMGA()">VER MGA</a>
+        </div>
+        <div class="col-md-12 text-right">
+            <img ng-src="Img/etapas/u570.svg" uib-tooltip="Historial Documentos Soporte" ng-click="vm.verLogArchivosSoporte()" />
+            <a ng-click="vm.verLogArchivosSoporte()">SOPORTES</a>
+        </div>
+
+        <!--<div class="col-md-12">
+            <img class="link pull-right" ng-src="Img/etapas/u570.svg" uib-tooltip="Historial Documentos Soporte" ng-click="vm.verLogArchivosSoporte()" />
+            <a class="link pull-right" ng-click="vm.verLogArchivosSoporte()">SOPORTES</a>
+        </div>
+        <table style="width: 100%; border-collapse: collapse;">
+            <tr>
+                <td style="text-align: right; border: none;">
+                    <img ng-src="Img/etapas/u570.svg" uib-tooltip="Historial Documentos Soporte" ng-click="vm.verLogArchivosSoporte()" />
+                </td>
+                <td style="text-align: right; border: none;">
+                    <img ng-src="Img/etapas/u570.svg" uib-tooltip="Historial Documentos Soporte" ng-click="vm.verLogArchivosSoporte()" />
+                    <a ng-click="vm.verLogArchivosSoporte()">SOPORTES</a>
+                </td>
+            </tr>
+        </table>-->
+    </div>
+    <!--<button type="button" class="btn btn-default btn-md pull-right" tooltip-placement="auto" uib-tooltip="Ver MGA" ng-click="vm.abrirMGA()">
+        VER MGA
+    </button>-->
+    <div class="container-anidada">
+        <slick class="slider" settings="vm.slickConfigMiga" ng-if="vm.recargarMiga">
+            <div id="accionMigaPan" ng-repeat="accion in vm.listadoMiga" class="container-contextual-menu breadcrumb-flow anim-flow-out" ng-class="{ 'fade-flow-out': vm.abrirMiga, 'fade-flow-close': vm.cerrarMiga, 'migaparalela' : accion.TipoAccion === vm.constantesAcciones.tipo.scopeRamas}">
+                <div ng-include="'migaPan.html'" class="breadcrumb-flow-item"></div>
+            </div>
+        </slick>
+    </div>
+    <slick class="slider slide-2" settings="vm.slickConfigMenu" ng-if="vm.recargarMenu">
+        <!--<div id="accionMenuContextual" ng-repeat="accion in vm.listadoMenu" class="container-contextual-menu anim-contextual-out" ng-class="{ 'fade-contextual-out': accion.Animar, 'paralela' : accion.TipoAccion === vm.constantesAcciones.tipo.scopeRamas}">
+            <div ng-include="'menuContextual.html'" class="contextual-menu {{accion.ClaseEstado}}" ng-class="{ 'selected': accion.Seleccionado }"
+                 ng-click="vm.seleccionarAccion(accion)"></div>
+        </div>-->
+    </slick>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-12" id="paper" style="margin-bottom:-5px"></div>
+            <div class="menu">
+                <botones-formulario modelo="vm.modeloBotones" estado="vm.estadoPaso"></botones-formulario>
+                <div ng-if="vm.nombreAccion != ''" style="margin-top:5px">
+                    <pestanas-formulario on-validar="vm.validarFormulario()" valores="{accion: vm.acciones[0], tieneError: vm.tieneError}" callback="vm.formularioGuardado(evento)" seccionactiva="vm.seccionActiva"></pestanas-formulario>                    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<fieldset class="slider">
+    <div ng-if="vm.cargarFormulario">
+        <ejecucion-formularios-controller class="ejecucion-formularios-controller" deshabilitar-controles="vm.habilitarFormulario"></ejecucion-formularios-controller>
+    </div>
+    <div ng-if="vm.vistaPersonalizada">
+        <!--<traslado-tramite callback="vm.validaHabilita(null,arg,aprueba,titulo,false,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'TrasladoTramite'"></traslado-tramite>-->
+        <gestion-recursos callback="vm.validaHabilita(validacion,arg,aprueba,titulo,false,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'GestionRecursos'"></gestion-recursos>
+        <gestion-recursos callback="vm.validaHabilita(validacion,arg,aprueba,titulo,false,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'GestionRecursosPaso2'"></gestion-recursos>
+        <gestion-recursos callback="vm.validaHabilita(validacion,arg,aprueba,titulo,false,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'GestionRecursosPaso3'"></gestion-recursos>
+        <ajustes callback="vm.validaHabilita(validacion,arg,aprueba,titulo,false,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'Ajustes'"></ajustes>
+        <traslado-aprobacion callback="vm.validaHabilita(null,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'TrasladoAprobacion'"></traslado-aprobacion>
+        <traslado-firma callback="vm.validaHabilita(null,arg,aprueba,titulo, false,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'FirmaTramite'"></traslado-firma>
+        <viabilidad callback="vm.validaHabilita(validacion,arg,aprueba,titulo, false,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'PreguntasPersonalizadas'"></viabilidad>
+        <viabilidad callback="vm.validaHabilita(validacion,arg,aprueba,titulo, false,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'verificacionRequisitosPreliminar'"></viabilidad>
+        <viabilidad callback="vm.validaHabilita(validacion,arg,aprueba,titulo, false,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'verificacionRequisitos'"></viabilidad>
+        <viabilidad callback="vm.validaHabilita(validacion,arg,aprueba,titulo, false,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'viabilidadSectorialPreliminar'"></viabilidad>
+        <viabilidad callback="vm.validaHabilita(validacion,arg,aprueba,titulo, false,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'viabilidadSectorial'"></viabilidad>
+        <viabilidad callback="vm.validaHabilita(validacion,arg,aprueba,titulo, false,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'viabilidadDefinitivaPreliminar'"></viabilidad>
+        <viabilidad callback="vm.validaHabilita(validacion,arg,aprueba,titulo, false,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'viabilidadDefinitiva'"></viabilidad>
+        <!--SGR-->
+        <!--Viabilidad SGR-->
+        <previos-sgr callback="vm.validaHabilita(validacion,arg,aprueba,titulo, false,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'previosViabilidadSgr'"></previos-sgr>
+        <requisitos-sgr callback="vm.validaHabilita(validacion,arg,aprueba,titulo,true,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'requisitosViabilidadSgr'"></requisitos-sgr>
+        <viabilidad-sgr callback="vm.validaHabilita(validacion,arg,aprueba,titulo, true,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'viabilidadSgr'"></viabilidad-sgr>
+        <firma-emision-sgr callback="vm.validaHabilita(validacion,arg,aprueba,titulo, ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'firmaEmisionViabilidadSgr'"></firma-emision-sgr>
+        <!--Viabilidad SGR-->
+        <!--OCAD PAZ SGR-->
+        <solicitar-ctus-sgr callback="vm.validaHabilita(validacion,arg,aprueba,titulo, true,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'solicitarCtusOcadPazSgr'"></solicitar-ctus-sgr>
+        <requisitos-paz-sgr callback="vm.validaHabilita(validacion,arg,aprueba,titulo, true,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'requisitosOcadPazSgr'"></requisitos-paz-sgr>
+        <viabilidad-ocad-paz-sgr callback="vm.validaHabilita(validacion,arg,aprueba,titulo, ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'viabilidadOcadPazSgr'"></viabilidad-ocad-paz-sgr>
+        <!--OCAD PAZ SGR-->
+        <!--CTUS SGR-->
+        <ctus-asignacion-sgr callback="vm.validaHabilita(validacion,arg,aprueba,titulo, true,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'ctusAsignacionSgr'"></ctus-asignacion-sgr>
+        <ctus-elaboracion-sgr callback="vm.validaHabilita(validacion,arg,aprueba,titulo, true,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'ctusElaboracionSgr'"></ctus-elaboracion-sgr>
+        <ctus-firma-emision-sgr callback="vm.validaHabilita(validacion,arg,aprueba,titulo, ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'ctusFirmaEmisionSgr'"></ctus-firma-emision-sgr>
+        <!--CTUS SGR-->
+        <!-- CTUS Integrado -->
+        <ctus-integrado-elaboracion-sgr callback="vm.validaHabilita(validacion,arg,aprueba,titulo, true,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'ElaboracionctusIntegradoSgr'"></ctus-integrado-elaboracion-sgr>
+        <ctus-integrado-solicitar-sgr callback="vm.validaHabilita(validacion,arg,aprueba,titulo, true,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'SolicitarCtusIntegradoSgr'"></ctus-integrado-solicitar-sgr>
+        <ctus-integrado-asignacion-sgr callback="vm.validaHabilita(validacion,arg,aprueba,titulo, true,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'AsignacionctusIntegradoSgr'"></ctus-integrado-asignacion-sgr>
+        <ctus-integrado-firma-sgr callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'FirmaCtusIntegradoSgr'"></ctus-integrado-firma-sgr>
+        <!-- CTUS Integrado -->
+        <!-- Cormagdalena SGR -->
+        <elaboracion-cormagdalena-sgr callback="vm.validaHabilita(validacion,arg,aprueba,titulo, true,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'ElaboracionCormagdalenaSgr'"></elaboracion-cormagdalena-sgr>
+        <asignacion-cormagdalena-sgr callback="vm.validaHabilita(validacion,arg,aprueba,titulo,true,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'AsignacionCormagdalenaSgr'"></asignacion-cormagdalena-sgr>
+        <firma-cormagdalena-sgr callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'FirmasCormagdalenaSgr'"></firma-cormagdalena-sgr>
+        <!-- Cormagdalena SGR -->
+        <!--Entidad Nacional SGR-->
+        <asignacion-entidad-nacional-sgr callback="vm.validaHabilita(validacion,arg,aprueba,titulo,true,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'asignacionEntidadNacionalSgr'"></asignacion-entidad-nacional-sgr>
+        <elaboracion-entidad-nacional-sgr callback="vm.validaHabilita(validacion,arg,aprueba,titulo,true,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'elaboracionEntidadNacionalSgr'"></elaboracion-entidad-nacional-sgr>
+        <!--Entidad Nacional SGR-->
+        <!--CTEI-->
+        <requisitos-viabilidad-ctei-sgr callback="vm.validaHabilita(validacion,arg,aprueba,titulo,true,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'requisitosViabilidadCteiSgr'"></requisitos-viabilidad-ctei-sgr>
+        <viabilidad-votos-sgr callback="vm.validaHabilita(validacion,arg,aprueba,titulo, ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'viabilidadVotosSgr'"></viabilidad-votos-sgr>
+        <!--CTEI-->
+        <!--Aval de Uso-->
+        <avaluso-viabilidad-sgr callback="vm.validaHabilita(validacion,arg,aprueba,titulo,true,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'avalusoViabilidadSgr'"></avaluso-viabilidad-sgr>
+        <!--Aval de Uso-->
+        <!--SGR-->
+        <preguntas-personalizadas-verificacion callback="vm.validaHabilita(null,arg,aprueba,titulo,false,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'PreguntasPersonalizadasVerificacion'"></preguntas-personalizadas-verificacion>
+        <traslado-tramite callback="vm.validaHabilita(null,arg,aprueba,titulo,false,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'JefePlaneacion'"></traslado-tramite>
+        <tramite-vigencia-futura callback="vm.validaHabilita(validacion,arg,aprueba,titulo,false,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'tramiteVigenciaFutura'"></tramite-vigencia-futura>
+        <tramite-vigencia-futura callback="vm.validaHabilita(validacion,arg,aprueba,titulo,false,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'tramiteVigenciaFuturaPasoDos'"></tramite-vigencia-futura>
+        <aprobacion-tramite-vigencia-futura callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'aprobacionTramiteVigenciaFutura'"></aprobacion-tramite-vigencia-futura>
+        <aprobacion-tramite-vigencia-futura callback="vm.validaHabilita(validacion,arg,aprueba,titulo,false,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'tramiteVigenciaFuturaPasoCuatro'"></aprobacion-tramite-vigencia-futura>
+        <aprobacion-tramite-vigencia-futura callback="vm.validaHabilita(validacion,arg,aprueba,titulo,false,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'tramiteVigenciaFuturaPasoQuinto'"></aprobacion-tramite-vigencia-futura>
+        <ajustes-con-tramite callback="vm.validaHabilita(validacion,arg,aprueba,titulo,false,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'ajustesConTramite'"></ajustes-con-tramite>
+        <seguimiento-planear-control callback="vm.validaHabilita(validacion,arg,aprueba,titulo,false,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'SeguimientoPlanearControl'"></seguimiento-planear-control>
+        <!--Reporte seguimiento-->
+        <seguimiento-reporte-control callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'SeguimientoReporteControl'"></seguimiento-reporte-control>
+        <seguimiento-reporte-paso-dos callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'SeguimientoReporteControlPasoDos'"></seguimiento-reporte-paso-dos>
+        <aclaracion-leyenda callback="vm.validaHabilita(validacion,arg,aprueba,titulo,false,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'aclaracionleyendaPasoUno'"></aclaracion-leyenda>
+        <aclaracion-leyenda callback="vm.validaHabilita(validacion,arg,aprueba,titulo,false,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'aclaracionleyendaPasoDos'"></aclaracion-leyenda>
+        <aclaracion-leyenda callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'aclaracionleyendaPasoTres'"></aclaracion-leyenda>
+        <aclaracion-leyenda callback="vm.validaHabilita(validacion,arg,aprueba,titulo,false,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'aclaracionleyendaPasoCuatro'"></aclaracion-leyenda>
+        <aclaracion-leyenda callback="vm.validaHabilita(validacion,arg,aprueba,titulo,false,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'aclaracionleyendaPasoQuinto'"></aclaracion-leyenda>
+        <tramite-Vfaopc callback="vm.validaHabilita(validacion,arg,aprueba,titulo,false,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'TramiteVFAoPCPasoUno'"></tramite-Vfaopc>
+        <tramite-Vfaopc callback="vm.validaHabilita(validacion,arg,aprueba,titulo,false,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'TramiteVFAoPCPasoDos'"></tramite-Vfaopc>
+        <tramite-Vfaopc callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'TramiteVFAoPCPasoTres'"></tramite-Vfaopc>
+        <tramite-Vfaopc callback="vm.validaHabilita(validacion,arg,aprueba,titulo,false,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'TramiteVFAoPCPasoCuatro'"></tramite-Vfaopc>
+        <tramite-Vfaopc callback="vm.validaHabilita(validacion,arg,aprueba,titulo,false,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'TramiteVFAoPCPasoQuinto'"></tramite-Vfaopc>
+        <!--Priorizacion-->
+        <priorizacion callback="vm.validaHabilita(validacion,arg,aprueba,titulo, false,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'priorizacionPasoUno'"></priorizacion>
+        <priorizacion-m1-sgr callback="vm.validaHabilita(validacion,arg,aprueba,titulo, false,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'priorizacionM1Sgr'"></priorizacion-m1-sgr>
+        <priorizacion-m2-sgr callback="vm.validaHabilita(validacion,arg,aprueba,titulo, false,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'priorizacionM2Sgr'"></priorizacion-m2-sgr>
+        <priorizacion-m3-sgr callback="vm.validaHabilita(validacion,arg,aprueba,titulo, false,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'priorizacionM3Sgr'"></priorizacion-m3-sgr>
+        <!--Aprobacion-->
+        <aprobacion-f1-sgr callback="vm.validaHabilita(validacion,arg,aprueba,titulo, false,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'aprobacion1Sgr'"></aprobacion-f1-sgr>
+        <!--Ejecutor-->
+        <designacion-ejecutor-sgr callback="vm.validaHabilita(validacion,arg,aprueba,titulo, false,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'designacionEjecutorSgr'"></designacion-ejecutor-sgr>
+        <!--Vigencia futura Excepcional-->
+        <tramite-Vfexcep callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'TramiteVFSeleccionProyectos'"></tramite-Vfexcep>
+        <tramite-Vfexcep callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'TramiteVFAprobacionEntidad'"></tramite-Vfexcep>
+        <tramite-Vfexcep callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'TramiteVFElaboracionConcepto'"></tramite-Vfexcep>
+        <tramite-Vfexcep callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'TramiteVFRevisionConcepto'"></tramite-Vfexcep>
+        <tramite-Vfexcep callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'TramiteVFAprobacionTramite'"></tramite-Vfexcep>
+        <!--Distribucion-->
+        <tramite-distribucion callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'TramiteDistribucionesPasoUno'"></tramite-distribucion>
+        <tramite-distribucion callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'TramiteDistribucionesPasoDos'"></tramite-distribucion>
+        <tramite-distribucion callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'TramiteDistribucionesPasoTres'"></tramite-distribucion>
+        <tramite-distribucion callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'TramiteDistribucionesPasoCuatro'"></tramite-distribucion>
+        <tramite-distribucion callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'TramiteDistribucionesPasoCinco'"></tramite-distribucion>
+        <!--Tramite Traslado ordinario-->
+        <tramite-traslado-ordinario callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'TramiteTrasladoOrdinarioPasoUno'"></tramite-traslado-ordinario>
+        <tramite-traslado-ordinario callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'TramiteTrasladoOrdinarioPasoDos'"></tramite-traslado-ordinario>
+        <tramite-traslado-ordinario callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'TramiteTrasladoOrdinarioPasoTres'"></tramite-traslado-ordinario>
+        <tramite-traslado-ordinario callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'TramiteTrasladoOrdinarioPasoCuatro'"></tramite-traslado-ordinario>
+        <tramite-traslado-ordinario callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'TramiteTrasladoOrdinarioPasoCinco'"></tramite-traslado-ordinario>
+        <!--Tramite Traslado ley-->
+        <tramite-traslado-ley callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'TramiteTrasladoLeyPasoUno'"></tramite-traslado-ley>
+        <tramite-traslado-ley callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'TramiteTrasladoLeyPasoDos'"></tramite-traslado-ley>
+        <tramite-traslado-ley callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'TramiteTrasladoLeyPasoTres'"></tramite-traslado-ley>
+        <tramite-traslado-ley callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'TramiteTrasladoLeyPasoCuatro'"></tramite-traslado-ley>
+        <tramite-traslado-ley callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'TramiteTrasladoLeyPasoCinco'"></tramite-traslado-ley>
+        <!-- Liberacion Vigencia Futuras-->
+        <tramite-liberacion callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'TramiteLiberacionPasoUno'"></tramite-liberacion>
+        <tramite-liberacion callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'TramiteLiberacionPasoDos'"></tramite-liberacion>
+        <tramite-liberacion callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'TramiteLiberacionPasoTres'"></tramite-liberacion>
+        <!--Tramite adición por donación-->
+        <tramite-adicion-donacion callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'tramiteAdicionDonacionPasoUno'"></tramite-adicion-donacion>
+        <tramite-adicion-donacion-paso-dos callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'tramiteAdicionDonacionPasoDos'"></tramite-adicion-donacion-paso-dos>
+        <tramite-adicion-donacion-paso-tres callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'tramiteAdicionDonacionPasoTres'"></tramite-adicion-donacion-paso-tres>
+        <tramite-adicion-donacion-paso-cuatro callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'tramiteAdicionDonacionPasoCuatro'"></tramite-adicion-donacion-paso-cuatro>
+        <tramite-adicion-donacion-paso-cinco callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'tramiteAdicionDonacionPasoCinco'"></tramite-adicion-donacion-paso-cinco>
+        <tramite-cargue-masivo callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'CargueMasivo'"></tramite-cargue-masivo>
+        <!--Tramite incorporacion-->
+        <tramite-incorporacion callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'tramiteIncorporacionPasoUno'"></tramite-incorporacion>
+        <tramite-incorporacion callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'tramiteIncorporacionPasoDos'"></tramite-incorporacion>
+        <tramite-incorporacion callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'tramiteIncorporacionPasoTres'"></tramite-incorporacion>
+        <tramite-incorporacion callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'tramiteIncorporacionPasoCuatro'"></tramite-incorporacion>
+        <tramite-incorporacion callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'tramiteIncorporacionCinco'"></tramite-incorporacion>
+        <!--Tramite reprogramacion-->
+        <tramite-reprogramacion-vf-paso-uno callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'tramiteReprogramacionVFPasoUno'"></tramite-reprogramacion-vf-paso-uno>
+        <tramite-reprogramacion-vf-paso-dos callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'tramiteReprogramacionVFPasoDos'"></tramite-reprogramacion-vf-paso-dos>
+        <tramite-reprogramacion-vf-paso-tres callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'tramiteReprogramacionVFPasoTres'"></tramite-reprogramacion-vf-paso-tres>
+        <tramite-reprogramacion-vf-paso-cuatro callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'tramiteReprogramacionVFPasoCuatro'"></tramite-reprogramacion-vf-paso-cuatro>
+        <tramite-reprogramacion-vf-paso-cinco callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'tramiteReprogramacionVFPasoCinco'"></tramite-reprogramacion-vf-paso-cinco>
+        <!--Programacion de recursos-->
+        <tramite-programacion-recursos-paso-uno callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'tramiteProgramacionRPasoUno'" seccionactiva="vm.seccionActiva"></tramite-programacion-recursos-paso-uno>
+        <tramite-programacion-recursos-paso-dos callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'tramiteProgramacionRPasoDos'"></tramite-programacion-recursos-paso-dos>
+        <tramite-programacion-recursos-paso-tres callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'tramiteProgramacionRPasoTres'" seccionactiva="vm.seccionActiva"></tramite-programacion-recursos-paso-tres>
+        <tramite-programacion-recursos-paso-cuatro callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'tramiteProgramacionRPasoCuatro'"></tramite-programacion-recursos-paso-cuatro>
+
+        <!--Tramite de modificación ley Adicion Pto preliminar-->
+        <tramite-modificacion-adicion-paso-uno callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'ProgramacionAdicionPPasoUno'"></tramite-modificacion-adicion-paso-uno>
+        <tramite-modificacion-adicion-paso-dos callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'ProgramacionAdicionPPasoDos'"></tramite-modificacion-adicion-paso-dos>
+        <tramite-modificacion-adicion-paso-tres callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'ProgramacionAdicionPPasoTres'"></tramite-modificacion-adicion-paso-tres>
+        <tramite-modificacion-adicion-paso-cuatro callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'ProgramacionAdicionPPasoCuatro'"></tramite-modificacion-adicion-paso-cuatro>
+
+        <!--Tramite de modificación ley Adicion Analista-->
+        <tramite-modificacion-adicion-a-paso-tres callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'ProgramacionAdicionAPasoUno'"></tramite-modificacion-adicion-a-paso-tres>
+        <tramite-modificacion-adicion-a-paso-cuatro callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'ProgramacionAdicionAPasoDos'"></tramite-modificacion-adicion-a-paso-cuatro>
+
+        <!--Tramite de modificación ley traslado Pto preliminar-->
+        <tramite-modificacion-traslado-paso-uno callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'ProgramacionTrasladoPPasoUno'"></tramite-modificacion-traslado-paso-uno>
+        <tramite-modificacion-traslado-paso-dos callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'ProgramacionTrasladoPPasoDos'"></tramite-modificacion-traslado-paso-dos>
+        <tramite-modificacion-traslado-paso-tres callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'ProgramacionTrasladoPPasoTres'"></tramite-modificacion-traslado-paso-tres>
+        <tramite-modificacion-traslado-paso-cuatro callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'ProgramacionTrasladoPPasoCuatro'"></tramite-modificacion-traslado-paso-cuatro>
+
+        <!--Tramite de modificación ley traslado Analista-->
+        <tramite-modificacion-traslado-a-paso-tres callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'ProgramacionTrasladoAPasoUno'"></tramite-modificacion-traslado-a-paso-tres>
+        <tramite-modificacion-traslado-a-paso-cuatro callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'ProgramacionTrasladoAPasoDos'"></tramite-modificacion-traslado-a-paso-cuatro>
+
+        <!--Tramite de modificación decreto traslado Pto preliminar-->
+        <tramite-modificacion-d-traslado-paso-uno callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'ProgramacionMDTrasladoPPasoUno'"></tramite-modificacion-d-traslado-paso-uno>
+        <tramite-modificacion-d-traslado-paso-dos callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'ProgramacionMDTrasladoPPasoDos'"></tramite-modificacion-d-traslado-paso-dos>
+        <tramite-modificacion-d-traslado-paso-tres callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'ProgramacionMDTrasladoPPasoTres'"></tramite-modificacion-d-traslado-paso-tres>
+        <tramite-modificacion-d-traslado-paso-cuatro callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'ProgramacionMDTrasladoPPasoCuatro'"></tramite-modificacion-d-traslado-paso-cuatro>
+
+        <!--Tramite de modificación decreto traslado Analista-->
+        <tramite-modificacion-d-traslado-a-paso-tres callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'ProgramacionMDTrasladoAPasoUno'"></tramite-modificacion-d-traslado-a-paso-tres>
+        <tramite-modificacion-d-traslado-a-paso-cuatro callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'ProgramacionMDTrasladoAPasoDos'"></tramite-modificacion-d-traslado-a-paso-cuatro>
+
+
+
+        <!--Tramite de modificación ley Reduccion Pto preliminar-->
+        <tramite-modificacion-ley-red-paso-uno callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'ProgramacionReduccionPPasoUno'"></tramite-modificacion-ley-red-paso-uno>
+        <tramite-modificacion-ley-red-paso-dos callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'ProgramacionReduccionPPasoDos'"></tramite-modificacion-ley-red-paso-dos>
+        <tramite-modificacion-ley-red-paso-tres callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'ProgramacionReduccionPPasoTres'"></tramite-modificacion-ley-red-paso-tres>
+        <tramite-modificacion-ley-red-paso-cuatro callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'ProgramacionReduccionPPasoCuatro'"></tramite-modificacion-ley-red-paso-cuatro>
+
+        <!--Tramite de modificación ley Reduccion Analista-->
+        <tramite-modificacion-ley-red-paso-a-tres callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'ReduccionAPasoTres'"></tramite-modificacion-ley-red-paso-a-tres>
+        <tramite-modificacion-ley-red-paso-a-cuatro callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'ReduccionAPasoCuatro'"></tramite-modificacion-ley-red-paso-a-cuatro>
+
+        <!--Tramite de modificación ley Politicas transversales Pto preliminar-->
+        <tramite-modificacion-ley-politicas-paso-uno callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'ModificacionLeyPoliticasTransversalesPasoUno'"></tramite-modificacion-ley-politicas-paso-uno>
+
+        <!--Tramite de modificación ley Politicas transversales Analista-->
+        <tramite-modificacion-ley-politicas-paso-a-uno callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'ModificacionLeyPoliticasTransversalesPasoAUno'"></tramite-modificacion-ley-politicas-paso-a-uno>
+        <!-------------------------------------------------------------------------------------------->
+        <!--Inicio SGP-->
+        <!--Gestion Recursos SGP-->
+        <gestion-recursos-sgp callback="vm.validaHabilita(validacion,arg,aprueba,titulo,true,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'GestionRecursosSGP'"></gestion-recursos-sgp>
+        <gestion-recursos-sgp callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'GestionRecursosSGPPaso2'"></gestion-recursos-sgp>
+        <!--Firma Gestión Recursos SGP-->
+        <firma-gestion-recursos-sgp callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'firmaGestionRecursosSgp'"></firma-gestion-recursos-sgp>
+        <!--Previos SGP-->
+        <previos-sgp callback="vm.validaHabilita(validacion,arg,aprueba,titulo,true,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'previosSgp'"></previos-sgp>
+        <!--Requisitos Viabilidad SGP-->
+        <requisitos-sgp callback="vm.validaHabilita(validacion,arg,aprueba,titulo,true,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'requisitosViabilidadSgp'"></requisitos-sgp>
+        <!--Viabilidad SGP-->
+        <viabilidad-sgp callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'viabilidadSgp'"></viabilidad-sgp>
+        <!--Firma Viabilidad SGP-->
+        <firma-emision-sgp callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'firmaViabilidadSgp'"></firma-emision-sgp>
+        <!--Ajustes Proyecto - Ajustes sin Tramites SGP-->
+        <ajustes-proyecto-sin-tramite-sgp callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'ajustesProyectoSinTramiteSgp'"></ajustes-proyecto-sin-tramite-sgp>
+        <!--Requisitos - Ajustes sin Tramites SGP-->
+        <requisitos-sin-tramite-sgp callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'requisitosAjustesSinTramiteSgp'"></requisitos-sin-tramite-sgp>
+        <!--Viabilidad - Ajustes sin Tramites SGP-->
+        <viabilidad-sin-tramite-sgp callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'viabilidadAjustesSinTramiteSgp'"></viabilidad-sin-tramite-sgp>
+        <!--Firma - Ajustes sin Tramites SGP-->
+        <firma-emision-sin-tramite-sgp callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'firmaEmisionAjustesSinTramiteSgp'"></firma-emision-sin-tramite-sgp>
+        <!--tramite traslado SGP-->
+        <tramite-traslado-sgp callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'TramiteTrasladoSgpPasoUno'"></tramite-traslado-sgp>
+        <usuarios-tramite-traslado-sgp callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'TramiteTrasladoSgpPasoDos'"></usuarios-tramite-traslado-sgp>
+        <firma-emision-tramite-traslado-sgp callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'TramiteTrasladoSgpPasoTres'"></firma-emision-tramite-traslado-sgp>
+
+        <!--tramite adición SGP-->
+        <tramite-adicion-sgp callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'TramiteAdicionSgpPasoUno'"></tramite-adicion-sgp>
+        <usuarios-tramite-adicion-sgp callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'TramiteAdicionSgpPasoDos'"></usuarios-tramite-adicion-sgp>
+        <firma-emision-tramite-adicion-sgp callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'TramiteAdicionSgpPasoTres'"></firma-emision-tramite-adicion-sgp>
+        <!----------------------------------------------------------------->
+        <!--Inicio Ajustes CON Tramites SGP-->
+        <!--Ajustes Proyecto - Ajustes CON Tramites SGP-->
+        <ajustes-proyecto-con-tramite-sgp callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'ajustesProyectoConTramiteSgp'"></ajustes-proyecto-con-tramite-sgp>
+        <!--Requisitos - Ajustes CON Tramites SGP-->
+        <requisitos-con-tramite-sgp callback="vm.validaHabilita(validacion,arg,aprueba,titulo,false,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'requisitosAjustesConTramiteSgp'"></requisitos-con-tramite-sgp>
+        <!--Viabilidad - Ajustes CON Tramites SGP-->
+        <viabilidad-con-tramite-sgp callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'viabilidadAjustesConTramiteSgp'"></viabilidad-con-tramite-sgp>
+        <!--Firma - Ajustes CON Tramites SGP-->
+        <firma-emision-con-tramite-sgp callback="vm.validaHabilita(validacion,arg,aprueba,titulo,ocultarDevolver,vm.nombreAccion,vm.descripcionAccion)" ng-if="vm.nombreFormularioCustom == 'firmaEmisionAjustesConTramiteSgp'"></firma-emision-con-tramite-sgp>
+        <!--Fin Ajustes CON Tramites SGP-->
+        <!----------------------------------------------------------------->
+        <!--Fin SGP-->
+        <!-------------------------------------------------------------------------------------------->
+        <div class="tab-content" style="border-width: 2px; border-style: solid; border-color: rgba(230, 239, 253, 1);" ng-if="!(vm.flujoId == '5653ea15-f2ad-46ee-b006-8a697244c560' && vm.ocultarObservaciones == 'true')">
+            <div class="ui-accordion-container">
+                <div class="alert panel-heading row ui-accordion-header" style="border-color: rgb(255 255 255 / 15%);" ng-if="vm.nombreFormularioCustom != ''">
+
+                    <button type="button" aria-expanded="true" ng-click="vm.changeArrow('observaciones')" style="margin-top:-4px !important; margin-left: -3px !important">
+                        <span id="arrow-observaciones" class="glyphicon  pull-right" aria-expanded="true"></span>
+                        <span class="d-inline-block" id="alert-observaciones"></span>
+                        Observaciones generales
+                    </button>
+                </div>
+            </div>
+
+            <div id="observaciones" class="collapse in">
+                <observaciones-formulario modelo="vm.modeloBotones"></observaciones-formulario>
+            </div>
+        </div>
+    </div>
+
+
+
+</fieldset>
+
+<style type="text/css">
+    .disabled {
+        pointer-events: none;
+        /* for "disabled" effect */
+        opacity: 0.5;
+        background: #CCC;
+    }
+</style>

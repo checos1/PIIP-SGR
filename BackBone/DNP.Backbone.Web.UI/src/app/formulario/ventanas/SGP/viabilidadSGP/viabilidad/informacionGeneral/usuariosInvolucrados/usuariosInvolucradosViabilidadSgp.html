@@ -1,0 +1,17 @@
+﻿
+<div ng-init="vm.init();">
+    <div class="row m-0 mb-3">
+        <br>
+        <div class="col-md-12 ">
+            <usuarios-involucrados-formulario-sgp         
+                                        objetonegocioid="{{vm.IdObjetoNegocio}}"
+                                        ProyectoId="{{vm.IdObjetoNegocio}}"
+                                        tipoConceptoViabilidadId ="{{vm.tipoConceptoViabilidadId}}"
+                                        nombrecomponentepaso="{{vm.nombreComponenteHijo}}"
+                                        guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                        notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                        notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)">
+            </usuarios-involucrados-formulario-sgp>
+        </div>
+    </div>
+</div>

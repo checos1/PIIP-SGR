@@ -1,0 +1,1013 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8FFDC6BE-E5EA-4DCE-B91C-F22747128A8D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DNP.ServiciosNegocio.Persistencia</RootNamespace>
+    <AssemblyName>DNP.ServiciosNegocio.Persistencia</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Dev|AnyCPU'">
+    <OutputPath>bin\Dev\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'QA|AnyCPU' ">
+    <OutputPath>bin\Qa\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'UAT|AnyCPU' ">
+    <OutputPath>bin\Uat\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Local|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Local\</OutputPath>
+    <DefineConstants>CODE_ANALYSIS;DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DevNT|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\DevNT\</OutputPath>
+    <DefineConstants>CODE_ANALYSIS;CODE_ANALYSIS;DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'UatNT|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\UatNT\</OutputPath>
+    <DefineConstants>CODE_ANALYSIS;CODE_ANALYSIS;CODE_ANALYSIS;DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'QA2|AnyCPU'">
+    <OutputPath>bin\QA2\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'QA3|AnyCPU'">
+    <OutputPath>bin\QA3\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'QA4|AnyCPU'">
+    <OutputPath>bin\QA4\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'SGR|AnyCPU'">
+    <OutputPath>bin\SGR\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'UATSGR|AnyCPU'">
+    <OutputPath>bin\UATSGR\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=6.2.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.6.2.2\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.Modeling.Sdk.Diagrams, Version=17.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.VisualStudio.Modeling.Sdk.Diagrams.17.10.40171\lib\net472\Microsoft.VisualStudio.Modeling.Sdk.Diagrams.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Activities" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ConstructorDeConexion.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Implementaciones\Administracion\AdministrarDocumentoPersistencia.cs" />
+    <Compile Include="Implementaciones\Administracion\EjecutorPersistencia.cs" />
+    <Compile Include="Implementaciones\CadenaValor\IndicadoresProductoPersistencia.cs" />
+    <Compile Include="Implementaciones\Catalogos\CatalogoPersistencia.cs" />
+    <Compile Include="Implementaciones\ContextoFactorySGR.cs" />
+    <Compile Include="Implementaciones\ContextoFactory.cs" />
+    <Compile Include="Implementaciones\Entidades\EntidadPersistencia.cs" />
+    <Compile Include="Implementaciones\Entidades\EntidadAccionesPersistencia.cs" />
+    <Compile Include="Implementaciones\FuenteFinanciacion\FuentesAprobacionPersistencia.cs" />
+    <Compile Include="Implementaciones\FuenteFinanciacion\FuentesProgramarSolicitadoPersistencia.cs" />
+    <Compile Include="Implementaciones\FuenteFinanciacion\DatosAdicionalesPersistencia.cs" />
+    <Compile Include="Implementaciones\FuenteFinanciacion\FuenteCofinanciacionPersistencia.cs" />
+    <Compile Include="Implementaciones\FuenteFinanciacion\CofinanciacionAgregarPersistencia.cs" />
+    <Compile Include="Implementaciones\FuenteFinanciacion\FuenteFinanciacionAgregarPersistencia.cs" />
+    <Compile Include="Implementaciones\FuenteFinanciacion\FuenteFinanciacionPersistencia.cs" />
+    <Compile Include="Implementaciones\Genericos\FasePersistencia.cs" />
+    <Compile Include="Implementaciones\Genericos\PersistenciaTemporal.cs" />
+    <Compile Include="Implementaciones\CategoriaProductosPolitica\CategoriaProductosPoliticaPersistencia.cs" />
+    <Compile Include="Implementaciones\IndicadoresPolitica\IndicadoresPoliticaPersistencia.cs" />
+    <Compile Include="Implementaciones\ModificacionLey\ModificacionLeyPersistencia.cs" />
+    <Compile Include="Implementaciones\PersistenciaSGP.cs" />
+    <Compile Include="Implementaciones\Programacion\ProgramacionPersistencia.cs" />
+    <Compile Include="Implementaciones\ReportesPIIP\ReportesPIIPPersistencia.cs" />
+    <Compile Include="Implementaciones\SeguimientoControl\ProgramarProductosPersistencia.cs" />
+    <Compile Include="Implementaciones\PersistenciaSGR.cs" />
+    <Compile Include="Implementaciones\Preguntas\PreguntasPersonalizadasComponentePersistencia.cs" />
+    <Compile Include="Implementaciones\SeguimientoControl\ProgramarActividadesPersistencia.cs" />
+    <Compile Include="Implementaciones\SeguimientoControl\GestionSeguimientoPersistencia.cs" />
+    <Compile Include="Implementaciones\Priorizacion\PriorizacionPersistencia.cs" />
+    <Compile Include="Implementaciones\SeguimientoControl\DesagregarEdtPersistencia.cs" />
+    <Compile Include="Implementaciones\SeguimientoControl\ReporteAvanceRegionalizacionPersistencia.cs" />
+    <Compile Include="Implementaciones\SeguimientoControl\ReporteAvanceProductoPersistencia.cs" />
+    <Compile Include="Implementaciones\SGP\AdministradorEntidad\AdministradorEntidadSgpPersistencia.cs" />
+    <Compile Include="Implementaciones\SGP\Ajustes\AjustesSgpPersistencia.cs" />
+    <Compile Include="Implementaciones\SGP\GestionRecursos\GestionRecursosSgpPersistencia.cs" />
+    <Compile Include="Implementaciones\SGP\Tramite\TramiteProyectoSGPPersistencia.cs" />
+    <Compile Include="Implementaciones\SGP\Tramite\TramiteSGPPersistencia.cs" />
+    <Compile Include="Implementaciones\SGP\Transversales\TransversalPersistenciaSGP.cs" />
+    <Compile Include="Implementaciones\SGR\CTUS\CTUSPersistencia.cs" />
+    <Compile Include="Implementaciones\SGP\Viabilidad\AcuerdoSgpPersistencia.cs" />
+    <Compile Include="Implementaciones\SGP\Viabilidad\PreguntasPersonalizadasSGPPersistencia.cs" />
+    <Compile Include="Implementaciones\SGP\Viabilidad\ViabilidadSgpPersistencia.cs" />
+    <Compile Include="Implementaciones\SGR\Procesos\ProcesosSgrPersistencia.cs" />
+    <Compile Include="Implementaciones\TramitesDistribucion\TramitesDistribucionPersistencia.cs" />
+    <Compile Include="Implementaciones\TramitesReprogramacion\TramitesReprogramacionPersistencia.cs" />
+    <Compile Include="Implementaciones\Transversales\DocumentoSoportePersistencia.cs" />
+    <Compile Include="Implementaciones\Transversales\SeguridadPersistencia.cs" />
+    <Compile Include="Implementaciones\SGR\DelegarViabilidad\DelegarViabilidadPersistencia.cs" />
+    <Compile Include="Implementaciones\SGR\DelegarViabilidad\EntidadEjecutorPersistencia.cs" />
+    <Compile Include="Implementaciones\TramiteIncorporacion\TramiteIncorporacionPersistencia.cs" />
+    <Compile Include="Implementaciones\SGR\Transversales\ProyectoSgrPersistencia.cs" />
+    <Compile Include="Implementaciones\SGR\Transversales\TransversalRecursoPersistencia.cs" />
+    <Compile Include="Implementaciones\SGR\Viabilidad\ViabilidadPersistencia.cs" />
+    <Compile Include="Implementaciones\SGR\Viabilidad\AcuerdoPersistencia.cs" />
+    <Compile Include="Implementaciones\TramitesProyectos\CambiosJustificacionHorizontePersistencia.cs" />
+    <Compile Include="Implementaciones\TramitesProyectos\CambiosRelacionPlanificacionPersistencia.cs" />
+    <Compile Include="Implementaciones\Persistencia.cs" />
+    <Compile Include="Implementaciones\Preguntas\PreguntasPersonalizadasPersistencia.cs" />
+    <Compile Include="Implementaciones\Proyectos\AjusteIncluirPoliticasPersistencia.cs" />
+    <Compile Include="Implementaciones\Proyectos\DatosBasicosSGRPersistencia.cs" />
+    <Compile Include="Implementaciones\Proyectos\DefinirAlcancePersistencia.cs" />
+    <Compile Include="Implementaciones\Proyectos\DevolverProyectoPersistencia.cs" />
+    <Compile Include="Implementaciones\Proyectos\IncluirPoliticasPersistencia.cs" />
+    <Compile Include="Implementaciones\Proyectos\ProyectoPersistencia.cs" />
+    <Compile Include="Implementaciones\Preguntas\PreguntasPersistencia.cs" />
+    <Compile Include="Implementaciones\TramitesProyectos\TramitesProyectosPersistencia.cs" />
+    <Compile Include="Implementaciones\SGR\Transversales\TransversalPersistencia.cs" />
+    <Compile Include="Implementaciones\Transversales\EstadoPersistencia.cs" />
+    <Compile Include="Implementaciones\Transversales\SystemConfiguracionPersistencia.cs" />
+    <Compile Include="Implementaciones\Transversales\VigenciaPersistencia.cs" />
+    <Compile Include="Interfaces\Administracion\IAdministrarDocumentoPersistencia.cs" />
+    <Compile Include="Interfaces\Administracion\IEjecutorPersistencia.cs" />
+    <Compile Include="Interfaces\CadenaValor\IIndicadoresProductoPersistencia.cs" />
+    <Compile Include="Implementaciones\Transversales\SeccionCapituloPersistencia.cs" />
+    <Compile Include="Interfaces\Catalogos\ICatalogoPersistencia.cs" />
+    <Compile Include="Implementaciones\Requisitos\RequisitosPersistencia.cs" />
+    <Compile Include="Interfaces\Entidades\IEntidadPersistencia.cs" />
+    <Compile Include="Interfaces\Entidades\IEntidadAccionesPersistencia.cs" />
+    <Compile Include="Interfaces\FuenteFinanciacion\IDatosAdicionalesPersistencia.cs" />
+    <Compile Include="Interfaces\FuenteFinanciacion\IFuenteCofinanciacionPersistencia.cs" />
+    <Compile Include="Interfaces\FuenteFinanciacion\ICofinanciacionAgregarPersistencia.cs" />
+    <Compile Include="Interfaces\FuenteFinanciacion\IFuenteFinanciacionAgregarPersistencia.cs" />
+    <Compile Include="Interfaces\FuenteFinanciacion\IFuentesAprobacionPersistencia.cs" />
+    <Compile Include="Interfaces\FuenteFinanciacion\IFuentesProgramarSolicitadoPersistencia.cs" />
+    <Compile Include="Interfaces\FuenteFinanciacion\IFuenteFinanciacionPersistencia.cs" />
+    <Compile Include="Interfaces\Genericos\IPersistenciaTemporal.cs" />
+    <Compile Include="Interfaces\IContextoFactorySGR.cs" />
+    <Compile Include="Interfaces\IContextoFactory.cs" />
+    <Compile Include="Interfaces\CategoriaProductosPolitica\ICategoriaProductosPoliticaPersistencia.cs" />
+    <Compile Include="Interfaces\IndicadoresPolitica\IIndicadoresPoliticaPersistencia.cs" />
+    <Compile Include="Interfaces\ModificacionLey\IModificacionLeyPersistencia.cs" />
+    <Compile Include="Interfaces\Preguntas\IPreguntasPersonalizadasComponentePersistencia.cs" />
+    <Compile Include="Interfaces\Priorizacion\IPriorizacionPersistencia.cs" />
+    <Compile Include="Interfaces\Programacion\IProgramacionPersistencia.cs" />
+    <Compile Include="Interfaces\ReportesPIIP\IReportesPersistencia.cs" />
+    <Compile Include="Interfaces\SeguimientoControl\IProgramarProductosPersistencia.cs" />
+    <Compile Include="Interfaces\SeguimientoControl\IProgramarActividadesPersistencia.cs" />
+    <Compile Include="Interfaces\SeguimientoControl\IGestionSeguimientoPersistencia.cs" />
+    <Compile Include="Interfaces\SeguimientoControl\IDesagregarEdtPersistencia.cs" />
+    <Compile Include="Interfaces\SeguimientoControl\IReporteAvanceRegionalizacionPersistencia.cs" />
+    <Compile Include="Interfaces\SeguimientoControl\IReporteAvanceProductoPersistencia.cs" />
+    <Compile Include="Interfaces\SGP\AdministradorEntidad\IAdministradorEntidadSgpPersistencia.cs" />
+    <Compile Include="Interfaces\SGP\Ajustes\IAjustesSgpPersistencia.cs" />
+    <Compile Include="Interfaces\SGP\GestionRecursos\IGestionRecursosSgpPersistencia.cs" />
+    <Compile Include="Interfaces\SGP\Tramite\ITramiteProyectoSGPPersistencia.cs" />
+    <Compile Include="Interfaces\SGP\Tramite\ITramiteSGPPersistencia.cs" />
+    <Compile Include="Interfaces\SGP\Trasnversales\ITransversalPersistencia.cs" />
+    <Compile Include="Interfaces\SGR\CTUS\ICTUSPersistencia.cs" />
+    <Compile Include="Interfaces\SGP\Viabilidad\IAcuerdoSgpPersistencia.cs" />
+    <Compile Include="Interfaces\SGP\Viabilidad\IPreguntasPersonalizadasSGPPersistencia.cs" />
+    <Compile Include="Interfaces\SGP\Viabilidad\IViabilidadSgpPersistencia.cs" />
+    <Compile Include="Interfaces\SGR\Procesos\IProcesosSgrPersistencia.cs" />
+    <Compile Include="Interfaces\TramitesDistribucion\ITramitesDistribucionPersistencia.cs" />
+    <Compile Include="Interfaces\TramitesReprogramacion\ITramitesReprogramacionPersistencia.cs" />
+    <Compile Include="Interfaces\Transversales\IDocumentoSoportePersistencia.cs" />
+    <Compile Include="Interfaces\Transversales\ISeguridadPersistencia.cs" />
+    <Compile Include="Interfaces\SGR\DelegarViabilidad\IDelegarViabilidadPersistencia.cs" />
+    <Compile Include="Interfaces\SGR\DelegarViabilidad\IEntidadEjecutorPersistencia.cs" />
+    <Compile Include="Interfaces\SGR\Transversales\IProyectoSgrPersistencia.cs" />
+    <Compile Include="Interfaces\SGR\Transversales\ITransversalRecursoPersistencia.cs" />
+    <Compile Include="Interfaces\SGR\Viabilidad\IViabilidadPersistencia.cs" />
+    <Compile Include="Interfaces\SGR\Viabilidad\IAcuerdoPersistencia.cs" />
+    <Compile Include="Interfaces\TramiteIncorporacion\ITramiteIncorporacionPersistencia.cs" />
+    <Compile Include="Interfaces\TramitesProyectos\ICambiosJustificacionHorizontePersistencia.cs" />
+    <Compile Include="Interfaces\TramitesProyectos\ICambiosRelacionPlanificacionPersistencia.cs" />
+    <Compile Include="Interfaces\Preguntas\IPreguntasPersonalizadasPersistencia.cs" />
+    <Compile Include="Interfaces\Proyectos\IAjusteIncluirPoliticasPersistencia.cs" />
+    <Compile Include="Interfaces\Proyectos\IDatosBasicosSGRPersistencia.cs" />
+    <Compile Include="Interfaces\Proyectos\IDefinirAlcancePersistencia.cs" />
+    <Compile Include="Interfaces\Proyectos\IDevolverProyectoPersistencia.cs" />
+    <Compile Include="Interfaces\Proyectos\IIncluirPoliticasPersistencia.cs" />
+    <Compile Include="Interfaces\Proyectos\IProyectoPersistencia.cs" />
+    <Compile Include="Interfaces\Preguntas\IPreguntasPersistencia.cs" />
+    <Compile Include="Interfaces\Requisitos\IRequisitosPersistencia.cs" />
+    <Compile Include="Interfaces\TramitesProyectos\ITramitesProyectosPersistencia.cs" />
+    <Compile Include="Interfaces\SGR\Transversales\ITransversalPersistencia.cs" />
+    <Compile Include="Interfaces\Transversales\IEstadoPersistencia.cs" />
+    <Compile Include="Interfaces\Transversales\IFasePersistencia.cs" />
+    <Compile Include="Interfaces\Transversales\ISeccionCapituloPersistencia.cs" />
+    <Compile Include="Interfaces\Transversales\ISystemConfiguracionPersistencia.cs" />
+    <Compile Include="Interfaces\Transversales\IVigenciaPersistencia.cs" />
+    <Compile Include="ModeloSGR\ModeloMGAWebSGRParcial.cs" />
+    <Compile Include="ModeloSGR\ModeloMGAWebSGR.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModeloMGAWebSGR.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloSGR\ModeloMGAWebSGR.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModeloMGAWebSGR.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloSGR\ModeloMGAWebSGR.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModeloMGAWebSGR.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloSGR\Parametros.cs">
+      <DependentUpon>ModeloMGAWebSGR.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloSGR\uspGetConfiguracionReportesPorInstancia_Result.cs">
+      <DependentUpon>ModeloMGAWebSGR.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloSGR\uspGetEjecutoresAsociados_Result.cs">
+      <DependentUpon>ModeloMGAWebSGR.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloSGR\uspGetEntidadesSolicitarCtus_Result.cs">
+      <DependentUpon>ModeloMGAWebSGR.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloSGR\uspGetObtenerPreguntasEspecificasComponenteCustomSGR_Result.cs">
+      <DependentUpon>ModeloMGAWebSGR.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloSGR\uspGetObtenerPreguntasEspecificasComponenteCustom_Result.cs">
+      <DependentUpon>ModeloMGAWebSGR.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloSGR\uspGetObtenerPreguntasGeneralesComponenteCustomSGR_Result.cs">
+      <DependentUpon>ModeloMGAWebSGR.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloSGR\uspGetObtenerPreguntasGeneralesComponenteCustom_Result.cs">
+      <DependentUpon>ModeloMGAWebSGR.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloSGR\uspGetObtenerProyectoCtus_Result.cs">
+      <DependentUpon>ModeloMGAWebSGR.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloSGR\uspGetObtenerProyectosVerificacionOcadPazSgr_Result.cs">
+      <DependentUpon>ModeloMGAWebSGR.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloSGR\uspGetObtenerProyectoViabilidadInvolucradosFirma_Result.cs">
+      <DependentUpon>ModeloMGAWebSGR.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloSGR\uspGetObtenerProyectoViabilidadInvolucrados_Result.cs">
+      <DependentUpon>ModeloMGAWebSGR.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloSGR\uspGetObtenerRolDirectorProyectoCtus_Result.cs">
+      <DependentUpon>ModeloMGAWebSGR.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloSGR\uspGetObtenerUsuariosVerificacionOcadPazSgr_Result.cs">
+      <DependentUpon>ModeloMGAWebSGR.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloSGR\uspGetResumenEstadoAprobacionCredito_Result.cs">
+      <DependentUpon>ModeloMGAWebSGR.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloSGR\uspGetSGR_CTUS_LeerProyectoCtusConcepto_Result.cs">
+      <DependentUpon>ModeloMGAWebSGR.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloSGR\uspGetSGR_CTUS_LeerProyectoCtusUsuarioEncargado_Result.cs">
+      <DependentUpon>ModeloMGAWebSGR.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloSGR\uspGetSGR_Encabezado_LeerEncabezado_Result.cs">
+      <DependentUpon>ModeloMGAWebSGR.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloSGR\uspGetSGR_ListaTipoDocumentosSoportePorRol_Result.cs">
+      <DependentUpon>ModeloMGAWebSGR.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloSGR\uspGetSGR_Procesos_ConsultarEjecutorbyTipo_Result.cs">
+      <DependentUpon>ModeloMGAWebSGR.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloSGR\uspGetSGR_TipoDocumentosSoportePorRol_Result.cs">
+      <DependentUpon>ModeloMGAWebSGR.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloSGR\uspGetSGR_Viabilidad_LeerInformacionGeneral_Result.cs">
+      <DependentUpon>ModeloMGAWebSGR.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloSGR\uspGetTipoEjecutor_Result.cs">
+      <DependentUpon>ModeloMGAWebSGR.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloSGR\UspObtenerInformacionNotificacionInvolucrados_Result.cs">
+      <DependentUpon>ModeloMGAWebSGR.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloSGR\UspObtenerUsuariosNotificacionViabilidad_Result.cs">
+      <DependentUpon>ModeloMGAWebSGR.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModeloSGR\UspValidacionOCADPazSgr_Result.cs">
+      <DependentUpon>ModeloMGAWebSGR.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\Agrupaciones.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\AlmacenamientoTemporal.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\Alternative.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\AtributosEntidad.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\Bienio.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\Capitulo.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\CapitulosModificados.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\CartaConcepto.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\CartaConceptoFirma.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\ClassificationType.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\ConvertirJsonOpciones_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\DatosGeneralesProyecto_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\DeliverableCatalog.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\Department.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\DNH_SIIF.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\Ejecutor.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\EntityType.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\EntityTypeCatalogOption.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\Fondo.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\JustificacionRespuesta.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\JustificacionRespuestaDetalle.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\MacroprocesoSeccion.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\ModeloMGAWeb.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModeloMGAWeb.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\ModeloMGAWeb.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\ModeloMGAWeb.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModeloMGAWeb.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\ModeloMGAWebParcial.cs" />
+    <Compile Include="Modelo\Municipality.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\PeriodoPresidencial.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\PolicyIndicator.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\PolicyTargeting.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\PolicyTargetingIndicator.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\ProductCatalog.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\Program.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\ProyectoConpes.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\ProyectoFuentesPresupuestal.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\ProyectoFuentesPresupuestalValores.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\Proyectos.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\ProyectosRequisitos.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\ProyectosRequisitosValores.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\ProyectosValores.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\RecursosValore.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\Region.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\Reprogramacion.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\ResourceGroup.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\ResourceGroupEntityType.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\ResourceType.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\ResourceTypeByEntity.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\Seccion.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\SeccionCapitulos.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\Sector.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\Shelter.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\spGetMatrizEntidadDestinoAccionUnidad_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\spGetMatrizEntidadDestinoAccion_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\spGetTransferConfigurationUnidad_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\Stage.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\SystemConfigurations.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\TipoAgrupacion.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\TipoCofinanciador.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\TipoDocumento.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\TipoDocumentoTramite.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\TipoDocumentoTramiteRol.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\TramiteConpes.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\TransferConfiguration.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\upsGetEstadoProyectoConpes_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\upsGetEstadoProyectoHorizonte_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\upsGetShelterAgrupacionCode_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspEntidades_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetAccionActualyFinal_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetAuditoriaEntidadProyecto_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetCadenaValor_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\UspGetCapitulosByMacroprocesoNivel_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\UspGetCapitulosByMacroproceso_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\UspGetCapitulos_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetConfiguracionEntidades_AplicaTecnico_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetConsultarCodigoPresupuestal_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\UspGetDatosAdicionalesFinanciacion_JSON_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetDatosBasicosSGR_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetDatosCartaConceptoCuerpoAutorizacion_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetDatosCartaConceptoCuerpoCDP_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetDatosCartaConceptoDespedida_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetDatosCartaPorPlantillaSeccionDespedida_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetDatosCartaPorPlantillaSeccion_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\UspGetDatosFaseMacroproceso_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetDatosUsuario_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetDetalleCartaAclaracionLeyendaProyecto_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetDevolverProyectoMga_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetDevolverProyecto_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetEjecutor_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetEntidadesAprobadoras_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetEntidadesDestinoRoles_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\UspGetErroresProyectoFuenteFinanciacion_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\UspGetErroresProyectoSeccionDesagregarEdt_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\UspGetErroresProyecto_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\UspGetErroresTramite_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\UspGetErroresViabilidad_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\UspGetEstadoCapitulos_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetEstados_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetFuenteFinanciacionAgregar_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetFuentesFinanciacion_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetFuentesInformacionPresupuestal_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\UspGetInstanciaProyectoTramite_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetJustificacionTramiteProyecto_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\UspGetModalidadesContratacion_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetObtenerDatosProyectoConceptoPorInstancia_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetObtenerEntidadesParaAsociar_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetObtenerFuentesTramiteProyectoAprobacion_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetObtenerModificacionProyectoTramiteLeyenda_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetObtenerPreguntasEspecificasCustom_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetObtenerPreguntasEspecificas_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetObtenerPreguntasGeneralesCustom_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetObtenerPreguntasGenerales_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetObtenerProyectosParaAsociarTramiteLeyenda_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetObtenerProyectosParaAsociarTramite_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetObtenerProyectosTramiteNegocioAprobacion_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetObtenerProyectoTramiteVigencia_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetObtenerSolicitarConceptoPorTramite_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetObtenerSubdireccionesTecnicas_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetObtenerValoresProyectos_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetPIIP_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetPlantillaCarta_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetPlantillaCarta_Result1.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetPreguntasConceptoDireccionTecnicaTramite_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetPreguntasJustificacionTramiteProyecto_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetPreguntasJustificacionTramite_Proyectos_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetPreguntasJustificacionTramite_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetPreguntasProyectoActualizacion_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetPreguntasRequisitosAdicionales_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetProductosPorProyecto_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetProyectoFocalizacionVA_Result.cs" />
+    <Compile Include="Modelo\uspGetProyectoFuentePresupuestalAprobadoPorTramite_Traslado_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetProyectoFuentePresupuestalPorTramite_Result3.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetProyectoFuentePresupuestalPorTramite_Traslado_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetProyectoRequisitosPorTramiteCRP_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetProyectoRequisitosPorTramite_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetProyectosCartaTramiteVfo_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\UspGetProyectosConpes_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetProyectosDatosBasicos_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetProyectosTramite_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetRecursosOld_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetRecursosRegionalizacion_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetRecursos_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetSeccionesPorFase_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetSecciones_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetTipoDocumentosSoportePorNivel_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetTipoDocumentosSoportePorRol_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetTiposRequisito_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetTramiteEnPasoUno_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\UspGetTramitesVFaLiberar_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspGetUnidadesMedidas_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\UspGetUsauriosRegistrados_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspPostActualizaCodigoPresupuestal_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\UspPostProyectosConpes_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspProgramacion_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspProyectosPorBPIN_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspProyectosPorEntidades_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspProyectosPorEstadosValidos_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\uspProyectosPorId_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\UspValidacionDescargregarEdt_Result.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\VGetCRType.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\VGetFase.cs">
+      <DependentUpon>ModeloMGAWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo_OnlySP\ModeloOnlySPParcial.cs" />
+    <Compile Include="Modelo_OnlySP\ModelOnlySP.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelOnlySP.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo_OnlySP\ModelOnlySP.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelOnlySP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo_OnlySP\ModelOnlySP.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelOnlySP.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo_OnlySP\uspGetCalendarioPeriodo_Result.cs">
+      <DependentUpon>ModelOnlySP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo_OnlySP\UspGetErroresSeguimiento_Result.cs">
+      <DependentUpon>ModelOnlySP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo_OnlySP\uspGetObtenerAutorizacionAsociada_Result.cs">
+      <DependentUpon>ModelOnlySP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo_OnlySP\uspGetObtenerAutorizacionesParaReprogramacion_Result.cs">
+      <DependentUpon>ModelOnlySP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo_OnlySP\uspGetObtenerEntidadDestinoResponsableFlujoSgp_Result.cs">
+      <DependentUpon>ModelOnlySP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo_OnlySP\uspGetObtenerEntidadDestinoResponsableFlujoTramiteSgp_Result.cs">
+      <DependentUpon>ModelOnlySP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo_OnlySP\uspGetObtenerEntidadesTramite_Result.cs">
+      <DependentUpon>ModelOnlySP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo_OnlySP\UspGetObtenerUsuariosPorInstanciaPadre_Result.cs">
+      <DependentUpon>ModelOnlySP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo_OnlySP\uspGetProyectosContracredito_Result.cs">
+      <DependentUpon>ModelOnlySP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo_OnlySP\uspGetProyectosCredito_Result.cs">
+      <DependentUpon>ModelOnlySP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo_OnlySP\uspGetProyectosTramiteNegocio_Result.cs">
+      <DependentUpon>ModelOnlySP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <EntityDeploy Include="Modelo\ModeloMGAWeb.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModeloMGAWeb.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <EntityDeploy Include="ModeloSGR\ModeloMGAWebSGR.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModeloMGAWebSGR.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="ModeloSGR\ModeloMGAWebSGR.edmx.diagram">
+      <DependentUpon>ModeloMGAWebSGR.edmx</DependentUpon>
+    </None>
+    <None Include="Modelo\ModeloMGAWeb.edmx.diagram">
+      <DependentUpon>ModeloMGAWeb.edmx</DependentUpon>
+    </None>
+    <Content Include="Modelo_OnlySP\ModelOnlySP.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelOnlySP.edmx</DependentUpon>
+      <LastGenOutput>ModelOnlySP.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Modelo_OnlySP\ModelOnlySP.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelOnlySP.edmx</DependentUpon>
+      <LastGenOutput>ModelOnlySP.cs</LastGenOutput>
+    </Content>
+    <Content Include="ModeloSGR\ModeloMGAWebSGR.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModeloMGAWebSGR.edmx</DependentUpon>
+      <LastGenOutput>ModeloMGAWebSGR.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="ModeloSGR\ModeloMGAWebSGR.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModeloMGAWebSGR.edmx</DependentUpon>
+      <LastGenOutput>ModeloMGAWebSGR.cs</LastGenOutput>
+    </Content>
+    <Content Include="ObjetosPreview\FuentesPreview.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ObjetosPreview\DatosBasicosSGRPreview.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ObjetosPreview\FuentesAgregarPreview.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ObjetosPreview\FuenteCofinanciacionPreview.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ObjetosPreview\PreguntasPreview.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ObjetosPreview\AjusteIncluirPoliticasPreview.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <EntityDeploy Include="Modelo_OnlySP\ModelOnlySP.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelOnlySP.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Modelo_OnlySP\ModelOnlySP.edmx.diagram">
+      <DependentUpon>ModelOnlySP.edmx</DependentUpon>
+    </None>
+    <None Include="ObjetosPreview\AlcancePreview.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ObjetosPreview\CadenaValorPreview.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <Content Include="ObjetosPreview\CofinanciacionAgregarPreview.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ObjetosPreview\IncluirPoliticasPreview.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Modelo\ModeloMGAWeb.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModeloMGAWeb.edmx</DependentUpon>
+      <LastGenOutput>ModeloMGAWeb.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Modelo\ModeloMGAWeb.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModeloMGAWeb.edmx</DependentUpon>
+      <LastGenOutput>ModeloMGAWeb.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DNP.ServiciosEnrutamiento.Persistencia\DNP.ServiciosEnrutamiento.Persistencia.csproj">
+      <Project>{3865D2BB-F1A1-4041-A541-94641694FEB6}</Project>
+      <Name>DNP.ServiciosEnrutamiento.Persistencia</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DNP.ServiciosNegocio.Comunes\DNP.ServiciosNegocio.Comunes.csproj">
+      <Project>{B20F5062-15B9-49E4-88C5-79F109F947EF}</Project>
+      <Name>DNP.ServiciosNegocio.Comunes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DNP.ServiciosNegocio.Dominio\DNP.ServiciosNegocio.Dominio.csproj">
+      <Project>{694221D1-E217-4D2E-87E3-B196C4C6BE94}</Project>
+      <Name>DNP.ServiciosNegocio.Dominio</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Implementaciones\Tramites\" />
+    <Folder Include="Interfaces\SGR\GestionRecursos\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

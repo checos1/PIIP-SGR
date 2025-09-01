@@ -1,0 +1,26 @@
+﻿<section>
+    <div class="container-fluid inbox" ng-init="vm.init();">
+        <div class="tab-content">
+            <div class="row" style="margin-left: 0px; margin-right: 0px;padding-bottom:1rem">
+                <div class="alert panel-heading row ui-accordion-header" style="">
+                    
+                    <button class="button" type="button" data-toggle="collapse" data-target="#rJustificacion" ng-click="vm.changeArrow('informacionjustificacion')">
+                        <span class="d-inline-block" id="alert-justificacionjustificacionmo"></span> Justificación de la modificación
+                        <span class="hidden" id="id-capitulo-justificacionjustificacionmo"></span>
+                        <span id="arrow-informacionjustificacion" class="glyphicon glyphicon-chevron-down pull-right" data-toggle="collapse" data-target="#rJustificacion"></span>
+                    </button>
+                   
+                </div>
+                <div class="collapse" id="rJustificacion" style="padding-right: 15px; padding-left: 0px; margin-left: -15px;">
+                    <div class="row" style="margin-left:20px">
+                        <justificacion-al-detalle tramiteid="{{vm.tramiteid}}" tipotramiteid="{{vm.tipotramiteid}}"
+                                                 guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                                 notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                 notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)">
+                        </justificacion-al-detalle>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

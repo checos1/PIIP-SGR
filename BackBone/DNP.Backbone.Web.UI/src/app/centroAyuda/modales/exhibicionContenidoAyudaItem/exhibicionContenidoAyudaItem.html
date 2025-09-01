@@ -1,0 +1,22 @@
+<div class="container-fluid inbox" ng-init="vm.init()">
+    <div class="modal-header">
+        <a href="#" class="closebtn" ng-click="vm.cerrar()"></a>
+    </div>
+    <div class="modal-body">
+        <div class="container__ayuda__exhibicion" ng-init="vm.init()">
+            <div class="row container__title__ayuda">
+                <div class="col-md-12 title__ayuda">
+                    <span>{{vm.model.Nombre}}</span>
+                </div>
+                <div class="col-md-12 descripcion__ayuda">
+                    <p>{{vm.model.Descripcion}}</p>
+                </div>
+            </div>
+            <div class="row container__contenido">
+                <div class="col-md-12">
+                    <div class="ql-editor template" ng-bind-html="vm.model.Contenido | to_trusted"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

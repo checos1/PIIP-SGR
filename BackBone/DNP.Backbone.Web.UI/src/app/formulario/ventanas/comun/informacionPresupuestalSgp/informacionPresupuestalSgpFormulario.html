@@ -1,0 +1,220 @@
+﻿<div style="background-color:white;padding-top:2rem;padding-bottom:0px !important;max-width:auto !important;" ng-init="vm.initInformacionPresupuestal()">
+    <div id="IPF001-error" class="hidden uMensajeError"></div>
+    <span id="IPF002-error" class="hidden uMensajeError"></span>
+    <span id="IPF003-error" class="hidden uMensajeError"></span>
+    <div id="IPF004-error" class="hidden uMensajeError"></div>
+    <div id="IPF005-error" class="hidden uMensajeError"></div>
+    <div id="IPF006-error" class="hidden uMensajeError"></div>
+    <div class="row">
+        <div class="col-md-10">
+            <span ng-if="vm.listaProyectos.length === 0">
+                Aún no se han agregado proyectos
+            </span>
+        </div>
+        <div ng-repeat="objProyecto in vm.listaProyectos">
+            <div class="row">
+                <table class="TableDNP" style="width: 90%; margin-left: 4rem;">
+                    <thead>
+                        <tr style="text-align:center;">
+                            <th style="width:5%;"></th>
+                            <th style="width:40%;" class="textLeftDNP">
+                                <span class="NomItemAccordDNP">BPIN: </span><span class="InfoItemAccordDNP ng-binding">{{objProyecto.BPIN}}</span><br>
+                                <span class="NomItemAccordDNP">Proyecto: </span>
+                                <span id="nombreProyecto-{{objProyecto.ProyectoId}}" class="InfoItemAccordDNP ng-binding  proyecto-nombreFP">{{objProyecto.NombreProyecto}}</span>
+                                <a id="btnVerMasNombre-{{objProyecto.ProyectoId}}" ng-if="objProyecto.NombreProyecto !== objProyecto.NombreCorto" ng-click="vm.verNombreCompleto('nombreProyecto-'+ objProyecto.ProyectoId, objProyecto.ProyectoId)">
+                                    Ver mas
+                                </a>
+                                <span class="NomItemAccordDNP">Valor Sgp: </span><span class="InfoItemAccordDNP ng-binding">{{objProyecto.ValorTotalNacion}}</span>
+                                <span class="NomItemAccordDNP">Valor propios: </span><span class="InfoItemAccordDNP ng-binding">{{objProyecto.ValorTotalPropios}}</span><br>
+                                <span class="NomItemAccordDNP">Operación: </span><span class="InfoItemAccordDNP ng-binding">{{objProyecto.Operacion}}</span>
+                            </th>
+                            <th style="width: 50%; padding: 0px !important;" class="textLeftDNP">
+                                <div class="form-group" style="padding:0">
+                                    <div class="col-md-12">
+                                        <div class="col-md-6">
+                                            <div class="col-md-12 til">
+                                                Total Sgp solicitado $
+                                            </div>
+                                            <div class="col-md-12 pull-right">
+                                                <input type="text" class="form-control editInputDNP textRightDNP" disabled value="{{objProyecto.totalNacion}}" />
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="col-md-12 til">
+                                                Total Propios solicitado $
+                                            </div>
+                                            <div class="col-md-12 pull-right">
+                                                <input type="text" class="form-control editInputDNP textRightDNP" disabled value="{{objProyecto.totalPropios}}" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </th>
+                            <th style="width:5%;"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="width: !important 8%; text-align: center; vertical-align: bottom;">
+                                <button class="btnaccion btntablednp collapsed" type="button" data-toggle="collapse"
+                                        ng-click="vm.mostrarOcultarFuentes(objProyecto.ProyectoId)"
+                                        data-target="#fuente{{objProyecto.ProyectoId}}">
+                                    <img id="ico{{objProyecto.ProyectoId}}" src="Img/btnMas.svg" class="" style="">
+                                    <span id="IPF001-{{objProyecto.ProyectoId}}" class="hidden uMensajeError"></span>
+
+
+                                </button>
+                            </td>
+                            <td colspan="5" style="width: !important 95%; text-align: left;">
+
+                                <div class="col-md-12">
+                                    <span class="errores-contenedor" id="error-button-proyecto-{{objProyecto.ProyectoId}}" ng-if="vm.error.ProyectoId === objProyecto.ProyectoId">
+                                        <span class="img iconadverdnp"><img src="Img/u4630.svg"> </span>
+                                        <span class="messagealerttableDNP" id="error-txt-button-proyecto-{{objProyecto.ProyectoId}}">{{vm.error.Mensaje}}</span>
+
+                                    </span>
+                                </div>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td colspan="7">
+                                <div class="collapse" id="fuente{{objProyecto.ProyectoId}}" style="margin-top: -20px; margin-left: -10px;">
+                                    <div class="LineaEncabezadodivDNP"></div>
+                                    <h3 class="row tituloEncabezadodivDNP">
+                                        <div class="col-md-3 form-group text-left" style="color: #004884;">Fuentes</div>
+                                        <div ng-if="vm.habilitaBotones" class="col-md-9 form-group text-right" style="padding-right:2rem;">
+                                            <button id="Editar{{objProyecto.ProyectoId}}"
+                                                    type="submit"
+                                                    class="btneditarDNP"
+                                                    tooltip-placement="top"
+                                                    ng-click="vm.ActivarEditar(objProyecto.ProyectoId)"
+                                                    uib-tooltip="Clic para editar la información">
+                                                {{vm.Editar}}
+                                            </button>
+
+                                            <button id="Guardar{{objProyecto.ProyectoId}}"
+                                                    type="submit"
+                                                    class="btnguardarDisabledDNP"
+                                                    tooltip-placement="top"
+                                                    uib-tooltip="Guardar modificación"
+                                                    ng-click="vm.actualizarFuente(objProyecto.ProyectoId)"
+                                                    disabled>
+                                                GUARDAR
+                                            </button>
+                                        </div>
+                                        <br />
+                                    </h3>
+                                    <div style="width:99%; text-align:left">
+                                        <br />
+                                        <div class="col-md-12 form-group" style="padding-right:2rem;">
+                                            <table class="TableDNP" style="text-align:center; width: 100%;">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="columAcc" style="width:5%;"></th>
+                                                        <th class="textLefttDNP" style="width:40%;"><span>Fuente</span></th>
+                                                        <th class="textRightDNP" style="width:15%;"><span>Valor inicial $</span></th>
+                                                        <th class="textRightDNP" style="width:15%;"><span>Valor vigente $</span></th>
+                                                        <th class="textRightDNP" style="width:15%;"><span>Valor solicitado $</span></th>
+                                                        <th class="columAcc" style="width:5%;"></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="objdatosFuente in objProyecto.ListaFuentes">
+                                                        <td style="width:5%;">
+                                                            <span id="IPF002-{{objdatosFuente.FuenteId}}-{{objProyecto.ProyectoId}}" class="hidden uMensajeError"></span>
+                                                        </td>
+                                                        <td class="textLefttDNP" style="width:40%;">
+                                                            <span class="textLeftDNP">{{objdatosFuente.NombreCompleto}}</span>
+                                                        </td>
+                                                        <td class="textRightDNP" style="width:15%;">
+                                                            <div class="col-md-12" style="padding:0;">
+                                                                <div class="col-md-12 disabled" style=" margin-bottom: 0.5rem; height: 30px !important;">
+                                                                    <span class="textLeftDNP">{{objdatosFuente.ValorInicialCSF}}</span>
+                                                                </div>
+                                                            </div>
+
+                                                        </td>
+                                                        <td class="textRightDNP" style="width:15%;">
+                                                            <div class="col-md-12" style="padding:0;">
+                                                                <div class="col-md-12 disabled" style=" margin-bottom: 0.5rem; height: 30px !important;">
+                                                                    <span class="textLeftDNP">{{objdatosFuente.ValorVigenteCSF}}</span>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td class="textRightDNP" style=" width: 100%;">
+                                                            <div class="col-md-12" style="padding: 0;">
+                                                                <div class="col-md-12" style="padding: 0;">
+                                                                    <div ng-if="!(vm.camposActivos === objProyecto.ProyectoId)" id="lblc-{{objProyecto.ProyectoId}}-{{objdatosFuente.FuenteId}}"
+                                                                         style="font-family: 'Work Sans'; font-size: 16px; height: 30px !important; margin-bottom: 0.5rem; ">
+                                                                        {{objdatosFuente.ValorContracreditoCSF}}
+                                                                    </div>
+                                                                    <input ng-if="(vm.camposActivos === objProyecto.ProyectoId)" type="text" min="0.00" class="form-control editInputDNP"
+                                                                           numbers="enteros:14;precision:2;negativos:false"
+                                                                           style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px"
+                                                                           id="inpc-{{objProyecto.ProyectoId}}-{{objdatosFuente.FuenteId}}"
+                                                                           ng-value="objdatosFuente.ValorContracreditoCSF"
+                                                                           ng-model="objdatosFuente.ValorContracreditoCSF"
+                                                                           ng-blur="vm.actualizaFilaIP($event, objProyecto)"
+                                                                           required />
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <td></td>
+                                                        <td class="textLefttDNP"><span class="textRightDNP">Total</span></td>
+                                                        <td class="textRightDNP">
+                                                            <span class="textRightDNP">
+                                                                <label class="col-form-label">
+                                                                    {{objProyecto.ValorTotalInicialProyecto}}
+                                                                </label>
+                                                            </span>
+                                                        </td>
+                                                        <td class="textRightDNP">
+                                                            <span class="textRightDNP">
+                                                                <label class="col-form-label">
+                                                                    {{objProyecto.ValorTotalVigenteProyecto}}
+                                                                </label>
+                                                            </span>
+                                                        </td>
+                                                        <td class="textRightDNP">
+                                                            <span class="textRightDNP">
+                                                                <label class="col-form-label">
+                                                                    {{objProyecto.ValorTotalSolicitadoProyecto}}
+                                                                </label>
+                                                            </span>
+                                                        </td>
+                                                        <td>
+                                                        </td>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                            <br />
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                        </tr>
+                    </tfoot>
+                </table>
+                <br />
+                <div class="col-md-12">
+                    <div id="recursosgrfuentesdefinanc-validacionFuentesErrores3-error" src="Img/u11.svg" class=" img hidden text-left color-red">
+                        <span id="recursosgrfuentesdefinanc-validacionFuentesErrores3-error-mns" style="font-size:!important 16px"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

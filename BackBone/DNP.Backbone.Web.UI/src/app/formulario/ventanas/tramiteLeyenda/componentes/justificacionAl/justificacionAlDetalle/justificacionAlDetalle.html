@@ -1,0 +1,118 @@
+﻿<div ng-init="$ctrl.init();">
+  <div class="row">
+    <div class="row" style="margin-left: 20px">
+        <form id="preguntasForm" name="preguntasForm" novalidate>
+            <div class="row" style="width: 100%">
+                <div style="text-align: left" class="col-md-8">
+                </div>
+                <div style="text-align: right" class="col-md-4">
+                    <div class="col-md-12 form-group text-right"
+                         style="padding-right: 2rem">
+                        <button id="EditarJ"
+                                has-claim has-opciones="['tramite:justificacionAclaracionDeLeyendaEditar']"
+                                class="btneditarDNP"
+                                type="button"
+                                tooltip-placement="top"
+                                uib-tooltip="Clic para editar la información"
+                                ng-click="$ctrl.ActivarEditar(false)">
+                            EDITAR
+                        </button>
+                        &nbsp;
+
+                        <button id="Guardar"
+                                has-claim has-opciones="['tramite:justificacionAclaracionDeLeyendaEditar']"
+                                type="submit"
+                                class="{{$ctrl.esEdicion?'  btnguardarDNP':'  btnguardarDisabledDNP'}}"
+                                tooltip-placement="top"
+                                uib-tooltip="Guardar modificación"
+                                ng-disabled="!$ctrl.esEdicion"
+                                ng-click="$ctrl.guardar()">
+                            GUARDAR
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <br />
+
+            <strong>1. Tipo de modificación*</strong>
+            <br />
+            <br />
+            <div id="mensajesAlertaTipoModificacion" style="text-align: start;" ng-if="$ctrl.errorTipoModificacion">
+                <span id="mensajeAlertaTipoModificacion" class="img iconadverdnp"> <img src="Img/u4630.svg" /> </span>
+                Campo obligatorio
+            </div>
+            <div>
+                <input type="checkbox"
+                       id="errorAritmetico"
+                       name="errorAritmetico"
+                       ng-model="$ctrl.errorAritmetico"
+                       ng-disabled="!$ctrl.esEdicion" />
+                <label for="errorAritmetico">Error aritmético</label>
+                <input type="checkbox"
+                       id="errorTranscripcion"
+                       name="errorTranscripcion"
+                       ng-model="$ctrl.errorTranscripcion"
+                       ng-disabled="!$ctrl.esEdicion"
+                       style="margin-left: 2rem;" />
+                <label for="errorTranscripcion">Error de transcripción</label>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-12 DetacolumnDNP">
+                    <span class="detapregun">
+                        Sustento de la modificación*
+                    </span>
+                    <span class="notapregun">(Máximo 5.000 caracteres)</span>
+                    &nbsp;
+                </div>
+            </div>
+            <div class="row">
+                <div id="mensajesAlertaSustentoModificacion"
+                     class="col-md-12"
+                     ng-if="$ctrl.errorSustentoModificacion">
+                    <span id="mensajeAlertaSustentoModificacion" class="img iconadverdnp"> <img src="Img/u4630.svg" /> </span>
+                    Campo obligatorio
+                </div>
+                <div class="col-md-12"
+                     style="
+              padding-bottom: 55px !important;
+              padding-right: 4rem !important;
+            ">
+                    <div id="u5226_div"
+                         class="divPanelPregRespDNP"
+                         style="width: 100% !important">
+                        <div class="respAdon">
+                            <span style="
+                    vertical-align: middle;
+                    display: table-cell;
+                    font-weight: 400;
+                    font-style: normal;
+                    font-size: 20px;
+                  ">R/</span>
+                        </div>
+
+                        <div class="textAreDivRes" style="width: 70% !important">
+                            <textarea rows="3"
+                                      id="sustentoModificacion"
+                                      name="sustentoModificacion"
+                                      ng-model="$ctrl.sustentoModificacion"
+                                      placeholder="Maximo 5.000 caracteres"
+                                      minlength="1"
+                                      maxlength="5000"
+                                      class="textareObservaDNP"
+                                      ng-disabled="!$ctrl.esEdicion">
+                </textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="justificacionjustificacion-pregunta-error"
+                 class="hidden uMensajeError"></div>
+            <div id="justificacionjustificacionmo-modificacion-error" class="hidden uMensajeError"></div>
+            <div id="justificacionjustificacionmo-justificacion-error" class="hidden uMensajeError"></div>
+            <div id="justificacionjustificacionmo-campos-error" class="hidden uMensajeError"></div>
+        </form>
+      <br /><br />
+    </div>
+  </div>
+</div>

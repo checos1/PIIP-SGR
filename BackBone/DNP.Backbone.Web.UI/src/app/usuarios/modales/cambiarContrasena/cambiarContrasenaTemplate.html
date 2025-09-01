@@ -1,0 +1,51 @@
+<modal-dialog cerrar="vm.cerrar" ng-init="vm.init()">
+    <div class="row ">
+        <div class="col-md-12">
+            <div class="titulo-modal">
+                <span>Cambiar Contraseña</span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <label>Tipo identificación</label>
+            <input ng-model="vm.model.TipoIdentificacion" disabled type="hidden" class="form-control rounded-right-2" />
+            <input ng-model="vm.labelTipoDocumento" disabled type="text" class="form-control rounded-right-2" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <label>Número identificación</label>
+            <input ng-model="vm.model.NumeroIdentificacion" disabled type="text" class="form-control rounded-right-2" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <label>Nombre</label>
+            <input ng-model="vm.nombreUsuario" disabled type="text" class="form-control rounded-right-2" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <label>Contraseña actual</label>
+            <input ng-model="vm.model.ContrasenaActual" type="password" class="form-control rounded-right-2" placeholder="Ingrese su contraseña actual" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <label>Contraseña nueva</label>
+            <input ng-model="vm.model.ContrasenaNueva" type="password" class="form-control rounded-right-2" placeholder="Ingrese una contraseña nueva" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <label>Confirmación contraseña nueva</label>
+            <input ng-model="vm.model.ContrasenaNuevaConfirmar" type="password" class="form-control rounded-right-2" placeholder="Ingrese la confirmación de la contraseña nueva" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <button class="btn btn-contrasena" ng-click="vm.cambiarContrasena()">ENVIAR</button>
+        </div>
+    </div>
+</modal-dialog>

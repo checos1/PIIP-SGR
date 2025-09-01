@@ -1,0 +1,131 @@
+﻿<section ng-init="vm.init();" class="mx-5">
+    <h3 class="text-left ui-seccion-title">{{vm.titulo}}</h3>
+    <div class="row mb-5">
+        <div class="col-md-12 text-left">
+            <span>
+                <strong>Ruta: </strong> Recursos / Regionalización / Fuentes
+            </span>
+        </div>
+    </div>
+    <div class="row" ng-repeat="regionalizacion in vm.RecursosRegionalizacionAjuste">
+        <div class="col-md-12 mb-4">
+            <h4 class="text-left ui-seccion-title">{{regionalizacion.Fuente}}</h4>
+        </div>
+        <div class="col-md-12 mb-4">            
+            <ul class="nav nav-tabs">
+                <li id="liRecursos" ng-if="regionalizacion.Recursos.length > 0">
+                    <a href="" ng-click="vm.mostrarTab(1,regionalizacion.FuenteId, regionalizacion.ProductoId)" data-toggle="tab">
+                        <b>Recursos</b>
+                    </a>
+                </li>
+                <li id="liMetas"  ng-if="regionalizacion.Metas.length > 0">
+                    <a href="" ng-click="vm.mostrarTab(2, regionalizacion.FuenteId, regionalizacion.ProductoId)" data-toggle="tab">
+                        <b>Metas</b>
+                    </a>
+                </li>
+            </ul>
+            <div ng-if="regionalizacion.Recursos.length > 0" id="tabRecursos-{{regionalizacion.FuenteId}}-{{regionalizacion.ProductoId}}" class="mt-5">
+                <table class="TableDNP">
+                    <thead>
+                        <tr>
+                            <th class="columAcc"></th>
+                            <th class="textRightDNP">Vigencia</th>
+                            <th class="textRightDNP">Departamento</th>
+                            <th class="textRightDNP">Municipio</th>
+                            <th class="textRightDNP">Tipo de Agrupación</th>
+                            <th class="textRightDNP">Agrupación</th>
+                            <th class="textRightDNP">En firme $</th>
+                            <th class="textRightDNP">En ajuste $</th>
+                            <th class="textRightDNP">Diferencia $</th>
+                            <th class="columAcc"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="uTexto-grilla" ng-repeat="objResumen in regionalizacion.Recursos">
+                            <td></td>
+                            <td class="textRightDNP">{{objResumen.Vigencia}}</td>
+                            <td class="textRightDNP">{{objResumen.Departamento}}</td>
+                            <td class="textRightDNP">{{objResumen.Municipo}}</td>
+                            <td class="textRightDNP">{{objResumen.TipoAgrupacion}}</td>
+                            <td class="textRightDNP">{{objResumen.Agrupacion}}</td>
+                            <td class="textRightDNP">{{objResumen.EnFirme}}</td>
+                            <td class="textRightDNP">{{objResumen.EnAjuste}}</td>
+                            <td class="textRightDNP">{{objResumen.Diferencia}}</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div ng-if="regionalizacion.Metas.length > 0" id="tabMetas-{{regionalizacion.FuenteId}}-{{regionalizacion.ProductoId}}" class="{{regionalizacion.Recursos.length > 0 ? 'hidden': 'visible'}}"    mt-5">
+                <table class="TableDNP">
+                    <thead>
+                        <tr>
+                            <th class="columAcc"></th>
+                            <th class="textRightDNP">Vigencia</th>
+                            <th class="textRightDNP">Departamento</th>
+                            <th class="textRightDNP">Municipio</th>
+                            <th class="textRightDNP">Tipo de Agrupación</th>
+                            <th class="textRightDNP">Agrupación</th>
+                            <th class="textRightDNP">Meta en firme</th>
+                            <th class="textRightDNP">Meta en ajuste</th>
+                            <th class="textRightDNP">Diferencia</th>
+                            <th class="columAcc"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="uTexto-grilla" ng-repeat="objResumen in regionalizacion.Metas">
+                            <td></td>
+                            <td class="textRightDNP">{{objResumen.Vigencia}}</td>
+                            <td class="textRightDNP">{{objResumen.Departamento}}</td>
+                            <td class="textRightDNP">{{objResumen.Municipo}}</td>
+                            <td class="textRightDNP">{{objResumen.TipoAgrupacion}}</td>
+                            <td class="textRightDNP">{{objResumen.Agrupacion}}</td>
+                            <td class="textRightDNP">{{objResumen.EnFirme}}</td>
+                            <td class="textRightDNP">{{objResumen.EnAjuste}}</td>
+                            <td class="textRightDNP">{{objResumen.Diferencia}}</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <br />
+    </div>
+    <div class="row my-4">
+        <div class="col-md-12 mt-3 mb-3">
+            <div class="row">
+                <div class="col-md-8 text-left">
+                    <h4 class="text-left ui-seccion-title">Justificación</h4>
+                </div>
+                <div class="col-md-4 text-right">
+                    <button type="button" class="{{vm.isEdicion ? 'btn btncancelarHorizonte' : 'btn btncancelarHorizonte'}}" tooltip-placement="top" ng-click="vm.isEdicion ? vm.editar('cancelar') : vm.editar('editar')" uib-tooltip="{{vm.isEdicion ? 'CANCELAR' : 'EDITAR'}}" has-claim has-opciones="['Ajustes:GeneralComponente']">
+                        {{vm.isEdicion ? 'CANCELAR' : 'EDITAR'}}
+                    </button>
+                    <button ng-click="vm.guardar()" type="button" id="btn-guardar-edicion-ff" ng-class="vm.ClasesbtnGuardar" tooltip-placement="auto" uib-tooltip="Guardar" has-claim has-opciones="['Ajustes:GeneralComponente']">GUARDAR</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-left">
+                    <span>
+                        <strong>Justifique la modificación* </strong> (Máximo 8.000 caracteres)
+                    </span>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-12">
+            <div id="recursosregionalizacion-justificacion-error" class="hidden text-left color-red">
+                <img class="img img-advertencia" src="Img/u11.svg" />
+                <span id="recursosregionalizacion-justificacion-error-mns"></span>
+            </div>
+            <textarea rows="3"
+                      id="justificacionrecreg"
+                      name="justificacionrecreg"
+                      ng-model="vm.justificacion"
+                      placeholder="Maximo 8.000 caracteres"
+                      minlength="1"
+                      maxlength="8000"
+                      class="form-control disabled" ng-required="true"></textarea>
+        </div>
+    </div>
+</section>

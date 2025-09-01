@@ -1,0 +1,234 @@
+﻿<div ng-init="vm.init();">
+
+    <form id="generalesForm" name="generalesForm" novalidate>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="concepto-preliminar-contenedor">
+                    <div class="concepto-detalle-contenedor">
+                        <span class="distancia-flecha">Versión preliminar de la ficha</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#04385e" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
+                        </svg>
+                    </div>
+                    <div class="concepto-detalle-contenedor-pdf">
+                        <button id="verPdf"
+                                name="verPdf"
+                                type="button" class="btn btn-default btn-md"
+                                tooltip-placement="top"
+                                ng-click="vm.verPdf()"
+                                ng-show="vm.mostrarBotonPdf()"
+                                uib-tooltip="Ver PDF" style="display: block; width: 50px; height: 50px; border-radius: 50%; padding-left:15px;">
+                            <p style="text-align: center; margin:0 0 0 0;">Ver</p><p style="text-align: center; margin: 0 0 0 0;">PDF</p>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="padding-top:48px; padding-right:50px; padding-bottom:48px;">
+            <span class="buttonbar pull-right">
+                <button id="EditarReq"
+                        type="button"
+                        class="btneditarDNP"
+                        tooltip-placement="top"
+                        uib-tooltip="Editar"
+                        tabindex="0"
+                        ng-click="vm.ActivarEditar()">
+                    EDITAR
+                </button>
+                &nbsp;
+                <button id="GuardarReq"
+                        type="submit"
+                        class="{{vm.activar ? 'btnguardarDisabledDNP' : 'btnguardarDNP'}}"
+                        tooltip-placement="top"
+                        uib-tooltip="Guardar"
+                        ng-click="vm.guardar()"
+                        ng-disabled="vm.activar">
+                    GUARDAR
+                </button>
+            </span>
+        </div>
+
+        <div class="col-md-12" style="text-align: left;">
+            <div id="MensajeFaltaDiligenciar" class="hidden" style="text-align: left;">
+                <img class="" src="Img/u4630.svg">
+                <span class="messagealerttableDNP" style="text-align: left;font-family: 'Work Sans'; font-size: 14px; font-style: normal;">
+                    Todas las variables deben ser diligenciadas.
+                </span>
+            </div>
+        </div>
+
+        <div class="row" style="color: #004884">
+            <div class="" style="padding: 0 !important">
+                <div class="alert panel-heading" style="height:50px">
+                    <div class="card card-body pull-left d-flex divAccordionDNP" style="line-height: 40px; max-height: 140px; background-color: rgba(249, 252, 253, 1); display: inline-table;">
+                        <div class="col-md-12 d-flex" style="padding-left: 12px;">
+                            <div class="col-md-8" style="padding-left: 12px;">
+                                <div class="col-md-12" style="padding-left: 12px;">
+                                    <span class="encabezadoTitulos">Al guardar se realizarán los cálculos de las variables para obtener el puntaje final</span>
+                                </div>
+                            </div>
+                            <div class="col-md-2" style="padding-left: 8px;">
+                                <div class="col-md-12" style="padding-left: 8px;">
+                                    <span class="encabezadoTitulos">Puntaje final 100%</span>
+                                </div>
+                            </div>
+                            <div class="col-md-2" style="padding-left: 8px;">
+                                <div class="col-md-12" style="padding-left: 8px;">
+                                    <span class="encabezadoTitulos">{{vm.PuntajesProyecto.PuntajeTotal}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 ">
+                <br>
+                <table class="TableDNP" ng-repeat="variableNivel1 in vm.PuntajesProyecto.Variables" ng-init="variableN1Index = $index">
+                    <tbody>
+                        <tr>
+                            <td>
+
+                                <div class="row" style="color: #004884">
+                                    <div class="" style="padding: 0 !important">
+                                        <div class="alert panel-heading" style="height:50px">
+                                            <div class="card card-body pull-left d-flex divAccordionDNP" style="line-height: 40px; max-height: 140px; display: inline-table; border-style: none;">
+                                                <div class="col-md-12" style="padding-left: 10px;">
+                                                    <div class="col-md-8" style="padding-left: 10px;">
+                                                        <div class="col-md-12" style="padding-left: 10px;">
+                                                            <span class="encabezadoTitulos">{{variableNivel1.Nombre}}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2" style="padding-left: 10px;">
+                                                        <div class="col-md-12" style="padding-left: 10px;">
+                                                            <span class="encabezadoTitulos">Subtotal {{variableNivel1.Subtotal}}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2" style="padding-left: 10px;">
+                                                        <div class="col-md-12" style=padding-left: 10px;"">
+                                                            <input type="text" class="form-control editInputDNP ng-isolate-scope" disabled value="{{variableNivel1.Puntaje}}">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="" style="padding: 0 !important" ng-repeat="variableNivel2 in variableNivel1.Variables" ng-init="variableN2Index = $index">
+
+                                    <div class="alert panel-heading" style="height:50px">
+                                        <div class="card card-body pull-left  divAccordionDNP" style="line-height: 40px; max-height: 140px; background-color: rgba(249, 252, 253, 1); display: inline-table;">
+                                            <div class="col-md-12" style="height: 40px; padding-left: 8px; display: flex; align-items: center; justify-content: center;">
+                                                <div class="col-md-8" style="padding-left: 8px;">
+                                                    <div class="col-md-12" style="line-height: 1; padding-left: 8px;">
+                                                        <span class="encabezadoInfo" style="font-weight:bold;">{{variableNivel2.Nombre}}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2" style="padding-left: 12px;">
+                                                    <div class="col-md-12" style="padding-left: 12px;">
+                                                        <span class="encabezadoTitulos" ng-if="!variableNivel2.MostrarOpcionesResultado != null && !variableNivel2.MostrarOpcionesResultado">{{variableNivel2.Resultado}}</span>
+                                                        <select class="form-control selectDNP" ng-if="!variableNivel2.MostrarOpcionesResultado != null && variableNivel2.MostrarOpcionesResultado" ng-model="variableNivel2.Resultado" ng-disabled="vm.activar">
+                                                            <option value="Sí" selected>Sí</option>
+                                                            <option value="No" selected>No</option>
+                                                        </select>
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2" style="padding-left: 18px;">
+                                                    <div class="col-md-12" style="padding-left: 18px;">
+                                                        <span class="encabezadoTitulos" ng-if="vm.mostrarNivel2(variableNivel1.VbleId, variableNivel2.VbleId)"> </span>
+                                                        <input type="text" ng-if="!vm.mostrarNivel2(variableNivel1.VbleId, variableNivel2.VbleId)" class="form-control editInputDNP ng-isolate-scope" disabled value="{{variableNivel2.Puntaje}}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="" style="padding: 0 !important" ng-repeat="variableNivel3 in variableNivel2.Variables" ng-init="variableN3Index = $index">
+                                        <div class="alert panel-heading" style="height:50px">
+                                            <div class="card card-body pull-left  divAccordionDNP" style="line-height: 18px; max-height: 140px; display: inline-table;">
+                                                <div class="col-md-12" style="height: 40px; padding-left: 12px; display: flex; align-items: center; justify-content: center;">
+                                                    <div class="col-md-8" style="padding-left: 12px;">
+                                                        <div class="col-md-12" style="padding-left: 12px;">
+                                                            <span class="textLeftDNP">{{variableNivel3.Nombre}}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2" style="padding-left: 12px;">
+                                                        <div class="col-md-12" style="padding-left: 12px;">
+                                                            <select class="form-control selectDNP" ng-if="variableNivel3.MostrarOpcionesResultado" ng-model="variableNivel3.Resultado" ng-disabled="vm.activar">
+                                                                <option value="Sí" selected>Sí</option>
+                                                                <option value="No" selected>No</option>
+                                                            </select>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2" style="padding-left: 18px;">
+                                                        <div class="col-md-12" style="padding-left: 18px;">
+                                                            <input type="text" class="form-control editInputDNP ng-isolate-scope" disabled value="{{variableNivel3.Puntaje}}">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </form>
+</div>
+<style>
+    .concepto-preliminar-contenedor {
+        position: relative;
+        width: 100%;
+        height: 85px;
+        color: #004884;
+        font-weight: 600;
+        font-style: normal;
+        display: flex;
+        text-align: left;
+        font-family: 'Work Sans SemiBold Roman', 'Work Sans Roman', 'Work Sans', sans-serif;
+        font-size: 16px;
+        justify-content: end;
+        margin-bottom: 6rem;
+    }
+
+    .concepto-detalle-contenedor {
+        position: absolute;
+        background-color: rgba(249, 252, 253, 1);
+        width: 100%;
+        height: 85px;
+        box-sizing: border-box;
+        border-width: 2px;
+        border-style: solid;
+        border-color: rgba(230, 239, 253, 1);
+        border-radius: 0px;
+        padding: 0px 10px 0px 60px;
+        align-self: center;
+        display: flex;
+        align-items: center;
+    }
+
+    .concepto-detalle-contenedor-pdf {
+        display: flex;
+        position: relative;
+        align-items: center;
+        padding-right: 1rem;
+    }
+
+    .distancia-flecha {
+        margin-right: 20px;
+    }
+</style>

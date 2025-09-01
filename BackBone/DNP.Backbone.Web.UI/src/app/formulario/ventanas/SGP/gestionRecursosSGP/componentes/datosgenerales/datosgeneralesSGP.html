@@ -1,0 +1,20 @@
+﻿<section>
+    <div class="container-fluid inbox" ng-init="vm.init();">
+        <div class="tab-content">
+            <div class="ui-accordion-container " id="accordion-sgpsolicitudrecursosdatosgeneraleslocalizacionsgp">
+                <div class="alert panel-heading row ui-accordion-header" style="border-color: #E6EFFD; border-left-color: #004884; height: 50px;">
+                    <button type="button" data-toggle="collapse" data-target="#sgpsolicitudrecursosdatosgeneraleslocalizacionsgp" ng-click="vm.changeArrow('sgpsolicitudrecursosdatosgeneraleslocalizacionsgp')">
+                        <!--<span class="textLeftDNP" style="font-size: 20px;">Localizaciones</span>-->
+                        <span id="arrow-sgpsolicitudrecursosdatosgeneraleslocalizacionsgp" class="glyphicon glyphicon-chevron-up pull-right" data-toggle="collapse" data-target="#sgpsolicitudrecursosdatosgeneraleslocalizacionsgp"></span>
+                        <span id="name-capitulo-sgpsolicitudrecursosdatosgeneraleslocalizacionsgp"></span>
+                        <span class="hidden" id="id-capitulo-sgpsolicitudrecursosdatosgeneraleslocalizacionsgp"></span>
+
+                    </button>
+                </div>
+                <div class="collapse" id="sgpsolicitudrecursosdatosgeneraleslocalizacionsgp" style="width:100%;">
+                    <br /> <localizacion-sgp notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"></localizacion-sgp>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

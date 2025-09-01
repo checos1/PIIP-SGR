@@ -1,0 +1,27 @@
+﻿<div ng-init="vm.init();">
+    <div id="SGRERRSEC{{vm.nombreComponente}}" class="hidden mb-3 ml-5 errorSeccionRequisitosGenerales" style="text-align: left; font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans'; font-size: 12px; font-style: normal; color: #A80521;"></div>   
+
+    <div class="ui-accordion-container " id="accordion-sgpviabilidadrequisitosdatosgeneralesagregarsectoressgp">
+        <div class="alert panel-heading row ui-accordion-header">
+            <button type="button" data-toggle="collapse" data-target="#sgpviabilidadrequisitosdatosgeneralesagregarsectoressgp" ng-click="vm.changeArrow('sgpviabilidadrequisitosdatosgeneralesagregarsectoressgp')">
+                <span class="d-inline-block" id="alert-sgpviabilidadrequisitosdatosgeneralesagregarsectoressgp"></span>
+                <span id="name-capitulo-sgpviabilidadrequisitosdatosgeneralesagregarsectoressgp"></span>
+                <span class="hidden" id="id-capitulo-sgpviabilidadrequisitosdatosgeneralesagregarsectoressgp"></span>
+                <span id="arrow-sgpviabilidadrequisitosdatosgeneralesagregarsectoressgp" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#sgpviabilidadrequisitosdatosgeneralesagregarsectoressgp"></span>
+            </button>
+        </div>
+        <div class="collapse" id="sgpviabilidadrequisitosdatosgeneralesagregarsectoressgp">
+            <div class="row m-0 mb-3">
+                <div class="col-md-12 ">
+                    <agregar-sectores-sgp callback="vm.notificarGuardado()"
+                                          guardadocomponent="vm.guardadohijos(nombreComponenteHijo)"
+                                          notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                          notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)"
+                                          notificarrefresco="vm.notificarRefresco(handler, nombreComponente)"
+                                          notificacioncambios="vm.notificacionCambiosCapitulosExternos(handler, nombreComponente)">
+                    </agregar-sectores-sgp>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,171 @@
+<div class="container-fluid inbox un__container__form" ng-init="vm.init()">
+    <div class="container__notificacion">
+        <nav class="breadcrumb">
+            <a href="/">
+                <span class="breadcrumb-item active">
+                    <i class="fa fa-home" aria-hidden="true"></i> Inicio
+                </span>
+            </a>
+            /
+            <span class="breadcrumb-item active">Mensajes de Mantenimiento</span>
+        </nav>
+        <div class="titlebarmodal">
+            <span class="buttonbar pull-left" role="header">
+                <button class="btnaccion" ng-click="vm.volver()" tooltip-placement="Auto" uib-tooltip="Volver">
+                    <span><img src="Img/btn/btnVolver.png"></span>
+                </button>
+            </span>
+            <span>Mantenimiento de Notificaciones</span>
+            <span class="buttonbar pull-right">
+                <button class="btn btn-sm btn-primary" tooltip-placement="top" ng-click="vm.preVisualizar()" 
+                    uib-tooltip="Pre-visualizar mensaje">
+                    Previsualizar
+                </button>
+                <button class="btn btn-sm btn-success" tooltip-placement="top" ng-click="vm.guardar()" 
+                    uib-tooltip="Adicionar nueva mensaje">
+                    Guardar
+                </button>
+            </span>
+        </div>
+
+        <div class="cuerpo__notificacion form-group clearfix">
+            <div class="row">
+                <div class="col-md-12">
+                      <label class="label__first" for="">Receptor</label>
+                      <div class="radio_receptor">
+                        <label>
+                            <input type="radio" ng-model="vm.model.EsManual" name="optradio" 
+                            ng-change="vm.cambiarReceptor()"
+                            ng-value="false"
+                            ng-checked="!vm.model.EsManual"> Programación
+                        </label>
+                        <label>
+                            <input type="radio" ng-model="vm.model.EsManual" name="optradio"
+                            ng-change="vm.cambiarReceptor()"
+                            ng-value="true"
+                            ng-checked="vm.model.EsManual"> Manual
+                        </label>
+                      </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <label>Nombre de la Notificación</label>
+                    <input type="text" class="form-control" ng-model="vm.model.NombreNotificacion" placeholder="Nombre de la Notificación"/> 
+                </div>
+                <div class="fechas">
+                    <div class="col-md-2">
+                        <label for="fechaInicio">Fecha Início</label>
+                        <input type="date" class="form-control" name="fechaInicio" id="fechaInicio" ng-model="vm.model.FechaInicio" placeholder="Fecha Inicio">
+                    </div>
+                    <div class="col-md-1 padding-off" role="time">
+                        <label for="fechaInicioTime">Hora Inicio</label>
+                        <input type="time" class="form-control" name="fechaInicioTime" id="fechaInicioTime" ng-model="vm.model.FechaInicio" placeholder="Hora Inicio">
+                    </div>
+                    <div class="col-md-2">
+                        <label for="fechaFin">Fecha Fin</label>
+                        <input type="date" class="form-control" name="fechaFin" id="fechaFin" ng-model="vm.model.FechaFin" placeholder="Fecha/Hora Fin">
+                    </div>
+                    <div class="col-md-1 padding-off" role="time">
+                        <label for="fechaFinTime">Hora Final</label>
+                        <input type="time" class="form-control" name="fechaFinTime" id="fechaFinTime" ng-model="vm.model.FechaFin" placeholder="Hora Inicio">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-9">
+                    <label for="">Texto de la Notificación</label>
+                    <div id="editor"></div>
+                </div>
+                <div class="col-md-3 padding-left-off">
+                    <label for="">Tipo Notificación</label>
+                    <div class="container__input__box">
+                        <div class="radio">
+                            <label class="label-radio">
+                                <input class="form-control radio-success" type="radio" ng-model="vm.model.Tipo"
+                                    name="rdTipoAlerta" checked="checked" ng-value="1">
+                                <span class="circle border border-success"></span>
+                                <span class="check check-success"></span>
+                                <p class="text-success"> No Prioritário </p>
+                            </label>
+                            <label class="label-radio">
+                                <input class="form-control radio-warning" type="radio" ng-model="vm.model.Tipo"
+                                    name="rdTipoAlerta" checked="checked" ng-value="2">
+                                <span class="circle border border-warning"></span>
+                                <span class="check check-warning"></span>
+                                <p class="text-warning"> Prioritário </p>
+                            </label>
+                            <label class="label-radio">
+                                <input class="form-control radio-danger" type="radio" ng-model="vm.model.Tipo"
+                                    name="rdTipoAlerta" checked="checked" ng-value="3">
+                                <span class="circle border border-danger"></span>
+                                <span class="check check-danger"></span>
+                                <p class="text-danger"> Urgente </p>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6" ng-if="vm.model.EsManual">
+                    <label style="display: block;">ID del Usuario</label>
+                    <select id="chosenUsuarios" chosen
+                        options="vm.usuarios"
+                        ng-model="vm.usuarioSeleccionado"
+                        ng-options="usuario as usuario.NombreUsuario for usuario in vm.usuarios track by usuario.IdUsuarioDNP"
+                        no-results-text="No hay ningún resultado para su búsqueda"
+                        placeholder-text-single="Usuarios">
+                    </select>
+                    <button class="btn btn-sm btn-primary" tooltip-placement="top" ng-click="vm.adicionarUsuario(vm.usuarioSeleccionado)" uib-tooltip="Agregar nuevo usuario">
+                        Agregar Usuário
+                    </button>
+                </div>
+                <div class="col-md-6" ng-if="!vm.model.EsManual">
+                    <label style="display: block;">Seleccione un Procedimiento de Almacenado</label>
+                    <select id="chosenProcedimientos" chosen
+                        options="vm.procedimientos"
+                        ng-model="vm.model.ProcedimientoAlmacenadoId"
+                        ng-options="procedimiento.Id as procedimiento.NombreProcedimiento for procedimiento in vm.procedimientos"
+                        no-results-text="No hay ningún resultado para su búsqueda"
+                        placeholder-text-single="Procedimientos">
+                    </select>
+                    <a href="#" ng-click="vm.previsualizarUsuarios()" class="btnaccion" tooltip-placement="Auto" uib-tooltip="Ver Preselección del Usuários">
+                        <span><img src="Img/iconsgrid/iconAccionVer.png" /></span>
+                    </a>
+                </div>
+                <div class="col-md-6">
+                    <div class="col-md-8 padding-left-off">
+                        <br>
+                        <input type="text" readonly class="form-control" placeholder="Selecione un archivo" ng-value="vm.filename">
+                    </div>
+                    <div class="col-md-4 padding-left-off">
+                        <br>
+                        <input type="file" style="display:none" id="file" name='file' onchange="angular.element(this).scope().fileNameChanged(this)" />
+                        <button ng-click="vm.adjuntarArchivo()" class="btn btn-sm btn-primary">Adjuntar Archivo</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-12">
+                    <div class="container-table" ui-i18n="{{vm.lang}}" ng-if="vm.model.UsuarioNotificaciones.length && vm.model.EsManual">
+                        <div class="clearfix grid-icon" ui-grid="vm.gridOptions" 
+                            ui-grid-resize-columns ui-grid-pagination></div>
+                    </div>
+        
+                    <div ng-if="!vm.model.UsuarioNotificaciones.length && vm.model.EsManual" class="text-center">
+                        <h3>No se agregan usuarios</h3>
+                    </div>
+
+                    <div class="container-table" ui-i18n="{{vm.lang}}" ng-if="vm.gridOptionsProcedimiento.data.length && !vm.model.EsManual">
+                        <div class="clearfix grid-icon" ui-grid="vm.gridOptionsProcedimiento" 
+                            ui-grid-resize-columns ui-grid-pagination></div>
+                    </div>
+
+                    <div ng-if="!vm.gridOptionsProcedimiento.data.length && !vm.model.EsManual" class="text-center">
+                        <h3>No se encontraron usuarios en la condiciones de procedimiento seleccionado</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

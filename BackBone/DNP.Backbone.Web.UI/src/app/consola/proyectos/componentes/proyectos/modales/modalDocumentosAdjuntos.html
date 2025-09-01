@@ -1,0 +1,16 @@
+﻿<modal-dialog cerrar="vm.cerrar" guardar="vm.guardarPerfil" ng-init="vm.init()">
+    <div class="row ">
+        <div class="col-md-12">
+            <div class="titulo-modal">
+                <span>DOCUMENTOS ADJUNTOS</span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 mt-2 ">
+            <div class="clearfix grid-documentos-adjuntos" ui-grid="vm.gridOptions">
+                 <!--ng-style="{ height: (vm.gridOptions.data.length * 40) + 32 + 'px'}">-->
+            </div>
+        </div>
+    </div>
+</modal-dialog>

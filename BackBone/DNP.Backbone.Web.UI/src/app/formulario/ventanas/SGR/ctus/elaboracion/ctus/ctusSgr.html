@@ -1,0 +1,38 @@
+﻿<section ng-init="vm.init();">
+    <div class="container-fluid inbox">
+        <div class="tab-content">
+            <div class="ui-accordion-container">
+                <div class="alert panel-heading row ui-accordion-header">
+                    <button type="button" data-toggle="collapse" data-target="#sgrctuselaboracionctusconcepto" ng-click="vm.changeArrow('sgrctuselaboracionctusconcepto')">
+                        <span class="d-inline-block" id="alert-sgrctuselaboracionctusconcepto"></span>
+                        <span id="name-capitulo-sgrctuselaboracionctusconcepto"></span>
+                        <span class="hidden" id="id-capitulo-sgrctuselaboracionctusconcepto"></span>
+                        <span id="arrow-sgrctuselaboracionctusconcepto" class="glyphicon glyphicon-chevron-up pull-right" data-toggle="collapse" data-target="#sgrctuselaboracionctusconcepto"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="sgrctuselaboracionctusconcepto">
+                    <concepto-ctus-sgr guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                       notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                       notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)">
+                    </concepto-ctus-sgr>
+                </div>
+            </div>
+            <div class="ui-accordion-container">
+                <div class="alert panel-heading row ui-accordion-header">
+                    <button type="button" data-toggle="collapse" data-target="#sgrctuselaboracionctusresultadoconcepto" ng-click="vm.changeArrow('sgrctuselaboracionctusresultadoconcepto')">
+                        <span class="d-inline-block" id="alert-sgrctuselaboracionctusresultadoconcepto"></span>
+                        <span id="name-capitulo-sgrctuselaboracionctusresultadoconcepto"></span>
+                        <span class="hidden" id="id-capitulo-sgrctuselaboracionctusresultadoconcepto"></span>
+                        <span id="arrow-sgrctuselaboracionctusresultadoconcepto" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#sgrctuselaboracionctusresultadoconcepto"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="sgrctuselaboracionctusresultadoconcepto">
+                    <resultado-concepto-ctus-sgr guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                       notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                       notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)">
+                    </resultado-concepto-ctus-sgr>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

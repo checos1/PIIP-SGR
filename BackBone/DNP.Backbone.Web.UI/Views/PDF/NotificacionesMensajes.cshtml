@@ -1,0 +1,54 @@
+﻿@using DNP.Backbone.Dominio.Dto.UsuarioNotificacion;
+@model List<UsuarioNotificacionMensajesPDFDto>
+@{
+    Layout = null;
+    ViewBag.Title = "Notificaciones mensajes";
+}
+<html>
+<head>
+    @Html.Partial("_IncludeEstilosRelatorios")
+</head>
+<body class="pdf">
+    @Html.Partial("_CabecalhoRelatorio", "Informe de las mensajes de notificaciones")
+
+    <div class="mt-5">
+        @if (Model == null)
+        {
+            <table class="table table-sm table-borderless">
+                <thead>
+                    <tr>
+                        <th class="text-left">
+                            No hubo registros para los filtros seleccionados.
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+        }
+        else
+        {
+            <div id="containerbody">
+                <table class="table  table-borderless border-table">
+                    <thead>
+                        <tr>
+                            <th>Estado</th>
+                            <th>Notificaciones</th>
+                            <th>Fecha</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <th>@item.Estado</th>
+                                <th>@item.NombreNotificacion</th>
+                                <th>@item.Fecha.ToString()</th>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </div>
+</body>
+</html>
+

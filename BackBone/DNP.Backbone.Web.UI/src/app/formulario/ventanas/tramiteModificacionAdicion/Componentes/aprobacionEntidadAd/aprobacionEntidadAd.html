@@ -1,0 +1,43 @@
+﻿<div ng-init="vm.init();">
+
+    <div class="ui-accordion-container " id="accordion-aprobacionconfirmacionapr">
+        <div class="alert panel-heading row ui-accordion-header">
+            <button type="button" data-toggle="collapse" data-target="#aprobacionconfirmacionapr" ng-click="vm.changeArrow('aprobacionconfirmacionapr')">
+                <span class="d-inline-block" id="alert-aprobacionconfirmacionapr"></span>
+                <span id="name-capitulo-aprobacionconfirmacionapr"></span>
+                <span class="hidden" id="id-capitulo-aprobacionconfirmacionapr"></span>
+                <span id="arrow-aprobacionconfirmacionapr" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#aprobacionconfirmacionapr"></span>
+            </button>
+        </div>
+        <div class="collapse" id="aprobacionconfirmacionapr">
+            <div class="row m-0 mb-3">
+                <br>
+                <div class="col-md-12 ">
+                    <aprobacion tipotramiteid="{{vm.tipotramiteid}}"
+                                tramiteid="{{vm.tramiteid}}"
+                                nivel="{{vm.nivel}}"
+                                rol="{{vm.rol}}"
+                                section="{{vm.section}}"
+                                nombrecomponentepaso="{{vm.nombreComponenteHijo}}"
+                                guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"
+                                callback="vm.deshabilitarBotonDevolverAsociarProyectoVF()">
+                    </aprobacion>
+
+                    <archivos-formulario tipotramiteid="{{vm.tipotramiteid}}"
+                                         tramiteid="{{vm.tramiteid}}"
+                                         nivel="{{vm.nivel}}"
+                                         rol="{{vm.rol}}"
+                                         section="{{vm.section}}"
+                                         nombrecomponentepaso="{{vm.nombreComponenteHijo}}">
+                    </archivos-formulario>
+                    <br>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

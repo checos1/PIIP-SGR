@@ -1,0 +1,61 @@
+﻿@using DNP.Backbone.Dominio.Dto.Flujos;
+@model List <LogsInstanciasDto>
+@{
+    Layout = null;
+    ViewBag.Title = "Instancias LOG";
+}
+<html>
+<head>
+    @Html.Partial("_IncludeEstilosRelatorios")
+</head>
+<body class="pdf">
+    @Html.Partial("_CabecalhoRelatorio", "Informe del Logs")
+
+    <div class="mt-5">
+        @if (Model == null)
+        {
+            <table class="table table-sm table-borderless">
+                <thead>
+                    <tr>
+                        <th class="text-left">
+                            No hubo registros para los filtros seleccionados.
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+        }
+        else
+        {
+            <div id="containerbody">
+                <table class="table  table-borderless border-table">
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Fecha</th>
+                            <th>Entidad</th>
+                            <th>BPIN</th>
+                            <th>Descripción</th>
+                            <th>Estado</th>
+                            <th>Usuario</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                        <tr>
+                            <th>@item.Id</th>
+                            <th>@item.Fecha</th>
+                            <th>@item.NombreEntidad</th>
+                            <th>@item.BPIN</th>
+                            <th>@item.Descripcion</th>
+                            <th>@item.Estado</th>
+                            <th>@item.NombreUsuario</th>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </div>
+</body>
+</html>

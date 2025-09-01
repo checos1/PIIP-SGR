@@ -1,0 +1,99 @@
+﻿<div ng-init="vm.init()">
+    <div class="row" style="margin-left: 0px; margin-right: 0px;padding-bottom:1rem">
+        <div class="col-md-12 text-right nopadding">
+            <button tooltip-class="customClass" uib-tooltip="Buscar" class="btnicobuscarDNP" type="button" data-toggle="collapse" data-target="#seleccionarProyectos" ng-click="vm.changeArrow('seleccionarProyectos')">
+                <span class="label" style=" padding-left: 2rem; padding-right: 2rem; height: 40px; padding-top: 1rem;">Asociar <img id="arrow-IdPanelBuscador" class="icoBusquedas2DNP glyphicon-chevron-down-busqDNP" src="Img/u1589.svg" data-toggle="collapse" data-target="#seleccionarProyectos"></span>
+            </button>
+        </div>       
+        <div class="collapse" id="seleccionarProyectos" style="padding-right: 15px; padding-left: 0px; margin-left: -15px;">
+            <div class="row" style="margin-left:20px">
+                <div class="col-md-12">
+                    <div class="col-md-6">
+                        <div class="labelbuscadorDNP"><span>Entidad contracrédito</span></div> 
+                        <select class="form-control selectDNP" chosen options="vm.listaFiltroEntidades" 
+                                ng-model="vm.IdEntidadSeleccionadaCC"
+                                ng-options="x.Id as x.NombreEntidad for x in vm.listaFiltroEntidades" name="ddlEntidad" id="ddlEntidad"
+                                no-results-text="No hay ningún resultado para su búsqueda" placeholder-text-single="Entidades" 
+                                ng-change="vm.actualizaCombos()">
+                            <option value="" selected>Seleccione una entidad</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="labelbuscadorDNP"><span>Proyecto contracrédito</span></div>
+                            <select class="form-control selectDNP" multiple chosen options="vm.listaProyectosC" 
+                                    ng-model="vm.ProyectosSeleccionadosC" 
+                                    ng-options="x.IdProyecto as x.BPIN+' - '+x.NombreProyecto for x in vm.listaProyectosC"
+                                    name="ddlProyectoC" id="ddlProyectoC" 
+                                    no-results-text="No hay ningún resultado para su búsqueda" placeholder-text-single="Proyectos contracrédito" 
+                                    ng-disabled="vm.IdEntidadSeleccionadaCC==''">
+                                <option value="" selected>Seleccione los proyectos contracrédito</option>
+                            </select>
+                        </div>
+
+                </div>
+
+                <div class="col-md-12">
+
+                    <div class="col-md-6">
+                        <div class="labelbuscadorDNP"><span>Entidad crédito</span></div>
+                        <select class="form-control selectDNP" chosen options="vm.listaFiltroEntidadesD" 
+                                ng-model="vm.IdEntidadSeleccionadaD"
+                                ng-options="x.Id as x.NombreEntidad for x in vm.listaFiltroEntidadesD" name="ddlEntidadD" id="ddlEntidadD"
+                                no-results-text="No hay ningún resultado para su búsqueda" placeholder-text-single="Entidades" 
+                                ng-change="vm.actualizaCombosD()"
+                                ng-disabled="vm.seleccionProyectos">
+                            <option value="" selected>Seleccione una entidad</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="labelbuscadorDNP"><span>Proyecto crédito</span></div>
+                        <select class="form-control selectDNP" multiple chosen options="vm.listaProyectosD" 
+                                ng-model="vm.ProyectosSeleccionadosD" 
+                                ng-options="x.IdProyecto as x.BPIN+' - '+x.NombreProyecto for x in vm.listaProyectosD"
+                                name="ddlProyectoD" id="ddlProyectoD" 
+                                no-results-text="No hay ningún resultado para su búsqueda" 
+                                placeholder-text-single="Proyectos crédito" 
+                                ng-disabled="vm.IdEntidadSeleccionadaD==''">
+                            <option value="" selected>Seleccione los proyectos crédito</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-10" style="display:inline-flex;"></div>
+                <div style="text-align: right;" class="col-md-2">
+                    <div ng-if="vm.habilitaBotones" class="col-md-12 form-group text-right" style="padding-right:2rem;">
+                        <button id="btnAsociar" name="btnAsociar"
+                                type="button" class="btneditarDNP"
+                                tooltip-placement="top"
+                                uib-tooltip="Asociar Proyecto"
+                                ng-click="vm.asociarProyecto()">
+                            ASOCIAR
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-left: 0px; margin-right: 0px;padding-bottom:1rem">
+        <detalle-muchos-proyectos-formulario tramiteid="{{vm.tramiteid}}"
+                                             tipotramiteid="{{vm.tipotramiteid}}"
+                                             actualizacomponentes ="vm.actualizacomponentes"
+                                             actualizadetalle="{{vm.actualizadetalle}}"
+                                             idflujo ="{{vm.idFlujo}}"
+                                             deshabilitar="{{vm.deshabilitar}}"
+                                             rolanalista ="{{vm.rolanalista}}"
+                                             callback="vm.notificarGuardado()"
+                                             guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                             notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                              accesskey="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)"
+                                             notificacioncambios="vm.notificacionCambiosAjustes(handler, nombreComponente)"
+                                             nombrecomponentepaso="{{vm.nombreComponente}}"
+                                             guardadoevent="vm.guardado(nombreComponenteHijo)" 
+                                             unsolotipooperacion="{{vm.unsolotipooperacion}}">
+        </detalle-muchos-proyectos-formulario>
+    </div>
+</div>

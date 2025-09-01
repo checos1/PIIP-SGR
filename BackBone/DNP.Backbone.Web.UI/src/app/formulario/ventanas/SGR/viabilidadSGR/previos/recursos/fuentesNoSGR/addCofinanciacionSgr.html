@@ -1,0 +1,124 @@
+﻿<div class="modal-header modaleDNP" ng-init="vm.init();">
+    <!--<h3 class="modal-title TituloModal1DNP" id="modal-title">Agregar Involucrado</h3>-->
+    <button type='button' class='swal2-close' aria-label='Close this dialog' ng-click="vm.cerrar()">×</button>
+    <div class="row">
+        <div class="col-md-12" style="text-align:left">
+            <br />
+            <div class="col-md-6 pull-left">
+                <span class="TituloModal1DNP">
+                    Datos adicionales del cofinanciador
+                </span>
+            </div>
+            <div class="col-md-6 textLeftDNP">
+                <div class="form-group DetacolumnDNP">
+                    <span>
+                        Valor Solicitado $:
+                    </span>
+                    <br>
+                    <input type="text" class="form-control editInputDNP" disabled ng-model="vm.valorSolicitadoNoSGR" format="currency" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="padding:2px" class="modal-body modalebodyDNP"  id="modal-body">
+
+    <!--<br />-->
+    <div class="row panelbuscadorDNP collapse in" id="IdPanelBuscador">
+
+        <div class="row">
+            <div class="col-md-3">
+                <div class="labelbuscadorDNP"> <span class="pull-left">Fuente de financiación </span></div>
+                <select id="selTipoCofinanciador" class="form-control" ng-model="vm.idtipoCofinanciador" ng-required="true" style="position:relative;" ng-change="vm.TipoCofinanciadorChanged()">
+                    <option value="" selected>Seleccione</option>
+                    <option ng-repeat="tipoCofinanciador in vm.listaTipoCofinanciador" ng-value="tipoCofinanciador.Id"> {{ tipoCofinanciador.Name }} </option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <div class="labelbuscadorDNP"> <span id="lblCodigo" class="pull-left">Código</span></div>
+                <div class="input-group">
+                    <input type="search" ng-model="vm.codigoCofinanciador" class="form-control InputBuscadorDNP">
+                    <span id ="btnBusqueda" class="input-group-addon imgTituloAccion hidden" ng-click="vm.buscarProyecto()" style="padding: 8px 0px; width: 35px; background-color: rgba(51, 102, 204, 1);color:white">
+                        <i class="fa fa-search "></i>
+                    </span>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="labelbuscadorDNP"> <span class="pull-left">Nombre</span></div>
+                <textarea type="text" ng-model="vm.nombreCofinanciador" class="form-control" id="txtNombre" rows="5" style="resize: none; font-family: 'Work Sans'; font-size: 10px !important; font-style: normal;"></textarea>
+                <!--<textarea rows="2" class="form-control" style="resize: none;"></textarea>-->
+            </div>
+            <div class="col-md-3">
+                <div class="labelbuscadorDNP"> <span class="pull-left">Valor a cofinanciar $</span></div>
+                <input type="text" string-to-number min="0.0000"
+                       ng-model="vm.valorCofinanciador"
+                       ng-value="vm.valorCofinanciador"
+                       ng-blur="vm.actualizaFila($event)"
+                       ng-keypress="vm.validateFormat($event)"
+                       ng-change="vm.CalcularTotalFuentes()"
+                       ng-keyup="vm.validarTamanio($event)"
+                       class="form-control InputBuscadorDNP" />
+                <!--<br />-->
+                <span class="pull-right">
+                    <a ng-click="vm.adicionarDatosCofinanciador()"><span class="uLabelCampo_fp1" style="color: #36C; font-size: 60%;">AGREGAR</span></a>
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 pull-right text-right">
+                <!--<span class="pull-right">
+                    <a ng-click="vm.adicionarDatosCofinanciador()"><span class="uLabelCampo_fp1" style="color: #36C; font-size: 60%;">AGREGAR</span></a>
+                </span>-->
+            </div>
+            <div class="col-md-6 pull-left text-left">
+                <span class="img iconadverdnp" ng-if="vm.isValid == false">   <img src="Img/u4630.svg"></span>
+                <span class="messagealerttableDNP" ng-if="vm.isValid == false">Inconsistencia.<a ng-click="vm.mostrarInconsistencia()" class="messagealerttableDNP"><span class="messagealerttableDNP"><b> VER MÁS</b></span></a> </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row contenedorejemplo tablaDetallesoportesDNP" style="max-height:200px !important">
+        <table class="TableDNP" ng-if="vm.MostarTabla == '1'">
+            <thead>
+                <tr>
+                    <th class="columAcc"></th>
+                    <th class="textLeftDNP">Fuente</th>
+                    <th class="textLeftDNP">Código</th>
+                    <th class="textLeftDNP">Nombre</th>
+                    <th class="textRightDNP">Valor a cofinanciar $</th>
+                    <th class="columAcc"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="objdatos in vm.lstCofinanciadores.VigenciasFuentes">
+                    <td></td>
+                    <td class="textLeftDNP modalnegrita">{{objdatos.Fuente}}</td>
+                    <td class="textLeftDNP">{{objdatos.CodigoCofinanciador}}</td>
+                    <td class="textLeftDNP">{{objdatos.Nombre}}</td>
+                    <td class="textRightDNP">{{objdatos.Valor | currency}}</td>
+                    <td class="textCenterDNP">
+                        <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Eliminar" ng-click="vm.EliminarDatosCofinanciador($index)">
+                            <span> <img src="Img/IcoDelete.svg"></span>
+                        </button>
+                    </td>
+                </tr>
+                <tr class="CustomTDTableDNP">
+                    <td class="columAcc icontotaldnp"><span>=</span></td>
+                    <td class="textRightDNP" colspan="4">
+                        <input type="text" class="form-control editInputDNP" disabled ng-model="vm.valorTotalSolicitadoNoSGRCofinanciado" format="currency" />
+                    </td>
+                    <td></td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+</div>
+
+<div class="modal-footer textCenterDNP">
+    <button class="btn btn-default btn-md" type="button" ng-click="vm.cerrar()">Cancelar</button>
+    <button class="btn btn-default btn-md" type="button" ng-click="vm.guardar()">Guardar</button>
+</div>

@@ -1,0 +1,252 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AplicacionNoExiste" xml:space="preserve">
+    <value>La aplicación no Existe</value>
+  </data>
+  <data name="ContenidoInvalido" xml:space="preserve">
+    <value>Contenido inválido. No se encontró un objeto para guardar.</value>
+  </data>
+  <data name="CredencialesInvalidas" xml:space="preserve">
+    <value>Credenciales invalidas</value>
+  </data>
+  <data name="ErrorCargaFormulario" xml:space="preserve">
+    <value>Error al cargar la información en el formulario. </value>
+  </data>
+  <data name="ErrorEjecucionFlujo" xml:space="preserve">
+    <value>Ha ocurrido un error en la ejecución del flujo</value>
+  </data>
+  <data name="ErrorGuardarCache" xml:space="preserve">
+    <value>Ocurrió un error al guardar en caché</value>
+  </data>
+  <data name="ErrorIndefinido" xml:space="preserve">
+    <value>Error indefinido</value>
+  </data>
+  <data name="ErrorMapear" xml:space="preserve">
+    <value>No se pudo mapear la consulta</value>
+  </data>
+  <data name="FaltanCredenciales" xml:space="preserve">
+    <value>Faltan las credenciales</value>
+  </data>
+  <data name="GuardadoDefinitivo" xml:space="preserve">
+    <value>Se guardo definitivamente la entidad de tipo {0}</value>
+  </data>
+  <data name="GuardadoExitoso" xml:space="preserve">
+    <value>Información almacenada correctamente</value>
+  </data>
+  <data name="GuardadoNoExitoso" xml:space="preserve">
+    <value>Guardado no exitoso</value>
+  </data>
+  <data name="GuardadoTemporal" xml:space="preserve">
+    <value>Se guardo temporalmente la entidad de tipo {0}</value>
+  </data>
+  <data name="GuardadoTemporalNoExitoso" xml:space="preserve">
+    <value>Guardado temporal no exitoso</value>
+  </data>
+  <data name="MensajeErrorGuardar" xml:space="preserve">
+    <value>Ha ocurrido un error al guardar</value>
+  </data>
+  <data name="MetodoServicioNoDisponible" xml:space="preserve">
+    <value>Método de servicio no válido o disponible.</value>
+  </data>
+  <data name="ParametroNoExiste" xml:space="preserve">
+    <value>Parámetro {0} no existe.</value>
+  </data>
+  <data name="ParametroNoRecibido" xml:space="preserve">
+    <value>Parámetro {0} no recibido.</value>
+  </data>
+  <data name="ParametroNoValido" xml:space="preserve">
+    <value>Parámetro {0} inválido</value>
+  </data>
+  <data name="ParametrosNoRecibidos" xml:space="preserve">
+    <value>Parámetros no recibidos</value>
+  </data>
+  <data name="ParametrosNoValidos" xml:space="preserve">
+    <value>Parámetro de entrada inválido</value>
+  </data>
+  <data name="PostExitoso" xml:space="preserve">
+    <value>Guardado exitoso</value>
+  </data>
+  <data name="PowerBI.ApplicationIdTienesSerGuid" xml:space="preserve">
+    <value>ApplicationId debe ser un objeto Guid.</value>
+  </data>
+  <data name="PowerBI.ErrorDeAutenticación" xml:space="preserve">
+    <value>Error de autenticación en Power BI.</value>
+  </data>
+  <data name="PowerBI.NoEncontroDashboardID" xml:space="preserve">
+    <value>No se encontró ningún dashboard con el ID proporcionado en el espacio de trabajo. Asegúrese de que sea válido.</value>
+  </data>
+  <data name="PowerBI.NoEncontroReporteID" xml:space="preserve">
+    <value>No se encontró ningún reporte con el ID proporcionado en el espacio de trabajo. Asegúrese de que ReportId sea válido.</value>
+  </data>
+  <data name="PowerBI.NoPudoGenerarToken" xml:space="preserve">
+    <value>No se pudo generar el embed token.</value>
+  </data>
+  <data name="PowerBI.NoTienesApplicationId" xml:space="preserve">
+    <value>ApplicationId está vacío. </value>
+  </data>
+  <data name="PowerBI.NoTienesClaveSecreta" xml:space="preserve">
+    <value>Clave secreta de la aplicación está vacío</value>
+  </data>
+  <data name="PowerBI.NoTienesDashboards" xml:space="preserve">
+    <value>No se encontraron dashboards en el espacio de trabajo.</value>
+  </data>
+  <data name="PowerBI.NoTienesLoginUsuarioMaster" xml:space="preserve">
+    <value>Login del Usuário está vacío.</value>
+  </data>
+  <data name="PowerBI.NoTienesReportes" xml:space="preserve">
+    <value>No se encontraron reportes en el espacio de trabajo.</value>
+  </data>
+  <data name="PowerBI.NoTienesSenaUsuarioMaster" xml:space="preserve">
+    <value>Contraseña del Usuário está vacío.</value>
+  </data>
+  <data name="PowerBI.NoTienesTenat" xml:space="preserve">
+    <value>Temat de la aplicación está vacío.</value>
+  </data>
+  <data name="PowerBI.NoTienesWorkaspaceId" xml:space="preserve">
+    <value>Workspace ID está vacío</value>
+  </data>
+  <data name="PowerBI.WorkspaceTienesSerGuid" xml:space="preserve">
+    <value>ApplicationId debe ser un objeto Guid.</value>
+  </data>
+  <data name="RespuestaSinResultados" xml:space="preserve">
+    <value>El Proyecto no tiene Fuentes de Financiación asociadas</value>
+  </data>
+  <data name="RespuestaSinResultadosRegionalizacion" xml:space="preserve">
+    <value>El proyecto no tiene una regionalización asociada</value>
+  </data>
+  <data name="ServicioNoExiste" xml:space="preserve">
+    <value>Servicio no existe</value>
+  </data>
+  <data name="SinResultados" xml:space="preserve">
+    <value>No se obtuvieron resultados</value>
+  </data>
+  <data name="UsuarioAutorizado" xml:space="preserve">
+    <value>Usuario Autorizado</value>
+  </data>
+  <data name="UsuarioInexistente" xml:space="preserve">
+    <value>El usuario {0} no existe.</value>
+  </data>
+  <data name="UsuarioNoExiste" xml:space="preserve">
+    <value>Usuario no Autorizado</value>
+  </data>
+  <data name="UsuarioNoTienePermisos" xml:space="preserve">
+    <value>Usuario no Autorizado</value>
+  </data>
+</root>

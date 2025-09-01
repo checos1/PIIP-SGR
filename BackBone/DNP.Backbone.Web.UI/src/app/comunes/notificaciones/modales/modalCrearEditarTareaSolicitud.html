@@ -1,0 +1,36 @@
+﻿<modal-dialog cerrar="vm.cerrar" guardar="vm.guardarSolicitud">
+    <div class="row ">
+        <div class="col-md-12">
+            <div class="titulo-modal">
+                <span >DADOS DE LA SOLICITUD</span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="input-group mb-3">
+                <select ng-model="vm.objSolicitud.codTramite" class="form-control rounded-right-2" placeholder="Tipo Tramite">
+                    <option value="" disabled selected>Tipo Tramite</option>
+                    <option ng-repeat="tipoTramite in vm.tramites" value="{{tipoTramite.id}}">
+                        {{tipoTramite.nombre}}
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="input-group mb-3">
+                <select ng-model="vm.objSolicitud.codEntidade" class="form-control rounded-right-2" placeholder="Entidad">
+                    <option value="" disabled selected>Entidad</option>
+                    <option  ng-repeat="entidad in vm.listaEntidades" value="{{entidad.id}}">
+                        {{entidad.nombre}}
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="input-group mb-3">
+                <textarea placeholder="Descripcion de la solicitud" class="form-control" rows="2" ng-model="vm.objSolicitud.descripcion"></textarea>
+            </div>
+        </div>
+    </div>
+</modal-dialog>

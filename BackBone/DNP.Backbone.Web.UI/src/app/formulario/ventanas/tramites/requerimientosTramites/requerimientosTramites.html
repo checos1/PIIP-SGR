@@ -1,0 +1,46 @@
+﻿<div class="tab-content">
+
+    <ul class="nav nav-tabs" style="margin-top:0 !important;">
+        <li class="active" style="width: 250px;padding: 0 15px 0 0px;height:45px !important;display:flex;align-items: center;"><a data-target="#DocumentosSoporte" data-toggle="tab">Documentos soporte</a></li>
+        <li style="width: 250px;padding: 0 15px 0 0px;height:45px !important;display:flex;align-items: center;"><a data-target="#Justificacion" data-toggle="tab">Justificación</a></li>
+        <li ng-if="vm.activartabconceptotecnico == true" style="width: 250px;padding: 0 15px 0 0px;height:45px !important;display:flex;align-items: center;"><a data-target="#conceptotecnico" data-toggle="tab">Concepto Técnico</a></li>
+    </ul>
+
+    <div class="tab-content">
+        <div class="tab-pane active cont col-md-12" style="padding-left:0 !important;padding-top:30px !important" id="DocumentosSoporte">
+            <div style="padding-left:20px !important;">
+                <cargar-Archivo modelo="vm.infoArchivo"></cargar-Archivo>
+            </div>
+
+        </div>
+
+        <div class="tab-pane cont col-md-12" id="Justificacion">
+            <div style="padding-left:20px !important;">
+                <justificacion></justificacion>
+            </div>
+        </div>
+
+        <div class="tab-pane cont col-md-12" id="conceptotecnico">
+            <div style="padding-left:20px !important;">
+                <concepto-Tecnico></concepto-Tecnico>
+            </div>
+        </div>
+    </div>
+
+</div>
+<style>
+    .nav-tabs a:hover {
+        padding: 5px !important;
+        border-top: 0px !important;
+        font-size: 1.3em;
+        font-family: "Montserrat";
+        min-width: 131px !important;
+        width: 100% !important;
+        font-weight: 500 !important;
+        font-size: 16px !important;
+        font-style: normal !important;
+        color: #4B4B4B !important;
+        text-decoration: none !important;
+        text-align: center !important;
+    }
+</style>

@@ -1,0 +1,136 @@
+﻿    <section id="ejecutor" ng-init="vm.init();">
+        <div class="container-fluid inbox">
+            <br />
+            <div class="row">
+                <div class="row" style="padding-left: 3rem;padding-right: 2rem;">
+                    <div class="form-group" style=" padding-top: 2rem;width:90%;">
+                        <div class="tab-content">
+                            <div> 
+                                <table border="0">
+                                    <tr>
+                                        <td colspan="3">
+                                            <span class="TituloPincFormularioDNP">Búsqueda para creación o edición </span>
+                                            <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg">
+                                        </td>
+                                    </tr>
+                                    <tr class="filaAnidada">
+                                        <td colspan="3">
+                                            <div id="indicador-" class="img pull-left iconadverdnp"><img class="" src="Img/u4630.svg" ng-if="vm.tieneErrorNit"></div>&nbsp;
+                                            <span class="messagealerttableDNP" ng-if="vm.tieneErrorNit">Campo obligatorio</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label>NIT*</label>
+                                            <input type="number" id="txNit" placeholder="" ng-model="vm.nit" ng-blur="vm.calcularDigito(vm.nit)" ng-disabled="vm.buscadorDisabled">
+                                        </td>
+                                        <td>
+                                            <label>Código*</label>
+                                            <input type="number" id="txDigito" placeholder="" ng-model="vm.digito" width="10" uib-tooltip="Dígito de verificación" disabled="disabled">
+                                        </td>
+                                        <td>
+                                            <div class="col-md-4">
+                                                <span class="buttonbar pull-left">
+                                                    <button type="button" class="btnguardarDNP" tooltip-placement="top" tooltip-class="customClass" uib-tooltip="Pulse para buscar" ng-click="vm.consultarEjecutor(vm.nit)" ng-disabled="vm.buscadorDisabled">
+                                                        BUSCAR
+                                                    </button>
+                                                </span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+
+                            </div>
+                            <div ng-if="vm.mostrarResultadoEditar">
+                                <br /><br />
+                                <label>Resultados para la búsqueda del Nit: {{vm.objEjecutor.Nit}}-{{vm.objEjecutor.Digito}}</label>
+                                <table class="TableDNP" border="0">
+                                    <thead>
+                                        <tr>
+                                            <th class="columAcc" style="width:5%"></th>
+                                            <th style="width:12%" class="textLeftDNP">NIT - Código</th>
+                                            <th style="width:30%" class="textLeftDNP">Tipo Entidad</th>
+                                            <th style="width:58%" class="textLeftDNP" colspan="2">Entidad</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td colspan="1"></td>
+                                            <td style="width:12%">{{vm.objEjecutor.Nit}}-{{vm.objEjecutor.Digito}}</td>
+                                            <td style="width:28%">{{vm.objEjecutor.NombreEntityType}}</td>
+                                            <td style="width:45%"><input type="text" class="form-control editInputDNP" ng-model="vm.objEjecutor.NombreEjecutor" value="{{vm.objEjecutor.NombreEjecutor}}" ng-disabled="vm.nombreEjecutorDisabled" ng-change="vm.limpiarValidacion()"/></td>
+                                            <td style="width:5%">
+                                                <button id="btnEditar" class="btnaccion" tooltip-class="customClass" uib-tooltip="Editar Registro" ng-show="vm.mostrarIconoEditar" ng-click="vm.clickIconoEditar()">
+                                                    <span><img src="Img/IcoEdit.svg"></span>
+                                                </button>
+                                                <button id="btnGuardar" class="btnaccion" tooltip-class="customClass" uib-tooltip="Guardar Registro" ng-show="vm.mostrarIconoGuardar" ng-click="vm.clickIconoGuardar()">
+                                                    <span><img src="Img/IcoSave.svg"></span>
+                                                </button>
+                                                <button id="btnCancelar" class="btnaccion" tooltip-class="customClass" uib-tooltip="Cancelar Edición" ng-show="vm.mostrarIconoCancelar" ng-click="vm.clickIconoCancelar()">
+                                                    <span> <img style="width: 16px;height:16px" src="Img/IcoX.svg"></span>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr class="filaAnidada">
+                                            <td colspan="1">
+                                                <div id="indicador-" class="img pull-right iconadverdnp"><img class="" src="Img/u4630.svg" ng-if="vm.tieneMensajeValidacion"> </div>
+                                            </td>
+                                            <td colspan="4">
+                                                <span class="messagealerttableDNP">{{vm.mensajeValidacion}}</span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div ng-if="vm.mostrarResultadoAgregar">
+                                <br /><br />
+                                <label>Resultados para la búsqueda del Nit*: {{vm.nit}}-{{vm.digito}}</label>
+                                <table class="TableDNP" border="0">
+                                    <thead>
+                                        <tr>
+                                            <th class="columAcc" style="width:5%"></th>
+                                            <th style="width:12%" class="textLeftDNP">NIT - Código</th>
+                                            <th style="width:28%" class="textLeftDNP">Tipo Entidad</th>
+                                            <th style="width:55%" class="textLeftDNP" colspan="2">Entidad</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td colspan="1"></td>
+                                            <td style="width:12%">{{vm.nit}}-{{vm.digito}}</td>
+                                            <td style="width:40%">
+                                                <div ng-show="vm.Agregar">
+                                                    <select class="form-control selectDNP" name="vTipoEntidad" id="vTipoEntidad" ng-model="vm.idTipoEntidad" style="width:100%" ng-change="vm.limpiarValidacion()">
+                                                        <option ng-repeat="Fila in vm.tiposEntidad" value="{{Fila.Id}}">{{Fila.Name}}</option>
+                                                        <option value="" selected>Seleccione</option>
+                                                    </select>
+                                                </div>
+                                            </td>
+                                            <td style="width:43%"><input type="text" class="form-control editInputDNP" ng-model="vm.nombreEjecutor" ng-disabled="false" ng-change="vm.limpiarValidacion()" /></td>
+                                            <td style="width:5%">
+                                                <button id="btnGuardar" class="btnaccion" tooltip-class="customClass" uib-tooltip="Guardar Registro" ng-show="true" ng-click="vm.clickIconoGuardar()">
+                                                    <span><img src="Img/IcoSave.svg"></span>
+                                                </button>
+                                                <button id="btnCancelar" class="btnaccion" tooltip-class="customClass" uib-tooltip="Cancelar Edición" ng-show="true" ng-click="vm.clickIconoCancelar()">
+                                                    <span> <img style="width: 16px;height:16px" src="Img/IcoX.svg"></span>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr class="filaAnidada">
+                                            <td colspan="1">
+                                                <div id="indicador-" class="img pull-right iconadverdnp"><img class="" src="Img/u4630.svg" ng-if="vm.tieneMensajeValidacion"> </div>
+                                            </td>
+                                            <td colspan="4">
+                                                <span class="messagealerttableDNP">{{vm.mensajeValidacion}}</span>
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>

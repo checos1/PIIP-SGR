@@ -1,0 +1,108 @@
+﻿<div class="col-md-12" ng-init="vm.init();">
+    <div class="row" ng-if="!vm.existeconcepto">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="titlebar">
+                    <span>Solicitar Concepto</span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <span class="uLabelCampo">Dirección Técnica</span>
+                <select name="ddlDireccionTecnica" id="ddlDireccionTecnica" class="form-control" ng-model="vm.filtro.direccionestecnica"
+                        ng-change="vm.cargarsubdirecciontecnica(vm.filtro.direccionestecnica)">
+                    <option value="" selected>Seleccione una Dirección Técnica</option>
+                    <option ng-repeat="direccionestecnica in vm.direcciontecnicas" ng-value="direccionestecnica.ParentId">{{ direccionestecnica.Name }} </option>
+                </select>
+
+
+            </div>
+            <div class="col-md-6">
+                <span class="uLabelCampo">SubDirección Técnica</span>
+                <div>
+                    <select name="ddlSubdireccionTecnica" id="ddlSubdireccionTecnica" class="form-control" ng-model="vm.filtro.subdireccionestecnica"
+                            ng-change="vm.cargaranalistas(vm.filtro.subdireccionestecnica)">
+                        <option value="" selected>Seleccione una SubDirección Técnica</option>
+                        <option ng-repeat="subdireccionestecnica in vm.subdireccionestecnicas" ng-value="subdireccionestecnica.EntityTypeCatalogOptionId">{{ subdireccionestecnica.Name }} </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <br />
+
+        <div class="row">
+            <div class="col-md-12">
+                <span class="uLabelCampo">Seleccione Analista</span>
+                <ul>
+                    <li class="form-control col-form-label" ng-repeat="analista in vm.analistas">
+                        <p>
+                            <input type="radio" name="rdanalista" ng-model="vm.filtro.analista" ng-value="analista.IdUsuarioDnp">
+                            &nbsp;
+                            {{analista.Nombre}}
+                        </p>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-3">
+                <button type="button" class="btn btn-sm btn-primary" ng-click="vm.solicitar()" tooltip-placement="auto" uib-tooltip="Solicitar Concepto">Solicitar Concepto</button>
+            </div>
+        </div>
+    </div>
+    <div class="row" ng-if="vm.existeconcepto">
+        <div class="row">
+            <div class="uLabelCampo col-md-8">
+                <div class="titlebar">
+                    <span>Recuperar Concepto</span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row uDetalleSeccion">
+                    <div class="col-md-4">
+                        <span class="uLabelCampo">Dirección Técnica</span>
+                    </div>
+                    <div class="col-md-4">
+                        <span class="uLabelCampo">SubDirección Técnica</span>
+                    </div>
+                    <div class="col-md-4">
+                        <span class="uLabelCampo">Analista</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row uDetalleSeccion">
+                        <div class="col-md-4">
+                            <span class="uLabelDetalle">{{vm.lbldirecciontecnica}}</span>
+                        </div>
+                        <div class="col-md-4">
+                            <span class="uLabelDetalle">{{vm.lblsubdirecciontecnica}}</span>
+                        </div>
+                        <div class="col-md-4">
+                            <span class="uLabelDetalle">{{vm.lblanalista}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-4">
+                    &nbsp;
+                </div>
+                <div class="col-md-6">
+                    <button type="button" class="btn btn-default btn-md" ng-click="vm.solicitar()" tooltip-placement="auto" uib-tooltip="Recuperar Concepto">Recuperar Concepto</button>
+                </div>
+                <div class="col-md-2">
+                    &nbsp;
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

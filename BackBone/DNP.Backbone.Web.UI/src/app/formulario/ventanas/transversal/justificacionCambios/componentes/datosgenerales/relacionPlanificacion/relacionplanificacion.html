@@ -1,0 +1,96 @@
+﻿<section ng-init="vm.init();" class="mx-5">
+    <h3 class="text-left ui-seccion-title">{{vm.titulo}}</h3>
+    <div class="row mb-5">
+        <div class="col-md-12 text-left">
+            <span>
+                <strong>Ruta: </strong> Datos generales / Relación con la planificación / Documentos conpes asociados
+            </span>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <div class="conpes-list-header">
+                <table class="TableDNP">
+                    <thead>
+                        <tr>
+                            <th class="columAcc"></th>
+                            <th class="textRightDNP">Número</th>
+                            <th class="textLeftDNP">Documentos Conpes</th>
+                            <th class="columAcc"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="row in vm.gridDataConpes">
+                            <td></td>
+                            <td><div class="textRightDNP {{ row.background }}">
+                                    {{ row.numeroCONPES }}
+                                </div>
+                            </td>
+                            <td><div class="{{ row.background }}">
+                                    {{ row.titulo }}
+                                </div>
+                            </td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>                
+            </div>
+        </div>
+    </div>
+   
+    <div class="row mb-4">
+        <div class="col-md-12 text-left">
+            <strong>Detalle del ajuste</strong>
+            <ul class="pl-4">
+                <li ng-repeat="cambio in vm.cambiosNuevos">
+                    <span>Se añade el documento Conpes: número {{cambio.NumeroConpes}}, nombre: {{cambio.NombreConpes}}</span>
+                </li>
+                <li ng-repeat="cambio in vm.cambiosEliminados">
+                    <span>Se elimina el documento Conpes: número {{cambio.NumeroConpes}}, nombre: {{cambio.NombreConpes}}</span>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+
+
+    <div class="row my-4">
+        <div class="col-md-12 mt-3 mb-5">
+            <div class="row">
+                <div class="col-md-8 text-left">
+                    <h4 class="text-left ui-seccion-title">Justificación</h4>
+                    
+                </div>
+                <div class="col-md-4 text-right">
+                    <button type="button" class="{{vm.isEdicion ? 'btn btncancelarHorizonte' : 'btn btncancelarHorizonte'}}" tooltip-placement="top" ng-click="vm.isEdicion ? vm.editar('cancelar') : vm.editar('editar')" uib-tooltip="{{vm.isEdicion ? 'CANCELAR' : 'EDITAR'}}" has-claim has-opciones="['Ajustes:GeneralComponente']">
+                        {{vm.isEdicion ? 'CANCELAR' : 'EDITAR'}}
+                    </button>
+                    <button ng-click="vm.guardar()" type="button" id="btn-guardar-edicion-conpes" ng-class="vm.ClasesbtnGuardar" tooltip-placement="auto" uib-tooltip="Guardar" has-claim has-opciones="['Ajustes:GeneralComponente']">GUARDAR</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-left">
+                    <span>
+                        <strong>Justifique el hecho de haber asociado los documentos Conpes a la tabla* </strong> (Máximo 8.000 caracteres)
+                    </span>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-12">
+            <div ng-if="vm.erroresJustificacion.length > 0" class="text-left color-red">
+                <span class="d-inline-block ico-advertencia"></span>
+                {{vm.erroresJustificacion}}
+            </div>
+            <textarea rows="3"
+                      id="justificacion-conpes"
+                      name="justificacion-conpes"
+                      ng-model="vm.justificacionConpes"
+                      placeholder="Maximo 8.000 caracteres"
+                      minlength="1"
+                      maxlength="8000"
+                      class="form-control disabled" ng-required="true"></textarea>
+        </div>
+    </div>
+</section>

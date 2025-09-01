@@ -1,0 +1,83 @@
+﻿<div ng-init="vm.init();">
+    <table class="TableDNP no-border">
+        <tbody>
+            <tr class="no-border alert panel-heading" id="ind1">
+                <td colspan="8" class="p-0">
+                    <div class="row">
+                        <div class="alert panel-heading">
+                            <table class="TableDNP">
+                                <thead>
+                                    <tr>
+                                        <th class="columAcc"></th>
+                                        <th class="textLeftDNP"><span class="uLabelCampo">Política </span></th>
+                                        <th class="textLeftDNP">Categoría </th>
+                                        <th class="textLeftDNP">Subcategoría </th>
+                                        <th class="textRightDNP">Total focalizado $ </th>
+                                        <th class="columAcc"></th>
+                                    </tr>
+                                </thead>
+                                <tbody ng-repeat="itemPolitica in vm.listaPoliticasCategorias.Politicas" ng-init="indexPolitica = $index">
+                                    <tr ng-repeat-start="categoria in itemPolitica.Categorias" ng-init="indexCategoria = $index">
+                                        <td ng-if="indexCategoria == 0" rowspan="{{vm.totalRows}}"></td>
+                                        <td class="blockReferenciaDNP" ng-if="indexCategoria == 0" rowspan="{{vm.totalRows}}">{{itemPolitica.Politica}}</td>
+                                        <td><textarea class="textAreatableDNP">{{categoria.Categoria}}</textarea></td>
+                                        <td ng-if="categoria.SubCategorias.length > 0">
+                                            <div ng-repeat="subCategoria in categoria.SubCategorias">
+                                                <textarea class="textAreatableDNP">{{subCategoria.SubCategoria}}</textarea>
+                                            </div>
+                                        </td>
+                                        <td class="textRightDNP" ng-if="categoria.SubCategorias.length > 0">
+                                            <div ng-repeat="subCategoriaTotal in categoria.SubCategorias">
+                                                <textarea style="border-color: transparent; resize: none;" class="textRightDNP">{{vm.ConvertirNumero2decimales(subCategoriaTotal.TotalFocalizadoCategoria)}}</textarea>
+                                            </div>
+                                        </td>
+                                        <td ng-if="categoria.SubCategorias.length == 0">-</td>
+                                    </tr>
+                                    <tr class="CustomTDTable" ng-repeat-end="totalCategoria in itemPolitica.Categorias" ng-init="indexTotalCategoria = $index">
+                                        <td class="textRightDNP" colspan="2">
+                                            <span class="icontotaldnp" style="float: left;">=</span>
+                                            <span style="float: right;">Total categoría $</span>
+                                        </td>
+                                        <td class="textRightDNP">
+                                            <input type="text" class="form-control editInputDNP " disabled value="{{vm.ConvertirNumero2decimales(categoria.TotalCategoria)}}" />
+                                        </td>
+                                    </tr>
+                                    <tr class="CustomTDTable">
+                                        <td class="textRightDNP" colspan="2">
+                                            <span class="icontotaldnp" style="float: left;">=</span>
+                                            <span style="float: right;">TOTAL POLÍTICA {{itemPolitica.Politica | uppercase}} $</span>
+                                        </td>
+                                        <td class="textRightDNP">
+                                            <input type="text" class="form-control editInputDNP " disabled value="{{vm.ConvertirNumero2decimales(itemPolitica.TotalPolitica)}}" />
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+
+<style>
+
+    .CustomTDTable td input {
+        font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans' !important;
+        font-weight: 500 !important;
+        font-style: normal !important;
+        font-size: 16px !important;
+        color: #004884 !important;
+    }
+
+    .CustomTDTable td {
+        font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans' !important;
+        font-weight: 500 !important;
+        font-style: normal !important;
+        font-size: 16px !important;
+        color: #004884 !important;
+    }
+</style>

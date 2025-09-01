@@ -1,0 +1,392 @@
+﻿<section>
+    <div class="container-fluid inbox" ng-init="vm.init();">
+        <div>
+            <div style="text-align: left;">
+                <h3 class="row" style="padding-left: 2rem; padding-right: 2rem; text-align: left; color: #004884">
+                    &nbsp;&nbsp;Tabla general
+                </h3>
+            </div>
+            <div class="tab-container col-md-12" style="width:100%;">
+                <br />
+                <span class="buttonbar pull-right" ng-if="!vm.mostrarfuentes && vm.habilitaBotones">
+                    <button type="button" class="btneditarDNP" tooltip-placement="top" ng-click="vm.EAjCT ? vm.CancelarValores(fuentes) : vm.EditarValores(fuentes)" uib-tooltip="{{vm.EAjCT ? 'CANCELAR' : 'EDITAR'}}">
+                        {{vm.EAjCT ? 'CANCELAR' : 'EDITAR'}}
+                    </button>
+                    <button ng-disabled="!vm.EAjCT" type="button" class="{{vm.EAjCT ? 'btnguardarDNP' : 'btnguardarDisabledDNP'}}" tooltip-placement="top" uib-tooltip="Guardar" tabindex="0" ng-click="vm.GuardarValores(fuentes)">
+                        GUARDAR
+                    </button>
+                </span>
+                <br />
+                <div style="text-align: left;">
+                    <div class="row col-md-12">
+                        <div class="alert panel-heading">
+                            <table class="TableDNP">
+                                <thead>
+                                    <tr>
+                                        <th class="columAcc" style="width:4%"></th>
+                                        <th class="textLeftDNP" style="width:28%">Tipo de recurso</th>
+                                        <th class="textRightDNP" style="width:16%">Nación CSF $</th>
+                                        <th class="textRightDNP" style="width:16%">Nación SSF $</th>
+                                        <th class="textRightDNP" style="width:16%">Propios $</th>
+                                        <th class="textRightDNP" style="width:16%">Total tipo recursos $</th>
+                                        <th class="columAcc" style="width:4%"></th>
+                                    </tr>
+                                </thead>
+                                <tbody ng-repeat="recursos in fuentes.Recursos" ng-init="recursosindex = $index">
+                                    <tr>
+                                        <td></td>
+                                        <td class="textleftDNP">
+                                            {{recursos.Codigo}}. {{recursos.Nombre}}
+                                        </td>
+                                        <td ng-if="!vm.EAjCT || recursos.bloqueado == 1 || recursos.origen == 2" class="textRightDNP">
+                                            <div class="blockReferenciaDNP">{{vm.ConvertirNumero(recursos.NacionCSF)}}</div>
+                                            <span>Aprobados</span><br />
+                                            <div class="blockReferenciaDNP">{{vm.ConvertirNumero(recursos.NacionCSFA)}}</div>
+                                        </td>
+                                        <td ng-if="vm.EAjCT && recursos.bloqueado == 0 && recursos.origen != 2" class="textRightDNP">
+                                            <div class="blockReferenciaDNP">{{vm.ConvertirNumero(recursos.NacionCSF)}}</div>
+                                            <span>Aprobados</span><br />
+                                            <input id="input-NacionCSFA" type="number" string-to-number min="0.00"
+                                                   ng-readonly="!vm.EAjCT"
+                                                   ng-keypress="vm.validateFormat($event)"
+                                                   ng-keyup="vm.validarTamanio($event)"
+                                                   ng-blur="vm.actualizaFila($event, fuentes, 'NacionCSFA', recursosindex)"
+                                                   ng-value="recursos.NacionCSFA"
+                                                   ng-model="fuentes.Recursos[recursosindex].NacionCSFA"
+                                                   required class="form-control editInputDNP" style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px; background-color:white" />
+                                        </td>
+                                        <td ng-if="!vm.EAjCT || recursos.bloqueado == 1 || recursos.origen == 2" class="textRightDNP">
+                                            <div class="blockReferenciaDNP">{{vm.ConvertirNumero(recursos.NacionSSF)}}</div>
+                                            <span>Aprobados</span><br />
+                                            <div class="blockReferenciaDNP">{{vm.ConvertirNumero(recursos.NacionSSFA)}}</div>
+                                        </td>
+                                        <td ng-if="vm.EAjCT && recursos.bloqueado == 0 && recursos.origen != 2" class="textRightDNP">
+                                            <div class="blockReferenciaDNP">{{vm.ConvertirNumero(recursos.NacionSSF)}}</div>
+                                            <span>Aprobados</span><br />
+                                            <input id="input-NacionSSFA" type="number" string-to-number min="0.00"
+                                                   ng-readonly="!vm.EAjCT"
+                                                   ng-keypress="vm.validateFormat($event)"
+                                                   ng-keyup="vm.validarTamanio($event)"
+                                                   ng-blur="vm.actualizaFila($event, fuentes, 'NacionSSFA', recursosindex)"
+                                                   ng-value="recursos.NacionSSFA"
+                                                   ng-model="fuentes.Recursos[recursosindex].NacionSSFA"
+                                                   required class="form-control editInputDNP" style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px; background-color:white" />
+                                        </td>
+                                        <td ng-if="!vm.EAjCT || recursos.bloqueado == 1 || recursos.origen == 1" class="textRightDNP">
+                                            <div class="blockReferenciaDNP">{{vm.ConvertirNumero(recursos.Propios)}}</div>
+                                            <span>Aprobados</span><br />
+                                            <div class="blockReferenciaDNP">{{vm.ConvertirNumero(recursos.PropiosA)}}</div>
+                                        </td>
+                                        <td ng-if="vm.EAjCT && recursos.bloqueado == 0 && recursos.origen != 1" class="textRightDNP">
+                                            <div class="blockReferenciaDNP">{{vm.ConvertirNumero(recursos.Propios)}}</div>
+                                            <span>Aprobados</span><br />
+                                            <input id="input-PropiosA" type="number" string-to-number min="0.00"
+                                                   ng-readonly="!vm.EAjCT"
+                                                   ng-keypress="vm.validateFormat($event)"
+                                                   ng-keyup="vm.validarTamanio($event)"
+                                                   ng-blur="vm.actualizaFila($event, fuentes, 'PropiosA', recursosindex)"
+                                                   ng-value="recursos.PropiosA"
+                                                   ng-model="fuentes.Recursos[recursosindex].PropiosA"
+                                                   required class="form-control editInputDNP" style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px; background-color:white" />
+                                        </td>
+                                        <td class="textRightDNP">
+                                            <div class="blockReferenciaDNP">{{vm.ConvertirNumero(recursos.TotalTR)}}</div>
+                                            <span>Aprobados</span><br />
+                                            <div class="blockReferenciaDNP">{{vm.ConvertirNumero(recursos.TotalTRA)}}</div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td class="textleftDNP"><b>=</b></td>
+                                        <td class="textleftDNP"><b>Total distribuido</b></td>
+                                        <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(fuentes.TNacionCSF)}}</div></td>
+                                        <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(fuentes.TNacionSSF)}}</div></td>
+                                        <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(fuentes.TPropios)}}</div></td>
+                                        <td class="textRightDNP"></td>
+                                        <td class="columAcc"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="textleftDNP"><b>=</b></td>
+                                        <td class="textleftDNP"><b>Total aprobado</b></td>
+                                        <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(fuentes.TNacionCSFA)}}</div></td>
+                                        <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(fuentes.TNacionSSFA)}}</div></td>
+                                        <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(fuentes.TPropiosA)}}</div></td>
+                                        <td class="textRightDNP"></td>
+                                        <td class="columAcc"></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                            <br />
+                            <br />
+                            <div ng-if="vm.mostrarCreditosPr" style="text-align: left;">
+                                <h3 class="row" style="padding-left: 2rem; padding-right: 2rem; text-align: left; color: #004884">
+                                    Créditos con recurso {{fuentes.CreditosEnPreparacion[0].codigoFuente}}: {{fuentes.CreditosEnPreparacion[0].NombreFuente}}
+                                    <!--Créditos con recurso 13: Recursos del crédito externo previa autorización-->
+                                </h3>
+                            </div>
+                            <table ng-if="vm.mostrarCreditosPr" class="TableDNP">
+                                <thead>
+                                    <tr>
+                                        <th class="columAcc" style="width:4%"></th>
+                                        <th class="textLeftDNP" style="width:28%">Datos crédito</th>
+                                        <th class="textRightDNP" style="width:16%">Monto $</th>
+                                        <th class="textRightDNP" style="width:16%">Disponible $</th>
+                                        <th class="textRightDNP" style="width:16%">Nación CSF $</th>
+                                        <th class="textRightDNP" style="width:16%">Nación SSF $</th>
+                                        <th class="columAcc" style="width:4%"></th>
+                                    </tr>
+                                </thead>
+                                <tbody ng-repeat="detallefuentesprep in fuentes.CreditosEnPreparacion" ng-init="dfuentespindex = $index">
+                                    <tr ng-repeat="creditospreparacion in detallefuentesprep.CreditosEnPreparacionDetalle" ng-init="creditoprepindex = $index">
+                                        <td></td>
+                                        <td class="textleftDNP">
+                                            <div><span><b>{{creditospreparacion.codigoCredito}}</b></span></div>
+                                            <textarea rows="3" style="border: white; width:100%;background-color:white;resize:none" disabled>
+                                                {{creditospreparacion.NombreCredito}}
+                                            </textarea>
+                                        </td>
+                                        <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(creditospreparacion.monto)}}</div><br />&nbsp;<br />&nbsp;</td>
+                                        <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(creditospreparacion.disponible)}}</div><br />&nbsp;<br />&nbsp;</td>
+                                        <td ng-if="!vm.EAjCT" class="textRightDNP">
+                                            <div class="blockReferenciaDNP">{{vm.ConvertirNumero(creditospreparacion.NacionCSF)}}</div>
+                                            <span>Aprobados</span><br />
+                                            <div class="blockReferenciaDNP">{{vm.ConvertirNumero(creditospreparacion.NacionCSFA)}}</div>
+                                        </td>
+                                        <td ng-if="vm.EAjCT" class="textRightDNP">
+                                            <div class="blockReferenciaDNP">{{vm.ConvertirNumero(creditospreparacion.NacionCSF)}}</div>
+                                            <span>Aprobados</span><br />
+                                            <input id="input-NacionCSFA" type="number" string-to-number min="0.00"
+                                                   ng-readonly="!vm.EAjCT"
+                                                   ng-keypress="vm.validateFormat($event)"
+                                                   ng-keyup="vm.validarTamanio($event)"
+                                                   ng-blur="vm.actualizaFilaCredito($event, fuentes,1, 'NacionCSFA', creditoprepindex)"
+                                                   ng-value="creditospreparacion.NacionCSFA"
+                                                   ng-model="fuentes.CreditosEnPreparacion[dfuentespindex].CreditosEnPreparacionDetalle[creditoprepindex].NacionCSFA"
+                                                   required class="form-control editInputDNP" style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px; background-color:white" />
+                                        </td>
+                                        <td ng-if="!vm.EAjCT" class="textRightDNP">
+                                            <div class="blockReferenciaDNP">{{vm.ConvertirNumero(creditospreparacion.NacionSSF)}}</div>
+                                            <span>Aprobados</span><br />
+                                            <div class="blockReferenciaDNP">{{vm.ConvertirNumero(creditospreparacion.NacionSSFA)}}</div>
+                                        </td>
+                                        <td ng-if="vm.EAjCT" class="textRightDNP">
+                                            <div class="blockReferenciaDNP">{{vm.ConvertirNumero(creditospreparacion.NacionSSF)}}</div>
+                                            <span>Aprobados</span><br />
+                                            <input id="input-NacionSSFA" type="number" string-to-number min="0.00"
+                                                   ng-readonly="!vm.EAjCT"
+                                                   ng-keypress="vm.validateFormat($event)"
+                                                   ng-keyup="vm.validarTamanio($event)"
+                                                   ng-blur="vm.actualizaFilaCredito($event, fuentes,1, 'NacionSSFA', creditoprepindex)"
+                                                   ng-value="creditospreparacion.NacionSSFA"
+                                                   ng-model="fuentes.CreditosEnPreparacion[dfuentespindex].CreditosEnPreparacionDetalle[creditoprepindex].NacionSSFA"
+                                                   required class="form-control editInputDNP" style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px; background-color:white" />
+                                        </td>
+
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr ng-repeat="detallefprep in fuentes.CreditosEnPreparacion">
+                                        <td class="textleftDNP"><b>=</b></td>
+                                        <td class="textleftDNP"><b>Total</b></td>
+                                        <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(detallefprep.tmonto)}}</div></td>
+                                        <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(detallefprep.tdisponible)}}</div></td>
+                                        <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(detallefprep.TNacionCSF)}}</div></td>
+                                        <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(detallefprep.TNacionSSF)}}</div></td>
+                                        <td class="columAcc"></td>
+                                    </tr>
+                                    <tr ng-repeat="detallefprep in fuentes.CreditosEnPreparacion">
+                                        <td class="textleftDNP"><b>=</b></td>
+                                        <td class="textleftDNP"><b>Total aprobado</b></td>
+                                        <td class="textRightDNP"></td>
+                                        <td class="textRightDNP"></td>
+                                        <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(detallefprep.TNacionCSFA)}}</div></td>
+                                        <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(detallefprep.TNacionSSFA)}}</div></td>
+                                        <td class="columAcc"></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                            <br />
+                            <br />
+                            <div ng-if="vm.mostrarCreditosFir" style="text-align: left;">
+                                <h3 class="row" style="padding-left: 2rem; padding-right: 2rem; text-align: left; color: #004884">
+                                    Créditos con recurso {{fuentes.CreditosFirmado[0].codigoFuente}}: {{fuentes.CreditosFirmado[0].NombreFuente}}
+                                    <!--Créditos con recurso 14: Préstamos destinación específica-->
+                                </h3>
+                            </div>
+                            <table ng-if="vm.mostrarCreditosFir" class="TableDNP">
+                                <thead>
+                                    <tr>
+                                        <th class="columAcc" style="width:4%"></th>
+                                        <th class="textLeftDNP" style="width:28%">Datos crédito</th>
+                                        <th class="textRightDNP" style="width:16%">Monto $</th>
+                                        <th class="textRightDNP" style="width:16%">Disponible $</th>
+                                        <th class="textRightDNP" style="width:16%">Nación CSF $</th>
+                                        <th class="textRightDNP" style="width:16%">Nación SSF $</th>
+                                        <th class="columAcc" style="width:4%"></th>
+                                    </tr>
+                                </thead>
+                                <tbody ng-repeat="detallefuentesfirmados in fuentes.CreditosFirmado" ng-init="dfuentesfindex = $index">
+                                    <tr ng-repeat="creditosfirmado in detallefuentesfirmados.CreditosFirmadoDetalle" ng-init="credidofirindex = $index">
+                                        <td></td>
+                                        <td class="textleftDNP">
+                                            <div><span><b>{{creditosfirmado.codigoCredito}}</b></span></div>
+                                            <textarea rows="3" style="border: white; width:100%;background-color:white;resize:none" disabled>
+                                                {{creditosfirmado.NombreCredito}}
+                                            </textarea>
+                                        </td>
+                                        <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(creditosfirmado.monto)}}</div><br />&nbsp;<br />&nbsp;</td>
+                                        <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(creditosfirmado.disponible)}}</div><br />&nbsp;<br />&nbsp;</td>
+                                        <td ng-if="!vm.EAjCT" class="textRightDNP">
+                                            <div class="blockReferenciaDNP">{{vm.ConvertirNumero(creditosfirmado.NacionCSF)}}</div>
+                                            <span>Aprobados</span><br />
+                                            <div class="blockReferenciaDNP">{{vm.ConvertirNumero(creditosfirmado.NacionCSFA)}}</div>
+                                        </td>
+                                        <td ng-if="vm.EAjCT" class="textRightDNP">
+                                            <div class="blockReferenciaDNP">{{vm.ConvertirNumero(creditosfirmado.NacionCSF)}}</div>
+                                            <span>Aprobados</span><br />
+                                            <input id="input-NacionCSFA" type="number" string-to-number min="0.00"
+                                                   ng-readonly="!vm.EAjCT"
+                                                   ng-keypress="vm.validateFormat($event)"
+                                                   ng-keyup="vm.validarTamanio($event)"
+                                                   ng-blur="vm.actualizaFilaCredito($event, fuentes,2, 'NacionCSFA', credidofirindex)"
+                                                   ng-value="creditosfirmado.NacionCSFA"
+                                                   ng-model="fuentes.CreditosFirmado[dfuentesfindex].CreditosFirmadoDetalle[credidofirindex].NacionCSFA"
+                                                   required class="form-control editInputDNP" style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px; background-color:white" />
+                                        </td>
+                                        <td ng-if="!vm.EAjCT" class="textRightDNP">
+                                            <div class="blockReferenciaDNP">{{vm.ConvertirNumero(creditosfirmado.NacionSSF)}}</div>
+                                            <span>Aprobados</span><br />
+                                            <div class="blockReferenciaDNP">{{vm.ConvertirNumero(creditosfirmado.NacionSSFa)}}</div>
+                                        </td>
+                                        <td ng-if="vm.EAjCT" class="textRightDNP">
+                                            <div class="blockReferenciaDNP">{{vm.ConvertirNumero(creditosfirmado.NacionSSF)}}</div>
+                                            <span>Aprobados</span><br />
+                                            <input id="input-NacionSSFA" type="number" string-to-number min="0.00"
+                                                   ng-readonly="!vm.EAjCT"
+                                                   ng-keypress="vm.validateFormat($event)"
+                                                   ng-keyup="vm.validarTamanio($event)"
+                                                   ng-blur="vm.actualizaFilaCredito($event, fuentes,2, 'NacionSSFA', credidofirindex)"
+                                                   ng-value="creditosfirmado.NacionSSFa"
+                                                   ng-model="fuentes.CreditosFirmado[dfuentesfindex].CreditosFirmadoDetalle[credidofirindex].NacionSSFa"
+                                                   required class="form-control editInputDNP" style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px; background-color:white" />
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr ng-repeat="detallefirmados in fuentes.CreditosFirmado">
+                                        <td class="textleftDNP"><b>=</b></td>
+                                        <td class="textleftDNP"><b>Total</b></td>
+                                        <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(detallefirmados.tmonto)}}</div></td>
+                                        <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(detallefirmados.tdisponible)}}</div></td>
+                                        <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(detallefirmados.TNacionCSF)}}</div></td>
+                                        <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(detallefirmados.TNacionSSF)}}</div></td>
+                                        <td class="columAcc"></td>
+                                    </tr>
+                                    <tr ng-repeat="detallefirmados in fuentes.CreditosFirmado">
+                                        <td class="textleftDNP"><b>=</b></td>
+                                        <td class="textleftDNP"><b>Total aprobado</b></td>
+                                        <td class="textRightDNP"></td>
+                                        <td class="textRightDNP"></td>
+                                        <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(detallefirmados.TNacionCSFA)}}</div></td>
+                                        <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(detallefirmados.TNacionSSFA)}}</div></td>
+                                        <td class="columAcc"></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                            <br />
+                            <br />
+                            <div ng-if="vm.mostrarDonacion" style="text-align: left;">
+                                <h3 class="row" style="padding-left: 2rem; padding-right: 2rem; text-align: left; color: #004884">
+                                    Donaciones {{fuentes.DonacionFirmado[0].codigoFuente}}: {{fuentes.DonacionFirmado[0].NombreFuente}}
+                                    <!-- Donaciones 15: Donaciones-->
+                                </h3>
+                            </div>
+                            <table ng-if="vm.mostrarDonacion" class="TableDNP">
+                                <thead>
+                                    <tr>
+                                        <th class="columAcc" style="width:4%"></th>
+                                        <th class="textLeftDNP" style="width:28%">Datos crédito</th>
+                                        <th class="textRightDNP" style="width:16%">Monto $</th>
+                                        <th class="textRightDNP" style="width:16%">Disponible $</th>
+                                        <th class="textRightDNP" style="width:16%">Nación CSF $</th>
+                                        <th class="textRightDNP" style="width:16%">Nación SSF $</th>
+                                        <th class="columAcc" style="width:4%"></th>
+                                    </tr>
+                                </thead>
+                                <tbody ng-repeat="detallefuentesdonacion in fuentes.DonacionFirmado" ng-init="dfuentesdindex = $index">
+                                    <tr ng-repeat="creditosdonacion in detallefuentesdonacion.DonacionDetalle" ng-init="donacionfirindex = $index">
+                                        <td></td>
+                                        <td class="textleftDNP">
+                                            <div><span><b>{{creditosdonacion.codigoCredito}}</b></span></div>
+                                            <textarea rows="3" style="border: white; width:100%;background-color:white;resize:none" disabled>
+                                                {{creditosdonacion.NombreCredito}}
+                                            </textarea>
+                                        </td>
+                                        <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(creditosdonacion.monto)}}</div></td>
+                                        <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(creditosdonacion.disponible)}}</div></td>
+                                        <td ng-if="!vm.EAjCT" class="textRightDNP">
+                                            <div class="blockReferenciaDNP">{{vm.ConvertirNumero(creditosdonacion.NacionCSF)}}</div>
+                                            <span>Aprobados</span><br />
+                                            <div class="blockReferenciaDNP">{{vm.ConvertirNumero(creditosdonacion.NacionCSFA)}}</div>
+                                        </td>
+                                        <td ng-if="vm.EAjCT" class="textRightDNP">
+                                            <div class="blockReferenciaDNP">{{vm.ConvertirNumero(creditosdonacion.NacionCSF)}}</div>
+                                            <span>Aprobados</span><br />
+                                            <input id="input-NacionCSFA" type="number" string-to-number min="0.00"
+                                                   ng-readonly="!vm.EAjCT"
+                                                   ng-keypress="vm.validateFormat($event)"
+                                                   ng-keyup="vm.validarTamanio($event)"
+                                                   ng-blur="vm.actualizaFilaCredito($event, fuentes,3, 'NacionCSFA', donacionfirindex)"
+                                                   ng-value="creditosdonacion.NacionCSFA"
+                                                   ng-model="fuentes.DonacionFirmado[dfuentesdindex].DonacionDetalle[donacionfirindex].NacionCSFA"
+                                                   required class="form-control editInputDNP" style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px; background-color:white" />
+                                        </td>
+                                        <td ng-if="!vm.EAjCT" class="textRightDNP">
+                                            <div class="blockReferenciaDNP">{{vm.ConvertirNumero(creditosdonacion.NacionSSF)}}</div>
+                                            <span>Aprobados</span><br />
+                                            <div class="blockReferenciaDNP">{{vm.ConvertirNumero(creditosdonacion.NacionSSFA)}}</div>
+                                        </td>
+                                        <td ng-if="vm.EAjCT" class="textRightDNP">
+                                            <div class="blockReferenciaDNP">{{vm.ConvertirNumero(creditosdonacion.NacionSSF)}}</div>
+                                            <span>Aprobados</span><br />
+                                            <input id="input-NacionSSFA" type="number" string-to-number min="0.00"
+                                                   ng-readonly="!vm.EAjCT"
+                                                   ng-keypress="vm.validateFormat($event)"
+                                                   ng-keyup="vm.validarTamanio($event)"
+                                                   ng-blur="vm.actualizaFilaCredito($event, fuentes,3, 'NacionSSFA', donacionfirindex)"
+                                                   ng-value="creditosdonacion.NacionSSFA"
+                                                   ng-model="fuentes.DonacionFirmado[dfuentesdindex].DonacionDetalle[donacionfirindex].NacionSSFA"
+                                                   required class="form-control editInputDNP" style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px; background-color:white" />
+                                        </td>
+
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr ng-repeat="detalledonac in fuentes.DonacionFirmado">
+                                        <td class="textleftDNP"><b>=</b></td>
+                                        <td class="textleftDNP"><b>Total</b></td>
+                                        <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(detalledonac.tmonto)}}</div></td>
+                                        <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(detalledonac.tdisponible)}}</div></td>
+                                        <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(detalledonac.TNacionCSF)}}</div></td>
+                                        <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(detalledonac.TNacionSSF)}}</div></td>
+                                        <td class="columAcc"></td>
+                                    </tr>
+                                    <tr ng-repeat="detalledonac in fuentes.DonacionFirmado">
+                                        <td class="textleftDNP"><b>=</b></td>
+                                        <td class="textleftDNP"><b>Total aprobado</b></td>
+                                        <td class="textRightDNP"></td>
+                                        <td class="textRightDNP"></td>
+                                        <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(detalledonac.TNacionCSFA)}}</div></td>
+                                        <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(detalledonac.TNacionSSFA)}}</div></td>
+                                        <td class="columAcc"></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

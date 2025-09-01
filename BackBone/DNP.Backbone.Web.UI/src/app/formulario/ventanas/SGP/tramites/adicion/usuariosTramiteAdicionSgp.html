@@ -1,0 +1,34 @@
+﻿<section>
+    <div class="container-fluid inbox" ng-init="vm.init()">
+        <br />
+        <div>
+            <div class="row">
+                <div class="row" style="padding-left: 3rem;padding-right:15px;">
+                    <div class="form-group" style=" padding-top: 2rem;width:100%;">
+                        <div class="tab-content">
+                            <div class="tab-pane active cont col-md-12" style="padding-left:0 !important;padding-top:20px !important" id="dusuariosinvolucradossgp">
+                                <informacion-usuarios-involucrados-adicion-sgp callback="vm.notificarGuardado()"
+                                                                               guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                                                               notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                                                               notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)"
+                                                                               notificacioncambios="vm.notificacionCambiosAjustes(handler, nombreComponente)"
+                                                                               notificarsiguiente="vm.habilitaFinalizar(estado)">
+                                </informacion-usuarios-involucrados-adicion-sgp>
+                            </div>
+                            <div class="tab-pane  cont col-md-12 p-0" id="daprobaciontramitesgp">
+                                <aprobacion-tramite-entidad-sgp tipotramiteid="{{vm.tramiteDetail.tipoTramiteId}}"
+                                                                tramiteid="{{vm.tramiteDetail.tramiteId}}"
+                                                                callback="vm.notificarGuardado(botonDevolver, botonSiguiente, ocultarDevolver)"
+                                                                guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                                                notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                                                notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)"
+                                                                notificacioncambios="vm.notificacionCambiosAjustes(handler, nombreComponente)">
+                                </aprobacion-tramite-entidad-sgp>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

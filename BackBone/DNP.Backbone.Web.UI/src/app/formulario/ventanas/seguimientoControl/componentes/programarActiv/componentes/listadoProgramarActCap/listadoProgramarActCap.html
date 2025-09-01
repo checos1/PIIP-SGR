@@ -1,0 +1,209 @@
+﻿
+<section class="container-fluid inbox" ng-init="vm.init();">
+    <table class="TableDNP">
+        <thead>
+            <tr>
+                <th class="columAcc" width="5%"></th>
+                <th class="textLeftDNP" width="26%">Actividad</th>
+                <th class="textLeftDNP" width="10%">Cantidad total - Unidad medida</th>
+                <th class="textRightDNP" width="13%">Costo total actividad</th>
+                <th class="textRightDNP" width="13%">Costo unitario</th>
+                <th class="textRightDNP" width="8%">Duración promedio (días)</th>
+                <th class="textLeftDNP" width="10%">Actividad dependiente</th>
+                <th class="textRightDNP" width="10%">Fecha inicio -<br />Fecha fin</th>
+                <th class="columAcc" width="5%"></th>
+            </tr>
+        </thead>
+        <tbody ng-repeat="actividad in vm.listadoActividadesNiveles" ng-init="indexActividad = $index">
+            <tr>
+                <td class="columAcc"
+                    style="background: transparent" width="5%">
+                    <span class="errores-contenedor d-none" id="segui-error-button-{{actividad.ActividadId}}-{{actividad.SeguimientoEntregableId}}">
+                        <div class="d-inline-block">
+                            <div class="messagealerttableDNP" id="segui-error-button-text-error01-{{actividad.ActividadId}}-{{actividad.SeguimientoEntregableId}}"></div>
+                        </div>
+                    </span>
+                    <br />
+                    <button id="buttonActividad-{{actividad.ActividadId}}"
+                            class="btnaccion btnAccordionDNP"
+                            type="button"
+                            data-toggle="collapse"
+                            data-target="#ActividadProgramar-{{actividad.ActividadId}}-{{actividad.SeguimientoEntregableId}}"
+                            ng-click="vm.abrilNivel('programarActividad-'+actividad.ActividadId+'-'+actividad.SeguimientoEntregableId)">
+                        <img src="Img/btnMas.svg" id="programarActividad-{{actividad.ActividadId}}-{{actividad.SeguimientoEntregableId}}-mas">
+                        <img class="hidden" src="Img/btnMenos.svg" id="programarActividad-{{actividad.ActividadId}}-{{actividad.SeguimientoEntregableId}}-menos">
+                    </button>
+                </td>
+                <td width="26%">
+                    <div ng-if="actividad.NombreActividad != null" ng-class="{'detalle-actividad-cell': actividad.NombreActividad.length > 44 }">
+                        {{actividad.NumeroActividad}}  {{actividad.NombreActividad}}
+                    </div>
+                    <div ng-if="actividad.NombreActividad == null" ng-class="{'detalle-actividad-cell': actividad.NombreActividad.length > 44 }">
+                        {{actividad.NumeroActividad}}  {{actividad.NombreEntregable}}
+                    </div>
+                    <span class="errores-contenedor d-none" id="segui-error-buttonM-{{actividad.ActividadId}}-{{actividad.SeguimientoEntregableId}}">
+                        <div class="d-inline-block">
+                            <div class="messagealerttableDNP" id="segui-error-button-text-error01M-{{actividad.ActividadId}}-{{actividad.SeguimientoEntregableId}}"></div>
+                        </div>
+                    </span>
+                </td>
+                <td width="10%">{{actividad.CantidadTotal == null ? 0 : actividad.CantidadTotal | number:2 }} - {{actividad.UnidadMedida}}</td>
+                <td class="textRightDNP" width="13%">{{actividad.CostoTotal | currency:"$"}}</td>
+                <td class="textRightDNP" ng-if="actividad.CantidadTotal == null" width="13%">{{actividad.CostoUnitario | currency:"$"}}</td>
+                <td class="textRightDNP" ng-if="actividad.CantidadTotal != null" width="8%">{{(actividad.CostoTotal / actividad.CantidadTotal) | currency:"$"}}</td>
+                <td class="textRightDNP" width="5%">{{actividad.Promedio}}</td>
+                <td width="10%">
+                    <div ng-class="{'detalle-actividad-cell': actividad.NombrePredecesora  != null && actividad.NombrePredecesora.length > 44}">
+                        {{actividad.NombrePredecesora == null ? 'Ninguna': actividad.NombrePredecesora}}
+                    </div>
+                </td>
+                <td class="textRightDNP" width="10%">{{actividad.FechaInicio | date : 'dd/MM/yyyy'}}- {{actividad.FechaFin | date : 'dd/MM/yyyy'}}</td>
+                <td class="columAcc"
+                    style="background: transparent" width="5%">
+                    <button style="background: transparent; text-transform: initial;" class="btn p-0" type="button" ng-click="vm.abrirModalEditar(actividad)">
+                        <span class="text-column-info  ml-0">Editar</span>
+                    </button><br />
+                    <button class="btnaccion"
+                            type="button"
+                            ng-click="vm.abrirModalEditar(actividad)">
+                        <span> <img src="Img/IcoEdit.svg"></span>
+                    </button>
+                </td>
+            </tr>
+            <tr class="no-border collapse " id="ActividadProgramar-{{actividad.ActividadId}}-{{actividad.SeguimientoEntregableId}}">
+
+                <td colspan="8" class="p-0">
+                    <div class="LineaEncabezado2tabDNP"></div>
+                    <h3 class="row tituloEncabezadotabDNP">
+                        Programar cantidades
+                        <span class="buttonbar pull-right">
+                            <button id="Editar{{actividad.ActividadId}}" type="button" class="btneditarDNP" tooltip-placement="top" 
+                                    ng-click="actividad.HabilitaEditar ? vm.habilitaEditar(actividad,1) : vm.habilitaEditar(actividad,0)"
+                                    uib-tooltip="{{actividad.HabilitaEditar ? 'CANCELAR' : 'EDITAR'}}"
+                                    ng-if="!vm.soloLectura && actividad.Vigencias != null">
+                                {{actividad.HabilitaEditar  ? 'CANCELAR' : 'EDITAR'}}
+                            </button>
+                            <button id="Guardar{{actividad.ActividadId}}" type="submit" ng-class="actividad.HabilitaEditar  ? 'btnguardarDNP' : 'btnguardarDisabledDNP' "
+                                    tooltip-placement="top" ng-click="vm.actualizarVigencia(actividad)" ng-disabled="!actividad.HabilitaEditar"
+                                    ng-if="!vm.soloLectura && actividad.Vigencias != null">
+                                GUARDAR
+                            </button>
+                        </span>
+                    </h3>
+                    <div class="row">
+                        <div class="alert panel-heading">
+                            <div class="col-md-12">
+                                <span class="errores-contenedor d-none" id="seguiProg-error-button-{{actividad.ActividadId}}-{{actividad.SeguimientoEntregableId}}-1">
+                                    <div class="d-inline-block">
+                                        <div class="messagealerttableDNP" id="seguiProg-error-button-text-error01-{{actividad.ActividadId}}-{{actividad.SeguimientoEntregableId}}-1"></div>
+                                    </div>
+                                </span>
+                            </div>
+                            <br />
+                            <div class="tab-container col-md-12" style="width:100%;">
+                                <ul class="nav nav-tabs">
+                                    <li ng-repeat="fechaVigencia in actividad.Vigencias" ng-show="$index%4 === 0" id="liDgenerales" ng-class="{active : $index === vm.pagina}" class="nav-item">
+                                        <a href="" class="nav-link" ng-click="vm.cambiarPagina($index)" data-toggle="tab">
+                                            <b>{{fechaVigencia.Vigencia}}-{{actividad.Vigencias[$index+3].Vigencia? actividad.Vigencias[$index+3].Vigencia:(actividad.Vigencias[$index+2].Vigencia? actividad.Vigencias[$index+2].Vigencia: (actividad.Vigencias[$index+1].Vigencia? actividad.Vigencias[$index+1].Vigencia: fechaVigencia.Vigencia))}}</b>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <br />
+                            <div class="tab-content">
+                                <div class="tab-pane active cont col-md-12"
+                                     style="padding-left:0 !important;padding-top:20px !important" id="tabAjustados{{actividad.ActividadId}}">
+                                    <table ng-repeat="Vigencias in actividad.Vigencias | limitTo:1" class="TableDNP" ng-init="indexVigencias = $index">
+                                        <thead>
+                                            <tr>
+                                                <th class="columAcc" style="width: 5%;"></th>
+                                                <th class="textLeftDNP" style="width: 25%;">Mes</th>
+                                                <th class="textLeftDNP" style="width: 17%;">{{actividad.Vigencias[vm.pagina].Vigencia}}</th>
+                                                <th ng-if="actividad.Vigencias[vm.pagina + 1]" class="textLeftDNP" style="width: 17%;">{{actividad.Vigencias[vm.pagina + 1].Vigencia}}</th>
+                                                <th ng-if="actividad.Vigencias[vm.pagina + 2]" class="textLeftDNP" style="width: 17%;">{{actividad.Vigencias[vm.pagina + 2].Vigencia}}</th>
+                                                <th ng-if="actividad.Vigencias[vm.pagina + 3]" class="textLeftDNP" style="width: 17%;">{{actividad.Vigencias[vm.pagina + 3].Vigencia}}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="ProgramacionSeguimientoPeriodosValores in Vigencias.ProgramacionSeguimientoPeriodosValores" ng-init="indexEntregables = $index">
+                                                <td><img class="img-advertencia hidden" src="Img/u11.svg" id=alert-{{actividad.ActividadId}}{{programacionSeguimientoPeriodosValores.IdPeriodosPeriodicidad}}></td>
+                                                <td class="textLeftDNP">
+                                                    {{ProgramacionSeguimientoPeriodosValores.Mes}}
+                                                </td>
+                                                <td class="textRightDNP">
+                                                    <div ng-if="!actividad.HabilitaEditar">{{actividad.Vigencias[vm.pagina].ProgramacionSeguimientoPeriodosValores[$index].Valor | number:2}}</div>
+                                                    <input type="number" string-to-number min="0.00"
+                                                           ng-if="actividad.HabilitaEditar"
+                                                           ng-readonly="productos.Vigencias[vm.pagina].Vigencia < vm.vigenciaActual"
+                                                           ng-value="actividad.Vigencias[vm.pagina].ProgramacionSeguimientoPeriodosValores[$index].Valor"
+                                                           ng-model="actividad.Vigencias[vm.pagina].ProgramacionSeguimientoPeriodosValores[$index].Valor"
+                                                           ng-blur="vm.recorrerObjetivosNumber($event, actividad,actividad.Vigencias[vm.pagina].Vigencia)"
+                                                           ng-keypress="vm.validateFormat($event)"
+                                                           ng-keyup="vm.validarTamanio($event)" />
+                                                </td>
+                                                <td ng-if="actividad.Vigencias[vm.pagina + 1]" class="textRightDNP">
+
+                                                    <div ng-if="!actividad.HabilitaEditar">{{actividad.Vigencias[vm.pagina+1].ProgramacionSeguimientoPeriodosValores[$index].Valor  | number:2}}</div>
+                                                    <input type="number" string-to-number min="0.00"
+                                                           ng-if="actividad.HabilitaEditar"
+                                                           ng-value="actividad.Vigencias[vm.pagina+1].ProgramacionSeguimientoPeriodosValores[$index].Valor"
+                                                           ng-model="actividad.Vigencias[vm.pagina+1].ProgramacionSeguimientoPeriodosValores[$index].Valor"
+                                                           ng-blur="vm.recorrerObjetivosNumber($event, actividad,actividad.Vigencias[vm.pagina].Vigencia)"
+                                                           ng-keypress="vm.validateFormat($event)"
+                                                           ng-keyup="vm.validarTamanio($event)" />
+                                                </td>
+                                                <td ng-if="actividad.Vigencias[vm.pagina + 2]" class="textRightDNP">
+                                                    <div ng-if="!actividad.HabilitaEditar">{{actividad.Vigencias[vm.pagina+2].ProgramacionSeguimientoPeriodosValores[$index].Valor  | number:2}}</div>
+                                                    <input type="number" string-to-number min="0.00"
+                                                           ng-if="actividad.HabilitaEditar"
+                                                           ng-value="actividad.Vigencias[vm.pagina+2].ProgramacionSeguimientoPeriodosValores[$index].Valor"
+                                                           ng-model="actividad.Vigencias[vm.pagina+2].ProgramacionSeguimientoPeriodosValores[$index].Valor"
+                                                           ng-blur="vm.recorrerObjetivosNumber($event, actividad,actividad.Vigencias[vm.pagina].Vigencia)"
+                                                           ng-keypress="vm.validateFormat($event)"
+                                                           ng-keyup="vm.validarTamanio($event)" />
+                                                </td>
+
+                                                <td ng-if="actividad.Vigencias[vm.pagina + 3]" class="textRightDNP">
+                                                    <div ng-if="!actividad.HabilitaEditar">{{actividad.Vigencias[vm.pagina+3].ProgramacionSeguimientoPeriodosValores[$index].Valor  | number:2}}</div>
+                                                    <input type="number" string-to-number min="0.00"
+                                                           ng-if="actividad.HabilitaEditar"
+                                                           ng-value="actividad.Vigencias[vm.pagina+3].ProgramacionSeguimientoPeriodosValores[$index].Valor"
+                                                           ng-model="actividad.Vigencias[vm.pagina+3].ProgramacionSeguimientoPeriodosValores[$index].Valor"
+                                                           ng-blur="vm.recorrerObjetivosNumber($event, actividad,actividad.Vigencias[vm.pagina].Vigencia)"
+                                                           ng-keypress="vm.validateFormat($event)"
+                                                           ng-keyup="vm.validarTamanio($event)" />
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td class="columAcc icontotaldnp"><span>=</span></td>
+                                                <td class="textLeftDNP">
+                                                    Total
+                                                </td>
+                                                <td class="textRightDNP">{{actividad.Vigencias[vm.pagina].TotalVigencia | number:2}}</td>
+                                                <td ng-if="actividad.Vigencias[vm.pagina + 1]" class="textRightDNP">{{actividad.Vigencias[vm.pagina + 1].TotalVigencia | number:2}}</td>
+                                                <td ng-if="actividad.Vigencias[vm.pagina + 2]" class="textRightDNP">{{actividad.Vigencias[vm.pagina + 2].TotalVigencia | number:2}}</td>
+                                                <td ng-if="actividad.Vigencias[vm.pagina + 3]" class="textRightDNP">{{actividad.Vigencias[vm.pagina + 3].TotalVigencia | number:2}}</td>
+
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                    <br />
+                                    <div class="col-md-12" ng-if="actividad.Vigencias != null">
+                                        <h4 class="text-left ui-seccion-title">
+                                            TOTAL = {{actividad.TotalVigencia  | number:2}}
+                                        </h4>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>

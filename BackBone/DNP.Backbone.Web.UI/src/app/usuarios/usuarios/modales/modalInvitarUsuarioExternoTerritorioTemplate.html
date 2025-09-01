@@ -1,0 +1,469 @@
+﻿<style>
+    .chosen-container-single .chosen-drop {
+        margin-top: -1px;
+        border-radius: 0 0 4px 4px;
+        background-clip: padding-box;
+        position: relative;
+    }
+</style>
+
+<modal-dialog cerrar="vm.cerrar" guardar="vm.activarBotonInvitar() ? vm.invitarUsuario : null" txt-guardar="Invitar Usuario" ng-init="vm.init()">
+
+    <div class="modal-body modalebodyDNP" id="modal-body" style="min-height:350px">
+        <div id="modalInvitarUsuario">
+            <div class="row  " style="margin-left: 0px; margin-right: 0px; background-color: rgba(249, 252, 253, 1); box-sizing: border-box; border-width: 1px; border-style: solid; border-color: rgba(230, 239, 253, 1); border-radius: 5px; height: 132px; padding-top: 15px">
+                <form id="formInvitarUsuarioExterno" name="formInvitarUsuarioExterno">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label style="font-family: 'Montserrat SemiBold', 'Montserrat Regular', 'Montserrat', sans-serif; font-weight: 600; font-style: normal; font-size: 16px; color: #004884"><b>Invitar Usuario</b></label>
+
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="labelbuscadorDNP" style="height: 45px;">
+                            <label style=" font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif; font-weight: 500; font-style: normal; font-size: 16px; color: #4B4B4B;">Tipo de usuario*</label>
+                        </div>
+                        <select class="form-control selectDNP" ng-init="vm.tipoUsuario=2" ng-model="vm.tipoUsuario" required ng-change="vm.cambiaTipoValor(vm.tipoUsuario)" ng-disabled="true">
+
+                            <option ng-repeat="tipo in vm.tiposUsuario" ng-value="tipo.id">{{ tipo.name }} </option>
+                        </select>
+
+
+                    </div>
+                    <div class="col-md-3">
+                        <div class="labelbuscadorDNP" style="height: 45px;">
+                            <label style=" font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif; font-weight: 500; font-style: normal; font-size: 16px; color: #4B4B4B;">Tipo Identificación*</label>
+                            <p ng-if="!vm.esTipoIdentificacionValido"><img class="img-advertencia mr-2" src="Img/u11.svg">Campo obligatorio</p>
+                        </div>
+
+                        <select id="tipoIdentificacion"
+                                class="form-control selectDNP"
+                                ng-model="vm.model.tipoIdentificacion"
+                                ng-change="vm.validarTipoIdentificacion()"
+                                required>
+                            <option value="" disabled selected hidden>Seleccione una opción</option>
+                            <option ng-selected="vm.model.tipoIdentificacion == tipo.id"
+                                    ng-repeat="tipo in vm.tiposIdentificacion"
+                                    ng-value="tipo.id">
+                                {{ tipo.name }}
+                            </option>
+                        </select>
+
+                    </div>
+                    <div class="col-md-3">
+                        <div class="labelbuscadorDNP" style="height: 45px;">
+                            <label style=" font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif; font-weight: 500; font-style: normal; font-size: 16px; color: #4B4B4B;">Identificación*</label>
+                            <p ng-if="!vm.esIdentificacionValido"><img class="img-advertencia mr-2" src="Img/u11.svg">Campo obligatorio</p>
+                        </div>
+
+                        <input ng-if="!vm.BanderaInputnumeros" type="text"
+                               class="form-control InputBuscadorDNP"
+                               id="inputIdentificacion"
+                               placeholder="Identificación"
+                               ng-model="vm.model.identificacion"
+                               ng-keyup="vm.validarIdentificacion()" ng-change="vm.validarIdentificacion()" ng-disabled="vm.BanderaDivPerfiles"
+                               required>
+                        <input ng-if="vm.BanderaInputnumeros" type="text"
+                               class="form-control InputBuscadorDNP"
+                               id="inputIdentificacion"
+                               placeholder="Identificación"
+                               ng-model="vm.model.identificacion"  numbers-only
+                               ng-keyup="vm.validarIdentificacion()" ng-change="vm.validarIdentificacion()" ng-disabled="vm.BanderaDivPerfiles"
+                               required>
+
+                       
+                    </div>
+
+                    <div class="col-md-2 " style="margin-top:45px">
+                        <button type="button" id="btnBuscarDirectorio" class="btneditarDNP" tooltip-class="customClass" uib-tooltip="Buscar" ng-click="vm.buscarUsuario()" ng-disabled="!vm.btnBuscarActivo">BUSCAR</button>
+
+                    </div>
+
+                </form>
+            </div>
+
+            <div class="row DivListaPerfilesDNP " ng-if="vm.BanderaDivPerfiles">
+                <div class="row">
+                    <div class="col-md-12 colchechkPerfilesDNP containerchek">
+
+                        <!--<div ng-repeat="perfilesusu in vm.listaPerfilesBackbone">-->
+                        <div ng-repeat="perfilesusu in vm.listaPerfiles">
+
+                            <div class="col-md-4">
+                                <ul>
+
+                                    <li>
+                                        <input type="checkbox" id="chk-{{perfilesusu.IdPerfil}}" name="perfilesusu" ng-model="perfilesusu.isCheckedee" ng-value="perfilesusu" ng-checked="vm.ValidarPerfilyaregistra(perfilesusu.IdPerfil)" ng-click="vm.toggleCurrency(perfilesusu.IdPerfil)">
+                                        <label for="chk-{{perfilesusu.IdPerfil}}">{{perfilesusu.NombrePerfil}} </label>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-12 pull-right text-right">
+
+                        <button type="button" class="btn btn-link btn-md buttonhiperDNP" ng-click="vm.MostrarDivPerfilesUsuario(2)" tooltip-placement="top" tabindex="0">
+                            GUARDAR Y CERRAR
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div ng-if="vm.mostrarFormulario && !vm.BanderaDivPerfiles">
+                <div class="row mensajeinformacion" ng-if="vm.mostrarMensaje1">Usuario no existente en el PIIP, para invitar al usuario al PIIP, completar el diligenciamiento del siguiente formulario.</div>
+                <div class="row mensajeinformacion3" ng-if="vm.mostrarMensaje3">Usuario existente en la PIIP.</div>
+                <div class="row mensajeinformacion3" ng-if="vm.mostrarMensaje2">El usuario ya cuenta con un registro completo en la PIIP</div>
+                <div class="row" style="margin-left:0px;margin-right:0px">
+                    <div class="col-md-4">
+
+                        <div class="labelbuscadorDNP">
+                            <label style=" font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif; font-weight: 500; font-style: normal; font-size: 16px; color: #4B4B4B;">Nombre(s)</label>
+                            <p ng-if="!vm.esNombresValido"><img class="img-advertencia mr-2" src="Img/u11.svg">Campo obligatorio</p>
+                        </div>
+                        <input type="text" class="form-control InputBuscadorDNP" id="nombre" ng-model="vm.model.nombres" ng-keyup="vm.validarNombres()" ng-disabled="!vm.activarFormulario" required>
+
+
+                    </div>
+                    <div class="col-md-4">
+                        <div class="labelbuscadorDNP">
+                            <label style=" font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif; font-weight: 500; font-style: normal; font-size: 16px; color: #4B4B4B;">Apellido(s)</label>
+                            <p ng-if="!vm.esApellidosValido"><img class="img-advertencia mr-2" src="Img/u11.svg">Campo obligatorio</p>
+                        </div>
+                        <input type="text" class="form-control InputBuscadorDNP" id="apellido" ng-model="vm.model.apellidos" ng-keyup="vm.validarApellidos()" ng-disabled="!vm.activarFormulario" required>
+
+
+                    </div>
+                    <div class="col-md-4">
+                        <div class="labelbuscadorDNP">
+                            <label style=" font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif; font-weight: 500; font-style: normal; font-size: 16px; color: #4B4B4B;">Correo electrónico</label>
+                            <p ng-if="!vm.esCorreoInstitucionalValido"><img class="img-advertencia mr-2" src="Img/u11.svg">Campo obligatorio</p>
+                        </div>
+                        <input type="email" class="form-control InputBuscadorDNP" id="correoInstitucional" ng-model="vm.model.correoInstitucional" ng-keyup="vm.validarCorreoInstitucional()" ng-disabled="!vm.activarCorreo" required>
+
+
+                    </div>
+
+
+                </div>
+                <div class="row" style="margin-left:0px;margin-right:0px" ng-if="vm.mostrarFormularioPerfilamiento">
+                    <div class="col-md-12 SelectBuscadorDNP">
+
+                        <div class="labelbuscadorDNP">
+                            <label style=" font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif; font-weight: 500; font-style: normal; font-size: 16px; color: #4B4B4B;">Unidad responsable*</label>
+                            <p ng-if="!vm.esEntidadValido"><img class="img-advertencia mr-2" src="Img/u11.svg">Campo obligatorio</p>
+                        </div>
+
+                        <!--<select chosen options="vm.listaEntidades"
+                    ng-model="vm.model.idEntidad"
+                    ng-options="x.Id as x.Nombre for x in vm.listaEntidades"
+                    name="selEntidad"
+                    id="selEntidad"
+                    no-results-text="No hay ningún resultado para su búsqueda"
+                    placeholder-text-single="Opciones"
+                    class="form-control pt-0 pb-0 pl-4"
+                    ng-change="vm.validarEntidad()"
+                    ng-disabled="!vm.activarFormularioPerfilamiento"
+                    require>
+                <option value="" selected>Seleccione una opción</option>
+            </select>-->
+
+                        <select chosen options="vm.listaEntidades"
+                                ng-model="vm.model.idEntidad"
+                                ng-options="x.Id as x.Nombre for x in vm.listaEntidades"
+                                name="selEntidad"
+                                id="selEntidad"
+                                no-results-text="No hay ningún resultado para su búsqueda"
+                                placeholder-text-single="Opciones"
+                                class="form-control pt-0 pb-0 pl-4"
+                                ng-change="vm.cambiarEntidad()"
+                                ng-disabled="!vm.activarFormularioPerfilamiento"
+                                require>
+                            <option value="" selected>Seleccione una opción</option>
+                        </select>
+
+                        <div class="labelbuscadorDNP">
+                            <label style=" font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif; font-weight: 500; font-style: normal; font-size: 16px; color: #4B4B4B;">Sector*</label>
+                            <p ng-if="!vm.esSectorValido"><img class="img-advertencia mr-2" src="Img/u11.svg">Campo obligatorio</p>
+                        </div>
+
+                        <select chosen options="vm.listaSectores"
+                                ng-model="vm.model.idSector"
+                                ng-options="x.Id as x.Nombre for x in vm.listaSectores"
+                                name="selSector"
+                                id="selSector"
+                                no-results-text="No hay ningún resultado para su búsqueda"
+                                placeholder-text-single="Opciones"
+                                class="form-control pt-0 pb-0 pl-4"
+                                ng-change="vm.cambiarSector()"
+                                ng-disabled="!vm.activarFormularioPerfilamiento"
+                                require>
+                            <option value="" selected>Seleccione una opción</option>
+                        </select>
+
+                    </div>
+                </div>
+
+                <!--<div class="row" style="margin-left:0px;margin-right:0px" ng-if="vm.BanderaDivPerfiles2">
+        <div class="col-md-12">
+            <button type="button" class="btn btn-link btn-md buttonhiperDNP" ng-click="vm.MostrarDivPerfilesUsuario(1)" tooltip-placement="top" tabindex="0">
+                ASIGNAR PERFIL
+            </button>
+        </div>
+    </div>-->
+
+
+                <div class="row" ng-if="vm.BanderaDivPerfiles2">
+                    <div class="col-md-12 colchechkPerfilesDNP containerchek">
+
+                        <!--<div ng-repeat="perfilesusu in vm.listaPerfilesBackbone">-->
+                        <div ng-repeat="perfilesusu in vm.listaPerfiles">
+
+                            <div class="col-md-4">
+                                <ul>
+
+                                    <li>
+                                        <input type="checkbox" id="chk-{{perfilesusu.IdPerfil}}" name="perfilesusu" ng-model="perfilesusu.isCheckedee" ng-value="perfilesusu" ng-checked="vm.ValidarPerfilYaRegistraTerritorio(perfilesusu.IdPerfil)" ng-click="vm.toggleCheckPerfilUsuarioUnidadSector(perfilesusu.IdPerfil)">
+                                        <label for="chk-{{perfilesusu.IdPerfil}}">{{perfilesusu.NombrePerfil}} </label>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row" style="margin: 0px 0px 0px 0px;">
+                    <div class="col-md-12 ">
+
+                        <table class="TableDNP">
+                            <thead>
+                                <tr>
+                                    <th class="columAcc"></th>
+                                    <th class="textLeftDNP">Unidad Responsable</th>
+                                    <th class="textLeftDNP">Sector</th>
+                                    <th class="textLeftDNP">Perfil</th>
+                                    <th class="columnAcc"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="datos in vm.listaPlanaPerfilesUsuarioTerritorio ">
+
+                                    <td></td>
+                                    <td class="textLeftDNP">{{datos.NombreEntidad}}</td> 
+                                    <td class="textLeftDNP">{{datos.NombreSector}}</td>
+                                    <td class="textLeftDNP">{{datos.NombrePerfil}}</td>
+
+                                    <td>
+                                        <button class="button-column-action trash"
+                                                title="Eliminar el perfil"
+                                                ng-click="vm.EliminarPerfil(datos.IdEntidad, datos.IdSector, datos.IdPerfil)">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="rgb(51, 102, 204)" class="bi bi-trash" viewBox="0 0 16 16">
+                                                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                                                <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                                            </svg>
+                                        </button>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+
+            </div>
+            <br />
+        </div>
+    </div>
+</modal-dialog>
+
+<style>
+    .closemodalDNP {
+        display: flex;
+        right: 30px;
+        top: 0px;
+        margin-top: -20px;
+    }
+
+    .modalebodyDNP {
+        background: transparent !important;
+        margin-left: 20px !important;
+        padding: 0px !important;
+        margin-right: 20px !important;
+        margin-top: 25px !important;
+    }
+
+    .InputBuscadorDNP[disabled] {
+        border: 1px solid rgba(230, 239, 253, 1) !important;
+        background-color: rgba(246, 248, 249, 1);
+        text-align: left;
+        margin-left: -5px;
+        box-shadow: 0px 0px 0px;
+        margin-bottom: 0px;
+        cursor: not-allowed !important;
+    }
+
+    .mensajeinformacion {
+        border-width: 0px;
+        margin-top: 10px;
+        height: 31px;
+        background: inherit;
+        background-color: rgba(255, 171, 1, 1);
+        border: none;
+        border-radius: 5px;
+        -moz-box-shadow: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        font-family: 'Work Sans SemiBold', 'Work Sans Regular Roman', 'Work Sans', sans-serif;
+        font-weight: 600;
+        font-style: normal;
+        font-size: 16px;
+        color: #FFFFFF;
+        margin-left: 0px;
+        margin-right: 0px;
+        font-family: 'Work Sans SemiBold', 'Work Sans Regular Roman', 'Work Sans', sans-serif;
+        font-weight: 600;
+        font-style: normal;
+        font-size: 16px;
+        color: #FFFFFF;
+        text-align: center;
+        padding-top: 4px
+    }
+
+    .mensajeinformacion2 {
+        border-width: 0px;
+        margin-top: 10px;
+        height: 31px;
+        background: inherit;
+        background-color: rgba(0, 72, 132, 1);
+        border: none;
+        border-radius: 5px;
+        -moz-box-shadow: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        font-family: 'Work Sans SemiBold', 'Work Sans Regular Roman', 'Work Sans', sans-serif;
+        font-weight: 600;
+        font-style: normal;
+        font-size: 16px;
+        color: #FFFFFF;
+        margin-left: 0px;
+        margin-right: 0px;
+        font-family: 'Work Sans SemiBold', 'Work Sans Regular Roman', 'Work Sans', sans-serif;
+        font-weight: 600;
+        font-style: normal;
+        font-size: 16px;
+        color: #FFFFFF;
+        text-align: center;
+        padding-top: 4px
+    }
+
+    .mensajeinformacion3 {
+        border-width: 0px;
+        margin-top: 10px;
+        height: 31px;
+        background: inherit;
+        background-color: rgba(6, 145, 105, 1);
+        border: none;
+        border-radius: 5px;
+        -moz-box-shadow: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        font-family: 'Work Sans SemiBold', 'Work Sans Regular Roman', 'Work Sans', sans-serif;
+        font-weight: 600;
+        font-style: normal;
+        font-size: 16px;
+        color: #FFFFFF;
+        margin-left: 0px;
+        margin-right: 0px;
+        font-family: 'Work Sans SemiBold', 'Work Sans Regular Roman', 'Work Sans', sans-serif;
+        font-weight: 600;
+        font-style: normal;
+        font-size: 16px;
+        color: #FFFFFF;
+        text-align: center;
+        padding-top: 4px
+    }
+
+    .btneditarDNP[disabled] {
+        -webkit-border-radius: 50px;
+        background-color: transparent !important;
+        border-width: 2px !important;
+        border-style: solid !important;
+        border-color: rgba(186, 186, 186, 0.996) !important;
+        color: rgba(186, 186, 186, 0.996) !important;
+        font-size: 16px !important;
+        font-weight: 500 !important;
+        padding-right: 18px !important;
+        padding-left: 18px !important;
+        padding: 3px 0px 3px 0px;
+        font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans';
+        white-space: nowrap;
+    }
+
+    .selectDNP[disabled] {
+        border: 1px solid rgba(230, 239, 253, 1) !important;
+        background-color: rgba(246, 248, 249, 1);
+        text-align: left;
+        margin-left: -5px;
+        box-shadow: 0px 0px 0px;
+        margin-bottom: 0px;
+        cursor: not-allowed !important;
+    }
+
+    .labelbuscadorDNP {
+        height: 40px;
+    }
+
+        .labelbuscadorDNP p {
+            margin-top: -5px !important;
+            font-family: 'Work Sans', sans-serif !important;
+            font-weight: 400 !important;
+            font-style: normal !important;
+            color: #A80521 !important;
+            font-size: 14px !important;
+        }
+
+    .DivListaPerfilesDNP {
+        left: 0px;
+        top: 0px;
+        width: 1006px;
+        height: 259px;
+        background: inherit;
+        background-color: rgba(255, 255, 255, 1);
+        box-sizing: border-box;
+        border-width: 1px;
+        border-style: solid;
+        border-color: rgba(170, 170, 170, 1);
+        border-radius: 5px;
+        -moz-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+        -webkit-box-shadow: 5px 5px 5px rgb(0 0 0 / 20%);
+        box-shadow: 5px 5px 5px rgb(0 0 0 / 20%);
+        margin-left: 0px;
+        margin-right: 0px;
+        padding: 40px;
+        margin-top: 10px;
+    }
+
+    .colchechkPerfilesDNP {
+        width: 923px;
+        height: 159px;
+        overflow: auto;
+        -webkit-overflow-scrolling: touch;
+        -ms-overflow-x: hidden;
+        overflow-x: hidden;
+        background-image: none;
+        box-sizing: border-box;
+        border-width: 2px;
+        border-style: solid;
+        border-color: rgba(230, 239, 253, 1);
+        border-radius: 0px;
+        -moz-box-shadow: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
+</style>

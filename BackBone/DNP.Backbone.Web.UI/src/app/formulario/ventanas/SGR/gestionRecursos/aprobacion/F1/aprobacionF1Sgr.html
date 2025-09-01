@@ -1,0 +1,83 @@
+﻿ <!--<div style="background-color:white;padding-top:2rem;padding-bottom:0px !important;max-width:auto !important;" ng-init="vm.init()">
+    <priorizacion></priorizacion>
+</div>-->
+<section class="ventana-ajsutes mt-4" ng-init="vm.init()">
+    <div class="row m-0">
+        <div class="form-group">
+            <div class="tab-container col-md-12">
+                <div class="tab-content">
+
+                    <div class="tab-pane cont col-md-12" style="padding-left: 0 !important; padding-top: 0 !important; padding-right: 0 !important; padding-bottom: 0 !important;" id="dsgrviabilidadpreviosregionalizacion">
+                        <regionalizacion-sgr callback="vm.notificarGuardado()"
+                                             guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                             notificacioncambios="vm.notificacionCambiosAjustes(handler,nombreComponente)"
+                                             notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                             notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente, handlerCapitulos)">
+
+                        </regionalizacion-sgr>
+                    </div>
+
+                    <div class="tab-pane cont col-md-12 p-0" id="dsgrviabilidadpreviosfocalizacion">
+                        <focalizacion-Ajustes-Sgr callback="vm.notificarGuardado()"
+                                                  guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                                  notificacioncambios="vm.notificacionCambiosAjustes(handler,nombreComponente)"
+                                                  notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                                  notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente, handlerCapitulos)">
+                        </focalizacion-Ajustes-Sgr>
+                    </div>
+
+                    <div ng-if="!vm.TieneOPC || vm.PorcentajeCredito < 100" class="tab-pane cont col-md-12" style="padding-left: 0 !important; padding-top: 0 !important; padding-right: 0 !important; padding-bottom: 0 !important;" id="dsgrviabilidadpreviosrecursos">
+                        <recursos-sgr callback="vm.notificarGuardado()"
+                                      guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                      notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                      notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)"
+                                      notificacioncambios="vm.notificacionCambiosAjustes(handler, nombreComponente)">
+                        </recursos-sgr>
+                    </div>
+
+                    <div ng-if="vm.TieneOPC && vm.PorcentajeCredito > 0" class="tab-pane cont col-md-12" style="padding-left: 0 !important; padding-top: 0 !important; padding-right: 0 !important; padding-bottom: 0 !important;" id="dsgrviabilidadpreviosoperacioncredito">
+                        <operaciones-credito-sgr callback="vm.notificarGuardado()"
+                                                 guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                                 notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                                 notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)"
+                                                 notificacioncambios="vm.notificacionCambiosAjustes(handler, nombreComponente)">
+                        </operaciones-credito-sgr>
+                    </div>
+
+                    <div ng-if="!vm.TieneOPC || vm.PorcentajeCredito == 0" class="tab-pane cont col-md-12" style="padding-left: 0 !important; padding-top: 0 !important; padding-right: 0 !important; padding-bottom: 0 !important;" id="dsgraprobacion1aprobacion">
+                        <aprobacion-f1-aprueba-sgr callback="vm.notificarGuardado()"
+                                                   guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                                   notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                                   notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)"
+                                                   notificacioncambios="vm.notificacionCambiosAjustes(handler, nombreComponente)">
+                        </aprobacion-f1-aprueba-sgr>
+                    </div>
+
+                    <div ng-if="vm.TieneOPC && vm.PorcentajeCredito > 0" class="tab-pane cont col-md-12" style="padding-left: 0 !important; padding-top: 0 !important; padding-right: 0 !important; padding-bottom: 0 !important;" id="dsgraprobacion1aprobacionopc">
+                        <aprobacion-f1-aprueba-opc-sgr callback="vm.notificarGuardado()"
+                                                       guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                                       notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                                       notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)"
+                                                       notificacioncambios="vm.notificacionCambiosAjustes(handler, nombreComponente)">
+                        </aprobacion-f1-aprueba-opc-sgr>
+                    </div>
+
+                    <div class="tab-pane cont col-md-12" style="padding-left: 0 !important; padding-top: 0 !important; padding-right: 0 !important; padding-bottom: 0 !important;" id="dsgraprobacion1soportes">
+                        <alojar-documentos-aprobacion-sgr tipotramiteid="{{vm.tipoTramiteId}}"
+                                                          tramiteid="{{vm.tramiteId}}"
+                                                          nivel="{{vm.IdNivel}}"
+                                                          rol="{{vm.IdRol}}"
+                                                          section="{{vm.section}}"
+                                                          callback="vm.notificarGuardado()"
+                                                          guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                                          notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                                          notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)"
+                                                          notificacioncambios="vm.notificacionCambiosAjustes(handler, nombreComponente)">
+                        </alojar-documentos-aprobacion-sgr>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

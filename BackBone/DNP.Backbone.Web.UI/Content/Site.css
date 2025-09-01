@@ -1,0 +1,27 @@
+﻿
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+.ui-grid-cell > .ui-grid-cell-contents {
+    overflow: visible;
+}
+
+.ui-grid-header-cell-label {
+    padding-left: 7px;
+}
+
+.mensajeAlerta {
+    background-color: rgb(255, 205, 210);
+    text-align: center;
+    border-color: rgb(235 110 110);
+    font-size: medium;
+    font-weight: 600;
+    color: rgb(227 15 15);
+    margin-bottom: 2rem;
+    border-style: solid;
+    border-width: medium;
+}

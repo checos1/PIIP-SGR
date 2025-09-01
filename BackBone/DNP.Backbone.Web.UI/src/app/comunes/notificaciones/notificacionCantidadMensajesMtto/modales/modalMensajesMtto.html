@@ -1,0 +1,31 @@
+<modal-dialog ng-init="vm.init()" cerrar="vm.cerrar">
+
+    <div class="row">
+        <div class="col-md-12">
+            <h4>Para tener en cuenta</h4>
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-md-12 pr-0">
+            
+            <div style="height: 305px">
+
+                <!-- Carrusel de mensajes -->
+                <div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
+                    <div uib-slide ng-repeat="slide in slides track by slide.id" index="$index">
+                        <div class="carousel-caption">
+                            <h5>{{slide.titulo}}</h5>
+                            <span>{{slide.fecha}} {{slide.hora}}</span>
+                            <p ng-bind-html="slide.mensaje"></p>                           
+                        </div>
+                    </div>
+                </div>
+                <!-- /Carrusel de mensajes -->
+
+            </div>          
+
+        </div>
+    </div>
+
+</modal-dialog>

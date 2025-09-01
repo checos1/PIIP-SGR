@@ -1,0 +1,116 @@
+﻿<div class="container-fluid inbox container-mensaje">
+    <mesaje-disclaimer class="pre"
+        type="vm.disclaimer.type" 
+        template="vm.disclaimer.template"
+        show="vm.disclaimer.show"
+        pre-visualizacion="vm.disclaimer.preVisualizacion">
+    </mesaje-disclaimer>
+    <nav class="breadcrumb">
+        <a href="/">
+            <span class="breadcrumb-item active">
+                <i class="fa fa-home" aria-hidden="true"></i> Inicio
+            </span>
+        </a>
+        /
+        <span class="breadcrumb-item active">Administración mantenimiento de mensajes</span>
+    </nav>
+    <div class="dashboard">
+        <div id="mensajes" class="project" ng-init="vm.init();">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="titlebar">
+                        <span>Mantenimiento de Mensajes</span>
+                        <span class="buttonbar pull-right">
+                            <button type="button" class="btn btn-default btn-md" tooltip-placement="top" uib-tooltip="Adicionar Columna" ng-click="vm.abrirModalAdicionarColumnas()" tabindex="0">
+                                Agregar columnas
+                            </button>
+                            <button type="button" class="btn btn-default btn-md" tooltip-placement="top" uib-tooltip="Crear Mensaje" ng-click="vm.crearEditarNuevaMensaje()" tabindex="0">
+                                Crear Mensaje
+                            </button>
+                            <button type="button" class="btn btn-default btn-md" ng-click="vm.conmutadorFiltro()" tooltip-placement="auto" uib-tooltip="Filtro">Filtro</button>
+                         </span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group clearfix">
+                <div class="row">
+                    <div class="col-md-12 radio radio-primary">
+                        <ul class="nav nav-tabs">
+                            <li tabindex="0" class="{{$index == 0 ? 'active' : ''}}" ng-repeat="tipo in vm.listaTipoEntidad">
+                                <a data-toggle="tab" ng-click="vm.cambioTipoEntidad(tipo.Nombre)"
+                                   ng-disabled="{{tipo.Deshabilitado}}" ng-if="!tipo.Deshabilitado"
+                                   llamar-funcion-con-tecla="vm.cambioTipoEntidad(tipo.Nombre)">
+                                    {{tipo.Descripcion}}
+                                </a>
+                                <a ng-if="tipo.Deshabilitado" class="disabled" disabled>{{tipo.Descripcion}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!--inicio filtro-->
+                <div class="filtro filtro-mensaje" ng-if="vm.mostrarFiltro">
+                    <div class="clearfix">
+                        <div class="row">
+                            <div class="col-md-10 padding-right-off">
+                                <div class="col-md-4 padding-left-off" ng-if="vm.tieneColumna('Nombre Mensaje')">
+                                    <input type="text" ng-model="vm.filtro.NombreMensaje" class="form-control" placeholder="Nombre de la mensaje" />
+                                </div>
+                                <div class="col-md-4 padding-left-off" ng-if="vm.tieneColumna('Fecha Inicio')">
+                                    <div class="input-group">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" type="button">Fecha Inicio</button>
+                                        </span>
+                                        <input type="date" ng-model="vm.filtro.FechaCreacionInicio" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 padding-left-off" ng-if="vm.tieneColumna('Fecha Final')">
+                                    <div class="input-group">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" type="button">Fecha Final</button>
+                                        </span>
+                                        <input type="date" ng-model="vm.filtro.FechaCreacionFin" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-2 padding-left-off" ng-if="vm.tieneColumna('Tipo Mensaje')">
+                                    <select ng-model="vm.filtro.TipoMensaje" class="form-control">
+                                        <option value="" disabled selected hidden>Tipo Mensaje</option>
+                                        <option value="1">PopUp</option>
+                                        <option value="2">Disclaimer</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-2 padding-left-off" ng-if="vm.tieneColumna('Estado')">
+                                    <select ng-model="vm.filtro.EstadoMensaje" class="form-control">
+                                        <option value="" disabled selected hidden>Estado</option>
+                                        <option value="1">Activo</option>
+                                        <option value="2">Inactivo</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3 padding-left-off" ng-if="vm.tieneColumna('Restringe Acesso')" uib-tooltip="Mostrar solo mensajes con restricciones de acceso" tooltip-placement="auto">
+                                    <input type="checkbox" id="chkRestringir" ng-model="vm.filtro.TieneRestringeAcesso">
+                                    <label for="chkRestringir">Acceso restringido</label>
+                                </div>
+                            </div>
+                            <div class="col-md-2 text-right padding-off ">
+                                <button type="button" class="btn btn-filtro" ng-click="vm.buscar()" tooltip-placement="auto" uib-tooltip="Buscar">Buscar</button>
+                                <button type="button" class="btn btn-filtro" ng-click="vm.limpiarCamposFiltro()"  tooltip-placement="auto" uib-tooltip="Limpiar">Limpiar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--fim filtro-->
+            </div>
+            <div class="clearfix div-escopo">
+                <div class="row">
+                    <div class="col-xs-12" ng-if="vm.gridOptions.data.length">
+                        <div class="clearfix grid-icon" id="uigconsolamensajes" ui-grid="vm.gridOptions"
+                                ui-grid-resize-columns ui-grid-pagination>
+                        </div>
+                    </div>
+                    <div ng-if="!vm.gridOptions.data.length" class="text-center intro-help min-mh no-result-watermark">
+                        <h3> No hay ningún resultado para su búsqueda por el tipo de entidad {{ vm.tipoEntidad }} </h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

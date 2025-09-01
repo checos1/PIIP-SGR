@@ -1,0 +1,22 @@
+﻿<section ng-init="vm.obtener();">  
+    <div class="container-fluid inbox">
+        <div class="tab-content">
+            <div class="ui-accordion-container">
+                <div class="alert panel-heading row ui-accordion-header">
+                    <button type="button" data-toggle="collapse" data-target="#sgrocadpazsolicitarCtussolicitar" ng-click="vm.changeArrow('sgrocadpazsolicitarCtussolicitar')">
+                        <span class="d-inline-block" id="alert-sgrocadpazsolicitarCtussolicitar"></span>
+                        <span id="name-capitulo-sgrocadpazsolicitarCtussolicitar"></span>
+                        <span class="hidden" id="id-capitulo-sgrocadpazsolicitarCtussolicitar"></span>
+                        <span id="arrow-sgrocadpazsolicitarCtussolicitar" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#sgrocadpazsolicitarCtussolicitar"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="sgrocadpazsolicitarCtussolicitar">
+                    <solicitar-concepto-unico-sectorial-sgr guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                                 notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                 notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)">
+                    </solicitar-concepto-unico-sectorial-sgr>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

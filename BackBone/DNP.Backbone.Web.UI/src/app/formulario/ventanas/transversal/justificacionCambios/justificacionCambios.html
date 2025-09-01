@@ -1,0 +1,77 @@
+﻿<section>
+    <div class="container-fluid inbox" ng-init="vm.init();">
+        <div class="ui-accordion-container" ng-repeat="capitulo in vm.capitulosModificados">
+
+            <div class="alert panel-heading row ui-accordion-header">
+                <button type="button" data-toggle="collapse" data-target="#{{capitulo.NombreModificado}}" ng-click="vm.changeArrow(capitulo.NombreModificado)">
+                    <span class="d-inline-block" id="alert-{{capitulo.NombreModificado}}"></span> {{capitulo.Seccion}} - {{capitulo.Capitulo}}
+                    <span id="arrow-{{capitulo.NombreModificado}}" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#{{capitulo.NombreModificado}}"></span>
+                </button>
+            </div>
+            <div class="collapse" id="{{capitulo.NombreModificado}}">
+                <div class="row m-0" ng-switch="capitulo.NombreModificado">
+                    <input type="hidden" id="seccion-capitulo-{{capitulo.NombreModificado}}" value="{{capitulo.SeccionCapituloId}}" />
+
+                    <datosgeneralesrelacionconlapl ng-switch-when="datosgeneralesrelacionconlapl"
+                                                   notificacioncambios="vm.notificacionCambiosCapitulos(handler, nombreComponente)"
+                                                   notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                   notificacionvalidacion="vm.notificacionValidacionHijos(handler,capitulo.NombreModificado)"></datosgeneralesrelacionconlapl>
+
+                    <datosgeneraleshorizonte ng-switch-when="datosgeneraleshorizonte"
+                                             justificacioncapitulo="{{capitulo.Justificacion}}"
+                                             notificacioncambios="vm.notificacionCambiosCapitulos(handler, nombreComponente)"
+                                             notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                             notificacionvalidacion="vm.notificacionValidacionHijos(handler,capitulo.NombreModificado)"></datosgeneraleshorizonte>
+
+                    <datosgeneralesbeneficiarios ng-switch-when="datosgeneralesbeneficiarios"
+                                             justificacioncapitulo="{{capitulo.Justificacion}}"
+                                             notificacioncambios="vm.notificacionCambiosCapitulos(handler, nombreComponente)"
+                                             notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                             notificacionvalidacion="vm.notificacionValidacionHijos(handler,capitulo.NombreModificado)"></datosgeneralesbeneficiarios>
+
+                    <recursosfuentesdefinanc ng-switch-when="recursosfuentesdefinanc"
+                                             justificacioncapitulo="{{capitulo.Justificacion}}"
+                                             notificacioncambios="vm.notificacionCambiosCapitulos(handler, nombreComponente)"
+                                             notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                             notificacionvalidacion="vm.notificacionValidacionHijos(handler,capitulo.NombreModificado)"></recursosfuentesdefinanc>
+
+                    <datosgeneralesindicadoresdepr ng-switch-when="datosgeneralesindicadoresdepr"
+                                                   justificacioncapitulo="{{capitulo.Justificacion}}"
+                                                   notificacioncambios="vm.notificacionCambiosCapitulos(handler, nombreComponente)"
+                                                   notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                   notificacionvalidacion="vm.notificacionValidacionHijos(handler,capitulo.NombreModificado)"></datosgeneralesindicadoresdepr>
+
+                    <recursoscostosdelasacti ng-switch-when="recursoscostosdelasacti"
+                                             justificacioncapitulo="{{capitulo.Justificacion}}"
+                                             notificacioncambios="vm.notificacionCambiosCapitulos(handler, nombreComponente)"
+                                             notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                             notificacionvalidacion="vm.notificacionValidacionHijos(handler,capitulo.NombreModificado)">
+                    </recursoscostosdelasacti>
+
+                    <datosgeneraleslocalizaciones ng-switch-when="datosgeneraleslocalizaciones"
+                                                  justificacioncapitulo="{{capitulo.Justificacion}}"
+                                                  notificacioncambios="vm.notificacionCambiosCapitulos(handler, nombreComponente)"
+                                                  notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                  notificacionvalidacion="vm.notificacionValidacionHijos(handler,nombreComponente)"
+                                                  guardadoevent="vm.guardado(nombreComponenteHijo)">
+                    </datosgeneraleslocalizaciones>
+
+                    <recursosregionalizacion ng-switch-when="recursosregionalizacion"
+                                             justificacioncapitulo="{{capitulo.Justificacion}}"
+                                             notificacioncambios="vm.notificacionCambiosCapitulos(handler, nombreComponente)"
+                                             notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                             notificacionvalidacion="vm.notificacionValidacionHijos(handler,capitulo.NombreModificado)">
+                    </recursosregionalizacion>
+
+                    <focalizacioncategoriaspolit ng-switch-when="focalizacioncategoriaspolit"
+                                                 justificacioncapitulo="{{capitulo.Justificacion}}"
+                                                 notificacioncambios="vm.notificacionCambiosCapitulos(handler, nombreComponente)"
+                                                 notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                 notificacionvalidacion="vm.notificacionValidacionHijos(handler,capitulo.NombreModificado)">
+                    </focalizacioncategoriaspolit>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

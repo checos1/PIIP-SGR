@@ -1,0 +1,73 @@
+﻿<div ng-init="vm.inicialiazarAsociacion();">
+    <div class="ui-accordion-container " id="accordion-proyectoasociarproyecto">
+        <div class="alert panel-heading row ui-accordion-header">
+            <!--<button type="button" data-toggle="collapse" data-target="#asociarProyecto" ng-click="vm.changeArrow('proyectoasociarproyecto')">
+            <span class="d-inline-block" id="alert-proyectoasociarproyecto"></span>
+            <span id="name-capitulo-proyectoasociarproyecto"></span>
+            <span class="hidden" id="id-capitulo-proyectoasociarproyecto"></span>
+            <span id="arrow-proyectoasociarproyecto" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#proyectoasociarproyecto"></span>
+        </button>-->
+
+            <button type="button" data-toggle="collapse" data-target="#proyectoproyectosasociados" ng-click="vm.changeArrow(vm.nombreComponenteHijo)">
+                <span class="d-inline-block" id="alert-{{vm.nombreComponenteHijo}}"></span>
+                <span id="name-capitulo-{{vm.nombreComponenteHijo}}"></span>
+                <span class="hidden" id="id-capitulo-{{vm.nombreComponenteHijo}}"></span>
+                <span id="arrow-{{vm.nombreComponenteHijo}}" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#proyectoproyectosasociados"></span>
+            </button>
+
+        </div>
+        <div class="collapse" id="proyectoproyectosasociados">
+            <div class="row m-0 mb-3">
+                <br>
+                <div class="col-md-12 ">
+                    <asociar-Muchos-Proyectos-Formulario tipotramiteid="{{vm.tipotramiteid}}"
+                                                         tramiteid="{{vm.tramiteid}}"
+                                                         deshabilitar="{{vm.deshabilitar}}"
+                                                         rolanalista="{{vm.rolanalista}}"
+                                                         actualizacomponentes="vm.actualizacomponentes"
+                                                         nivel="{{vm.nivel}}"
+                                                         rol="{{vm.rol}}"
+                                                         section="{{vm.section}}"
+                                                         nombrecomponentepaso="{{vm.nombreComponenteHijo}}"
+                                                         guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                                         notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                         notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"
+                                                         callback="vm.callback()"
+                                                         deshabilitarconcepto="vm.deshabilitarConcepto(estado)"
+                                                         bpin="{{vm.bpin}}">
+                    </asociar-Muchos-Proyectos-Formulario>
+                </div>
+            </div>
+        </div>
+
+        <!--<div class="alert panel-heading row ui-accordion-header">
+
+            <button type="button" data-toggle="collapse" data-target="#informaciondistribuciones" ng-click="vm.changeArrow("proyectoinformaciondistribuciones")">
+                <span class="d-inline-block" id="alert-proyectoinformaciondistribuciones"></span>
+                <span id="name-capitulo-proyectoinformaciondistribuciones"></span>
+                <span class="hidden" id="id-capitulo-proyectoinformaciondistribuciones"></span>
+                <span id="arrow-proyectoinformaciondistribuciones" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#informaciondistribuciones"></span>
+            </button>
+
+        </div>
+        <div class="collapse" id="informaciondistribuciones">
+            <div class="row m-0 mb-3">
+                <br>
+                <div class="col-md-12 ">
+                    <informacion-distribuciones-formulario tipotramiteid="{{vm.tipotramiteid}}"
+                                                         tramiteid="{{vm.tramiteid}}"
+                                                         actualizacomponentes="{{vm.actualizacomponentes}}"
+                                                         nivel="{{vm.nivel}}"
+                                                         vm.nombrecomponentepaso="{{vm.nombrecomponentehijo}}"
+                                                         guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                                         notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                         notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"
+                                                         callback="vm.callback()">
+                    </informacion-distribuciones-formulario>
+                </div>
+            </div>
+        </div>-->
+    </div>
+</div>
+
+

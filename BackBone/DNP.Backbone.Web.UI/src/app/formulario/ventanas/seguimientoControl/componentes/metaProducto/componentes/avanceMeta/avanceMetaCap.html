@@ -1,0 +1,625 @@
+﻿<style>
+    .d-none {
+        display: none;
+    }
+
+    .content-title {
+        padding-left: 50px;
+    }
+
+    .content-ayuda {
+        font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif;
+        font-weight: 500;
+        font-style: normal;
+        font-size: 14px;
+        color: #4B4B4B;
+    }
+
+    .requiere-niveles {
+        padding: 3px 10px;
+        font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif;
+        font-weight: 500;
+        font-size: 16px;
+        color: #004884;
+        text-align: left;
+        background-color: rgba(230, 239, 253, 1);
+    }
+
+    .objetivo-header {
+        background-color: rgba(249, 252, 253, 1);
+        box-sizing: border-box;
+        border-width: 2px;
+        border-style: solid;
+        border-color: rgba(230, 239, 253, 1);
+        padding: 25px 10px 25px 55px;
+    }
+
+    .objetivo-header {
+        text-align: left;
+    }
+
+        .objetivo-header h4.header-titulo {
+            color: #004884;
+            font-family: 'Work Sans SemiBold Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            margin: 0
+        }
+
+        .objetivo-header p.header-content {
+            font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif;
+            font-weight: 400;
+            font-size: 16px;
+            color: #4B4B4B;
+            margin: 0;
+        }
+
+    .objetivo-productos .divAccordionDNP {
+        border-top: 0;
+        max-height: fit-content;
+    }
+
+    .indicadores .LineaEncabezadodivDNP {
+        margin-left: 15px;
+    }
+
+    .ico-check {
+        color: #004884;
+    }
+
+    .f-16 {
+        font-size: 16px;
+    }
+
+    .font-total {
+        font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif;
+        font-weight: 400;
+        color: #4B4B4B;
+    }
+
+    .font-Actividades {
+        font-family: 'Work Sans Medium', 'Work Sans Regular Roman', 'Work Sans', sans-serif;
+        font-weight: 500;
+        font-style: normal;
+        font-size: 16px;
+        color: #004884;
+        line-height: 22px;
+        margin-left: 97px !important;
+    }
+
+    .list-Actividades {
+        background-color: white;
+        box-sizing: border-box;
+        border-width: 2px;
+        border-style: solid;
+        border-color: rgba(230, 239, 253, 1);
+        border-radius: 0px;
+        font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif;
+        font-style: normal;
+        margin-left: 54px;
+        margin-right: 10px;
+    }
+
+    .progAct-list-Actividades-simples {
+        background-color: white;
+        box-sizing: border-box;
+        border-width: 2px;
+        border-style: solid;
+        border-color: rgba(230, 239, 253, 1);
+        border-radius: 0px;
+        font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif;
+        font-style: normal;
+    }
+
+    .divisor-Actividades {
+        border-width: 0px;
+        position: absolute;
+        left: 56px;
+        top: 12px;
+        width: 29px;
+        height: 17px;
+        background: inherit;
+        background-color: rgba(255, 255, 255, 1);
+        box-sizing: border-box;
+        border-width: 2px;
+        border-style: solid;
+        border-color: rgba(51, 102, 204, 1);
+        border-top: 0px;
+        border-right: 0px;
+        border-radius: 0px;
+        border-top-left-radius: 0px;
+        border-bottom-right-radius: 0px;
+        -moz-box-shadow: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
+
+    .contenedor-Actividades {
+        position: relative;
+    }
+
+    /* Modificaciones estructura */
+    .indicadores .tituloEncabezadodivDNP {
+        margin-left: 95px !important;
+        width: auto !important;
+    }
+
+    .indicadores-content .panel-headingAcc2DNP {
+        height: auto !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+
+    .indicadores-content .LineaEncabezado2divDNP {
+        margin-top: 0px !important;
+        margin-left: 16px !important;
+        width: 145px !important;
+    }
+
+    .indicadores-content .LineaEncabezado3divDNP {
+        margin-top: 0px !important;
+        margin-left: 16px !important;
+        width: 190px !important;
+    }
+
+    .indicadores-content .LineaEncabezado4divDNP {
+        margin-top: 0px !important;
+        margin-left: 16px !important;
+        width: 240px !important;
+    }
+
+    .indicadores-content .tituloEncabezadodiv2DNP {
+        margin-left: 145px !important;
+        width: auto !important;
+    }
+
+    .indicadores-content .tituloEncabezadodiv3DNP {
+        margin-left: 205px !important;
+        width: auto !important;
+    }
+
+    .indicadores-content .tituloEncabezadodiv4DNP {
+        margin-left: 255px !important;
+        width: auto !important;
+    }
+
+    .indicadores .btneditarDNP {
+        width: auto !important;
+    }
+
+    .nivel-sin-actividad {
+        height: 130px;
+        background-color: rgba(249, 252, 253, 1);
+        border-width: 2px;
+        border-style: solid;
+        border-color: rgba(230, 239, 253, 1);
+        border-radius: 0px;
+        -moz-box-shadow: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 14px;
+        color: #4B4B4B;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .title-actividades {
+        margin-bottom: 20px;
+    }
+
+    .align-selft-center {
+        align-self: center;
+    }
+
+    .d-flex {
+        display: flex;
+    }
+
+    .detalle-nivel-1 {
+        margin-left: 55px;
+    }
+
+        .detalle-nivel-1 > span {
+            margin-left: 0;
+        }
+
+    .detalle-nivel {
+        margin-left: 55px;
+    }
+
+        .detalle-nivel > span {
+            margin-left: 0;
+        }
+
+    .panelbtnalertAcordnp {
+        display: inline-flex;
+        margin: 10px;
+    }
+
+    .errores-contenedor {
+        margin: 15px 0 0 5px;
+    }
+
+    .detalle-actividad-cell {
+        height: 70px;
+        overflow-y: auto;
+    }
+
+    .actividad-width-80 {
+        width: 100px;
+    }
+
+    .actividad-width-180 {
+        width: 180px;
+    }
+
+    .actividad-width-90 {
+        width: 120px;
+    }
+</style>
+
+<section class="container-fluid inbox" ng-init="vm.init();">
+
+    <div class="row">
+        <br />
+        <div class="col-md-12">
+            <div class="col-md-1">
+
+            </div>
+            <div class="col-md-1">
+                <div class="divInfoAplicRADNP">
+                    <span><img src="Img/u2392.svg" />  Abierto</span>
+                </div>
+            </div>
+            <div class="col-md-1">
+
+            </div>
+            <div class="col-md-4" ng-repeat="listaPeriodosActivos in datosavanceMeta.ListaPeriodosActivos" style="padding-bottom:8px">
+                <div class="form-group editReferenciaDNP" style="text-align:center;padding-top:8px">
+                    <span><b>{{listaPeriodosActivos.Vigencia}}/{{listaPeriodosActivos.Mes}}.</b> {{listaPeriodosActivos.FechaDesde | date:'dd/MM/yyyy'}} - {{listaPeriodosActivos.FechaHasta | date:'dd/MM/yyyy'}}</span>
+                </div>
+            </div>
+            <div class="col-md-1">
+
+            </div>
+        </div>
+    </div>
+
+    <br />
+
+    <div class="pr-3" ng-repeat="objetivo in datosavanceMeta.Objetivos" ng-init="objetivoIndex = $index">
+        <div class="row" style="color: #004884">
+            <!-- Objetivos-->
+            <div class="objetivo-header">
+                <h4 class="header-titulo">
+                    Objetivo {{objetivo.NumeroObjetivo}}
+                </h4>
+                <p class="header-content">
+                    <span id="avanceMeta-objetivo-nombre-{{objetivoIndex}}-min"> {{objetivo.ObjetivoEspecificoCorto}}</span>
+                    <span class="hidden" id="avanceMeta-objetivo-nombre-{{objetivoIndex}}-max"> {{objetivo.ObjetivoEspecifico}}</span>
+                    <a id="avanceMeta-objetivo-nombre-{{objetivoIndex}}-val"
+                       ng-if="objetivo.ObjetivoEspecificoCorto != objetivo.ObjetivoEspecifico"
+                       ng-click="vm.verNombreCompleto('avanceMeta-objetivo-nombre-', objetivoIndex)">VER MÁS</a>
+                </p>
+            </div>
+            <!-- Productos-->
+            <div class="objetivo-productos" ng-repeat="producto in objetivo.Productos" ng-init="productoIndex = $index">
+                <div class="card card-body divAccordionDNP">
+                    <div class="content-title">
+                        <div class="mb-2">
+                            <span class="uLabelCampo">Producto {{producto.NumeroProducto}}</span>
+                            <span id="avanceMeta-producto-nombre-{{producto.ProductoId}}-min"> {{producto.NombreProductoCorto}}</span>
+                            <span class="hidden" id="avanceMeta-producto-nombre-{{producto.ProductoId}}-max"> {{producto.NombreProducto}}</span>
+                            <a id="avanceMeta-producto-nombre-{{producto.ProductoId}}-val"
+                               ng-if="producto.NombreProductoCorto !=producto.NombreProducto"
+                               ng-click="vm.verNombreCompleto('avanceMeta-producto-nombre-', producto.ProductoId)">VER MÁS</a>
+                        </div>
+                        <div class="mb-2">
+                            <span class="uLabelCampo">Etapa </span>
+                            <span>{{producto.Etapa}} </span>
+                            <span class="uLabelCampo">Costo total del producto </span>
+                            <span>$ {{producto.CostoProductoF}}</span>
+                            <!--<span class="uLabelCampo">Costo unitario </span>
+                            <span>{{producto.CostoUnitario | currency:"$"}}</span>
+                            <span class="uLabelCampo">Duración promedio en meses </span>
+                            <span>{{producto.DuracionPromedio}}</span>-->
+                            <span class="uLabelCampo">Fecha inicio </span>
+                            <span>{{producto.FechaInicio | date:'dd/MM/yyyy'}}</span>
+                            <span class="uLabelCampo">Fecha fin</span>
+                            <span>{{producto.FechaFin | date:'dd/MM/yyyy'}}</span>
+
+                        </div>
+                    </div>
+                    <div class="panelbtnalertAcordnp">
+                        <button id="button-{{producto.ProductoId}}"
+                                class="btnaccion btnAccordionDNP"
+                                type="button"
+                                data-toggle="collapse"
+                                data-target="#avanceMeta-indicadores-{{producto.ProductoId}}"
+                                ng-click="vm.abrilNivelProductoAvance('avanceMeta-'+producto.ProductoId, producto.ProductoId)">
+                            <img src="Img/btnMas.svg" id="avanceMeta-{{producto.ProductoId}}-mas">
+                            <img class="hidden" src="Img/btnMenos.svg" id="avanceMeta-{{producto.ProductoId}}-menos">
+                        </button>
+                        <span class="errores-contenedor d-none" id="error-button-avanceMeta-{{producto.ProductoId}}">
+                            <span class="img iconadverdnp"><img src="Img/u4630.svg"> </span>
+                            <span class="messagealerttableDNP" id="error-button-avanceMeta-{{producto.ProductoId}}-txt"></span>
+                        </span>
+                    </div>
+                </div>
+                <div ng-if="vm.avanceMetaProductoSeleccionado == producto.ProductoId">
+                    <!-- Indicadores -->
+                    <div class="collapse indicadores" id="avanceMeta-indicadores-{{producto.ProductoId}}">
+                        <div class="LineaEncabezadodivDNP mt-0"></div>
+                        <div class="inlineBlock">
+                            <div class="tituloEncabezadodivDNP">
+                                <span class="uLabelCampo">Indicadores</span>
+                                <span class="ml-4 font-total">Total: </span>
+                                <span>{{producto.TotalIndicadores}}</span>
+                            </div>
+                        </div>
+                        <div class="objetivo-header">
+
+                            <div ng-repeat="indicador in producto.Indicadores" ng-init="indicadorIndex = $index">
+
+                                <div class="card card-body divAccordionDNP">
+                                    <div class="content-title">
+                                        <div class="mb-2">
+                                            <span class="uLabelCampo">{{indicador.NombreTipoIndicador}}</span>
+                                            <span id="avanceMeta-indicador-nombre-{{indicador.IndicadorId}}-min"> {{indicador.NombreIndicadorCorto}}</span>
+                                            <span class="hidden" id="avanceMeta-indicador-nombre-{{indicador.IndicadorId}}-max"> {{indicador.NombreIndicador}}</span>
+                                            <a id="avanceMeta-indicador-nombre-{{indicador.IndicadorId}}-val"
+                                               ng-if="indicador.NombreIndicadorCorto !=indicador.NombreIndicador"
+                                               ng-click="vm.verNombreCompleto('avanceMeta-indicador-nombre-', indicador.IndicadorId)">VER MÁS</a>
+                                        </div>
+                                        <div class="mb-2">
+                                            <span class="uLabelCampo">Unidad de medida</span>
+                                            <span>{{indicador.UnidadMedidaIndicador}}</span>
+                                            <span class="uLabelCampo">Meta total</span>
+                                            <span>{{indicador.MetaTotalIndicadorF}}</span>
+                                            <span class="uLabelCampo">Es acumulativo</span>
+                                            <span>{{indicador.EsAcumulativo}}</span>
+                                            <span class="buttonbar pull-right">
+                                                <span class="uLabelCampo">Total avance reportado</span>
+                                                <span>&nbsp;</span>
+                                                <br />
+                                                <span class="textrightDNP">{{indicador.TotalAvanceReportadoF}}</span>
+                                                <span>&nbsp;</span>
+                                            </span>
+
+                                        </div>
+                                    </div>
+
+
+                                    <div class="panelbtnalertAcordnp">
+                                        <button id="button-{{indicador.IndicadorId}}"
+                                                class="btnaccion btnAccordionDNP"
+                                                type="button"
+                                                data-toggle="collapse"
+                                                data-target="#avanceMeta-indicadordetalle-{{indicador.IndicadorId}}"
+                                                ng-click="vm.abrilNivelIndicadorMeta('avanceMeta-'+indicador.IndicadorId, indicador.IndicadorId)">
+                                            <img src="Img/btnMas.svg" id="avanceMeta-{{indicador.IndicadorId}}-mas">
+                                            <img class="hidden" src="Img/btnMenos.svg" id="avanceMeta-{{indicador.IndicadorId}}-menos">
+                                        </button>
+                                        <span class="errores-contenedor d-none" id="error-button-avanceMeta-{{indicador.IndicadorId}}">
+                                            <span class="img iconadverdnp"><img src="Img/u4630.svg"> </span>
+                                            <span class="messagealerttableDNP" id="error-button-avanceMeta-{{indicador.IndicadorId}}-txt"></span>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div ng-if="vm.avanceMetaIndicadorSeleccionado == indicador.IndicadorId">
+                                    <div class="collapse indicadores" id="avanceMeta-indicadordetalle-{{indicador.IndicadorId}}">
+                                        <div class="LineaEncabezadodivDNP mt-0"></div>
+                                        <div class="inlineBlock">
+                                            <div class="tituloEncabezadodivDNP">
+                                                <span class="uLabelCampo">Detalle {{indicador.NombreTipoIndicador}}</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-12" ng-if="!vm.soloLectura">
+                                                <h3 class="text-left ui-seccion-title mb-5">
+                                                    <span class="uLabelCampo">Avance  {{indicador.NombreTipoIndicador}}</span>
+                                                    <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg" ng-click="vm.abrirMensajeQueEsEsto(1,indicador.TextoToolTipAvance)">
+
+                                                    <span class="buttonbar pull-right">
+                                                        <!--<button id="Editar"-->
+                                                        <button type="button" class="btneditarDNP" tooltip-placement="top" ng-click="indicador.HabilitaEditarIndicador ? vm.Cancelar(indicador) : vm.Editar(indicador)" uib-tooltip="{{indicador.HabilitaEditarIndicador ? 'CANCELAR' : 'EDITAR'}}">
+                                                            {{indicador.HabilitaEditarIndicador ? 'CANCELAR' : 'EDITAR'}}
+                                                        </button>
+                                                        &nbsp;
+                                                        <!--<button id="Guardar"-->
+                                                        <button ng-disabled="!indicador.HabilitaEditarIndicador" type="button" class="{{indicador.HabilitaEditarIndicador ? 'btnguardarDNP' : 'btnguardarDNP'}}" tooltip-placement="top" uib-tooltip="Guardar" tabindex="0" ng-click="vm.Guardar(indicador)">
+                                                            GUARDAR
+                                                        </button>
+                                                    </span>
+                                                </h3>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="alert panel-heading">
+                                                <table class="TableDNP">
+
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="columAcc"></th>
+                                                            <th class="textRightDNP"><span class="uLabelCampo">Vigencia/Periodo</span></th>
+                                                            <th class="textRightDNP">Meta programada para la vigencia</th>
+                                                            <th class="textRightDNP">Acumulado al mes anterior</th>
+                                                            <th class="textRightDNP">Avance ejecutado en el mes</th>
+                                                            <th class="textLeftDNP">Observación</th>
+                                                            <th class="columAcc"></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr ng-repeat="vigenciaperiodo in indicador.PeriodosActivos" ng-init="vigenciaperiodoindex = $index">
+                                                            <td></td>
+                                                            <td class="textRightDNP">
+                                                                <input type="text" class="form-control editInputDNP " style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px" disabled value="{{vigenciaperiodo.Vigencia}}/{{vigenciaperiodo.Mes}}" />
+                                                            </td>
+                                                            <td class="textRightDNP"><input type="text" class="form-control editInputDNP " style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px" disabled value="{{vigenciaperiodo.CantidadProgramadaF}}" /></td>
+                                                            <!--<td ng-if="!indicador.EsPrincipal" class="textRightDNP">N/A</td>-->
+                                                            <td ng-if="!indicador.EsPorcentaje" class="textRightDNP"><input type="text" class="form-control editInputDNP " style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px" disabled value="{{vigenciaperiodo.AcumuladoMesAnteriorF}}" /></td>
+                                                            <td ng-if="indicador.EsPorcentaje" class="textRightDNP"><input type="text" class="form-control editInputDNP " style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px" disabled />N/A</td>
+                                                            <td class="textRightDNP">
+                                                                <div class="blockReferenciaDNP" ng-if="!indicador.HabilitaEditarIndicador">{{vigenciaperiodo.CantidadEjecutadaF}}</div>
+                                                                <input id="{{indicador.IndicadorId}}-{{vigenciaperiodo.Vigencia}}-{{vigenciaperiodo.PeriodosPeriodicidadId}}" type="number" string-to-number min="0.0000"
+                                                                       ng-keypress="vm.validateFormat($event)"
+                                                                       ng-keyup="vm.validarTamanio($event)"
+                                                                       ng-value="vigenciaperiodo.CantidadEjecutada"
+                                                                       ng-model="datosavanceMeta.Objetivos[objetivoIndex].Productos[productoIndex].Indicadores[indicadorIndex].PeriodosActivos[vigenciaperiodoindex].CantidadEjecutada"
+                                                                       ng-blur="vm.actualizaFila($event, indicador)"
+                                                                       ng-if="indicador.HabilitaEditarIndicador"
+                                                                       required class="form-control editInputDNP" style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px" />
+
+                                                            </td>
+                                                            <td class="textLeftDNP">
+                                                                <textarea id="{{indicador.IndicadorId}}-{{vigenciaperiodo.Vigencia}}-{{vigenciaperiodo.PeriodosPeriodicidadId}}"
+                                                                          ng-value="vigenciaperiodo.Observacion"
+                                                                          ng-model="datosavanceMeta.Objetivos[objetivoIndex].Productos[productoIndex].Indicadores[indicadorIndex].PeriodosActivos[vigenciaperiodoindex].Observacion"
+                                                                          minlength="2"
+                                                                          maxlength="58000"
+                                                                          placeholder="Ingrese la observación del avance en el periodo."
+                                                                          ng-disabled="!indicador.HabilitaEditarIndicador"
+                                                                          ng-blur="vm.actualizaObservacion(indicador)"
+                                                                          required class="textareObservaDNP" style="text-align:left;padding: 0px 5px 0px 5px;margin-left: 5px" />
+                                                            </td>
+                                                            <td></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <h3 class="text-left ui-seccion-title mb-5">
+                                                    <span class="uLabelCampo">Resumen {{indicador.NombreTipoIndicador}}</span>
+                                                    <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg" ng-click="vm.abrirMensajeQueEsEsto(2,indicador.TextoToolTipResumen)">
+
+                                                </h3>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row">
+                                            <div class="alert panel-heading">
+                                                <table class="TableDNP">
+
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="columAcc"></th>
+                                                            <th class="textRightDNP"><span class="uLabelCampo">Vigencia</span></th>
+                                                            <th class="textRightDNP">Meta programada para la vigencia</th>
+                                                            <th class="textRightDNP">Avance total a la vigencia</th>
+                                                            <th class="columAcc"></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody ng-repeat="resumenperiodo in indicador.ResumenCantidades" ng-init="resumenperiodoindex = $index">
+                                                        <tr>
+                                                            <td class="columAcc"
+                                                                style="background: transparent">
+                                                                <button class="btnaccion btnAccordionDNP"
+                                                                        style="margin-left: -5px"
+                                                                        type="button"
+                                                                        ng-click="vm.abrilNivelVigenciaMeta('avanceMeta-'+indicador.IndicadorId+'-'+resumenperiodo.Vigencia, resumenperiodo.Vigencia)"
+                                                                        data-toggle="collapse"
+                                                                        data-target="#avanceMeta-indicadordetalleresumen-{{indicador.IndicadorId}}-{{resumenperiodo.Vigencia}}">
+                                                                    <img src="Img/btnMas.svg" id="avanceMeta-{{indicador.IndicadorId}}-{{resumenperiodo.Vigencia}}-mas">
+                                                                    <img class="hidden" src="Img/btnMenos.svg" id="avanceMeta-{{indicador.IndicadorId}}-{{resumenperiodo.Vigencia}}-menos">
+                                                                </button>
+                                                                <span class="errores-contenedor d-none" id="error-button-avanceMeta-{{resumenperiodo.Vigencia}}">
+                                                                    <span class="img iconadverdnp"><img src="Img/u4630.svg"> </span>
+                                                                    <span class="messagealerttableDNP" id="error-button-avanceMeta-{{resumenperiodo.Vigencia}}-txt"></span>
+                                                                </span>
+
+                                                            </td>
+                                                            <td class="textRightDNP">  <input type="text" class="form-control editInputDNP " style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px" disabled value="{{resumenperiodo.Vigencia}}" />   </td>
+                                                            <td class="textRightDNP"><input type="text" class="form-control editInputDNP " style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px" disabled value="{{resumenperiodo.MetaProgramadaVigenciaF}}" /></td>
+                                                            <!--<td ng-if="!indicador.EsPrincipal" class="textRightDNP">N/A</td>-->
+                                                            <td class="textRightDNP"><input type="text" class="form-control editInputDNP " style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px" disabled value="{{resumenperiodo.AcumuladoVigenciaF}}" /></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr ng-if="vm.avanceMetaVigenciaSeleccionada == resumenperiodo.Vigencia" class="no-border collapse alert panel-heading" id="avanceMeta-indicadordetalleresumen-{{indicador.IndicadorId}}-{{resumenperiodo.Vigencia}}">
+                                                            <td colspan="5" class="p-0">
+                                                                <div class="LineaEncabezadodivDNP mt-0"></div>
+                                                                <div class="inlineBlock">
+                                                                    <div class="tituloEncabezadodivDNP">
+                                                                        <span class="uLabelCampo">Detalle </span>
+                                                                        <span>{{resumenperiodo.Vigencia}}</span>
+                                                                    </div>
+                                                                </div>
+                                                                <table class="TableDNP no-border">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th class="columAcc"></th>
+                                                                            <th class="textRightDNP" style="width: 136px;"><span>Periodo </span></th>
+                                                                            <th class="textRightDNP" style="width: 260px;"><span>Meta programada para el mes</span></th>
+                                                                            <th class="textRightDNP" style="width: 260px;"><span>Avance ejecutado para el mes</span></th>
+                                                                            <th class="textLeftDNP" style="width: 260px;"><span>Observación</span></th>
+                                                                            <th class="columAcc"></th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody ng-repeat="detalleVigencia in resumenperiodo.DetalleVigencia" ng-init="detalleVigenciaindex = $index">
+                                                                        <tr>
+                                                                            <td></td>
+                                                                            <td class="textRightDNP"><input type="text" class="form-control editInputDNP " style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px" disabled value="{{detalleVigencia.Mes}}" /></td>
+                                                                            <td class="textRightDNP"><input type="text" class="form-control editInputDNP " style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px" disabled value="{{detalleVigencia.MetaProgramadaMesF}}" /></td>
+                                                                            <!--<td ng-if="!indicador.EsPrincipal" class="textRightDNP">N/A</td>-->
+                                                                            <td class="textRightDNP"><input type="text" class="form-control editInputDNP " style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px" disabled value="{{detalleVigencia.AvanceEjecutadoMesF}}" /></td>
+                                                                            <td class="textLeftDNP">
+                                                                                <textarea id="{{indicador.IndicadorId}}-{{resumenperiodo.Vigencia}}-{{detalleVigencia.PeriodoPeriodicidadId}}"
+                                                                                          ng-value="detalleVigencia.Observacion"
+                                                                                          ng-model="datosavanceMeta.Objetivos[objetivoIndex].Productos[productoIndex].Indicadores[indicadorIndex].ResumenCantidades[resumenperiodoindex].DetalleVigencia[detalleVigenciaindex].Observacion"
+                                                                                          minlength="2"
+                                                                                          maxlength="58000"
+                                                                                          ng-disabled="true"
+                                                                                          cols="55"
+                                                                                          required class="textareObservaDNP" style="text-align:left;padding: 0px 5px 0px 5px;margin-left: 7px" />
+                                                                            </td>
+                                                                            <td class="columAcc"></td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                    <tfoot>
+                                                                        <tr>
+                                                                            <td class="columAcc" style="font-family: 'Work Sans SemiBold Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 600; font-style: normal; font-size: 30px; color: rgba(50, 102, 204, 0.996078431372549);"><span style="margin-top: 55%">=</span></td>
+                                                                            <td class="textRightDNP"><span>Total</span></td>
+                                                                            <td class="textRightDNP"><input type="text" class="form-control editInputDNP " style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 500; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px" disabled value="{{resumenperiodo.TotalMetaProgramadaF}}" /></td>
+                                                                            <!--<td ng-if="!indicador.EsPrincipal" class="textRightDNP">N/A</td>-->
+                                                                            <td class="textRightDNP"><input type="text" class="form-control editInputDNP " style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 500; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px" disabled value="{{resumenperiodo.TotalMetaEjecutadaF}}" /></td>
+                                                                            <td></td>
+                                                                        </tr>
+                                                                    </tfoot>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+
+    </div>
+</section>	

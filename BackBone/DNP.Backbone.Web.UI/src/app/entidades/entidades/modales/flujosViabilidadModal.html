@@ -1,0 +1,74 @@
+<modal-dialog cerrar="vm.cerrar" guardar="vm.guardar">
+    <div class="row ">
+        <div class="col-md-12">
+            <div class="titulo-modal">
+                <span>MATRIZ DE FLUJO - <span class="tipo-entidad-cor">{{vm.entidad.tipoEntidad}}</span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="input-group mb-3 p-1">
+                <div class="input-group-prepend">
+                    <span class="input-group-text bg-light rounded-left-2">Entdad</span>
+                </div>
+                <span class="form-control rounded-right-2">{{vm.entidad.nombreCompleto}}</span>
+            </div>
+        </div>
+        <div ng-repeat="item in vm.flujo.itens">
+            <div class="col-md-11 ">
+                <div class="col-md-2 p-1">
+                    <select class="form-control" ng-model="item.tipoId">
+                        <option value="" disabled selected hidden>Tipo flujo</option>
+                        <option value="bc154cba-50a5-4209-81ce-7c0ff0aec2ce" selected>Proyecto</option>
+                        <option value="9c5ef8c1-da05-48b9-ba29-00c9efd7a774">Tramite</option>
+                    </select>
+                </div>
+                <div class="col-md-2 p-1">
+                    <select class="form-control" ng-model="item.faseGuid">
+                        <option value="" disabled selected hidden>Fase</option>
+                        <option ng-repeat="fase in vm.entidad.listaFase" ng-value="fase.FaseGUID">{{ fase.NombreFase }} </option>
+                    </select>
+                </div>
+                <div class="col-md-2 p-1">
+                    <select class="form-control" ng-model="item.idCRType">
+                        <option value="" disabled selected hidden>Cr del Proyecto</option>
+                        <option ng-repeat="cr in vm.entidad.listaCRType" ng-value="cr.Id">{{ cr.Description }} </option>
+                    </select>
+                </div>
+                <div class="col-md-2 p-1">
+                    <select ng-model="item.idSector" class="form-control rounded-right-2">
+                        <option value="" disabled selected hidden>Sector</option>
+                        <option ng-repeat="sector in vm.entidad.listaSector" ng-value="sector.SectorNegocioId">{{sector.Nombre}}</option>
+                    </select>
+                </div>
+                <div class="col-md-2 p-1">
+                    <select ng-model="item.idRol" class="form-control rounded-right-2">
+                        <option value="" disabled selected hidden>Rol</option>
+                        <option ng-repeat="rol in vm.entidad.listaRoles" ng-value="rol.IdRol">
+                            {{rol.Nombre}}
+                        </option>
+                    </select>
+                </div>
+                <div class="col-md-2 p-1">
+                    <select ng-model="item.idEntidadEjecutora" class="form-control rounded-right-2">
+                        <option value="" ng-selected="item.idEntidadEjecutora == null" >Entidad Ejecutora</option>
+                        <option ng-repeat="ent in vm.entidad.listaEntidades" ng-value="ent.EntityTypeCatalogOptionId">
+                           {{ent.Entidad}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-1 p-0 mt-2">
+                <button class="btnaccion" ng-click="vm.adicionarFlujo()" tooltip-placement="Auto" uib-tooltip="Agregar nuevo Item">
+                    <span><img src="Img/iconsgrid/iconAccionAdicionar.png"></span>
+                </button>
+                <button class="btnaccion" ng-click="vm.removerFlujo($index)" tooltip-placement="Auto" uib-tooltip="Eliminar Item">
+                    <span><img src="Img/iconsgrid/iconAccionEliminar.png"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+</modal-dialog>

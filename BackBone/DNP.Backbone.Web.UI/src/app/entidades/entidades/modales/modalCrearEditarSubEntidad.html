@@ -1,0 +1,26 @@
+﻿<modal-dialog cerrar="vm.cerrar" guardar="vm.guardarEntidad">
+    <div class="row ">
+        <div class="col-md-12">
+            <div class="titulo-modal">
+                <span>{{vm.objEntidad.titulo}} - <span class="tipo-entidad-cor">{{vm.objEntidad.tipoEntidad}}</span></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- #region Body Nacional -->
+    <ng-include src="'src/app/entidades/entidades/modales/bodyModales/bodyModalSubEntidadNacional.html'" ng-if="vm.objEntidad.tipoEntidad == 'Nacional'"></ng-include>
+    <!-- #endregion -->
+    <!-- #region Body Territorial -->
+    <ng-include src="'src/app/entidades/entidades/modales/bodyModales/bodyModalSubEntidadTerritorial.html'" ng-if="vm.objEntidad.tipoEntidad == 'Territorial'"></ng-include>
+    <!-- #endregion -->
+    <!-- #region Body SGR -->
+    <ng-include src="'src/app/entidades/entidades/modales/bodyModales/bodyModalSubEntidadSgr.html'" ng-if="vm.objEntidad.tipoEntidad == 'SGR'"></ng-include>
+    <!-- #endregion -->
+    <!-- #region Body Publicas -->
+    <ng-include src="'src/app/entidades/entidades/modales/bodyModales/bodyModalSubEntidadPublicas.html'" ng-if="vm.objEntidad.tipoEntidad == 'Publicas'"></ng-include>
+    <!-- #endregion -->
+    <!-- #region Body Privadas -->
+    <ng-include src="'src/app/entidades/entidades/modales/bodyModales/bodyModalSubEntidadPrivadas.html'" ng-if="vm.objEntidad.tipoEntidad == 'Privadas'"></ng-include>
+    <!-- #endregion -->
+
+</modal-dialog>

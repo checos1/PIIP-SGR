@@ -1,0 +1,195 @@
+﻿<div class="container-fluid inbox" ng-init="vm.init();">
+
+    <!--<div class="row rowbotonesicoDNP">
+
+        <div class="col-md-12 text-right nopadding">
+            <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Limpiar">
+                <span> <img class="icoBusquedasDNP" src="Img/IcolimpiarBusqD.svg"></span>
+            </button>
+            <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Limpiar">
+                <span> <img class="icoBusquedasDNP" src="Img/IcolimpiarBusq.svg"></span>
+            </button>
+            <button tooltip-class="customClass" uib-tooltip="Buscar" class="btnicobuscarDNP" type="button" data-toggle="collapse" data-target="#IdPanelBuscador" ng-click="vm.changeArrow2('IdPanelBuscador')">
+                <span> <img id="arrow-IdPanelBuscador" class="icoBusquedas2DNP glyphicon-chevron-down-busqDNP" src="Img/IcoBusqDow.svg" data-toggle="collapse" data-target="#IdPanelBuscador"></span>
+            </button>
+            <button class="btnaccion">
+                <span> <img class="icoBusquedasDNP" src="Img/etapas/u1089.svg"></span>
+            </button>
+            <button class="btnaccion">
+                <span> <img class="icoBusquedasDNP" src="Img/etapas/u1090.svg"></span>
+            </button>
+        </div>
+    </div>
+    <br />-->
+    <div class="row panelbuscadorDNP collapse in" id="IdPanelBuscador">
+
+        <div class="row">
+
+            <div class="col-md-4">
+                <div class="labelbuscadorDNP"> <span>Sector</span></div>
+                <select class="form-control selectDNP" required>
+                    <option value="" selected>Seleccione...</option>
+                    <option ng-value="1">Valor 1</option>
+                </select>
+            </div>
+
+            <div class="col-md-2">
+                <div class="labelbuscadorDNP"> <span>Código entidad <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg"></span></div>
+                <input type="text" class="form-control InputBuscadorDNP" />
+            </div>
+            <div class="col-md-4">
+                <div class="labelbuscadorDNP"> <span>Nombre de la entidad</span></div>
+                <input type="text" class="form-control InputBuscadorDNP" placeholder="Escriba palabra o frase" />
+            </div>
+
+            <div class="col-md-2">
+                <div class="labelbuscadorDNP"></div>
+                <span class="pull-right">
+                    <button type="button" class=" btnBuscarDNP " tooltip-class="customClass" uib-tooltip="Buscar">
+                        BUSCAR
+                    </button>
+                </span>
+            </div>
+        </div>
+        <div class="" style="height:20px">
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 pull-left text-left">
+                <span class="spanresultadobusquedaDNP pull-left" ng-if="vm.MostrarBuscar == true">
+                    Se encontraron {{vm.totalResultados}} resultados.
+                </span>
+                <span class="spanresultadobusqueda2DNP pull-left" style="margin-top: 0px;" ng-if="vm.MostrarSinResultados == true">
+                    No se encontraron resultados.
+                </span>
+            </div>
+
+        </div>
+    </div>
+
+    <!--<br />
+    <span class="buttonbar pull-right">
+        <button type="button" class=" btneditarDNP">
+            EDITAR
+        </button>
+
+        <button type="button" class="  btnguardarDNP">
+            GUARDAR
+        </button>
+        <button type="button" class="  btnguardarDisabledDNP" disabled>
+            GUARDAR
+        </button>
+    </span>-->
+
+    <br />
+
+    <div class="" style="height:20px">
+    </div>
+
+    <table class="TableDNP">
+        <thead>
+            <tr>
+                <th class="columAcc"></th>
+                <th class="textLeftDNP">Sector</th>
+                <th class="textLeftDNP">Código / Entidad</th>
+                <th class="textRightDNP">Valor por recursos nación CSF</th>
+                <th class="textRightDNP">Valor por recursos nación SSF</th>
+                <th class="textRightDNP">Valor por recursos propios</th>
+                <th class="columAcc"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="cuota in vm.listaCuotas.ValoresCuotaEntidad">
+                <td></td>
+                <td>{{cuota.Sector}}</td>
+                <td>{{cuota.Codigo}}/{{cuota.Entidad}}</td>
+                <td class="textRightDNP">{{cuota.NacionCSF | number:2}}</td>
+                <td class="textRightDNP">{{cuota.NacionSSF | number:2}}</td>
+                <td class="textRightDNP">{{cuota.Propios | number:2}}</td>
+                <td></td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td class="columAcc icontotaldnp"><span>=</span></td>
+                <td class="textRightDNP" colspan="2"><span>Total $</span></td>
+                <td class="textRightDNP">
+                    <input type="text" class="form-control editInputDNP " disabled value="{{vm.listaCuotas.TotalNacionCSF | number:2}}" />
+                </td>
+                <td class="textRightDNP">
+                    <input type="text" class="form-control editInputDNP " disabled value="{{vm.listaCuotas.TotalNacionSSF | number:2}}" />
+                </td>
+                <td class="textRightDNP">
+                    <input type="text" class="form-control editInputDNP " disabled value="{{vm.listaCuotas.totalPropios | number:2}}" />
+                </td>
+                <td></td>
+            </tr>
+        </tfoot>
+    </table>
+
+
+    <div class="row">
+        <div class="col-md-12 DetacolumnDNP">
+            <span>
+                Archivo plantilla carga masiva <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg">
+            </span>
+            <button type="button" class="btn btn-link btn-md buttonhiperDNP" ng-click="vm.descargarPlantila()">
+                DESCARGAR PLANTILLA
+            </button>
+        </div>
+    </div>
+
+    <div class="row" ng-if="vm.MostrarErrores == true">
+
+        <div class="col-md-12 DetacolumnDNP">
+            <span style="color:red">
+                Errores carga masiva <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg">
+            </span>
+            <button type="button" class="btn btn-link btn-md buttonhiperDNP" ng-click="vm.exportarCuotaCargaMasivaExcelErrores()">
+                DESCARGAR ARCHIVO DE ERRORES
+            </button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8">
+            <div class="divpanelcargarchivoDNP" style="">
+
+                <button class="btncargarch" type="button" uib-tooltip="Editar" ng-click="vm.adjuntarArchivo()">
+                    EXAMINAR
+                </button>
+                <input type="file" style="display:none" id="filecuotaCargaMasiva" name='filescuotaCargaMasiva[]' onchange="angular.element(this).scope().filecuotaCargaMasivaNameChanged(this)" accept=".xlsx, .xls, .csv" multiple />
+                <input type="search" style="display:none" id="cuotaCargaMasivanombrearchivo" ng-model="vm.nombrearchivo" class="form-control InputSearchDNP " placeholder="" ng-change="ChangeCuotaCargaMasivaSet()">
+                <span>{{vm.nombrearchivo}}</span>
+                <button class="btncancearch" type="button" uib-tooltip="Cancelar" ng-click="vm.limpiarArchivo()">
+                    X
+                </button>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <span class="buttonbar pull-right">
+                <button id="btnCuotaCargaMasivaValidarArchivo" type="button" class="btn btnguardarDNP" tooltip-placement="top" uib-tooltip="Editar" tabindex="0" ng-click="vm.validarArchivo()">
+                    VALIDAR
+                </button>
+                <button id="btnCuotaCargaMasivaLimpiarArchivo" type="button" class="btn btnguardarDNP" tooltip-placement="top" uib-tooltip="Cancelar" tabindex="0" ng-click="vm.limpiarArchivo()">
+                    CANCELAR
+                </button>
+                <button id="btnCuotaCargaMasivaArchivoSeleccionado" class="btn btnguardarDNP" type="button" tooltip-placement="top" uib-tooltip="Guardar" tabindex="0" ng-click="vm.RegistrarCargaMasivaCuotas()">
+                    CARGAR
+                </button>
+            </span>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 DetacolumnDNP">
+            <span class="detapregun">
+                Nota:
+            </span>
+            <span class="notapregun">
+                Los datos cargados previamente en las entidades se reescribiran si se realiza una carga masiva
+            </span>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,499 @@
+﻿<div style="margin-left:20px;" class="container-fluid inbox" ng-init="vm.init();">
+    <div ng-if="datos == null">
+        <div class="col-md-12" style="padding-bottom: 55px !important;padding-right: 4rem !important">
+            <div id="u5226_div" class="divPanelPregRespDNP" style="width: 100% !important">
+                <div class="respAdon" style="width: 100% !important">
+                    <span style="vertical-align: middle; display: table-cell;font-style: normal; font-size: 15px; color:black">No se encontraron autorizaciones de liberación de valores utilizados verificadas</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-if="datos != null">
+        <div ng-repeat="corrientes in datos.TramitesVerificadosCorrientes" ng-init="generallibvfIndex = $index">
+            <div class="row" style="color: #004884">
+                <div class="" style="padding: 0 !important">
+                    <div class="alert panel-heading" style="height: 50px;">
+                        <div class="card card-body pull-left  divAccordionDNP" style="max-height:250px;">
+                            <p style="line-height: 1.1; margin-left: 55px">
+                                <span style="font-weight: 500; font-style: normal; font-size: 16px; color: #004884"><strong>Código proceso: </strong></span> {{corrientes.CodigoProceso}}. <span style="font-weight: 500; font-style: normal; font-size: 16px; color: #004884"><strong>Fecha autorización: </strong></span> {{vm.convertToDate(corrientes.FechaAutorizacion) | date: 'dd/MM/yyyy'}}.
+                                <span style="font-weight: 500; font-style: normal; font-size: 16px; color: #004884"><strong>Código autorización: </strong></span> {{corrientes.CodigoAutorizacion}}.
+                            </p>
+
+                            <p style="padding: 0px; margin-bottom: 0px;">
+                                <button class="btnaccion btnAccordionDNP" type="button" data-toggle="collapse" data-target="#generalvf{{corrientes.TramiteLiberarId}}" ng-click="vm.changeBoton(corrientes)" data="{{corrientes}}">
+
+                                    <img ng-show="corrientes.LabelBoton == '+'" src="Img/btnMas.svg">
+                                    <img ng-show="corrientes.LabelBoton == '-'" src="Img/btnMenos.svg">
+                                </button>
+
+                                <div id="validacion-VUPTL003-{{corrientes.TramiteLiberarId}}" class="hidden text-left color-red"></div>
+                            </p>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="collapse" id="generalvf{{corrientes.TramiteLiberarId}}">
+                        <div class="LineaEncabezadodivDNP"></div>
+                        <h3 class="row tituloEncabezadodivDNP">Valores de vigencias futura por proceso</h3>
+                        <div class="row col-md-12">
+                            <div class="alert panel-heading">
+                                <table class="TableDNP">
+                                    <thead>
+                                        <tr>
+                                            <th class="columAcc"></th>
+                                            <th class="textRightDNP">Vigencia</th>
+                                            <th class="textRightDNP">Valor solicitado $</th>
+                                            <th class="textRightDNP">Total valor utilizado $</th>
+                                            <th class="textRightDNP">Valor utilizado por producto $</th>
+                                            <th class="columAcc"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="resumencorrientes in corrientes.ResumenValoresCorrientes" ng-init="corrientesprocesoindex = $index">
+                                            <td></td>
+                                            <td class="textRightDNP">{{resumencorrientes.Vigencia}}</td>
+                                            <td class="textRightDNP">{{vm.ConvertirNumero(resumencorrientes.ValorSolicitado)}}</td>
+                                            <td class="textRightDNP">{{vm.ConvertirNumero(resumencorrientes.ValorTotalUtilizados)}}</td>
+                                            <td class="textRightDNP">{{vm.ConvertirNumero(resumencorrientes.ValorUtilizadoPorProductos)}}</td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td class="columAcc" style="font-family: 'Work Sans SemiBold Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 600; font-style: normal; font-size: 30px; color: rgba(50, 102, 204, 0.996078431372549);"><span style="margin-top: 55%">=</span></td>
+                                            <td class="textRightDNP"><span>Total $</span></td>
+                                            <td class="textRightDNP">
+                                                <span style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 500; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px">{{vm.ConvertirNumero(corrientes.TotalValorSolicitado)}}</span>
+                                            </td>
+                                            <td class="textRightDNP">
+                                                <span style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 500; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px">{{vm.ConvertirNumero(corrientes.TotalValorTotalUtilizados)}}</span>
+                                            </td>
+                                            <td class="textRightDNP">
+                                                <span style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 500; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px">{{vm.ConvertirNumero(corrientes.TotalValorUtilizadoPorProductos)}}</span>
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                        <br />
+                        <br />
+                        <div ng-repeat="objetivo in corrientes.DetalleObjetivosCorrientes" ng-init="objetivolibvfIndex = $index" class="row col-md-12">
+                            <h2>Objetivo {{objetivolibvfIndex + 1 }}</h2>
+                            <span>{{objetivo.Objetivo}}</span>
+                            <br />
+                            <div ng-repeat="producto in objetivo.DetalleProductosCorrientes" ng-init="productolibvfIndex = $index" class="row col-md-12">
+                                <div class="row" style="color: #004884">
+                                    <div class="" style="padding: 0 !important">
+                                        <div class="alert panel-heading" style="height: 50px;">
+                                            <div class="card card-body pull-left  divAccordionDNP" style="line-height:22px;">
+                                                <p style="line-height: 1.1; margin-left: 50px">
+                                                    <span style="font-weight: 500; font-style: normal; font-size: 16px; color: #004884"><strong>Producto {{productolibvfIndex + 1}}. </strong></span> {{producto.NombreProducto}}. <span style="font-weight: 500; font-style: normal; font-size: 16px; color: #004884"><strong>Etapa: </strong></span> {{producto.Etapa}}.
+                                                    <span style="font-weight: 500; font-style: normal; font-size: 16px; color: #004884"><strong>Fecha inicial: </strong></span> {{producto.FechaInicial == null ? null :vm.convertToDate(producto.FechaInicial) | date: 'dd/MM/yyyy'}}. <span style="font-weight: 500; font-style: normal; font-size: 16px; color: #004884"><strong>Fecha final: </strong></span> {{producto.FechaFinal == null ? null :vm.convertToDate(producto.FechaFinal) | date: 'dd/MM/yyyy'}}.
+                                                </p>
+
+                                                <p style="padding: 0px; margin-bottom: 0px;">
+                                                    <button class="btnaccion btnAccordionDNP" type="button" data-toggle="collapse" data-target="#productovf-{{producto.ProductoId}}" ng-click="vm.changeBotonProducto(producto)" data="{{producto}}">
+
+                                                        <img ng-show="producto.LabelBotonProducto == '+'" src="Img/btnMas.svg">
+                                                        <img ng-show="producto.LabelBotonProducto == '-'" src="Img/btnMenos.svg">
+                                                    </button>
+
+                                                    <div id="validacion-VUPTL002-{{producto.ProductoId}}" class="hidden text-left color-red"></div>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div class="collapse" id="productovf-{{producto.ProductoId}}">
+                                            <div class="LineaEncabezadodivDNP"></div>
+                                            <h3 class="row tituloEncabezadodivDNP">Detalle producto</h3>
+                                            <div id="validacion-VUPTL001-{{producto.ProductoId}}" class="hidden text-left color-red"></div>
+                                            <div ng-if="!general.EsConstante" class="row col-md-12">
+                                                <div class="col-md-12" ng-if="vm.habilitaBotones">
+                                                    <span class="buttonbar pull-right">
+                                                        <button type="button" class="btneditarDNP" tooltip-placement="top" ng-click="producto.EditarTramiteLiberacion ? vm.Cancelar(producto) : vm.Editar(producto)" uib-tooltip="{{producto.EditarTramiteLiberacion ? 'CANCELAR' : 'EDITAR'}}">
+                                                            {{producto.EditarTramiteLiberacion ? 'CANCELAR' : 'EDITAR'}}
+                                                        </button>
+                                                        <button ng-disabled="!producto.EditarTramiteLiberacion" type="button" class="{{producto.EditarTramiteLiberacion ? 'btnguardarDNP' : 'btnguardarDisabledDNP'}}" tooltip-placement="top" uib-tooltip="Guardar" tabindex="0" ng-click="vm.Guardar(producto)">
+                                                            GUARDAR
+                                                        </button>
+                                                    </span>
+                                                </div>
+                                                <br />
+                                                <br />
+                                                <div class="alert panel-heading">
+                                                    <table class="TableDNP">
+                                                        <thead>
+                                                            <tr>
+                                                                <th class="columAcc"></th>
+                                                                <th class="textRightDNP">Vigencia</th>
+                                                                <th class="textRightDNP">Valor solicitado $</th>
+                                                                <th class="textRightDNP">Valor aprobado $</th>
+                                                                <th class="textRightDNP">Valor utilizado $</th>
+                                                                <th class="columAcc"></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr ng-repeat="prodcorrientes in producto.Vigencias" ng-init="prodcorrientesIndex = $index">
+                                                                <td></td>
+                                                                <td class="textRightDNP">{{prodcorrientes.Vigencia}}</td>
+                                                                <td class="textRightDNP">{{vm.ConvertirNumero(prodcorrientes.ValorSolicitado)}}</td>
+                                                                <td class="textRightDNP">{{vm.ConvertirNumero(prodcorrientes.ValorAprobado)}}</td>
+                                                                <td ng-if="prodcorrientes.Vigencia < vm.vigenciaActual" class="textRightDNP">{{vm.ConvertirNumero(prodcorrientes.ValorUtilizado)}}</td>
+                                                                <td ng-if="!producto.EditarTramiteLiberacion && prodcorrientes.Vigencia >= vm.vigenciaActual" class="textRightDNP">{{vm.ConvertirNumero(prodcorrientes.ValorUtilizado)}}</td>
+                                                                <td ng-if="producto.EditarTramiteLiberacion && prodcorrientes.Vigencia >= vm.vigenciaActual" class="textRightDNP">
+                                                                    <input id="input-UtilizadoNacion" type="number" string-to-number min="0.00"
+                                                                           ng-readonly="!producto.EditarTramiteLiberacion"
+                                                                           ng-keypress="vm.validateFormat($event)"
+                                                                           ng-keyup="vm.validarTamanio($event)"
+                                                                           ng-blur="vm.actualizaFila($event, producto)"
+                                                                           ng-value="prodcorrientes.ValorUtilizado"
+                                                                           ng-model="datos.TramitesVerificadosCorrientes[generallibvfIndex].DetalleObjetivosCorrientes[objetivolibvfIndex].DetalleProductosCorrientes[productolibvfIndex].Vigencias[prodcorrientesIndex].ValorUtilizado"
+                                                                           required class="form-control editInputDNP" style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px; background-color:white" />
+                                                                </td>
+                                                                <td></td>
+                                                            </tr>
+                                                        </tbody>
+                                                        <tfoot>
+                                                            <tr>
+                                                                <td class="columAcc" style="font-family: 'Work Sans SemiBold Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 600; font-style: normal; font-size: 30px; color: rgba(50, 102, 204, 0.996078431372549);"><span style="margin-top: 55%">=</span></td>
+                                                                <td class="textRightDNP"><span>Total $</span></td>
+                                                                <td class="textRightDNP">
+                                                                    <span style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 500; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px">{{vm.ConvertirNumero(producto.TotalValorSolicitado)}}</span>
+                                                                </td>
+                                                                <td class="textRightDNP">
+                                                                    <span style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 500; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px">{{vm.ConvertirNumero(producto.TotalValorTotalAprobado)}}</span>
+                                                                </td>
+                                                                <td class="textRightDNP">
+                                                                    <span style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 500; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px">{{vm.ConvertirNumero(producto.TotalValorUtilizado)}}</span>
+                                                                </td>
+                                                                <td></td>
+                                                            </tr>
+                                                        </tfoot>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Constantes-->
+        <div ng-repeat="constantes in datos.TramitesVerificadosConstantes" ng-init="generallibvconsfIndex = $index">
+            <div class="row" style="color: #004884">
+                <div class="" style="padding: 0 !important">
+                    <div class="alert panel-heading" style="height: 50px;">
+                        <div class="card card-body pull-left  divAccordionDNP" style="line-height:22px;">
+                            <p style="line-height: 1.1; margin-left: 55px">
+                                <span style="font-weight: 500; font-style: normal; font-size: 16px; color: #004884"><strong>Código proceso: </strong></span> {{constantes.CodigoProceso}}. <span style="font-weight: 500; font-style: normal; font-size: 16px; color: #004884"><strong>Fecha autorización: </strong></span> {{vm.convertToDate(constantes.FechaAutorizacion) | date: 'dd/MM/yyyy'}}.
+                                <span style="font-weight: 500; font-style: normal; font-size: 16px; color: #004884"><strong>Código autorización: </strong></span> {{constantes.CodigoAutorizacion}}.
+                            </p>
+
+                            <p style="padding: 0px; margin-bottom: 0px;">
+                                <button class="btnaccion btnAccordionDNP" type="button" data-toggle="collapse" data-target="#generalconsvf{{constantes.TramiteLiberarId}}" ng-click="vm.changeBoton(constantes)" data="{{constantes}}">
+
+                                    <img ng-show="constantes.LabelBoton == '+'" src="Img/btnMas.svg">
+                                    <img ng-show="constantes.LabelBoton == '-'" src="Img/btnMenos.svg">
+                                </button>
+
+                                <div id="validacion-VUPTL006-{{constantes.TramiteLiberarId}}" class="hidden text-left color-red"></div>
+                            </p>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="collapse" id="generalconsvf{{constantes.TramiteLiberarId}}">
+                        <div class="LineaEncabezadodivDNP"></div>
+                        <h3 class="row tituloEncabezadodivDNP">Valores de vigencias futura por proceso</h3>
+                        <div class="row col-md-12">
+                            <div class="alert panel-heading">
+                                <div class="tab-container col-md-12" style="width: 100%; text-align: left">
+                                    <ul class="nav nav-tabs">
+                                        <li id="livalConstantesduvf" class="nav-item" ng-class="{active : 1===1}">
+                                            <a href="" class="nav-link" data-target="#tabValConstantesduvf" data-toggle="tab">
+                                                <b>
+                                                    <span id="valutilizados-liberacion-vigencia-futura-constante" class="img iconadverdnp hidden" style="margin-left:0px">   <img src="Img/u4630.svg"> </span>
+                                                    Valores constantes
+                                                </b>
+                                            </a>
+                                        </li>
+                                        <li id="liCorrientesduvg" class="nav-item">
+                                            <a href="" class="nav-link" data-target="#tabValCorrienteduvf" data-toggle="tab">
+                                                <span id="valutilizados-liberacion-vigencia-futura-corriente" class="img iconadverdnp hidden" style="margin-left:0px">   <img src="Img/u4630.svg"> </span>
+                                                <b>Valores corrientes</b>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="tab-content">
+                                    <div class="tab-pane active cont col-md-12" style="padding-left:0 !important;padding-top:20px !important; padding-bottom:0" id="tabValConstantesduvf">
+                                        <div class="respAdon" style="width: 100% !important">
+                                            <div class="col-md-2"><h4 class="textRightDNP">Año base</h4></div><div class="col-md-2 divInfoPendienteDNP" style="width:120px"><span class="textLeftDNP" style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 500; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px"><b>{{constantes.AnioBase}}</b></span></div>
+                                        </div>
+                                        <br />
+                                        <table class="TableDNP">
+                                            <thead>
+                                                <tr>
+                                                    <th class="columAcc"></th>
+                                                    <th class="textRightDNP">Vigencia</th>
+                                                    <th class="textRightDNP">Deflactor</th>
+                                                    <th class="textRightDNP">Valor solicitado $</th>
+                                                    <th class="textRightDNP">Total valor utilizado $</th>
+                                                    <th class="textRightDNP">Valor utilizado por producto $</th>
+                                                    <th class="columAcc"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="resumenconstantes in constantes.ResumenValoresConstantes" ng-init="constantesprocesoindex = $index">
+                                                    <td></td>
+                                                    <td class="textRightDNP">{{resumenconstantes.Vigencia}}</td>
+                                                    <td class="textRightDNP">{{resumenconstantes.Deflactor}}</td>
+                                                    <td class="textRightDNP">{{vm.ConvertirNumero(resumenconstantes.ValorSolicitadoConstantes)}}</td>
+                                                    <td class="textRightDNP">{{vm.ConvertirNumero(resumenconstantes.TotalValorUtilizadoConstantes)}}</td>
+                                                    <td class="textRightDNP">{{vm.ConvertirNumero(resumenconstantes.ValorUtilizadoPorProductosConstantes)}}</td>
+                                                    <td></td>
+                                                </tr>
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <td class="columAcc" style="font-family: 'Work Sans SemiBold Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 600; font-style: normal; font-size: 30px; color: rgba(50, 102, 204, 0.996078431372549);"><span style="margin-top: 55%">=</span></td>
+                                                    <td class="textRightDNP"><span>Total $</span></td>
+                                                    <td class="textRightDNP"><span> </span></td>
+                                                    <td class="textRightDNP">
+                                                        <span style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 500; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px">{{vm.ConvertirNumero(constantes.TotalValorSolicitadoConstantes)}}</span>
+                                                    </td>
+                                                    <td class="textRightDNP">
+                                                        <span style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 500; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px">{{vm.ConvertirNumero(constantes.TotalTotalValorUtilizadoConstantes)}}</span>
+                                                    </td>
+                                                    <td class="textRightDNP">
+                                                        <span style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 500; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px">{{vm.ConvertirNumero(constantes.TotalValorUtilizadoPorProductosConstantes)}}</span>
+                                                    </td>
+                                                    <td></td>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+
+                                    <div class="tab-pane cont col-md-12" style="padding-left:0 !important;padding-top:20px !important; padding-bottom:0" id="tabValCorrienteduvf">
+                                        <table class="TableDNP">
+                                            <thead>
+                                                <tr>
+                                                    <th class="columAcc"></th>
+                                                    <th class="textRightDNP">Vigencia</th>
+                                                    <th class="textRightDNP">Valor solicitado $</th>
+                                                    <th class="textRightDNP">Total valor utilizado $</th>
+                                                    <th class="textRightDNP">Valor utilizado por producto $</th>
+                                                    <th class="columAcc"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="resumencorrientes in constantes.ResumenValoresConstantes" ng-init="corrientesprocesoindex = $index">
+                                                    <td></td>
+                                                    <td class="textRightDNP">{{resumencorrientes.Vigencia}}</td>
+                                                    <td class="textRightDNP">{{vm.ConvertirNumero(resumencorrientes.ValorSolicitadoCorrientes)}}</td>
+                                                    <td class="textRightDNP">{{vm.ConvertirNumero(resumencorrientes.TotalValorUtilizadoCorrientes)}}</td>
+                                                    <td class="textRightDNP">{{vm.ConvertirNumero(resumencorrientes.ValorUtilizadoPorProductosCorrientes)}}</td>
+                                                    <td></td>
+                                                </tr>
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <td class="columAcc" style="font-family: 'Work Sans SemiBold Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 600; font-style: normal; font-size: 30px; color: rgba(50, 102, 204, 0.996078431372549);"><span style="margin-top: 55%">=</span></td>
+                                                    <td class="textRightDNP"><span>Total $</span></td>
+                                                    <td class="textRightDNP">
+                                                        <span style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 500; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px">{{vm.ConvertirNumero(constantes.TotalValorSolicitadoCorrientes)}}</span>
+                                                    </td>
+                                                    <td class="textRightDNP">
+                                                        <span style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 500; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px">{{vm.ConvertirNumero(constantes.TotalTotalValorUtilizadoCorrientes)}}</span>
+                                                    </td>
+                                                    <td class="textRightDNP">
+                                                        <span style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 500; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px">{{vm.ConvertirNumero(constantes.TotalValorUtilizadoPorProductosCorrientes)}}</span>
+                                                    </td>
+                                                    <td></td>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            <br />
+                            <div ng-repeat="objetivo in constantes.DetalleObjetivosConstantes" ng-init="objetivolibvfconsIndex = $index" class="row col-md-12">
+                                <h2>Objetivo {{objetivolibvfconsIndex + 1 }}</h2>
+                                <span>{{objetivo.Objetivo}}</span>
+                                <br />
+                                <div ng-repeat="producto in objetivo.DetalleProductosConstantes" ng-init="productolibvconsfIndex = $index" class="row col-md-12">
+                                    <div class="row" style="color: #004884">
+                                        <div class="" style="padding: 0 !important">
+                                            <div class="alert panel-heading" style="height: 50px;">
+                                                <div class="card card-body pull-left  divAccordionDNP" style="line-height:22px;">
+                                                    <p style="line-height: 1.1; margin-left: 50px">
+                                                        <span style="font-weight: 500; font-style: normal; font-size: 16px; color: #004884"><strong>Producto {{productolibvconsfIndex + 1}}. </strong></span> {{producto.NombreProducto}}. <span style="font-weight: 500; font-style: normal; font-size: 16px; color: #004884"><strong>Etapa: </strong></span> {{producto.Etapa}}.
+                                                        <span style="font-weight: 500; font-style: normal; font-size: 16px; color: #004884"><strong>Fecha inicial: </strong></span> {{producto.FechaInicial}}. <span style="font-weight: 500; font-style: normal; font-size: 16px; color: #004884"><strong>Fecha final: </strong></span> {{producto.FechaFinal}}.
+                                                    </p>
+
+                                                    <p style="padding: 0px; margin-bottom: 0px;">
+                                                        <button class="btnaccion btnAccordionDNP" type="button" data-toggle="collapse" data-target="#productovfconst-{{producto.ProductoId}}" ng-click="vm.changeBotonProducto(producto)" data="{{producto}}">
+
+                                                            <img ng-show="producto.LabelBotonProducto == '+'" src="Img/btnMas.svg">
+                                                            <img ng-show="producto.LabelBotonProducto == '-'" src="Img/btnMenos.svg">
+                                                        </button>
+
+                                                        <div id="validacion-VUPTL004-{{producto.ProductoId}}" class="hidden text-left color-red"></div>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <br />
+                                            <div class="collapse" id="productovfconst-{{producto.ProductoId}}">
+                                                <div class="LineaEncabezadodivDNP"></div>
+                                                <h3 class="row tituloEncabezadodivDNP">Detalle producto</h3>
+                                                <div id="validacion-VUPTL004-{{producto.ProductoId}}" class="hidden text-left color-red"></div>
+                                                <div ng-if="!general.EsConstante" class="row col-md-12">
+
+                                                    <div class="tab-container col-md-12" style="width: 100%; text-align: left">
+                                                        <ul class="nav nav-tabs">
+                                                            <li id="liConstantesduvf" class="nav-item" ng-class="{active : 1===1}">
+                                                                <a href="" class="nav-link" data-target="#tabProductoConstantesduvf-{{producto.ProductoId}}" data-toggle="tab">
+                                                                    <b>
+                                                                        <span id="valproductos-liberacion-vigencia-futura-constante" class="img iconadverdnp hidden" style="margin-left:0px">   <img src="Img/u4630.svg"> </span>
+                                                                        Valores constantes
+                                                                    </b>
+                                                                </a>
+                                                            </li>
+                                                            <li id="liCorrientesduvg" class="nav-item">
+                                                                <a href="" class="nav-link" data-target="#tabProductoCorrienteduvf-{{producto.ProductoId}}" data-toggle="tab">
+                                                                    <span id="valproductos-liberacion-vigencia-futura-corriente" class="img iconadverdnp hidden" style="margin-left:0px">   <img src="Img/u4630.svg"> </span>
+                                                                    <b>Valores corrientes</b>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+
+                                                    <div class="tab-content">
+                                                        <div class="tab-pane active cont col-md-12" style="padding-left: 50px !important; padding-top: 20px !important; padding-bottom: 0" id="tabProductoConstantesduvf-{{producto.ProductoId}}">
+                                                            <div class="col-md-12">
+                                                                <span class="buttonbar pull-right">
+                                                                    <button type="button" class="btneditarDNP" tooltip-placement="top" ng-click="producto.EditarTramiteLiberacion ? vm.Cancelar(producto) : vm.Editar(producto)" uib-tooltip="{{producto.EditarTramiteLiberacion ? 'CANCELAR' : 'EDITAR'}}">
+                                                                        {{producto.EditarTramiteLiberacion ? 'CANCELAR' : 'EDITAR'}}
+                                                                    </button>
+                                                                    <button ng-disabled="!producto.EditarTramiteLiberacion" type="button" class="{{producto.EditarTramiteLiberacion ? 'btnguardarDNP' : 'btnguardarDisabledDNP'}}" tooltip-placement="top" uib-tooltip="Guardar" tabindex="0" ng-click="vm.Guardar(producto)">
+                                                                        GUARDAR
+                                                                    </button>
+                                                                </span>
+                                                            </div>
+                                                            <div class="respAdon" style="width: 100% !important">
+                                                                <div class="col-md-2"><h4 class="textRightDNP">Año base</h4></div><div class="col-md-2 divInfoPendienteDNP" style="width:120px"><span class="textLeftDNP" style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 500; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px"><b>{{constantes.AnioBase}}</b></span></div>
+                                                            </div>
+                                                            <table class="TableDNP">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th class="columAcc"></th>
+                                                                        <th class="textRightDNP">Vigencia</th>
+                                                                        <th class="textRightDNP">Deflactor</th>
+                                                                        <th class="textRightDNP">Valor solicitado $</th>
+                                                                        <th class="textRightDNP">Valor aprobado $</th>
+                                                                        <th class="textRightDNP">Valor utilizado $</th>
+                                                                        <th class="columAcc"></th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr ng-repeat="prodconstantes in producto.Vigencias" ng-init="prodconstantesIndex = $index">
+                                                                        <td></td>
+                                                                        <td class="textRightDNP">{{prodconstantes.Vigencia}}</td>
+                                                                        <td class="textRightDNP">{{prodconstantes.Deflactor}}</td>
+                                                                        <td class="textRightDNP">{{vm.ConvertirNumero(prodconstantes.ValorSolicitadoConstante)}}</td>
+                                                                        <td class="textRightDNP">{{vm.ConvertirNumero(prodconstantes.ValorAprobadoConstantes)}}</td>
+                                                                        <td ng-if="prodconstantes.Vigencia < vm.vigenciaActual" class="textRightDNP">{{vm.ConvertirNumero(prodconstantes.ValorUtilizadoConstantes)}}</td>
+                                                                        <td ng-if="!producto.EditarTramiteLiberacion && prodconstantes.Vigencia >= vm.vigenciaActual" class="textRightDNP">{{vm.ConvertirNumero(prodconstantes.ValorUtilizadoConstantes)}}</td>
+                                                                        <td ng-if="producto.EditarTramiteLiberacion && prodconstantes.Vigencia >= vm.vigenciaActual" class="textRightDNP">
+                                                                            <input id="input-UtilizadoNacion" type="number" string-to-number min="0.00"
+                                                                                   ng-readonly="!producto.EditarTramiteLiberacion"
+                                                                                   ng-keypress="vm.validateFormat($event)"
+                                                                                   ng-keyup="vm.validarTamanio($event)"
+                                                                                   ng-blur="vm.actualizaFila($event, tramite)"
+                                                                                   ng-value="prodconstantes.ValorUtilizadoConstantes"
+                                                                                   ng-model="datos.TramitesVerificadosConstantes[generallibvconsfIndex].DetalleObjetivosConstantes[objetivolibvfconsIndex].DetalleProductosConstantes[productolibvconsfIndex].Vigencias[prodconstantesIndex].ValorUtilizadoConstantes"
+                                                                                   required class="form-control editInputDNP" style="text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px; background-color: white" />
+                                                                        </td>
+                                                                        <td></td>
+                                                                    </tr>
+                                                                </tbody>
+                                                                <tfoot>
+                                                                    <tr>
+                                                                        <td class="columAcc" style="font-family: 'Work Sans SemiBold Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 600; font-style: normal; font-size: 30px; color: rgba(50, 102, 204, 0.996078431372549);"><span style="margin-top: 55%">=</span></td>
+                                                                        <td class="textRightDNP"><span>Total $</span></td>
+                                                                        <td class="textRightDNP"><span> </span></td>
+                                                                        <td class="textRightDNP">
+                                                                            <span style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 500; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px">{{vm.ConvertirNumero(producto.TotalValorSolicitadoConstante)}}</span>
+                                                                        </td>
+                                                                        <td class="textRightDNP">
+                                                                            <span style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 500; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px">{{vm.ConvertirNumero(producto.TotalValorTotalAprobadoConstante)}}</span>
+                                                                        </td>
+                                                                        <td class="textRightDNP">
+                                                                            <span style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 500; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px">{{vm.ConvertirNumero(producto.TotalValorUtilizadoConstante)}}</span>
+                                                                        </td>
+                                                                        <td></td>
+                                                                    </tr>
+                                                                </tfoot>
+                                                            </table>
+                                                        </div>
+
+                                                        <div class="tab-pane cont col-md-12" style="padding-left:50px !important;padding-top:20px !important; padding-bottom:0" id="tabProductoCorrienteduvf-{{producto.ProductoId}}">
+                                                            <table class="TableDNP">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th class="columAcc"></th>
+                                                                        <th class="textRightDNP">Vigencia</th>
+                                                                        <th class="textRightDNP">Valor solicitado $</th>
+                                                                        <th class="textRightDNP">Valor aprobado $</th>
+                                                                        <th class="textRightDNP">Valor utilizado $</th>
+                                                                        <th class="columAcc"></th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr ng-repeat="prodcorrientes in producto.Vigencias" ng-init="prodcorrientesIndex = $index">
+                                                                        <td></td>
+                                                                        <td class="textRightDNP">{{prodcorrientes.Vigencia}}</td>
+                                                                        <td class="textRightDNP">{{vm.ConvertirNumero(prodcorrientes.ValorSolicitadoCorriente)}}</td>
+                                                                        <td class="textRightDNP">{{vm.ConvertirNumero(prodcorrientes.ValorAprobadoCorrientes)}}</td>
+                                                                        <td class="textRightDNP">{{vm.getValorUtilizado(prodcorrientes)}}</td>
+                                                                        <td></td>
+                                                                    </tr>
+                                                                </tbody>
+                                                                <tfoot>
+                                                                    <tr>
+                                                                        <td class="columAcc" style="font-family: 'Work Sans SemiBold Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 600; font-style: normal; font-size: 30px; color: rgba(50, 102, 204, 0.996078431372549);"><span style="margin-top: 55%">=</span></td>
+                                                                        <td class="textRightDNP"><span>Total $</span></td>
+                                                                        <td class="textRightDNP">
+                                                                            <span style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 500; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px">{{vm.ConvertirNumero(producto.TotalValorSolicitadoCorriente)}}</span>
+                                                                        </td>
+                                                                        <td class="textRightDNP">
+                                                                            <span style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 500; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px">{{vm.ConvertirNumero(producto.TotalValorTotalAprobadoCorriente)}}</span>
+                                                                        </td>
+                                                                        <td class="textRightDNP">
+                                                                            <span style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 500; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px">{{vm.ConvertirNumero(producto.TotalValorUtilizadoCorriente)}}</span>
+                                                                        </td>
+                                                                        <td></td>
+                                                                    </tr>
+                                                                </tfoot>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

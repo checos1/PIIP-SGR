@@ -1,0 +1,33 @@
+<div class="container-fluid inbox" ng-init="vm.init()">
+    <div class="modal-header">
+        <a href="#" class="closebtn" ng-click="vm.cerrar()"></a>
+    </div>
+    <div class="modal-body">
+        <div class="container__notificacion__exhibicion" ng-init="vm.init()">
+            <div class="row container__title__notificacion">
+                <div class="col-md-10 title__notificacion">
+                    <span>{{vm.notificacion.NombreNotificacion}}</span>
+                </div>
+                <div class="col-md-2">
+                    <div class="columa-estado text-center">
+                        <div ng-class="vm.notificacion.Tipo !== undefined? (vm.notificacion.Tipo == 1? 'activo': vm.notificacion.Tipo == 2 ? 'atencion' : vm.notificacion.Tipo == 3 ? 'inactivo' : '') : (vm.notificacion.NombreTipo == 'NoPrioritario'? 'activo': vm.notificacion.NombreTipo == 'Prioritario' ? 'atencion' : vm.notificacion.NombreTipo == 'Urgente' ? 'inactivo' : '')" class="background-estado">
+                            <i class="fa fa-circle " aria-hidden="true"></i> <b>{{ vm.notificacion.NombreTipo }}</b>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row container__contenido">
+                <div class="col-md-12">
+                    <div class="ql-editor template" ng-bind-html="vm.notificacion.ContenidoNotificacion | to_trusted"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer fixed">
+        <div class="row">
+            <div class="col-md-12 padding-right-off">
+                <button class="btn btn-default btn-md" ng-click="vm.visualizar(vm.notificacion)" ng-disabled="!vm.notificacion.IdArchivo">Descargar</button>
+            </div>
+        </div>
+    </div>
+</div>

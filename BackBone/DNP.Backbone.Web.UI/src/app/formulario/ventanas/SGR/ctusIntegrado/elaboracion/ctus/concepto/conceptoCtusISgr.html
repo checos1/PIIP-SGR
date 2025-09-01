@@ -1,0 +1,147 @@
+﻿<div style="margin-left: 20px;" ng-init="vm.init();">
+    <form id="generalesForm" name="generalesForm" novalidate>
+        <br>
+        <span class="buttonbar pull-right">
+            <button 
+                    id="EditarConcepto"
+                    type="button"
+                    class="btneditarDNP"
+                    tooltip-placement="top"
+                    uib-tooltip="Editar"
+                    tabindex="0"
+                    ng-click="vm.ActivarEditar()"
+                    ng-disabled="vm.disabled">
+                EDITAR
+            </button>
+            &nbsp;
+            <button
+                    id="GuardarConcepto"
+                    type="submit"
+                    class="{{vm.activarConcepto ? 'btnguardarDisabledDNP' : 'btnguardarDNP'}}"
+                    tooltip-placement="top"
+                    uib-tooltip="Guardar"
+                    ng-click="vm.guardar()"
+                    ng-disabled="vm.activarConcepto">
+                GUARDAR
+            </button>
+        </span>
+        <br />
+        <br />
+        <br />
+        <div class="row">
+            <div id="observacion-pregunta-error-tecnicos" class="hidden uMensajeError"></div>
+            <div class="col-md-12" style="padding-bottom: 55px !important;padding-right: 4rem !important">
+                <div id="u5226_div" class="divPanelPregRespSgrDNP" style="width: 100% !important">
+                    <div class="respAdon">
+                        <span>Aspectos técnicos * <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg"></span>
+                        <p>Máximo 10.000 caracteres</p>
+                    </div>
+
+                    <div class="textAreDivRes" style="width: 73% !important">
+                        <textarea rows="3"
+                                  id="aspectosTecnicos"
+                                  name="aspectosTecnicos"
+                                  ng-model="vm.form.AspectosTecnicos"
+                                  placeholder="Escriba su descripción"
+                                  minlength="1"
+                                  maxlength="10000"
+                                  ng-disabled="vm.activarConcepto"
+                                  class="textareObservaDNP" ng-required="true"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div id="observacion-pregunta-error-financieros" class="hidden uMensajeError"></div>
+            <div class="col-md-12" style="padding-bottom: 55px !important;padding-right: 4rem !important">
+                <div id="u5226_div" class="divPanelPregRespSgrDNP" style="width: 100% !important">
+                    <div class="respAdon">
+                        <span>Aspectos financieros * <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg"></span>
+                        <p>Máximo 10.000 caracteres</p>
+                    </div>
+
+                    <div class="textAreDivRes" style="width: 73% !important">
+                        <textarea rows="3"
+                                  id="aspectosFinancieros"
+                                  name="aspectosFinancieros"
+                                  ng-model="vm.form.AspectosFinancieros"
+                                  placeholder="Escriba su descripción"
+                                  minlength="1"
+                                  maxlength="10000"
+                                  ng-disabled="vm.activarConcepto"
+                                  class="textareObservaDNP" ng-required="true"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div id="observacion-pregunta-error-juridicos" class="hidden uMensajeError"></div>
+            <div class="col-md-12" style="padding-bottom: 55px !important;padding-right: 4rem !important">
+                <div id="u5226_div" class="divPanelPregRespSgrDNP" style="width: 100% !important">
+                    <div class="respAdon">
+                        <span>Aspectos jurídicos * <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg"></span>
+                        <p>Máximo 10.000 caracteres</p>
+                    </div>
+
+                    <div class="textAreDivRes" style="width: 73% !important">
+                        <textarea rows="3"
+                                  id="aspectosJuridicos"
+                                  name="aspectosJuridicos"
+                                  ng-model="vm.form.AspectosJuridicos"
+                                  placeholder="Escriba su descripción"
+                                  minlength="1"
+                                  maxlength="10000"
+                                  ng-disabled="vm.activarConcepto"
+                                  class="textareObservaDNP" ng-required="true"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div id="observacion-pregunta-error-sociales" class="hidden uMensajeError"></div>
+            <div class="col-md-12" style="padding-bottom: 55px !important;padding-right: 4rem !important">
+                <div id="u5226_div" class="divPanelPregRespSgrDNP" style="width: 100% !important">
+                    <div class="respAdon">
+                        <span>Aspectos sociales * <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg"></span>
+                        <p>Máximo 10.000 caracteres</p>
+                    </div>
+
+                    <div class="textAreDivRes" style="width: 73% !important">
+                        <textarea rows="3"
+                                  id="aspectosSociales"
+                                  name="aspectosSociales"
+                                  ng-model="vm.form.AspectosSociales"
+                                  placeholder="Escriba su descripción"
+                                  minlength="1"
+                                  maxlength="10000"
+                                  ng-disabled="vm.activarConcepto"
+                                  class="textareObservaDNP" ng-required="true"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div id="observacion-pregunta-error-ambientales" class="hidden uMensajeError"></div>
+            <div class="col-md-12" style="padding-bottom: 55px !important;padding-right: 4rem !important">
+                <div id="u5226_div" class="divPanelPregRespSgrDNP" style="width: 100% !important">
+                    <div class="respAdon">
+                        <span>Aspectos ambientales * <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg"></span>
+                        <p>Máximo 10.000 caracteres</p>
+                    </div>
+
+                    <div class="textAreDivRes" style="width: 73% !important">
+                        <textarea rows="3"
+                                  id="aspectosAmbientales"
+                                  name="aspectosAmbientales"
+                                  ng-model="vm.form.AspectosAmbientales"
+                                  placeholder="Escriba su descripción"
+                                  minlength="1"
+                                  maxlength="10000"
+                                  ng-disabled="vm.activarConcepto"
+                                  class="textareObservaDNP" ng-required="true"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,85 @@
+﻿<div style="margin-left: 20px;" ng-init="vm.init();">
+    <form class="formCenter" id="generalesForm" name="generalesForm" novalidate>
+        <br>
+        <span class="buttonbar pull-right">
+            <button id="EditarG"
+                    type="button"
+                    class="btneditarDNP"
+                    tooltip-placement="top"
+                    uib-tooltip="Editar"
+                    tabindex="0"
+                    ng-click="vm.ActivarEditar()"
+                    ng-disabled="vm.disabled">
+                EDITAR
+            </button>
+            &nbsp;
+            <button id="GuardarG"
+                    type="submit"
+                    class="{{vm.activar ? 'btnguardarDisabledDNP' : 'btnguardarDNP'}}"
+                    tooltip-placement="top"
+                    uib-tooltip="Guardar"
+                    ng-click="vm.guardar()"
+                    ng-disabled="vm.activar">
+                GUARDAR
+            </button>
+        </span>
+        <br />
+        <br />
+        <div class="row">
+            <div class="" style="padding: 0 !important">
+                <br />
+                <div style="margin-left: 15px; margin-right:15px" class="ng-scope">
+                    <!--Sesión Pregunta-->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <span class="d-inline-block" id="alert-sgrviabilidadavalusoavaluso"></span>
+                            <span class="d-inline-block hidden" id="SGRAVAL1sgrviabilidadavalusoavaluso"></span>
+                            <div class="divIconsQuestions">
+                                <label class="labelQuestionsText ng-binding" id="labelIdAdi3948" for="pregunta">{{vm.preguntaAvalUsoSgr}}*</label>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Sesión Error Pregunta-->
+                    <div class="row">
+                        <div id="PreguntaObligatoria" class="hidden" style="text-align: justify; margin-left: 20px;">
+                            <img class="" src="Img/u4630.svg">
+                            <span class="messagealerttableDNP" style="text-align: left;font-family: 'Work Sans'; font-size: 14px; font-style: normal;">Campo obligatorio.</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div style="margin-left: -8px;">
+                                <div id="ErrorG73948" class="hidden labelErrorQuestions"> Campo Obligatorio. </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Sesión Opciones de Respuesta-->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!-- ngIf: pregunta.IdPreguntaPadre > 0 -->
+                            <div style="text-align:left">
+                                <div class="col-md-1 form-check ng-binding ng-scope">
+                                    <input type="radio" id="siAval" name="requiere-aval" style="margin-left: -8px;" value=1 ng-checked="vm.respuestaAval === 1" ng-click="vm.respuestaAval = 1" ng-disabled="vm.activar" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty" required> SI
+                                </div>
+                                <div class="col-md-1 form-check ng-binding ng-scope">
+                                    <input type="radio" id="noAval" name="requiere-aval" style="margin-left: -8px;" value=0 ng-checked="vm.respuestaAval === 0" ng-click="vm.respuestaAval = 0" ng-disabled="vm.activar" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty" required> NO
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Sesión Espacio Pregunta-->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-6">
+                                &nbsp;
+                            </div>
+                            <div class="col-md-6">
+                                &nbsp;
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</form>
+</div>

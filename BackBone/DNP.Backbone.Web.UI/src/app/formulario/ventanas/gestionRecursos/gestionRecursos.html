@@ -1,0 +1,45 @@
+﻿<section class=" mt-4" ng-init="vm.init()">
+    <div class="row m-0">
+        <div class="form-group">
+            <div class="tab-container col-md-12">
+                <div class="tab-content">
+                    <div class="tab-pane active cont col-md-12 p-0" id="ddatosgeneralesgr">
+                        <datosgenerales-gr callback="vm.notificarGuardado()"
+                                           guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                           notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                           notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente, handlerCapitulos)"></datosgenerales-gr>
+                    </div>
+                    <div class="tab-pane cont col-md-12 p-0" id="drecursosgr">
+                        <recursos-gr callback="vm.notificarGuardado()"
+                                     guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                     notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                     notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente, handlerCapitulos)"
+                                     notificacioncambios="vm.notificacionCambiosgr(handler,nombreComponente)"></recursos-gr>
+                    </div>
+                    <div class="tab-pane cont col-md-12 p-0" id="dfocalizaciongr">
+                        <focalizacion callback="vm.notificarGuardado()"
+                                      guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                      notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                      notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente, handlerCapitulos)"
+                                      notificacioncambios="vm.notificacionCambiosgr(handler,nombreComponente)"></focalizacion>
+                    </div>
+                    <div class="tab-pane cont col-md-12 p-0" id="daprobacionpegr">
+                        <enviar-Programacion callback="vm.notificarGuardado()"
+                                             guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                             notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                             notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente, handlerCapitulos)"
+                                             notificacioncambios="vm.notificacionCambiosgr(handler,nombreComponente)"> </enviar-Programacion>
+                    </div>
+                    <div class="tab-pane cont col-md-12 p-0" id="daprobaciongr">
+                        <aprobacion-gr       callback="vm.notificarGuardado()"
+                                             guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                             notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                             notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente, handlerCapitulos)"
+                                             notificacioncambios="vm.notificacionCambiosgr(handler,nombreComponente)"> </aprobacion-gr>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

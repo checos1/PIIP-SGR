@@ -1,0 +1,66 @@
+﻿<section>
+    <div class="container-fluid inbox" ng-init="vm.init();">
+        <div class="tab-content">
+
+            <div class="ui-accordion-container hidden" id="accordion-recursossgpfuentesdefinancsintramitesgp">
+                <div class="alert panel-heading row ui-accordion-header">
+                    <button type="button" data-toggle="collapse" data-target="#recursossgpfuentesdefinancsintramitesgp-1" ng-click="vm.changeArrow('recursossgpfuentesdefinancsintramitesgp-1')">
+                        <span class="d-inline-block" id="alert-recursossgpfuentesdefinancsintramitesgp-1"></span>
+                        <span id="name-capitulo-recursossgpfuentesdefinancsintramitesgp"></span>
+                        <span class="hidden" id="id-capitulo-recursossgpfuentesdefinancsintramitesgp"></span>
+                        <span id="arrow-recursossgpfuentesdefinancsintramitesgp-1" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#recursossgpfuentesdefinancsintramitesgp-1"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="recursossgpfuentesdefinancsintramitesgp-1">
+                    <div class="row m-0 mb-3">
+                        <ajustes-fuentes-Sin-Tramite-Sgp guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                         notificacioncambios="vm.notificacionCambiosCapitulosExternos(handler, nombreComponente)"
+                                         notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                         notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"
+                                         notificarrefresco="vm.notificarRefresco(handler, nombreComponente)"></ajustes-fuentes-Sin-Tramite-Sgp>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ui-accordion-container hidden" id="accordion-recursossgpcostosdelasactisintramitesgp">
+                <div class="alert panel-heading row ui-accordion-header">
+                    <button type="button" data-toggle="collapse" data-target="#recursossgpcostosdelasactisintramitesgp-1" ng-click="vm.changeArrow('recursossgpcostosdelasactisintramitesgp-1')">
+                        <span class="d-inline-block" id="alert-recursossgpcostosdelasactisintramitesgp-1"></span>
+                        <span id="name-capitulo-recursossgpcostosdelasactisintramitesgp"></span>
+                        <span class="hidden" id="id-capitulo-recursossgpcostosdelasactisintramitesgp"></span>
+                        <span id="arrow-recursossgpcostosdelasactisintramitesgp-1" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#recursossgpcostosdelasactisintramitesgp-1"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="recursossgpcostosdelasactisintramitesgp-1">
+                    <div class="row m-0 mb-3">
+                        <costo-actividades-Sin-Tramite-Sgp guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                           notificacioncambios="vm.notificacionCambiosCapitulosExternos(handler, nombreComponente)"
+                                           notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                           notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"
+                                           notificarrefresco="vm.notificarRefresco(handler, nombreComponente)"></costo-actividades-Sin-Tramite-Sgp>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ui-accordion-container hidden" id="accordion-recursossgpregionalizacionsintramitesgp">
+                <div class="alert panel-heading row ui-accordion-header">
+                    <button type="button" data-toggle="collapse" data-target="#recursossgpregionalizacionsintramitesgp-1" ng-click="vm.changeArrow('recursossgpregionalizacionsintramitesgp-1')">
+                        <span class="d-inline-block" id="alert-recursossgpregionalizacionsintramitesgp-1"></span>
+                        <span id="name-capitulo-recursossgpregionalizacionsintramitesgp"></span>
+                        <span class="hidden" id="id-capitulo-recursossgpregionalizacionsintramitesgp"></span>
+                        <span id="arrow-recursossgpregionalizacionsintramitesgp-1" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#recursossgpregionalizacionsintramitesgp-1"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="recursossgpregionalizacionsintramitesgp-1">
+                    <div class="row m-0 mb-3">
+                        <regionalizacion-Sin-Tramite-Sgp guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                         notificacioncambios="vm.notificacionCambiosCapitulosExternos(handler, nombreComponente)"
+                                         notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                         notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"
+                                         notificarrefresco="vm.notificarRefresco(handler, nombreComponente)"></regionalizacion-Sin-Tramite-Sgp>
+                    </div>
+                </div>
+            </div>           
+        </div>
+    </div>
+</section>

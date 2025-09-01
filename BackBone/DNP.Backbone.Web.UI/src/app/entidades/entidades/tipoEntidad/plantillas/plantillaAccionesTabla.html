@@ -1,0 +1,8 @@
+<div class="text-center">
+    <button ng-if="grid.appScope.vm.consultarPermiso(row.entity.IdEntidad, 'Entidades:Editar')" class="btnaccion" ng-click="grid.appScope.vm.accionEditarSubEntidad({$row: row.entity})" tooltip-placement="Auto" uib-tooltip="Editar">
+        <span><img class="grid-icon-accion"  src="Img/iconsgrid/iconAccionEditar.png"></span>
+    </button>
+    <button ng-if="grid.appScope.vm.consultarPermiso(row.entity.IdEntidad, 'Entidades:Eliminar')" class="btnaccion" ng-click="grid.appScope.vm.accionEliminarEntidad({$row: row.entity})" tooltip-placement="Auto" uib-tooltip="Eliminar">
+        <span><img class="grid-icon-accion"  src="Img/iconsgrid/iconAccionEliminar.png"></span>
+    </button>
+</div>

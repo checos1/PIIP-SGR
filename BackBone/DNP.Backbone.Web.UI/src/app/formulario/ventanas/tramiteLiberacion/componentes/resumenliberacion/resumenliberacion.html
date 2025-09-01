@@ -1,0 +1,56 @@
+﻿<div style="margin-left:20px;" class="container-fluid inbox" ng-init="vm.init();">
+    <div>
+        <h3 class="row" style="padding-left: 2rem; padding-right: 2rem; text-align: left; color: #004884">&nbsp;&nbsp;Tabla de resumen de valores aprobados <img id="u1276_img" class="imgTituloAccion " src="Img/u1275.svg" ng-click="vm.abrirMensajeInformacion()"></h3>
+        <br />
+        <br />
+        <div class="row col-md-11">
+            <div class="col-md-10 textRightDNP"><b>Total valores utilizados $</b></div>
+            <div class="col-md-2"><strong><input type="text" class="textRightDNP form-control editInputDNP " disabled value="{{vm.ConvertirNumero(datos.TotalValoresUtilizados)}}" /></strong></div>
+            <div class="columAcc"></div>
+        </div>
+        <!--<div class="col-md-11">
+        <div class="col-md-2 pull-right blockReferenciaDNP" style="margin-right: 85px; margin-left: 5px">{{datos.TotalValoresUtilizados}}</div>
+    </div-->
+        <div class="row" style="color: #004884">
+            <div class="row col-md-11">
+                <div class="alert panel-heading">
+                    <table class="TableDNP">
+                        <thead>
+                            <tr>
+                                <th class="columAcc"></th>
+                                <th class="textRightDNP">Vigencia</th>
+                                <th class="textRightDNP">Autorizados nación $</th>
+                                <th class="textRightDNP">Autorizados propios $</th>
+                                <th class="textRightDNP">Utilizados nación $</th>
+                                <th class="textRightDNP">Utilizados propios $</th>
+                                <th class="columAcc"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="valores in datos.ValoresAutorizadosUtilizados" ng-init="valoresIndex = $index">
+                                <td></td>
+                                <td><input type="text" class="textRightDNP form-control editInputDNP " disabled value="{{valores.Vigencia}}" /></td>
+                                <td><input type="text" class="textRightDNP form-control editInputDNP " disabled value="{{vm.ConvertirNumero(valores.AprobadosNacion)}}" /></td>
+                                <td><input type="text" class="textRightDNP form-control editInputDNP " disabled value="{{vm.ConvertirNumero(valores.AprobadosNPropios)}}" /></td>
+                                <td><input type="text" class="textRightDNP form-control editInputDNP " disabled value="{{vm.ConvertirNumero(valores.UtilizadoNacion)}}" /></td>
+                                <td><input type="text" class="textRightDNP form-control editInputDNP " disabled value="{{vm.ConvertirNumero(valores.UtilizadoPropios)}}" /></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                        <tfoot ng-if="datos.TotalAutorizadosNacion > 0">
+                            <tr>
+                                <td></td>
+                                <td><b><input type="text" class="textRightDNP form-control editInputDNP " style="background-color:white" disabled value="TOTAL" /></b></td>
+                                <td><b><input type="text" class="textRightDNP form-control editInputDNP " disabled value="{{vm.ConvertirNumero(datos.TotalAutorizadosNacion)}}" /></b></td>
+                                <td><b><input type="text" class="textRightDNP form-control editInputDNP " disabled value="{{vm.ConvertirNumero(datos.TotalAutorizadosPropios)}}" /></b></td>
+                                <td><b><input type="text" class="textRightDNP form-control editInputDNP " disabled value="{{vm.ConvertirNumero(datos.TotalUtilizadosNacion)}}" /></b></td>
+                                <td><b><input type="text" class="textRightDNP form-control editInputDNP " disabled value="{{vm.ConvertirNumero(datos.TotalUtilizadosPropios)}}" /></b></td>
+                                <td></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

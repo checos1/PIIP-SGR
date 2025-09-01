@@ -1,0 +1,68 @@
+﻿<section>
+    <div class="container-fluid inbox"  ng-init="vm.init();">
+        <br />
+        <div style="min-height: 100px; width: 100%;">
+            <div class="row">
+                <div class="row" style="padding-left: 3rem;padding-right:15px;">
+                    <div class="form-group" style=" padding-top: 2rem;width:100%;">
+                     
+                        <div class="tab-container col-md-1">
+                            <div style="float: right;">
+                                <!--<button type="button" class="btn btn-sm btn-primary" id="validarButton" ng-click="vm.eventoValidar()" tooltip-placement="auto" uib-tooltip="Validar">Validar</button>-->
+                                <button type="button" class="btn btn-sm btn-primary" id="editarButton" ng-click="vm.eventoHabilitarEdicion()" tooltip-placement="auto" uib-tooltip="Agregar">Habilitar edición</button>
+                            </div>
+                        </div>
+
+                        <div class="tab-content">
+                            <div class="tab-pane active cont col-md-12" style="padding-left:0 !important;padding-top:20px !important" id="dasociarproyecto">
+                                <asociar-proyectovf tramiteid="{{vm.tramiteDetail.tramiteId}}"
+                                                    guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                                    notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                                    notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)"
+                                                    callback="vm.deshabilitarBotonDevolverT()">
+
+                                </asociar-proyectovf>
+                            </div>
+                            <div class="tab-pane cont col-md-12" style="padding-left:0 !important;padding-top:20px !important" id="dinformacionpresupuestal">
+                                <informacion-presupuestal tramiteid="{{vm.tramiteDetail.tramiteId}}"
+                                                          callback="vm.notificarGuardado()"
+                                                          guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                                          notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                                          notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)">
+                                </informacion-presupuestal>
+                            </div>
+                            <div class="tab-pane cont col-md-12" style="padding-left:0 !important;padding-top:20px !important" id="djustificacion">
+                                <justificacionvf tipotramiteid="{{vm.tramiteDetail.tipoTramiteId}}" tramiteid="{{vm.tramiteDetail.tramiteId}}"
+                                                 callback="vm.cambiarImagen(Porcentaje,opcion)"
+                                                 guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                                 notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                                 notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)">
+
+                                </justificacionvf>
+                            </div>
+                            <div class="tab-pane cont col-md-12" style="padding-left:0 !important;padding-top:20px !important" id="ddocumentossoporte">
+                                <documento-soportevf tipotramiteid="{{vm.tramiteDetail.tipoTramiteId}}" tramiteid="{{vm.tramiteDetail.tramiteId}}"
+                                                     callback="vm.cambiarImagen(Porcentaje,opcion)"
+                                                     guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                                     notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                                     notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)">
+                                </documento-soportevf>
+                            </div>
+                            <div class="tab-pane cont col-md-12" style="padding-left:0 !important;padding-top:20px !important" id="dsolicitarconcepto">
+                                <conceptovf tipotramiteid="{{vm.tramiteDetail.tipoTramiteId}}" tramiteid="{{vm.tramiteDetail.tramiteId}}" rolanalista ="{{vm.rolAnalista}}"
+                                            callback="vm.notificarGuardado(botonDevolver, botonSiguiente, ocultarDevolver)"
+                                            guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                            notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                            notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)"
+                                            notificacioncambios="vm.notificacionCambiosAjustes(handler, nombreComponente)">
+                                </conceptovf>
+                            </div>
+
+                       </div>
+                        <!--<observaciones-formulario modelo="vm.modeloBotones" ng-if="vm.nombreFormularioCustom != '' && vm.estadoPaso != 'Ejecutada'"></observaciones-formulario>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

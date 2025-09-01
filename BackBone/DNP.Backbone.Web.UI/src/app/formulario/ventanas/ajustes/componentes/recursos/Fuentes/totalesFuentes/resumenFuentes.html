@@ -1,0 +1,108 @@
+﻿
+<div class="py-4 row m-0" ng-init="vm.inicializar();">
+    <div id="recursosfuentesdefinanc-validacionffr1-error" class="hidden text-left color-red">
+        <img class="img img-advertencia" src="Img/u11.svg" />
+        <span id="recursosfuentesdefinanc-validacionffr1-error-mns"></span>
+    </div>
+    <div id="recursosfuentesdefinanc-validacionffr2-error" class="hidden text-left color-red">
+        <img class="img img-advertencia" src="Img/u11.svg" />
+        <span id="recursosfuentesdefinanc-validacionffr2-error-mns"></span>
+    </div>
+    <div id="recursosfuentesdefinanc-validacionffr3-error" class="hidden text-left color-red">
+        <img class="img img-advertencia" src="Img/u11.svg" />
+        <span id="recursosfuentesdefinanc-validacionffr3-error-mns"></span>
+    </div>
+    <div class="mt-3">
+        <h3 class="text-left ui-seccion-title">Resumen ajustes de fuentes de financiación</h3>
+        <div class="col-md-12 p-0">
+            <ul class="nav nav-tabs tabsResumen">
+                <li id="liDgenerales" class="active">
+                    <a href="" ng-click="vm.mostrarTab(1)" data-toggle="tab">
+                        <b>Preinversión</b>
+                    </a>
+                </li>
+                <li id="liRecursos">
+                    <a href="" ng-click="vm.mostrarTab(2)" data-toggle="tab">
+                        <b>Inversión</b>
+                    </a>
+                </li>
+                <li id="lijustificacion">
+                    <a href="" ng-click="vm.mostrarTab(3)" data-toggle="tab">
+                        <b>Operación</b>
+                    </a>
+                </li>
+            </ul>
+            <div id="contenido-resumen" class="mt-5">
+                <table class="TableDNP">
+                    <thead>
+                        <tr>
+                            <th class="columAcc"></th>
+                            <th class="textRightDNP">Vigencia</th>
+                            <th class="textRightDNP">Solicitados gestión de recursos $</th>
+                            <th class="textRightDNP">Iniciales decreto liquidación $</th>
+                            <th class="textRightDNP">En firme $</th>
+                            <th class="textRightDNP">En ajuste $</th>
+                            <th class="columAcc"></th>
+                        </tr>
+                    </thead>
+                    <tbody ng-if="vm.listaResumen.length > 0">
+                        <tr class="uTexto-grilla" ng-repeat="objResumen in vm.listaResumen">
+                            <td class="columAcc"><img class="img-advertencia" ng-if="objResumen.existeDiferencia" src="Img/u11.svg"></td>
+                            <td class="textRightDNP"><span class="uTexto-grilla">{{objResumen.vigencia}}</span></td>
+                            <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(objResumen.Solicitado)}}</div></td>
+                            <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(objResumen.Decreto)}}</div></td>
+                            <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(objResumen.Firme)}}</div></td>
+                            <td class="textRightDNP">
+                                <div class="blockReferenciaDNP">
+                                    <div ng-if="vm.existeDiferencia" class="blockReferenciaDNP">{{vm.ConvertirNumero(objResumen.Ajuste)}}</div>
+                                    <div ng-if="!vm.existeDiferencia">{{vm.ConvertirNumero(objResumen.Ajuste)}}</div>
+                                </div>
+                            </td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td class="columAcc"><span>{{vm.ResumenSubTotal.icono}}</span></td>
+                            <td class="textRightDNP"><span>{{vm.ResumenSubTotal.titulo}}</span></td>
+                            <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(vm.ResumenSubTotal.Solicitado)}}</div></td>
+                            <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(vm.ResumenSubTotal.Decreto)}}</div></td>
+                            <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(vm.ResumenSubTotal.Firme)}}</div></td>
+                            <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(vm.ResumenSubTotal.Ajuste)}}</div></td>
+                            <td></td>
+                        </tr>
+                    </tfoot>
+                </table>
+
+                <div class="mt-5 text-left">
+                    <h4 class="uLabelCampo">Totales globales</h4>
+                    <span>Correspondientes a sumatoria de recursos registrados en las etapas de Preinversión, Inversion y Operación</span>
+                    <table class="TableDNP mt-4">
+                        <thead>
+                            <tr>
+                                <th class="columAcc"></th>
+                                <th class="textRightDNP">Vigencia</th>
+                                <th class="textRightDNP">Solicitados gestión de recursos $</th>
+                                <th class="textRightDNP">Iniciales decreto liquidación $</th>
+                                <th class="textRightDNP">En firme $</th>
+                                <th class="textRightDNP">En ajuste $</th>
+                                <th class="columAcc"></th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <td class="columAcc"><span>{{vm.listaTotal.icono}}</span></td>
+                                <td class="textRightDNP"><span>TOTAL</span></td>
+                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(vm.listaTotal.total_solicitado)}}</div></td>
+                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(vm.listaTotal.total_decreto)}}</div></td>
+                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(vm.listaTotal.total_firme)}}</div></td>
+                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(vm.listaTotal.total_ajuste)}}</div></td>
+                                <td></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

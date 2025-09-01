@@ -1,0 +1,43 @@
+﻿<div ng-init="vm.init();">
+    <div id="SGRERRSEC{{vm.nombreComponente}}" class="hidden mb-3 ml-5 errorSeccionRequisitosGenerales" style="text-align: left; font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans'; font-size: 12px; font-style: normal; color: #A80521;"></div>
+    <div class="ui-accordion-container " id="accordion-sgrentidadnacionalasignaciondelegarviabilidad">
+        <div class="alert panel-heading row ui-accordion-header">
+            <button type="button" data-toggle="collapse" data-target="#sgrentidadnacionalasignaciondelegarviabilidad" ng-click="vm.changeArrow('sgrentidadnacionalasignaciondelegarviabilidad')">
+                <span class="d-inline-block" id="alert-sgrentidadnacionalasignaciondelegarviabilidad"></span>
+                <span id="name-capitulo-sgrentidadnacionalasignaciondelegarviabilidad"></span>
+                <span class="hidden" id="id-capitulo-sgrentidadnacionalasignaciondelegarviabilidad"></span>
+                <span id="arrow-sgrentidadnacionalasignaciondelegarviabilidad" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#sgrentidadnacionalasignaciondelegarviabilidad"></span>
+            </button>
+        </div>
+        <div class="collapse" id="sgrentidadnacionalasignaciondelegarviabilidad">
+            <div class="row m-0 mb-3">
+                <div class="col-md-12 ">
+                    <delegar-viabilidad-nacional-sgr guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                                     notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                     notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente,handlerCapitulos)">
+                    </delegar-viabilidad-nacional-sgr>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ui-accordion-container " id="accordion-sgrentidadnacionalasignacionasignarviabilidad">
+        <div class="alert panel-heading row ui-accordion-header">
+            <button type="button" data-toggle="collapse" data-target="#sgrentidadnacionalasignacionasignarviabilidad" ng-click="vm.changeArrow('sgrentidadnacionalasignacionasignarviabilidad')">
+                <span class="d-inline-block" id="alert-sgrentidadnacionalasignacionasignarviabilidad"></span>
+                <span id="name-capitulo-sgrentidadnacionalasignacionasignarviabilidad"></span>
+                <span class="hidden" id="id-capitulo-sgrentidadnacionalasignacionasignarviabilidad"></span>
+                <span id="arrow-sgrentidadnacionalasignacionasignarviabilidad" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#sgrentidadnacionalasignacionasignarviabilidad"></span>
+            </button>
+        </div>
+        <div class="collapse" id="sgrentidadnacionalasignacionasignarviabilidad">
+            <div class="row m-0 mb-3">
+                <div class="col-md-12 ">
+                    <asignar-viabilidad-nacional-sgr guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                                     notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                     notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente,handlerCapitulos)">
+                    </asignar-viabilidad-nacional-sgr>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

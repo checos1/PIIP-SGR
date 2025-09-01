@@ -1,0 +1,40 @@
+﻿namespace DNP.ServiciosNegocio.Comunes.Enum
+{
+    public enum CatalogoEnum
+    {
+        Ninguno,
+        Entidades,
+        TiposEntidades,
+        TodosTiposEntidades,
+        Sectores,
+        SectoresEntity,
+        Regiones,
+        Departamentos,
+        Municipios,
+        Resguardos,
+        Programas,
+        Productos,
+        Alternativas,
+        TiposRecursos,
+        TiposRecursosXentidad,
+        ClasificacionesRecursos,
+        Etapas,
+        GruposRecursos,
+        Agrupaciones,
+        TiposAgrupaciones,
+        Politicas,
+        PoliticasNivel1,
+        PoliticasNivel2,
+        PoliticasNivel3,
+        IndicadoresPoliticas,
+        TiposCofinanciaciones,
+        Entregables,
+        DireccionTecnica,
+        SubDireccionTecnica,
+        AnalistasSubDireccionTecnica,
+        TipoCofinanciador,
+        Fondos,
+        Rubros,
+        DepartamentosRegion
+    }
+}

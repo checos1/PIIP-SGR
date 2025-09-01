@@ -1,0 +1,8 @@
+
+<div ng-if="grid.appScope.vm.accion5({entidad: row.entity.IdEntidad, opcion: 'Usuarios:CambiarEstado'})" class="text-center">
+    <label class="switch">
+        <input type="checkbox" ng-checked="row.entity.Activo"
+               ng-click="grid.appScope.vm.accion4({$row: row.entity})">
+        <span class="slider round"></span>
+    </label>
+</div>

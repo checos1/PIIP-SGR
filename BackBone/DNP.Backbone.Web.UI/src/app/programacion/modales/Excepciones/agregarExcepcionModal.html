@@ -1,0 +1,38 @@
+﻿<modal-dialog cerrar="vm.cerrar" ng-init="vm.init()" guardar="vm.guardar">
+    <div class="row ">
+        <div class="col-md-12">
+            <div class="titulo-modal">
+                <span>EXCEPCIONES - <span class="tipo-entidad-cor">{{vm.tipoEntidad}}</span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" ng-repeat="item in vm.excepciones.Itens">
+        <div class="col-md-10">
+            <div class="col-md-6 pl-0">
+                <select chosen options="vm.entidades" ng-model="item.EntidadId"
+                    ng-options="x.Id as x.NombreEntidad for x in vm.entidades" name="selEntidades" id="selEntidades"
+                    no-results-text="No hay ningún resultado para su búsqueda" placeholder-text-single="Entidades">
+                </select>
+            </div>
+            <div class="col-md-3 rounded-right-2">
+                <input type="datetime-local" class="form-control" ng-model="item.FechaDesde"
+                    placeholder="Fecha Desde / Hora">
+            </div>
+            <div class="col-md-3 rounded-right-2">
+                <input type="datetime-local" class="form-control" ng-model="item.FechaHasta"
+                    placeholder="Fecha Hasta / Hora">
+            </div>
+        </div>
+        <div class="col-md-2">
+            <button class="btnaccion" ng-click="vm.adicionarExcepcion()" tooltip-placement="Auto"
+                uib-tooltip="Agregar nuevo Item">
+                <span><img src="Img/iconsgrid/iconAccionAdicionar.png"></span>
+            </button>
+            <button class="btnaccion" ng-click="vm.removerExcepcion($index)" tooltip-placement="Auto"
+                uib-tooltip="Eliminar Item">
+                <span><img src="Img/iconsgrid/iconAccionEliminar.png"></span>
+            </button>
+        </div>
+    </div>
+</modal-dialog>

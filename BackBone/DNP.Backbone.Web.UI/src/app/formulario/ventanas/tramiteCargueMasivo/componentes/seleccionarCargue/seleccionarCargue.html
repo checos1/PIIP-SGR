@@ -1,0 +1,27 @@
+﻿<section>
+	<div class="container-fluid inbox" ng-init="vm.init();">
+		<div class="tab-content">
+			<div class="ui-accordion-container hidden" id="accordion-seleccionarcarguecarguearchivocap">
+				<div class="alert panel-heading row ui-accordion-header">
+
+					<button type="button" data-toggle="collapse" data-target="#seleccionarcarguecarguearchivocap" ng-click="vm.changeArrow('seleccionarcarguecarguearchivocap')">
+						<span class="d-inline-block" id="alert-seleccionarcarguecarguearchivocap"></span>
+						<span id="name-capitulo-seleccionarcarguecarguearchivocap"></span>
+						<span class="hidden" id="id-capitulo-seleccionarcarguecarguearchivocap"></span>
+						<span id="arrow-seleccionarcarguecarguearchivocap" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#seleccionarcarguecarguearchivocap"></span>
+					</button>
+				</div>
+				<div class="collapse" id="seleccionarcarguecarguearchivocap">
+					<div class="row m-0 mb-3">
+						<cargue-archivo-cap bpin="{{vm.globalVariables.bpin}}"
+											guardadoevent="vm.guardadoevent(nombreComponenteHijo)"
+											notificacioncambios="vm.notificacionCambiosCapitulosExternos(handler,nombreComponente)" 
+											notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+											notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)">
+						</cargue-archivo-cap>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

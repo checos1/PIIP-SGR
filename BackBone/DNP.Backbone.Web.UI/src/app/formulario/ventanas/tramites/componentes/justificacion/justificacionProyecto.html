@@ -1,0 +1,130 @@
+﻿<div class="tab-content" style=" height:300px; overflow: scroll;" ng-init="vm.obtener();">
+
+    <div class="alert panel-heading ">
+        <button class="btn btn-link pull-left " type="button" data-toggle="collapse" data-target="#justificacionProyecto">
+            {{vm.tipoJustificacion}}
+        </button>
+        <span class="glyphicon glyphicon-chevron-up pull-right" data-toggle="collapse" data-target="#justificacionProyecto"> </span>
+    </div>
+
+    <div id="justificacionProyecto" class="collapsed panel-body">
+
+        <form id="preguntasProyectoForm" name="preguntasProyectoForm" novalidate>
+            <div style="min-height:600px;overflow:scroll;">
+                <div class="row" style="width:100%;">
+                    <div class="form-group">
+                        <!--<div class="tab-container col-md-12">-->
+                        <!--<ul class="nav nav-tabs">-->
+                        <!--<li class="active"><a data-target="#Generales" data-toggle="tab"><b>Generales</b></a></li>
+                        <li><a data-target="#Tematica2" data-toggle="tab"><b>Tematica2</b></a></li>
+                        <li><a data-target="#Tematica3" data-toggle="tab"><b>Tematica3</b></a></li>-->
+                        <!--<li ng-repeat="tematica in vm.JustificacionTematica"><a data-target="#Tematica{{tematica.OrdenTematica}}" data-toggle="tab"><b>{{tematica.Tematica}}</b></a></li>
+                        </ul>
+                        <div class="tab-content">-->
+                        <!--<div class="tab-pane preguntas active cont col-md-12" style="padding-left:0 !important;padding-top:20px !important" id="Generales">div prueba </div>-->
+                        <!--<div class="mb-3 row" ng-repeat="tematica in vm.JustificacionTematica">
+
+                        <div class="tab-pane preguntas cont col-md-12" style="padding-left:0 !important;padding-top:20px !important" id="Tematica{{tematica.OrdenTematica}}">
+                            <div ng-repeat="justificaciones in tematica.justificaciones" ng-init="justificacionesIndex = $index">
+                                <div class="row">
+                                    <label for="respuestaProyecto" class="col-md-5 col-form-label" style="text-align:left">{{justificaciones.JustificacionPregunta}}</label>
+
+                                    <div class="col-md-7 form-group">
+
+                                        <textarea rows="3"
+                                                  id="pregunta{{justificaciones.JustificacionPreguntaId}}"
+                                                  name="pregunta{{justificaciones.JustificacionPreguntaId}}"
+                                                  placeholder="Maximo 5.000 caracteres"
+                                                  ng-model="vm.JustificacionTematica.justificaciones[justificaciones.JustificacionPreguntaId]"
+                                                  ng-value="justificaciones.JustificacionRespuesta"
+                                                  minlength="1"
+                                                  maxlength="5000"
+                                                  class="form-control " ng-required="true"></textarea>-->
+                        <!--<span ng-if="preguntasProyectoForm.pregunta.$invalid && preguntasProyectoForm.pregunta.$dirty" class="help-block">Debes responder todas las preguntas</span>-->
+                        <!--</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>-->
+                        <!--</div>-->
+                    </div>
+
+                    <div ng-repeat="tematica in vm.JustificacionTematica" ng-init="preguntasGeneralesIndex = $index">
+                        <div class="row">
+                            <div class="alert panel-heading" style="border-color:#E6EFFD;height: 50px;">
+                                <span class="label label-primary pull-left" style="width: 22px;height: 50px;">&nbsp;</span>
+                                <button class="btn btn-link pull-left " type="button" data-toggle="collapse" data-target="#Tematica{{tematica.OrdenTematica}}">
+                                    {{tematica.Tematica}}
+                                </button>
+                                <span class="glyphicon glyphicon-chevron-up pull-right" data-toggle="collapse" data-target="#Tematica{{tematica.OrdenTematica}}"> </span>
+
+                            </div>
+                        </div>
+                        <br />
+                        <div class="collapse" id="Tematica{{tematica.OrdenTematica}}">
+                            <div ng-repeat="justificaciones in tematica.justificaciones" ng-init="justificacionesIndex = $index">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <!--<div class="col-md-1" style="text-align:left">
+                                            <span id="spanId{{justificaciones.JustificacionPreguntaId}}" class="label label-primary" style="font-size: 14px">{{justificaciones.JustificacionPreguntaId}}</span>
+                                            <img id="u111_img{{justificaciones.JustificacionPreguntaId}}" class="img" src="Img/u11.svg" style="display:none;">
+                                        </div>-->
+                                        <div class="col-md-6" style="text-align:justify">
+                                            <label id="labelId{{justificaciones.JustificacionPreguntaId}}" for="pregunta" class="col-md-12 col-form-label">{{justificaciones.JustificacionPregunta}}</label>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="col-md-1">
+                                            &nbsp;
+                                        </div>
+                                        <div class="col-md-6">
+                                            &nbsp;
+                                        </div>
+                                        <div class="col-md-5">
+                                            &nbsp;
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <textarea rows="3"
+                                                  id="pregunta{{justificaciones.JustificacionPreguntaId}}"
+                                                  name="pregunta{{justificaciones.JustificacionPreguntaId}}"
+                                                  ng-model="vm.JustificacionTematica.justificaciones[justificaciones.JustificacionPreguntaId]"
+                                                  ng-value="justificaciones.ObservacionPregunta"
+                                                  minlength="1"
+                                                  maxlength="5000"
+                                                  class="form-control " ng-required="true">
+
+</textarea>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="col-md-1">
+                                            &nbsp;
+                                        </div>
+                                        <div class="col-md-6">
+                                            &nbsp;
+                                        </div>
+                                        <div class="col-md-5">
+                                            &nbsp;
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+        </form>
+
+    </div>
+</div>

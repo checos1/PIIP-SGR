@@ -1,0 +1,258 @@
+[
+    {
+        "GrupoId": 1,
+        "GrupoNombre": "Ministério de Transporte",
+        "GrupoTipo": "Transporte",
+        "Datos": [
+            {
+                "ProyectoId": 1,
+                "TipoEntidadClave":  "Nacional", 
+                "TipoEntidadNombre": "Nacional",
+                "EntidadId" :1,
+                "Entidad" : "Ministério de Transporte"  ,
+                "SectorId": "1",
+                "Sector": "Transporte",
+                "Descripcion": "Construccion de las Fases I y II de la Troncal",
+                "Folio": 2017011100015,
+                "FlujoId" : 1, 
+                "FlujoDescripcion": "Flujo viabilizado",
+                "FlujoEstadoId": 1,
+                "FlujoEstado": "Terminado",
+                "FechaProyecto": "2020-10-26 16:41:12.000",
+                "EstadoId": 1,
+                "Estado": "Programado",
+                "ColorEstado" : "info"
+            }
+        ]
+    },
+
+    {
+        "GrupoId": 2,
+        "GrupoNombre": "Agencia de Desenvolvimiento Rural",
+        "GrupoTipo": "Agricultura",
+        "Datos": [
+            {
+                "ProyectoId": 3,
+                "TipoEntidadClave":  "Nacional",  
+                "TipoEntidadNombre": "Nacional",
+                "EntidadId" :2,
+                "Entidad" : "Agencia de Desenvolvimiento Rural"  ,
+                "SectorId": 2,
+                "Sector": "Agricultura",
+                "Descripcion": "Plan de reforestacion de arboles",
+                "Folio": 2017011100015,
+                "FlujoId" : 1, 
+                "FlujoDescripcion": "Flujo viabilizado",
+                "FlujoEstadoId": 1,
+                "FlujoEstado": "En proceso",
+                "FechaProyecto": "2020-10-29 16:41:12.000",
+                "EstadoId": 2,
+                "Estado": "Viabilizado",
+                "ColorEstado": "completado"
+            },
+            {
+                "ProyectoId": 4,
+                "TipoEntidadClave":  "Nacional",  
+                "TipoEntidadNombre": "Nacional",
+                "EntidadId" :2,
+                "Entidad" : "Agencia de Desenvolvimiento Rural"  ,
+                "SectorId": 2,
+                "Sector": "Agricultura",
+                "Descripcion": "Plan de comprar de silo de maíz",
+                "Folio": 8447575792310877,
+                "FlujoId" : 1, 
+                "FlujoDescripcion": "Flujo viabilizado",
+                "FlujoEstadoId": 1,
+                "FlujoEstado": "En proceso",
+                "FechaProyecto": "2020-10-30 16:41:12.000",
+                "EstadoId": 2,
+                "Estado": "En ejecución",
+                "ColorEstado": "alerta"
+            }
+        ]
+    },
+
+    {
+        "GrupoId": 3,
+        "GrupoNombre": "Departamento Nacional de Planeación",
+        "GrupoTipo": "Planeación",
+        "Datos": [
+            {
+                "ProyectoId": 5,
+                "TipoEntidadClave":  "Nacional", 
+                "TipoEntidadNombre": "Nacional",
+                "EntidadId" :3,
+                "Entidad" : "Departamento Nacional de Planeación"  ,
+                "SectorId": 3,
+                "Sector": "Planeación",
+                "Descripcion": "Planificación de administración de recursos",
+                "Folio": 2017011100015,
+                "FlujoId" : 1, 
+                "FlujoDescripcion": "Flujo viabilizado",
+                "FlujoEstadoId": 1,
+                "FlujoEstado": "En proceso",
+                "FechaProyecto": "2020-10-29 16:41:12.000",
+                "EstadoId": 2,
+                "Estado": "Terminado",
+                "ColorEstado": "error"
+            },
+            {
+                "ProyectoId": 3,
+                "TipoEntidadClave":  1, 
+                "TipoEntidadNombre": "Nacional",
+                "EntidadId" :3,
+                "Entidad" : "Departamento Nacional de Planeación"  ,
+                "SectorId": 3,
+                "Sector": "Planeación",
+                "Descripcion": "Plan de desarrollo economico",
+                "Folio": 8447575792310877,
+                "FlujoId" : 1, 
+                "FlujoDescripcion": "Flujo viabilizado",
+                "FlujoEstadoId": 1,
+                "FlujoEstado": "Terminado",
+                "FechaProyecto": "2020-10-30 16:41:12.000",
+                "EstadoId": 2,
+                "Estado": "Terminado",
+                "ColorEstado": "error"
+            }
+        ]
+    },
+
+    {
+        "GrupoId": 1,
+        "GrupoNombre": "Ministério de Transporte",
+        "GrupoTipo": "Transporte",
+        "Datos": [
+            {
+                "ProyectoId": 8,
+                "TipoEntidadClave":  "Territorial", 
+                "TipoEntidadNombre": "Territorial",
+                "EntidadId" :1,
+                "Entidad" : "Ministério de Transporte"  ,
+                "SectorId": "1",
+                "Sector": "Transporte",
+                "Descripcion": "Construccion del puente I y II",
+                "Folio": 20170,
+                "FlujoId" : 1, 
+                "FlujoDescripcion": "Flujo viabilizado",
+                "FlujoEstadoId": 1,
+                "FlujoEstado": "Terminado",
+                "FechaProyecto": "2020-10-26 16:41:12.000",
+                "EstadoId": 1,
+                "Estado": "Programado",
+                "ColorEstado": "info"
+            },
+            {
+                "ProyectoId": 20,
+                "TipoEntidadClave":  "Territorial", 
+                "TipoEntidadNombre": "Territorial",
+                "EntidadId" :1,
+                "Entidad" : "Ministério de Transporte"  ,
+                "SectorId": "1",
+                "Sector": "Transporte",
+                "Descripcion": "Construcción del puente la pigüa",
+                "Folio": 2017845,
+                "FlujoId" : 1, 
+                "FlujoDescripcion": "Flujo viabilizado",
+                "FlujoEstadoId": 1,
+                "FlujoEstado": "Terminado",
+                "FechaProyecto": "2020-10-28 16:41:12.000",
+                "EstadoId": 1,
+                "Estado": "Programado",
+                "ColorEstado": "info"
+            }
+        ]
+    },
+
+    {
+        "GrupoId": 2,
+        "GrupoNombre": "Agencia de Desenvolvimiento Rural",
+        "GrupoTipo": "Agricultura",
+        "Datos": [
+            {
+                "ProyectoId": 21,
+                "TipoEntidadClave":  "Territorial", 
+                "TipoEntidadNombre": "Territorial",
+                "EntidadId" :2,
+                "Entidad" : "Agencia de Desenvolvimiento Rural"  ,
+                "SectorId": 2,
+                "Sector": "Agricultura",
+                "Descripcion": "Plan de sembradío de alpaca",
+                "Folio": 201700484757599,
+                "FlujoId" : 1, 
+                "FlujoDescripcion": "Flujo viabilizado",
+                "FlujoEstadoId": 1,
+                "FlujoEstado": "En proceso",
+                "FechaProyecto": "2020-10-29 16:41:12.000",
+                "EstadoId": 2,
+                "Estado": "Viabilizado",
+                "ColorEstado": "completado"
+            },
+            {
+                "ProyectoId": 22,
+                "TipoEntidadClave":  "Territorial", 
+                "TipoEntidadNombre": "Territorial",
+                "EntidadId" :2,
+                "Entidad" : "Agencia de Desenvolvimiento Rural"  ,
+                "SectorId": 2,
+                "Sector": "Agricultura",
+                "Descripcion": "Plan de comprar de silo de frijol",
+                "Folio": 8447575792310877,
+                "FlujoId" : 1, 
+                "FlujoDescripcion": "Flujo viabilizado",
+                "FlujoEstadoId": 1,
+                "FlujoEstado": "En proceso",
+                "FechaProyecto": "2020-10-30 16:41:12.000",
+                "EstadoId": 2,
+                "Estado": "En ejecución",
+                "ColorEstado": "alerta"
+            }
+        ]
+    },
+
+    {
+        "GrupoId": 3,
+        "GrupoNombre": "Departamento Nacional de Planeación",
+        "GrupoTipo": "Planeación",
+        "Datos": [
+            {
+                "ProyectoId": 23,
+                "TipoEntidadClave":  2, 
+                "TipoEntidadNombre": "Territorial",
+                "EntidadId" :3,
+                "Entidad" : "Departamento Nacional de Planeación"  ,
+                "SectorId": 3,
+                "Sector": "Planeación",
+                "Descripcion": "Plan de contigencia de inundaciones",
+                "Folio": 2017011100015,
+                "FlujoId" : 1, 
+                "FlujoDescripcion": "Flujo viabilizado",
+                "FlujoEstadoId": 1,
+                "FlujoEstado": "En proceso",
+                "FechaProyecto": "2020-10-29 16:41:12.000",
+                "EstadoId": 2,
+                "Estado": "Terminado",
+                "ColorEstado": "error"
+            },
+            {
+                "ProyectoId": 24,
+                "TipoEntidadClave":  2, 
+                "TipoEntidadNombre": "Territorial",
+                "EntidadId" :3,
+                "Entidad" : "Departamento Nacional de Planeación"  ,
+                "SectorId": 3,
+                "Sector": "Planeación",
+                "Descripcion": "Plan de paquete economico",
+                "Folio": 202010260919384754957597,
+                "FlujoId" : 1, 
+                "FlujoDescripcion": "Flujo viabilizado",
+                "FlujoEstadoId": 1,
+                "FlujoEstado": "Terminado",
+                "FechaProyecto": "2020-10-30 16:41:12.000",
+                "EstadoId": 2,
+                "Estado": "Terminado",
+                "ColorEstado": "error"
+            }
+        ]
+    }
+]

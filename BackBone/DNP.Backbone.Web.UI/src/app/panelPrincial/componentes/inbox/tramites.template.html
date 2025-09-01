@@ -1,0 +1,693 @@
+﻿<div class="dashboard" id="tramits">
+
+    <div id="proyectos" class="project">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="titlebar marginb-15">
+                    <span>Mis procesos</span>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-11" ng-class="vm.classFlechas">
+                <div id="dvFlechaPlaneacion" style="position: relative; display:inline-flex; z-index:2" ng-click="vm.toggleEvento(1)">
+                    <img src="{{vm.imgenSeleccionPlaneacion}}" />
+                    <label style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%)">PLANEACIÓN</label>
+                    <span class="macroproceso circle-noti" ng-class="vm.etapa == 'pl'? 'active':''">{{vm.cantidades[0].PProyecto}}</span>
+                </div>
+                <div id="dvPlaneacionDatos" class="content-macroprocesos" ng-show="vm.VisiblePlaneacion">
+
+                    <div style="left:50px" ng-class="vm.etapa == 'pl'? 'accion-seleccionada':'accion-sin-seleccion'">
+                        <a href="/proyectos/pl">
+                            <div ng-class="vm.etapa == 'pl'? 'div-accion-seleccionada':'div-accion-sin-seleccion'">
+                                <label style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%)">Proyectos</label>
+                                <span class="macroproceso circle-noti" ng-class="vm.etapa == 'pl'? 'active':''">{{vm.cantidades[0].PProyecto}}</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div id="dvFlechaRecursos" style="position: relative; display: inline-flex; z-index: 2" ng-click="vm.toggleEvento(2)">
+                    <img src="{{vm.imgenSeleccionRecursos}}" />
+                    <label style="position: absolute; top: 50%; transform: translate(20%, -50%)">G. RECURSOS</label>
+                    <span class="macroproceso circle-noti" ng-class="vm.etapa == 'gr'? 'active':''">{{vm.cantidades[0].GRProyecto}}</span>
+                </div>
+                <div id="dvRecursosDatos" class="content-macroprocesos" ng-show="vm.VisibleRecursos">
+                    <div style="left:50px" ng-class="vm.etapa == 'gr'? 'accion-seleccionada':'accion-sin-seleccion'">
+                        <a href="/proyectos/gr">
+                            <div ng-class="vm.etapa == 'gr'? 'div-accion-seleccionada':'div-accion-sin-seleccion'">
+                                <label style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%)">Proyectos</label>
+                                <span class="macroproceso circle-noti" ng-class="vm.etapa == 'gr'? 'active':''">{{vm.cantidades[0].GRProyecto}}</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div id="dvFlechaEjecucion" style="position: relative; display: inline-flex; z-index: 2" ng-click="vm.toggleEvento(3)">
+                    <img src="{{vm.imgenSeleccionEjecucion}}" />
+                    <label style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%)">EJECUCIÓN</label>
+                    <span class="macroproceso circle-noti" ng-class="vm.etapa == 'ej'? 'active':''">{{vm.cantidades[0].EJTotal}}</span>
+                </div>
+                <div id="dvEjecucionDatos" class="content-macroprocesos conProgramacion" ng-show="vm.VisibleEjecucion">
+                    <div style="left:50px" class="accion-sin-seleccion">
+                        <a href="/proyectos/ej">
+                            <div class="div-accion-sin-seleccion">
+                                <label style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%)">Proyectos</label>
+                                <span class="macroproceso circle-noti" ng-class="vm.etapa == 'ej'? 'active':''">{{vm.cantidades[0].EJProyecto}}</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div style="left:160px" ng-class="vm.etapa == 'ej'? 'accion-seleccionada':'accion-sin-seleccion'">
+                        <a href="/tramites/ej">
+                            <div ng-class="vm.etapa == 'ej'? 'div-accion-seleccionada':'div-accion-sin-seleccion'">
+                                <label style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%)">Trámites</label>
+                                <span class="macroproceso circle-noti" ng-class="vm.etapa == 'ej'? 'active':''">{{vm.cantidades[0].EJTramite}}</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div style="left:270px" class="accion-sin-seleccion">
+                        <a href="/programacion/ej">
+                            <div style="width:150px" class="div-accion-sin-seleccion">
+                                <label style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%)">Programación</label>
+                                <span class="macroproceso circle-noti" ng-class="vm.etapa == 'ej'? 'active':''">{{vm.cantidades[0].EJProgramacion}}</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div id="dvFlechaEvaluacion" style="position: relative; display: inline-flex; z-index: 2" ng-click="vm.toggleEvento(4)">
+                    <img src="{{vm.imgenSeleccionEvaluacion}}" />
+                    <label style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%)">EVALUACIÓN</label>
+                    <span class="macroproceso circle-noti" ng-class="vm.etapa == 'ev'? 'active':''">{{vm.cantidades[0].EVProyecto}}</span>
+                </div>
+                <div id="dvEvaluacionDatos" class="content-macroprocesos" ng-show="vm.VisibleEvaluacion">
+                    <div style="left:50px" ng-class="vm.etapa == 'ev'? 'accion-seleccionada':'accion-sin-seleccion'">
+                        <a href="/proyectos/ev">
+                            <div ng-class="vm.etapa == 'ev'? 'div-accion-seleccionada':'div-accion-sin-seleccion'">
+                                <label style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%)">Proyectos</label>
+                                <span class="macroproceso circle-noti" ng-class="vm.etapa == 'ev'? 'active':''">{{vm.cantidades[0].EVProyecto}}</span>
+                            </div>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+            <!--<div class="col-md-10">
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn pl" ng-class="vm.etapa == 'pl'? 'active':''">
+                    <a href="/{{vm.tipoProceso}}/pl">PL</a>
+                    <span class="etapas circle-noti" ng-class="vm.etapa == 'pl'? 'active':''">{{vm.misProcesos.misProcesos.tramites.planeacion.totales}}</span>
+                </label>
+                <label class="btn pr" ng-class="vm.etapa == 'pr'? 'active':''">
+                    <a href="/{{vm.tipoProceso}}/pr">GR</a>
+                    <span class="etapas circle-noti" ng-class="vm.etapa == 'pr'? 'active':''">{{vm.misProcesos.misProcesos.tramites.programacion.totales}}</span>
+                </label>
+                <label class="btn ej" ng-class="vm.etapa == 'ej'? 'active':''">
+                    <a href="/{{vm.tipoProceso}}/ej">EJ</a>
+                    <span class="etapas circle-noti" ng-class="vm.etapa == 'ej'? 'active':''">{{vm.misProcesos.misProcesos.tramites.ejecucion.totales}}</span>
+                </label>-->
+            <!--<label class="btn se" ng-class="vm.etapa == 'se'? 'active':''">-->
+            <!--<a href="/{{vm.tipoProceso}}/se">SE</a>-->
+            <!--<a>SE</a>
+                <span class="etapas circle-noti" ng-class="vm.etapa == 'se'? 'active':''">{{vm.misProcesos.misProcesos.tramites.seguimiento.totales}}</span>
+            </label>-->
+            <!--<label class="btn ev" ng-class="vm.etapa == 'ev'? 'active':''">-->
+            <!--<a href="/{{vm.tipoProceso}}/ev">EV</a>-->
+            <!--<a>EV</a>
+                        <span class="etapas circle-noti" ng-class="vm.etapa == 'ev'? 'active':''">{{vm.misProcesos.misProcesos.tramites.evaluacion.totales}}</span>
+                    </label>
+                </div>
+                <div class="btn-group btn-group-toggle">
+                    <label class="btn btn-secondary border-0">
+                        <a>»</a>
+                    </label>
+                </div>&nbsp;&nbsp;
+                <div class="btn-group btn-group-toggle btnsFiltrosAgrupados" data-toggle="buttons">
+                    <label class="btn btn-secondary">
+                        <a href="/proyectos/{{vm.etapa}}">Proyectos</a>
+                    </label>
+                    <label class="btn btn-secondary active">
+                        <a>Trámites</a>
+                    </label>
+                </div>
+            </div>-->
+
+            <div class="col-md-1">
+
+                <!-- Componente de Crear Proceso de Tramites -->
+                <div id="cmpCrearTramites">
+
+                    <a popover-placement="bottom" popover-class="dropdown new-tar popOverCrearTramites" uib-popover-template="vm.popOverOptionsCrearTramite.templateUrl" popover-is-open="vm.popOverOptionsCrearTramite.isOpen">
+                        <button class="btnCrearProceso pull-right">
+                            + PROCESO
+                        </button>
+                        <br />
+                    </a>
+
+                </div>
+
+                <script type="text/ng-template" id="myPopoverTemplate.html">
+
+                    <div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="titulo-modal">
+                                    <h4>Crear trámite{{vm.tipoTramiteTexto}}</h4>
+                                    <label><h6>Los campos con asterisco (*) son obligatorios.</h6></label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Tipo de trámite*</label>
+                                <div id="tipoTramiteError" class="hidden text-left color-red"></div>
+                                <div class="input-group mb-3">
+                                    <select ng-model="vm.objSolicitud.codTramite" class="form-control rounded-right-2" placeholder="Tipo Tramite" ng-change="vm.getTipoTramite()">
+                                        <option value="" disabled selected>Tipo Tramite</option>
+                                        <option ng-repeat="tipoTramite in vm.tramites" value="{{tipoTramite.id}}">
+                                            {{tipoTramite.nombre}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label>Entidad*</label>
+                                <div id="codEntidadeError" class="hidden text-left color-red"></div>
+                                <div class="input-group mb-3">
+                                    <select ng-model="vm.objSolicitud.codEntidade" class="form-control rounded-right-2" placeholder="Entidad" ng-change="vm.getCodEntidade()">
+                                        <option value="" disabled selected>Entidad</option>
+                                        <option ng-repeat="entidad in vm.listaEntidades" value="{{entidad.id}}">
+                                            {{entidad.nombre}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row" id="seccionDescripcion">
+                            <div class="col-md-12">
+                                <label>Descripción (máximo 600 caracteres)</label>
+                                <div id="descripcionError" class="hidden text-left color-red"></div>
+                                <div class="input-group mb-3">
+                                    <textarea placeholder="Descripción" class="form-control" rows="4" maxlength="600" ng-model="vm.objSolicitud.descripcion" ng-change="vm.getDescripcion()"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" id="seccionObjetoProcesoVFO" style="display:none">
+                            <div class="col-md-6">
+                                <label>Objeto de la contratación (máximo 1000 caracteres)</label>
+                                <div id="objetoErrorVFO" class="hidden text-left color-red"></div>
+                                <div class="input-group mb-3">
+                                    <textarea placeholder="Objeto de la contratación" class="form-control" rows="4" maxlength="1000" ng-model="vm.objSolicitud.objeto" ng-change="vm.getObjeto()"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-group mb-3">
+                                    <div class="col-md-12">
+                                        <label>Año de inicio</label>
+                                        <div id="anioInicialErrorVFO" class="hidden text-left color-red"></div>
+                                        <input id="anioInicialIdVFO" type="date" class="form-control" min="{{vm.fechaHoy}}" max="{{vm.fechaUltimoDiaAnio}}" ng-if="!vm.creado && !vm.cerrado" ng-model="vm.objSolicitud.anioInicial" placeholder="Fecha Desde / Hora" ng-change="vm.getAnioInicial()">
+                                    </div>
+                                    <div class="col-md-12">
+                                        &nbsp;
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label>Año final</label>
+                                        <div id="anioFinalErrorVFO" class="hidden text-left color-red"></div>
+                                        <input type="date" id="anioFinalIdVFO" class="form-control" min="{{vm.fechaHoy}}" ng-if="!vm.creado && !vm.cerrado" ng-model="vm.objSolicitud.anioFinal" placeholder="Fecha Desde / Hora" ng-change="vm.getAnioFinal()">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" id="seccionObjetoProcesoVFE" style="display:none">
+                            <div class="col-md-6">
+                                <label>Objeto de la contratación (máximo 1000 caracteres)</label>
+                                <div id="objetoErrorVFE" class="hidden text-left color-red"></div>
+                                <div class="input-group mb-3">
+                                    <textarea placeholder="Objeto de la contratación" class="form-control" rows="4" maxlength="1000" ng-model="vm.objSolicitud.objeto" ng-change="vm.getObjeto()"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-group mb-3">
+                                    <div class="col-md-12">
+                                        <label>Año de inicio</label>
+                                        <div id="anioInicialErrorVFE" class="hidden text-left color-red"></div>
+                                        <input id="anioInicialIdVFE" type="date" class="form-control" min="{{vm.fechaInicialAnioInicial}}" max="{{vm.fechaFinalAnioInicial}}" ng-if="!vm.creado && !vm.cerrado" ng-model="vm.objSolicitud.anioInicial" placeholder="Fecha Desde / Hora" ng-change="vm.getAnioInicial()">
+                                    </div>
+                                    <div class="col-md-12">
+                                        &nbsp;
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label>Año final</label>
+                                        <div id="anioFinalErrorVFE" class="hidden text-left color-red"></div>
+                                        <input type="date" id="anioFinalIdVFE" class="form-control" min="{{vm.fechaInicialAnioFinal}}" max="{{vm.fechaFinalAnioFinal}}" ng-if="!vm.creado && !vm.cerrado" ng-model="vm.objSolicitud.anioFinal" placeholder="Fecha Desde / Hora" ng-change="vm.getAnioFinal()">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" id="seccionTipoProceso" style="display:none">
+                            <div class="col-md-6">
+                                <div class="col-md-12">
+                                    <label>Tipo vigencia futura*</label>
+                                    <div id="tipoProcesoError" class="hidden text-left color-red"></div>
+                                </div>
+                                <div class="col-md-12">
+                                    &nbsp;
+                                </div>
+                                <div class="col-md-12">
+                                    <label>
+                                        <input type="radio" ng-model="vm.tipoProceso" value="PLN" ng-change="vm.getTipoProceso()">
+                                        Proceso licitatorio nuevo
+                                    </label>
+                                </div>
+                                <div class="col-md-12">
+                                    <label>
+                                        <input type="radio" ng-model="vm.tipoProceso" value="AC" ng-change="vm.getTipoProceso()">
+                                        Adición o prórroga del Contrato
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="col-md-12">
+                                    <label>
+                                        ¿Es asociación público privada?*
+                                    </label>
+                                    <div id="appErrorVFO" class="hidden text-left color-red"></div>
+                                </div>
+                                <div class="col-md-12">
+                                    &nbsp;
+                                </div>
+                                <div class="col-md-12">
+                                    <label>
+                                        <input type="radio" ng-model="vm.app" value="SI" ng-change="vm.getApp()">
+                                        Si
+                                    </label>
+                                </div>
+                                <div class="col-md-12">
+                                    <label>
+                                        <input type="radio" ng-model="vm.app" value="NO" ng-change="vm.getApp()">
+                                        No
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" id="seccionPublicoPrivada" style="display:none">
+                            <div class="col-md-6">
+
+                            </div>
+                            <div class="col-md-6">
+                                <div class="col-md-12">
+                                    <label>
+                                        ¿Es asociación público privada?*
+                                    </label>
+                                    <div id="appErrorVFE" class="hidden text-left color-red"></div>
+                                </div>
+                                <div class="col-md-12">
+                                    &nbsp;
+                                </div>
+                                <div class="col-md-12">
+                                    <label>
+                                        <input type="radio" ng-model="vm.app" value="SI" ng-change="vm.getApp()">
+                                        Si
+                                    </label>
+                                </div>
+                                <div class="col-md-12">
+                                    <label>
+                                        <input type="radio" ng-model="vm.app" value="NO" ng-change="vm.getApp()">
+                                        No
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <br />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 text-right">
+                                <button type="button" ng-click="vm.cerrarTramite()" class="btneditarDNP" tooltip-placement="auto" uib-tooltip="Cerrar" tabindex="0">
+                                    Cancelar
+                                </button>
+                            </div>
+                            <div class="col-md-6 text-left">
+                                <button type="button" ng-click="vm.guardarSolicitud()" class="btnguardarDNP " tooltip-placement="auto" uib-tooltip="Guardar" tabindex="1">
+                                    Crear
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </script>
+
+                <!-- Componente de Crear Proceso de Tramites -->
+
+            </div>
+        </div>
+
+
+        <!--inicio tabs-->
+        <div class="form-group clearfix">
+            <div class="row">
+                <div class="col-md-12 radio radio-primary">
+
+                    <ul class="nav nav-tabs">
+                        <li tabindex="0" class="{{$index == 0 ? 'active' : ''}}"
+                            ng-repeat="tipo in vm.listaTipoEntidad">
+                            <a data-toggle="tab" ng-click="vm.cambioTipoEntidad(tipo.Nombre)"
+                               ng-disabled="{{tipo.Deshabilitado}}" ng-if="!tipo.Deshabilitado"
+                               llamar-funcion-con-tecla="vm.cambioTipoEntidad(tipo.Nombre)">
+                                {{tipo.Descripcion}}
+                            </a>
+                            <a ng-if="tipo.Deshabilitado" class="disabled" disabled>{{tipo.Descripcion}}</a>
+                        </li>
+
+                    </ul>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-6">
+                        <p class="mis-procesos-titulo-totales">{{vm.nombreEtapa}} / Trámites / {{vm.tipoEntidad}}. Total: {{ vm.cantidadDeTramites }}</p>
+                    </div>
+                    <!--<span class="buttonbar pull-right">
+                        <img src="Img/etapas/u702.svg" class="imgMisProcesosAcciones" ng-click="vm.conmutadorFiltro()" uib-tooltip="Filtro" />
+                        <img src="Img/etapas/u1089.svg" class="imgMisProcesosAcciones" ng-click="vm.downloadPdf()" uib-tooltip="Exportar PDF" />
+                        <img src="Img/etapas/u1090.svg" class="imgMisProcesosAcciones" ng-click="vm.downloadExcel()" uib-tooltip="Exportar XLS" />
+                    </span>-->
+                    <div class="row rowbotonesicoDNP">
+                        <div class="col-md-12 text-right nopadding">
+                            <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Limpiar" ng-click="vm.restablecerBusqueda()">
+                                <span> <img id="icoLimpiarBusqueda" class="icoBusquedasDNP" src="Img/IcolimpiarBusqD.svg"></span>
+                            </button>
+                            <button tooltip-class="customClass" uib-tooltip="Buscar" class="btnicobuscarDNP" type="button" data-toggle="collapse" data-target="#IdPanelBuscador" ng-click="vm.conmutadorFiltro()">
+                                <span> <img id="arrow-IdPanelBuscador" class="icoBusquedas2DNP glyphicon-chevron-down-busqDNP" src="Img/IcoBusqUp.svg" data-toggle="collapse" data-target="#IdPanelBuscador"></span>
+                            </button>
+                            <button class="btnaccion" ng-click="vm.downloadPdf()">
+                                <span> <img class="icoBusquedasDNP" src="Img/etapas/u1089.svg"></span>
+                            </button>
+                            <button class="btnaccion" ng-click="vm.downloadExcel()">
+                                <span> <img class="icoBusquedasDNP" src="Img/etapas/u1090.svg"></span>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- <a href="{{vm.obtenerXML}}" download target="_blank" tooltip-placement="auto" uib-tooltip="Exportar XML"><img src="/Img/btn/btnExportXML.png" alt="XML" /></a> -->
+                </div>
+            </div>
+            <!--inicio filtro-->
+            <br />
+            <div class="row panelbuscadorDNP collapse" id="IdPanelBuscador">
+
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="labelbuscadorDNP"> <span>Código trámite<img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg"></span></div>
+                        <input type="text" ng-model="vm.tramiteFiltro.numeroTramite" name="txtIdentificador"
+                               id="txtIdentificador" class="form-control InputBuscadorDNP" />
+                    </div>
+                    <div class="col-md-6">
+                        <div class="labelbuscadorDNP"> <span>Nombre proceso</span></div>
+                        <input type="text" class="form-control InputBuscadorDNP" placeholder="Escriba palabra o frase" ng-model="vm.tramiteFiltro.nombreFlujo.valor" name="txtNombreFlujo"
+                               id="txtNombreFlujo" />
+                    </div>
+                    <div class="col-md-2">
+                        <div class="labelbuscadorDNP"> <span>Tipo de trámite</span></div>
+                        <select class="form-control selectDNP" ng-model="vm.tramiteFiltro.tipoTramiteId.valor"
+                                ng-options="x.Id as x.Nombre for x in vm.listaFiltroTipoTramites"
+                                name="ddlEstadoDelProyecto" id="ddlEstadoDelProyecto">
+                            <option value="" selected>Seleccione...</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="labelbuscadorDNP"> <span>Sector</span></div>
+                        <select class="form-control selectDNP" ng-model="vm.tramiteFiltro.sectorId.valor"
+                                ng-options="x.Id as x.Name for x in vm.listaFiltroSectores" name="ddlSector"
+                                id="ddlSector">
+                            <option value="" selected>Seleccione...</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="" style="height:20px">
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="labelbuscadorDNP"> <span>Estado del proceso</span></div>
+                        <select class="form-control selectDNP" ng-model="vm.tramiteFiltro.estado.valor"
+                                ng-options="x.text as x.value for x in vm.listaFiltroEstadoTramites" name="ddlEstado"
+                                id="ddlEstado">
+                            <option value="" selected>Seleccione...</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="labelbuscadorDNP"> <span>Nombre paso actual</span></div>
+                        <input type="text" class="form-control InputBuscadorDNP" placeholder="Escriba palabra o frase" ng-model="vm.tramiteFiltro.accionFlujo.valor" />
+                    </div>
+                    <div class="col-md-4 SelectBuscadorDNP">
+                        <div class="labelbuscadorDNP"> <span>Entidad encargada de paso actual</span></div>
+                        <select class="form-control selectDNP" chosen options="vm.listaFiltroEntidades" ng-model="vm.tramiteFiltro.entidadId.valor"
+                                ng-options="x.EntityTypeCatalogOptionId as x.Nombre for x in vm.listaFiltroEntidades" name="ddlEntidad" id="ddlEntidad" no-results-text="No hay ningún resultado para su búsqueda"
+                                placeholder-text-single="Entidades">
+                            <option value="" selected>Seleccione...</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 pull-left text-left" ng-if="vm.BusquedaRealizada">
+                        <span class="spanresultadobusquedaDNP pull-left" ng-if="vm.cantidadDeTramites > 0">
+                            Se encontraron ({{vm.cantidadDeTramites}}) resultados.
+                        </span>
+                        <span class="spanresultadobusqueda2DNP pull-left" style="margin-top: 0px;" ng-if="vm.cantidadDeTramites == 0">
+                            No se encontraron resultados.
+                        </span>
+                    </div>
+                    <div class="col-md-6 pull-right text-right">
+                        <span class="pull-right">
+                            <button type="button" class=" btnBuscarDNP " tooltip-class="customClass" uib-tooltip="Buscar" ng-click="vm.buscar()">
+                                BUSCAR
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--<div class="filtro" ng-if="vm.mostrarFiltro">
+                <div class="clearfix">
+                    <div class="row">
+                        <div class="col-md-10">-->
+            <!--<div class="col-md-2" ng-if="vm.puedeVerFiltroCodigo">
+                <input type="text" ng-model="vm.tramiteFiltro.codigo.valor" name="txtCodigo"
+                       id="txtCodigo" class="form-control" placeholder="Codigo" />
+            </div>-->
+            <!--<div class="col-md-2" ng-if="vm.puedeVerFiltroDescripcion">
+                                <input type="text" ng-model="vm.tramiteFiltro.descripcion.valor" name="txtDescripcion"
+                                       id="txtDescripcion" class="form-control" placeholder="Descripción" />
+                            </div>
+                            <div class="col-md-4" ng-if="vm.puedeVerFiltroFecha">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Fecha Desde</span>
+                                    </div>
+                                    <input type="date" ng-model="vm.tramiteFiltro.fechaDesde.valor" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-4" ng-if="vm.puedeVerFiltroFecha">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Fecha Hasta</span>
+                                    </div>
+                                    <input type="date" ng-model="vm.tramiteFiltro.fechaHasta.valor" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="col-md-4" ng-if="vm.puedeVerFiltroSector">
+                                <select ng-model="vm.tramiteFiltro.sectorId.valor"
+                                        ng-options="x.Id as x.Name for x in vm.listaFiltroSectores" name="ddlSector"
+                                        id="ddlSector" class="form-control">
+                                    <option value="" selected>Sector</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2" ng-if="vm.puedeVerFiltroEntidad">
+                                <select chosen options="vm.listaFiltroEntidades" ng-model="vm.tramiteFiltro.entidadId.valor"
+                                        ng-options="x.Id as x.Name for x in vm.listaFiltroEntidades" name="ddlEntidad" id="ddlEntidad"
+                                        no-results-text="No hay ningún resultado para su búsqueda" placeholder-text-single="Entidades" class="form-control">
+                                    <option value="" selected>Entidad</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3" ng-if="vm.puedeVerFiltroAccionFlujo">
+                                <input type="text" ng-model="vm.tramiteFiltro.accionFlujo.valor" class="form-control" placeholder="Accion Flujo" />
+                            </div>
+                            <div class="col-md-3" ng-if="vm.puedeVerFiltroNombreFlujo">
+                                <input type="text" ng-model="vm.tramiteFiltro.nombreFlujo.valor" class="form-control" placeholder="Nombre Flujo" />
+                            </div>
+
+                            <div class="col-md-4" ng-if="vm.puedeVerFiltroEstadoTramite">
+                                <select ng-model="vm.tramiteFiltro.estado.valor"
+                                        ng-options="x.text as x.value for x in vm.listaFiltroEstadoTramites" name="ddlEstado"
+                                        id="ddlEstado" class="form-control">
+                                    <option value="" selected>Estado</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2" ng-if="vm.puedeVerFiltroEstadoTramite">
+                                <input type="text" ng-model="vm.tramiteFiltro.numeroTramite" class="form-control" placeholder="Número Trámite" />
+                            </div>
+                        </div>
+                        <div class="col-md-2 text-right">
+                            <button type="button" class="btn btn-filtro" ng-click="vm.buscar()"
+                                    tooltip-placement="auto" uib-tooltip="Buscar">
+                                Buscar
+                            </button>
+                            <button type="button" class="btn btn-filtro" tooltip-placement="auto"
+                                    ng-click="vm.limpiarCamposFiltro()" uib-tooltip="Limpiar">
+                                Limpiar
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>-->
+            <!--fim filtro-->
+        </div>
+        <br />
+
+        <!--<div class="row">
+            <div class="col-xs-12">
+                <div class="container-table" ui-i18n="{{vm.lang}}">
+
+                    <div ng-if="vm.filasFiltradas"
+                         class="clearfix grid-icon"
+                         id="uigprojecto"
+                         ui-grid="vm.gridOptions"
+                         ui-grid-resize-columns
+                         ui-grid-pinning
+                         ui-grid-pagination
+                         ui-grid-expandable>
+                    </div>
+
+                    <div class="text-center intro-help  min-mh no-result-watermark"
+                         ng-if="!vm.tipoEntidad && !vm.filasFiltradas">
+                        <h4>{{ 'Buscando resultados' }} </h4>
+                    </div>
+
+                    <div class="text-center intro-help  min-mh no-result-watermark"
+                         ng-if="vm.tipoEntidad && !vm.filasFiltradas">
+                        <h4>
+                            {{ 'No hay ningún resultado para su búsqueda por el tipo de entidad' }}
+                            {{ vm.tipoEntidad }}
+                        </h4>
+                    </div>
+
+                </div>
+            </div>
+            <div ng-if="vm.mostrarMensajeProyectos" ng-cloak>
+                <div class="text-center intro-help no-result-watermark">
+                    <img src="Img/image-help.png" alt="Sin resultados">
+                    <h2 id="idLabelMensajeResultados">{{vm.Mensaje}}</h2>
+                </div>
+            </div>
+        </div>-->
+        <!--Inicio Nueva Grilla-->
+        <div class="row">
+            <div class="" style="padding: 0 !important" ng-repeat="entidad in vm.listaEntidadesGeneral">
+                <div class="alert panel-headingAccDNP">
+                    <div class="card card-body pull-left  divAccordionDNP">
+                        <span class="uLabelCampo">{{entidad.sector}}</span> - {{entidad.entidad}}
+                        <p class="panelbtnalertAcordnp">
+                            <button class="btnaccion btnAccordionDNP" type="button" data-toggle="collapse" data-target="#obj_{{entidad.entidadId}}" ng-click="vm.AbrilNivel(entidad.entidadId)">
+                                <img ng-show="entidad.estadoEntidad == '+'" src="Img/btnMas.svg">
+                                <img ng-show="entidad.estadoEntidad == '-'" src="Img/btnMenos.svg">
+                            </button>
+                        </p>
+                    </div>
+                </div>
+                <br />
+                <div class="collapse" id="obj_{{entidad.entidadId}}" style="margin-top: -20px;">
+                    <div class="LineaEncabezadodivDNP"></div>
+                    <div class="row">
+                        <h3 class="tituloEncabezadodivDNP">
+                            Procesos pendientes: {{entidad.subGridOptions.data.length}}
+                        </h3>
+                    </div>
+
+                    <div class="row" style="margin: 0px 0px 0px 0px;">
+                        <div class="col-md-12 ">
+
+                            <table class="TableDNP">
+                                <thead>
+                                    <tr>
+                                        <th class="columAcc"></th>
+                                        <th class="textLeftDNP">Código / Proceso / Tipo</th>
+                                        <th class="textLeftDNP">Estado proceso / fecha inicio</th>
+                                        <th class="textLeftDNP">Paso actual / Fecha inicio / Entidad</th>
+                                        <th class="columAcc"></th>
+                                        <th class="columAcc"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="datos in entidad.subGridOptions.data | orderBy:['-fechaPaso','-fecha']">
+                                        <td></td>
+                                        <td class="textLeftDNP" style="max-width:250px">
+                                            <a href="#" ng-click="vm.consultarAccion(datos.IdInstancia, datos.NombreObjetoNegocio, datos.IdObjetoNegocio, datos.entidadId, datos.NombreFlujo, datos)">
+                                                <p style="margin:0">
+                                                    {{datos.numeroTramite}}
+                                                </p>
+                                                <p style="margin:0">
+                                                    {{datos.NombreFlujo}}
+                                                </p>
+                                                <p style="margin:0">
+                                                    {{datos.tipoTramite}}
+                                                </p>
+                                            </a>
+                                        </td>
+                                        <td class="textLeftDNP">
+                                            <p style="margin:0">
+                                                {{datos.estadoTramite}}
+                                            </p>
+                                            <p style="margin:0; font-weight:600">
+                                                {{datos.fecha | date:'dd-MM-yyyy HH:mm:ss'}}
+                                            </p>
+                                        </td>
+                                        <td class="textLeftDNP">
+                                            <a href="#" ng-click="vm.consultarAccion(datos.IdInstancia, datos.NombreObjetoNegocio, datos.IdObjetoNegocio, datos.entidadId, datos.NombreFlujo, datos)">
+                                                {{datos.NombreAccion}} <br />
+                                            </a>
+                                            <p style="margin:0; font-weight:600">
+                                                {{datos.fechaPaso | date:'dd-MM-yyyy HH:mm:ss'}}
+                                            </p>
+                                            <p style="margin:0">
+                                                {{datos.entidad}}
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <a>
+                                                <img src="Img/etapas/u1760.svg" uib-tooltip="Ver historial" ng-click="vm.abrirLogInstancias(datos)" />
+                                            </a>
+                                        </td>
+                                        <td ng-if="!datos.permiteEliminar">
+                                            <a>
+                                                <img src="Img/etapas/u1756.svg" uib-tooltip="Eliminar" /><!--ng-click="vm.detenerInstancia(datos)"-->
+                                            </a>
+                                        </td>
+                                        <td ng-if="datos.permiteEliminar">
+                                            <a>
+                                                <img src="Img/IcoDelete.svg" uib-tooltip="Eliminar" ng-click="vm.detenerTramite(datos)" />
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!--Fin Nueva Grilla-->
+
+
+    </div>
+</div>
+<link href="/Content/ui-gridConsolaDNP.css" rel="stylesheet" />

@@ -1,0 +1,40 @@
+﻿<div ng-if="form.visible === true" titledirective>
+    <div ng-if="form.textAling=='center'" ng-style="{'text-align': 'center', 'width': '100%' }">
+
+        <h1 ng-if="form.tamano=='big'">{{form.titulo}}</h1>
+        <h2 ng-if="form.tamano=='medium'">{{form.titulo}}</h2>
+        <h3 ng-if="form.tamano=='small'">{{form.titulo}}</h3>
+        <hr />
+        <h3 ng-if="form.tamano=='big'">{{form.subtitulo}}</h3>
+        <h4 ng-if="form.tamano=='medium'">{{form.subtitulo}}</h4>
+        <h5 ng-if="form.tamano=='small'">{{form.subtitulo}}</h5>
+
+
+    </div>
+
+    <div ng-if="form.textAling=='left'" ng-style="{'text-align': 'left', 'width': '100%' }">
+
+        <h1 ng-if="form.tamano=='big'">{{form.titulo}}</h1>
+        <h2 ng-if="form.tamano=='medium'">{{form.titulo}}</h2>
+        <h3 ng-if="form.tamano=='small'">{{form.titulo}}</h3>
+        <hr />
+        <h3 ng-if="form.tamano=='big'">{{form.subtitulo}}</h3>
+        <h4 ng-if="form.tamano=='medium'">{{form.subtitulo}}</h4>
+        <h5 ng-if="form.tamano=='small'">{{form.subtitulo}}</h5>
+
+
+    </div>
+
+    <div ng-if="form.textAling=='right'" ng-style="{'text-align': 'right', 'width': '100%' }">
+
+        <h1 ng-if="form.tamano=='big'">{{form.titulo}}</h1>
+        <h2 ng-if="form.tamano=='medium'">{{form.titulo}}</h2>
+        <h3 ng-if="form.tamano=='small'">{{form.titulo}}</h3>
+        <hr />
+        <h3 ng-if="form.tamano=='big'">{{form.subtitulo}}</h3>
+        <h4 ng-if="form.tamano=='medium'">{{form.subtitulo}}</h4>
+        <h5 ng-if="form.tamano=='small'">{{form.subtitulo}}</h5>
+
+
+    </div>
+</div>

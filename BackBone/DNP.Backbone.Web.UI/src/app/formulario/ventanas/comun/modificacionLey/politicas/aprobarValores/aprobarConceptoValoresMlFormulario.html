@@ -1,0 +1,153 @@
+﻿<div ng-init="vm.init();">
+    <div id="aprobarconceptopolitica" class="collapsed panel-body" ng-if="vm.TienePoliticas > 0">
+        <div class="row" ng-repeat="politica in vm.PreguntasEnvioPoliticaSubDireccion.Politicas" ng-init="indexpoliticas = $index">
+            <div ng-if="politica.VerPolitica == 1">
+                <div ng-if="vm.EnviosSubdireccion.length" class="row">
+                    <div class="col-md-12" style="text-align: left;">
+                        <span class="TituloPincFormularioDNP">
+                            Usted ha recibido una solicitud de ajuste de valores a la política {{politica.NombrePolitica}}
+                            <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg" ng-click="vm.abrirTooltip()">
+                        </span>
+                    </div>
+                    <br />
+                    <br />
+                    <div class="col-md-12" style="text-align:justify !important">
+                        <p style="margin-left: 3.5em; margin-right: 3.5em">
+                            <strong>Solicitud enviada a:</strong> {{vm.EnviosSubdireccion[0].NombreEntityTypeCatalogOption}}. <strong>Por</strong> {{vm.EnviosSubdireccion[0].NombreUsuarioFormulador}}.
+                            <strong>Descripción de solicitud:</strong> {{vm.EnviosSubdireccion[0].Descripcion}}
+                            <strong>Fecha de envío de solicitud:</strong> {{vm.EnviosSubdireccion[0].FechaEnvio}}
+                            <strong>Documento adjunto:</strong> {{ vm.ArchivosAprob.tieneArchivosAdjuntos[vm.proyectoid] ? "Si" : "No"}}
+                            <a ng-click="vm.descargarArchivoBlob()" ng-show="vm.ArchivosAprob.tieneArchivosAdjuntos[vm.proyectoid]">{{vm.ArchivosAprob.nombreArchivoDescarga[vm.proyectoid]}}</a>
+                        </p>
+                        <br />
+                        <p style="margin-left: 3.5em; margin-right: 3.5em">
+                            Este es el único espacio de este formulario donde usted puede editar el contenido. Por favor diligencie, guarde y envíe.
+                        </p>
+                    </div>
+                </div>
+                <br />
+                <div>
+
+                    <div class="row" style="padding-bottom: 15px;">
+                        <div class="row" ng-repeat="resumen in vm.EnviosSubdireccion" ng-init="indexresumenpoliticas = $index">
+                            <div ng-if="resumen.VerPregunta == 1">
+                                <div class="row my-4">
+                                    <div class="col-md-12 form-group text-left" style="padding-left:4.5rem;" ng-if="resumen.RespuestaEnviada == false">
+                                        <span style="padding-right:35rem !important;" class="TituloPincFormularioDNP">Responda la siguiente Pregunta</span>
+                                        <button id="Editar{{vm.conceptopoliticavalores}}"
+                                                type="submit"
+                                                class="btneditarDNP"
+                                                tooltip-placement="Editar"
+                                                ng-click="vm.ActivarEditar(politica.PoliticaId, resumen)"
+                                                uib-tooltip="Clic para editar la información">
+                                            EDITAR
+                                        </button>
+                                        <button type="submit"
+                                                class="btnguardarDisabledDNP"
+                                                id="Guardarpsca{{vm.conceptopoliticavalores}}"
+                                                tooltip-placement="top"
+                                                uib-tooltip="Guardar"
+                                                ng-click="vm.GuardarRespuesta(politica.PoliticaId,resumen)">
+                                            GUARDAR
+                                        </button>
+                                        <button type="submit"
+                                                id="Enviarpsca{{vm.conceptopoliticavalores}}"
+                                                class="btnguardarDisabledDNP"
+                                                tooltip-placement="top"
+                                                uib-tooltip="Enviar"
+                                                ng-click="vm.Enviar(politica.PoliticaId)">
+                                            ENVIAR
+                                        </button>
+                                        <br />
+                                    </div>
+                                    <br />
+                                    <div class="row my-4">
+                                        <div class="row">
+                                            <div class="col-md-12 form-group text-right">
+                                                <br />
+                                                <br />
+                                                <div class="form-group">
+                                                    <div ng-repeat="pregunta in resumen.Preguntas">
+                                                        <div id="inactivo{{politica.PoliticaId}}{{resumen.EnvioPoliticaSubDireccionIdAgrupa}}{{pregunta.PreguntaId}}">
+                                                            <div class="row" style="text-align: left">
+                                                                <div class="col-md-7" style="margin-left: 3.5em">
+                                                                    <span class="uLabelDetalle">{{pregunta.Pregunta}} *</span>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="col-md-2 form-check" ng-repeat="opciones in pregunta.OpcionesRespuesta" ng-init="indexpregunta = $index">
+                                                                        <input disabled type="radio"
+                                                                               ng-model="pregunta.Respuesta"
+                                                                               id="radio{{vm.conceptopoliticavalores}}{{pregunta.PreguntaId}}{{indexpregunta}}"
+                                                                               name="radio{{vm.conceptopoliticavalores}}{{pregunta.PreguntaId}}"
+                                                                               value="{{opciones.OpcionId}}"> {{opciones.ValorOpcion}}
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row" style="text-align: left">
+                                                                <div class="col-md-1">
+                                                                    &nbsp;
+                                                                </div>
+                                                                <div class="col-md-10">
+                                                                    <div id="radioerrorconceptoajuste{{vm.conceptopoliticavalores}}" class=" text-left color-red" style="display:none;">
+                                                                        <img class="img img-advertencia" src="Img/u11.svg" />
+                                                                        <span style="margin: 0 auto;" id="radioerrorconceptoajustemsn{{vm.conceptopoliticavalores}}"></span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-1">
+                                                                    &nbsp;
+                                                                </div>
+                                                            </div>
+                                                            <div class="row" style="text-align: left">
+                                                                <div class="col-md-1">
+                                                                    &nbsp;
+                                                                </div>
+                                                                <div class="col-md-10" style="text-align: left">
+                                                                    <p>
+                                                                        <textarea id="obs{{vm.conceptopoliticavalores}}{{pregunta.PreguntaId}}"
+                                                                                  name="observacion"
+                                                                                  placeholder="(Máximo 5.000 caracteres) *"
+                                                                                  ng-model="pregunta.ObservacionPregunta"
+                                                                                  ng-value="pregunta.ObservacionPregunta"
+                                                                                  ng-required="commentBox.textRequired"
+                                                                                  cols="80"
+                                                                                  rows="10"
+                                                                                  minlength="1"
+                                                                                  maxlength="5000"
+                                                                                  class="form-control "
+                                                                                  readonly>
+                                                            </textarea>
+                                                                    </p>
+                                                                </div>
+                                                                <div class="col-md-1">
+                                                                    &nbsp;
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-1">
+                                                                    &nbsp;
+                                                                </div>
+                                                                <div class="col-md-10">
+                                                                    <div id="obserrorconceptoajuste{{vm.conceptopoliticavalores}}" class=" text-left color-red" style="display:none;">
+                                                                        <img class="img img-advertencia" src="Img/u11.svg" />
+                                                                        <span style="margin: 0 auto;" id="obserrorconceptoajustemsn{{vm.conceptopoliticavalores}}"></span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

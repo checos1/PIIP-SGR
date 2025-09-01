@@ -1,0 +1,17 @@
+﻿<section class="ventana-ajsutes mt-4">
+    <div class="row m-0" ng-init="vm.init();">
+        <div class="form-group">
+            <div class="tab-content">
+                <div class="tab-pane active cont col-md-12 p-0" id="daprobacion">
+                    <apro-analista-tmlr tipotramiteid="{{vm.tramiteDetail.tipoTramiteId}}" tramiteid="{{vm.tramiteDetail.tramiteId}}"
+                                        callback="vm.notificarGuardado(botonDevolver, botonSiguiente, ocultarDevolver)"
+                                        guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                        notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                        notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)"
+                                        notificacioncambios="vm.notificacionCambiosAjustes(handler, nombreComponente)">
+                    </apro-analista-tmlr>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

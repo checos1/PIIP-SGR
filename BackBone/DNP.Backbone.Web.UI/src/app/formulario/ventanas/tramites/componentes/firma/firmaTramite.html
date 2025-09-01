@@ -1,0 +1,56 @@
+﻿
+<div class="row" ng-init="vm.initFirmaTramite()">
+    <div class="col-md-12  form-group" style="padding-bottom:1em;" ng-show="!firmaCargada">
+        <div class="col-md-12  form-group">
+            <p style="display: grid; text-align: left; margin-top: 2em;margin-bottom:1em;">
+                <span class="uLabelDetalle ">
+                    Tipo de archivo permitido con extensiones .png
+                </span>
+            </p>
+        </div>
+        <div class="col-md-12  form-group">
+            <div class="col-md-8  file-drop-zone-image " file-dropzone files-to-upload="files" valida-nombre-archivo="validaNombreArchivo" data="nombreArchivo">
+                Drop Files Here
+                <div ng-repeat="file in files"><span>Nombre archivo:</span><span class="uLabelDetalle">{{file.nombreArchivo}}</span></div>
+
+            </div>
+
+            <div class="col-md-4"></div>
+        </div>
+        <div class="col-md-2">
+            <span class="buttonbar pull-left">
+                <button type="button" class="btn btn-default btn-md btnFiltroHeader" tooltip-placement="top" ng-click="vm.limpiarArchivo()" uib-tooltip="Eliminar archivo de caja" tabindex="0">
+                    Limpiar
+                </button>
+
+            </span>
+        </div>
+        <div class="col-md-3">
+            <div class="upload-btn-wrapper pull-left">
+                <button class="btn btn-default btn-md btnFiltroHeader">Seleccionar firma</button>
+                <input type="file" onchange="angular.element(this).scope().SelectFile(event)" file-model-no-preview="data.file" id="control" />
+            </div>
+        </div>
+        <div class="col-md-3">
+            <span class="buttonbar pull-left">
+                <button type="button" class="btn btn-default btn-md btnFiltroHeader" tooltip-placement="top" ng-click="vm.archivoSeleccionado()" uib-tooltip="Procesar archivo" tabindex="0">
+                    Cargar firma
+                </button>
+
+            </span>
+        </div>
+        <div class="col-md-4">
+        </div>
+
+    </div>
+    <br /><br />
+    <div ng-show="!firmado &&  firmaCargada" class="col-md-12" style="padding-top:2rem;padding-bottom:2rem;height:10%;">
+        <div class="row buttonbar">
+            <div class="col-md-4">
+                <button uib-tooltip="Firmar trámite" ng-click="vm.firmar()" class="btn btn-success btn-block">Firmar</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+   

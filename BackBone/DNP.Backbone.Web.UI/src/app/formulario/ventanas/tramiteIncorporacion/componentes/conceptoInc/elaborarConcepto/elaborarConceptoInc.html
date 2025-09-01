@@ -1,0 +1,191 @@
+﻿<section>
+    <div class="container-fluid inbox" ng-init="vm.initElaborarConcepto();">
+
+        <div class="row">
+            <div class="row" ng-if="!vm.firmaConcepto">
+                <div class="col-md-12" style="display:inline-flex;">
+                    <span style="color: #004884; font-size: 24px; font-weight: 400; padding-left: 20px;">Elaborar concepto técnico</span>
+                    <div ng-click="vm.abrirTooltip()" style="padding-top: 0.8rem; padding-left: 1rem;">
+                        <svg class="mi-card__tooltip-icon" xmlns="http://www.w3.org/2000/svg" width="17.037" height="17.037" viewBox="0 0 17.037 17.037">
+                            <g id="Grupo_5110" data-name="Grupo 5110" transform="translate(0 0)">
+                                <path id="Caminho_9243" data-name="Caminho 9243" d="M8.552,0A8.552,8.552,0,0,0,0,8.485a8.609,8.609,0,0,0,8.552,8.552A8.519,8.519,0,0,0,8.552,0Zm0,14.542a1,1,0,1,1,1-1A1,1,0,0,1,8.552,14.542Zm1.769-6.136A2.663,2.663,0,0,0,9.55,10.22v.262a1,1,0,0,1-2,0V10.22A4.614,4.614,0,0,1,9.141,6.8,1,1,0,1,0,7.554,5.99a1,1,0,0,1-2,0,2.995,2.995,0,1,1,4.764,2.416Z" transform="translate(0 0)" fill="#36c"></path>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="padding-top:2rem;">
+                <div class="col-md-12" ng-if="!vm.firmaConcepto">
+                    <span class="uLabelCampoNegro" style="padding-left: 20px;">Los campos sombreados no son editables. Los campos con asteristico (*) son obligatorios:</span>
+                    <div ng-click="vm.abrirTooltip()" style="padding-top: 0.8rem; padding-left: 1rem;">
+                        <svg class="mi-card__tooltip-icon" xmlns="http://www.w3.org/2000/svg" width="17.037" height="17.037" viewBox="0 0 17.037 17.037">
+                            <g id="Grupo_5110" data-name="Grupo 5110" transform="translate(0 0)">
+                                <path id="Caminho_9243" data-name="Caminho 9243" d="M8.552,0A8.552,8.552,0,0,0,0,8.485a8.609,8.609,0,0,0,8.552,8.552A8.519,8.519,0,0,0,8.552,0Zm0,14.542a1,1,0,1,1,1-1A1,1,0,0,1,8.552,14.542Zm1.769-6.136A2.663,2.663,0,0,0,9.55,10.22v.262a1,1,0,0,1-2,0V10.22A4.614,4.614,0,0,1,9.141,6.8,1,1,0,1,0,7.554,5.99a1,1,0,0,1-2,0,2.995,2.995,0,1,1,4.764,2.416Z" transform="translate(0 0)" fill="#36c"></path>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+                <div class="col-md-11" style="display:inline-flex;">
+                    <span class="textRightDNP" style="font-weight: 400 !important; margin-left: 20px; margin-right: 20px;">Versión preliminar del concepto</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#04385e" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
+                    </svg>
+                </div>
+                <div class="col-md-1" ng-if="vm.mostrarPDF">
+                    <div class="col-md-12 form-group" style="padding-right:4rem;">
+                        <!--<button id="Editar"-->
+                        <button id="verPdf"
+                                name="verPdf"
+                                type="button" class="btn btn-default btn-md"
+                                tooltip-placement="top"
+                                ng-click="vm.verPdf()"
+                                uib-tooltip="ver pdf" style="display: block; width: 50px; height: 50px; border-radius: 50%; padding-left:15px;">
+                            <p style="text-align: center; margin:0 0 0 0;">Ver</p><p style="text-align: center; margin: 0 0 0 0;">PDF</p>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row" ng-if="vm.rolAnalista" style="padding-left: 3rem;padding-right: 2rem;">
+                <div class="tab-container col-md-12" style="width:100%;">
+                    <ul class="nav nav-tabs">
+                        <li id="liDatosIniciales" class="active">
+                            <a href="" ng-click="vm.mostrarTab(1)" data-toggle="tab">
+                                <span class="d-inline-block" id="alert-Inciales-solicitarconceptodatosiniciales"></span>&nbsp;<b>Datos Iniciales</b>
+
+                            </a>
+                        </li>
+                        <li id="liCuerpoConcepto">
+                            <a href="" ng-click="vm.mostrarTab(2)" data-toggle="tab">
+
+                                <span class="d-inline-block" id="alert-Cuerpo-solicitarconceptodatosiniciales"></span>&nbsp;<b>Cuerpo del mensaje</b>
+                            </a>
+                        </li>
+                        <li id="liDatosDespedida">
+                            <a href="" ng-click="vm.mostrarTab(3)" data-toggle="tab">
+
+                                <span class="d-inline-block" id="alert-Despedida-solicitarconceptodatosiniciales"></span>&nbsp;<b>Despedida</b>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div id="solicitarconceptodatosiniciales-pregunta-error_iniciales" class="hidden uMensajeError"></div>
+
+                <div id="solicitarconceptodatosiniciales-pregunta-error-Iniciales" class="hidden uMensajeError"></div>
+                <datos-Iniciales-Formulario ng-If="vm.tabActivo==1"
+                                            tipotramiteid="{{vm.tipotramiteid}}"
+                                            tramiteid="{{vm.tramiteid}}"
+                                            nivel="{{vm.nivel}}"
+                                            rol="{{vm.rol}}"
+                                            section="{{vm.section}}"
+                                            deshabilitar="{{vm.deshabilitar}}"
+                                            rolanalista ="{{vm.rolanalista}}"
+                                            nombrecomponentepaso="conceptoselaborarconcep"
+                                            guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                            notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                            notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"
+                                            novalidarconcepto="{{vm.novalidarconcepto}}">
+                </datos-Iniciales-Formulario>
+                <div id="solicitarconceptodatosiniciales-pregunta-error-Cuerpo" class="hidden uMensajeError"></div>
+                <cuerpo-concepto-formulario ng-If="vm.tabActivo==2"
+                           tipotramiteid="{{vm.tipotramiteid}}"
+                           tramiteid="{{vm.tramiteid}}"
+                           nivel="{{vm.nivel}}"
+                           rol="{{vm.rol}}"
+                           section="{{vm.section}}"
+                           deshabilitar="{{vm.deshabilitar}}"
+                            rolanalista ="{{vm.rolanalista}}"
+                           nombrecomponentepaso="conceptoselaborarconcep"
+                           guardadoevent="vm.guardado(nombreComponenteHijo)"
+                           notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                           notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"
+                           novalidarconcepto="{{vm.novalidarconcepto}}">
+                </cuerpo-concepto-formulario>
+
+                <div id="solicitarconceptodatosiniciales-pregunta-error-Despedida" class="hidden uMensajeError"></div>
+                <datos-Despedida-Formulario ng-If="vm.tabActivo==3"
+                                            tipotramiteid="{{vm.tipotramiteid}}"
+                                            tramiteid="{{vm.tramiteid}}"
+                                            nivel="{{vm.nivel}}"
+                                            rol="{{vm.rol}}"
+                                            section="{{vm.section}}"
+                                            deshabilitar="{{vm.deshabilitar}}"
+                                            rolanalista ="{{vm.rolanalista}}"
+                                            nombrecomponentepaso="conceptoselaborarconcep"
+                                            guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                            notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                            notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"
+                                            novalidarconcepto="{{vm.novalidarconcepto}}">
+                </datos-Despedida-Formulario>
+
+            </div>
+
+        </div>
+        <div class="row" ng-if="vm.firmaConcepto">
+
+            <div class="col-md-12" style="display:inline-flex;padding-bottom:2rem;">
+                <span style="color: #004884; font-size: 24px; font-weight: 400;">Firma concepto para finalizar proceso</span>
+                <div ng-click="vm.abrirTooltip()" style="padding-top: 0.8rem; padding-left: 1rem;">
+                    <svg class="mi-card__tooltip-icon" xmlns="http://www.w3.org/2000/svg" width="17.037" height="17.037" viewBox="0 0 17.037 17.037">
+                        <g id="Grupo_5110" data-name="Grupo 5110" transform="translate(0 0)">
+                            <path id="Caminho_9243" data-name="Caminho 9243" d="M8.552,0A8.552,8.552,0,0,0,0,8.485a8.609,8.609,0,0,0,8.552,8.552A8.519,8.519,0,0,0,8.552,0Zm0,14.542a1,1,0,1,1,1-1A1,1,0,0,1,8.552,14.542Zm1.769-6.136A2.663,2.663,0,0,0,9.55,10.22v.262a1,1,0,0,1-2,0V10.22A4.614,4.614,0,0,1,9.141,6.8,1,1,0,1,0,7.554,5.99a1,1,0,0,1-2,0,2.995,2.995,0,1,1,4.764,2.416Z" transform="translate(0 0)" fill="#36c"></path>
+                        </g>
+                    </svg>
+                </div>
+
+            </div>
+
+            <br />
+            <div class="row ng-scope" style="padding-top:2rem;">
+
+                <div class="row ng-scope">
+
+                    <div class="col-md-9">
+                        <span style="font-weight: bold; padding-left: 2.5rem">Cargar nueva firma</span>
+                    </div>
+                    <div class="col-md-3">
+                        <span style="font-weight: bold; padding-left: 2rem">Última firma cargada</span>
+                    </div>
+                </div>
+                <div class="col-md-7" style="padding-left: 2.5rem; padding-top: 2rem;">
+                    <div class="divpanelcargarchivoDNP" style="width:100% !important;">
+                        <button class="btncargarch" type="button" uib-tooltip="Examinar" ng-click="vm.examinar()">
+                            EXAMINAR
+                        </button>
+                        <!--<input type="file" style="display:none" onchange="angular.element(this).scope().SelectFile(event)" file-model-no-preview="data.file" id="control" />-->
+                        <input type="file" style="display:none" id="fileFirma" name='files[]' onchange="angular.element(this).scope().fileFirmaNameChanged(this)" multiple />
+                        <input type="search" style="display:none" id="firmaNombreArchivo" ng-model="vm.nombreArchivo" class="form-control InputSearchDNP " placeholder="" ng-change="ChangeFirmaSet()">
+                        <span>{{vm.nombreArchivo}}</span>
+                        <button class="btncancearch" ng-disabled="vm.desactivarGuardar" type="button" uib-tooltip="Cancelar" ng-click="vm.limpiarArchivo()">
+                            X
+                        </button>
+                    </div>
+                    <div style="width:100% !important;">
+                        <span style="font-weight: 500;">Para finalizar este formulario es necesario que su firma se visualice en el campo “Última firma cargada”, inclúyala o reemplácela, mediante “Examinar” y “Cargar”.</span>
+                    </div>
+                </div>
+                <div class="col-md-2" style="padding-top: 2rem;">
+                    <span class="buttonbar pull-center">
+                        <button class="btn btnguardarDNP" ng-disabled="vm.desactivarGuardar" type="button" tooltip-placement="top" uib-tooltip="Guardar" tabindex="0" ng-click="vm.archivoSeleccionado()" disabled="disabled">
+                            CARGAR
+                        </button>
+                    </span>
+                </div>
+                <div class="col-md-3" style="padding-top: 2rem;">
+                    <div id="main" style="width:80%;margin:auto;border:inset;height:15rem;">
+
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="col-md-12" style="padding-top: 2rem;">
+                &nbsp;&nbsp;&nbsp;&nbsp;<div id="solicitarconceptodatosiniciales-pregunta-error-firma" class="hidden uMensajeError"></div>
+            </div>
+            <br />
+        </div>
+    </div>
+    <br />
+    <br />
+    <br />
+</section>

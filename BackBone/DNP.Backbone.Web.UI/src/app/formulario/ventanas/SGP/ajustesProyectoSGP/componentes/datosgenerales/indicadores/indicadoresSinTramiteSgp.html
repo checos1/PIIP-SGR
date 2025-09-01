@@ -1,0 +1,320 @@
+﻿<head>
+    <style type="text/css">
+        .module {
+            margin: 0 0 1em 0;
+            overflow: hidden;
+        }
+
+            .module p {
+                margin: 0;
+            }
+
+        .line-clamp {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+        }
+
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+
+        .modal-content {
+            left: 0px;
+            top: 0px;
+            width: 743px;
+            height: 440px;
+            background: inherit;
+            background-color: rgba(255, 255, 255, 1);
+            box-sizing: border-box;
+            border-width: 1px;
+            border-style: solid;
+            border-color: rgba(170, 170, 170, 1);
+            border-radius: 5px;
+            -moz-box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.349019607843137);
+            -webkit-box-shadow: 0px 0px 30px rgb(0 0 0 / 35%);
+            box-shadow: 0px 0px 30px rgb(0 0 0 / 35%);
+            font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans';
+            font-weight: 400;
+            font-style: normal;
+            font-size: 16px;
+            margin: auto;
+        }
+
+        .check2DNP[disabled] {
+            color: #AAAAAA;
+        }
+    </style>
+</head>
+<section>
+    <div class="container-fluid inbox" ng-init="vm.init();">
+        <span class="pull-left" style="margin-left: 80px;"><span class="uLabelCampo">{{vm.mensaje1}}</span><span>{{vm.mensaje2}}</span></span>
+        <h2 class="row" style="padding-left: 0rem; padding-right: 2rem; text-align: left; color: #004884">&nbsp;&nbsp;Objetivos específicos <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg" ng-click="vm.abrirMensajeInformacionObjetivo()"></h2>
+        <br />
+
+        <div ng-repeat="objetivo in datos.ObjetivosEspecificos" ng-init="objetivosIndex = $index">
+            <div class="row" style="color: #004884">
+                <div class="" style="padding: 0 !important">
+                    <div id="{{vm.nombreComponente}}ValidaIndicador1" style="padding-left: 0.5rem;" class="col-md-12 hidden uMensajeError"></div>
+                    <div id="{{vm.nombreComponente}}ValidaIndicador2" style="padding-left: 0.5rem;" class="col-md-12 hidden uMensajeError"></div>
+                    <div id="{{vm.nombreComponente}}ValidaIndicador3" style="padding-left: 0.5rem;" class="col-md-12 hidden uMensajeError"></div>
+                    <div id="{{vm.nombreComponente}}ValidaIndicador4" style="padding-left: 0.5rem;" class="col-md-12 hidden uMensajeError"></div>
+
+                    <div class="alert panel-heading" style="height: 50px;">
+                        <div class="card card-body pull-left  divAccordionDNP" style="line-height:22px;">
+                            <span class="uLabelCampo" style="margin-left: 55px">Objetivo {{objetivo.ObjetivoId}}:</span>
+                            <br />
+                            <div class=" line-clamp" style="margin-left: 55px; max-height: 18px">
+                                <p style="color: #4B4B4B;">
+                                    {{objetivo.ObjetivoEspecifico | limitTo: 110 }}<span ng-if="objetivo.ObjetivoEspecifico.length > 110">...</span>  <button ng-if="objetivo.ObjetivoEspecifico.length > 110" type="button" style="color: #3366CC;line-height:20px " class="btn btn-link btn-md  buttonhiper" tooltip-placement="top" uib-tooltip="ver más" tabindex="0" ng-click="vm.ObjetivoVerMas(objetivo)" data="{{objetivo}}">
+                                        VER MÁS
+                                    </button>
+                                </p>
+                            </div>
+
+                            <p style="padding: 0px; margin-bottom: 0px;">
+                                <button class="btnaccion btnAccordionDNP" type="button" ng-click="vm.BtnObjetivos(objetivo)">
+
+                                    <img ng-show="objetivo.LabelBotonObjetivo == '+'" src="Img/btnMas.svg">
+                                    <img ng-show="objetivo.LabelBotonObjetivo == '-'" src="Img/btnMenos.svg">
+                                </button>
+
+                                <span id="objetivo-{{objetivo.ObjetivoId}}" class="img iconadverdnp hidden" style="margin-left:0px">   <img src="Img/u4630.svg"> </span>
+
+                            </p>
+                        </div>
+                    </div>
+                    <br />
+                    <div id="obj{{objetivo.ObjetivoId}}" ng-class="{ 'collapse': !objetivo.visible }">
+                        <div class="LineaEncabezadodivDNP"></div>
+                        <h3 class="row tituloEncabezadodivDNP">Productos Objetivo {{objetivo.ObjetivoId}}</h3>
+                        <div ng-repeat="prod in objetivo.Productos" ng-init="productosIndex = $index">
+                            <div class="alert panel-heading" style="height: 50px;padding-top: 0px">
+                                <div class="card card-body pull-left bordesencillo" style="border-color: #E6EFFD; text-align: left; width: 100%; padding-top: 10px;padding-bottom: 2px;">
+                                    <span class="uLabelCampo" style="margin-left: 55px">Producto {{prod.ProductoId}}:</span>
+
+                                    <div class=" line-clamp" style="margin-left: 55px;max-height:18px">
+                                        <span style="font-size: 16px; font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 400; color: #4B4B4B; ">
+                                            {{prod.NombreProducto| limitTo: 110}}<span ng-if="prod.NombreProducto.length > 110">...</span>
+                                            <button ng-if="prod.NombreProducto.length > 110" type="button" style="color: #3366CC;line-height:17px" class="btn btn-link btn-md  buttonhiper" tooltip-placement="top" uib-tooltip="ver más" tabindex="0" ng-click="vm.ProductoVerMas(prod)" data="{{prod}}">
+                                                VER MÁS
+                                            </button>
+                                        </span>
+                                    </div>
+
+                                    <p style="padding: 0px; margin-bottom: 0px; ">
+                                        <button class="btnaccion btnAccordionDNP" type="button" ng-click="vm.BtnProductos(prod)">
+
+                                            <img style="width:18px;height:18px" ng-show="prod.LabelBotonProducto == '+'" src="Img/btnMasn2.svg">
+                                            <img style="width:18px;height:18px" ng-show="prod.LabelBotonProducto == '-'" src="Img/btnMenosn2.svg">
+                                        </button>
+
+                                        <span id="producto-{{prod.ProductoId}}" class="img iconadverdnp hidden" style="margin-left:0px">   <img src="Img/u4630.svg"> </span>
+
+                                    </p>
+                                </div>
+                            </div>
+                            <br />
+                            <div id="indiprod-{{prod.ProductoId}}" ng-class="{ 'collapse': !prod.visible }">
+                                <div class="LineaEncabezado2divDNP"></div>
+                                <h3 class="row tituloEncabezadodivDNP" style="margin-left: 13%;width: 85.7%;">Indicadores Producto {{prod.ProductoId}}</h3>
+                                <label class="col-md-6 pull-left" style="text-align: left; font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; color: #4B4B4B; font-style: normal; font-size: 14px;">
+                                    Tabla con orden numérico, de menor a mayor, según el código.
+                                </label>
+                                <label class="col-md-6 pull-right" style="text-align: right; font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; color: #4B4B4B; font-style: normal; font-size: 14px;">
+                                    *Tipo: P= Principal, S= Secundario
+                                </label>
+                                <div>
+                                    <div class="alert panel-heading" style="height: 50px;">
+                                        <div class="row">
+                                            <div class="card card-body pull-left col-md-12 ">
+                                                <table class="TableDNP no-border">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="columAcc"> </th>
+                                                            <th class="textLeftDNP">Código / Tipo* / Acumulativo / Indicador</th>
+                                                            <th class="textRightDNP">Meta MGA</th>
+                                                            <th class="textRightDNP">Meta en Firme</th>
+                                                            <th class="textRightDNP">Meta en Ajuste</th>
+                                                            <th class="textRightDNP">Unidad de Medida</th>
+                                                            <th class="columAcc"></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody ng-repeat="indicador in prod.Indicadores | orderBy:'CodigoIndicador'" ng-init="indicadoresIndex = $index">
+                                                        <tr style="border-bottom-color: transparent">
+                                                            <td>
+                                                            </td>
+                                                            <td class="textLeftDNP">
+                                                                <p style="height: 7px;"><span style="font-weight: 500; font-style: normal; font-size: 16px; color: #004884">{{indicador.CodigoIndicador}} / {{indicador.IndicadorTipo}} / {{indicador.IndicadorAcumulaAjustado}} </span></p> <textarea style=" line-height: 18px;left: 0px; top: 0px; width: 326px; padding: 1px 10px 1px 0px; font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 400; font-style: normal; font-size: 16px; letter-spacing: normal; color: #4B4B4B; vertical-align: none; text-align: left; text-transform: none; background-color: transparent; border-color: transparent; resize: none;">{{indicador.NombreIndicador}}</textarea>
+
+                                                            </td>
+                                                            <td class="textRightDNP">{{vm.ConvertirNumero(indicador.MetaTotalIndicadorMga)}}</td>
+                                                            <td class="textRightDNP">{{vm.ConvertirNumero(indicador.MetaTotalFirme)}}</td>
+                                                            <td class="textRightDNP">{{vm.ConvertirNumero(indicador.MetaTotalFirmeAjustado)}}</td>
+                                                            <td class="textRightDNP">{{indicador.NombreUnidadMedida}}</td>
+                                                            <td class="textCenterDNP">
+                                                                <button ng-show="{{indicador.IndicadorTipo != 'P' && indicador.EsCreadoPIIP != 0 && indicador.Firme != 1}}" class="btnaccion" title="Eliminar Indicador Secundario" ng-click="vm.EliminarIndicador(indicador.IndicadorId,indicador.CodigoIndicador)">
+
+                                                                    <span style="cursor:pointer"> <img src="Img/u928.svg"></span>
+                                                                </button>
+                                                                <button ng-disabled="{{indicador.IndicadorTipo == 'P' || indicador.EsCreadoPIIP == 0 || indicador.Firme == 1}}" ng-show="{{indicador.IndicadorTipo == 'P' || indicador.EsCreadoPIIP == 0 || indicador.Firme == 1}}" class="btnaccion" title="Eliminar Indicador Secundario" ng-click="vm.EliminarIndicador(indicador.IndicadorId)">
+                                                                    <span> <img src="Img/btnElimdisabled.svg"></span>
+                                                                </button>
+                                                            </td>
+
+                                                        </tr>
+                                                        <tr style="border-top-color: transparent;height:30px">
+                                                            <td colspan="1" style="padding: 0px;padding-left: 5px">
+                                                                <button class="btnaccion " style="margin-left: -5px" type="button" ng-click="vm.BtnIndicador(indicador)">
+
+                                                                    <img style="width:18px;height:18px" ng-show="indicador.LabelBotonIndicador == '+'" src="Img/btnMasTb.svg">
+                                                                    <img style="width:18px;height:18px" ng-show="indicador.LabelBotonIndicador == '-'" src="Img/btnMenosTb.svg">
+                                                                </button>
+                                                                <div id="indicadoricon-{{indicador.IndicadorId}}" class="img pull-right iconadverdnp hidden">   <img class="" src="Img/u4630.svg"> </div>
+
+                                                            </td>
+                                                            <td colspan="6" style="padding:0px;padding-left: 5px">
+                                                                <div id="indicador-{{indicador.IndicadorId}}" class="hidden">   </div>
+                                                            </td>
+                                                        </tr>
+
+                                                        <tr ng-if="vm.editarIndicador" ng-class="{ 'collapse': !indicador.visible }" class="no-border alert panel-heading" id="ind{{indicador.IndicadorId}}">
+                                                            <td colspan="8" class="p-0">
+
+                                                                <div class="LineaEncabezado2divDNP" style="margin-top: 0px;margin-left: 11px "></div>
+                                                                <h3 class="row tituloEncabezadodivDNP" style="margin-left:17%;width:83%">
+                                                                    Ajuste de indicador
+                                                                    <span class="buttonbar pull-right">
+                                                                        <button type="button" class="btneditarDNP" tooltip-placement="top" ng-click="indicador.HabilitaEditarIndicador ? vm.Cancelar(indicador, prod.ProductoId, objetivo.ObjetivoId,1) : vm.habilitaEditar(indicador)" uib-tooltip="{{indicador.HabilitaEditarIndicador ? 'CANCELAR' : 'EDITAR'}}" ng-if="!vm.soloLectura">
+                                                                            {{indicador.HabilitaEditarIndicador ? 'CANCELAR' : 'EDITAR'}}
+                                                                        </button>
+                                                                        <button ng-disabled="!indicador.HabilitaEditarIndicador" type="button" class="{{indicador.HabilitaEditarIndicador ? 'btnguardarDNP' : 'btnguardarDisabledDNP'}}" tooltip-placement="top" uib-tooltip="Guardar" tabindex="0" ng-click="vm.Guardar(indicador)" ng-if="!vm.soloLectura">
+                                                                            GUARDAR
+                                                                        </button>
+                                                                    </span>
+                                                                </h3>
+
+                                                                <div class="row" style="padding-left: 2rem; padding-right: 2rem; text-align: left; font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 500; font-style: normal; font-size: 16px;">
+                                                                    <!--<input style="font-size:16px" type="checkbox" ng-disabled="!indicador.HabilitaEditarIndicador ||  indicador.IndicadorTipo == 'P'" name="indicador" id="ind{{indicador.IndicadorId}}" ng-checked="{{indicador.IndicadorAcumula == true}}" ng-model="indicador.IndicadorAcumula" ng-value="indicador" ng-change="vm.cambiaAcumulativo(indicador)"> Acumulativo-->
+                                                                    <input style="font-size:16px" ng-disabled="!indicador.HabilitaEditarIndicador" type="checkbox" name="indicador" id="ind{{indicador.IndicadorId}}" ng-checked="{{indicador.IndicadorAcumula == true}}" ng-model="indicador.IndicadorAcumula" ng-value="indicador" ng-change="vm.cambiaAcumulativo(indicador)"> Acumulativo
+                                                                    <br />
+                                                                    <label style="font-size:14px" for="ind{{indicador.IndicadorId}}">
+                                                                        "Meta en ajuste": para "Acumulativo" será igual a la suma de las metas de todas las vigencias, para "No acumulativo" será el mayor valor registrado
+                                                                    </label>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="alert panel-heading">
+                                                                        <table class="TableDNP">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th class="columAcc"></th>
+                                                                                    <th class="textRightDNP"><span class="uLabelCampo">Vigencia</span></th>
+                                                                                    <th class="textRightDNP">Meta MGA</th>
+                                                                                    <th class="textRightDNP">Meta en Firme</th>
+                                                                                    <th class="textRightDNP">Meta en Ajuste</th>
+                                                                                    <th class="columAcc"></th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <tr ng-repeat="vig in indicador.Vigencias" ng-init="vigenciasindex = $index">
+                                                                                    <td></td>
+                                                                                    <td class="textRightDNP">
+                                                                                        <input type="text" class="form-control editInputDNP " style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px" disabled value="{{vig.Vigencia}}" />
+                                                                                    </td>
+                                                                                    <td class="textRightDNP"><input type="text" class="form-control editInputDNP " style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px" disabled value="{{vm.ConvertirNumero(vig.MetaVigenciaIndicadorMga)}}" /></td>
+                                                                                    <td class="textRightDNP"><input type="text" class="form-control editInputDNP " style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px" disabled value="{{vm.ConvertirNumero(vig.MetaVigenciaIndicadorFirme)}}" /></td>
+                                                                                    <td class="textRightDNP">
+                                                                                        <div ng-if="!indicador.HabilitaEditarIndicador">{{vm.ConvertirNumero(vig.MetaVigencialIndicadorAjuste)}}</div>
+                                                                                        <div ng-if="indicador.HabilitaEditarIndicador && vig.Vigencia < vm.vigenciaActual">{{vm.ConvertirNumero(vig.MetaVigencialIndicadorAjuste)}}</div>
+                                                                                        <input id="input-1" type="text" min="0.0000"
+                                                                                               ng-if="indicador.HabilitaEditarIndicador && vig.Vigencia >= vm.vigenciaActual"
+                                                                                               ng-readonly="vig.Vigencia < vm.vigenciaActual"
+                                                                                               ng-keypress="vm.validateFormat($event)"
+                                                                                               ng-keyup="vm.validarTamanio($event)"
+                                                                                               ng-value="vig.MetaVigencialIndicadorAjuste"
+                                                                                               ng-model="datos.ObjetivosEspecificos[objetivosIndex].Productos[productosIndex].Indicadores[indicadoresIndex].Vigencias[vigenciasindex].MetaVigencialIndicadorAjuste"
+                                                                                               ng-blur="vm.actualizaFila($event, indicador)"
+                                                                                               required class="form-control editInputDNP" style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px" />
+
+                                                                                    </td>
+                                                                                    <td></td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                            <tfoot>
+                                                                                <tr ng-if="indicador.IndicadorAcumula">
+                                                                                    <td class="columAcc" style="font-family: 'Work Sans SemiBold Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 600; font-style: normal; font-size: 30px; color: rgba(50, 102, 204, 0.996078431372549);"><span style="margin-top: 55%">=</span></td>
+                                                                                    <td class="textRightDNP"><span>Total $</span></td>
+                                                                                    <td class="textRightDNP">
+                                                                                        <input type="text" class="form-control editInputDNP " style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 500; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px" disabled value="{{vm.ConvertirNumero(indicador.MetaTotalIndicadorMga)}}" />
+
+                                                                                    </td>
+                                                                                    <td class="textRightDNP">
+                                                                                        <input type="text" class="form-control editInputDNP " style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 500; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px" disabled value="   {{vm.ConvertirNumero(indicador.MetaTotalFirme)}}" />
+
+
+                                                                                    </td>
+                                                                                    <td class="textRightDNP">
+                                                                                        <input type="text" class="form-control editInputDNP " style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 500; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px" disabled value="{{vm.ConvertirNumero(indicador.MetaTotalFirmeAjustado)}}" />
+
+
+                                                                                    </td>
+                                                                                    <td></td>
+                                                                                </tr>
+                                                                                <tr ng-if="!indicador.IndicadorAcumula">
+                                                                                    <td class="columAcc" style="font-family: 'Work Sans SemiBold Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 600; font-style: normal; font-size: 30px; color: rgba(50, 102, 204, 0.996078431372549);"><span style="margin-top: 55%">=</span></td>
+                                                                                    <td class="textRightDNP"><span>Total $</span></td>
+                                                                                    <td class="textRightDNP">
+
+                                                                                        <input type="text" class="form-control editInputDNP " style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 500; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px" disabled value="{{vm.ConvertirNumero(indicador.MetaTotalIndicadorMga)}}" />
+
+                                                                                    </td>
+                                                                                    <td class="textRightDNP">
+
+                                                                                        <input type="text" class="form-control editInputDNP " style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 500; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px" disabled value="   {{vm.ConvertirNumero(indicador.MetaTotalFirme)}}" />
+
+                                                                                    </td>
+                                                                                    <td class="textRightDNP">
+
+                                                                                        <input type="text" class="form-control editInputDNP " style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 500; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px" disabled value="{{vm.ConvertirNumero(indicador.MetaTotalFirmeAjustado)}}" />
+
+                                                                                    </td>
+                                                                                    <td></td>
+                                                                                </tr>
+                                                                            </tfoot>
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
+
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <br />
+
+                                    <button type="button" class="btn btn-link btn-md pull-right buttonhiper" tooltip-placement="top" uib-tooltip="Agregar Indicador Secundario" tabindex="0" ng-click="vm.AgregarIndSecundario(prod,objetivo.ObjetivoId)" data="{{prod}}" ng-if="!vm.soloLectura">
+                                        Agregar Indicador Secundario *
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <br />
+        <br />
+    </div>
+</section>

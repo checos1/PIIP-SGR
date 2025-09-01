@@ -1,0 +1,30 @@
+﻿<div ng-init="vm.init();">
+    <div class="ui-accordion-container " id="accordion-focalizacionfocalizacionfocalizacionpoliticastransversales">
+        <div class="alert panel-heading row ui-accordion-header">
+            <button type="button" data-toggle="collapse" data-target="#{{vm.nombreComponenteHijo}}" ng-click="vm.changeArrow(vm.nombreComponenteHijo)">
+                <span class="d-inline-block" id="alert-{{vm.nombreComponenteHijo}}"></span>
+                <span id="name-capitulo-{{vm.nombreComponenteHijo}}"></span>
+                <span class="hidden" id="id-capitulo-{{vm.nombreComponenteHijo}}"></span>
+                <span id="arrow-{{vm.nombreComponenteHijo}}" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#focalizacionfocalizacionfocalizacionpoliticastransversales"></span>
+            </button>
+        </div>
+        <div class="collapse" id="focalizacionfocalizacionfocalizacionpoliticastransversales">
+            <div class="row" style="padding-right: 15px; padding-left: 0px; margin-left: -15px;">
+
+                <info-presupuestal-politicas-ml-formulario tipotramiteid="{{vm.tipotramiteid}}"
+                                              tramiteid="{{vm.tramiteid}}"
+                                              nivel="{{vm.nivel}}"
+                                              rolanalista="{{vm.rolanalista}}"
+                                              deshabilitar="{{vm.deshabilitar}}"
+                                              vm.nombrecomponentepaso="{{vm.nombrecomponentehijo}}"
+                                              section="Modificaciones Politicas Tranversales Paso1"
+                                              guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                              notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                              notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"
+                                              modificodatos="vm.modificodatos"
+                                              callback="vm.callback()">
+                </info-presupuestal-politicas-ml-formulario>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,149 @@
+﻿<div ng-init="vm.init();">
+    <div id="conceptopolitica" class="collapsed panel-body" ng-if="vm.TienePoliticas > 0 && vm.TieneRolValidadorPoliticaTransversal==0 ">
+        <div class="row" ng-repeat="politica in vm.Politicas.PoliticaPrincipal" ng-init="indexpoliticas = $index">
+            <div class="row">
+                <div class="" style="padding: 0 !important">
+                    <div class="alert panel-headingAccDNP">
+                        <div class="card card-body pull-left  divAccordionDNP">
+                            <span class="uLabelCampo">Solicitar / consultar aprobación de modificación - {{politica.Politica}} <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg" ng-click="vm.abrirMensajeInformacionConcpeto()" /></span>
+
+                            <p class="panelbtnalertAcordnp">
+                                <button class="btnaccion btnAccordionDNP" type="button" data-toggle="collapse" data-target="#focalizacionconceptop-{{politica.PoliticaId}}-{{indexpoliticas}}" ng-click="vm.AbrilNivel(politica.PoliticaId, indexpoliticas)">
+                                    <img id="imgmasjus-{{politica.PoliticaId}}-{{indexpoliticas}}" src="Img/btnMas.svg">
+                                    <img id="imgmenosjus-{{politica.PoliticaId}}-{{indexpoliticas}}" style="display:none" src="Img/btnMenos.svg">
+                                    <span id="icojus-{{politica.PoliticaId}}-{{indexpoliticas}}" style="display:none">+</span>
+                                </button>
+                                <span class=" hidden iconadverdnp ">   <img src="Img/u4630.svg"> </span>
+                                <span class="hidden messagealerttableDNP">Espacio reservado para información de validaciones. </span>
+
+                            </p>
+                            <div class="DivcolDeleteDNP textCenterDNP">
+                                <button class=" hidden" title="Eliminar Indicador Secundario">
+                                    <span style="cursor: pointer; margin-left: 0px;"> <img src="Img/u928.svg"></span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="collapse" id="focalizacionconceptop-{{politica.PoliticaId}}-{{indexpoliticas}}">
+
+                <div class="LineaEncabezadodivDNP"></div>
+                <h3 class="row tituloEncabezadodivDNP">
+                    <span class="uLabelCampo">Solicitar / consultar aprobación de modificación - {{politica.Politica}}</span> <!--Icono de ayuda-->
+                </h3>
+                <div>
+                    <div class="alert panel-headingAcc2DNP">
+                        <div class="card card-body pull-left bordesencillo">
+                            <div class="line-clamp">
+                                <p class="NomItemAccordDNP">
+                                    Para hacer la solicitud, es necesario haber sustentado en la sección "Justificación", las modificaciones realizada en la política.
+                                </p>
+                            </div>
+                            <div class="line-clamp">
+                                Si requiere completar la justificación de la modificación, diríjase a la pestaña "Soportes" para adjuntar un documento
+                            </div>
+
+                            <div class="row my-4">
+                                <div class="col-md-12 mt-3 mb-3">
+                                    <div class="row">
+                                        <div class="col-md-12 text-left">
+                                            <span>
+                                                <strong>Describa su solicitud *. </strong> (Máximo 5.000 caracteres)
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-12">
+                                    <div id="descripcionconcepto-error-{{politica.PoliticaId}}" class="hidden text-left color-red">
+                                        <img class="img img-advertencia-{{politica.PoliticaId}}" src="Img/u11.svg" />
+                                        <span id="descripcionconcepto-error-mns-{{politica.PoliticaId}}"></span>
+                                    </div>
+                                    <textarea rows="5"
+                                              id="descripcionconcepto-{{politica.PoliticaId}}"
+                                              name="descripcionconcepto-{{politica.PoliticaId}}"
+                                              placeholder="Descripción"
+                                              minlength="1"
+                                              maxlength="5000"
+                                              class="form-control" ng-required="true"
+                                              ng-model="politica.Descripcion">
+                                            </textarea>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-11 text-right">
+                                        <button ng-click="vm.guardarDT(politica.PoliticaId)"
+                                                type="button"
+                                                id="btnGuardarPolitica-{{politica.PoliticaId}}"
+                                                class="btn btn-default btn-mdHorizonte"
+                                                tooltip-placement="auto"
+                                                uib-tooltip="Guardar"
+                                                has-claim has-opciones="['Ajustes:GeneralComponente']">
+                                            Solicitar
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <br />
+                </div>
+                <br />
+                <div class="row" style="padding-bottom: 15px;">
+                    <div class="row" ng-repeat="resumensolicitudconcepto in vm.ResumenSolicitudConcepto" ng-init="indexresumenpoliticas = $index">
+                        <div class="row" ng-repeat="resumen in resumensolicitudconcepto.Resumen" ng-init="indexresumen = $index">
+                            <div ng-if="politica.PoliticaId == resumen.PoliticaId">
+                                <div class="row" my-4>
+                                    <div class="col-md-1">&nbsp;</div>
+                                    <div class="col-md-10" style="text-align:justify !important">
+                                        <span class="NomItemAccordDNP">Solicitar / consultar aprobación de modificación - {{politica.Politica}} {{indexresumen + 1}}</span>
+                                        <br />
+                                        <span class="NomItemAccordDNP">Envío de solicitud a: </span>
+                                        <span class="InfoItemAccordDNP">{{resumen.DireccionTecnica}} </span>
+                                        <span class="NomItemAccordDNP">Descripción de solicitud: </span>
+                                        <span class="InfoItemAccordDNP">{{resumen.Descripcion}} </span>
+                                        <span class="NomItemAccordDNP">Fecha de envío de solicitud: </span>
+                                        <span class="InfoItemAccordDNP">{{resumen.Fecha}}</span>
+                                        <span class="NomItemAccordDNP">Fecha de entrega de concepto de aprobación: </span>
+                                        <span class="InfoItemAccordDNP">{{resumen.Aprobacion}}</span>
+                                    </div>
+                                    <div class="col-md-1">&nbsp;</div>
+                                </div>
+                                <!--<div class="row">-->
+                                <div class="col-md-11 text-right">
+                                    <button ng-click="vm.RecuperarDT(politica.PoliticaId, indexresumenpoliticas)"
+                                            type="button"
+                                            id="btnRecuperarConcepto-{{politica.PoliticaId}}"
+                                            class="btn btn-default btn-mdHorizonte"
+                                            tooltip-placement="auto"
+                                            uib-tooltip="Recuperar Concepto"
+                                            has-claim has-opciones="['Ajustes:GeneralComponente']">
+                                        Recuperar
+                                    </button>
+                                </div>
+                                <!--</div>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+            </div>
+        </div>
+    </div>
+    <div class="collapsed panel-body" ng-if="vm.TienePoliticas === 0">
+        <span style="vertical-align: middle; display: table-cell;">
+
+        </span>
+        <div style="height:50px" class="blockReferencia2DNP">
+            <span style="font-family:'Work Sans  Roman', 'Work Sans Regular Roman', 'Work Sans';font-weight:400;color:#4B4B4B;">
+                Espacio disponible para las políticas Víctimas, Equidad de la mujer, Construcción de paz y Grupos étnicos, solo hasta el momento en que se modifiquen los valores en sus respectivas tablas dentro del capítulo "Categorías políticas transversales".
+            </span>
+        </div>
+    </div>
+    <div ng-if="vm.TieneRolValidadorPoliticaTransversal==1">
+        <consultaraprobarconceptodt></consultaraprobarconceptodt>
+    </div>
+
+</div>

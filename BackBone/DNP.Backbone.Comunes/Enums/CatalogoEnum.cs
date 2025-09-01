@@ -1,0 +1,39 @@
+﻿namespace DNP.Backbone.Comunes.Enums
+{
+    public enum CatalogoEnum
+    {
+        Ninguno,
+        Entidades,
+        TiposEntidades,
+        TodosTiposEntidades,
+        Sectores,
+        SectoresEntity,
+        Regiones,
+        Departamentos,
+        Municipios,
+        Resguardos,
+        Programas,
+        Productos,
+        Alternativas,
+        TiposRecursos,
+        ClasificacionesRecursos,
+        Etapas,
+        GruposRecursos,
+        Agrupaciones,
+        TiposAgrupaciones,
+        Politicas,
+        PoliticasNivel1,
+        PoliticasNivel2,
+        PoliticasNivel3,
+        IndicadoresPoliticas,
+        TiposCofinanciaciones,
+        Entregables,
+        DireccionTecnica,
+        SubDireccionTecnica,
+        AnalistasSubDireccionTecnica,
+        TipoCofinanciador,
+        Fondos,
+        Rubros,
+        ConsultarMunicipioPorIdDepartamento
+    }
+}

@@ -1,0 +1,38 @@
+﻿
+<div class="archivo-container-form">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="vm.salir()">
+            <img src="/Img/close.png" alt="close"/>
+        </button>
+    </div>
+
+    <div class="container-modal-archivo">
+        <!--Encabezado-->
+        <div class="tittlebar titlebarmodal">
+            <span>Fichas</span>
+        </div>
+
+        <div class="cuerpo-modal-archivo">
+            <div class="archivos">
+                <!--Tabla de Metadatos-->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="metadatos">
+                            <div id="uigMetadatos" ui-grid="vm.gridFichas" ui-grid-pagination ui-grid-cellNav ui-grid-resize-columns />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <div class="row">
+            <div class="col-md-12">
+                <button type="button" id="botonCerrarModal" uib-tooltip="Cerrar" class="btn btn-sm btn-primary" ng-click="vm.salir()">
+                    Cerrar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

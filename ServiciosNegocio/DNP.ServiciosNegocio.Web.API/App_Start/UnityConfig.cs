@@ -1,0 +1,294 @@
+using DNP.ServiciosNegocio.Comunes.Autorizacion;
+using DNP.ServiciosNegocio.Comunes.Interfaces;
+using DNP.ServiciosNegocio.Comunes.Utilidades;
+using DNP.ServiciosNegocio.Persistencia.Implementaciones;
+using DNP.ServiciosNegocio.Persistencia.Implementaciones.Entidades;
+using DNP.ServiciosNegocio.Persistencia.Implementaciones.FuenteFinanciacion;
+using DNP.ServiciosNegocio.Persistencia.Implementaciones.Genericos;
+using DNP.ServiciosNegocio.Persistencia.Implementaciones.Preguntas;
+using DNP.ServiciosNegocio.Persistencia.Implementaciones.Proyectos;
+using DNP.ServiciosNegocio.Persistencia.Implementaciones.TramitesProyectos;
+using DNP.ServiciosNegocio.Persistencia.Implementaciones.Priorizacion;
+using DNP.ServiciosNegocio.Persistencia.Interfaces;
+using DNP.ServiciosNegocio.Persistencia.Interfaces.Entidades;
+using DNP.ServiciosNegocio.Persistencia.Interfaces.FuenteFinanciacion;
+using DNP.ServiciosNegocio.Persistencia.Interfaces.Genericos;
+using DNP.ServiciosNegocio.Persistencia.Interfaces.Preguntas;
+using DNP.ServiciosNegocio.Persistencia.Interfaces.Proyectos;
+using DNP.ServiciosNegocio.Persistencia.Interfaces.TramitesProyectos;
+using DNP.ServiciosNegocio.Servicios.Implementaciones.Acciones;
+using DNP.ServiciosNegocio.Servicios.Implementaciones.Entidades;
+using DNP.ServiciosNegocio.Servicios.Implementaciones.FuenteFinanciacion;
+using DNP.ServiciosNegocio.Servicios.Implementaciones.Preguntas;
+using DNP.ServiciosNegocio.Servicios.Implementaciones.Proyectos;
+using DNP.ServiciosNegocio.Servicios.Implementaciones.Transversales;
+using DNP.ServiciosNegocio.Servicios.Implementaciones.TramitesProyectos;
+using DNP.ServiciosNegocio.Servicios.Interfaces.Acciones;
+using DNP.ServiciosNegocio.Servicios.Interfaces.Entidades;
+using DNP.ServiciosNegocio.Servicios.Interfaces.FuenteFinanciacion;
+using DNP.ServiciosNegocio.Servicios.Interfaces.Preguntas;
+using DNP.ServiciosNegocio.Servicios.Interfaces.Proyectos;
+using DNP.ServiciosNegocio.Servicios.Interfaces.Transversales;
+using DNP.ServiciosNegocio.Servicios.Interfaces.TramitesProyectos;
+using DNP.ServiciosNegocio.Servicios.Interfaces.Priorizacion;
+using System.Diagnostics.CodeAnalysis;
+using System.Web.Http;
+using Unity;
+using Unity.WebApi;
+using DNP.ServiciosNegocio.Persistencia.Implementaciones.Requisitos;
+using DNP.ServiciosNegocio.Persistencia.Interfaces.Requisitos;
+using DNP.ServiciosNegocio.Servicios.Interfaces.Requisitos;
+using DNP.ServiciosNegocio.Servicios.Implementaciones.Requisitos;
+using DNP.ServiciosNegocio.Persistencia.Implementaciones.IndicadoresPolitica;
+using DNP.ServiciosNegocio.Persistencia.Interfaces.IndicadoresPolitica;
+using DNP.ServiciosNegocio.Servicios.Implementaciones.IndicadoresPolitica;
+using DNP.ServiciosNegocio.Servicios.Interfaces.IndicadoresPolitica;
+
+namespace DNP.ServiciosNegocio.Web.API
+{
+    using DNP.ServiciosNegocio.Dominio.Dto.SGR;
+    using DNP.ServiciosNegocio.Persistencia.Implementaciones.Administracion;
+    using DNP.ServiciosNegocio.Persistencia.Implementaciones.CadenaValor;
+    using DNP.ServiciosNegocio.Persistencia.Implementaciones.ModificacionLey;
+    using DNP.ServiciosNegocio.Persistencia.Implementaciones.Programacion;
+    using DNP.ServiciosNegocio.Persistencia.Implementaciones.SeguimientoControl;
+    using DNP.ServiciosNegocio.Persistencia.Implementaciones.ReportesPIIP;
+    using DNP.ServiciosNegocio.Persistencia.Implementaciones.SGR.DelegarViabilidad;
+    using DNP.ServiciosNegocio.Persistencia.Implementaciones.TramiteIncorporacion;
+    using DNP.ServiciosNegocio.Persistencia.Implementaciones.TramitesDistribucion;
+    using DNP.ServiciosNegocio.Persistencia.Implementaciones.TramitesReprogramacion;
+    using DNP.ServiciosNegocio.Persistencia.Implementaciones.SGR.Transversales;
+    using DNP.ServiciosNegocio.Persistencia.Implementaciones.SGR.Viabilidad;
+    using DNP.ServiciosNegocio.Persistencia.Implementaciones.Transversales;
+    using DNP.ServiciosNegocio.Persistencia.Interfaces.Administracion;
+    using DNP.ServiciosNegocio.Persistencia.Interfaces.CadenaValor;
+    using DNP.ServiciosNegocio.Persistencia.Interfaces.ModificacionLey;
+    using DNP.ServiciosNegocio.Persistencia.Interfaces.Priorizacion;
+    using DNP.ServiciosNegocio.Persistencia.Interfaces.Programacion;
+    using DNP.ServiciosNegocio.Persistencia.Interfaces.SeguimientoControl;
+    using DNP.ServiciosNegocio.Persistencia.Interfaces.SGR.DelegarViabilidad;
+    using DNP.ServiciosNegocio.Persistencia.Interfaces.ReportesPIIP;
+    using DNP.ServiciosNegocio.Persistencia.Interfaces.TramiteIncorporacion;
+    using DNP.ServiciosNegocio.Persistencia.Interfaces.TramitesDistribucion;
+    using DNP.ServiciosNegocio.Persistencia.Interfaces.TramitesReprogramacion;
+    using DNP.ServiciosNegocio.Persistencia.Interfaces.SGR.Transversales;
+    using DNP.ServiciosNegocio.Persistencia.Interfaces.SGR.Viabilidad;
+    using DNP.ServiciosNegocio.Persistencia.Interfaces.Transversales;
+    using DNP.ServiciosNegocio.Servicios.Implementaciones.Administracion;
+    using DNP.ServiciosNegocio.Servicios.Implementaciones.CadenaValor;
+    using DNP.ServiciosNegocio.Servicios.Implementaciones.ModificacionLey;
+    using DNP.ServiciosNegocio.Servicios.Implementaciones.Priorizacion;
+    using DNP.ServiciosNegocio.Servicios.Implementaciones.Programacion;
+    using DNP.ServiciosNegocio.Servicios.Implementaciones.SeguimientoControl;
+    using DNP.ServiciosNegocio.Servicios.Implementaciones.SGR.DelegarViabilidad;
+    using DNP.ServiciosNegocio.Servicios.Implementaciones.TramiteIncorporacion;
+    using DNP.ServiciosNegocio.Servicios.Implementaciones.ReportesPIIP;
+    using DNP.ServiciosNegocio.Servicios.Implementaciones.TramitesDistribucion;
+    using DNP.ServiciosNegocio.Servicios.Implementaciones.TramitesReprogramacion;
+    using DNP.ServiciosNegocio.Servicios.Implementaciones.SGR.Transversales;
+    using DNP.ServiciosNegocio.Servicios.Implementaciones.SGR.Viabilidad;
+    using DNP.ServiciosNegocio.Servicios.Interfaces.Administracion;
+    using DNP.ServiciosNegocio.Servicios.Interfaces.CadenaValor;
+    using DNP.ServiciosNegocio.Servicios.Interfaces.ModificacionLey;
+    using DNP.ServiciosNegocio.Servicios.Interfaces.Programacion;
+    using DNP.ServiciosNegocio.Servicios.Interfaces.SeguimientoControl;
+    using DNP.ServiciosNegocio.Servicios.Interfaces.SGR.DelegarViabilidad;
+    using DNP.ServiciosNegocio.Servicios.Interfaces.TramiteIncorporacion;
+    using DNP.ServiciosNegocio.Servicios.Interfaces.TramitesDistribucion;
+    using DNP.ServiciosNegocio.Servicios.Interfaces.ReportesPIIP;
+    using DNP.ServiciosNegocio.Servicios.Interfaces.TramitesReprogramacion;
+    using DNP.ServiciosNegocio.Servicios.Interfaces.SGR.Transversales;
+    using DNP.ServiciosNegocio.Servicios.Interfaces.SGR.Viabilidad;
+    using Persistencia.Implementaciones.Catalogos;
+    using Persistencia.Interfaces.Catalogos;
+    using Servicios.Implementaciones.Catalogos;
+    using Servicios.Interfaces.Catalogos;
+    using DNP.ServiciosNegocio.Servicios.Interfaces.SGP.Transversales;
+    using DNP.ServiciosNegocio.Persistencia.Implementaciones.SGP.Transversales;
+    using DNP.ServiciosNegocio.Servicios.Implementaciones.SGP.Transversales;
+    using DNP.ServiciosNegocio.Servicios.Interfaces.SGP.GestionRecursos;
+    using DNP.ServiciosNegocio.Servicios.Implementaciones.SGP.GestionRecursos;
+    using DNP.ServiciosNegocio.Persistencia.Implementaciones.SGP.GestionRecursos;
+    using DNP.ServiciosNegocio.Persistencia.Interfaces.SGP.GestionRecursos;
+    using DNP.ServiciosNegocio.Persistencia.Implementaciones.SGR.CTUS;
+    using DNP.ServiciosNegocio.Servicios.Implementaciones.SGP.Viabilidad;
+    using DNP.ServiciosNegocio.Persistencia.Interfaces.SGP.Viabilidad;
+    using DNP.ServiciosNegocio.Servicios.Interfaces.SGP.Viabilidad;
+    using DNP.ServiciosNegocio.Persistencia.Implementaciones.SGP.Viabilidad;
+    using DNP.ServiciosNegocio.Servicios.Interfaces.AdministradorEntidad;
+    using DNP.ServiciosNegocio.Servicios.Implementaciones.AdministradorEntidad;
+    using DNP.ServiciosNegocio.Persistencia.Interfaces.AdministradorEntidad;
+    using DNP.ServiciosNegocio.Persistencia.Implementaciones.AdministradorEntidad;
+    using DNP.ServiciosNegocio.Persistencia.Interfaces.SGP.Transversales;
+    using DNP.ServiciosNegocio.Servicios.Interfaces.SGP.Ajustes;
+    using DNP.ServiciosNegocio.Servicios.Implementaciones.SGP.Ajustes;
+    using DNP.ServiciosNegocio.Persistencia.Interfaces.SGP.Ajustes;
+    using DNP.ServiciosNegocio.Persistencia.Implementaciones.SGP.Ajustes;
+    using DNP.ServiciosNegocio.Servicios.Implementaciones.SGP.Tramite;
+    using DNP.ServiciosNegocio.Persistencia.Interfaces.SGP.Tramite;
+    using DNP.ServiciosNegocio.Persistencia.Implementaciones.SGP.Tramite;
+    using DNP.ServiciosNegocio.Servicios.Interfaces.SGP.Tramite;
+    using DNP.ServiciosNegocio.Servicios.Interfaces;
+    using DNP.ServiciosNegocio.Servicios.Implementaciones;
+    using DNP.ServiciosNegocio.Servicios.Interfaces.SGR.Procesos;
+    using DNP.ServiciosNegocio.Servicios.Implementaciones.SGR.Procesos;
+    using DNP.ServiciosNegocio.Persistencia.Interfaces.SGR.Procesos;
+    using DNP.ServiciosNegocio.Persistencia.Implementaciones.SGR.Procesos;
+
+    public class UnityConfig
+    {
+        [ExcludeFromCodeCoverage]
+        public static void RegisterComponents()
+        {
+            var container = new UnityContainer();
+
+            container.RegisterType<IEntidadServicios, OpcionCatalogoTipoEntidadServicios>()
+                     .RegisterType<IEntidadPersistencia, EntidadPersistencia>()
+                     .RegisterType<IContextoFactory, ContextoFactory>()
+                     .RegisterType<IContextoFactorySGR, ContextoFactorySGR>()
+                     .RegisterType<IEjecucionAccionTransaccionalServicios, EjecucionAccionTransaccionalEntidadServicios>()
+                     .RegisterType<IAccionUtilidades, AccionUtilidades>()
+                     .RegisterType<IAuditoriaServicios, AuditoriaServicios>()
+                     .RegisterType<IDatosBasicosSGRServicio, DatosBasicosSGRServicio>()
+                     .RegisterType<IDatosBasicosSGRPersistencia, DatosBasicosSGRPersistencia>()
+                     .RegisterType<IProyectoServicio, ProyectoServicio>()
+                     .RegisterType<IProyectoPersistencia, ProyectoPersistencia>()
+                     .RegisterType<ICacheServicio, CacheServicio>()
+                     .RegisterType<IAutorizacionUtilidades, AutorizacionUtilidades>()
+                     .RegisterType<IPersistenciaTemporal, PersistenciaTemporal>()
+                     .RegisterType<IPreguntasServicio, PreguntasServicio>()
+                     .RegisterType<IPreguntasPersistencia, PreguntasPersistencia>()
+                     .RegisterType<ICatalogoServicio, CatalogoServicio>()
+                     .RegisterType<ICatalogoPersistencia, CatalogoPersistencia>()
+                     .RegisterType<IPreguntasPersistencia, PreguntasPersistencia>()
+                     .RegisterType<IAcuerdoServicio, AcuerdoServicio>()
+                     .RegisterType<IAcuerdoPersistencia, AcuerdoPersistencia>()
+                     .RegisterType<IEntidadAccionesServicio, EntidadAccionesServicio>()
+                     .RegisterType<IEntidadAccionesPersistencia, EntidadAccionesPersistencia>()
+                     .RegisterType<IFuenteFinanciacionServicios, FuenteFinanciacionProyectoServicio>()
+                     .RegisterType<IFuenteFinanciacionPersistencia, FuenteFinanciacionPersistencia>()
+                     .RegisterType<IFuenteFinanciacionAgregarServicio, FuenteFinanciacionAgregarServicio>()
+                     .RegisterType<IFuenteFinanciacionAgregarPersistencia, FuenteFinanciacionAgregarPersistencia>()
+                     .RegisterType<IViabilidadServicio, ViabilidadServicio>()
+                     .RegisterType<IViabilidadPersistencia, ViabilidadPersistencia>()
+
+                     .RegisterType<IDatosAdicionalesServicio, DatosAdicionalesServicio>()
+                     .RegisterType<IDatosAdicionalesPersistencia, DatosAdicionalesPersistencia>()
+
+                     .RegisterType<IDevolverProyectoServicio, DevolverProyectoServicio>()
+                     .RegisterType<IDevolverProyectoPersistencia, DevolverProyectoPersistencia>()
+                     .RegisterType<IEstadoPersistencia, EstadoPersistencia>()
+                     .RegisterType<IEstadoServicio, EstadoServicio>()
+                     .RegisterType<IDocumentoSoporteServicio, DocumentoSoporteServicio>()
+                     .RegisterType<IDocumentoSoportePersistencia, DocumentoSoportePersistencia>()
+                     .RegisterType<IClienteHttpServicios, ClienteHttpServicios>()
+                     .RegisterType<ISeccionCapituloServicio, SeccionCapituloServicio>()
+                     .RegisterType<IGestionSeguimientoServicio, GestionProyectoServicio>()
+                     .RegisterType<IGestionSeguimientoPersistencia, GestionSeguimientoPersistencia>()
+                     .RegisterType<IDesagregarEdtPersistencia, DesagregarEdtPersistencia>()
+                     .RegisterType<IProgramarActividadesPersistencia, ProgramarActividadesPersistencia>()
+                     .RegisterType<IProgramarProductosPersistencia, ProgramarProductosPersistencia>()
+                     .RegisterType<IDesagregarEdtServicio, DesagregarEdtServicio>()
+                     .RegisterType<IProgramarActividadesServicio, ProgramarActividadesServicio>()
+                     .RegisterType<IProgramarProductosServicio, ProgramarProductosServicio>()
+                     .RegisterType<ICambiosRelacionPlanificacionServicio, CambiosRelacionPlanificacionServicio>()
+                     .RegisterType<ICambiosRelacionPlanificacionPersistencia, CambiosRelacionPlanificacionPersistencia>()
+                     .RegisterType<ISeccionCapituloPersistencia, SeccionCapituloPersistencia>()
+                     .RegisterType<IFuenteCofinanciacionPersistencia, FuenteCofinanciacionPersistencia>()
+                     .RegisterType<IFasePersistencia, FasePersistencia>()
+                     .RegisterType<IFuenteCofinanciacionServicio, FuenteCofinanciacionServicio>()
+                     .RegisterType<IDefinirAlcanceServicios, DefinirAlcanceServicios>()
+                     .RegisterType<IDefinirAlcancePersistencia, DefinirAlcancePersistencia>()
+                     .RegisterType<ICofinanciacionAgregarPersistencia, CofinanciacionAgregarPersistencia>()
+                     .RegisterType<ICofinanciacionAgregarServicio, CofinanciacionAgregarServicio>()
+                     .RegisterType<IIncluirPoliticasServicios, IncluirPoliticasServicios>()
+                     .RegisterType<IIncluirPoliticasPersistencia, IncluirPoliticasPersistencia>()
+                     .RegisterType<ITramitesProyectosServicio, TramitesProyectosServicio>()
+                     .RegisterType<ITramitesProyectosPersistencia, TramitesProyectosPersistencia>().
+                     RegisterType<IAjusteIncluirPoliticasServicios, AjusteIncluirPoliticasServicios>().
+                      RegisterType<IAjusteIncluirPoliticasPersistencia, AjusteIncluirPoliticasPersistencia>()
+                     .RegisterType<IPreguntasPersonalizadasServicio, PreguntasPersonalizadasServicio>()
+                     .RegisterType<IPreguntasPersonalizadasPersistencia, PreguntasPersonalizadasPersistencia>()
+                     .RegisterType<IPreguntasPersonalizadasComponentePersistencia, PreguntasPersonalizadasComponentePersistencia>()
+                     .RegisterType<IIndicadoresProductoServicio, IndicadoresProductoServicio>()
+                     .RegisterType<IIndicadoresProductoPersistencia, IndicadoresProductoPersistencia>()
+                     .RegisterType<IFuentesProgramarSolicitadoPersistencia, FuentesProgramarSolicitadoPersistencia>()
+                     .RegisterType<IFuentesProgramarSolicitadoServicio, FuentesProgramarSolicitadoServicio>()
+                     .RegisterType<ICambiosJustificacionHorizonServicio, CambiosJustificacionHorizonteServicio>()
+                     .RegisterType<ICambiosJustificacionHorizontePersistencia, CambiosJustificacionHorizontePersistencia>()
+                     .RegisterType<IIndicadoresPoliticaServicio, IndicadoresPoliticaServicio>()
+                     .RegisterType<IIndicadoresPoliticaPersistencia, IndicadoresPoliticaPersistencia>()
+                     .RegisterType<ICategoriaProductosPoliticaServicio, CategoriaProductosPoliticaServicio>()
+                     .RegisterType<ICategoriaProductosPoliticaPersistencia, CategoriaProductosPoliticaPersistencia>()
+                     .RegisterType<IEntidadEjecutorPersistencia, EntidadEjecutorPersistencia>()
+
+                     .RegisterType<IFuentesAprobacionServicio, FuentesAprobacionServicio>()
+                     .RegisterType<IFuentesAprobacionPersistencia, FuentesAprobacionPersistencia>()
+
+                     .RegisterType<IVigenciaPersistencia, VigenciaPersistencia>()
+                     .RegisterType<IVigenciaServicio, VigenciaServicio>()
+                     .RegisterType<IPriorizacionServicio, PriorizacionServicio>()
+                     .RegisterType<IPriorizacionPersistencia, PriorizacionPersistencia>()
+                     .RegisterType<IEjecutorPersistencia, EjecutorPersistencia>()
+                     .RegisterType<IEjecutorServicio, EjecutorServicio>()
+                     .RegisterType<IEjecutorEntidadServicio, EjecutorEntidadServicio>()
+                     .RegisterType<IAdministrarDocumentoServicio, AdministrarDocumentoServicio>()
+                     .RegisterType<IAdministrarDocumentoPersistencia, AdministrarDocumentoPersistencia>()
+                     .RegisterType<IReporteAvanceProductoPersistencia, ReporteAvanceProductoPersistencia>()
+                     .RegisterType<IReporteAvanceProductoServicio, ReporteAvanceProductoServicio>()
+                     .RegisterType<IReporteAvanceRegionalizacionServicio, ReporteAvanceRegionalizacionServicio>()
+                     .RegisterType<ITramiteIncorporacionServicio, TramiteIncorporacionServicio>()
+                     .RegisterType<ITramiteIncorporacionPersistencia, TramiteIncorporacionPersistencia>()
+                     .RegisterType<ITramitesReprogramacionServicio, TramitesReprogramacionServicio>()
+                     .RegisterType<ITramitesReprogramacionPersistencia, TramitesReprogramacionPersistencia>()
+                     .RegisterType<ISeguridadPersistencia, SeguridadPersistencia>()
+                     .RegisterType<ISeguridadServicio, SeguridadServicio>()
+                     .RegisterType<ITramitesDistribucionServicio, TramitesDistribucionServicio>()
+                     .RegisterType<ITramitesDistribucionPersistencia, TramitesDistribucionPersistencia>()
+                     .RegisterType<ISystemConfiguracionServicios, SystemConfiguracionServicios>()
+                     .RegisterType<ISystemConfiguracionPersistencia, SystemConfiguracionPersistencia>()
+                     .RegisterType<IProgramacionServicio, ProgramacionServicio>()
+                     .RegisterType<IProgramacionPersistencia, ProgramacionPersistencia>()
+                     .RegisterType<IModificacionLeyServicio, ModificacionLeyServicio>()
+                     .RegisterType<IModificacionLeyPersistencia, ModificacionLeyPersistencia>()
+                     .RegisterType<IReportesPIIPPersistencia, ReportesPIIPPersistencia>()
+                     .RegisterType<IReportesPIIPServicio, ReportesPIIPServicio>()
+                     .RegisterType<ITransversalPersistencia, TransversalPersistencia>()
+                     .RegisterType<ITransversalServicio, TransversalServicio>()
+                     .RegisterType<ITransversalPersistenciaSGP, TransversalPersistenciaSGP>()
+                     .RegisterType<ITransversalServicioSGP, TransversalServicioSGP>()
+                     .RegisterType<IAcuerdoPersistencia, AcuerdoPersistencia>()
+                     .RegisterType<IAcuerdoServicio, AcuerdoServicio>()
+                     .RegisterType<IDelegarViabilidadPersistencia, DelegarViabilidadPersistencia>()
+                     .RegisterType<IDelegarViabilidadServicio, DelegarViabilidadServicio>()
+                     .RegisterType<IProyectoSgrPersistencia, ProyectoSgrPersistencia>()
+                     .RegisterType<IProyectoSgrServicio, ProyectoSgrServicio>()
+                     .RegisterType<IProcesosSgrPersistencia, ProcesosSgrPersistencia>()
+                     .RegisterType<IProcesosSgrServicio, ProcesosSgrServicio>()
+                     .RegisterType<ITransversalRecursoPersistencia, TransversalRecursoPersistencia>()
+                     .RegisterType<ITransversalRecursoServicio, TransversalRecursoServicio>()
+                     .RegisterType<IGestionRecursosSgpServicio, GestionRecursosSgpServicio>()
+                     .RegisterType<IGestionRecursosSgpPersistencia, GestionRecursosSgpPersistencia>()
+                     .RegisterType<IAcuerdoSGPServicio, AcuerdoSGPServicio>()
+                     .RegisterType<IAcuerdoSgpPersistencia, AcuerdoSgpPersistencia>()
+                     .RegisterType<IPreguntasPersonalizadasSGPServicio, PreguntasPersonalizadasSGPServicio>()
+                     .RegisterType<IPreguntasPersonalizadasSGPPersistencia, PreguntasPersonalizadasSGPPersistencia>()
+                     .RegisterType<IViabilidadSGPServicio, ViabilidadSGPServicio>()
+                     .RegisterType<IViabilidadSgpPersistencia, ViabilidadSgpPersistencia>()
+                     .RegisterType<ICTUSServicio, CTUSServicio>()
+                     .RegisterType<ICTUSPersistencia, CTUSPersistencia>()
+                     .RegisterType<IAdministradorEntidadSgpServicio, AdministradorEntidadSgpServicio>()
+                     .RegisterType<IAdministradorEntidadSgpPersistencia, AdministradorEntidadSgpPersistencia>()
+                     .RegisterType<IAjustesSgpServicio, AjustesSgpServicio>()
+                     .RegisterType<IAjustesSgpPersistencia, AjustesSgpPersistencia>()
+                     .RegisterType<ITramiteSGPServicio, TramiteSGPServicio>()
+                     .RegisterType<ITramiteSGPPersistencia, TramiteSGPPersistencia>()
+                     .RegisterType<ITramiteProyectoSGPServicio, TramiteProyectoSGPServicio>()
+                     .RegisterType<ITramiteProyectoSGPPersistencia, TramiteProyectoSGPPersistencia>()
+                ;
+
+            GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
+
+        }
+    }
+}

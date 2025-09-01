@@ -1,0 +1,121 @@
+<div id="modalCrearAlertaConfiguracion" class="container-fluid inbox alerta-container-form" ng-init="vm.init()">
+
+    <div class="header-modal-alerta modal-header">
+        <div class="col-md-12 text-right">
+            <button type="button" class="btn btn-sm btn-primary btnCloseModal" ng-click="vm.cerrar()" >x</button>
+        </div>
+    </div> 
+
+    <div class="container-modal-alerta">
+        <div class="titlebarmodal fndAzul">
+            <span>Alertas </span>
+            <span class="buttonbar pull-right">
+            </span>
+        </div>
+        <div class="cuerpo-modal-alerta form-group clearfix">
+            <div class="row">
+              <div class="col-md-9">
+                <input type="text" class="form-control" ng-model="vm.model.NombreAlerta" placeholder="Nombre de la alerta"/> 
+              </div>
+              <div class="col-md-3 padding-left-off">
+                <select class="form-control" ng-model="vm.model.TipoAlerta">
+                    <option value="" disabled selected hidden>Tipo</option>
+                    <option ng-repeat="tipo in vm.tiposAlertas" ng-value="{{ tipo.Id }}">{{ tipo.Name }} </option>
+                </select>
+              </div>  
+            </div>
+            <div class="items-condicionales">
+                <div class="row" ng-repeat="regla in vm.model.AlertasReglasDtos">
+                    <div class="col-md-1" ng-style="$index == 0 && {'visibility':'hidden'}">
+                        <select class="form-control" ng-model="regla.Operador">
+                            <option ng-repeat="operador in vm.operadores" ng-value="{{operador.valor}}" ng-selected="operador.valor == regla.Operador">{{ operador.descricion }}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2 padding-left-off">
+                        <select class="form-control" ng-model="regla.MapColumnasUnoId" ng-change="vm.cambiarMascara($index,regla.MapColumnasUnoId)">
+                            <option value="" disabled selected hidden>Columna</option>
+                            <option ng-repeat="columna in vm.columnas" ng-value="{{ columna.Id }}">{{ columna.NombreColumna }} </option>
+                        </select>
+                    </div>
+                    <div class="col-md-2 padding-left-off">
+                        <select class="form-control" ng-model="regla.Condicional" ng-disabled="!regla.MapColumnasUnoId">
+                            <option value="" disabled selected hidden>Operador</option>
+                            <option ng-repeat="condicion in vm.obtenerCondicionalesPorTipoColumna(regla.MapColumnasUnoId)" ng-value="{{ condicion.valor }}">{{ condicion.descricion }} </option>
+                        </select>
+                    </div>
+                    <div class="col-md-2 col-lg-2 radio radio-success padding-left-off">
+                        <label tabindex="0">
+                            <input type="radio" ng-model="regla.TipoValor" class="form-control" name="{{ rdTipoValor + $index }}" tabindex="0" 
+                                ng-value="{{vm.tipoValor.Valor}}" ng-checked="regla.ActivarValor" />
+                            <span class="circle border border-success"></span>
+                            <span class="check check-success"></span>
+                            <p class="text-success">Valor</p>
+                        </label>
+                        <label tabindex="0">
+                            <input type="radio" ng-model="regla.TipoValor" class="form-control" name="{{ rdTipoValor + $index }}" tabindex="0" 
+                                ng-value="{{vm.tipoValor.Columna}}" ng-checked="regla.ActivarColunaDos"/>
+                            <span class="circle border border-success"></span>
+                            <span class="check check-success"></span>
+                            <p class="text-success">Columna</p>
+                        </label>
+                    </div>
+                    <div class="col-md-2 padding-left-off">
+                        <input class="form-control" name="columna{{$index}}"  
+                            type="text" 
+                            ng-model="regla.Valor"
+                            mask-regex
+                            mask-type="{{vm.nMascara[$index]}}"
+                            ng-disabled="!regla.ActivarValor" 
+                            placeholder="Valor">
+                    </div>
+                    <div class="col-md-2 padding-left-off">
+                        <select class="form-control" ng-model="regla.MapColumnasDosId" ng-disabled="!regla.ActivarColunaDos" ng-change="vm.cambiarTipoColumna($index)">
+                            <option value="" disabled selected hidden>Columna</option>
+                            <option ng-repeat="columna in vm.columnas" ng-value="{{ columna.Id }}">
+                                {{ columna.NombreColumna }} 
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-md-1 padding-left-off">
+                        <img src="/Img/iconsgrid/iconAccionAdicionar.png" ng-click="vm.adicionarRegla($index)" uib-tooltip="Adicionar nueva condición" tooltip-placement="auto" class="pull-left img-acion" style="padding-left: 15px;">
+                        <img src="/Img/iconsgrid/iconAccionEliminar.png" ng-click="vm.removerRegla(regla, $index)" uib-tooltip="Remover condición" tooltip-placement="auto" class="pull-right img-acion">
+                    </div>  
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <textarea class="form-control" rows="4" ng-model="vm.model.MensajeAlerta" placeholder="Mensage de la alerta"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="pull-right">
+                        <div class="col-md-12 radio">
+                            <label>Classificación:</label>
+                            <label tabindex="0" ng-repeat="classificacion in vm.classificacionAlerta">
+                                <input class="form-control radio-{{ classificacion.tipo }}" type="radio" ng-model="vm.model.Classificacion"
+                                    name="rdTipoAlerta" checked="checked" tabindex="0" ng-value="{{classificacion.valor}}">
+                                <span class="circle border border-{{ classificacion.tipo }}"></span>
+                                <span class="check check-{{ classificacion.tipo }}"></span>
+                                <p class="text-{{ classificacion.tipo }}"> {{ classificacion.descricion }}</p>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer fixed">
+        <div class="row">
+            <div class="col-md-12">
+                <button id="botonCerrar" type="button" ng-click="vm.cerrar()" tabindex="0" class="btn btn-sm btn-primary" uib-tooltip="Cerrar">Cerrar</button>
+                <button class="btn btn-sm btn-success" tooltip-placement="top" ng-click="vm.guardar()"
+                        uib-tooltip="Guardar alerta" tabindex="0">
+                    Guardar
+                </button>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,3467 @@
+﻿
+
+<h1> 1. Tabla basica utilizando la clase "TableDNP"</h1>
+<div class="row">
+
+    <div class="col-md-6">
+
+    </div>
+    <div class="col-md-6 pull-right text-right">
+
+        <button type="button" class=" btneditarDNP " tooltip-placement="top" uib-tooltip="Boton Editar ">
+            EDITAR
+        </button>
+
+        <button type="button" class="  btnguardarDNP">
+            GUARDAR
+        </button>
+        <button type="button" class="  btnguardarDisabledDNP" disabled>
+            GUARDAR
+        </button>
+
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-12 ">
+
+        <table class="TableDNP">
+            <thead>
+                <tr>
+                    <th class="columAcc"></th>
+                    <th class="textRightDNP">Número</th>
+                    <th class="textLeftDNP">Texto</th>
+                    <th class="columAcc"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td class="textRightDNP">33698</td>
+                    <td>El trozo de texto estándar de Lorem Ipsum usado desde el año 1500 es reproducido debajo para aquellos interesados. </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td class="textRightDNP">33699</td>
+                    <td>El trozo de texto estándar de Lorem Ipsum usado desde el año 1500 es reproducido debajo para aquellos interesados. </td>
+                    <td></td>
+                </tr>
+
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td></td>
+                    <td class="textRightDNP">Sum</td>
+                    <td>$180</td>
+                </tr>
+            </tfoot>
+        </table>
+
+    </div>
+</div>
+<div class="row">
+    <button data-toggle="collapse" data-target="#demo1" class="btn btn-link btn-md ">Codigo fuente</button>
+
+    <div id="demo1" class="collapse">
+        <div class="col-md-12 ">
+            <textarea style="width: 100%;height: 700px;" disabled>
+
+            <button type="button" class=" btneditarDNP">
+            EDITAR
+             </button>
+
+            <button type="button" class="  btnguardarDNP">
+            GUARDAR
+            </button>
+            <button type="button" class="  btnguardarDisabledDNP" disabled>
+            GUARDAR
+            </button>
+
+
+            <table class="TableDNP">
+            <thead>
+            <tr>
+            <th class="columAcc"></th>
+            <th class="textRightDNP">Número</th>
+            <th class="textLeftDNP">Texto</th>
+            <th class="columAcc"></th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr>
+            <td></td>
+            <td class="textRightDNP">33698</td>
+            <td>El trozo de texto estándar de Lorem Ipsum usado desde el año 1500 es reproducido debajo para aquellos interesados. </td>
+            <td></td>
+                </tr>
+            <tr>
+            <td></td>
+            <td class="textRightDNP">33699</td>
+            <td>El trozo de texto estándar de Lorem Ipsum usado desde el año 1500 es reproducido debajo para aquellos interesados. </td>
+            <td></td>
+                </tr>
+
+            </tbody>
+            <tfoot>
+            <tr>
+            <td></td>
+            <td class="textRightDNP">Sum</td>
+            <td>$180</td>
+                </tr>
+            </tfoot>
+        </table>
+    </textarea>
+        </div>
+    </div>
+</div>
+<br>
+<h1>2. Tabla con celdas de contenido según estados:</h1>
+<div class="row">
+    <div class="col-md-12 ">
+
+        <br>
+        <table class="TableDNP">
+            <thead>
+                <tr>
+                    <th class="columAcc"></th>
+                    <th class="textLeftDNP">Bloqueado</th>
+                    <th class="textLeftDNP">Básico / guardado</th>
+                    <th class="textLeftDNP">Foco / edición</th>
+                    <th class="textLeftDNP">Inconsistencia</th>
+                    <th class="textLeftDNP">Edición inconsistencia</th>
+                    <th class="textLeftDNP">Referencia</th>
+                    <th class="columAcc"></th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                    <td><img class="iconoErrorDNP" src="Img/u4630.svg"></td>
+                    <td><input type="text" class="form-control editInputDNP " disabled value="Bloqueado" /></td>
+                    <td>Básico / guardado</td>
+                    <td><input type="text" class="form-control editInputDNP" value="Foco / edición" /></td>
+                    <td><div class="divInconsistencia">Inconsistencia</div></td>
+                    <td><input type="text" class="form-control editInputErrorDNP" value="Edición inconsistencia" /></td>
+                    <td><input type="text" class="form-control editReferenciaDNP" value="Referencia" /></td>
+                    <td></td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 ">
+
+        <br>
+        <table class="TableDNP">
+            <thead>
+                <tr>
+                    <th class="columAcc"></th>
+                    <th class="textLeftDNP">Botones</th>
+                    <th class="columAcc"></th>
+                    <th class="columAcc"></th>
+                    <th class="columAcc"></th>
+                    <th class="columAcc"></th>
+                    <th class="columAcc"></th>
+                    <th class="columAcc"></th>
+                    <th class="columAcc"></th>
+                    <th class="columAcc"></th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                    <td><img class="iconoErrorDNP" src="Img/u4630.svg"></td>
+                    <td>Ejemplo de botones en fila</td>
+                    <td class="textCenterDNP">
+                        <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Descargar Registro">
+                            <span> <img src="Img/IcoDownload.svg"></span>
+                        </button>
+                    </td>
+                    <td class="textCenterDNP">
+                        <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Eliminar Registro">
+                            <span> <img src="Img/IcoDelete.svg"></span>
+                        </button>
+                    </td>
+                    <td class="textCenterDNP">
+                        <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Editar Registro">
+                            <span> <img src="Img/IcoEdit.svg"></span>
+                        </button>
+                    </td>
+                    <td class="textCenterDNP">
+                        <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Guardar Registro">
+                            <span> <img src="Img/IcoSave.svg"></span>
+                        </button>
+                    </td>
+                    <td class="textCenterDNP">
+                        <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Ver Registro">
+                            <span> <img src="Img/IcoView.svg"></span>
+                        </button>
+                    </td>
+
+                    <td class="textCenterDNP">
+                        <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Ver Registro">
+                            <span> <img src="Img/IcoView2.svg"></span>
+                        </button>
+                    </td>
+                    <td class="textCenterDNP">
+                        <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Cancelar Edición">
+                            <span> <img src="Img/IcoDocument.svg"></span>
+                        </button>
+                    </td>
+                    <td class="textCenterDNP">
+                        <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Cancelar Edición">
+                            <span> <img style="width: 16px;height:16px" src="Img/IcoProc.svg"></span>
+                        </button>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <td>Ejemplo de botones en fila inactivos</td>
+                    <td class="textCenterDNP">
+                        <button class="btnaccion" title="Descargar Registro" disabled>
+                            <span> <img src="Img/IcoDownloadD.svg"></span>
+                        </button>
+                    </td>
+                    <td class="textCenterDNP">
+                        <button class="btnaccion" title="Eliminar Registro" disabled>
+                            <span> <img src="Img/IcoDeleteD.svg"></span>
+                        </button>
+                    </td>
+                    <td class="textCenterDNP">
+                        <button class="btnaccion" title="Editar Registro" disabled>
+                            <span> <img src="Img/IcoEditD.svg"></span>
+                        </button>
+                    </td>
+                    <td class="textCenterDNP">
+                        <button class="btnaccion" title="Guardar Registro" disabled>
+                            <span> <img src="Img/IcoSaveD.svg"></span>
+                        </button>
+                    </td>
+                    <td class="textCenterDNP">
+                        <button class="btnaccion" title="Ver Registro" disabled>
+                            <span> <img src="Img/IcoViewD.svg"></span>
+                        </button>
+                    </td>
+
+                    <td class="textCenterDNP">
+                        <button class="btnaccion" title="Ver Registro" disabled>
+                            <span> <img src="Img/IcoView2D.svg"></span>
+                        </button>
+                    </td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+</div>
+
+<div class="row">
+    <button data-toggle="collapse" data-target="#demo2" class="btn btn-link btn-md ">Codigo fuente</button>
+
+    <div id="demo2" class="collapse">
+        <div class="col-md-12 ">
+            <textarea style="width: 100%;height: 700px;" disabled>
+            <table class="TableDNP">
+            <thead>
+            <tr>
+            <th class="columAcc"></th>
+            <th class="textLeftDNP">Bloqueado</th>
+            <th class="textLeftDNP">Básico / guardado</th>
+            <th class="textLeftDNP">Foco / edición</th>
+            <th class="textLeftDNP">Inconsistencia</th>
+            <th class="textLeftDNP">Edición inconsistencia</th>
+            <th class="textLeftDNP">Referencia</th>
+            <th class="columAcc"></th>
+                </tr>
+            </thead>
+            <tbody>
+
+            <tr>
+            <td><img class="iconoErrorDNP" src="Img/u4630.svg"></td>
+            <td><input type="text" class="form-control editInputDNP " disabled value="Bloqueado" /></td>
+            <td>Básico / guardado</td>
+            <td><input type="text" class="form-control editInputDNP" value="Foco / edición" /></td>
+            <td><div class="divInconsistencia">Inconsistencia</div></td>
+            <td><input type="text" class="form-control editInputErrorDNP" value="Edición inconsistencia" /></td>
+            <td><input type="text" class="form-control editReferenciaDNP" value="Referencia" /></td>
+            <td></td>
+                </tr>
+
+            </tbody>
+
+        </table>
+           
+            <table class="TableDNP">
+            <thead>
+            <tr>
+            <th class="columAcc"></th>
+            <th class="textLeftDNP">Botones</th>
+            <th class="columAcc"></th>
+            <th class="columAcc"></th>
+            <th class="columAcc"></th>
+            <th class="columAcc"></th>
+            <th class="columAcc"></th>
+            <th class="columAcc"></th>
+            <th class="columAcc"></th>
+            <th class="columAcc"></th>
+
+                </tr>
+            </thead>
+            <tbody>
+
+            <tr>
+            <td><img class="iconoErrorDNP" src="Img/u4630.svg"></td>
+            <td>Ejemplo de botones en fila</td>
+            <td class="textCenterDNP">
+            <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Descargar Registro">
+            <span> <img src="Img/IcoDownload.svg"></span>
+                        </button>
+                    </td>
+            <td class="textCenterDNP">
+            <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Eliminar Registro">
+            <span> <img src="Img/IcoDelete.svg"></span>
+                        </button>
+                    </td>
+            <td class="textCenterDNP">
+            <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Editar Registro">
+            <span> <img src="Img/IcoEdit.svg"></span>
+                        </button>
+                    </td>
+            <td class="textCenterDNP">
+            <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Guardar Registro">
+            <span> <img src="Img/IcoSave.svg"></span>
+                        </button>
+                    </td>
+            <td class="textCenterDNP">
+            <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Ver Registro">
+            <span> <img src="Img/IcoView.svg"></span>
+                        </button>
+                    </td>
+
+            <td class="textCenterDNP">
+            <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Ver Registro">
+            <span> <img src="Img/IcoView2.svg"></span>
+                        </button>
+                    </td>
+            <td class="textCenterDNP">
+            <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Cancelar Edición">
+            <span> <img src="Img/IcoDocument.svg"></span>
+                        </button>
+                    </td>
+            <td class="textCenterDNP">
+            <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Cancelar Edición">
+            <span> <img style="width: 16px;height:16px" src="Img/IcoProc.svg"></span>
+                        </button>
+                    </td>
+                </tr>
+
+            <tr>
+            <td></td>
+            <td>Ejemplo de botones en fila inactivos</td>
+            <td class="textCenterDNP">
+            <button class="btnaccion" title="Descargar Registro" disabled>
+            <span> <img src="Img/IcoDownloadD.svg"></span>
+                        </button>
+                    </td>
+            <td class="textCenterDNP">
+            <button class="btnaccion" title="Eliminar Registro" disabled>
+            <span> <img src="Img/IcoDeleteD.svg"></span>
+                        </button>
+                    </td>
+            <td class="textCenterDNP">
+            <button class="btnaccion" title="Editar Registro" disabled>
+            <span> <img src="Img/IcoEditD.svg"></span>
+                        </button>
+                    </td>
+            <td class="textCenterDNP">
+            <button class="btnaccion" title="Guardar Registro" disabled>
+            <span> <img src="Img/IcoSaveD.svg"></span>
+                        </button>
+                    </td>
+            <td class="textCenterDNP">
+            <button class="btnaccion" title="Ver Registro" disabled>
+            <span> <img src="Img/IcoViewD.svg"></span>
+                        </button>
+                    </td>
+
+            <td class="textCenterDNP">
+            <button class="btnaccion" title="Ver Registro" disabled>
+            <span> <img src="Img/IcoView2D.svg"></span>
+                        </button>
+                    </td>
+                </tr>
+
+            </tbody>
+
+        </table>
+            </textarea>
+        </div>
+
+    </div>
+</div>
+<br>
+<br>
+<h1>3. Tabla Anidada:</h1>
+
+<section id="SelectExam" class="SelectExam">
+    <div class="row">
+        <div class="col-md-12 ">
+            <table class="TableDNP no-border">
+                <thead>
+                    <tr>
+                        <th class="columAcc"> </th>
+                        <th class="textLeftDNP">Código / Tipo* / Acumulativo / Indicador</th>
+                        <th class="textRightDNP">Columna</th>
+                        <th class="textRightDNP">Columna </th>
+                        <th class="textRightDNP">Columna </th>
+                        <th class="textRightDNP">Columna </th>
+                        <th class="columAcc"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="bottontransDNP">
+                        <td class="columAcc textdespleDNP">
+                            <a data-toggle="collapse" data-target="#ind1" ng-click="vm.AbrilNivelTabla(1)">
+                                <span class="text-column-info">Ajustes</span>
+                            </a>
+                        </td>
+                        <td class="textLeftDNP">
+                            <p class="texttituloceldatableDNP"><span>120600100 / P  / SI </span></p> <textarea class="textAreatableDNP">Cupos penitenciarios y carcelarios entregados (nacionales y territoriales)</textarea>
+                        </td>
+                        <td class="textRightDNP">2022</td>
+                        <td class="textRightDNP">2022</td>
+                        <td class="textRightDNP">2022</td>
+                        <td class="textRightDNP">2022</td>
+                        <td class="textCenterDNP">
+                            <button class="btnaccion" title="Eliminar Indicador Secundario" disabled>
+                                <span> <img src="Img/btnElimdisabled.svg"></span>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr class="filaAnidada">
+                        <td colspan="1">
+                            <button class="btnaccion btntablednp" type="button" data-toggle="collapse" data-target="#ind1" ng-click="vm.AbrilNivelTabla(1)">
+                                <img ng-show="vm.BanderaTa == '+'" src="Img/btnMasTb.svg">
+                                <img ng-show="vm.BanderaTa == '-'" src="Img/btnMenosTb.svg">
+                            </button>
+                            <div id="indicador-" class="img pull-right iconadverdnp">   <img class="" src="Img/u4630.svg"> </div>
+                        </td>
+                        <td colspan="6">
+                            <span class="messagealerttableDNP">Espacio reservado para información de validaciones. </span>
+                        </td>
+                    </tr>
+                    <tr class="no-border collapse alert panel-heading" id="ind1">
+                        <td colspan="8" class="p-0">
+                            <div class="LineaEncabezado2tabDNP"></div>
+                            <h3 class="row tituloEncabezadotabDNP">
+                                Ajustar de indicador
+
+                                <span class="totaldespleDNP">
+                                    Total: <span> 2</span>
+                                </span>
+                                <span class="buttonbar pull-right">
+                                    <button ng-if="!vm.HabilitaEditarBandera" type="button" class="btneditarDNP" tooltip-placement="top" uib-tooltip="Editar" tabindex="0" ng-click="vm.HabilitaEditar(true)">
+                                        EDITAR
+                                    </button>
+                                    <button ng-if="vm.HabilitaEditarBandera" type="button" class=" btneditarDNP" tooltip-placement="top" uib-tooltip="Cancelar" tabindex="0" ng-click="vm.HabilitaEditar(false)">
+                                        CANCELAR
+                                    </button>
+                                    <button ng-disabled="!vm.HabilitaEditarBandera" class="{{vm.HabilitaEditarBandera ? 'btnguardarDNP' : 'btnguardarDisabledDNP'}}" type="button" tooltip-placement="top" uib-tooltip="Guardar" tabindex="0" ng-click="">
+                                        GUARDAR
+                                    </button>
+                                </span>
+                            </h3>
+
+                            <div class="row detalletableanidnp">
+                                <label>
+                                    "Meta en ajuste": para "Acumulativo" será igual a la suma de las metas de todas las vigencias, para "No acumulativo" será el mayor valor registrado
+                                </label>
+                            </div>
+                            <div class="row">
+                                <div class="alert panel-heading">
+                                    <table class="TableDNP">
+                                        <thead>
+                                            <tr>
+                                                <th class="columAcc"></th>
+                                                <th class="textRightDNP"><span class="uLabelCampo">Vigencia</span></th>
+                                                <th class="textRightDNP">Número </th>
+                                                <th class="textRightDNP">Número</th>
+                                                <th class="textRightDNP">Número</th>
+                                                <th class="columAcc"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td></td>
+                                                <td class="textRightDNP">
+                                                    <input type="text" class="form-control editInputDNP " disabled value="2022" />
+                                                </td>
+                                                <td class="textRightDNP"><input type="text" class="form-control editInputDNP " disabled value="{{vm.ConvertirNumero2decimales(20000)}}" /></td>
+                                                <td class="textRightDNP"><input type="text" class="form-control editInputDNP " disabled value="{{vm.ConvertirNumero2decimales(500000)}}" /></td>
+                                                <td class="textRightDNP">
+                                                    {{vm.ConvertirNumero2decimales(100000)}}
+                                                </td>
+                                                <td></td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td class="columAcc icontotaldnp"><span>=</span></td>
+                                                <td class="textRightDNP"><span>Total $</span></td>
+                                                <td class="textRightDNP">
+                                                    <input type="text" class="form-control editInputDNP " disabled value="{{vm.ConvertirNumero2decimales(20000)}}" />
+                                                </td>
+                                                <td class="textRightDNP">
+                                                    <input type="text" class="form-control editInputDNP " disabled value="{{vm.ConvertirNumero2decimales(500000)}}" />
+                                                </td>
+                                                <td class="textRightDNP">
+                                                    <input type="text" class="form-control editInputDNP " disabled value="{{vm.ConvertirNumero2decimales(100000)}}" />
+                                                </td>
+                                                <td></td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="bottontransDNP">
+                        <td>
+                        </td>
+                        <td class="textLeftDNP">
+                            <p class="texttituloceldatableDNP"><span>120600100 / P  / SI </span></p> <textarea class="textAreatableDNP">Cupos penitenciarios y carcelarios entregados (nacionales y territoriales)</textarea>
+                        </td>
+                        <td class="textRightDNP">2022</td>
+                        <td class="textRightDNP">2022</td>
+                        <td class="textRightDNP">2022</td>
+                        <td class="textRightDNP">2022</td>
+                        <td class="textCenterDNP">
+                            <button class="btnaccion" title="Eliminar Indicador Secundario">
+                                <span style="cursor:pointer"> <img src="Img/u928.svg"></span>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr class="filaAnidada">
+                        <td colspan="1">
+                            <button class="btnaccion btntablednp" type="button" data-toggle="collapse" data-target="#ind2" ng-click="vm.AbrilNivelTabla(2)">
+                                <img ng-show="vm.BanderaTa2 == '+'" src="Img/btnMasTb.svg">
+                                <img ng-show="vm.BanderaTa2 == '-'" src="Img/btnMenosTb.svg">
+                            </button>
+
+                            <div id="indicador-2" class="img pull-right iconadverdnp">   <img class="" src="Img/u4630.svg"> </div>
+                        </td>
+                        <td colspan="6">
+                            <span class="messagealerttableDNP">Espacio reservado para información de validaciones. </span>
+                        </td>
+                    </tr>
+                    <tr class="no-border collapse alert panel-heading" id="ind2">
+                        <td colspan="8" class="p-0">
+                            <div class="LineaEncabezado2tabDNP"></div>
+                            <h3 class="row tituloEncabezadotabDNP">
+                                Ajustar de indicador
+                                <span class="buttonbar pull-right">
+                                    <button ng-if="!vm.HabilitaEditarBandera" type="button" class="btneditarDNP" tooltip-placement="top" uib-tooltip="Editar" tabindex="0" ng-click="vm.HabilitaEditar(true)">
+                                        EDITAR
+                                    </button>
+                                    <button ng-if="vm.HabilitaEditarBandera" type="button" class=" btneditarDNP" tooltip-placement="top" uib-tooltip="Cancelar" tabindex="0" ng-click="vm.HabilitaEditar(false)">
+                                        CANCELAR
+                                    </button>
+                                    <button ng-disabled="!vm.HabilitaEditarBandera" class="{{vm.HabilitaEditarBandera ? 'btnguardarDNP' : 'btnguardarDisabledDNP'}}" type="button" tooltip-placement="top" uib-tooltip="Guardar" tabindex="0" ng-click="">
+                                        GUARDAR
+                                    </button>
+                                </span>
+                            </h3>
+                            <div class="row detalletableanidnp">
+                                <label>
+                                    "Meta en ajuste": para "Acumulativo" será igual a la suma de las metas de todas las vigencias, para "No acumulativo" será el mayor valor registrado
+                                </label>
+                            </div>
+                            <div class="row">
+                                <div class="alert panel-heading">
+                                    <table class="TableDNP">
+                                        <thead>
+                                            <tr>
+                                                <th class="columAcc"></th>
+                                                <th class="textRightDNP"><span class="uLabelCampo">Vigencia</span></th>
+                                                <th class="textRightDNP">Número </th>
+                                                <th class="textRightDNP">Número</th>
+                                                <th class="textRightDNP">Número</th>
+                                                <th class="columAcc"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td></td>
+                                                <td class="textRightDNP">
+                                                    <input type="text" class="editInputDNP " disabled value="2022" />
+                                                </td>
+                                                <td class="textRightDNP"><input type="text" class="form-control editInputDNP " disabled value="{{vm.ConvertirNumero4decimales(20000)}}" /></td>
+                                                <td class="textRightDNP"><input type="text" class="form-control editInputDNP " disabled value="{{vm.ConvertirNumero4decimales(500000)}}" /></td>
+                                                <td class="textRightDNP">
+                                                    {{vm.ConvertirNumero4decimales(100000)}}
+                                                </td>
+                                                <td></td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td class="columAcc icontotaldnp"><span>=</span></td>
+                                                <td class="textRightDNP"><span>Total $</span></td>
+                                                <td class="textRightDNP">
+                                                    <input type="text" class="form-control editInputDNP " disabled value="{{vm.ConvertirNumero4decimales(20000)}}" />
+                                                </td>
+                                                <td class="textRightDNP">
+                                                    <input type="text" class="form-control editInputDNP " disabled value="{{vm.ConvertirNumero4decimales(500000)}}" />
+                                                </td>
+                                                <td class="textRightDNP">
+                                                    <input type="text" class="form-control editInputDNP " disabled value=" {{vm.ConvertirNumero4decimales(100000)}}" />
+                                                </td>
+                                                <td></td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+<div class="row">
+    <button data-toggle="collapse" data-target="#demo3" class="btn btn-link btn-md ">Codigo fuente</button>
+
+    <div id="demo3" class="collapse">
+        <div class="col-md-12 ">
+            <textarea style="width: 100%;height: 700px;" disabled>
+
+            <table class="TableDNP no-border">
+            <thead>
+            <tr>
+            <th class="columAcc"> </th>
+            <th class="textLeftDNP">Código / Tipo* / Acumulativo / Indicador</th>
+            <th class="textRightDNP">Columna</th>
+            <th class="textRightDNP">Columna </th>
+            <th class="textRightDNP">Columna </th>
+            <th class="textRightDNP">Columna </th>
+            <th class="columAcc"></th>
+                        </tr>
+                    </thead>
+            <tbody>
+            <tr class="bottontransDNP">
+            <td class="columAcc textdespleDNP">
+            <a data-toggle="collapse" data-target="#ind1" ng-click="vm.AbrilNivelTabla(1)">
+            <span class="text-column-info">Ajustes</span>
+                        </a>
+                    </td>
+            <td class="textLeftDNP">
+            <p class="texttituloceldatableDNP"><span>120600100 / P  / SI </span></p> <textareaa class="textAreatableDNP">Cupos penitenciarios y carcelarios entregados (nacionales y territoriales)</textareaa>
+                    </td>
+            <td class="textRightDNP">2022</td>
+            <td class="textRightDNP">2022</td>
+            <td class="textRightDNP">2022</td>
+            <td class="textRightDNP">2022</td>
+            <td class="textCenterDNP">
+            <button class="btnaccion" title="Eliminar Indicador Secundario" disabled>
+            <span> <img src="Img/btnElimdisabled.svg"></span>
+                        </button>
+                    </td>
+                </tr>
+            <tr class="filaAnidada">
+            <td colspan="1">
+            <button class="btnaccion btntablednp" type="button" data-toggle="collapse" data-target="#ind1" ng-click="vm.AbrilNivelTabla(1)">
+            <img ng-show="vm.BanderaTa == '+'" src="Img/btnMasTb.svg">
+            <img ng-show="vm.BanderaTa == '-'" src="Img/btnMenosTb.svg">
+                                </button>
+            <div id="indicador-" class="img pull-right iconadverdnp">   <img class="" src="Img/u4630.svg"> </div>
+                            </td>
+            <td colspan="6">
+            <span class="messagealerttableDNP">Espacio reservado para información de validaciones. </span>
+                            </td>
+                        </tr>
+            <tr class="no-border collapse alert panel-heading" id="ind1">
+            <td colspan="8" class="p-0">
+            <div class="LineaEncabezado2tabDNP"></div>
+            <h3 class="row tituloEncabezadotabDNP">
+                Ajustar de indicador
+            <span class="totaldespleDNP">
+                    Total: <span> 2</span>
+                </span>
+            <span class="buttonbar pull-right">
+            <button ng-if="!vm.HabilitaEditarBandera" type="button" class="btneditarDNP" tooltip-placement="top" uib-tooltip="Editar" tabindex="0" ng-click="vm.HabilitaEditar(true)">
+                        EDITAR
+                    </button>
+            <button ng-if="vm.HabilitaEditarBandera" type="button" class=" btneditarDNP" tooltip-placement="top" uib-tooltip="Cancelar" tabindex="0" ng-click="vm.HabilitaEditar(false)">
+                        CANCELAR
+                    </button>
+            <button ng-disabled="!vm.HabilitaEditarBandera" class="{{vm.HabilitaEditarBandera ? 'btnguardarDNP' : 'btnguardarDisabledDNP'}}" type="button" tooltip-placement="top" uib-tooltip="Guardar" tabindex="0" ng-click="">
+                        GUARDAR
+                    </button>
+                </span>
+            </h3>
+
+            <div class="row detalletableanidnp">
+            <label>
+                                        "Meta en ajuste": para "Acumulativo" será igual a la suma de las metas de todas las vigencias, para "No acumulativo" será el mayor valor registrado
+                                    </label>
+                                </div>
+            <div class="row">
+            <div class="alert panel-heading">
+            <table class="TableDNP">
+            <thead>
+            <tr>
+            <th class="columAcc"></th>
+            <th class="textRightDNP"><span class="uLabelCampo">Vigencia</span></th>
+            <th class="textRightDNP">Número </th>
+            <th class="textRightDNP">Número</th>
+            <th class="textRightDNP">Número</th>
+            <th class="columAcc"></th>
+                                                </tr>
+                                            </thead>
+            <tbody>
+            <tr>
+            <td></td>
+            <td class="textRightDNP">
+            <input type="text" class="form-control editInputDNP " disabled value="2022" />
+                                                    </td>
+            <td class="textRightDNP"><input type="text" class="form-control editInputDNP " disabled value="{{vm.ConvertirNumero2decimales(20000)}}" /></td>
+            <td class="textRightDNP"><input type="text" class="form-control editInputDNP " disabled value="{{vm.ConvertirNumero2decimales(500000)}}" /></td>
+            <td class="textRightDNP">
+                                                        {{vm.ConvertirNumero2decimales(100000)}}
+                                                    </td>
+            <td></td>
+                                                </tr>
+                                            </tbody>
+            <tfoot>
+            <tr>
+            <td class="columAcc icontotaldnp"><span>=</span></td>
+            <td class="textRightDNP"><span>Total $</span></td>
+            <td class="textRightDNP">
+            <input type="text" class="form-control editInputDNP " disabled value="{{vm.ConvertirNumero2decimales(20000)}}" />
+                                                    </td>
+            <td class="textRightDNP">
+            <input type="text" class="form-control editInputDNP " disabled value="{{vm.ConvertirNumero2decimales(500000)}}" />
+                                                    </td>
+            <td class="textRightDNP">
+            <input type="text" class="form-control editInputDNP " disabled value="{{vm.ConvertirNumero2decimales(100000)}}" />
+                                                    </td>
+            <td></td>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+            <tr class="bottontransDNP">
+            <td>
+                            </td>
+            <td class="textLeftDNP">
+            <p class="texttituloceldatableDNP"><span>120600100 / P  / SI </span></p> <textareaa class="textAreatableDNP">Cupos penitenciarios y carcelarios entregados (nacionales y territoriales)</textareaa>
+                            </td>
+            <td class="textRightDNP">2022</td>
+            <td class="textRightDNP">2022</td>
+            <td class="textRightDNP">2022</td>
+            <td class="textRightDNP">2022</td>
+            <td class="textCenterDNP">
+            <button class="btnaccion" title="Eliminar Indicador Secundario">
+            <span style="cursor:pointer"> <img src="Img/u928.svg"></span>
+                                </button>
+                            </td>
+                        </tr>
+            <tr class="filaAnidada">
+            <td colspan="1">
+            <button class="btnaccion btntablednp" type="button" data-toggle="collapse" data-target="#ind2" ng-click="vm.AbrilNivelTabla(2)">
+            <img ng-show="vm.BanderaTa2 == '+'" src="Img/btnMasTb.svg">
+            <img ng-show="vm.BanderaTa2 == '-'" src="Img/btnMenosTb.svg">
+                                </button>
+
+            <div id="indicador-2" class="img pull-right iconadverdnp">   <img class="" src="Img/u4630.svg"> </div>
+                            </td>
+            <td colspan="6">
+            <span class="messagealerttableDNP">Espacio reservado para información de validaciones. </span>
+                            </td>
+                        </tr>
+            <tr class="no-border collapse alert panel-heading" id="ind2">
+            <td colspan="8" class="p-0">
+            <div class="LineaEncabezado2tabDNP"></div>
+            <h3 class="row tituloEncabezadotabDNP">
+                                    Ajustar de indicador
+            <span class="buttonbar pull-right">
+            <button ng-if="!vm.HabilitaEditarBandera" type="button" class="btneditarDNP" tooltip-placement="top" uib-tooltip="Editar" tabindex="0" ng-click="vm.HabilitaEditar(true)">
+                                            EDITAR
+                                        </button>
+            <button ng-if="vm.HabilitaEditarBandera" type="button" class=" btneditarDNP" tooltip-placement="top" uib-tooltip="Cancelar" tabindex="0" ng-click="vm.HabilitaEditar(false)">
+                                            CANCELAR
+                                        </button>
+            <button ng-disabled="!vm.HabilitaEditarBandera" class="{{vm.HabilitaEditarBandera ? 'btnguardarDNP' : 'btnguardarDisabledDNP'}}" type="button" tooltip-placement="top" uib-tooltip="Guardar" tabindex="0" ng-click="">
+                                            GUARDAR
+                                        </button>
+                                    </span>
+                                </h3>
+            <div class="row detalletableanidnp">
+            <label>
+                                        "Meta en ajuste": para "Acumulativo" será igual a la suma de las metas de todas las vigencias, para "No acumulativo" será el mayor valor registrado
+                                    </label>
+                                </div>
+            <div class="row">
+            <div class="alert panel-heading">
+            <table class="TableDNP">
+            <thead>
+            <tr>
+            <th class="columAcc"></th>
+            <th class="textRightDNP"><span class="uLabelCampo">Vigencia</span></th>
+            <th class="textRightDNP">Número </th>
+            <th class="textRightDNP">Número</th>
+            <th class="textRightDNP">Número</th>
+            <th class="columAcc"></th>
+                                                </tr>
+                                            </thead>
+            <tbody>
+            <tr>
+            <td></td>
+            <td class="textRightDNP">
+            <input type="text" class="editInputDNP " disabled value="2022" />
+                                                    </td>
+            <td class="textRightDNP"><input type="text" class="form-control editInputDNP " disabled value="{{vm.ConvertirNumero4decimales(20000)}}" /></td>
+            <td class="textRightDNP"><input type="text" class="form-control editInputDNP " disabled value="{{vm.ConvertirNumero4decimales(500000)}}" /></td>
+            <td class="textRightDNP">
+                                                        {{vm.ConvertirNumero4decimales(100000)}}
+                                                    </td>
+            <td></td>
+                                                </tr>
+                                            </tbody>
+            <tfoot>
+            <tr>
+            <td class="columAcc icontotaldnp"><span>=</span></td>
+            <td class="textRightDNP"><span>Total $</span></td>
+            <td class="textRightDNP">
+            <input type="text" class="form-control editInputDNP " disabled value="{{vm.ConvertirNumero4decimales(20000)}}" />
+                                                    </td>
+            <td class="textRightDNP">
+            <input type="text" class="form-control editInputDNP " disabled value="{{vm.ConvertirNumero4decimales(500000)}}" />
+                                                    </td>
+            <td class="textRightDNP">
+            <input type="text" class="form-control editInputDNP " disabled value=" {{vm.ConvertirNumero4decimales(100000)}}" />
+                                                    </td>
+            <td></td>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </textarea>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<h1>4. Acordeón desplegable :</h1>
+
+<div class="row">
+    <div class="" style="padding: 0 !important">
+        <div class="alert panel-headingAccDNP">
+            <div class="card card-body pull-left  divAccordionDNP" style="display: table;">
+                <span class="uLabelCampo">Nivel 1:</span>
+
+                <div class="line-clamp">
+                    <p>
+
+                        {{vm.TextoAccordeon | limitTo: 110 }}<span style="margin-left:0px" ng-if="vm.TextoAccordeon.length > 110">...</span>  <button ng-if="vm.TextoAccordeon.length > 110" type="button" class="btn btn-link btn-md buttonhiperDNP" tooltip-placement="top" uib-tooltip="ver más" tabindex="0" data-toggle="modal" data-target="#IPModalVermas">
+                            VER MÁS
+                        </button>
+
+                    </p>
+                </div>
+                <p class="panelbtnalertAcordnp">
+                    <button class="btnaccion btnAccordionDNP" type="button" data-toggle="collapse" data-target="#obj1" ng-click="vm.AbrilNivel1()">
+                        <img ng-show="vm.Bandera1 == '+'" src="Img/btnMas.svg">
+                        <img ng-show="vm.Bandera1 == '-'" src="Img/btnMenos.svg">
+                    </button>
+                    <span class="img iconadverdnp ">   <img src="Img/u4630.svg"> </span>
+                    <span class="messagealerttableDNP">Espacio reservado para información de validaciones. </span>
+
+                </p>
+                <div class="DivcolDeleteDNP textCenterDNP">
+                    <button class="btnaccion" title="Eliminar Indicador Secundario">
+                        <span style="cursor: pointer; margin-left: 0px;"> <img src="Img/u928.svg"></span>
+                    </button>
+                </div>
+                <div id="objetivo-1"></div>
+            </div>
+        </div>
+        <br />
+        <div class="collapse" id="obj1">
+            <div class="LineaEncabezadodivDNP"></div>
+            <h3 class="row tituloEncabezadodivDNP">
+                Items Nivel 1
+                <span class="buttonbar pull-right">
+                    <button ng-if="!vm.HabilitaEditarBandera" type="button" class="btneditarDNP" tooltip-placement="top" uib-tooltip="Editar" tabindex="0" ng-click="vm.HabilitaEditar(true)">
+                        EDITAR
+                    </button>
+                    <button ng-if="vm.HabilitaEditarBandera" type="button" class=" btneditarDNP" tooltip-placement="top" uib-tooltip="Cancelar" tabindex="0" ng-click="vm.HabilitaEditar(false)">
+                        CANCELAR
+                    </button>
+                    <button ng-disabled="!vm.HabilitaEditarBandera" class="{{vm.HabilitaEditarBandera ? 'btnguardarDNP' : 'btnguardarDisabledDNP'}}" type="button" tooltip-placement="top" uib-tooltip="Guardar" tabindex="0" ng-click="">
+                        GUARDAR
+                    </button>
+                </span>
+
+            </h3>
+            <div>
+                <div class="alert panel-headingAcc2DNP">
+                    <div class="card card-body pull-left bordesencillo">
+                        <span class="uLabelCampo">Nivel 2</span>
+                        <div class=" line-clamp">
+                            <p>
+                                Servicio de información penitenciaria y carcelaria para la toma de decisiones
+                            </p>
+                        </div>
+
+                        <p class="panelbtnalertAcordnp">
+                            <button class="btnaccion btnAccordionDNP" type="button" data-toggle="collapse" data-target="#prod1" ng-click="vm.AbrilNivel2()">
+                                <img ng-show="vm.Bandera2 == '+'" src="Img/btnMasn2.svg">
+                                <img ng-show="vm.Bandera2 == '-'" src="Img/btnMenosn2.svg">
+                            </button>
+                            <span class="img iconadverdnp">   <img src="Img/u4630.svg"> </span>
+                            <span class="messagealerttableDNP">Espacio reservado para información de validaciones. </span>
+
+                        </p>
+
+                    </div>
+                </div>
+                <br />
+                <div class="collapse" id="prod1">
+                    <div class="LineaEncabezado2divDNP"></div>
+                    <h3 class="row tituloEncabezadodiv2DNP">Items Nivel 2</h3>
+                    <div>
+                        <div class="alert panel-headingAcc2DNP">
+                            <div class="card card-body pull-left bordesencillo">
+                                <span class="uLabelCampo">Nivel 3</span>
+                                <div class=" line-clamp">
+                                    <p>
+                                        Servicio de información penitenciaria y carcelaria para la toma de decisiones
+                                    </p>
+                                </div>
+
+                                <p class="panelbtnalertAcordnp">
+                                    <button class="btnaccion btnAccordionDNP" type="button" data-toggle="collapse" data-target="#deta1" ng-click="vm.AbrilNivel3()">
+                                        <img ng-show="vm.Bandera3 == '+'" src="Img/btnMasTb.svg">
+                                        <img ng-show="vm.Bandera3 == '-'" src="Img/btnMenosTb.svg">
+                                    </button>
+                                    <span class="img iconadverdnp">   <img src="Img/u4630.svg"> </span>
+                                    <span class="messagealerttableDNP">Espacio reservado para información de validaciones. </span>
+
+                                </p>
+
+                            </div>
+                        </div>
+                        <br>
+                        <div class="collapse" id="deta1">
+                            <div class="LineaEncabezado2divDNP"></div>
+                            <h3 class="row tituloEncabezadodiv2DNP" style="margin-left:17%;">Items Nivel 3</h3>
+                            <div>
+                                <div class="alert panel-headingAcc2DNP">
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="modal " id="IPModalVermas" tabindex="-1" role="dialog" aria-labelledby="IPModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content modal-contentDNP">
+            <div class="modal-header">
+
+                <button type='button' class='swal2-close closemodalDNP' aria-label='Close this dialog' data-dismiss="modal">×</button>
+                <h3 class="modal-title TituloModal1DNP" id="modal-title">Texto Titulo Principal </h3>
+                <span class="TituloModal2DNP">  Texto Titulo Secundario </span>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <textarea class="form-control " rows="10" cols="50" disabled="disabled">{{vm.TextoAccordeon}}</textarea>
+                </div>
+            </div>
+            <div class="modal-footer textCenterDNP">
+                <button class="btnguardarDNP" data-dismiss="modal" type="button">ACEPTAR</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="row">
+    <button data-toggle="collapse" data-target="#demo4" class="btn btn-link btn-md ">Codigo fuente</button>
+
+    <div id="demo4" class="collapse">
+        <div class="col-md-12 ">
+            <textarea style="width: 100%;height: 700px;" disabled>
+           
+            <div class="row">
+            <div class="" style="padding: 0 !important">
+            <div class="alert panel-headingAccDNP">
+            <div class="card card-body pull-left  divAccordionDNP">
+            <span class="uLabelCampo">Nivel 1:</span>
+
+            <div class="line-clamp">
+            <p>
+
+                            {{vm.TextoAccordeon | limitTo: 110 }}<span style="margin-left:0px" ng-if="vm.TextoAccordeon.length > 110">...</span>  <button ng-if="vm.TextoAccordeon.length > 110" type="button" class="btn btn-link btn-md buttonhiperDNP" tooltip-placement="top" uib-tooltip="ver más" tabindex="0" data-toggle="modal" data-target="#IPModalVermas">
+                                VER MÁS
+                            </button>
+
+                        </p>
+                    </div>
+            <p class="panelbtnalertAcordnp">
+            <button class="btnaccion btnAccordionDNP" type="button" data-toggle="collapse" data-target="#obj1" ng-click="vm.AbrilNivel1()">
+            <img ng-show="vm.Bandera1 == '+'" src="Img/btnMas.svg">
+            <img ng-show="vm.Bandera1 == '-'" src="Img/btnMenos.svg">
+                        </button>
+            <span class="img iconadverdnp ">   <img src="Img/u4630.svg"> </span>
+            <span class="messagealerttableDNP">Espacio reservado para información de validaciones. </span>
+
+                    </p>
+            <div class="DivcolDeleteDNP textCenterDNP">
+            <button class="btnaccion" title="Eliminar Indicador Secundario">
+            <span style="cursor: pointer; margin-left: 0px;"> <img src="Img/u928.svg"></span>
+                        </button>
+                    </div>
+
+            <div id="objetivo-1"></div>
+                </div>
+                                </div>
+            <br />
+            <div class="collapse" id="obj1">
+            <div class="LineaEncabezadodivDNP"></div>
+            <h3 class="row tituloEncabezadodivDNP">
+                                        Items Nivel 1
+            <span class="buttonbar pull-right">
+            <button ng-if="!vm.HabilitaEditarBandera" type="button" class="btneditarDNP" tooltip-placement="top" uib-tooltip="Editar" tabindex="0" ng-click="vm.HabilitaEditar(true)">
+                                                EDITAR
+                                            </button>
+            <button ng-if="vm.HabilitaEditarBandera" type="button" class=" btneditarDNP" tooltip-placement="top" uib-tooltip="Cancelar" tabindex="0" ng-click="vm.HabilitaEditar(false)">
+                                                CANCELAR
+                                            </button>
+            <button ng-disabled="!vm.HabilitaEditarBandera" class="{{vm.HabilitaEditarBandera ? 'btnguardarDNP' : 'btnguardarDisabledDNP'}}" type="button" tooltip-placement="top" uib-tooltip="Guardar" tabindex="0" ng-click="">
+                                                GUARDAR
+                                            </button>
+                                        </span>
+
+                                    </h3>
+            <div>
+            <div class="alert panel-headingAcc2DNP">
+            <div class="card card-body pull-left bordesencillo">
+            <span class="uLabelCampo">Nivel 2</span>
+            <div class=" line-clamp">
+            <p>
+                                                        Servicio de información penitenciaria y carcelaria para la toma de decisiones
+                                                    </p>
+                                                </div>
+
+            <p class="panelbtnalertAcordnp">
+            <button class="btnaccion btnAccordionDNP" type="button" data-toggle="collapse" data-target="#prod1" ng-click="vm.AbrilNivel2()">
+            <img ng-show="vm.Bandera2 == '+'" src="Img/btnMasn2.svg">
+            <img ng-show="vm.Bandera2 == '-'" src="Img/btnMenosn2.svg">
+                                                    </button>
+            <span class="img iconadverdnp">   <img src="Img/u4630.svg"> </span>
+            <span class="messagealerttableDNP">Espacio reservado para información de validaciones. </span>
+
+                                                </p>
+
+                                            </div>
+                                        </div>
+            <br />
+            <div class="collapse" id="prod1">
+            <div class="LineaEncabezado2divDNP"></div>
+            <h3 class="row tituloEncabezadodiv2DNP">Items Nivel 2</h3>
+            <div>
+            <div class="alert panel-headingAcc2DNP">
+            <div class="card card-body pull-left bordesencillo">
+            <span class="uLabelCampo">Nivel 3</span>
+            <div class=" line-clamp">
+            <p>
+                                                                Servicio de información penitenciaria y carcelaria para la toma de decisiones
+                                                            </p>
+                                                        </div>
+
+            <p class="panelbtnalertAcordnp">
+            <button class="btnaccion btnAccordionDNP" type="button" data-toggle="collapse" data-target="#deta1" ng-click="vm.AbrilNivel3()">
+            <img ng-show="vm.Bandera3 == '+'" src="Img/btnMasTb.svg">
+            <img ng-show="vm.Bandera3 == '-'" src="Img/btnMenosTb.svg">
+                                                            </button>
+            <span class="img iconadverdnp">   <img src="Img/u4630.svg"> </span>
+            <span class="messagealerttableDNP">Espacio reservado para información de validaciones. </span>
+
+                                                        </p>
+
+                                                    </div>
+                                                </div>
+            <br>
+            <div class="collapse" id="deta1">
+            <div class="LineaEncabezado2divDNP"></div>
+            <h3 class="row tituloEncabezadodiv2DNP" style="margin-left:17%;">Items Nivel 3</h3>
+            <div>
+            <div class="alert panel-headingAcc2DNP">
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+            <div class="modal " id="IPModalVermas" tabindex="-1" role="dialog" aria-labelledby="IPModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content modal-contentDNP">
+            <div class="modal-header">
+
+            <button type='button' class='swal2-close closemodalDNP' aria-label='Close this dialog' data-dismiss="modal">×</button>
+            <h3 class="modal-title TituloModal1DNP" id="modal-title">Texto Titulo Principal </h3>
+            <span class="TituloModal2DNP">  Texto Titulo Secundario </span>
+                                    </div>
+            <div class="modal-body">
+            <div>
+            <textareaa class="form-control " rows="10" cols="50" disabled="disabled">{{vm.TextoAccordeon}}</textareaa>
+                                        </div>
+                                    </div>
+            <div class="modal-footer textCenterDNP">           
+            <button class="btnguardarDNP" data-dismiss="modal" type="button">ACEPTAR</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+           
+            </textarea>
+        </div>
+
+
+    </div>
+</div>
+<br>
+
+<br>
+<h1>5. Modal con estructura base:</h1>
+<button type="button" class="btn btn-link btn-md buttonhiperDNP" tooltip-placement="top" tabindex="0" data-toggle="modal" data-target="#IPModal">
+    VER MODAL DE EJEMPLO
+</button>
+
+<!-- Modal  -->
+<div class="modal " id="IPModal" tabindex="-1" role="dialog" aria-labelledby="IPModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content modal-contentDNP">
+            <div class="modal-header">
+
+                <button type='button' class='swal2-close closemodalDNP' aria-label='Close this dialog' data-dismiss="modal">×</button>
+                <h3 class="modal-title TituloModal1DNP" id="modal-title">Texto Titulo Principal </h3>
+                <span class="TituloModal2DNP">  Texto Titulo Secundario </span>
+            </div>
+            <div class="modal-body">
+                <p class="descripcionbodyDNP">En este texto se puede describir el contenido del body.</p>
+                <br />
+                <p>
+                    Esta es la explicación de  etc etc.... contenido del formulario, detalle .
+                    Esta es la explicación de  etc etc.... contenido del formulario, detalle .
+                    Esta es la explicación de  etc etc.... contenido del formulario, detalle .
+                    Esta es la explicación de  etc etc.... contenido del formulario, detalle .
+                    Esta es la explicación de  etc etc.... contenido del formulario, detalle .
+                    Esta es la explicación de  etc etc.... contenido del formulario, detalle .
+                    Esta es la explicación de  etc etc.... contenido del formulario, detalle .
+
+
+                </p>
+            </div>
+            <div class="modal-footer textCenterDNP">
+                <button class="btneditarDNP" type="button" data-dismiss="modal">CANCELAR</button>
+                <button class="btnguardarDNP" type="button">ACEPTAR</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <button data-toggle="collapse" data-target="#demo5" class="btn btn-link btn-md ">Codigo fuente</button>
+
+    <div id="demo5" class="collapse">
+        <div class="col-md-12 ">
+            <textarea style="width: 100%;height: 700px;" disabled>
+
+            <button type="button" class="btn btn-link btn-md buttonhiperDNP" tooltip-placement="top" tabindex="0" data-toggle="modal" data-target="#IPModal">
+            VER MODAL DE EJEMPLO
+            </button>
+
+            <!-- Modal  -->
+            <div class="modal " id="IPModal" tabindex="-1" role="dialog" aria-labelledby="IPModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content modal-contentDNP">
+            <div class="modal-header">
+
+            <button type='button' class='swal2-close closemodalDNP' aria-label='Close this dialog' data-dismiss="modal">×</button>
+            <h3 class="modal-title TituloModal1DNP" id="modal-title">Texto Titulo Principal </h3>
+            <span class="TituloModal2DNP">  Texto Titulo Secundario </span>
+                        </div>
+            <div class="modal-body">
+            <p class="descripcionbodyDNP">En este texto se puede describir el contenido del body.</p>
+            <br />
+            <p>
+                                Esta es la explicación de  etc etc.... contenido del formulario, detalle .
+                                Esta es la explicación de  etc etc.... contenido del formulario, detalle .
+                                Esta es la explicación de  etc etc.... contenido del formulario, detalle .
+                                Esta es la explicación de  etc etc.... contenido del formulario, detalle .
+                                Esta es la explicación de  etc etc.... contenido del formulario, detalle .
+                                Esta es la explicación de  etc etc.... contenido del formulario, detalle .
+                                Esta es la explicación de  etc etc.... contenido del formulario, detalle .
+
+
+                            </p>
+                        </div>
+            <div class="modal-footer textCenterDNP">
+            <button class="btneditarDNP" type="button" data-dismiss="modal">CANCELAR</button>
+            <button class="btnguardarDNP" type="button">ACEPTAR</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </textarea>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<h1>6. Input con buscador:</h1>
+<div class="row">
+
+    <div class="col-md-4 pull-left">
+        <div class="input-group ">
+
+            <input type="search" ng-model="vm.conpes" class="form-control InputSearchDNP " placeholder="Buscar">
+            <span class="input-group-append imgTituloAccion spanSearchDNP" ng-click="vm.buscar()">
+                <i class="fa fa-search "></i>
+            </span>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <button data-toggle="collapse" data-target="#demo6" class="btn btn-link btn-md ">Codigo fuente</button>
+
+    <div id="demo6" class="collapse">
+        <div class="col-md-12 ">
+            <textarea style="width: 100%;height: 700px;" disabled>
+            <div class="input-group ">
+
+            <input type="search" ng-model="vm.conpes" class="form-control InputSearchDNP " placeholder="Buscar">
+            <span class="input-group-append imgTituloAccion spanSearchDNP" ng-click="vm.buscar()">
+            <i class="fa fa-search "></i>
+                    </span>
+                </div>
+           
+            </textarea>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<h1>7. div informativos de estados internos del formulario:</h1>
+<div class="row">
+    <div class="col-md-4">
+        <div class="divInfoPendienteDNP">
+            <span><img src="Img/icodivInfo.svg" /> Pendiente creación de ajuste</span>
+        </div>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-md-4">
+        <div class="divInfoActuDNP">
+            <span><img src="Img/icodivUp.svg" /> En Actualización</span>
+        </div>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-md-4">
+        <div class="divInfoAplicDNP">
+            <span><img src="Img/icodivAp.svg" /> Control posterior DNP aplicado</span>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <button data-toggle="collapse" data-target="#demo7" class="btn btn-link btn-md ">Codigo fuente</button>
+
+    <div id="demo7" class="collapse">
+        <div class="col-md-12 ">
+            <textarea style="width: 100%;height: 700px;" disabled>
+        
+            <div class="row">
+            <div class="col-md-4">
+            <div class="divInfoPendienteDNP">
+            <span><img src="Img/icodivInfo.svg" /> Pendiente creación de ajuste</span>
+                        </div>
+                    </div>
+                </div>
+            <br>
+            <div class="row">
+            <div class="col-md-4">
+            <div class="divInfoActuDNP">
+            <span><img src="Img/icodivUp.svg" /> En Actualización</span>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+            <div class="col-md-4">
+            <div class="divInfoAplicDNP">
+            <span><img src="Img/icodivAp.svg" /> Control posterior DNP aplicado</span>
+                    </div>
+                </div>
+            </div>
+            </textarea>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<h1>8. Preguntas y respuestas:</h1>
+<div class="row">
+    <div class="col-md-12 DetacolumnDNP">
+        <span class="detapregun">1. ¿Pregunta 1? *&nbsp; </span>
+        <span class="notapregun">(Máximo 8.000 caracteres)</span>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div id="u5226_div" class="divPanelPregRespDNP" style="">
+            <div class="respAdon">
+                <span style="vertical-align: middle; display: table-cell;">/R</span>
+            </div>
+
+            <div class="textAreDivRes">
+                <textarea>Al contrario del pensamiento popular, el texto de Lorem Ipsum no es simplemente texto aleatorio. Tiene sus raices en una pieza cl´sica de la literatura del Latin, que data del año 45 antes de Cristo, haciendo que este adquiera mas de 2000 años de antiguedad. Richard McClintock, un profesor de Latin de la Universidad de Hampden-Sydney en Virginia, encontró una de las palabras más oscuras de la lengua del latín, "consecteur", en un pasaje de Lorem Ipsum, y al seguir leyendo distintos textos del latín, descubrió la fuente indudable. Lorem Ipsum viene de las secciones 1.10.32 y 1.10.33 de "de Finnibus Bonorum et Malorum" (Los Extremos del Bien y El Mal) por Cicero, escrito en el año 45 antes de Cristo. Este libro es un tratado de teoría de éticas, muy popular durante el Renacimiento. La primera linea del Lorem Ipsum, "Lorem ipsum dolor sit amet..", viene de una linea en la sección 1.10.32 El trozo de texto estándar de Lorem Ipsum usado desde el año 1500 es reproducido debajo para aquellos interesados. Las secciones 1.10.32 y 1.10.33 de "de Finibus Bonorum et Malorum" por Cicero son también reproducidas en su forma original exacta, acompañadas por versiones en Inglés de la traducción realizada en 1914 por H. Rackham.</textarea>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <button data-toggle="collapse" data-target="#demo8" class="btn btn-link btn-md ">Codigo fuente</button>
+
+    <div id="demo8" class="collapse">
+        <div class="col-md-12 ">
+            <textarea style="width: 100%;height: 700px;" disabled>
+
+            <div class="row">
+            <div class="col-md-12 DetacolumnDNP">
+            <span class="detapregun">1. ¿Pregunta 1? *&nbsp; </span>
+            <span class="notapregun">(Máximo 8.000 caracteres)</span>
+                    </div>
+                </div>
+            <div class="row">
+            <div class="col-md-12">
+            <div id="u5226_div" class="divPanelPregRespDNP" style="">
+            <div class="respAdon">
+            <span style="vertical-align: middle; display: table-cell;">/R</span>
+                            </div>
+
+            <div class="textAreDivRes">
+            <textareaa>Al contrario del pensamiento popular, el texto de Lorem Ipsum no es simplemente texto aleatorio. Tiene sus raices en una pieza cl´sica de la literatura del Latin, que data del año 45 antes de Cristo, haciendo que este adquiera mas de 2000 años de antiguedad. Richard McClintock, un profesor de Latin de la Universidad de Hampden-Sydney en Virginia, encontró una de las palabras más oscuras de la lengua del latín, "consecteur", en un pasaje de Lorem Ipsum, y al seguir leyendo distintos textos del latín, descubrió la fuente indudable. Lorem Ipsum viene de las secciones 1.10.32 y 1.10.33 de "de Finnibus Bonorum et Malorum" (Los Extremos del Bien y El Mal) por Cicero, escrito en el año 45 antes de Cristo. Este libro es un tratado de teoría de éticas, muy popular durante el Renacimiento. La primera linea del Lorem Ipsum, "Lorem ipsum dolor sit amet..", viene de una linea en la sección 1.10.32 El trozo de texto estándar de Lorem Ipsum usado desde el año 1500 es reproducido debajo para aquellos interesados. Las secciones 1.10.32 y 1.10.33 de "de Finibus Bonorum et Malorum" por Cicero son también reproducidas en su forma original exacta, acompañadas por versiones en Inglés de la traducción realizada en 1914 por H. Rackham.</textareaa>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </textarea>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<h1>9. Control archivo carga masiva :</h1>
+<div class="row">
+    <div class="col-md-12 DetacolumnDNP">
+        <span>
+            Archivo plantilla carga masiva <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg">
+        </span>
+        <button type="button" class="btn btn-link btn-md buttonhiperDNP">
+            DESCARGAR PLANTILLA
+        </button>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-8">
+        <div class="divpanelcargarchivoDNP" style="">
+
+            <button class="btncargarch" type="button" uib-tooltip="Editar">
+                EXAMINAR
+            </button>
+            <span>Nombre archivo.xls</span>
+            <button class="btncancearch" type="button" uib-tooltip="Cancelar">
+                X
+            </button>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <span class="buttonbar pull-right">
+            <button ng-disabled="vm.HabilitaEditarBandera" type="button" class="{{vm.HabilitaEditarBandera ? ' btnguardarDisabledDNP' : 'btnguardarDNP'}}" tooltip-placement="top" uib-tooltip="Editar" tabindex="0" ng-click="vm.HabilitaEditar(true)">
+                VALIDAR
+            </button>
+            <button ng-disabled="!vm.HabilitaEditarBandera" type="button" class="{{vm.HabilitaEditarBandera ? ' btneditarDNP' : 'btnguardarDisabledDNP'}}" tooltip-placement="top" uib-tooltip="Cancelar" tabindex="0" ng-click="vm.HabilitaEditar(false)">
+                CANCELAR
+            </button>
+            <button ng-disabled="!vm.HabilitaEditarBandera" class="{{vm.HabilitaEditarBandera ? 'btnguardarDNP' : 'btnguardarDisabledDNP'}}" type="button" tooltip-placement="top" uib-tooltip="Guardar" tabindex="0" ng-click="">
+                CARGAR
+            </button>
+
+
+
+
+        </span>
+    </div>
+
+</div>
+<div class="row">
+    <button data-toggle="collapse" data-target="#demo9" class="btn btn-link btn-md ">Codigo fuente</button>
+
+    <div id="demo9" class="collapse">
+        <div class="col-md-12 ">
+            <textarea style="width: 100%;height: 700px;" disabled>
+
+            <div class="row">
+            <div class="col-md-12 DetacolumnDNP">
+            <span>
+                            Archivo plantilla carga masiva <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg">
+                        </span>
+            <button type="button" class="btn btn-link btn-md buttonhiperDNP">
+                            DESCARGAR PLANTILLA
+                        </button>
+                    </div>
+                </div>
+            <div class="row">
+            <div class="col-md-8">
+            <div class="divpanelcargarchivoDNP" style="">
+
+            <button class="btncargarch" type="button" uib-tooltip="Editar">
+                                EXAMINAR
+                            </button>
+            <span>Nombre archivo.xls</span>
+            <button class="btncancearch" type="button" uib-tooltip="Cancelar">
+                                X
+                            </button>
+                        </div>
+                    </div>
+            <div class="col-md-4">
+            <span class="buttonbar pull-right">
+            <button ng-disabled="vm.HabilitaEditarBandera" type="button" class="{{vm.HabilitaEditarBandera ? ' btnguardarDisabledDNP' : 'btnguardarDNP'}}" tooltip-placement="top" uib-tooltip="Editar" tabindex="0" ng-click="vm.HabilitaEditar(true)">
+                                VALIDAR
+                            </button>
+            <button ng-disabled="!vm.HabilitaEditarBandera" type="button" class="{{vm.HabilitaEditarBandera ? ' btneditarDNP' : 'btnguardarDisabledDNP'}}" tooltip-placement="top" uib-tooltip="Cancelar" tabindex="0" ng-click="vm.HabilitaEditar(false)">
+                                CANCELAR
+                            </button>
+            <button ng-disabled="!vm.HabilitaEditarBandera" class="{{vm.HabilitaEditarBandera ? 'btnguardarDNP' : 'btnguardarDisabledDNP'}}" type="button" tooltip-placement="top" uib-tooltip="Guardar" tabindex="0" ng-click="">
+                                CARGAR
+                            </button>
+
+
+
+
+                        </span>
+                    </div>
+
+                </div>
+            </textarea>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<h1>10. Titulo principal y detalle información :</h1>
+<br>
+<br>
+<div class="row">
+    <div class="col-md-12 ">
+        <span class="TituloPincFormularioDNP">
+            Titulo principal Formulario
+        </span>
+
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-md-12 ">
+        <span class="DetalleFormularioDNP">
+            Detalle información
+        </span>
+    </div>
+</div>
+<div class="row">
+    <button data-toggle="collapse" data-target="#demo10" class="btn btn-link btn-md ">Codigo fuente</button>
+
+    <div id="demo10" class="collapse">
+        <div class="col-md-12 ">
+            <textarea style="width: 100%;height: 700px;" disabled>
+            <div class="row">
+            <div class="col-md-12 ">
+            <span class="TituloPincFormularioDNP">
+                            Titulo principal Formulario
+                        </span>
+
+                    </div>
+                </div>
+            <br>
+            <div class="row">
+            <div class="col-md-12 ">
+            <span class="DetalleFormularioDNP">
+                            Detalle información
+                        </span>
+                    </div>
+                </div>
+         
+            </textarea>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<h1>11. Accordeon capitulo :</h1>
+<br />
+<div class="row FilaEstadoNocumpleDNP">
+    <div class="col-md-3">
+        <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Devolver">
+            <span> <img class="icoVolverDNP" src="Img/IcoVolver.svg"></span>
+        </button>
+        <span class="spanbuttonenabled">Devolver a Verificación técnica</span>
+    </div>
+    <div class="col-md-6 text-center">
+        <span> <img class="linearojaRight" src="Img/IcoLineaRojaRight.svg"></span>
+        <span> <img class="FlecharojaRight" src="Img/IcoFlechaRed.svg"></span>
+        <span class="textoNoCumpleDNP">NO CUMPLE</span>
+        <span> <img class="linearojaLeft" src="Img/IcoFlechaRed.svg"></span>
+        <span> <img class="FlecharojaLeft" src="Img/IcoLineaRojaLeft.svg"></span>
+    </div>
+    <div class="col-md-3" style="text-align:right">
+        <span class="spanbuttonenabled">Devolver a MGA</span>
+        <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Devolver">
+            <span> <img class="icoVolverDNP" src="Img/IcoVolver.svg"></span>
+        </button>
+
+    </div>
+</div>
+<div class="row FilaEstadocumpleDNP">
+    <div class="col-md-3">
+        <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Devolver" disabled>
+            <span> <img class="icoVolverDNP" src="Img/IcoVolverDisabled.svg"></span>
+        </button>
+        <span class="spanbuttondisabled">Devolver a Verificación técnica</span>
+    </div>
+    <div class="col-md-6 text-center">
+        <span> <img class="lineaverdeRight" src="Img/IcoLineaVerdeRight.svg"></span>
+        <span> <img class="FlechaverdeRight" src="Img/IcoFlechaGreen.svg"></span>
+        <span class="textoCumpleDNP"> CUMPLE</span>
+        <span> <img class="lineaverdeLeft" src="Img/IcoFlechaGreen.svg"></span>
+        <span> <img class="FlechaverdeLeft" src="Img/IcoLineaVerdeLeft.svg"></span>
+    </div>
+    <div class="col-md-3 text-right">
+        <span class="spanbuttondisabled">Devolver a MGA</span>
+        <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Devolver" disabled>
+            <span> <img class="icoVolverDNP" src="Img/IcoVolverDisabled.svg"></span>
+        </button>
+
+    </div>
+</div>
+<br />
+<div class="ui-accordion-container " id="accordion-datosgeneraleslocalizaciones">
+    <div class="alert panel-heading row ui-accordion-header">
+        <button type="button" data-toggle="collapse" data-target="#Idformulario" ng-click="vm.changeArrow('Idformulario')">
+            <span class="d-inline-block" id="alert-Idformulario"><img class="img-advertencia mr-2" src="Img/u11.svg"></span>
+            <span id="name-capitulo-Idformulario"> Nombre del capitulo</span>
+            <span class="hidden" id="id-seccioncapitulo-Idformulario"></span>
+            <span id="arrow-Idformulario" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#Idformulario"></span>
+        </button>
+    </div>
+    <div class="collapse" id="Idformulario">
+        <div class="row m-0 mb-3">
+            <br>
+            <div class="col-md-12 ">
+                <span class="TituloPincFormularioDNP">
+                    Titulo principal Formulario
+                </span>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="ui-accordion-container " id="accordion-datosgeneraleslocalizaciones">
+    <div class="alert panel-heading row ui-accordion-header">
+        <button type="button" data-toggle="collapse" data-target="#Idformulario2" ng-click="vm.changeArrow('Idformulario2')">
+            <span class="d-inline-block" id="alert-Idformulario2"><img class="img-advertencia mr-2" src="Img/u11.svg"></span>
+            <span id="name-capitulo-Idformulario2"> Nombre del capitulo 2</span>
+            <span class="hidden" id="id-seccioncapitulo-Idformulario2"></span>
+            <span id="arrow-Idformulario2" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#Idformulario2"></span>
+        </button>
+    </div>
+    <div class="collapse" id="Idformulario2">
+        <div class="row m-0 mb-3">
+            <br>
+            <div class="col-md-12 ">
+                <span class="TituloPincFormularioDNP">
+                    Titulo principal Formulario 2
+                </span>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <button data-toggle="collapse" data-target="#demo11" class="btn btn-link btn-md ">Codigo fuente</button>
+
+    <div id="demo11" class="collapse">
+        <div class="col-md-12 ">
+            <textarea style="width: 100%;height: 700px;" disabled>
+            <div class="row FilaEstadoNocumpleDNP">
+            <div class="col-md-3">
+            <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Devolver">
+            <span> <img class="icoVolverDNP" src="Img/IcoVolver.svg"></span>
+                        </button>
+            <span class="spanbuttonenabled">Devolver a Verificación técnica</span>
+                    </div>
+            <div class="col-md-6 text-center">
+            <span> <img class="linearojaRight" src="Img/IcoLineaRojaRight.svg"></span>
+            <span> <img class="FlecharojaRight" src="Img/IcoFlechaRed.svg"></span>
+            <span class="textoNoCumpleDNP">NO CUMPLE</span>
+            <span> <img class="linearojaLeft" src="Img/IcoFlechaRed.svg"></span>
+            <span> <img class="FlecharojaLeft" src="Img/IcoLineaRojaLeft.svg"></span>
+                    </div>
+            <div class="col-md-3" style="text-align:right">
+            <span class="spanbuttonenabled">Devolver a MGA</span>
+            <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Devolver">
+            <span> <img class="icoVolverDNP" src="Img/IcoVolver.svg"></span>
+                        </button>
+
+                    </div>
+                </div>
+            <div class="row FilaEstadocumpleDNP">
+            <div class="col-md-3">
+            <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Devolver" disabled>
+            <span> <img class="icoVolverDNP" src="Img/IcoVolverDisabled.svg"></span>
+                        </button>
+            <span class="spanbuttondisabled">Devolver a Verificación técnica</span>
+                    </div>
+            <div class="col-md-6 text-center">
+            <span> <img class="lineaverdeRight" src="Img/IcoLineaVerdeRight.svg"></span>
+            <span> <img class="FlechaverdeRight" src="Img/IcoFlechaGreen.svg"></span>
+            <span class="textoCumpleDNP"> CUMPLE</span>
+            <span> <img class="lineaverdeLeft" src="Img/IcoFlechaGreen.svg"></span>
+            <span> <img class="FlechaverdeLeft" src="Img/IcoLineaVerdeLeft.svg"></span>
+                    </div>
+            <div class="col-md-3 text-right">
+            <span class="spanbuttondisabled">Devolver a MGA</span>
+            <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Devolver" disabled>
+            <span> <img class="icoVolverDNP" src="Img/IcoVolverDisabled.svg"></span>
+                        </button>
+
+                    </div>
+                </div>
+            <div class="ui-accordion-container " id="accordion-datosgeneraleslocalizaciones">
+            <div class="alert panel-heading row ui-accordion-header">
+            <button type="button" data-toggle="collapse" data-target="#Idformulario" ng-click="vm.changeArrow('Idformulario')">
+            <span class="d-inline-block" id="alert-Idformulario"><img class="img-advertencia mr-2" src="Img/u11.svg"></span>
+            <span id="name-capitulo-Idformulario"> Nombre del capitulo</span>
+            <span class="hidden" id="id-seccioncapitulo-Idformulario"></span>
+            <span id="arrow-Idformulario" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#Idformulario"></span>
+                    </button>
+                </div>
+            <div class="collapse" id="Idformulario">
+            <div class="row m-0 mb-3">
+            <br>
+            <div class="col-md-12 ">
+            <span class="TituloPincFormularioDNP">
+                                Titulo principal Formulario
+                            </span>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ui-accordion-container " id="accordion-datosgeneraleslocalizaciones">
+            <div class="alert panel-heading row ui-accordion-header">
+            <button type="button" data-toggle="collapse" data-target="#Idformulario2" ng-click="vm.changeArrow('Idformulario2')">
+            <span class="d-inline-block" id="alert-Idformulario2"><img class="img-advertencia mr-2" src="Img/u11.svg"></span>
+            <span id="name-capitulo-Idformulario2"> Nombre del capitulo 2</span>
+            <span class="hidden" id="id-seccioncapitulo-Idformulario2"></span>
+            <span id="arrow-Idformulario2" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#Idformulario2"></span>
+                    </button>
+                </div>
+            <div class="collapse" id="Idformulario2">
+            <div class="row m-0 mb-3">
+            <br>
+            <div class="col-md-12 ">
+            <span class="TituloPincFormularioDNP">
+                                Titulo principal Formulario 2
+                            </span>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+         
+            </textarea>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<h1>12. Accordeon con totales  :</h1>
+
+<div class="row">
+    <div class="col-md-1 pull-right scrolltoDNP">
+        <a class="btnaccion" href="PlantillaEjemplo#SelectExam" target="_self" style="text-decoration:auto">
+            <span style="cursor:pointer"><img src="Img/IcoScrollTo2.svg"> <img src="Img/IcoScrollTo1.svg"></span>
+        </a>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="" style="padding: 0 !important">
+        <div class="alert panel-heading">
+            <div class="card card-body pull-left  divAccordionDNP">
+                <div class="col-md-12 coldivAccordionDNP" style="display: table;">
+                    <div class="col-md-5">
+                        <div class="col-md-12">
+                            <span class="NomItemAccordDNP">Nombre Item: </span>
+                            <span class="InfoItemAccordDNP">Vlr item </span>
+                            <span class="NomItemAccordDNP">Nombre Item: </span>
+                            <span class="InfoItemAccordDNP">Vlr item </span>
+                        </div>
+                        <div class="col-md-12">
+                            <span class="NomItemAccordDNP">Nombre Item: </span>
+                            <span class="InfoItemAccordDNP">Vlr item </span>
+                        </div>
+                        <div class="col-md-12">
+                            <span class="NomItemAccordDNP">Nombre Item: </span>
+                            <span class="InfoItemAccordDNP">Vlr item </span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="col-md-12 til">
+                            <span>Total item $ </span>
+                        </div>
+                        <div class="col-md-12 pull-right">
+                            <input type="text" class="form-control editInputDNP " disabled value="100" />
+
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="col-md-12 til">
+                            <span>Total global item $ </span>
+                        </div>
+                        <div class="col-md-12 pull-right">
+                            <input type="text" class="form-control editInputDNP " disabled value="0" />
+                        </div>
+                    </div>
+                    <div class="DivcolDeleteDNP">
+                        <button class="btnaccion" title="Eliminar Indicador Secundario">
+                            <span style="cursor:pointer"> <img src="Img/u928.svg"></span>
+                        </button>
+                    </div>
+                </div>
+                <p class="panelbtnalertAcordnp">
+                    <button class="btnaccion btnAccordionDNP" type="button" data-toggle="collapse" data-target="#obj11" ng-click="vm.AbrilNivel4()">
+                        <img ng-show="vm.Bandera4 == '+'" src="Img/btnMas.svg">
+                        <img ng-show="vm.Bandera4 == '-'" src="Img/btnMenos.svg">
+                    </button>
+                    <span class="img iconadverdnp ">   <img src="Img/u4630.svg"> </span>
+                    <span class="messagealerttableDNP">Espacio reservado para información de validaciones. </span>
+
+                </p>
+
+
+            </div>
+        </div>
+        <br />
+        <div class="collapse" id="obj11">
+            <div class="LineaEncabezadodivDNP" style="MARGIN-TOP:63PX;"></div>
+            <h3 class="row tituloEncabezadodivDNP">
+                Items Nivel 1
+                <span class="buttonbar pull-right">
+                    <button ng-if="!vm.HabilitaEditarBandera" type="button" class="btneditarDNP" tooltip-placement="top" uib-tooltip="Editar" tabindex="0" ng-click="vm.HabilitaEditar(true)">
+                        EDITAR
+                    </button>
+                    <button ng-if="vm.HabilitaEditarBandera" type="button" class=" btneditarDNP" tooltip-placement="top" uib-tooltip="Cancelar" tabindex="0" ng-click="vm.HabilitaEditar(false)">
+                        CANCELAR
+                    </button>
+                    <button ng-disabled="!vm.HabilitaEditarBandera" class="{{vm.HabilitaEditarBandera ? 'btnguardarDNP' : 'btnguardarDisabledDNP'}}" type="button" tooltip-placement="top" uib-tooltip="Guardar" tabindex="0" ng-click="">
+                        GUARDAR
+                    </button>
+                </span>
+
+            </h3>
+            <div class="panel-heading">
+                <div class="tab-container tabDNP col-md-12 " style="width:100%;">
+                    <ul class="nav nav-tabs">
+                        <li id="liAjustados" class="nav-item " ng-class="{active : 1===1}">
+                            <a href="" class="nav-link" data-target="#tabopcion1" data-toggle="tab">
+                                <b>Opción 1 Pestaña 1</b>
+                            </a>
+                        </li>
+                        <li id="liFirmes" class="nav-item">
+                            <a href="" class="nav-link" data-target="#tabopcion2" data-toggle="tab">
+                                <b>Opción 1 Pestaña 2</b>
+                            </a>
+                        <li id="liFirmes" class="nav-item">
+                            <a href="" class="nav-link" data-target="#tabopcion2" data-toggle="tab">
+                                <b>Opción 1 Pestaña 2</b>
+                            </a>
+                        </li>
+                        <li id="liFirmes" class="nav-item">
+                            <a href="" class="nav-link" data-target="#tabopcion2" data-toggle="tab">
+                                <b>Opción 1 Pestaña 2</b>
+                            </a>
+                        </li>
+                        </li>
+                    </ul>
+                </div>
+                <div class="tab-content tabContentDNP">
+
+                    <div class="tab-pane active cont col-md-12" id="tabopcion1">
+                        <span>Contenido pestaña 1 </span>
+                    </div>
+                    <div class="tab-pane  cont col-md-12" id="tabopcion2">
+                        <span>Contenido pestaña 2</span>
+                    </div>
+                </div>
+                <br />
+                <div class="tab-container tabDNP col-md-12 " style="width:100%;">
+                    <ul class="nav nav-tabs">
+                        <li id="liAjustados" class="nav-item " style="border-bottom-width: 2px;" ng-class="{active : 1===1}">
+                            <a href="" class="nav-link" data-target="#tabopcion11" data-toggle="tab">
+                                <b>Opción 2 Pestaña 1</b>
+                            </a>
+                        </li>
+                        <li id="liFirmes" class="nav-item " style="border-bottom-width:2px;">
+                            <a href="" class="nav-link" data-target="#tabopcion22" data-toggle="tab">
+                                <b>Opción 2 Pestaña 2</b>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="tab-content tabContentDNP">
+
+                    <div class="tab-pane active cont col-md-12" id="tabopcion11">
+                        <span>Contenido pestaña 1 </span>
+                    </div>
+                    <div class="tab-pane  cont col-md-12" id="tabopcion22">
+                        <span>Contenido pestaña 2</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <button data-toggle="collapse" data-target="#demo12" class="btn btn-link btn-md ">Codigo fuente</button>
+
+    <div id="demo12" class="collapse">
+        <div class="col-md-12 ">
+            <textarea style="width: 100%;height: 700px;" disabled>
+            <div class="row">
+            <div class="col-md-1 pull-right scrolltoDNP">
+            <a class="btnaccion" href="PlantillaEjemplo#SelectExam" target="_self" style="text-decoration:auto">
+            <span style="cursor:pointer"><img src="Img/IcoScrollTo2.svg"> <img src="Img/IcoScrollTo1.svg"></span>
+                        </a>
+                    </div>
+                </div>
+            <div class="row">
+            <div class="" style="padding: 0 !important">
+            <div class="alert panel-heading">
+            <div class="card card-body pull-left  divAccordionDNP">
+            <div class="col-md-12 coldivAccordionDNP" style="display: table;">
+            <div class="col-md-5">
+            <div class="col-md-12">
+            <span class="NomItemAccordDNP">Nombre Item: </span>
+            <span class="InfoItemAccordDNP">Vlr item </span>
+            <span class="NomItemAccordDNP">Nombre Item: </span>
+            <span class="InfoItemAccordDNP">Vlr item </span>
+                                        </div>
+            <div class="col-md-12">
+            <span class="NomItemAccordDNP">Nombre Item: </span>
+            <span class="InfoItemAccordDNP">Vlr item </span>
+                                        </div>
+            <div class="col-md-12">
+            <span class="NomItemAccordDNP">Nombre Item: </span>
+            <span class="InfoItemAccordDNP">Vlr item </span>
+                                        </div>
+                                    </div>
+            <div class="col-md-3">
+            <div class="col-md-12 til">
+            <span>Total item $ </span>
+                                        </div>
+            <div class="col-md-12 pull-right">
+            <input type="text" class="form-control editInputDNP " disabled value="100" />
+
+                                        </div>
+                                    </div>
+            <div class="col-md-3">
+            <div class="col-md-12 til">
+            <span>Total global item $ </span>
+                                        </div>
+            <div class="col-md-12 pull-right">
+            <input type="text" class="form-control editInputDNP " disabled value="0" />
+                                        </div>
+                                    </div>
+            <div class="DivcolDeleteDNP">
+            <button class="btnaccion" title="Eliminar Indicador Secundario">
+            <span style="cursor:pointer"> <img src="Img/u928.svg"></span>
+                                        </button>
+                                    </div>
+                                </div>
+            <p class="panelbtnalertAcordnp">
+            <button class="btnaccion btnAccordionDNP" type="button" data-toggle="collapse" data-target="#obj11" ng-click="vm.AbrilNivel4()">
+            <img ng-show="vm.Bandera4 == '+'" src="Img/btnMas.svg">
+            <img ng-show="vm.Bandera4 == '-'" src="Img/btnMenos.svg">
+                                    </button>
+            <span class="img iconadverdnp ">   <img src="Img/u4630.svg"> </span>
+            <span class="messagealerttableDNP">Espacio reservado para información de validaciones. </span>
+
+                                </p>
+
+
+                            </div>
+                        </div>
+            <br />
+            <div class="collapse" id="obj11">
+            <div class="LineaEncabezadodivDNP" style="MARGIN-TOP:63PX;"></div>
+            <h3 class="row tituloEncabezadodivDNP">
+                                Items Nivel 1
+            <span class="buttonbar pull-right">
+            <button ng-if="!vm.HabilitaEditarBandera" type="button" class="btneditarDNP" tooltip-placement="top" uib-tooltip="Editar" tabindex="0" ng-click="vm.HabilitaEditar(true)">
+                                        EDITAR
+                                    </button>
+            <button ng-if="vm.HabilitaEditarBandera" type="button" class=" btneditarDNP" tooltip-placement="top" uib-tooltip="Cancelar" tabindex="0" ng-click="vm.HabilitaEditar(false)">
+                                        CANCELAR
+                                    </button>
+            <button ng-disabled="!vm.HabilitaEditarBandera" class="{{vm.HabilitaEditarBandera ? 'btnguardarDNP' : 'btnguardarDisabledDNP'}}" type="button" tooltip-placement="top" uib-tooltip="Guardar" tabindex="0" ng-click="">
+                                        GUARDAR
+                                    </button>
+                                </span>
+
+                            </h3>
+            <div class="panel-heading">
+            <div class="tab-container tabDNP col-md-12 " style="width:100%;">
+            <ul class="nav nav-tabs">
+            <li id="liAjustados" class="nav-item " ng-class="{active : 1===1}">
+            <a href="" class="nav-link" data-target="#tabopcion1" data-toggle="tab">
+            <b>Opción 1 Pestaña 1</b>
+                                            </a>
+                                        </li>
+            <li id="liFirmes" class="nav-item">
+            <a href="" class="nav-link" data-target="#tabopcion2" data-toggle="tab">
+            <b>Opción 1 Pestaña 2</b>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+            <div class="tab-content tabContentDNP">
+
+            <div class="tab-pane active cont col-md-12" id="tabopcion1">
+            <span>Contenido pestaña 1 </span>
+                                    </div>
+            <div class="tab-pane  cont col-md-12" id="tabopcion2">
+            <span>Contenido pestaña 2</span>
+                                    </div>
+                                </div>
+            <br />
+            <div class="tab-container tabDNP col-md-12 " style="width:100%;">
+            <ul class="nav nav-tabs">
+            <li id="liAjustados" class="nav-item " style="border-bottom-width: 2px;" ng-class="{active : 1===1}">
+            <a href="" class="nav-link" data-target="#tabopcion11" data-toggle="tab">
+            <b>Opción 2 Pestaña 1</b>
+                                            </a>
+                                        </li>
+            <li id="liFirmes" class="nav-item " style="border-bottom-width:2px;">
+            <a href="" class="nav-link" data-target="#tabopcion22" data-toggle="tab">
+            <b>Opción 2 Pestaña 2</b>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+            <div class="tab-content tabContentDNP">
+
+            <div class="tab-pane active cont col-md-12" id="tabopcion11">
+            <span>Contenido pestaña 1 </span>
+                                    </div>
+            <div class="tab-pane  cont col-md-12" id="tabopcion22">
+            <span>Contenido pestaña 2</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+         
+            </textarea>
+        </div>
+    </div>
+</div>
+
+
+
+<br>
+<br>
+<h1>13. Select ,Lista desplegable :</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="form-group DetacolumnDNP">
+            <span>
+                Titulo lista
+            </span>
+            <br>
+            <select class="form-control selectDNP" required>
+                <option value="" selected>Seleccione...</option>
+                <option ng-value="1">Valor 1</option>
+            </select>
+        </div>
+    </div>
+</div>
+<br>
+<div class="row">
+    <button data-toggle="collapse" data-target="#demo13" class="btn btn-link btn-md ">Codigo fuente</button>
+
+    <div id="demo13" class="collapse">
+        <div class="col-md-12 ">
+            <textarea style="width: 100%;height: 700px;" disabled>
+            <div class="row">
+            <div class="col-md-4">
+            <div class="form-group DetacolumnDNP">
+            <span>
+                                Titulo lista
+            </span>
+            <br>
+            <select class="form-control selectDNP" required>
+            <option value="" selected>Seleccione...</option>
+            <option ng-value="1">Valor 1</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+         
+            </textarea>
+        </div>
+    </div>
+</div>
+<br>
+
+<h1>14. button con tooltip :</h1>
+<br>
+<br>
+<div class="row">
+    <div class="col-md-4">
+        <span class="buttonbar pull-left">
+            <button type="button" class="btnguardarDNP" tooltip-placement="top" tooltip-class="customClass" uib-tooltip="Título tooltip">
+                GUARDAR
+            </button>
+        </span>
+    </div>
+</div>
+<div class="row">
+    <button data-toggle="collapse" data-target="#demo14" class="btn btn-link btn-md ">Codigo fuente</button>
+
+    <div id="demo14" class="collapse">
+        <div class="col-md-12 ">
+            <textarea style="width: 100%;height: 700px;" disabled>
+            <div class="col-md-4">
+            <span class="buttonbar pull-left">
+            <button type="button" class="btnguardarDNP" tooltip-placement="top" tooltip-class="customClass" uib-tooltip="Título tooltip">
+                            GUARDAR
+                        </button>
+                    </span>
+                </div>
+         
+            </textarea>
+        </div>
+    </div>
+</div>
+
+<h1>15. checkbox :</h1>
+<br>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="containerchek">
+            <ul>
+                <li>
+                    <input type="checkbox" id="checkbox1" name="checkbox01">
+                    <label for="checkbox1">checkbox Activo </label>
+                </li>
+                <li>
+                    <input type="checkbox" id="checkbox2" class="checkInactivoDNP" name="checkbox02" disabled="disabled" checked="checked">
+                    <label for="checkbox2">checkbox checked Inactivo </label>
+                </li>
+                <li>
+                    <input type="checkbox" id="checkbox2" class="checkInactivoDNP" name="checkbox02" disabled="disabled">
+                    <label for="checkbox2">checkbox Inactivo </label>
+                </li>
+                <li>
+                    <input type="checkbox" id="checkbox3" name="checkbox03" disabled="disabled" checked="checked">
+                    <label for="checkbox3">checkbox checked disabled </label>
+                </li>
+                <li>
+                    <input type="checkbox" id="checkbox4" name="checkbox04" disabled="disabled">
+                    <label for="checkbox4">checkbox disabled </label>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <button data-toggle="collapse" data-target="#demo15" class="btn btn-link btn-md ">Codigo fuente</button>
+
+    <div id="demo15" class="collapse">
+        <div class="col-md-12 ">
+            <textarea style="width: 100%;height: 700px;" disabled>
+            <div class="row">
+            <div class="col-md-4">
+            <div class="containerchek">
+            <ul>
+            <li>
+            <input type="checkbox" id="checkbox1" name="checkbox01">
+            <label for="checkbox1">checkbox Activo </label>
+                                </li>
+            <li>
+            <input type="checkbox" id="checkbox2" class="checkInactivoDNP" name="checkbox02" disabled="disabled" checked="checked">
+            <label for="checkbox2">checkbox checked Inactivo </label>
+                                </li>
+            <li>
+            <input type="checkbox" id="checkbox2" class="checkInactivoDNP" name="checkbox02" disabled="disabled">
+            <label for="checkbox2">checkbox Inactivo </label>
+                                </li>
+            <li>
+            <input type="checkbox" id="checkbox3" name="checkbox03" disabled="disabled" checked="checked">
+            <label for="checkbox3">checkbox checked disabled </label>
+                                </li>
+            <li>
+            <input type="checkbox" id="checkbox4" name="checkbox04" disabled="disabled">
+            <label for="checkbox4">checkbox disabled </label>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+         
+            </textarea>
+        </div>
+    </div>
+</div>
+
+<br>
+<h1>16. Radio button :</h1>
+<br>
+<div class="row">
+    <div class="col-md-4">
+        <div class="containerchek">
+            <ul>
+                <li>
+                    <input type="radio" id="radio1" name="radio01">
+                    <label for="radio1">Radio button 1</label>
+                </li>
+                <li>
+                    <input type="radio" id="radio2" class="radioInactivoDNP" disabled="disabled" name="radio02" checked="checked">
+                    <label for="radio2">Radio button checked Inactivo</label>
+                </li>
+                <li>
+                    <input type="radio" id="radio3" class="radioInactivoDNP" disabled="disabled" name="radio02">
+                    <label for="radio3">Radio button Inactivo</label>
+                </li>
+                <li>
+                    <input type="radio" id="radio4" name="radio03" disabled="disabled" checked="checked">
+                    <label for="radio4">Radio button checked disabled</label>
+                </li>
+                <li>
+                    <input type="radio" id="radio5" name="radio03" disabled="disabled">
+                    <label for="radio5">Radio button disabled</label>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <button data-toggle="collapse" data-target="#demo16" class="btn btn-link btn-md ">Codigo fuente</button>
+
+    <div id="demo16" class="collapse">
+        <div class="col-md-12 ">
+            <textarea style="width: 100%;height: 700px;" disabled>
+            <div class="row">
+            <div class="col-md-4">
+            <div class="containerchek">
+            <ul>
+            <li>
+            <input type="radio" id="radio1" name="radio01">
+            <label for="radio1">Radio button 1</label>
+                                </li>
+            <li>
+            <input type="radio" id="radio2" class="radioInactivoDNP" disabled="disabled" name="radio02" checked="checked">
+            <label for="radio2">Radio button checked Inactivo</label>
+                                </li>
+            <li>
+            <input type="radio" id="radio3" class="radioInactivoDNP" disabled="disabled" name="radio02">
+            <label for="radio3">Radio button Inactivo</label>
+                                </li>
+            <li>
+            <input type="radio" id="radio4" name="radio03" disabled="disabled" checked="checked">
+            <label for="radio4">Radio button checked disabled</label>
+                                </li>
+            <li>
+            <input type="radio" id="radio5" name="radio03" disabled="disabled">
+            <label for="radio5">Radio button disabled</label>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+         
+            </textarea>
+        </div>
+    </div>
+</div>
+
+<br>
+<h1>17. Miga de pan :</h1>
+<br>
+<div class="row">
+    <div class="col-md-6">
+        <nav class="breadcrumb">
+            <a href="/" style="text-decoration: auto;">
+                <span class="breadcrumb-item active btn-link InicioMigaDNP">
+                    Inicio
+                </span>
+            </a>
+            <img class="ImgMigaDNP" src="Img/IcoMiga.svg">
+            <span class=" DetalleMigaDNP " style="">Mis procesos</span>
+        </nav>
+    </div>
+</div>
+<div class="row">
+    <button data-toggle="collapse" data-target="#demo17" class="btn btn-link btn-md ">Codigo fuente</button>
+
+    <div id="demo17" class="collapse">
+        <div class="col-md-12 ">
+            <textarea style="width: 100%;height: 700px;" disabled>
+            <div class="row">
+            <div class="col-md-6">
+            <nav class="breadcrumb">
+            <a href="/" style="text-decoration: auto;">
+            <span class="breadcrumb-item active btn-link InicioMigaDNP">
+                                    Inicio
+                                </span>
+                            </a>
+            <img class="ImgMigaDNP" src="Img/IcoMiga.svg">
+            <span class=" DetalleMigaDNP " style="">Mis procesos</span>
+                        </nav>
+                    </div>
+                </div>
+         
+            </textarea>
+        </div>
+    </div>
+</div>
+<br>
+<h1>18. Tabla con opción para agregar Filas :</h1>
+<br>
+<div class="row">
+    <div class="col-md-6 ">
+        <span class="TituloPincFormularioDNP">
+            Titulo principal Formulario <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg">
+        </span>
+
+    </div>
+    <div class="col-md-6 pull-right text-right">
+        <button type="button" class=" btneditarDNP " tooltip-class="customClass" uib-tooltip="Agregar Fila">
+            AGREGAR
+        </button>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-12 pull-right text-right">
+        <span class="DetalleFormularioDNP totaldespleDNP">
+            Activas: <span> 2</span> Inactivas: 0
+        </span>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12 ">
+
+        <table class="TableDNP">
+            <thead>
+                <tr>
+                    <th class="columAcc"></th>
+                    <th class="textLeftDNP">Detalle columna principal</th>
+                    <th class="textLeftDNP" style="width:252px">¿columna con pregunta?</th>
+                    <th class="columAcc"></th>
+                    <th class="columAcc"></th>
+                    <th class="columAcc"></th>
+
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr class="FilaDisabledDNP">
+                    <td></td>
+                    <td class="">
+                        <span> Ejemplo Fila deshabilitada </span>
+                    </td>
+                    <td class="textLeftDNP">
+                        <div class="containerchek">
+                            <ul>
+                                <li>
+                                    <input type="checkbox" id="checkbox11" name="checkbox011" disabled="disabled">
+                                    <label for="checkbox11"> </label>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                    <td class="textCenterDNP">
+                    </td>
+                    <td class="textCenterDNP">
+                        <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Editar Registro" disabled>
+                            <span> <img src="Img/IcoEditD.svg"></span>
+                        </button>
+                    </td>
+                    <td class="textCenterDNP">
+                        <label class="switchDNP">
+                            <input type="checkbox" disabled>
+                            <span class="slider round"></span>
+                        </label>
+                    </td>
+
+                </tr>
+
+                <tr class="FilaInactivaDNP">
+                    <td></td>
+                    <td>
+                        <span style=""> Ejemplo Fila sin foco </span>
+                    </td>
+                    <td class="textLeftDNP">
+                        <div class="containerchek">
+                            <ul>
+                                <li>
+                                    <input type="checkbox" id="checkbox22" class="checkInactivoDNP" name="checkbox022" disabled="disabled" checked="checked">
+                                    <label for="checkbox22"></label>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                    <td class="textCenterDNP">
+                    </td>
+                    <td class="textCenterDNP">
+                        <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Editar Registro" disabled>
+                            <span> <img src="Img/IcoEditFoco.svg"></span>
+                        </button>
+                    </td>
+                    <td class="textCenterDNP">
+                        <label class="switchDNP switchDNPIna">
+                            <input type="checkbox" checked disabled>
+                            <span class="slider round"></span>
+                        </label>
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <td>
+                        <div class="col celdabutinputDNP">
+                            <div class="conbtn">
+                                <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Guardar Registro" disabled>
+                                    <span> <img src="Img/IcoAddD.svg"></span>
+                                </button>
+                            </div>
+                            <div class="coninput">
+                                <span><input type="text" class="form-control editInputDNP" placeholder="Ejemplo Fila en edición" /></span>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="textLeftDNP">
+                        <div class="containerchek">
+                            <ul>
+                                <li>
+                                    <input type="checkbox" id="checkbox01Edit" name="checkbox01Edit">
+                                    <label for="checkbox01Edit"> </label>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                    <td class="textCenterDNP">
+                        <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Guardar Registro">
+                            <span> <img src="Img/IcoSave.svg"></span>
+                        </button>
+                    </td>
+                    <td class="textCenterDNP">
+                        <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Cancelar Edición">
+                            <span> <img style="width: 16px;height:16px" src="Img/IcoX.svg"></span>
+                        </button>
+                    </td>
+                    <td class="textCenterDNP">
+                        <label class="switchDNP">
+                            <input type="checkbox" checked>
+                            <span class="slider round"></span>
+                        </label>
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <td>
+                        <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Agregar Fila">
+                            <span> <img src="Img/IcoAdd.svg"></span>
+                        </button>  Ejemplo Fila con botón Agregar
+                    </td>
+                    <td class="textLeftDNP">
+                        <div class="containerchek">
+                            <ul>
+                                <li>
+                                    <input type="checkbox" id="checkbox22" class="checkInactivoDNP" name="checkbox022" disabled="disabled" checked="checked">
+                                    <label for="checkbox22"></label>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                    <td class="textCenterDNP">
+                    </td>
+                    <td class="textCenterDNP">
+                        <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Editar Registro">
+                            <span> <img src="Img/IcoEdit.svg"></span>
+                        </button>
+                    </td>
+                    <td class="textCenterDNP">
+                        <label class="switchDNP">
+                            <input type="checkbox" checked>
+                            <span class="slider round"></span>
+                        </label>
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+</div>
+
+<div class="row">
+    <button data-toggle="collapse" data-target="#demo18" class="btn btn-link btn-md ">Codigo fuente</button>
+
+    <div id="demo18" class="collapse">
+        <div class="col-md-12 ">
+            <textarea style="width: 100%;height: 700px;" disabled>
+            <div class="row">
+            <div class="col-md-6 ">
+            <span class="TituloPincFormularioDNP">
+                                        Titulo principal Formulario <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg">
+                                    </span>
+
+                                </div>
+            <div class="col-md-6 pull-right text-right">
+            <button type="button" class=" btneditarDNP " tooltip-class="customClass" uib-tooltip="Agregar Fila">
+                                        AGREGAR
+                                    </button>
+                                </div>
+                            </div>
+            <br />
+            <div class="row">
+            <div class="col-md-12 pull-right text-right">
+            <span class="DetalleFormularioDNP totaldespleDNP">
+                                        Activas: <span> 2</span> Inactivas: 0
+                                    </span>
+                                </div>
+                            </div>
+            <div class="row">
+            <div class="col-md-12 ">
+
+            <table class="TableDNP">
+            <thead>
+            <tr>
+            <th class="columAcc"></th>
+            <th class="textLeftDNP">Detalle columna principal</th>
+            <th class="textLeftDNP" style="width:252px">¿columna con pregunta?</th>
+            <th class="columAcc"></th>
+            <th class="columAcc"></th>
+            <th class="columAcc"></th>
+
+                                            </tr>
+                                        </thead>
+            <tbody>
+
+            <tr class="FilaDisabledDNP">
+            <td></td>
+            <td class="">
+            <span> Ejemplo Fila deshabilitada </span>
+                                                </td>
+            <td class="textLeftDNP">
+            <div class="containerchek">
+            <ul>
+            <li>
+            <input type="checkbox" id="checkbox11" name="checkbox011" disabled="disabled">
+            <label for="checkbox11"> </label>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </td>
+            <td class="textCenterDNP">
+                                                </td>
+            <td class="textCenterDNP">
+            <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Editar Registro" disabled>
+            <span> <img src="Img/IcoEditD.svg"></span>
+                                                    </button>
+                                                </td>
+            <td class="textCenterDNP">
+            <label class="switchDNP">
+            <input type="checkbox" disabled>
+            <span class="slider round"></span>
+                                                    </label>
+                                                </td>
+
+                                            </tr>
+
+            <tr class="FilaInactivaDNP">
+            <td></td>
+            <td>
+            <span style=""> Ejemplo Fila sin foco </span>
+                                                </td>
+            <td class="textLeftDNP">
+            <div class="containerchek">
+            <ul>
+            <li>
+            <input type="checkbox" id="checkbox22" class="checkInactivoDNP" name="checkbox022" disabled="disabled" checked="checked">
+            <label for="checkbox22"></label>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </td>
+            <td class="textCenterDNP">
+                                                </td>
+            <td class="textCenterDNP">
+            <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Editar Registro" disabled>
+            <span> <img src="Img/IcoEditFoco.svg"></span>
+                                                    </button>
+                                                </td>
+            <td class="textCenterDNP">
+            <label class="switchDNP switchDNPIna">
+            <input type="checkbox" checked disabled>
+            <span class="slider round"></span>
+                                                    </label>
+                                                </td>
+
+                                            </tr>
+
+            <tr>
+            <td></td>
+            <td>
+            <div class="col celdabutinputDNP">
+            <div class="conbtn">
+            <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Guardar Registro" disabled>
+            <span> <img src="Img/IcoAddD.svg"></span>
+                                                            </button>
+                                                        </div>
+            <div class="coninput">
+            <span><input type="text" class="form-control editInputDNP" placeholder="Ejemplo Fila en edición" /></span>
+                                                        </div>
+                                                    </div>
+                                                </td>
+            <td class="textLeftDNP">
+            <div class="containerchek">
+            <ul>
+            <li>
+            <input type="checkbox" id="checkbox01Edit" name="checkbox01Edit">
+            <label for="checkbox01Edit"> </label>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </td>
+            <td class="textCenterDNP">
+            <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Guardar Registro">
+            <span> <img src="Img/IcoSave.svg"></span>
+                                                    </button>
+                                                </td>
+            <td class="textCenterDNP">
+            <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Cancelar Edición">
+            <span> <img style="width: 16px;height:16px" src="Img/IcoX.svg"></span>
+                                                    </button>
+                                                </td>
+            <td class="textCenterDNP">
+            <label class="switchDNP">
+            <input type="checkbox" checked>
+            <span class="slider round"></span>
+                                                    </label>
+                                                </td>
+
+                                            </tr>
+
+            <tr>
+            <td></td>
+            <td>
+            <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Agregar Fila">
+            <span> <img src="Img/IcoAdd.svg"></span>
+                                                    </button>  Ejemplo Fila con botón Agregar
+                                                </td>
+            <td class="textLeftDNP">
+            <div class="containerchek">
+            <ul>
+            <li>
+            <input type="checkbox" id="checkbox22" class="checkInactivoDNP" name="checkbox022" disabled="disabled" checked="checked">
+            <label for="checkbox22"></label>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </td>
+            <td class="textCenterDNP">
+                                                </td>
+            <td class="textCenterDNP">
+            <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Editar Registro">
+            <span> <img src="Img/IcoEdit.svg"></span>
+                                                    </button>
+                                                </td>
+            <td class="textCenterDNP">
+            <label class="switchDNP">
+            <input type="checkbox" checked>
+            <span class="slider round"></span>
+                                                    </label>
+                                                </td>
+
+                                            </tr>
+
+                                        </tbody>
+
+                                    </table>
+
+                                </div>
+                            </div>
+         
+            </textarea>
+        </div>
+    </div>
+</div>
+<br>
+<h1>19. Tabla Resumen :</h1>
+<br>
+<div>
+    <table class="TableDNP no-border">
+        <tbody>
+            <tr class="no-border alert panel-heading" id="ind1">
+                <td colspan="8" class="p-0">
+                    <div class="row">
+                        <div class="alert panel-heading">
+                            <table class="TableDNP">
+                                <thead>
+                                    <tr>
+                                        <th class="columAcc"></th>
+                                        <th class="textLeftDNP">Columna Agrupada </th>
+                                        <th class="textLeftDNP">Columna </th>
+                                        <th class="textLeftDNP">Columna </th>
+                                        <th class="textRightDNP">Total Columna $ </th>
+                                        <th class="columAcc"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td rowspan="3"></td>
+                                        <td class="textLeftDNP" rowspan="3">
+                                            <div style="height:165px" class="blockReferencia2DNP"><span>Equidad de la mujer.</span><br />Categoría 1</div>
+
+                                        </td>
+                                        <td class="textLeftDNP">
+                                            <textarea class="textAreatableDNP">5. Mujer Libre De Violencias.5. Mujer Libre De Violencias.5. Mujer Libre De Violencias.5. Mujer Libre De Violencias.5. Mujer Libre De Violencias.5. Mujer Libre De Violencias.5. Mujer Libre De Violencias.5. Mujer Libre De Violencias.</textarea>
+                                        </td>
+                                        <td class="textLeftDNP">
+                                            <textarea class="textAreatableDNP">5.1 Desarrollo Institucional Y Transformación Cultural.5.1 Desarrollo Institucional Y Transformación Cultural.5.1 Desarrollo Institucional Y Transformación Cultural.5.1 Desarrollo Institucional Y Transformación Cultural.5.1 Desarrollo Institucional Y Transformación Cultural.5.1 Desarrollo Institucional Y Transformación Cultural.5.1 Desarrollo Institucional Y Transformación Cultural.</textarea>
+                                        </td>
+                                        <td class="textRightDNP">
+                                            <input type="text" class="form-control editInputDNP " disabled value="100.000,00" />
+                                        </td>
+                                        <td>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="textLeftDNP">
+                                            <textarea class="textAreatableDNP">5. Mujer Libre De Violencias.</textarea>
+                                        </td>
+                                        <td class="textLeftDNP">
+                                            <textarea class="textAreatableDNP">5.1 Desarrollo Institucional Y Transformación Cultural.</textarea>
+                                        </td>
+                                        <td class="textRightDNP">
+                                            <input type="text" class="form-control editInputDNP " disabled value="100.000,00" />
+                                        </td>
+                                        <td>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="textLeftDNP">
+                                            <textarea class="textAreatableDNP">5. Mujer Libre De Violencias.</textarea>
+                                        </td>
+                                        <td class="textLeftDNP">
+                                            <textarea class="textAreatableDNP">5.1 Desarrollo Institucional Y Transformación Cultural.</textarea>
+                                        </td>
+                                        <td class="textRightDNP">
+                                            <input type="text" class="form-control editInputDNP " disabled value="100.000,00" />
+                                        </td>
+                                        <td>
+                                        </td>
+                                    </tr>
+
+                                    <tr class="CustomTDTableDNP">
+                                        <td class="columAcc icontotaldnp"><span>=</span></td>
+                                        <td class="textRightDNP"></td>
+                                        <td class="textRightDNP">
+                                        </td>
+                                        <td class="textRightDNP">
+                                            <span>Total categoría $</span>
+                                        </td>
+                                        <td class="textRightDNP">
+                                            <input type="text" class="form-control editInputDNP " disabled value="100.000,00" />
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                                <!--<tfoot>
+
+                                </tfoot>-->
+                                <tbody>
+                                    <tr>
+                                        <td rowspan="1"></td>
+                                        <td class="textLeftDNP" rowspan="1">
+                                            <div class="blockReferencia2DNP"><span>Equidad de la mujer.</span><br />Categoría 2</div>
+                                        </td>
+                                        <td class="textLeftDNP">
+                                            <textarea class="textAreatableDNP">5. Mujer Libre De Violencias.</textarea>
+                                        </td>
+                                        <td class="textLeftDNP">
+                                            <textarea class="textAreatableDNP">5.1 Desarrollo Institucional Y Transformación Cultural.</textarea>
+                                        </td>
+                                        <td class="textRightDNP">
+                                            <input type="text" class="form-control editInputDNP " disabled value="100.000,00" />
+                                        </td>
+                                        <td>
+                                        </td>
+                                    </tr>
+                                    <tr class="CustomTDTableDNP">
+                                        <td class="columAcc icontotaldnp"><span>=</span></td>
+                                        <td class="textRightDNP"></td>
+                                        <td class="textRightDNP">
+                                        </td>
+                                        <td class="textRightDNP">
+                                            <span>Total categoría $</span>
+                                        </td>
+                                        <td class="textRightDNP">
+                                            <input type="text" class="form-control editInputDNP " disabled value="100.000,00" />
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td class="columAcc icontotaldnp"><span>=</span></td>
+                                        <td class="textRightDNP"></td>
+                                        <td class="textRightDNP">
+                                        </td>
+                                        <td class="textRightDNP">
+                                            <span>TOTAL POLÍTICA $</span>
+                                        </td>
+                                        <td class="textRightDNP">
+                                            <input type="text" class="form-control editInputDNP " disabled value="100.000,00" />
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+<div class="row">
+    <button data-toggle="collapse" data-target="#demo19" class="btn btn-link btn-md ">Codigo fuente</button>
+
+    <div id="demo19" class="collapse">
+        <div class="col-md-12 ">
+            <textarea style="width: 100%;height: 700px;" disabled>
+            <table class="TableDNP no-border">
+            <tbody>
+            <tr class="no-border alert panel-heading" id="ind1">
+            <td colspan="8" class="p-0">
+            <div class="row">
+            <div class="alert panel-heading">
+            <table class="TableDNP">
+            <thead>
+            <tr>
+            <th class="columAcc"></th>
+            <th class="textLeftDNP">Columna Agrupada </th>
+            <th class="textLeftDNP">Columna </th>
+            <th class="textLeftDNP">Columna </th>
+            <th class="textRightDNP">Total Columna $ </th>
+            <th class="columAcc"></th>
+                                                </tr>
+                                            </thead>
+            <tbody>
+            <tr>
+            <td rowspan="3"></td>
+            <td class="textLeftDNP" rowspan="3">
+            <div style="height:165px" class="blockReferencia2DNP"><span>Equidad de la mujer.</span><br />Categoría 1</div>
+
+                                                    </td>
+            <td class="textLeftDNP">
+            <textareaa class="textAreatableDNP">5. Mujer Libre De Violencias.5. Mujer Libre De Violencias.5. Mujer Libre De Violencias.5. Mujer Libre De Violencias.5. Mujer Libre De Violencias.5. Mujer Libre De Violencias.5. Mujer Libre De Violencias.5. Mujer Libre De Violencias.</textareaa>
+                                                    </td>
+            <td class="textLeftDNP">
+            <textareaa class="textAreatableDNP">5.1 Desarrollo Institucional Y Transformación Cultural.5.1 Desarrollo Institucional Y Transformación Cultural.5.1 Desarrollo Institucional Y Transformación Cultural.5.1 Desarrollo Institucional Y Transformación Cultural.5.1 Desarrollo Institucional Y Transformación Cultural.5.1 Desarrollo Institucional Y Transformación Cultural.5.1 Desarrollo Institucional Y Transformación Cultural.</textareaa>
+                                                    </td>
+            <td class="textRightDNP">
+            <input type="text" class="form-control editInputDNP " disabled value="100.000,00" />
+                                                    </td>
+            <td>
+                                                    </td>
+                                                </tr>
+
+            <tr>
+            <td class="textLeftDNP">
+            <textareaa class="textAreatableDNP">5. Mujer Libre De Violencias.</textareaa>
+                                                    </td>
+            <td class="textLeftDNP">
+            <textareaa class="textAreatableDNP">5.1 Desarrollo Institucional Y Transformación Cultural.</textareaa>
+                                                    </td>
+            <td class="textRightDNP">
+            <input type="text" class="form-control editInputDNP " disabled value="100.000,00" />
+                                                    </td>
+            <td>
+                                                    </td>
+                                                </tr>
+
+            <tr>
+            <td class="textLeftDNP">
+            <textareaa class="textAreatableDNP">5. Mujer Libre De Violencias.</textareaa>
+                                                    </td>
+            <td class="textLeftDNP">
+            <textareaa class="textAreatableDNP">5.1 Desarrollo Institucional Y Transformación Cultural.</textareaa>
+                                                    </td>
+            <td class="textRightDNP">
+            <input type="text" class="form-control editInputDNP " disabled value="100.000,00" />
+                                                    </td>
+            <td>
+                                                    </td>
+                                                </tr>
+
+            <tr class="CustomTDTableDNP">
+            <td class="columAcc icontotaldnp"><span>=</span></td>
+            <td class="textRightDNP"></td>
+            <td class="textRightDNP">
+                                                    </td>
+            <td class="textRightDNP">
+            <span>Total categoría $</span>
+                                                    </td>
+            <td class="textRightDNP">
+            <input type="text" class="form-control editInputDNP " disabled value="100.000,00" />
+                                                    </td>
+            <td></td>
+                                                </tr>
+                                            </tbody>
+                                            <!--<tfoot>
+
+                            </tfoot>-->
+            <tbody>
+            <tr>
+            <td rowspan="1"></td>
+            <td class="textLeftDNP" rowspan="1">
+            <div class="blockReferencia2DNP"><span>Equidad de la mujer.</span><br />Categoría 2</div>
+                                                    </td>
+            <td class="textLeftDNP">
+            <textareaa class="textAreatableDNP">5. Mujer Libre De Violencias.</textareaa>
+                                                    </td>
+            <td class="textLeftDNP">
+            <textareaa class="textAreatableDNP">5.1 Desarrollo Institucional Y Transformación Cultural.</textareaa>
+                                                    </td>
+            <td class="textRightDNP">
+            <input type="text" class="form-control editInputDNP " disabled value="100.000,00" />
+                                                    </td>
+            <td>
+                                                    </td>
+                                                </tr>
+            <tr class="CustomTDTableDNP">
+            <td class="columAcc icontotaldnp"><span>=</span></td>
+            <td class="textRightDNP"></td>
+            <td class="textRightDNP">
+                                                    </td>
+            <td class="textRightDNP">
+            <span>Total categoría $</span>
+                                                    </td>
+            <td class="textRightDNP">
+            <input type="text" class="form-control editInputDNP " disabled value="100.000,00" />
+                                                    </td>
+            <td></td>
+                                                </tr>
+                                            </tbody>
+            <tfoot>
+            <tr>
+            <td class="columAcc icontotaldnp"><span>=</span></td>
+            <td class="textRightDNP"></td>
+            <td class="textRightDNP">
+                                                    </td>
+            <td class="textRightDNP">
+            <span>TOTAL POLÍTICA $</span>
+                                                    </td>
+            <td class="textRightDNP">
+            <input type="text" class="form-control editInputDNP " disabled value="100.000,00" />
+                                                    </td>
+            <td></td>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+         
+            </textarea>
+        </div>
+    </div>
+</div>
+
+<br>
+<br>
+<h1>20. Preguntas y respuestas con Explicación:</h1>
+<div class="row">
+    <div class="col-md-12 filaoberDNP">
+        <span class="keyPregResObservapDNP"> G541 </span>&nbsp;
+        <span class="spanPregResObservapDNP"> Pregunta </span> <span class="contPregunObservaDNP">(1)</span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 DetacolumnDNP">
+        <span class="detapregun">¿Considera que en <span class="TextConFondoObseDNP">Colombia</span> el  trámite no afecta la ejecución del proyecto relacionado? *&nbsp; </span>
+        <span class="notapregun">(Máximo 8.000 caracteres)</span>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="TextopreguntaobservaDNP">
+            <span class="spanPregResObservapDNP"> Explicación </span><span class="contPregunObservaDNP">(1)</span>
+        </div>
+        <div class="TextopreguntaobservaDNP margindnpobser">
+            <span class="spanPregResObservapDNP"> Justificación </span>
+        </div>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-12">
+        <div class="divPanelPregResObservapDNP col-md-5">
+            <div class="textAreDivRes">
+                <textarea>Al contrario del pensamiento popular, el texto de Lorem Ipsum no es simplemente texto aleatorio. Tiene sus raices en una pieza cl´sica de la literatura del Latin, que data del año 45 antes de Cristo, haciendo que este adquiera mas de 2000 años de antiguedad. Richard McClintock, un profesor de Latin de la Universidad de Hampden-Sydney en Virginia, encontró una de las palabras más oscuras de la lengua del latín, "consecteur", en un pasaje de Lorem Ipsum, y al seguir leyendo distintos textos del latín, descubrió la fuente indudable. Lorem Ipsum viene de las secciones 1.10.32 y 1.10.33 de "de Finnibus Bonorum et Malorum" (Los Extremos del Bien y El Mal) por Cicero, escrito en el año 45 antes de Cristo. Este libro es un tratado de teoría de éticas, muy popular durante el Renacimiento. La primera linea del Lorem Ipsum, "Lorem ipsum dolor sit amet..", viene de una linea en la sección 1.10.32 El trozo de texto estándar de Lorem Ipsum usado desde el año 1500 es reproducido debajo para aquellos interesados. Las secciones 1.10.32 y 1.10.33 de "de Finibus Bonorum et Malorum" por Cicero son también reproducidas en su forma original exacta, acompañadas por versiones en Inglés de la traducción realizada en 1914 por H. Rackham.</textarea>
+            </div>
+        </div>
+        <div class="divPanelPregResObservapDNP col-md-5 margindnpobser">
+
+            <div class="textAreDivRes2">
+                <textarea rows="3"
+                          placeholder="Justifique su respuesta."
+                          minlength="1"
+                          maxlength="5000"
+                          class="textareObservaDNP" ng-required="true"></textarea>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <button data-toggle="collapse" data-target="#demo20" class="btn btn-link btn-md ">Codigo fuente</button>
+
+    <div id="demo20" class="collapse">
+        <div class="col-md-12 ">
+            <textarea style="width: 100%;height: 700px;" disabled>
+            <div class="row">
+            <div class="col-md-12 filaoberDNP">
+            <span class="keyPregResObservapDNP"> G541 </span>&nbsp;
+            <span class="spanPregResObservapDNP"> Pregunta </span> <span class="contPregunObservaDNP">(1)</span>
+                    </div>
+                </div>
+
+            <div class="row">
+            <div class="col-md-12 DetacolumnDNP">
+            <span class="detapregun">¿Considera que <span class="TextConFondoObseDNP">Colombia</span> el  trámite no afecta la ejecución del proyecto relacionado? *&nbsp; </span>
+            <span class="notapregun">(Máximo 8.000 caracteres)</span>
+                    </div>
+                </div>
+            <div class="row">
+            <div class="col-md-12">
+            <div class="TextopreguntaobservaDNP">
+            <span class="spanPregResObservapDNP"> Explicación </span><span class="contPregunObservaDNP">(1)</span>
+                        </div>
+            <div class="TextopreguntaobservaDNP margindnpobser">
+            <span class="spanPregResObservapDNP"> Justificación </span>
+                        </div>
+                    </div>
+                </div>
+            <br />
+            <div class="row">
+            <div class="col-md-12">
+            <div class="divPanelPregResObservapDNP col-md-5">
+            <div class="textAreDivRes">
+            <textareaa>Al contrario del pensamiento popular, el texto de Lorem Ipsum no es simplemente texto aleatorio. Tiene sus raices en una pieza cl´sica de la literatura del Latin, que data del año 45 antes de Cristo, haciendo que este adquiera mas de 2000 años de antiguedad. Richard McClintock, un profesor de Latin de la Universidad de Hampden-Sydney en Virginia, encontró una de las palabras más oscuras de la lengua del latín, "consecteur", en un pasaje de Lorem Ipsum, y al seguir leyendo distintos textos del latín, descubrió la fuente indudable. Lorem Ipsum viene de las secciones 1.10.32 y 1.10.33 de "de Finnibus Bonorum et Malorum" (Los Extremos del Bien y El Mal) por Cicero, escrito en el año 45 antes de Cristo. Este libro es un tratado de teoría de éticas, muy popular durante el Renacimiento. La primera linea del Lorem Ipsum, "Lorem ipsum dolor sit amet..", viene de una linea en la sección 1.10.32 El trozo de texto estándar de Lorem Ipsum usado desde el año 1500 es reproducido debajo para aquellos interesados. Las secciones 1.10.32 y 1.10.33 de "de Finibus Bonorum et Malorum" por Cicero son también reproducidas en su forma original exacta, acompañadas por versiones en Inglés de la traducción realizada en 1914 por H. Rackham.</textareaa>
+                            </div>
+                        </div>
+            <div class="divPanelPregResObservapDNP col-md-5 margindnpobser">
+
+            <div class="textAreDivRes2">
+            <textareaa rows="3"
+                       placeholder="Justifique su respuesta."
+                       minlength="1"
+                       maxlength="5000"
+                       class="textareObservaDNP" ng-required="true"></textareaa>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+         
+            </textarea>
+        </div>
+    </div>
+</div>
+
+<br>
+<br>
+<h1>21. Panel buscador:</h1>
+<div class="row rowbotonesicoDNP">
+
+    <div class="col-md-12 text-right nopadding">
+        <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Limpiar">
+            <span> <img class="icoBusquedasDNP" src="Img/IcolimpiarBusqD.svg"></span>
+        </button>
+        <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Limpiar">
+            <span> <img class="icoBusquedasDNP" src="Img/IcolimpiarBusq.svg"></span>
+        </button>
+        <button tooltip-class="customClass" uib-tooltip="Buscar" class="btnicobuscarDNP" type="button" data-toggle="collapse" data-target="#IdPanelBuscador" ng-click="vm.changeArrow2('IdPanelBuscador')">
+            <span> <img id="arrow-IdPanelBuscador" class="icoBusquedas2DNP glyphicon-chevron-down-busqDNP" src="Img/IcoBusqDow.svg" data-toggle="collapse" data-target="#IdPanelBuscador"></span>
+        </button>
+        <button class="btnaccion">
+            <span> <img class="icoBusquedasDNP" src="Img/etapas/u1089.svg"></span>
+        </button>
+        <button class="btnaccion">
+            <span> <img class="icoBusquedasDNP" src="Img/etapas/u1090.svg"></span>
+        </button>
+    </div>
+</div>
+<br />
+<div class="row panelbuscadorDNP collapse in" id="IdPanelBuscador">
+
+    <div class="row">
+        <div class="col-md-2">
+            <div class="labelbuscadorDNP"> <span>ID <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg"></span></div>
+            <input type="text" class="form-control InputBuscadorDNP" />
+        </div>
+        <div class="col-md-2">
+            <div class="labelbuscadorDNP"> <span>BPIN <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg"></span></div>
+            <input type="text" class="form-control InputBuscadorDNP" />
+        </div>
+        <div class="col-md-4">
+            <div class="labelbuscadorDNP"> <span>Nombre del proyecto</span></div>
+            <input type="text" class="form-control InputBuscadorDNP" placeholder="Escriba palabra o frase" />
+        </div>
+        <div class="col-md-4">
+            <div class="labelbuscadorDNP"> <span>Sector</span></div>
+            <select class="form-control selectDNP" required>
+                <option value="" selected>Seleccione...</option>
+                <option ng-value="1">Valor 1</option>
+            </select>
+        </div>
+    </div>
+    <div class="" style="height:20px">
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            <div class="labelbuscadorDNP"> <span>Código proceso</span></div>
+            <input type="text" class="form-control InputBuscadorDNP" />
+        </div>
+        <div class="col-md-3">
+            <div class="labelbuscadorDNP"> <span>Nombre proceso</span></div>
+            <input type="text" class="form-control InputBuscadorDNP" placeholder="Escriba palabra o frase" />
+        </div>
+        <div class="col-md-3">
+            <div class="labelbuscadorDNP"> <span>Nombre paso actual</span></div>
+            <input type="text" class="form-control InputBuscadorDNP" placeholder="Escriba palabra o frase" />
+        </div>
+        <div class="col-md-4">
+            <div class="labelbuscadorDNP"> <span>Entidad encargada de paso actual</span></div>
+            <select class="form-control selectDNP" required>
+                <option value="" selected>Seleccione...</option>
+                <option ng-value="1">Valor 1</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 pull-left text-left">
+            <span class="spanresultadobusquedaDNP pull-left">
+                Se encontraron (1) resultados.
+            </span>
+            <span class="spanresultadobusqueda2DNP pull-left" style="margin-top: 0px;">
+                No se encontraron resultados.
+            </span>
+        </div>
+        <div class="col-md-6 pull-right text-right">
+            <span class="pull-right">
+                <button type="button" class=" btnBuscarDNP " tooltip-class="customClass" uib-tooltip="Buscar">
+                    BUSCAR
+                </button>
+            </span>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <button data-toggle="collapse" data-target="#demo21" class="btn btn-link btn-md ">Codigo fuente</button>
+
+    <div id="demo21" class="collapse">
+        <div class="col-md-12 ">
+            <textarea style="width: 100%;height: 700px;" disabled>
+            <div class="row rowbotonesicoDNP">
+   
+            <div class="col-md-12 text-right nopadding">
+            <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Limpiar">
+            <span> <img class="icoBusquedasDNP" src="Img/IcolimpiarBusqD.svg"></span>
+                            </button>
+            <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Limpiar">
+            <span> <img class="icoBusquedasDNP" src="Img/IcolimpiarBusq.svg"></span>
+                            </button>
+            <button tooltip-class="customClass" uib-tooltip="Buscar" class="btnicobuscarDNP" type="button" data-toggle="collapse" data-target="#IdPanelBuscador" ng-click="vm.changeArrow2('IdPanelBuscador')">
+            <span> <img id="arrow-IdPanelBuscador" class="icoBusquedas2DNP glyphicon-chevron-down-busqDNP" src="Img/IcoBusqDow.svg" data-toggle="collapse" data-target="#IdPanelBuscador"></span>
+                            </button>
+            <button class="btnaccion">
+            <span> <img class="icoBusquedasDNP" src="Img/etapas/u1089.svg"></span>
+                            </button>
+            <button class="btnaccion">
+            <span> <img class="icoBusquedasDNP" src="Img/etapas/u1090.svg"></span>
+                            </button>
+                        </div>
+                    </div>
+            <br />
+            <div class="row panelbuscadorDNP collapse in" id="IdPanelBuscador">
+
+            <div class="row">
+            <div class="col-md-2">
+            <div class="labelbuscadorDNP"> <span>ID <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg"></span></div>
+            <input type="text" class="form-control InputBuscadorDNP" />
+                            </div>
+            <div class="col-md-2">
+            <div class="labelbuscadorDNP"> <span>BPIN <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg"></span></div>
+            <input type="text" class="form-control InputBuscadorDNP" />
+                            </div>
+            <div class="col-md-4">
+            <div class="labelbuscadorDNP"> <span>Nombre del proyecto</span></div>
+            <input type="text" class="form-control InputBuscadorDNP" placeholder="Escriba palabra o frase" />
+                            </div>
+            <div class="col-md-4">
+            <div class="labelbuscadorDNP"> <span>Sector</span></div>
+            <select class="form-control selectDNP" required>
+            <option value="" selected>Seleccione...</option>
+            <option ng-value="1">Valor 1</option>
+                                </select>
+                            </div>
+                        </div>
+            <div class="" style="height:20px">
+                        </div>
+            <div class="row">
+            <div class="col-md-2">
+            <div class="labelbuscadorDNP"> <span>Código proceso</span></div>
+            <input type="text" class="form-control InputBuscadorDNP" />
+                            </div>
+            <div class="col-md-3">
+            <div class="labelbuscadorDNP"> <span>Nombre proceso</span></div>
+            <input type="text" class="form-control InputBuscadorDNP" placeholder="Escriba palabra o frase" />
+                            </div>
+            <div class="col-md-3">
+            <div class="labelbuscadorDNP"> <span>Nombre paso actual</span></div>
+            <input type="text" class="form-control InputBuscadorDNP" placeholder="Escriba palabra o frase" />
+                            </div>
+            <div class="col-md-4">
+            <div class="labelbuscadorDNP"> <span>Entidad encargada de paso actual</span></div>
+            <select class="form-control selectDNP" required>
+            <option value="" selected>Seleccione...</option>
+            <option ng-value="1">Valor 1</option>
+                                </select>
+                            </div>
+                        </div>
+
+            <div class="row">
+            <div class="col-md-6 pull-left text-left">
+            <span class="spanresultadobusquedaDNP pull-left">
+                                    Se encontraron (1) resultados.
+                                </span>
+            <span class="spanresultadobusqueda2DNP pull-left" style="margin-top: 0px;">
+                                    No se encontraron resultados.
+                                </span>
+                            </div>
+            <div class="col-md-6 pull-right text-right">
+            <span class="pull-right">
+            <button type="button" class=" btnBuscarDNP " tooltip-class="customClass" uib-tooltip="Buscar">
+                                        BUSCAR
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+         
+            </textarea>
+        </div>
+    </div>
+</div>
+
+<br>
+<br>
+<h1>21. Botones en tabla con modal:</h1>
+
+<div class="row">
+    <div class="col-md-12 ">
+
+        <br>
+        <table class="TableDNP">
+            <thead>
+                <tr>
+                    <th class="columAcc"></th>
+                    <th class="textLeftDNP">Botones</th>
+                    <th class="columAcc"></th>
+                    <th class="columAcc"></th>
+
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                    <td></td>
+                    <td>Ejemplo de botones con modal</td>
+                    <td class="textCenterDNP">
+                        <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Ver Documentos Adjuntos" ng-click="vm.abrirModalDocumentosAdjuntos(1)">
+                            <span> <img src="Img/IcoDocument.svg"></span>
+                        </button>
+                    </td>
+                    <td class="textCenterDNP">
+                        <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Ver instancias" ng-click="vm.abrirModalInstanciaDocumentos(1)">
+                            <span> <img style="width: 16px;height:16px" src="Img/IcoProc.svg"></span>
+                        </button>
+                    </td>
+                </tr>
+
+
+
+            </tbody>
+
+        </table>
+
+    </div>
+</div>
+<div class="row">
+    <button data-toggle="collapse" data-target="#demo22" class="btn btn-link btn-md ">Codigo fuente</button>
+
+    <div id="demo22" class="collapse">
+        <div class="col-md-12 ">
+            <textarea style="width: 100%;height: 700px;" disabled>
+            <div class="row">
+            <div class="col-md-12 ">
+
+            <br>
+            <table class="TableDNP">
+            <thead>
+            <tr>
+            <th class="columAcc"></th>
+            <th class="textLeftDNP">Botones</th>
+            <th class="columAcc"></th>
+            <th class="columAcc"></th>
+
+                                </tr>
+                            </thead>
+            <tbody>
+
+            <tr>
+            <td></td>
+            <td>Ejemplo de botones con modal</td>
+            <td class="textCenterDNP">
+            <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Ver Documentos Adjuntos" ng-click="vm.abrirModalDocumentosAdjuntos(1)">
+            <span> <img src="Img/IcoDocument.svg"></span>
+                                        </button>
+                                    </td>
+            <td class="textCenterDNP">
+            <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Ver instancias" ng-click="vm.abrirModalInstanciaDocumentos(1)">
+            <span> <img style="width: 16px;height:16px" src="Img/IcoProc.svg"></span>
+                                        </button>
+                                    </td>
+                                </tr>
+
+
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+                </div>
+         
+            </textarea>
+        </div>
+    </div>
+</div>
+
+<br>
+<br>
+<h1>22. Div oculto con checkbox:</h1>
+<div class="row" style="margin-left:0px;margin-right:0px" ng-if="vm.BanderaDivPerfiles2">
+    <div class="col-md-12">
+        <button type="button" class="btn btn-link btn-md buttonhiperDNP" ng-click="vm.MostrarDivPerfilesUsuario(1)" tooltip-placement="top" tabindex="0">
+            VER OPCIONES
+        </button>
+    </div>
+</div>
+<div class="row DivListaPerfilesDNP2 " ng-if="vm.BanderaDivPerfiles">
+    <div class="col-md-12 colchechkPerfilesDNP2 containerchek">
+
+        <!--<div ng-repeat="perfilesusu in vm.listaPerfilesBackbone">-->
+
+        <div class="col-md-4">
+            <ul>
+
+                <li>
+                    <!--<li>-->
+                    <input type="checkbox" id="chk-ejem1" name="perfilesusu" ng-checked="true">
+                    <label for="chk-ejem1">Opción 1</label>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-4">
+            <ul>
+
+                <li>
+                    <!--<li>-->
+                    <input type="checkbox" id="chk-ejem2" name="perfilesusu" ng-checked="true">
+                    <label for="chk-ejem2">Opción 2</label>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-4">
+            <ul>
+
+                <li>
+                    <!--<li>-->
+                    <input type="checkbox" id="chk-ejem3" name="perfilesusu" ng-checked="true">
+                    <label for="chk-ejem3">Opción 3</label>
+                </li>
+            </ul>
+        </div>
+
+        <!--</div>-->
+
+    </div>
+    <br />
+    <div class="col-md-12 pull-right text-right">
+
+        <button type="button" class="btn btn-link btn-md buttonhiperDNP" ng-click="vm.MostrarDivPerfilesUsuario(2)" tooltip-placement="top" tabindex="0">
+            CERRAR
+        </button>
+    </div>
+</div>
+<div class="row">
+    <button data-toggle="collapse" data-target="#demo23" class="btn btn-link btn-md ">Codigo fuente</button>
+
+    <div id="demo23" class="collapse">
+        <div class="col-md-12 ">
+            <textarea style="width: 100%;height: 700px;" disabled>
+                            <div class="row" style="margin-left:0px;margin-right:0px" ng-if="vm.BanderaDivPerfiles2">
+                    <div class="col-md-12">
+                        <button type="button" class="btn btn-link btn-md buttonhiperDNP" ng-click="vm.MostrarDivPerfilesUsuario(1)" tooltip-placement="top" tabindex="0">
+                            VER OPCIONES
+                        </button>
+                    </div>
+                </div>
+                <div class="row DivListaPerfilesDNP2 " ng-if="vm.BanderaDivPerfiles">
+                    <div class="col-md-12 colchechkPerfilesDNP2 containerchek">
+
+                        <!--<div ng-repeat="perfilesusu in vm.listaPerfilesBackbone">-->
+
+                        <div class="col-md-4">
+                            <ul>
+
+                                <li>
+                                    <!--<li>-->
+                                    <input type="checkbox" id="chk-ejem1" name="perfilesusu" ng-checked="true">
+                                    <label for="chk-ejem1">Opción 1</label>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <ul>
+
+                                <li>
+                                    <!--<li>-->
+                                    <input type="checkbox" id="chk-ejem2" name="perfilesusu" ng-checked="true">
+                                    <label for="chk-ejem2">Opción 2</label>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <ul>
+
+                                <li>
+                                    <!--<li>-->
+                                    <input type="checkbox" id="chk-ejem3" name="perfilesusu" ng-checked="true">
+                                    <label for="chk-ejem3">Opción 3</label>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!--</div>-->
+
+                    </div>
+                    <br />
+                    <div class="col-md-12 pull-right text-right">
+
+                        <button type="button" class="btn btn-link btn-md buttonhiperDNP" ng-click="vm.MostrarDivPerfilesUsuario(2)" tooltip-placement="top" tabindex="0">
+                            CERRAR
+                        </button>
+                    </div>
+                </div>
+         
+            </textarea>
+        </div>
+    </div>
+</div>

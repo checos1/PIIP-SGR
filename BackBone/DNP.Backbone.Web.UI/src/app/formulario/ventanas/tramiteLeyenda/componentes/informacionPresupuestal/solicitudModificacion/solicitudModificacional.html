@@ -1,0 +1,77 @@
+﻿<section>
+    <br />
+    <div class="container-fluid inbox" ng-init="vm.init();">
+        <div class="col-md-8" style="display:inline-flex;">
+            <span class="textRightDNP" style="font-weight: 400 !important;">&nbsp;</span>
+            <div id="informacionpresupuestalsolicitudmodifi-pregunta-error" class="hidden uMensajeError"></div>
+            <div id="informacionpresupuestalsolicitudmodifi-preguntaIgual-error" class="hidden uMensajeError"></div>
+            <div id="informacionpresupuestalsolicitudmodifi-preguntaBlanco-error" class="hidden uMensajeError"></div>
+        </div>
+        <div style="text-align: right;" class="col-md-4" has-claim has-opciones="['TramitesVigenciaFutura:AccionesPasoUno']">
+            <div class="col-md-12 form-group text-right" style="padding-right:2rem;" ng-If="vm.proyectoId != '' && vm.proyectoId != undefined">
+                <!--<button id="Editar"-->
+                <button id="Editar" name="Editar"
+                        type="button" class="btneditarDNP"
+                        tooltip-placement="top"
+                        uib-tooltip="Clic para editar la información"
+                        ng-click="vm.ActivarEditar()">
+                    {{vm.Editar}}
+                </button>
+                &nbsp;
+                <!--<button id="Guardar"-->
+                <button id="Guardar"
+                        ng-class="vm.getEstiloBtnGuardar()"
+                        ng-click="vm.registrarModificacion()"
+                        tooltip-placement="top"
+                        uib-tooltip="Guardar"
+                        ng-disabled="vm.disabled"
+                        tabindex="0">
+                    GUARDAR
+                </button>
+            </div>
+        </div>
+        <br /><br /><br />
+        <div class="col-md-12" ng-If="vm.proyectoId != '' && vm.proyectoId != undefined">
+            <table class="TableDNP">
+                <thead>
+                    <tr>
+                        <th class="columAcc" style="width:5%;"></th>
+                        <th class="textRightDNP" style="width:30%;">BPIN / Programa / Subprograma /<br /> Código Presupuestal</th>
+                        <th class="textLeftDNP" style="width:30%;">Nombre del proyecto</th>
+                        <th class="textLeftDNP" style="width:30%;">
+                            Nuevo nombre del proyecto <br />
+                            <span class="spanPregResObservapDNP">(Máximo 1.500 caracteres)</span>
+                        </th>
+                        <th class="columAcc" style="width:5%;"></th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr style="height:130px;">
+                        <td style="width:5%;"></td>
+                        <td class="textRightDNP" style="height:130px; width:30%;">
+                            {{ vm.datosProyecto.BPIN }} <br />
+                            {{ vm.datosProyecto.Programa }} <br />
+                            {{ vm.datosProyecto.Subprograma }} <br />
+                            {{ vm.datosProyecto.CodigoPresupuestal }} <br />
+                        </td>
+                        <td style="height: 130px; width: 30%;"><div class="textAreDivRes" style="height: 130px; overflow-y: scroll;">{{ vm.datosProyecto.NombreProyectoOriginal }}</div></td>
+                        <td style="height: 130px; width: 30%;"><div class="textAreDivRes" ng-If="!vm.disabled"> 
+                                                                   <div id="modificacion-error" style="width: 100%; margin-bottom: 10px;" class=" hidden uMensajeError"></div>
+                                                                <textarea style="width: 100%; height: 130px; resize: none;" ng-model="vm.datosProyecto.NombreProyectoModificacion"></textarea> </div>
+                                                               <div class="textAreDivRes" style="height: 130px; overflow-y: scroll;" ng-If="vm.disabled">{{vm.datosProyecto.NombreProyectoModificacion}}</div>
+</td>
+                        <td style="width:5%;"></td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+        </div>  
+        <div class="col-md-12" ng-If="vm.proyectoId == '' || vm.proyectoId == undefined" 
+             style="background-color: rgba(249, 252, 253, 1); text-align: center; font-family: 'Montserrat'; font-weight: 400; font-style: normal; font-size: 15px; height: 100px; display: table;">   
+            <span style="vertical-align: middle; display: table-cell;">Aun no hay datos para este ajuste. Seleccione y asocie un proyecto desde Asociar Proyecto / Selección de Proyecto</span>
+        </div>
+    </div>
+    <br />
+</section>

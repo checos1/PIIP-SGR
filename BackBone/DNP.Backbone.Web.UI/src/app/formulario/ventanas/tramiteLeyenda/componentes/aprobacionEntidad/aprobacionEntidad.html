@@ -1,0 +1,30 @@
+﻿
+<section>
+    <div class="container-fluid inbox" ng-init="vm.init();">
+
+        <div class="tab-content">
+            <div class="ui-accordion-container" id="accordion-aprobacionconfirmacionapr">
+                <div class="alert panel-heading row ui-accordion-header" style="border-color: #E6EFFD; border-left-color: #004884; height: 50px;">
+                    <button type="button" data-toggle="collapse" data-target="#rAprobacionentidad" ng-click="vm.changeArrow('aprobacionconfirmacionapr')">
+                        <span id="arrow-aprobacionconfirmacionapr" class="glyphicon glyphicon-chevron-up pull-right" data-toggle="collapse" data-target="#rAprobacionentidad"></span>
+                        <span class="d-inline-block" id="alert-aprobacionconfirmacionapr"></span>
+                        <span id="name-capitulo-aprobacionconfirmacionapr"></span>
+                        <span class="hidden" id="id-capitulo-aprobacionconfirmacionapr"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="rAprobacionentidad" style="width: 100%;">
+                    <aprobacion-entdet tipotramiteid="{{vm.tipotramiteid}}"
+                                       tramiteid="{{vm.tramiteid}}"
+                                       nivel="{{vm.nivel}}"
+                                       prueba="vm.prueba(botonDevolver, botonSiguiente, ocultarDevolver)"
+                                       guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                       notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                       notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"
+                                       callback="vm.callback()">
+                    </aprobacion-entdet>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,36 @@
+﻿<div ng-init="vm.init();">
+    <div class="ui-accordion-container " id="accordion-iniciativasPrpr">
+        <div class="alert panel-heading row ui-accordion-header">
+            <button type="button" data-toggle="collapse" data-target="#{{vm.nombreComponenteHijo}}" ng-click="vm.changeArrow(vm.nombreComponenteHijo)">
+                <span class="d-inline-block" id="alert-{{vm.nombreComponenteHijo}}"></span>
+                <span id="name-capitulo-{{vm.nombreComponenteHijo}}"></span>
+                <span class="hidden" id="id-capitulo-{{vm.nombreComponenteHijo}}"></span>
+                <span id="arrow-{{vm.nombreComponenteHijo}}" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#iniciativasiniciativasinversion"></span>
+            </button>
+        </div>
+        <div class="collapse" id="iniciativasiniciativasinversion">
+            <div class="row" style="padding-right: 15px; padding-left: 0px; margin-left: -15px;">
+                <tabla-resumen-distribucion nombrecomponentepaso="{{vm.nombrecomponentepaso}}"
+                                            guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                            notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                            notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"
+                                            section="{{vm.section}}"
+                                            modificardistribucion="vm.modificardistribucion">
+                </tabla-resumen-distribucion>
+            </div>
+            <div class="row" style="padding-right: 15px; padding-left: 0px; margin-left: -15px;">
+                <lista-proyectos-registrados nombrecomponentepaso="{{vm.nombreComponenteHijo}}"
+                                             modificodatos="vm.modificoDatos"
+                                             guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                             notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                             notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"
+                                             section="{{vm.section}}"
+                                             calendarioiniciativas="{{vm.calendarioiniciativas}}"
+                                             modificardistribucion="vm.modificardistribucion">
+                </lista-proyectos-registrados>
+            </div>
+        </div>
+    </div>
+
+
+</div>

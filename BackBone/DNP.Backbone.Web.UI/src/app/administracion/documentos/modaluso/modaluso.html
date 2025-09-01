@@ -1,0 +1,340 @@
+﻿<style>
+    .dropdown-container {
+        position: relative;
+    }
+
+    .dropdown-header {
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 10px;
+        background: #f9f9f9;
+        cursor: pointer;
+        font-size: 14px;
+    }
+
+    .dropdown-header span {
+        margin-right: 10px;
+    }
+
+    .dropdown-header i {
+        float: right;
+    }
+
+    .dropdown-menu {
+        display: block;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        border: 1px solid #ddd;
+        background: #fff;
+        max-height: 350px;
+        overflow-y: auto;
+        z-index: 1000;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border-radius: 4px;
+    }
+
+    .dropdown-menu input {
+        margin: 10px;
+        width: calc(100% - 20px);
+    }
+
+    .tabs {
+        display: flex;
+    }
+
+    .tab {
+        flex: 1;
+        text-align: center;
+        padding: 0px;
+        cursor: pointer;
+        font-weight: normal;
+        background: #fff;
+    }
+
+    .tab.active {
+        background: #fff;
+        border-bottom: 2px solid #3366CC;
+    }
+
+    .multiselect .list-container {
+        max-height: 200px;
+        overflow-y: auto;
+        padding: 10px;
+        margin: 0px;
+    }
+
+    .multiselect .list-group-item label {
+        display: inline-flex !important;
+        align-items: flex-start;
+        gap: 3px;
+        line-height: 1.4;
+        font-weight: normal;
+    }
+
+    .multiselect .list-group-item label input {
+        margin-top: 4px;
+        flex-shrink: 0;
+        width: auto;
+
+    }
+
+    .multiselect .list-group-item {
+        border: none !important;
+        padding: 0px;
+        font-weight: normal;
+        margin-bottom: 8px;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+    }
+
+        .multiselect .list-group-item:hover {
+            background: #f3f3f3;
+        }
+
+
+    .clear-selection {
+        text-align: center;
+        padding: 10px;
+        cursor: pointer;
+        color: #3366CC;
+        font-weight: normal;
+    }
+
+        .clear-selection:hover {
+            text-decoration: underline;
+        }
+
+
+    .dropdown-header:focus {
+        background-color: white;
+        font-weight: bold;
+        outline: none;
+        border: 2px solid #005F27;
+    }
+</style>
+
+<div class="container-fluid inbox" ng-init="vm.init()">    
+    <div class="modal-header" ng-init="vm.init();" style="border-bottom: 0px solid #e5e5e5; margin-top:30px">
+        <h3 style="font-family: 'Montserrat SemiBold', 'Montserrat Regular', 'Montserrat'; font-weight: 600; font-size: 16px; font-style: normal; color: #004884; margin: 0 !important" class="modal-title" id="modal-title"> Agregar nueva configuración tipo de documento</h3>
+    </div>    
+    <!-- Formulario: Edición Documentos -->
+    <div class="modal-body" id="modal-body" ng-if="vm.dataEdit.TipoDocumento">
+        <div cerrar="vm.cerrar" guardar="vm.guardar" style="background: transparent !important; padding:10px 20px 20px 20px !important" class="modal_container" ng-init="vm.init()">            
+            <div if class="row pl-4 pr-4">
+                <form id="formDocumento" name="formDocumento" style="background-color:white!important">
+                    <div class="row">
+                        <div class="form-group col-md-6 mb-4">
+                            <label><strong>Tipo *</strong></label>
+                            <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty" id="TipoDocumento" placeholder="" ng-model="vm.dataEdit.TipoDocumento" disabled>
+                        </div>
+                        <div class="form-group col-md-6 mb-4 mt-3">
+                            <label><strong>Obligatorio</strong></label>
+                            <input type="checkbox" id="obligatorio" name="obligatorio" ng-model="vm.formData.Obligatorio" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6 mb-4">
+                            <label><strong>Trámite *</strong></label>
+                            <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty" id="NombreTramite" placeholder="" ng-model="vm.dataEdit.NombreTramite" disabled>
+                        </div>
+
+                        <div class="form-group col-md-6 mb-4">
+                            <label><strong>Validación obligatoriedad</strong></label>
+                            <div ng-show="vm.mensajeValidacion.ValidacionId" class="validation-error">
+                                <span class="img iconadverdnp">   <img src="Img/u4630.svg"> </span>
+                                <span class="messagealerttableDNP">{{ vm.mensajeValidacion.ValidacionId }}</span>
+                            </div>
+                            <select id="ObligatoriedadId" name="ObligatoriedadId" class="form-control selectDNP" ng-model="vm.formData.ObligatoriedadId" required>
+                                <option value="" selected>Seleccione...</option>
+                                <option ng-repeat="item in vm.Referencias.TipoValidaciones" ng-value="item.Id">{{item.Funcion}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6 mb-4">
+                            <label><strong>Fase *</strong></label>
+                            <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty" id="NombreFase" placeholder="" ng-model="vm.dataEdit.NombreFase" disabled>
+                        </div>
+
+                        <div class="form-group col-md-6 mb-4">
+                            <label><strong>Validación visibilidad</strong></label>
+                            <div ng-show="vm.mensajeValidacion.Visible" class="validation-error">
+                                <span class="img iconadverdnp">   <img src="Img/u4630.svg"> </span>
+                                <span class="messagealerttableDNP">{{ vm.mensajeValidacion.ValidacionId }}</span>
+                            </div>
+                            <select id="ValidacionId" name="ValidacionId" class="form-control selectDNP" ng-model="vm.formData.ValidacionId" required>
+                                <option value="" selected>Seleccione...</option>
+                                <option ng-repeat="item in vm.Referencias.TipoValidaciones" ng-value="item.Id">{{item.Funcion}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6" style="min-height: 70px">
+                            <label><strong>Roles *</strong></label>
+                            <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty" id="Rol" placeholder="" ng-model="vm.dataEdit.Rol" disabled>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="modal-footer textCenterDNP">
+                            <button class="btneditarDNP" type="button" ng-click="vm.actionCerrar()">CANCELAR</button>
+                            <button class="btnguardarDNP" type="submit" ng-click="vm.actionGuardar()">GUARDAR</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Formulario: Registro de Nuevos Documentos -->
+    <div class="modal-body" id="modal-body" ng-if="!vm.dataEdit.TipoDocumento">
+        <div cerrar="vm.cerrar" guardar="vm.guardar" style="background: transparent !important; padding:10px 20px 20px 20px !important" class="modal_container" ng-init="vm.init()">
+            <div if class="row pl-4 pr-4">
+                <form id="formDocumento" name="formDocumento" style="background-color:white!important">
+                    <div class="row">
+                        <div class="form-group col-md-6 mb-4">
+                            <label><strong>Tipo *</strong></label>
+                            <div ng-show="vm.mensajeValidacion.TipoDocumentoId" class="validation-error">
+                                <span class="img iconadverdnp">   <img src="Img/u4630.svg"> </span>
+                                <span class="messagealerttableDNP">{{ vm.mensajeValidacion.TipoDocumentoId }}</span>
+                            </div>
+                            <select id="tipoDocumento" name="tipoDocumento" class="form-control selectDNP" ng-model="vm.formData.TipoDocumentoId" required>
+                                <option value="" selected>Seleccione...</option>
+                                <option ng-repeat="item in vm.Referencias.Documentos" ng-value="item.Id">{{item.Descripcion}}</option>
+                            </select>
+
+                        </div>
+
+                        <div class="form-group col-md-6 mb-4 mt-3">
+                            <label><strong>Obligatorio</strong></label>
+                            <input type="checkbox" id="obligatorio" name="obligatorio" ng-model="vm.formData.Obligatorio" />
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6 mb-4">
+                            <label><strong>Trámite *</strong></label>
+                            <div ng-show="vm.mensajeValidacion.TipoTramiteId" class="validation-error">
+                                <span class="img iconadverdnp">   <img src="Img/u4630.svg"> </span>
+                                <span class="messagealerttableDNP">{{ vm.mensajeValidacion.TipoTramiteId }}</span>
+                            </div>
+                            <select id="tramite"
+                                    name="tramite"
+                                    class="form-control selectDNP"
+                                    ng-model="vm.formData.TipoTramiteId"
+                                    ng-change="vm.onTramiteChange(vm.formData.TipoTramiteId)"
+                                    required>
+                                <option value="" selected>Seleccione...</option>
+                                <option ng-repeat="item in vm.Referencias.Tramites" ng-value="item.Id">{{item.Nombre}}</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-6 mb-4">
+                            <label><strong>Validación obligatoriedad</strong></label>
+                            
+                            <select id="ObligatoriedadId" name="ObligatoriedadId" class="form-control selectDNP" ng-model="vm.formData.ObligatoriedadId" required>
+                                <option value="" selected>Seleccione...</option>
+                                <option ng-repeat="item in vm.Referencias.TipoValidaciones" ng-value="item.Id">{{item.Funcion}}</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6 mb-4">
+                            <label><strong>Fase *</strong></label>
+                            <div ng-show="vm.mensajeValidacion.IdFase" class="validation-error">
+                                <span class="img iconadverdnp">   <img src="Img/u4630.svg"> </span>
+                                <span class="messagealerttableDNP">{{ vm.mensajeValidacion.IdFase }}</span>
+                            </div>
+                            <select id="fase"
+                                    name="fase"
+                                    class="form-control selectDNP"
+                                    ng-model="vm.formData.IdFase"
+                                    ng-disabled="!vm.formData.TipoTramiteId"
+                                    ng-change="vm.onFaseChange(vm.formData.IdFase)"
+                                    required>
+                                <option value="" selected>Seleccione...</option>
+                                <option ng-repeat="item in vm.filteredFases" ng-value="item.FaseId">{{item.NombreFase}}</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-6 mb-4">
+                            <label><strong>Validación visibilidad</strong></label>
+                            <select id="ValidacionId" name="ValidacionId" class="form-control selectDNP" ng-model="vm.formData.ValidacionId" required>
+                                <option value="" selected>Seleccione...</option>
+                                <option ng-repeat="item in vm.Referencias.TipoValidaciones" ng-value="item.Id">{{item.Funcion}}</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6" style="min-height: 70px">
+                            <label><strong>Roles *</strong></label>
+                            <div ng-show="vm.mensajeValidacion.Roles" class="validation-error">
+                                <span class="img iconadverdnp">
+                                    <img src="Img/u4630.svg">
+                                </span>
+                                <span class="messagealerttableDNP">{{ vm.mensajeValidacion.Roles }}</span>
+                            </div>
+
+                            <div class="dropdown-container" style="position: fixed; min-width: 350px; max-width: 350px;">
+                                <div class="dropdown-header" ng-click="!vm.formData.IdFase ? null : vm.toggleDropdown()">
+                                    <span>Búsqueda / Selección</span>
+                                    <span>({{ vm.formData.Roles.length }})</span>
+                                    <i class="glyphicon" ng-class="{'glyphicon-chevron-down': !vm.isDropdownOpen, 'glyphicon-chevron-up': vm.isDropdownOpen}"></i>
+                                </div>
+                                <div class="dropdown-menu" ng-show="vm.isDropdownOpen && vm.formData.IdFase" style="position: absolute; top: 100%; left: 0; width: 100%; z-index: 1050; background: #fff; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                                    <div class="tabs">
+                                        <div class="tab" id="tabListado" ng-class="{'active': vm.activeTab === 'listado'}" ng-click="vm.setTab('listado')">Listado</div>
+                                        <div class="tab" id="tabSeleccionados" ng-class="{'active': vm.activeTab === 'seleccionados'}" ng-click="vm.setTab('seleccionados')">Seleccionados</div>
+                                    </div>
+
+                                    <!-- Listado -->
+                                    <div ng-show="vm.activeTab === 'listado'" class="tab-content multiselect">
+                                        <input type="text" id="searchInput" class="form-control" placeholder="Buscar..." ng-model="vm.searchText">
+                                        <ul class="list-group list-container">
+                                            <!-- Lista de roles dinámicos -->
+                                            <li class="list-group-item" ng-repeat="role in vm.filteredRoles | filter:vm.searchText">
+                                                <label>
+                                                    <input type="checkbox" ng-model="role.selected" ng-change="vm.updateSelection(role)">
+                                                    {{ role.NombreRol }}
+                                                </label>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <!-- Seleccionados -->
+                                    <div ng-show="vm.activeTab === 'seleccionados'" class="tab-content multiselect">
+                                        <input type="text" id="searchInput2" class="form-control" placeholder="Buscar..." disabled>
+                                        <ul class="list-group list-container">
+                                            <!-- Roles seleccionados -->
+                                            <li class="list-group-item" ng-repeat="role in vm.formData.Roles">
+                                                <span class="close" ng-click="vm.removeSelection(role)" style="color: #3366CC;">&times;</span>
+                                                <label>
+                                                    <span>{{ role.NombreRol }}</span>
+                                                </label>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="clear-selection" ng-click="vm.clearSelection()">Borrar selección</div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="row">
+                        <div class="modal-footer textCenterDNP">
+                            <button class="btneditarDNP" type="button" ng-click="vm.actionCerrar()">CANCELAR</button>
+                            <button class="btnguardarDNP" type="submit" ng-click="vm.actionGuardar()">GUARDAR</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

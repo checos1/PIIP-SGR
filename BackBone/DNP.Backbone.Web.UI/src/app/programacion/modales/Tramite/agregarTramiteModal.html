@@ -1,0 +1,73 @@
+﻿<modal-dialog cerrar="vm.cerrar" ng-init="vm.init()" guardar="vm.guardar">
+    <div id="container-modal-tramite-programacion">
+        <div class="titlebarmodal" id="title-modal-tramite-programacion">
+            <span class="title">ADICIONAR TRÁMITE </span>
+        </div>
+        <div class="cuerpo-modal-delegado form-group clearfix">
+            <!--Inicio de tabs-->
+            <div class="form-group clearfix">
+
+                <!--inicio filtro-->
+                <div class="filtro-modal-tramite-programacion">
+                    <div class="clearfix">
+                        <div class="row">
+                            <div class="col-md-9">
+
+                                <div class="col-md-4">
+                                    <select name="ddlMacroproceso" id="ddlMacroproceso" class="form-control" ng-model="vm.filtro.macroproceso" ng-change="vm.cargarProcesos(vm.filtro.macroproceso)">
+                                        <option value="" selected>Macroproceso</option>
+                                        <option ng-repeat="macroproceso in vm.macroprocesos" ng-value="macroproceso.IdNivel">{{ macroproceso.NombreNivel }} </option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <select name="ddlProceso" id="ddlProceso" class="form-control" ng-model="vm.filtro.proceso" ng-change="vm.cargarSubprocesos(vm.filtro.proceso)">
+                                        <option value="" selected>Proceso</option>
+                                        <option ng-repeat="proceso in vm.procesos" ng-value="proceso.IdNivel">{{ proceso.NombreNivel }} </option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <select name="ddlSubproceso" id="ddlSubproceso" class="form-control" ng-model="vm.filtro.subproceso">
+                                        <option value="" selected>Subproceso</option>
+                                        <option ng-repeat="subproceso in vm.subprocesos" ng-value="subproceso.IdNivel">{{ subproceso.NombreNivel }} </option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 text-right">
+                                <button type="button" class="btn btn-sm btn-primary" ng-click="vm.buscar()" tooltip-placement="auto" uib-tooltip="Buscar">Buscar</button>
+                                <button type="button" class="btn btn-sm btn-filtro" ng-click="vm.filtro.limpiar()" tooltip-placement="auto" uib-tooltip="Limpiar">Limpiar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!--Fin de tabs-->
+            <!--Inicio de tabla-->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="container-table" id="grid-modal-tramite-en-programacion-container" ui-i18n="{{vm.lang}}">
+
+                        <div ng-if="vm.mostrarResultados()" class="clearfix grid-icon" id="grid-modal-tramite-en-programacion" ui-grid="vm.gridOptions">
+                        </div>
+
+                        <div class="text-center intro-help min-mh no-result-watermark" ng-if="vm.buscando">
+                            <h4>{{ 'Buscando resultados'}}</h4>
+                        </div>
+
+                        <div class="text-center intro-help min-mh no-result-watermark" ng-if="vm.sinResultados">
+                            <h4>{{ 'No hay ningún resultado para su búsqueda' }}</h4>
+                        </div>
+                    </div>
+                </div>
+                <div ng-if="vm.mostrarMensajeProyectos" ng-cloak>
+                    <div class="text-center intro-help no-result-watermark">
+                        <img src="Img/image-help.png" alt="Sin resultados" />
+                        <h2 id="idLabelMensajeResultados">{{vm.Mensaje}}</h2>
+                    </div>
+                </div>
+            </div>
+            <!--Fin de tabla-->
+        </div>
+    </div>
+</modal-dialog>

@@ -1,0 +1,75 @@
+<modal-dialog cerrar="vm.cerrar" guardar="vm.guardar" ng-init="vm.init()">
+    <div class="row ">
+        <div class="col-md-12">
+            <div class="titulo-modal">
+                <span>ADHERENCIA - <span class="tipo-entidad-cor">SGR</span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="input-group mb-3 p-1">
+                <div class="input-group-prepend">
+                    <span class="input-group-text bg-light rounded-left-2">Entidad</span>
+                </div>
+                <span class="form-control rounded-right-2">{{vm.entidad.NombreCompleto}}</span>
+            </div>
+        </div>
+        <div class="p-1" ng-repeat="item in vm.adherencia.Itens">
+            <div class="col-md-11 pl-0 pr-0">
+
+                <div class="col-md-3 pr-0">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-light rounded-left-2">Tipo</span>
+                        </div>
+                        <select class="form-control group-right" role="group" ng-model="item.TipoEntidad">
+                            <option value="" disabled selected hidden>Tipo Entidad</option>
+                            <option ng-repeat="tipo in vm.tiposEntidade" ng-value="tipo">{{ tipo }} </option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-3 pr-0">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-light rounded-left-2">Ent</span>
+                        </div>
+                        <select class="form-control group-right" role="group" ng-model="item.AdherenciaEntidad" ng-options="entidad.NombreEntidad for entidad in vm.entidades| filter: {TipoEntidad: item.TipoEntidad}:true">
+                            <option value="" disabled selected hidden>Entidad</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3 pr-0">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-light rounded-left-2">Fecha ini</span>
+                        </div>
+                        <input type="date" class="form-control" ng-model="item.FechaInicio">
+                    </div>
+                </div>
+                <div class="col-md-3 pr-0">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-light rounded-left-2">Fecha fin</span>
+                        </div>
+                        <input type="date" class="form-control" ng-model="item.FechaFin">
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="col-md-1 p-0 mt-0 ">
+                <button class="btnaccion ml-1" ng-click="vm.adicionarAdherencia()" tooltip-placement="Auto" uib-tooltip="Agregar nuevo Item">
+                    <span><img src="Img/iconsgrid/iconAccionAdicionar.png"></span>
+                </button>
+                <button class="btnaccion" ng-click="vm.removerAdherencia($index)" tooltip-placement="Auto" uib-tooltip="Eliminar Item">
+                    <span><img src="Img/iconsgrid/iconAccionEliminar.png"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    
+</modal-dialog>

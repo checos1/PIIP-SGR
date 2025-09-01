@@ -1,0 +1,280 @@
+﻿<style>
+    .head {
+        border-left: 2px solid #3f73e2;
+        border-top: 2px solid #3f73e2;
+        padding-left: 40px;
+        height: auto;
+    }
+
+    .uLabelDetalle_FP {
+        color: #004884 !important;
+        font-family: 'Work Sans';
+        letter-spacing: 0px;
+        font-size: 16px;
+    }
+
+    .uLabelCampo_fp {
+        color: #004884 !important;
+        font-family: 'Work Sans';
+        letter-spacing: 0px;
+        font-weight: 500;
+        font-size: 16px;
+    }
+
+    .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+        background-color: #8064A2 !important;
+    }
+</style>
+<div ng-init="vm.init();">
+    <form id="regionalizacionsgrForm" name="regionalizacionsgrForm" novalidate>
+        <br>
+        <div class="col-md-12">
+            <div class="col-md-8 form-group text-left" style="padding-right:2rem;">
+                <span class="DetalleFormularioDNP">Active el botón editar, despliegue las localizaciones, editelas, y guarde mediante el botón guardar.</span>
+            </div>
+            <div class="col-md-4 form-group text-right" style="padding-right:2rem;">
+                <button has-claim has-opciones="['RegionalizacionGR:VerEditar']" id="Editar"
+                        type="button"
+                        class="{{vm.TieneDeMasUnaFuente == false ? 'btnguardarDisabledDNP' : 'btneditarDNP'}}"
+                        tooltip-placement="top"
+                        uib-tooltip="Activar Editar"
+                        ng-disabled="vm.TieneDeMasUnaFuente == false"
+                        ng-click="vm.ActivarEditar()">
+                    EDITAR
+                </button>
+                &nbsp;
+                <button has-claim has-opciones="['RegionalizacionGR:VerEditar']" id="Guardar"
+                        type="submit"
+                        class="{{vm.disabled ? 'btnguardarDisabledDNP' : 'btnguardarDNP'}}"
+                        tooltip-placement="top"
+                        uib-tooltip="Guardar modificación"
+                        ng-click="vm.actualizarRegionalizacionFuente(vm.listaProductos)"
+                        ng-disabled="vm.disabled">
+                    GUARDAR
+                </button>
+
+            </div>
+        </div>
+        <br />
+        <div ng-repeat="producto in vm.listaProductos" ng-init="productosIndex = $index" style="width:99%">
+            <br />
+            <div id="sgrviabilidadpreviosregionalizacionregionalizacion{{producto.ProductoId}}" class="hidden" style="text-align: left; font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans'; font-size: 12px; font-style: normal; color: #A80521;"></div>
+            <div ng-repeat="fuente in producto.Fuentes" ng-init="fuenteIndex = $index">
+                <br />
+                <table ng-if="fuente" class="table-white">
+                    <thead>
+                        <tr style="text-align:center;">
+                            <td style="width: 40%; text-align: left;"><label class="col-form-label" style="text-align:left"><span class="uLabelCampo_fp">Producto</span></label></td>
+                            <td style="width: 40%; text-align: left;"><label class="col-form-label" style="text-align:left"><span class="uLabelCampo_fp">Fuente de financiación</span></label></td>
+                            <td style="width: 20%; text-align: right;"><label class="col-form-label" style="text-align:left"><span class="uLabelCampo_fp">Total fuente $</span></label></td>
+                        </tr>
+                    </thead>
+                    <tbody style="border-width: 2px; border-style: solid; border-color: rgba(230, 239, 253, 1); border-collapse: collapse;">
+                        <tr>
+                            <td style="min-height: 20px; overflow-y: scroll; overflow-x: hidden; width: 40%; text-align: left;padding: 10px;margin: 1px 0;">
+                                <span class="uLabelCampo_fp">{{producto.Producto}}</span>
+                            </td>
+                            <td style="min-height: 20px; overflow-y: scroll; overflow-x: hidden; width: 40%; text-align: left;padding: 10px; margin: 1px 0; ">
+                                <span class="uLabelCampo_fp">Etapa: </span><span class="uLabelDetalle_FP" style="font-size: 16px;color: #4B4B4B">{{fuente.Etapa}}</span>
+                                <span class="uLabelCampo_fp">Tipo Financiador: </span><span class="uLabelDetalle_FP" style="font-size: 16px; color: #4B4B4B">{{fuente.TipoFinanciador}} </span>
+                                <span class="uLabelCampo_fp">Financiador: </span><span class="uLabelDetalle_FP" style="font-size: 16px; color: #4B4B4B">{{fuente.Financiador}}</span>
+                                <span class="uLabelCampo_fp">Recurso: </span><span class="uLabelDetalle_FP" style="font-size: 16px; color: #4B4B4B">{{fuente.Recurso}}</span>
+                            </td>
+                            <td style="min-height: 20px; width: 20%; text-align: right; padding: 10px; margin: 1px 0;">
+                                <span class="uLabelDetalle_FP" style="font-size: 16px">{{vm.ConvertirNumero(fuente.TotalFuente)}}</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                <div id="sgrviabilidadpreviosregionalizacionregionalizacion{{producto.ProductoId}}{{fuente.FuenteId}}" class="hidden" style="text-align: left; font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans'; font-size: 12px; font-style: normal; color: #A80521;"></div>
+                                <div id="sgrviabilidadpreviosregionalizacionregionalizacion{{producto.ProductoId}}{{fuente.FuenteId}}" class="hidden" style="text-align: left; font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans'; font-size: 12px; font-style: normal; color: #A80521;"></div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!--///////////////////-->
+                <table class="TableDNP no-border">
+                    <thead>
+                        <tr>
+                            <th class="columAcc"> </th>
+                            <th class="textLeftDNP">Departamento</th>
+                            <th class="textLeftDNP">Municipio</th>
+                            <th class="textLeftDNP">Tipo Agrupación </th>
+                            <th class="textLeftDNP">Agrupación </th>
+                            <th class="columAcc"></th>
+                        </tr>
+                    </thead>
+
+                    <tbody ng-repeat="localizacion in fuente.Localizacion" ng-init="localizacionIndex = $index">
+                        <tr class="bottontransDNP">
+                            <td>
+                            </td>
+                            <td class="textLeftDNP">
+                                {{localizacion.Departamento}}
+                            </td>
+                            <td class="textLeftDNP">{{localizacion.Municipio}}</td>
+                            <td class="textLeftDNP">{{localizacion.TipoAgrupacion}}</td>
+                            <td class="textLeftDNP">{{localizacion.Agrupacion}}</td>
+                            <td class="textCenterDNP">
+                            </td>
+                        </tr>
+                        <tr class="filaAnidada">
+                            <td colspan="1">
+                                <button class="btnaccion btntablednp" type="button" data-toggle="collapse" data-target="#loc{{producto.ProductoId}}{{fuente.FuenteId}}{{localizacion.LocalizacionId}}" ng-click="vm.mostrarOcultarFlujo(producto.ProductoId + '' + fuente.FuenteId + '' + localizacion.LocalizacionId)">
+
+                                    <img id="imgmas{{producto.ProductoId}}{{fuente.FuenteId}}{{localizacion.LocalizacionId}}" style="width:18px;height:18px" src="Img/btnMas.svg">
+                                    <img id="imgmenos{{producto.ProductoId}}{{fuente.FuenteId}}{{localizacion.LocalizacionId}}" style="width:18px;height:18px;display:none" src="Img/btnMenos.svg">
+                                </button>
+                                <label style="display:none" id="ico{{producto.ProductoId}}{{fuente.FuenteId}}{{localizacion.LocalizacionId}}">+</label>
+                                <span class="d-inline-block" id="alert-sgrviabilidadpreviosregionalizacionregionalizacion{{producto.ProductoId}}{{fuente.FuenteId}}{{localizacion.LocalizacionId}}"></span>
+                                <!--<div id="indicador-" class="img pull-right iconadverdnp">   <img class="" src="Img/u4630.svg"> </div>-->
+                            </td>
+                            <td colspan="5">
+                                <div id="GRFVR{{producto.ProductoId}}{{fuente.FuenteId}}{{localizacion.LocalizacionId}}" class="hidden" style="text-align: left; font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans'; font-size: 12px; font-style: normal; color: #A80521;"></div>
+                                <div id="GRFVP{{producto.ProductoId}}{{fuente.FuenteId}}{{localizacion.LocalizacionId}}" class="hidden" style="text-align: left; font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans'; font-size: 12px; font-style: normal; color: #A80521;"></div>
+                                <div id="GRLVR{{producto.ProductoId}}{{fuente.FuenteId}}{{localizacion.LocalizacionId}}" class="hidden" style="text-align: left; font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans'; font-size: 12px; font-style: normal; color: #A80521;"></div>
+                                <div id="GRRVF{{producto.ProductoId}}{{fuente.FuenteId}}{{localizacion.LocalizacionId}}" class="hidden" style="text-align: left; font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans'; font-size: 12px; font-style: normal; color: #A80521;"></div>
+                                <div id="GRFVPR{{producto.ProductoId}}{{fuente.FuenteId}}{{localizacion.LocalizacionId}}" class="hidden" style="text-align: left; font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans'; font-size: 12px; font-style: normal; color: #A80521;"></div>
+                            </td>
+                        </tr>
+                        <tr class="no-border collapse alert panel-heading" id="loc{{producto.ProductoId}}{{fuente.FuenteId}}{{localizacion.LocalizacionId}}">
+                            <td colspan="8" class="p-0">
+                                <div class="LineaEncabezado2tabDNP"></div>
+                                <h3 class="row tituloEncabezadotabDNP">
+                                    Detalle localización
+
+                                </h3>
+
+
+                                <div class="row">
+                                    <div class="alert panel-heading">
+                                        <table class="TableDNP">
+                                            <thead>
+                                                <tr>
+                                                    <th class="columAcc"></th>
+                                                    <th class="textRightDNP"><span class="uLabelCampo">Año</span></th>
+                                                    <th class="textRightDNP">Costo MGA $ </th>
+                                                    <th class="textRightDNP">Regionalizado MGA $</th>
+                                                    <th class="textRightDNP">Meta MGA</th>
+                                                    <th class="textRightDNP">Valor Fuente $</th>
+                                                    <th class="textRightDNP" style="min-width:180px">Total solicitado $</th>
+                                                    <th class="columAcc"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="vigencia in localizacion.Vigencias" ng-init="vigenciaIndex = $index">
+                                                    <td>
+                                                        <img id="img{{producto.ProductoId}}{{fuente.FuenteId}}{{localizacion.LocalizacionId}}{{vigencia.Vigencia}}" class="iconoErrorDNP" src="Img/u4630.svg" style="display:none;">
+                                                        <span ng-if="vigencia.Vigencia == 'TOTAL'" style="margin-top: 55%;font-family: 'Work Sans SemiBold Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 600; font-style: normal; font-size: 30px; color: rgba(50, 102, 204, 0.996078431372549);">=</span>
+                                                    </td>
+
+
+                                                    <td ng-if="vigencia.Vigencia != 'TOTAL'" class="textRightDNP"> <input type="text" class="form-control editInputDNP " disabled value="{{vigencia.Vigencia}}" /></td>
+                                                    <td ng-if="vigencia.Vigencia != 'TOTAL'" class="textRightDNP"><input type="text" class="form-control editInputDNP " disabled value="{{vm.ConvertirNumero(vigencia.CostoMGA)}}" /></td>
+                                                    <td ng-if="vigencia.Vigencia != 'TOTAL'" class="textRightDNP"><input type="text" class="form-control editInputDNP " disabled value="{{vm.ConvertirNumero(vigencia.RegionalizadoMGA)}}" /></td>
+                                                    <td ng-if="vigencia.Vigencia != 'TOTAL'" class="textRightDNP"><input type="text" class="form-control editInputDNP " disabled value="{{vm.ConvertirNumero4(vigencia.MetaMGA)}}" /></td>
+                                                    <td ng-if="vigencia.Vigencia != 'TOTAL'" class="textRightDNP"><input type="text" class="form-control editInputDNP " disabled value="{{vm.ConvertirNumero(vigencia.ValorFuente)}}" /></td>
+                                                    <td ng-if="vigencia.Vigencia != 'TOTAL'" style="width:180px">
+                                                        <div id="Divin{{producto.ProductoId}}{{fuente.FuenteId}}{{localizacion.LocalizacionId}}{{vigencia.Vigencia}}"
+                                                             ng-show="!vm.permiteEditar" style="text-align: right;padding-right: 3px; margin-left: 5px ">{{vm.ConvertirNumero(vigencia.Totalsolicitado)}}</div>
+
+                                                        <input type="text" string-to-number min="0.00" class="form-control editInputDNP"
+                                                               id="input{{producto.ProductoId}}{{fuente.FuenteId}}{{localizacion.LocalizacionId}}{{vigencia.Vigencia}}"
+                                                               ng-show="vm.permiteEditar"
+                                                               ng-value="vigencia.Totalsolicitado"
+                                                               ng-model="vm.listaProductos[productosIndex].Fuentes[fuenteIndex].Localizacion[localizacionIndex].Vigencias[vigenciaIndex].Totalsolicitado"
+                                                               ng-keypress="vm.validateFormat($event)"
+                                                               ng-keyup="vm.validarTamanio($event)"
+                                                               ng-blur="vm.actualizaFila($event,producto.ProductoId + '' + fuente.FuenteId + '' + localizacion.LocalizacionId,productosIndex, fuenteIndex, localizacionIndex)"
+                                                               ng-disabled="vm.disabled" style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px" />
+                                                    </td>
+                                                    <td ng-if="vigencia.Vigencia == 'TOTAL'" class="textRightDNP"><span class="uLabelCampo_fp">TOTAL</span></td>
+                                                    <td ng-if="vigencia.Vigencia == 'TOTAL'" class="textRightDNP"><input type="text" class="form-control editInputDNP " style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 500; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px" disabled value="{{vm.ConvertirNumero(vigencia.CostoMGA)}}" /></td>
+                                                    <td ng-if="vigencia.Vigencia == 'TOTAL'" class="textRightDNP"><input type="text" class="form-control editInputDNP " style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 500; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px" disabled value="{{vm.ConvertirNumero(vigencia.RegionalizadoMGA)}}" /></td>
+                                                    <td ng-if="vigencia.Vigencia == 'TOTAL'" class="textRightDNP"><input type="text" class="form-control editInputDNP " style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 500; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px" disabled value="{{vm.ConvertirNumero4(vigencia.MetaMGA)}}" /></td>
+                                                    <td ng-if="vigencia.Vigencia == 'TOTAL'" class="textRightDNP"><input type="text" class="form-control editInputDNP " style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 500; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px" disabled value="{{vm.ConvertirNumero(vigencia.ValorFuente)}}" /></td>
+                                                    <td ng-if="vigencia.Vigencia == 'TOTAL'" class="textRightDNP">
+                                                        <span id="label{{producto.ProductoId}}{{fuente.FuenteId}}{{localizacion.LocalizacionId}}" class="uLabelCampo_fp">
+                                                            {{vm.ConvertirNumero(vigencia.Totalsolicitado)}}
+                                                        </span>
+                                                    </td>
+
+                                                    <td></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+                <!--///////////////////////-->
+                <br />
+            </div>
+        </div>
+        <br />
+    </form>
+    <div class="col-md-12  form-group">
+        <p style="display: grid; text-align: left; margin-top: 2em;">
+            <span style="font-weight:600;">¿Requiere hacer carga masiva?</span>
+            <span style="font-weight:400;">
+                Descargue plantilla en Excel, diligencie los datos y guarde. Cargue nuevamente la plantilla, valídela y adiciónela. Su carga se refejará en la tabla, junto con otras cargas individuales o masivas que haya incluido.
+            </span>
+            <br />
+            <span style="font-weight:400;">
+                Para los valores de las celdas tipo número, utilice el formato "General" en el excel. Seprador de miles el punto (.). &nbsp;&nbsp;&nbsp;
+                <button has-claim has-opciones="['RegionalizacionGR:VerEditar']" type="button" class="btn btn-default btncol" ng-click="vm.exportExcel()"><span class="glyphicon glyphicon-download-alt">&nbsp;</span>Descargar plantilla</button>
+            </span>
+        </p>
+    </div>
+    <div class="col-md-12  form-group">
+        <p style="display: grid; text-align: left; margin-top: 2em;margin-bottom:1em;">
+            <span style="font-weight:400;">
+                Tipo de archivo permitido Excel. Hasta 2MB
+            </span>
+        </p>
+    </div>
+    <div class="col-md-12  form-group">
+        <div class="col-md-6  file-drop-zone" file-dropzone files-to-upload="files" valida-nombre-archivo="validaNombreArchivo" data="nombreArchivo">
+            Arrastre aquí su(s) archivo(s) o haga clic para añadir
+            <div ng-repeat="file in files"><span>Nombre archivo:</span><span class="uLabelDetalle">{{file.nombreArchivo}}</span></div>
+        </div>
+        <div class="col-md-6"></div>
+    </div>
+    <div class="col-md-12  form-group" style="padding-bottom:1em;">
+        <div class="col-md-2">
+            <span class="buttonbar pull-left">
+                <button has-claim has-opciones="['FuentesGR:VerEditar']" type="button" class="btn btn-default btn-md btnFiltroHeader" tooltip-placement="top" ng-click="vm.limpiarArchivo()" uib-tooltip="Eliminar archivo de caja" tabindex="0">
+                    Limpiar
+                </button>
+            </span>
+        </div>
+        <div class="col-md-2">
+            <span class="buttonbar pull-left">
+                <button has-claim has-opciones="['FuentesGR:VerEditar']"
+                        type="button" class="btn btn-default btn-md btnFiltroHeader" tooltip-placement="top" ng-click="vm.validarArchivo()" uib-tooltip="Validar archivo" tabindex="0">
+                    Validar
+                </button>
+            </span>
+        </div>
+        <div class="col-md-2">
+            <span class="buttonbar pull-left">
+                <button has-claim has-opciones="['FuentesGR:VerEditar']"
+                        type="button" class="btn btn-default btn-md btnFiltroHeader"
+                        tooltip-placement="top"
+                        ng-click="vm.archivoSeleccionado()"
+                        uib-tooltip="Procesar archivo"
+                        tabindex="0"
+                        ng-disabled="vm.disabledProcesar">
+                    Procesar Archivo
+                </button>
+            </span>
+        </div>
+        <div class="col-md-6">
+        </div>
+    </div>
+
+</div>

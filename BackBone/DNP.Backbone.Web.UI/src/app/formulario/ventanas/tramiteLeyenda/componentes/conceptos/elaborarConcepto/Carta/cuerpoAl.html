@@ -1,0 +1,236 @@
+﻿<div id="panelcuerpoconcepto" class="paneldatos" style="background-color: white; ">
+    <form name="cuerpoconcepto" ng-submit="vm.guardarCuerpoConcepto()">
+
+        <div class="col-md-8" style="display:inline-flex;">
+            <span class="textRightDNP" style="font-weight: 400 !important;">&nbsp;</span>
+        </div>
+        <div style="text-align: right;" class="col-md-4">
+            <div class="col-md-12 form-group text-right" style="padding-right:2rem;">
+                <!--<button id="Editar"-->
+                <button ng-if="vm.habilitaBotones" id="Editar" name="Editar"
+                        type="button" class="btneditarDNP"
+                        tooltip-placement="top"
+                        uib-tooltip="Clic para editar la información"
+                        ng-click="vm.ActivarEditar()">
+                    {{vm.Editar}}
+                </button>
+                &nbsp;
+                <!--<button id="Guardar"-->
+                <button ng-if="vm.habilitaBotones" id="Guardar"
+                        type="submit" ng-class="vm.getEstiloBtnGuardar()"
+                        tooltip-placement="top"
+                        uib-tooltip="Guardar"
+                        ng-disabled="vm.disabled"
+                        tabindex="0">
+                    GUARDAR
+                </button>
+            </div>
+        </div>
+
+        <div class="col-md-12  field " ng-init="vm.init();" style="padding-bottom:2rem;">
+            <!--TEXTO 1-->
+            <div class="text-left" style="padding-top: 3rem;"> <span style="color: #004884; font-size: 24px; font-weight: 400;">Texto 1: </span> </div>
+            <div class="row" style="padding-top:1rem;">
+                <div class="col-md-6" style="padding-right: 3px; padding-left: 3px;">
+                    <div style="padding-top:2rem;">
+                        <input type="text" name="entidadTramite" class="form-control" ng-readonly="false" ng-model="vm.carta.ListaCartaSecciones[0].ListaCartaCampos[0].DatoValor" required ng-disabled="vm.disabled" />
+                    </div>
+                    <span class="error font_error" data-ng-show="cuerpoconcepto.entidadTramite.$error.required">Texto obligatorio!</span>
+                </div>
+
+                <div class="col-md-4" style="padding-right: 3px; padding-left: 3px;">
+                    <div style="padding-top:2rem;">
+                        <input type="text" name="nombreentidad" class="form-control" style="font-size: 85%" ng-readonly="true" ng-model="vm.carta.Entidad" />
+                    </div>
+                </div>
+                <div class="col-md-1" style="padding-right: 3px; padding-left: 3px;">
+                    <div style="padding-top:2rem;">
+                        <input type="text" name="fechaRadicado" class="form-control" ng-readonly="false" style="font-size: 85%" ng-model="vm.carta.ListaCartaSecciones[0].ListaCartaCampos[1].DatoValor" required ng-disabled="vm.disabled" />
+                    </div>
+                    <span class="error font_error" data-ng-show="cuerpoconcepto.fecha.$error.required">Texto obligatorio!</span>
+                </div>
+                <div class="col-md-1" style="padding-right: 3px; padding-left: 3px;">
+                    <div style="padding-top:2rem;">
+                        <input type="text" name="valorFecha" class="form-control" style="font-size: 85%" ng-readonly="true" ng-model="vm.fechaRadicado" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="padding-top:1rem;">
+                <div class="col-md-2" style="padding-right: 3px; padding-left: 3px;">
+                    <div style="padding-top:1rem;">
+                        <input type="text" name="numeroRadicado" class="form-control" ng-readonly="false" ng-model="vm.carta.ListaCartaSecciones[0].ListaCartaCampos[2].DatoValor" required ng-disabled="vm.disabled" />
+                    </div>
+                    <span class="error font_error" data-ng-show="cuerpoconcepto.ciudad.$error.required">Texto obligatorio!</span>
+                </div>
+                <div class="col-md-4" style="padding-right: 3px; padding-left: 3px;">
+                    <div style="padding-top:1rem;">
+                        <input type="text" name="valorradicado" class="form-control" style="font-size: 85%" ng-readonly="true" ng-model="vm.numeroRadicado" />
+                    </div>
+                </div>
+                <div class="col-md-6" style="padding-right: 3px; padding-left: 3px;">
+                    <div style="padding-top:1rem;">
+                        <input type="text" name="concepto" class="form-control" ng-readonly="false" ng-model="vm.carta.ListaCartaSecciones[0].ListaCartaCampos[3].DatoValor" required ng-disabled="vm.disabled" />
+                    </div>
+                    <span class="error font_error" data-ng-show="cuerpoconcepto.fecha.$error.required">Texto obligatorio!</span>
+                </div>
+            </div>
+
+            <div class="row" style="padding-top:1rem;">
+                <div class="col-md-2" style="padding-right: 3px; padding-left: 3px;">
+                    <div style="padding-top:1rem;">
+                        <input type="text" name="conceptoValor" class="form-control" ng-readonly="true" ng-model="vm.conceptoValor" required />
+                    </div>
+                </div>
+                <div class="col-md-3" style="padding-right: 3px; padding-left: 3px;">
+                    <div style="padding-top:1rem;">
+                        <input type="text" name="recursos" class="form-control" ng-readonly="false" ng-model="vm.carta.ListaCartaSecciones[0].ListaCartaCampos[4].DatoValor" ng-disabled="vm.disabled" />
+                    </div>
+                    <span class="error font_error" data-ng-show="cuerpoconcepto.recursos.$error.required">Texto obligatorio!</span>
+                </div>  
+                <div class="col-md-7" style="padding-right: 3px; padding-left: 3px;">
+                    <div style="padding-top:1rem;">
+                        <input type="text" name="tipoRecurso" class="form-control" ng-readonly="false" ng-model="vm.carta.ListaCartaSecciones[0].ListaCartaCampos[5].DatoValor" required ng-disabled="vm.disabled" />
+                    </div>
+                    <span class="error font_error" data-ng-show="cuerpoconcepto.tipoRecurso.$error.required">Texto obligatorio!</span>
+                </div>
+            </div>
+
+            <div class="row" style="padding-top:1rem;">
+                <div class="col-md-2" style="padding-right: 3px; padding-left: 3px;">
+                    <div style="padding-top:1rem;">
+                        <input type="text" name="tipoRecursoValor" class="form-control" ng-readonly="true" ng-model="vm.establecido" required />
+                    </div>
+                </div>
+                <div class="col-md-3" style="padding-right: 3px; padding-left: 3px;">
+                    <div style="padding-top:1rem;">
+                        <input type="text" name="articulo" class="form-control" ng-readonly="false" ng-model="vm.carta.ListaCartaSecciones[0].ListaCartaCampos[6].DatoValor" required ng-disabled="vm.disabled" />
+                    </div>
+                    <span class="error font_error" data-ng-show="cuerpoconcepto.articulo.$error.required">Texto obligatorio!</span>
+                </div>
+                <div class="col-md-7" style="padding-right: 3px; padding-left: 3px;">
+                    <div style="padding-top:1rem;">
+                        <input type="text" name="presente" class="form-control" ng-readonly="false" ng-model="vm.carta.ListaCartaSecciones[0].ListaCartaCampos[7].DatoValor" required ng-disabled="vm.disabled" />
+                    </div>
+                    <span class="error font_error" data-ng-show="cuerpoconcepto.presente.$error.required">Texto obligatorio!</span>
+                </div>
+            </div>
+
+            <!--SECCION PROGRAMAS-->
+            <div class="row" style="padding-top: 3rem; margin-left: 3px; list-style: none;">
+                <div class="col-md-12 row" list-style: none;">
+                    <div class="col-md-12 bordesencillo" style="font-size: 12px; border-top: 2px solid; border-left: 2px solid; border-right: 2px solid; border-color: rgb(255 255 255);">
+                        <div class="row" style="background-color: #eee;">
+                            <div class="col-md-3" style="padding: 0 !important; display: list-item; height: 45px; border-color: rgb(255 255 255);">
+                                <div class="text-left" style="margin-left: 15px;"> <label style="font-weight: 700; color: black;">Sección</label> </div>
+                            </div>
+                            <div class="col-md-1 " style="padding: 0 !important; display: list-item; height: 45px; border-left: 2px solid; border-color: rgb(255 255 255);">
+                                <div class="text-left" style="margin-left: 15px;"> <label>{{vm.datosProyectoAutorizacion.entidadId}}</label> </div>
+                            </div>
+                            <div class="col-md-8 " style="padding: 0 !important; display: list-item; height: 45px; border-left: 2px solid; border-color: rgb(255 255 255);">
+                                <div class="text-left" style="margin-left: 15px; margin-right: 5px;"> <label>{{vm.datosProyectoAutorizacion.entidad}}</label> </div>
+                            </div>
+                        </div>
+                        <div class="row" style="background-color: #eee; list-style: none;">
+                            <div class="col-md-3" style="padding: 0 !important; display: list-item; height: 45px; border-top: 2px solid; border-bottom: 2px solid; border-color: rgb(255 255 255);">
+                                <div class="text-left" style="margin-left: 15px;"> <label style="font-weight: 700; color: black;">1. Programa</label> </div>
+                            </div>
+                            <div class="col-md-1" style="padding: 0 !important; display: list-item; height: 45px; border-top: 2px solid; border-left: 2px solid; border-bottom: 2px solid; border-color: rgb(255 255 255); ">
+                                <div class="text-left" style="margin-left: 15px;"> <label>{{vm.datosProyectoAutorizacion.programaCodigo}}</label> </div>
+                            </div>
+                            <div class="col-md-8" style="padding: 0 !important; display: list-item; height: 45px; border-top: 2px solid; border-left: 2px solid; border-bottom: 2px solid; border-color: rgb(255 255 255);">
+                                <div class="text-left" style="margin-left: 15px; margin-right: 5px;"> <label>{{vm.datosProyectoAutorizacion.programa}}</label> </div>
+                            </div>
+                        </div>
+                        <div class="row" style="background-color: #eee; list-style: none;">
+                            <div class="col-md-3" style="padding: 0 !important; display: list-item; height: 45px; border-bottom: 2px solid; border-color: rgb(255 255 255);">
+                                <div class="text-left" style="margin-left: 15px;"> <label style="font-weight: 700; color: black;">a. Subprograma</label> </div>
+                            </div>
+                            <div class="col-md-1" style="padding: 0 !important; display: list-item; height: 45px; border-left: 2px solid; border-bottom: 2px solid; border-color: rgb(255 255 255); ">
+                                <div class="text-left" style="margin-left: 15px;"> <label>{{vm.datosProyectoAutorizacion.subProgramaCodigo}}</label> </div>
+                            </div>
+                            <div class="col-md-8" style="padding: 0 !important; display: list-item; height: 45px; border-left: 2px solid; border-bottom: 2px solid; border-color: rgb(255 255 255);">
+                                <div class="text-left" style="margin-left: 15px; margin-right: 5px;"> <label>{{vm.datosProyectoAutorizacion.subPrograma}}</label> </div>
+                            </div>
+                        </div>
+                        <div class="row" style="background-color: #eee; list-style: none;">
+                            <div class="col-md-3" style="padding: 0 !important; height: 45px; border-bottom: 2px solid; border-color: rgb(255 255 255);">
+                                <div class="text-left" style="margin-left: 15px;"> <label style="font-weight: 700; color: black;">Proyecto</label><br /> </div>
+                            </div>
+                            <div class="col-md-1" style="padding: 0 !important; height: 45px; border-left: 2px solid; border-bottom: 2px solid; border-color: rgb(255 255 255);">
+                                <div class="text-left" style="margin-left: 15px;"> <label>{{vm.datosProyectoAutorizacion.codigoPresupuestal}}</label><br /> </div>
+                            </div>
+                            <div class="col-md-8" style="padding: 0 !important; height: 45px;" >
+                                <div style="border-left: 2px solid; border-bottom: 2px solid; border-color: rgb(255 255 255);">
+                                    <div class="row text-left " style="margin-left: 15px; margin-right: 5px; height: 43px; overflow-y: scroll;"> <label>{{vm.datosProyectoAutorizacion.nombreProyecto}}</label> </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="background-color: #eee; list-style: none;">
+                            <div class="col-md-4" style="padding: 0 !important; height: 45px; border-bottom: 2px solid; border-color: rgb(255 255 255); " >
+                                <div class="text-left" style="margin-left: 15px;"> <label style="font-weight: 700; color: black;">Dice</label> </div>
+                            </div>
+                            <div class="col-md-8" style="padding: 0 !important; height: 45px;">
+                                <div style="border-left: 2px solid; border-bottom: 2px solid; border-color: rgb(255 255 255);">
+                                    <div class="row text-left " style="margin-left: 15px; margin-right: 5px; height: 43px; overflow-y: scroll;"> <label>{{vm.datosProyectoAutorizacion.NombreActual}}</label> </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="background-color: #eee; list-style: none;">
+                            <div class="col-md-4" style="padding: 0 !important; height: 45px;">
+                                <div class="text-left" style="margin-left: 15px;"> <label style="font-weight: 700; color: black;">Debe decir</label> </div>
+                            </div>
+                            <div class="col-md-8" style="padding: 0 !important; height: 45px;">
+                                <div style="border-left: 2px solid; border-bottom: 2px solid; border-color: rgb(255 255 255);">
+                                    <div class="row text-left " style="margin-left: 15px; margin-right: 5px; height: 43px; overflow-y: scroll;"> <label>{{vm.datosProyectoAutorizacion.Aclaracion}}</label> </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--TEXTO 2-->
+            <div class="text-left" style="padding-top: 3rem; padding-bottom: 2rem;"> <span style="color: #004884; font-size: 24px; font-weight: 400;">Texto 2: </span> </div>
+            <div class="row" style="padding-top:1rem;" ng-If="!vm.disabled">
+                <div text-angular="text-angular" name="texto2Edit" ng-model="vm.carta.ListaCartaSecciones[0].ListaCartaCampos[8].DatoValor" ta-disabled='disabled' style="display: inline-block;"></div>
+            </div>
+            <div class="row" style="padding-top: 1rem;" ng-show="vm.disabled">
+                <div class="col-md-12 bordesencillo" id="texto2view"></div>
+            </div>
+
+            <!--TEXTO 3-->
+            <div class="text-left" style="padding-top: 3rem; padding-bottom: 2rem;"> <span style="color: #004884; font-size: 24px; font-weight: 400;">Texto 3: </span> </div>
+
+            <div class="row" style="padding-top:1rem;">
+                <div class="col-md-6" style="padding-right: 3px; padding-left: 3px;">
+                    <div style="padding-top:1rem;">
+                        <input type="text" name="presenteConcepto" class="form-control" ng-readonly="false" ng-model="vm.carta.ListaCartaSecciones[0].ListaCartaCampos[9].DatoValor" required ng-disabled="vm.disabled" />
+                    </div>
+                    <span class="error font_error" data-ng-show="cuerpoconcepto.presenteConcepto.$error.required">Texto obligatorio!</span>
+                </div>
+                <div class="col-md-6" style="padding-right: 3px; padding-left: 3px;">
+                    <div style="padding-top:1rem;">
+                        <input type="text" name="presenteConceptoEntidad" class="form-control" ng-readonly="true" ng-model="vm.entidad" required />
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="padding-top:1rem;" ng-If="!vm.disabled">
+                <textarea class="form-control" style="resize: none;" ng-model="vm.carta.ListaCartaSecciones[0].ListaCartaCampos[10].DatoValor"></textarea>
+            </div>
+            <div class="row" style="padding-top: 1rem; border: 2px;" ng-show="vm.disabled">
+                <div class="col-md-12 bordesencillo" id="texto3view"></div>
+            </div>
+
+            
+        </div>
+    </form>
+</div>
+
+
+<link rel='stylesheet' href='../../../../../../../Scripts/textangular/textAngular.min.css'>
+<script src='../../../../../../../Scripts/textangular/textAngular-rangy.min.js'></script>
+<script src='../../../../../../../Scripts/textangular/textAngular-sanitize.min.js'></script>
+<script src='../../../../../../../Scripts/textangular/textAngular.min.js'></script>
+

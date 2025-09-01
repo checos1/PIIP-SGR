@@ -1,0 +1,22 @@
+﻿<section ng-init="vm.obtener();">  
+    <div class="container-fluid inbox">
+        <div class="tab-content">
+            <div class="ui-accordion-container">
+                <div class="alert panel-heading row ui-accordion-header">
+                    <button type="button" data-toggle="collapse" data-target="#sgrsolicitarctusintegradosolicitarintegrado" ng-click="vm.changeArrow('sgrsolicitarctusintegradosolicitarintegrado')">
+                        <span class="d-inline-block" id="alert-sgrsolicitarctusintegradosolicitarintegrado"></span>
+                        <span id="name-capitulo-sgrsolicitarctusintegradosolicitarintegrado"></span>
+                        <span class="hidden" id="id-capitulo-sgrsolicitarctusintegradosolicitarintegrado"></span>
+                        <span id="arrow-sgrsolicitarctusintegradosolicitarintegrado" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#sgrsolicitarctusintegradosolicitarintegrado"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="sgrsolicitarctusintegradosolicitarintegrado">
+                    <solicitar-integrado-sgr guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                                 notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                 notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)">
+                    </solicitar-integrado-sgr>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

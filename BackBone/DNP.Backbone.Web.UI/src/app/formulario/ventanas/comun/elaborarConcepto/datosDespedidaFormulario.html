@@ -1,0 +1,117 @@
+﻿<div id="paneldatosdespedida" class="paneldatos" style="background-color: white;">
+    <form name="datosdespedida" ng-submit="vm.guardarConceptoDatosDespedida(vm.CartaDatosDespedida)">
+
+
+        <div class="col-md-8" style="display:inline-flex;">
+            <span class="textRightDNP" style="font-weight: 400 !important;">&nbsp;</span>
+        </div>
+        <div style="text-align: right;" class="col-md-4">
+            <div class="col-md-12 form-group text-right" style="padding-right:2rem;">
+                <!--<button id="Editar"-->
+                <button ng-if="vm.habilitaBotones" id="Editar" name="Editar"
+                        type="button" class="btneditarDNP"
+                        tooltip-placement="top"
+                        uib-tooltip="Clic para editar la información"
+                        ng-click="vm.ActivarEditar()">
+                    {{vm.Editar}}
+                </button>
+                &nbsp;
+                <!--<button id="Guardar"-->
+                <button ng-if="vm.habilitaBotones" id="Guardar"
+                        type="submit" ng-class="vm.getEstiloBtnGuardar()"
+                        tooltip-placement="top"
+                        uib-tooltip="Guardar"
+                        ng-disabled="vm.disabledc"
+                        tabindex="0">
+                    GUARDAR
+                </button>
+            </div>
+        </div>
+
+        <div class="col-md-12  field " ng-init="vm.init();" style="padding-bottom:2rem;">
+            <div class="row" style="padding-top:5rem;">
+                <div class="col-md-3">
+                    <span class="uLabelCampoNegro">Palabra o frase de despedida *</span>
+                    <div style="padding-top:1rem;">
+                        <input type="text" class="form-control" style="width:100%;" name="frasedespedida" ng-model="vm.CartaDatosDespedida.Tramite[0].PalabraFraseDespedida" required ng-disabled="vm.disabledc" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="padding-top:2rem;">
+                <div class="col-md-12">
+                    <span class="uLabelCampoNegro">Remitente en DNP Departamento Nacional de Planeación *</span>
+                    <div style="padding-top:2rem;">
+                        <input type="text" name="remitentednp" class="form-control" style="width:50%;" ng-model="vm.CartaDatosDespedida.Tramite[0].RemitenteDNP" required ng-disabled="vm.disabledc" />
+                    </div>
+                </div>
+            </div>
+            <div>
+                <h1></h1>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <span class="uLabelCampoNegro">Copiar a: </span>
+                </div>
+            </div>
+            <div ng-repeat="obj in vm.CartaDatosDespedida.Tramite[0].Copiar">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <span class="uLabelCampoNegro">Entidad</span>
+                                <div style="padding-top:1rem;">
+
+                                    <input ng-class="obj.Bloquear == 1? 'disablegrid':''" id="{{'CopiarEntidad'+$index}}" type="text" name="Copiarentidaddinamic" class="form-control" style="width:100%;" ng-model="obj.CopiarEntidad" ng-value="obj.CopiarEntidad" required ng-disabled="vm.disabledc" />
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <span class="uLabelCampoNegro">Servidor</span>
+                                <div style="padding-top:1rem;">
+                                    <input ng-class="obj.Bloquear == 1? 'disablegrid':''" id="{{'CopiarServidor'+$index}}" type="text" name="CopiaServidordinamic" class="form-control" style="width:100%;" ng-model="obj.CopiarServidor" ng-value="obj.CopiarServidor" required ng-disabled="vm.disabledc" />
+                                </div>
+                            </div>
+                            <div class="col-md-1 textCenterDNP">
+                                <br />
+                                <button class="btnaccion" type="button" ng-click="vm.delete($index)" ng-class="obj.Bloquear == 1? 'disablegrid':''" title="Eliminar" ng-disabled="vm.disabledc">
+                                    <span style="cursor:pointer"> <img src="Img/u928.svg"></span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-md-6"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" tyle="padding-top:3rem;">
+                <div class="col-md-12">
+                    <div class="pull-right">
+                        <div>
+                            <h1></h1>
+                        </div>
+                        <a href ng-click="vm.Add( )" tooltip-placement="top" uib-tooltip="Agregar una nueva Entidad y Servidor" ng-If="!vm.disabledc">
+                            Agregar +
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h1></h1>
+            </div>
+            <!--<div class="row" tyle="padding-top:3rem;">
+                <div class="col-md-12">
+                    <span class="buttonbar pull-right">
+                        <button type="submit" class="btn btn-default btn-md" tooltip-placement="top" uib-tooltip="Guardar datos despedida"
+                                tabindex="0">
+                            Guardar
+                        </button>
+                    </span>
+                </div>
+            </div>-->
+        </div>
+    </form>
+
+</div>
+
+<script src="../../../../../Scripts/ui-grid.auto-resize.min.js"></script>

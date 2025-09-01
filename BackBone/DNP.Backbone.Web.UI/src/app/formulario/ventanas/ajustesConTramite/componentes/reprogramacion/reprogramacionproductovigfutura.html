@@ -1,0 +1,26 @@
+﻿<section>
+    <div class="container-fluid inbox" ng-init="vm.init();">
+        <div class="tab-content">
+            <div class="row" style="margin-left:20px">
+                <tabla-resumen-formulario nombrecomponentepaso="{{vm.nombrecomponentepaso}}"
+                                          vigenciaadicionada="vm.vigenciaadicionada"
+                                          modificodatos="vm.modificoDatos"
+                                          guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                          notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                          notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)">
+                </tabla-resumen-formulario>
+            </div>
+            <div class="row" style="margin-left:20px">
+                <tabla-vigencia-futura-producto-formulario nombrecomponentepaso="{{vm.nombreComponenteHijo}}"
+                                                           modificodatos="vm.modificoDatos"
+                                                           vigenciaadicionada="vm.vigenciaadicionada"
+                                                           guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                                           notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                           notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)">
+                </tabla-vigencia-futura-producto-formulario>
+            </div>
+
+
+        </div>
+    </div>
+</section>

@@ -1,0 +1,749 @@
+﻿<style>
+    .d-none {
+        display: none;
+    }
+
+    .content-title {
+        padding-left: 50px;
+    }
+
+    .content-ayuda {
+        font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif;
+        font-weight: 500;
+        font-style: normal;
+        font-size: 14px;
+        color: #4B4B4B;
+    }
+
+    .requiere-niveles {
+        padding: 3px 10px;
+        font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif;
+        font-weight: 500;
+        font-size: 16px;
+        color: #004884;
+        text-align: left;
+        background-color: rgba(230, 239, 253, 1);
+    }
+
+    .objetivo-header {
+        background-color: rgba(249, 252, 253, 1);
+        box-sizing: border-box;
+        border-width: 2px;
+        border-style: solid;
+        border-color: rgba(230, 239, 253, 1);
+        padding: 25px 10px 25px 55px;
+    }
+
+    .objetivo-header {
+        text-align: left;
+    }
+
+        .objetivo-header h4.header-titulo {
+            color: #004884;
+            font-family: 'Work Sans SemiBold Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            margin: 0
+        }
+
+        .objetivo-header p.header-content {
+            font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif;
+            font-weight: 400;
+            font-size: 16px;
+            color: #4B4B4B;
+            margin: 0;
+        }
+
+    .objetivo-productos .divAccordionDNP {
+        border-top: 0;
+        max-height: fit-content;
+    }
+
+    .productos-nivel-1 .LineaEncabezadodivDNP {
+        margin-left: 15px;
+    }
+
+    .ico-check {
+        color: #004884;
+    }
+
+    .f-16 {
+        font-size: 16px;
+    }
+
+    .font-total {
+        font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif;
+        font-weight: 400;
+        color: #4B4B4B;
+    }
+
+    .font-Actividades {
+        font-family: 'Work Sans Medium', 'Work Sans Regular Roman', 'Work Sans', sans-serif;
+        font-weight: 500;
+        font-style: normal;
+        font-size: 16px;
+        color: #004884;
+        line-height: 22px;
+        margin-left: 97px !important;
+    }
+
+    .list-Actividades {
+        background-color: white;
+        box-sizing: border-box;
+        border-width: 2px;
+        border-style: solid;
+        border-color: rgba(230, 239, 253, 1);
+        border-radius: 0px;
+        font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif;
+        font-style: normal;
+        margin-left: 54px;
+        margin-right: 10px;
+    }
+
+    .progAct-list-Actividades-simples {
+        background-color: white;
+        box-sizing: border-box;
+        border-width: 2px;
+        border-style: solid;
+        border-color: rgba(230, 239, 253, 1);
+        border-radius: 0px;
+        font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif;
+        font-style: normal;
+    }
+
+    .divisor-Actividades {
+        border-width: 0px;
+        position: absolute;
+        left: 56px;
+        top: 12px;
+        width: 29px;
+        height: 17px;
+        background: inherit;
+        background-color: rgba(255, 255, 255, 1);
+        box-sizing: border-box;
+        border-width: 2px;
+        border-style: solid;
+        border-color: rgba(51, 102, 204, 1);
+        border-top: 0px;
+        border-right: 0px;
+        border-radius: 0px;
+        border-top-left-radius: 0px;
+        border-bottom-right-radius: 0px;
+        -moz-box-shadow: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
+
+    .contenedor-Actividades {
+        position: relative;
+    }
+
+    /* Modificaciones estructura */
+    .productos-nivel-1 .tituloEncabezadodivDNP {
+        margin-left: 95px !important;
+        width: auto !important;
+    }
+
+    .productos-nivel-1-content .panel-headingAcc2DNP {
+        height: auto !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+
+    .productos-nivel-1-content .LineaEncabezado2divDNP {
+        margin-top: 0px !important;
+        margin-left: 16px !important;
+        width: 145px !important;
+    }
+
+    .productos-nivel-1-content .LineaEncabezado3divDNP {
+        margin-top: 0px !important;
+        margin-left: 16px !important;
+        width: 190px !important;
+    }
+
+    .productos-nivel-1-content .LineaEncabezado4divDNP {
+        margin-top: 0px !important;
+        margin-left: 16px !important;
+        width: 240px !important;
+    }
+
+    .productos-nivel-1-content .tituloEncabezadodiv2DNP {
+        margin-left: 145px !important;
+        width: auto !important;
+    }
+
+    .productos-nivel-1-content .tituloEncabezadodiv3DNP {
+        margin-left: 205px !important;
+        width: auto !important;
+    }
+
+    .productos-nivel-1-content .tituloEncabezadodiv4DNP {
+        margin-left: 255px !important;
+        width: auto !important;
+    }
+
+    .productos-nivel-1 .btneditarDNP {
+        width: auto !important;
+    }
+
+    .nivel-sin-actividad {
+        height: 130px;
+        background-color: rgba(249, 252, 253, 1);
+        border-width: 2px;
+        border-style: solid;
+        border-color: rgba(230, 239, 253, 1);
+        border-radius: 0px;
+        -moz-box-shadow: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 14px;
+        color: #4B4B4B;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .title-actividades {
+        margin-bottom: 20px;
+    }
+
+    .align-selft-center {
+        align-self: center;
+    }
+
+    .d-flex {
+        display: flex;
+    }
+
+    .detalle-nivel-1 {
+        margin-left: 55px;
+    }
+
+        .detalle-nivel-1 > span {
+            margin-left: 0;
+        }
+
+    .detalle-nivel {
+        margin-left: 55px;
+    }
+
+        .detalle-nivel > span {
+            margin-left: 0;
+        }
+
+    .panelbtnalertAcordnp {
+        display: inline-flex;
+        margin: 10px;
+    }
+
+    .errores-contenedor-indicador {
+        margin: 15px 0 0 5px;
+    }
+
+    .panel-contenedor {
+    }
+
+    .detalle-actividad-cell {
+        height: 70px;
+        overflow-y: auto;
+    }
+
+    .actividad-width-80 {
+        width: 100px;
+    }
+
+    .actividad-width-180 {
+        width: 180px;
+    }
+
+    .actividad-width-90 {
+        width: 120px;
+    }
+</style>
+
+<section class="container-fluid inbox" ng-init="vm.init();">
+    <button id="refresh" ng-click="vm.refreshIndicador()" hidden></button>
+    <div class="row">
+        <br />
+        <div class="col-md-12">
+            <div class="col-md-1">
+
+            </div>
+            <div class="col-md-1">
+                <div class="divInfoAplicRADNP">
+                    <span><img src="Img/u2392.svg" />  Abierto</span>
+                </div>
+            </div>
+            <div class="col-md-1">
+
+            </div>
+            <div class="col-md-4">
+                <div class="form-group editReferenciaDNP" ng-if="vm.periodos.length > 0" style="text-align:center;padding-top:8px">
+                    <span><b>{{vm.periodos[0].Vigencia}}/{{vm.periodos[0].Mes}}.</b> {{vm.periodos[0].FechaDesde | date:'dd/MM/yyyy'}} - {{vm.periodos[0].FechaHasta | date:'dd/MM/yyyy'}}</span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group editReferenciaDNP" ng-if="vm.periodos.length == 2" style="text-align: center; padding-top: 8px">
+                    <span><b>{{vm.periodos[1].Vigencia}}/{{vm.periodos[1].Mes}}.</b> {{vm.periodos[1].FechaDesde | date:'dd/MM/yyyy'}} - {{vm.periodos[1].FechaHasta | date:'dd/MM/yyyy'}}</span>
+                </div>
+            </div>
+            <div class="col-md-1">
+
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="objetivos-container">
+        <div class="pr-3" ng-if="vm.listadoIndicadoresPolitica.length == 0">
+            <div class="mb-4">
+                <div class="objetivo-header">
+                    <h4 class="header-titulo">
+                        Este capítulo solo aplica para las políticas Equidad de la Mujer y Construcción de Paz.
+                    </h4>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-1">
+            </div>
+            <div class="col-md-10">
+                <table class="table no-border" cellpadding="5" cellspacing="5">
+                    <thead>
+                        <tr>
+                            <td style="border-top:0px !important; padding:1px !important; text-align:center" ng-repeat="politica in vm.listadoIndicadoresPolitica">
+                                <span class="form-control" style="height:50px !important">
+                                    <span class="errores-contenedor-indicador text-left color-red d-none" id="politica-error-button-{{politica.PoliticaId}}">
+                                        <span class="img iconadverdnp"><img src="Img/u4630.svg"> </span>
+                                        <span class="messagealerttableDNP" id="politica-error-button-{{politica.PoliticaId}}-txt">
+                                        </span>
+                                    </span>
+                                    <a href="" class=" nav-link" style="text-decoration:none" ng-click="vm.ConsultarDetallePolitica(politica.PoliticaId)">{{politica.NombrePolitica}}</a>
+                                </span>
+                            </td>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <div class="col-md-1">
+            </div>
+        </div>
+        <br />
+        <div class="pr-3" ng-repeat="politica in vm.listadoIndicadoresPolitica">
+            <div class="mb-4 panel-contenedor d-none" id="politica-panel-{{politica.PoliticaId}}">
+                <!-- Objetivos-->
+                <div class="col-md-12">
+                    <h3 class="text-left ui-seccion-title mb-5">
+                        <span id="progReporAct-politica-nombre-{{politicaIndex}}-max"> Política {{politica.NombrePolitica}}</span>
+                    </h3>
+                </div>
+                <div class="objetivo-header">
+                </div>
+                <!-- Productos-->
+                <div class="objetivo-productos" ng-repeat="fuentes in politica.Fuentes">
+                    <div class="card card-body divAccordionDNP">
+                        <div class="content-title">
+                            <div class="mb-2">
+                                <span class="errores-contenedor-indicador text-left color-red d-none" id="fuente-error-button-{{fuentes.FuenteId}}">
+                                    <span class="img iconadverdnp"><img src="Img/u4630.svg"> </span>
+                                    <span class="messagealerttableDNP" id="fuente-error-button-{{fuentes.FuenteId}}-txt"></span>
+                                </span>
+                                <span class="uLabelCampo">Fuente: </span>
+                                <span id="progReporAct-fuente-nombre-{{fuentes.FuenteId}}-min"> {{fuentes.NombreFuenteCorto}}</span>
+                                <span class="hidden" id="progReporAct-fuente-nombre-{{fuentes.FuenteId}}-max"> {{fuentes.NombreFuente}}</span>
+                                <a id="progReporAct-fuente-nombre-{{fuentes.FuenteId}}-val"
+                                   ng-if="fuentes.NombreFuenteCorto !=fuentes.NombreFuente"
+                                   ng-click="vm.verNombreCompleto('progReporAct-fuente-nombre-', fuentes.FuenteId)">VER MÁS</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="objetivo-productos" ng-repeat="categorias in fuentes.Categorias">
+                        <div class="card card-body divAccordionDNP">
+                            <div class="content-title">
+                                <div class="mb-2">
+                                    <span class="uLabelCampo">Categoría: </span>
+                                    <span id="progReporAct-categoria-nombre-{{categorias.CategoriaId}}-min"> {{categorias.NombreCategoriaCorto}}</span>
+                                    <span class="hidden" id="progReporAct-categoria-nombre-{{categorias.CategoriaId}}-max"> {{categorias.NombreCategoria}}</span>
+                                    <a id="progReporAct-categoria-nombre-{{categorias.CategoriaId}}-val"
+                                       ng-if="categorias.NombreCategoriaCorto !=categorias.NombreCategoria"
+                                       ng-click="vm.verNombreCompleto('progReporAct-categoria-nombre-', categorias.CategoriaId)">VER MÁS</a>
+                                </div>
+                                <div class="mb-2">
+                                    <span class="uLabelCampo">Subcategoría: </span>
+                                    <span id="progReporAct-subcategoria-nombre-{{categorias.CategoriaId}}-min"> {{categorias.NombreSubCategoriaCorto}}</span>
+                                    <span class="hidden" id="progReporAct-subcategoria-nombre-{{categorias.CategoriaId}}-max"> {{categorias.NombreSubCategoria}}</span>
+                                    <a id="progReporAct-subcategoria-nombre-{{categorias.CategoriaId}}-val"
+                                       ng-if="categorias.NombreSubCategoriaCorto !=categorias.NombreSubCategoria"
+                                       ng-click="vm.verNombreCompleto('progReporAct-subcategoria-nombre-', categorias.CategoriaId)">VER MÁS</a>
+                                </div>
+                            </div>
+                            <div class="progReporAct-list-Actividades-simples my-3">
+                                <table class="TableDNP">
+                                    <thead>
+                                        <tr>
+                                            <th class="columAcc"></th>
+                                            <th class="textLeftDNP">Vigencia/Periodo</th>
+                                            <th class="textLeftDNP">Comparativo</th>
+                                            <th class="textRightDNP">Compromisos $ </th>
+                                            <th class="textRightDNP">Obligaciones $ </th>
+                                            <th class="textRightDNP">Pagos $ </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody ng-repeat="reporteCategorias in categorias.ReporteCategorias">
+                                        <tr>
+                                            <td class="columAcc"
+                                                style="background: transparent">
+                                            </td>
+                                            <td class="textLeftDNP"><div class="blockReferenciaDNP">{{reporteCategorias.Vigencia}}/{{reporteCategorias.Mes}}</div></td>
+                                            <td class="textLeftDNP">
+                                                <div class="blockReferenciaDNP">{{reporteCategorias.IndicadorId == 1 ? 'Avance indicadores' : 'Avance categoría - subcategoría' }}</div>
+
+                                            </td>
+                                            <td class="textRightDNP">
+                                                <div class="blockReferenciaDNP">{{reporteCategorias.ValorCompromisos | number:2}}</div>
+
+                                            </td>
+                                            <td class="textRightDNP">
+                                                <div class="blockReferenciaDNP">{{reporteCategorias.ValorObligaciones | number:2}}</div>
+
+                                            </td>
+                                            <td class="textRightDNP">
+                                                <div class="blockReferenciaDNP">{{reporteCategorias.ValorPagos | number:2}}</div>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="content-title">
+                                <div class="mb-2">
+                                    <span class="errores-contenedor-indicador text-left color-red d-none" id="categoria-error-button-{{categorias.CategoriaId}}-{{politica.PoliticaId}}">
+                                        <span class="img iconadverdnp"><img src="Img/u4630.svg"> </span>
+                                        <span class="messagealerttableDNP" id="categoria-error-button-{{categorias.CategoriaId}}-{{politica.PoliticaId}}-txt"></span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="panelbtnalertAcordnp">
+                                <button id="button-{{fuentes.FuenteId}}-{{categorias.CategoriaId}}-{{politica.PoliticaId}}"
+                                        class="btnaccion btnAccordionDNP"
+                                        type="button"
+                                        data-toggle="collapse"
+                                        data-target="#progReporAct-indicador-{{fuentes.FuenteId}}-{{categorias.CategoriaId}}-{{politica.PoliticaId}}"
+                                        ng-click="vm.abrilNivel('progReporAct-indicador-'+fuentes.FuenteId+'-'+categorias.CategoriaId+'-'+politica.PoliticaId,fuentes.FuenteId, categorias.CategoriaId, politica.PoliticaId)">
+                                    <img src="Img/btnMas.svg" id="progReporAct-indicador-{{fuentes.FuenteId}}-{{categorias.CategoriaId}}-{{politica.PoliticaId}}-mas">
+                                    <img class="hidden" src="Img/btnMenos.svg" id="progReporAct-indicador-{{fuentes.FuenteId}}-{{categorias.CategoriaId}}-{{politica.PoliticaId}}-menos">
+                                </button>
+                                <span class="text-fuente">
+                                    <span class="uLabelCampo">Reporte avance de indicadores de política</span>
+                                </span>
+                            </div>
+                        </div>
+
+
+
+                        <div ng-if="vm.iFuenteS == fuentes.FuenteId && vm.iCategoriaS == categorias.CategoriaId && vm.iPoliticaS == politica.PoliticaId">
+                            <div class="collapse localizaciones" id="progReporAct-indicador-{{fuentes.FuenteId}}-{{categorias.CategoriaId}}-{{politica.PoliticaId}}" ng-if="categorias.Indicadores.length > 0">
+                                <div class="LineaEncabezadodivDNP mt-0"></div>
+                                <div class="inlineBlock">
+                                    <div class="tituloEncabezadodivDNP">
+                                        Indicadores
+                                    </div>
+                                </div>
+                                <div class="objetivo-productos" ng-repeat="indicadores in categorias.Indicadores">
+                                    <div class="card card-body divAccordionDNP">
+                                        <div class="content-title">
+                                            <div class="mb-2">
+                                                <span class="uLabelCampo">{{indicadores.CodigoIndicador}}</span>
+                                                <span id="progReporAct-indicadores-nombre-{{indicadores.IndicadorId}}-{{categorias.CategoriaId}}-{{politica.PoliticaId}}-min"> {{indicadores.NombreIndicadorCorto}}</span>
+                                                <span class="hidden" id="progReporAct-indicadores-nombre-{{indicadores.IndicadorId}}-{{categorias.CategoriaId}}-{{politica.PoliticaId}}-max"> {{indicadores.NombreIndicador}}</span>
+                                                <a id="progReporAct-indicadores-nombre-{{indicadores.IndicadorId}}-{{categorias.CategoriaId}}-{{politica.PoliticaId}}-val"
+                                                   ng-if="indicadores.NombreIndicadorCorto !=indicadores.NombreIndicador"
+                                                   ng-click="vm.verNombreCompleto('progReporAct-indicadores-nombre-', indicadores.IndicadorId+'-'+categorias.CategoriaId+'-'+politica.PoliticaId)">VER MÁS</a>
+                                            </div>
+                                        </div>
+                                        <div class="panelbtnalertAcordnp">
+                                            <button id="button-{{indicadores.IndicadorId}}-{{categorias.CategoriaId}}-{{politica.PoliticaId}}"
+                                                    class="btnaccion btnAccordionDNP"
+                                                    type="button"
+                                                    data-toggle="collapse"
+                                                    data-target="#reporProgramar-localizaciones-{{indicadores.IndicadorId}}-{{categorias.CategoriaId}}-{{politica.PoliticaId}}"
+                                                    ng-click="vm.abrilNiveliIndicador('reporProgramar-localizaciones-'+indicadores.IndicadorId+'-'+categorias.CategoriaId+'-'+politica.PoliticaId, indicadores.IndicadorId)">
+                                                <img src="Img/btnMas.svg" id="reporProgramar-localizaciones-{{indicadores.IndicadorId}}-{{categorias.CategoriaId}}-{{politica.PoliticaId}}-mas">
+                                                <img class="hidden" src="Img/btnMenos.svg" id="reporProgramar-localizaciones-{{indicadores.IndicadorId}}-{{categorias.CategoriaId}}-{{politica.PoliticaId}}-menos">
+                                            </button>
+                                            <span class="errores-contenedor-indicador text-left color-red d-none" id="indicadores-error-button-{{indicadores.IndicadorId}}-{{categorias.CategoriaId}}-{{politica.PoliticaId}}">
+                                                <span class="img iconadverdnp"><img src="Img/u4630.svg"> </span>
+                                                <span class="messagealerttableDNP" id="indicadores-error-button-{{indicadores.IndicadorId}}-{{categorias.CategoriaId}}-{{politica.PoliticaId}}-txt"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div ng-if="vm.iCategoriaS == categorias.CategoriaId && vm.iPoliticaS == politica.PoliticaId && vm.iIndicadorS == indicadores.IndicadorId">
+                                        <div class="collapse localizaciones" id="reporProgramar-localizaciones-{{indicadores.IndicadorId}}-{{categorias.CategoriaId}}-{{politica.PoliticaId}}" ng-if="indicadores.Localizaciones.length > 0">
+                                            <div class="LineaEncabezadodivDNP mt-0"></div>
+                                            <div class="inlineBlock">
+                                                <div class="tituloEncabezadodivDNP">
+                                                    Localizaciones
+                                                </div>
+                                            </div>
+                                            <div class="progReporAct-list-Actividades-simples my-3">
+                                                <table class="TableDNP">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="columAcc" style="width:5%"></th>
+                                                            <th class="textLeftDNP">Departamento</th>
+                                                            <th class="textLeftDNP actividad-width-80">Municipio</th>
+                                                            <th class="textLeftDNP">Tipo de agrupación</th>
+                                                            <th class="textLeftDNP">Agrupación</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody ng-repeat="localizaciones in indicadores.Localizaciones">
+                                                        <tr>
+                                                            <td class="columAcc"
+                                                                style="background: transparent; width:5%">
+                                                                <div class="panelbtnalertAcordnp">
+                                                                    <button id="button-{{indicadores.IndicadorId}}-{{localizaciones.LocalizacionId}}-{{categorias.CategoriaId}}-{{politica.PoliticaId}}"
+                                                                            class="btnaccion btnAccordionDNP"
+                                                                            type="button"
+                                                                            data-toggle="collapse"
+                                                                            data-target="#reporProgramarindicadores-{{indicadores.IndicadorId}}-{{localizaciones.LocalizacionId}}-{{categorias.CategoriaId}}-{{politica.PoliticaId}}"
+                                                                            ng-click="vm.abrilNiveliLocalizacion('reporProgramarindicadores-'+indicadores.IndicadorId+'-'+localizaciones.LocalizacionId+'-'+categorias.CategoriaId+'-'+politica.PoliticaId, localizaciones.LocalizacionId)">
+                                                                        <img src="Img/btnMas.svg" id="reporProgramarindicadores-{{indicadores.IndicadorId}}-{{localizaciones.LocalizacionId}}-{{categorias.CategoriaId}}-{{politica.PoliticaId}}-mas">
+                                                                        <img class="hidden" src="Img/btnMenos.svg" id="reporProgramarindicadores-{{indicadores.IndicadorId}}-{{localizaciones.LocalizacionId}}-{{categorias.CategoriaId}}-{{politica.PoliticaId}}-menos">
+                                                                    </button>
+                                                                    <span class="errores-contenedor-indicador text-left color-red d-none" id="localizacion-error-button-{{indicadores.IndicadorId}}-{{localizaciones.LocalizacionId}}-{{categorias.CategoriaId}}-{{politica.PoliticaId}}">
+                                                                        <span class="img iconadverdnp"><img src="Img/u4630.svg"> </span>
+                                                                        <span class="messagealerttableDNP" id="localizacion-error-button-{{indicadores.IndicadorId}}-{{localizaciones.LocalizacionId}}-{{categorias.CategoriaId}}-{{politica.PoliticaId}}-txt"></span>
+                                                                    </span>
+                                                                </div>
+
+                                                            </td>
+                                                            <td class="textLeftDNP">{{localizaciones.NombreDepartamento}}</td>
+                                                            <td class="textLeftDNP">{{localizaciones.NombreMunicipio}}</td>
+                                                            <td class="textLeftDNP">{{localizaciones.NombreAgrupacion}}</td>
+                                                            <td class="textLeftDNP">{{ localizaciones.NombreTipoAgrupacion}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="8" class="p-0">
+                                                                <div class="no-border collapse " ng-if="vm.iCategoriaS == categorias.CategoriaId && vm.iPoliticaS == politica.PoliticaId && vm.iIndicadorS == indicadores.IndicadorId && vm.iLocalizacionS == localizaciones.LocalizacionId"
+                                                                     id="reporProgramarindicadores-{{indicadores.IndicadorId}}-{{localizaciones.LocalizacionId}}-{{categorias.CategoriaId}}-{{politica.PoliticaId}}">
+                                                                    <div class="LineaEncabezado2tabDNP"></div>
+                                                                    <h3 class="row tituloEncabezadotabDNP">
+                                                                        Recursos del indicador
+                                                                    </h3>
+                                                                    <div class="col-md-12">
+                                                                        <h3 class="text-left ui-seccion-title mb-5">
+                                                                            Recursos indicador de política
+                                                                            <span class="buttonbar pull-right">
+                                                                                <button id="ReporteEditarAvance-{{indicadores.IndicadorId}}-{{localizaciones.LocalizacionId}}-{{categorias.CategoriaId}}-{{politica.PoliticaId}}" type="button" class="btneditarDNP" tooltip-placement="top"
+                                                                                        ng-click="indicadores.HabilitaEditar ? vm.habilitaEditarAvance(indicadores,1) : vm.habilitaEditarAvance(indicadores,0)"
+                                                                                        uib-tooltip="{{indicadores.HabilitaEditar ? 'CANCELAR' : 'EDITAR'}}" ng-if="!vm.soloLectura">
+                                                                                    {{indicadores.HabilitaEditar  ? 'CANCELAR' : 'EDITAR'}}
+                                                                                </button>
+                                                                                <button id="ReporteGuardarAvance-{{indicadores.IndicadorId}}-{{localizaciones.LocalizacionId}}-{{categorias.CategoriaId}}-{{politica.PoliticaId}}" type="submit" ng-class="indicadores.HabilitaEditar  ? 'btnguardarDNP' : 'btnguardarDisabledDNP' "
+                                                                                        tooltip-placement="top" ng-click="vm.actualizarVigenciaAvance(localizaciones,politica.PoliticaId,fuentes.FuenteId,categorias.CategoriaId,localizaciones.LocalizacionId,indicadores.IndicadorId)" ng-disabled="!indicadores.HabilitaEditar"
+                                                                                        ng-if="!vm.soloLectura">
+                                                                                    GUARDAR
+                                                                                </button>
+                                                                            </span>
+                                                                        </h3>
+                                                                    </div>
+                                                                    <div class="progReporAct-list-Actividades-simples my-3">
+                                                                        <table class="TableDNP">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th class="columAcc" style="width:2%"></th>
+                                                                                    <th class="textLeftDNP" style="width:18%">Vigencia/Periodo</th>
+                                                                                    <!--<th class="textRightDNP">Vigente $ </th>-->
+                                                                                    <th class="textRightDNP" style="width:21%">Compromisos $ </th>
+                                                                                    <th class="textRightDNP" style="width:21%">Obligaciones $ </th>
+                                                                                    <th class="textRightDNP" style="width:21%">Pagos $ </th>
+                                                                                    <th class="textLeftDNP" style="width:17%">Observación </th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody ng-repeat="reporteIndicadores in localizaciones.ReporteIndicadores">
+                                                                                <tr>
+                                                                                    <td class="columAcc"
+                                                                                        style="background: transparent; width:2%">
+                                                                                    </td>
+                                                                                    <td class="textLeftDNP" style="width:18%"><div class="blockReferenciaDNP">{{reporteIndicadores.Vigencia}}/{{reporteIndicadores.Mes}}</div></td>
+                                                                                    <!--<td class="textRightDNP">
+                                                                                        <div class="blockReferenciaDNP" ng-if="!indicadores.HabilitaEditar">{{reporteIndicadores.ValorVigenteAnterior | number:2}}</div>
+                                                                                        <input type="number" string-to-number min="0.00"
+                                                                                               ng-if="indicadores.HabilitaEditar"
+                                                                                               ng-value="reporteIndicadores.ValorVigente"
+                                                                                               ng-model="reporteIndicadores.ValorVigente"
+                                                                                               ng-blur="vm.recorrerObjetivosNumber($event)"
+                                                                                               ng-keypress="vm.validateFormat($event)"
+                                                                                               ng-keyup="vm.validarTamanio($event)" />
+                                                                                    </td>-->
+                                                                                    <td class="textRightDNP" style="width:21%">
+                                                                                        <div class="blockReferenciaDNP" ng-if="!indicadores.HabilitaEditar">{{reporteIndicadores.ValorCompromisos | number:2}}</div>
+                                                                                        <input type="text"
+                                                                                               ng-if="indicadores.HabilitaEditar"
+                                                                                               ng-value="reporteIndicadores.ValorCompromisos"
+                                                                                               ng-model="reporteIndicadores.ValorCompromisos"
+                                                                                               ng-blur="vm.recorrerObjetivosNumber($event)"
+                                                                                               ng-keypress="vm.validateFormatNegative($event)"
+                                                                                               ng-keyup="vm.validarTamanioNegative($event)" />
+                                                                                    </td>
+                                                                                    <td class="textRightDNP" style="width:21%">
+                                                                                        <div class="blockReferenciaDNP" ng-if="!indicadores.HabilitaEditar">{{reporteIndicadores.ValorObligaciones | number:2}}</div>
+                                                                                        <input type="text"
+                                                                                               ng-if="indicadores.HabilitaEditar"
+                                                                                               ng-value="reporteIndicadores.ValorObligaciones"
+                                                                                               ng-model="reporteIndicadores.ValorObligaciones"
+                                                                                               ng-blur="vm.recorrerObjetivosNumber($event)"
+                                                                                               ng-keypress="vm.validateFormatNegative($event)"
+                                                                                               ng-keyup="vm.validarTamanioNegative($event)" />
+                                                                                    </td>
+                                                                                    <td class="textRightDNP" style="width:21%">
+                                                                                        <div class="blockReferenciaDNP" ng-if="!indicadores.HabilitaEditar">{{reporteIndicadores.ValorPagosAnterior | number:2}}</div>
+                                                                                        <input type="text"
+                                                                                               ng-if="indicadores.HabilitaEditar"
+                                                                                               ng-value="reporteIndicadores.ValorPagos"
+                                                                                               ng-model="reporteIndicadores.ValorPagos"
+                                                                                               ng-blur="vm.recorrerObjetivosNumber($event)"
+                                                                                               ng-keypress="vm.validateFormatNegative($event,2)"
+                                                                                               ng-keyup="vm.validarTamanioNegative($event,2)" />
+                                                                                    </td>
+                                                                                    <td class="textLeftDNP" style="width:17%">
+                                                                                        <div class="blockReferenciaDNP" ng-if="!indicadores.HabilitaEditar">{{reporteIndicadores.ObservacionesAnterior}}</div>
+                                                                                        <div class="textAreDivRes" ng-if="indicadores.HabilitaEditar">
+                                                                                            <textarea ng-value="reporteIndicadores.Observaciones"
+                                                                                                      ng-model="reporteIndicadores.Observaciones" maxlength="500"
+                                                                                                      placeholder="Escriba su obseración"></textarea>
+                                                                                        </div>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                    <div class="col-md-12">
+                                                                        <h3 class="text-left ui-seccion-title mb-5">
+                                                                            Resumen indicador de política
+                                                                        </h3>
+                                                                    </div>
+                                                                    <div class="tab-content">
+                                                                        <div class="tab-pane active cont col-md-12 p-0" id="cantidadesResumen-{{vigencia.Vigencia}}-{{indicadores.IndicadorId}}-{{localizaciones.LocalizacionId}}-{{categorias.CategoriaId}}-{{politica.PoliticaId}}">
+                                                                            <div class="alert panel-heading" style="height: 50px;">
+                                                                                <div class="col-md-12">
+                                                                                    <table class="TableDNP no-border">
+                                                                                        <thead>
+                                                                                            <tr>
+                                                                                                <th class="columAcc" style="width:2%"></th>
+                                                                                                <th class="textLeftDNP" style="width:20%">Vigencia</th>
+                                                                                                <!--<th class="textRightDNP">Vigente $ </th>-->
+                                                                                                <th class="textRightDNP" style="width:26%">Compromisos $ </th>
+                                                                                                <th class="textRightDNP" style="width:26%">Obligaciones $ </th>
+                                                                                                <th class="textRightDNP" style="width:26%">Pagos $ </th>
+                                                                                            </tr>
+                                                                                        </thead>
+                                                                                        <tbody ng-repeat="vigencia in localizaciones.Vigencias">
+                                                                                            <tr>
+                                                                                                <td class="columAcc"
+                                                                                                    style="background: transparent; width:2%">
+                                                                                                    <button class="btnaccion " style="margin-left: -5px" type="button" ng-click="vm.AbrilNivelResumen('detailResumen-'+vigencia.Vigencia+'-'+indicadores.IndicadorId+'-'+localizaciones.LocalizacionId+'-'+categorias.CategoriaId+'-'+politica.PoliticaId, vigencia.Vigencia)"
+                                                                                                            data-toggle="collapse"
+                                                                                                            data-target="#detailResumen-{{vigencia.Vigencia}}-{{indicadores.IndicadorId}}-{{localizaciones.LocalizacionId}}-{{categorias.CategoriaId}}-{{politica.PoliticaId}}">
+
+                                                                                                        <img id="detailResumen-{{vigencia.Vigencia}}-{{indicadores.IndicadorId}}-{{localizaciones.LocalizacionId}}-{{categorias.CategoriaId}}-{{politica.PoliticaId}}-mas" style="width:18px;height:18px" src="Img/btnMasTb.svg">
+                                                                                                        <img class="hidden" id="detailResumen-{{vigencia.Vigencia}}-{{indicadores.IndicadorId}}-{{localizaciones.LocalizacionId}}-{{categorias.CategoriaId}}-{{politica.PoliticaId}}-menos" style="width:18px;height:18px" src="Img/btnMenosTb.svg">
+                                                                                                        <span id="icoResumen-{{vigencia.Vigencia}}-{{indicadores.IndicadorId}}-{{localizaciones.LocalizacionId}}-{{categorias.CategoriaId}}-{{politica.PoliticaId}}" style="display:none">+</span>
+                                                                                                    </button>
+                                                                                                </td>
+                                                                                                <td class="textLeftDNP" style="width:20%"><span>{{vigencia.Vigencia}}</span></td>
+                                                                                                <!--<td class="textRightDNP"><span>{{vigencia.TotalVigencia | number:2}}</span></td>-->
+                                                                                                <td class="textRightDNP" style="width:26%"><span>{{vigencia.TotalCompromisos | number:2}}</span></td>
+                                                                                                <td class="textRightDNP" style="width:26%"><span>{{vigencia.TotalObligaciones | number:2}}</span></td>
+                                                                                                <td class="textRightDNP" style="width:26%"><span>{{vigencia.TotalPagos | number:2}}</span></td>
+                                                                                            </tr>
+                                                                                            <tr class="no-border collapse " ng-if="vm.iCategoriaS == categorias.CategoriaId && vm.iPoliticaS == politica.PoliticaId && vm.iIndicadorS == indicadores.IndicadorId && vm.iLocalizacionS == localizaciones.LocalizacionId && vm.iVigenciaS == vigencia.Vigencia"
+                                                                                                id="detailResumen-{{vigencia.Vigencia}}-{{indicadores.IndicadorId}}-{{localizaciones.LocalizacionId}}-{{categorias.CategoriaId}}-{{politica.PoliticaId}}">
+                                                                                                <td colspan="8" class="p-0">
+                                                                                                    <div class="LineaEncabezado2divDNP" style="margin-top: 0px; margin-left: 11px;"></div>
+                                                                                                    <h3 class="row tituloEncabezadodivDNP" style="margin-left:17%;width:83%">
+                                                                                                        Detalle {{vigencia.Vigencia}}
+                                                                                                    </h3>
+                                                                                                    <div class="level-1-content mt-4">
+                                                                                                        <table class="TableDNP no-border">
+                                                                                                            <thead>
+                                                                                                                <tr>
+                                                                                                                    <th class="columAcc" style="width:2%"></th>
+                                                                                                                    <th class="textLeftDNP" style="width:18%"><span>Periodo </span></th>
+                                                                                                                    <!--<th class="textRightDNP">Vigente $ </th>-->
+                                                                                                                    <th class="textRightDNP" style="width:21%">Compromisos $ </th>
+                                                                                                                    <th class="textRightDNP" style="width:21%">Obligaciones $ </th>
+                                                                                                                    <th class="textRightDNP" style="width:21%">Pagos $ </th>
+                                                                                                                    <th class="textLeftDNP" style="width:17%">Observación </th>
+                                                                                                                </tr>
+                                                                                                            </thead>
+                                                                                                            <tbody ng-repeat="programacionVigenciaIndicadores in vigencia.ProgramacionVigenciaIndicadores">
+                                                                                                                <tr>
+                                                                                                                    <td style="width:2%">
+                                                                                                                    </td>
+                                                                                                                    <td class="textLeftDNP" style="width:18%"><div class="blockReferenciaDNP">{{programacionVigenciaIndicadores.Mes}}</div></td>
+                                                                                                                    <!--<td class="textRightDNP"><div class="blockReferenciaDNP">{{programacionVigenciaIndicadores.ValorVigente | number:2}}</div></td>-->
+                                                                                                                    <td class="textRightDNP" style="width:21%">
+                                                                                                                        <div class="blockReferenciaDNP">{{programacionVigenciaIndicadores.ValorCompromisos | number:2}}</div>
+                                                                                                                    </td>
+                                                                                                                    <td class="textRightDNP" style="width:21%"><div class="blockReferenciaDNP">{{programacionVigenciaIndicadores.ValorObligaciones | number:2}}</div></td>
+                                                                                                                    <td class="textRightDNP" style="width:21%">
+                                                                                                                        <div class="blockReferenciaDNP">{{programacionVigenciaIndicadores.ValorPagos | number:2}}</div>
+                                                                                                                    </td>
+                                                                                                                    <td class="textLeftDNP" style="width:17%">
+                                                                                                                        <div class="textAreDivRes">
+                                                                                                                            <textarea ng-model="programacionVigenciaIndicadores.ObservacionValores" maxlength="500"
+                                                                                                                                      readonly disabled></textarea>
+                                                                                                                        </div>
+                                                                                                                    </td>
+                                                                                                                </tr>
+                                                                                                            </tbody>
+                                                                                                            <tfoot>
+                                                                                                                <tr>
+                                                                                                                    <td class="columAcc icontotaldnp" style="width:2%"><span>=</span></td>
+                                                                                                                    <td class="textRightDNP" style="width:18%"><span>TOTAL</span></td>
+                                                                                                                    <!--<td class="textRightDNP"><div class="blockReferenciaDNP">{{vigencia.TotalVigencia | number:2}}</div></td>-->
+                                                                                                                    <td class="textRightDNP" style="width:21%"><div class="blockReferenciaDNP">{{vigencia.TotalCompromisos | number:2}}</div></td>
+                                                                                                                    <td class="textRightDNP" style="width:21%"><div class="blockReferenciaDNP">{{vigencia.TotalObligaciones | number:2}}</div></td>
+                                                                                                                    <td class="textRightDNP" style="width:21%"><div class="blockReferenciaDNP">{{vigencia.TotalPagos | number:2}}</div></td>
+                                                                                                                    <td class="textRightDNP" style="width:17%"><div class="blockReferenciaDNP">N/A</div></td>
+                                                                                                                </tr>
+                                                                                                            </tfoot>
+                                                                                                        </table>
+                                                                                                        <br />
+                                                                                                    </div>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>

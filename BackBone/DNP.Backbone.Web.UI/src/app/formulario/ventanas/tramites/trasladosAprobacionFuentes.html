@@ -1,0 +1,89 @@
+﻿
+<div class="container-fluid inbox" ng-init="vm.init();">
+    <div class="dashboard">
+        <div class="project consola-proyectos">
+
+            <div ng-hide="vm.director"  class="row">
+                <button has-claim has-opciones="['Tramites:VerGuardarFuentes']" class="btn btn-outline-secondary pull-right" ng-click="vm.guardarAprobacionFuentes()">
+                    GUARDAR MODIFICACIÓN
+                </button>
+            </div>
+            <br /><br />
+            <div class="row">
+
+
+                <div class="row">
+                    <div class="col-md-2">
+                    </div>
+                    <div class="col-md-8 row" style="padding-right: 7rem;">
+                        <div class="row headerrowDNP">
+                            <div class="col-md-2 text-center headerColumnDNP"> <label style="font-weight: 700;"> </label> </div>
+                            <div class="col-md-2 text-center headerColumnDNP"> <label style="font-weight: 500;">Apropiación Inicial </label> </div>
+                            <div class="col-md-2 text-center headerColumnDNP"> <label style="font-weight: 500;">Apropiación Vigente</label> </div>
+                            <div class="col-md-2 text-center headerColumnDNP"> <label style="font-weight: 500;">Valor Disponible</label> </div>
+                            <div class="col-md-2 text-center headerColumnDNP"> <label style="font-weight: 500;">Vigencias Futuras</label> </div>
+                        </div>
+                        <div class="row bodyrowDNP">
+                            <div class="col-md-2 text-center bodycolumnDNP"> <label>Nación </label> </div>
+                            <div class="col-md-2 text-center bodycolumnDNP"> <label style="">{{vm.ValorInicialNacion}}</label> </div>
+                            <div class="col-md-2 text-center bodycolumnDNP"> <label style="">{{vm.ValorVigenteNacion}}</label> </div>
+                            <div class="col-md-2 text-center bodycolumnDNP"> <label style="">{{vm.ValorDisponibleNacion}}</label> </div>
+                            <div class="col-md-2 text-center bodycolumnDNP"> <label style="">{{vm.ValorVigenciasFuturasNacion}}</label> </div>
+                        </div>
+                        <div class="row bodyrowDNP">
+                            <div class="col-md-2 text-center bodycolumnDNP"> <label>Propios </label> </div>
+                            <div class="col-md-2 text-center bodycolumnDNP"> <label style="">{{vm.ValorInicialPropios}}</label> </div>
+                            <div class="col-md-2 text-center bodycolumnDNP"> <label style="">{{vm.ValorVigentePropios}}</label> </div>
+                            <div class="col-md-2 text-center bodycolumnDNP"> <label style="">{{vm.ValorDisponiblePropios}}</label> </div>
+                            <div class="col-md-2 text-center bodycolumnDNP"> <label style="">{{vm.ValorVigenciasFuturasPropios}}</label> </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-2">
+                    </div>
+                </div>
+
+                <div class="col-md-12 grid-proyectos " style="padding-top:2em;padding-bottom: 2em;margin-left:120px">
+                    <div ui-grid="vm.gridOptions" ng-style="vm.getTableHeightFuentes()"></div>
+                </div>
+
+                <br /><br />
+
+                <div class="row">
+                    <div class="col-md-3">
+                    </div>
+                    <div class="col-md-6 row" style="padding-right: 7rem;">
+                        <div class="row headerrowDNP">
+                            <div class="col-md-4 text-center headerColumnDNP"> <label>Tipo Recurso </label> </div>
+                            <div class="col-md-4 text-center headerColumnDNP"> <label>CSF </label> </div>
+                            <div class="col-md-4 text-center headerColumnDNP"> <label style="">SSF</label> </div>
+                        </div>
+                        <div class="row bodyrowDNP">
+                            <div class="col-md-4 text-center bodycolumnDNP"> <label>Nación </label> </div>
+                            <div class="col-md-4 text-center bodycolumnDNP"> <label>{{vm.ValorTotalMontoCSFNacion}} </label> </div>
+                            <div class="col-md-4 text-center bodycolumnDNP"> <label style="">{{vm.ValorTotalMontoSSFNacion}}</label> </div>
+                        </div>
+                        <div class="row bodyrowDNP">
+                            <div class="col-md-4 text-center bodycolumnDNP"> <label>Propios </label> </div>
+                            <div class="col-md-4 text-center bodycolumnDNP"> <label>{{vm.ValorTotalMontoCSFPropios}} </label> </div>
+                            <div class="col-md-4 text-center bodycolumnDNP"> <label style="">{{vm.ValorTotalMontoSSFPropios}}</label> </div>
+                        </div>
+                        <div class="row bodyrowDNP">
+                            <div class="col-md-4 text-center bodycolumnDNP"> <label>Total </label> </div>
+                            <div class="col-md-4 text-center bodycolumnDNP"> <label>{{vm.ValorTotalCSF}} </label> </div>
+                            <div class="col-md-4 text-center bodycolumnDNP"> <label style="">{{vm.ValorTotalSSF}}</label> </div>
+                        </div>
+
+
+
+
+                    </div>
+                    <div class="col-md-3">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

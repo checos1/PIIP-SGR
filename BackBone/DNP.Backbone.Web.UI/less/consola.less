@@ -1,0 +1,82 @@
+﻿.consola-proyectos {
+    .grid-proyectos {
+        .ui-grid-viewport {
+            .ui-grid {
+                .ui-grid-row {
+                    .ui-grid-cell {
+                        height: 50px !important;
+                    }
+                }
+            }
+        }
+    }
+
+    .ui-grid-viewport .ui-grid-cell-contents {
+        white-space: nowrap !important;
+    }
+
+    .collapsing {
+        position: relative;
+        height: 0;
+        overflow: hidden;
+        -webkit-transition: height 0.8s ease-in-out !important;
+        transition: height 0.8s ease-in-out !important;
+    }
+}
+
+
+.consola-modal-instancias {
+    .modal-dialog {
+        margin-top: 3%;
+
+        @media (min-width: 768px) {
+            width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+
+    .modal-body {
+        max-height: 380px;
+
+        .grid-proyectos {
+            .ui-grid-viewport {
+                .ui-grid {
+                    .ui-grid-row {
+                        .ui-grid-cell {
+                            height: 60px !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+.consola-proyectos {
+    
+    .ui-grid-render-container-right .ui-grid-viewport{
+        overflow: overlay !important;
+    }
+
+    .grid {
+
+        width: 99% !important;
+        height: 400px !important;
+   }
+}
+
+#proyecto-grid-container #uigprojecto .expandableRow {
+    overflow: auto !important;
+}
+
+
+#proyecto-grid-container #uigprojecto .ui-grid-contents-wrapper .ui-grid-contents-wrapper .ui-grid-render-container-body,
+#proyecto-grid-container #uigprojecto .ui-grid-contents-wrapper .ui-grid-contents-wrapper .ui-grid-viewport {
+    height: auto;
+}
+
+#proyecto-grid-container #uigprojecto .ui-grid-contents-wrapper .ui-grid-contents-wrapper .ui-grid-render-container-body .ui-grid-render-container-body,
+#proyecto-grid-container #uigprojecto .ui-grid-contents-wrapper .ui-grid-contents-wrapper .ui-grid-render-container-body .ui-grid-viewport {
+}

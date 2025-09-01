@@ -1,0 +1,90 @@
+﻿<section>
+    <div style="margin-left:20px;" class="container-fluid inbox" ng-init="vm.init();">
+        <div>
+            <div class="tab-container col-md-12" style="width:100%;">
+                <div class="row col-md-12">
+                    <div class="col-md-4">
+                        <label for="entidad" class="form-label pull-left"><b>Departamento</b></label>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="entidad" class="form-label pull-left"><b>Tipología</b></label>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="entidad" class="form-label pull-left"><b>Iniciativa de inversión</b></label>
+                    </div>
+                </div>
+                <div class="row col-md-12">
+                    <div class="col-md-4">
+                        <select name="Departamento" class="form-control"
+                                ng-options="Departamento as Departamento.Nombre for Departamento in vm.listaDepartamento track by Departamento.Nombre"
+                                ng-model="vm.Departamento"
+                                ng-required="true"
+                                ng-change="vm.cambioIniciativa()"
+                                tabindex="0">
+                            <option value="" selected disabled>Seleccione</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <select name="Tipologia" class="form-control"                           
+                                ng-options="tipologia as tipologia.nombre for tipologia in vm.listaTipologia  track by tipologia.nombre"
+                                ng-model="vm.Tipologia"  
+                                 ng-required="true"
+                                ng-change="vm.cambioIniciativa()"
+                                tabindex="0">
+                            <option value="" selected disabled>Seleccione</option>>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <select name="Iniciativa" class="form-control"
+                                ng-options="Iniciativa as Iniciativa.nombre for Iniciativa in vm.listaIniciativa track by Iniciativa.nombre"
+                                ng-model="vm.Iniciativa"
+                                ng-required="true"
+                                tabindex="0">
+                            <option value="" selected disabled>Seleccione</option>
+                        </select>
+                    </div>
+                </div>
+                <div ng-if="vm.habilitaBotones" class="add-new-fuente row mx-0 mt-4 text-right">
+                    <a ng-click="vm.AgregarIniciativa()"><span class="uLabelCampo_fp" style="text-decoration:underline">AGREGAR</span></a>
+                </div>
+                <br />
+                <div style="text-align: left;">
+                    <div class="row col-md-12">
+                        <div class="alert panel-heading">
+                            <table class="TableDNP">
+                                <thead>
+                                    <tr>
+                                        <th class="columAcc" style="width:4%"></th>
+                                        <th class="textleftDNP" style="width:30%">Departamento</th>
+                                        <th class="textleftDNP" style="width:30%">Tipología</th>
+                                        <th class="textRightDNP" style="width:32%">Iniciativa de inversión</th>
+                                        <th class="columAcc" style="width:4%"></th>
+                                    </tr>
+                                </thead>
+                                <tbody ng-repeat="iniciativa in iniciativa.Iniciativas" ng-init="iniciativaindex = $index">
+                                    <tr>
+                                        <td></td>
+                                        <td class="textleftDNP"><span>{{iniciativa.departamento}}</span></td>
+                                        <td class="textleftDNP"><span>{{iniciativa.tipologia}}</span></td>
+                                        <td class="textleftDNP"><span>{{iniciativa.Iniciativa}}</span></td>
+                                        <td>
+                                            <button class="button-column-action trash"
+                                                    title="Eliminar la iniciativa"
+                                                    ng-click="vm.EliminarIniciativa(iniciativa.IniciativaId)"
+                                                    ng-if="vm.habilitaBotones">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="rgb(51, 102, 204)" class="bi bi-trash" viewBox="0 0 16 16">
+                                                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                                                    <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                                                </svg>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

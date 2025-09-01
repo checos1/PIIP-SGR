@@ -1,0 +1,453 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="SystemConfigurations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Key" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Value" Type="nvarchar(max)" />
+        </EntityType>
+        <Function Name="uspPostActualizarNombreProyecto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="BPIN" Type="nvarchar" Mode="In" />
+          <Parameter Name="NivelId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="Usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostCambioEstadoProyecto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="BPIN" Type="nvarchar" Mode="In" />
+          <Parameter Name="NivelId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="Usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostGeneraBpin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="ProyectoId" Type="numeric" Mode="In" />
+          <Parameter Name="Exitoso" Type="bit" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostMergeAplicarMga" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Proyectos">
+          <Parameter Name="ProyectoId" Type="int" Mode="In" />
+          <Parameter Name="Usuario" Type="nvarchar" Mode="In" />
+          <Parameter Name="Exitoso" Type="bit" Mode="InOut" />
+        </Function>
+        <Function Name="upsGetTramiteEnvioSubDireccion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Tramites">
+          <Parameter Name="TramiteId" Type="int" Mode="In" />
+          <Parameter Name="Usuario" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="uspGetAnalistaResponsablePorSector" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Tramites">
+          <Parameter Name="sectorId" Type="numeric" Mode="In" />
+        </Function>
+        <Function Name="uspGetConsultarCargueExcel_JSON" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Tramites">
+          <Parameter Name="ObjetoNegocioId" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="uspGetDatosCartaConcepto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Tramites">
+          <Parameter Name="tramiteId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspGetDatosMarcaPervioVigencia_Proyectos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Tramites">
+          <Parameter Name="BPIN" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="uspGetDependenciaByOrfeoEntidadId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Tramites">
+          <Parameter Name="OrfeoEntidadId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspGetDetalleCartaConcepto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Tramites">
+          <Parameter Name="tramiteId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspGetObtenerDetalleTramite" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Tramites">
+          <Parameter Name="numeroTramite" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="UspGetObtenerUsuariosPorInstanciaPadre" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Tramites">
+          <Parameter Name="InstanciaId" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="uspGetProyectosTramite" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Tramites">
+          <Parameter Name="tramiteId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspGetProyectosTramiteNegocio" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Tramites">
+          <Parameter Name="tramiteId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspPostActualizaCampoRemitenteConcepto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Tramites">
+          <Parameter Name="tramiteId" Type="int" Mode="In" />
+          <Parameter Name="usuarioDNPremitente" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="uspPostActualizarCargueMasivo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Tramites">
+          <Parameter Name="ObjetoNegocioId" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="UspPostActualizarRadicadoCarta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Tramites">
+          <Parameter Name="tramiteId" Type="int" Mode="In" />
+          <Parameter Name="radicadoEntrada" Type="nvarchar" Mode="In" />
+          <Parameter Name="radicadoSalida" Type="nvarchar" Mode="In" />
+          <Parameter Name="usuario" Type="nvarchar" Mode="In" />
+          <Parameter Name="expedienteId" Type="nvarchar" Mode="In" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspPostEliminarMarcaPervioVigencia_Proyectos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Tramites">
+          <Parameter Name="BPIN" Type="nvarchar" Mode="In" />
+          <Parameter Name="vigencia" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="uspPostIdentificarEntidadDestino" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Transferencia">
+          <Parameter Name="ProjectId" Type="numeric" Mode="In" />
+          <Parameter Name="EntidadDestino" Type="nvarchar" Mode="InOut" />
+          <Parameter Name="EntidadDestinoId" Type="int" Mode="InOut" />
+          <Parameter Name="errorValidacionNegocio" Type="nvarchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="uspValidaciones" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Transferencia">
+          <Parameter Name="ProyectoId" Type="numeric" Mode="In" />
+          <Parameter Name="Exitoso" Type="bit" Mode="InOut" />
+        </Function>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="SystemConfigurations" EntityType="Self.SystemConfigurations" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ModeloMGAWebTransaccional" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="MGAWebContextoTransaccional" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="uspPostIdentificarEntidadDestino">
+            <Parameter Name="ProjectId" Mode="In" Type="Decimal" />
+            <Parameter Name="EntidadDestino" Mode="InOut" Type="String" />
+            <Parameter Name="EntidadDestinoId" Mode="InOut" Type="Int32" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspValidaciones">
+            <Parameter Name="ProyectoId" Mode="In" Type="Decimal" />
+            <Parameter Name="Exitoso" Mode="InOut" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostCambioEstadoProyecto">
+            <Parameter Name="BPIN" Mode="In" Type="String" />
+            <Parameter Name="NivelId" Mode="In" Type="Guid" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostGeneraBpin">
+            <Parameter Name="ProyectoId" Mode="In" Type="Decimal" />
+            <Parameter Name="Exitoso" Mode="InOut" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostMergeAplicarMga">
+            <Parameter Name="ProyectoId" Mode="In" Type="Int32" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="Exitoso" Mode="InOut" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetDatosCartaConcepto" ReturnType="Collection(ModeloMGAWebTransaccional.uspGetDatosCartaConcepto_Result)">
+            <Parameter Name="tramiteId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="upsGetTramiteEnvioSubDireccion">
+          <Parameter Name="TramiteId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UspPostActualizarRadicadoCarta">
+            <Parameter Name="tramiteId" Mode="In" Type="Int32" />
+            <Parameter Name="radicadoEntrada" Mode="In" Type="String" />
+            <Parameter Name="radicadoSalida" Mode="In" Type="String" />
+            <Parameter Name="usuario" Mode="In" Type="String" />
+            <Parameter Name="expedienteId" Mode="In" Type="String" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="upsGetTramiteEnvioSubDireccion1" ReturnType="Collection(ModeloMGAWebTransaccional.upsGetTramiteEnvioSubDireccion1_Result)">
+            <Parameter Name="TramiteId" Mode="In" Type="Int32" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetProyectosTramiteNegocio">
+          <Parameter Name="tramiteId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetProyectosTramite" ReturnType="Collection(ModeloMGAWebTransaccional.uspGetProyectosTramite_Result)">
+          <Parameter Name="tramiteId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetDetalleCartaConcepto" ReturnType="Collection(ModeloMGAWebTransaccional.uspGetDetalleCartaConcepto_Result)">
+          <Parameter Name="tramiteId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostActualizarNombreProyecto">
+            <Parameter Name="BPIN" Mode="In" Type="String" />
+            <Parameter Name="NivelId" Mode="In" Type="Guid" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetAnalistaResponsablePorSector" ReturnType="Collection(ModeloMGAWebTransaccional.uspGetAnalistaResponsablePorSector_Result)">
+          <Parameter Name="sectorId" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostEliminarMarcaPervioVigencia_Proyectos" ReturnType="Collection(String)">
+            <Parameter Name="BPIN" Mode="In" Type="String" />
+            <Parameter Name="vigencia" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostActualizarCargueMasivo">
+            <Parameter Name="ObjetoNegocioId" Mode="In" Type="String" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="errorValidacionNegocio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetConsultarCargueExcel_JSON" ReturnType="Collection(String)">
+          <Parameter Name="ObjetoNegocioId" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UspGetObtenerUsuariosPorInstanciaPadre" ReturnType="Collection(ModeloMGAWebTransaccional.UspGetObtenerUsuariosPorInstanciaPadre_Result)">
+          <Parameter Name="InstanciaId" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetDatosMarcaPervioVigencia_Proyectos" ReturnType="Collection(ModeloMGAWebTransaccional.uspGetDatosMarcaPervioVigencia_Proyectos_Result)">
+          <Parameter Name="BPIN" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspPostActualizaCampoRemitenteConcepto">
+            <Parameter Name="tramiteId" Mode="In" Type="Int32" />
+            <Parameter Name="usuarioDNPremitente" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetObtenerDetalleTramite" ReturnType="Collection(ModeloMGAWebTransaccional.uspGetObtenerDetalleTramite_Result)">
+          <Parameter Name="numeroTramite" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspGetDependenciaByOrfeoEntidadId" ReturnType="Collection(Int32)">
+            <Parameter Name="OrfeoEntidadId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="SystemConfigurations" EntityType="ModeloMGAWebTransaccional.SystemConfigurations" />
+        </EntityContainer>
+		<ComplexType Name="uspGetDatosCartaConcepto_Result">
+          <Property Type="Int32" Name="TramiteId" Nullable="false" />
+          <Property Type="String" Name="NumeroTramite" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="EntidadId" Nullable="true" />
+          <Property Type="String" Name="Entidad" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="Direccion" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="CiudadRemitente" Nullable="true" />
+          <Property Type="String" Name="Fecha" Nullable="true" />
+          <Property Type="String" Name="Titulo" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="NombreDestinatario" Nullable="true" />
+          <Property Type="String" Name="cargoDestinatario" Nullable="true" />
+          <Property Type="String" Name="Asunto" Nullable="true" />
+          <Property Type="String" Name="Nombre" Nullable="true" />
+          <Property Type="String" Name="radicadoEntrada" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="radicadoSalida" Nullable="false" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="upsGetTramiteEnvioSubDireccion1_Result">
+          <Property Type="String" Name="IdUsuarioDNP" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="ModificadoPor" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="FechaModificacion" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="uspGetProyectosTramite_Result">
+          <Property Type="String" Name="Sector" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="NombreEntidad" Nullable="false" MaxLength="250" />
+          <Property Type="String" Name="BPIN" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="NombreProyecto" Nullable="false" MaxLength="1500" />
+          <Property Type="Int32" Name="ProyectoId" Nullable="false" />
+          <Property Type="Int32" Name="EntidadId" Nullable="false" />
+          <Property Type="String" Name="TipoProyecto" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Estado" Nullable="false" MaxLength="500" />
+          <Property Type="Int32" Name="TramiteId" Nullable="true" />
+          <Property Type="Decimal" Name="ValorMontoProyecto" Nullable="true" Precision="38" Scale="2" />
+        </ComplexType>
+        <ComplexType Name="uspGetDetalleCartaConcepto_Result">
+          <Property Type="Int32" Name="TramiteId" Nullable="false" />
+          <Property Type="String" Name="RadicadoEntrada" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="RadicadoSalida" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ExpedienteId" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="FaseId" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="uspGetAnalistaResponsablePorSector_Result">
+          <Property Type="Guid" Name="IdUsuario" Nullable="true" />
+          <Property Type="String" Name="Cuenta" Nullable="true" />
+          <Property Type="String" Name="ShardName" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="UspGetObtenerUsuariosPorInstanciaPadre_Result" >
+          <Property Type="String" Name="IdUsuarioDNP" Nullable="false" />
+          <Property Type="String" Name="NombreUsuario" Nullable="false" />
+          <Property Type="String" Name="Correo" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="uspGetDatosMarcaPervioVigencia_Proyectos_Result" >
+          <Property Type="Int32" Name="proyectoId" Nullable="false" />
+          <Property Type="String" Name="NombreProyecto" Nullable="false" />
+          <Property Type="String" Name="BPIN" Nullable="false" />
+          <Property Type="String" Name="CodigoEntidad" Nullable="false" />
+          <Property Type="String" Name="NombreEntidad" Nullable="false" />
+          <Property Type="String" Name="CodigoSubPrograma" Nullable="false" />
+          <Property Type="String" Name="NombreSubPrograma" Nullable="false" />
+          <Property Type="String" Name="CodigoPrograma" Nullable="false" />
+          <Property Type="String" Name="NombrePrograma" Nullable="false" />
+          <Property Type="String" Name="UsuarioEnvio" Nullable="false" />
+          <Property Type="String" Name="NombreFuente" Nullable="false" />
+          <Property Type="Decimal" Name="ValorVigente" Nullable="false" />
+          <Property Type="Guid" Name="InstanciaId" Nullable="true" />
+		  <Property Type="String" Name="CodigoProceso" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="uspGetObtenerDetalleTramite_Result">
+          <Property Type="Int32" Name="TramiteId" Nullable="false" />
+          <Property Type="Int32" Name="SectorId" Nullable="true" />
+          <Property Type="String" Name="NombreSector" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="EntidadId" Nullable="true" />
+          <Property Type="String" Name="NombreEntidad" Nullable="true" MaxLength="250" />
+          <Property Type="Int32" Name="TipoTramiteId" Nullable="true" />
+          <Property Type="String" Name="TipoTramite" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="CodigoTipoTramite" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="400" />
+          <Property Type="String" Name="DescripcionInstancia" Nullable="true" />
+          <Property Type="Guid" Name="InstanciaId" Nullable="false" />
+          <Property Type="Int32" Name="CodigoDocumental" Nullable="true" />
+          <Property Type="String" Name="PDF" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <EntityType Name="SystemConfigurations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Key" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="MGAWebContextoTransaccional">
+          <FunctionImportMapping FunctionImportName="uspPostIdentificarEntidadDestino" FunctionName="Model.Store.uspPostIdentificarEntidadDestino" />
+          <FunctionImportMapping FunctionImportName="uspValidaciones" FunctionName="Model.Store.uspValidaciones" />
+          <FunctionImportMapping FunctionImportName="uspPostCambioEstadoProyecto" FunctionName="Model.Store.uspPostCambioEstadoProyecto" />
+          <FunctionImportMapping FunctionImportName="uspPostGeneraBpin" FunctionName="Model.Store.uspPostGeneraBpin" />
+          <FunctionImportMapping FunctionImportName="uspPostMergeAplicarMga" FunctionName="Model.Store.uspPostMergeAplicarMga" />
+		  <FunctionImportMapping FunctionImportName="uspGetDatosCartaConcepto" FunctionName="Model.Store.uspGetDatosCartaConcepto">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ModeloMGAWebTransaccional.uspGetDatosCartaConcepto_Result">
+                <ScalarProperty Name="TramiteId" ColumnName="TramiteId" />
+                <ScalarProperty Name="NumeroTramite" ColumnName="NumeroTramite" />
+                <ScalarProperty Name="EntidadId" ColumnName="EntidadId" />
+                <ScalarProperty Name="Entidad" ColumnName="Entidad" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="CiudadRemitente" ColumnName="CiudadRemitente" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+                <ScalarProperty Name="NombreDestinatario" ColumnName="NombreDestinatario" />
+                <ScalarProperty Name="cargoDestinatario" ColumnName="cargoDestinatario" />
+                <ScalarProperty Name="Asunto" ColumnName="Asunto" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="radicadoEntrada" ColumnName="radicadoEntrada" />
+                <ScalarProperty Name="radicadoSalida" ColumnName="radicadoSalida" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UspPostActualizarRadicadoCarta" FunctionName="Model.Store.UspPostActualizarRadicadoCarta" />
+          
+          <FunctionImportMapping FunctionImportName="upsGetTramiteEnvioSubDireccion1" FunctionName="Model.Store.upsGetTramiteEnvioSubDireccion">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ModeloMGAWebTransaccional.upsGetTramiteEnvioSubDireccion1_Result">
+                <ScalarProperty Name="IdUsuarioDNP" ColumnName="IdUsuarioDNP" />
+                <ScalarProperty Name="ModificadoPor" ColumnName="ModificadoPor" />
+                <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="uspGetProyectosTramiteNegocio" FunctionName="Model.Store.uspGetProyectosTramiteNegocio" />
+          <FunctionImportMapping FunctionImportName="uspGetProyectosTramite" FunctionName="Model.Store.uspGetProyectosTramite">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ModeloMGAWebTransaccional.uspGetProyectosTramite_Result">
+                <ScalarProperty Name="Sector" ColumnName="Sector" />
+                <ScalarProperty Name="NombreEntidad" ColumnName="NombreEntidad" />
+                <ScalarProperty Name="BPIN" ColumnName="BPIN" />
+                <ScalarProperty Name="NombreProyecto" ColumnName="NombreProyecto" />
+                <ScalarProperty Name="ProyectoId" ColumnName="ProyectoId" />
+                <ScalarProperty Name="EntidadId" ColumnName="EntidadId" />
+                <ScalarProperty Name="TipoProyecto" ColumnName="TipoProyecto" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="TramiteId" ColumnName="TramiteId" />
+                <ScalarProperty Name="ValorMontoProyecto" ColumnName="ValorMontoProyecto" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="uspGetDetalleCartaConcepto" FunctionName="Model.Store.uspGetDetalleCartaConcepto">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ModeloMGAWebTransaccional.uspGetDetalleCartaConcepto_Result">
+                <ScalarProperty Name="TramiteId" ColumnName="TramiteId" />
+                <ScalarProperty Name="RadicadoEntrada" ColumnName="RadicadoEntrada" />
+                <ScalarProperty Name="RadicadoSalida" ColumnName="RadicadoSalida" />
+                <ScalarProperty Name="ExpedienteId" ColumnName="ExpedienteId" />
+                <ScalarProperty Name="FaseId" ColumnName="FaseId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="uspPostActualizarNombreProyecto" FunctionName="Model.Store.uspPostActualizarNombreProyecto" />
+          <FunctionImportMapping FunctionImportName="uspGetAnalistaResponsablePorSector" FunctionName="Model.Store.uspGetAnalistaResponsablePorSector">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ModeloMGAWebTransaccional.uspGetAnalistaResponsablePorSector_Result">
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="Cuenta" ColumnName="Cuenta" />
+                <ScalarProperty Name="ShardName" ColumnName="ShardName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="uspPostEliminarMarcaPervioVigencia_Proyectos" FunctionName="Model.Store.uspPostEliminarMarcaPervioVigencia_Proyectos" />
+          <FunctionImportMapping FunctionImportName="uspPostActualizarCargueMasivo" FunctionName="Model.Store.uspPostActualizarCargueMasivo" />
+          <FunctionImportMapping FunctionImportName="uspGetConsultarCargueExcel_JSON" FunctionName="Model.Store.uspGetConsultarCargueExcel_JSON" />
+          <FunctionImportMapping FunctionImportName="UspGetObtenerUsuariosPorInstanciaPadre" FunctionName="Model.Store.UspGetObtenerUsuariosPorInstanciaPadre" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ModeloMGAWebTransaccional.UspGetObtenerUsuariosPorInstanciaPadre_Result">
+                <ScalarProperty Name="IdUsuarioDNP" ColumnName="IdUsuarioDNP" />
+                <ScalarProperty Name="NombreUsuario" ColumnName="NombreUsuario" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="uspGetDatosMarcaPervioVigencia_Proyectos" FunctionName="Model.Store.uspGetDatosMarcaPervioVigencia_Proyectos" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ModeloMGAWebTransaccional.uspGetDatosMarcaPervioVigencia_Proyectos_Result">
+                <ScalarProperty Name="proyectoId" ColumnName="proyectoId" />
+                <ScalarProperty Name="NombreProyecto" ColumnName="NombreProyecto" />
+                <ScalarProperty Name="BPIN" ColumnName="BPIN" />
+                <ScalarProperty Name="CodigoEntidad" ColumnName="CodigoEntidad" />
+                <ScalarProperty Name="NombreEntidad" ColumnName="NombreEntidad" />
+                <ScalarProperty Name="CodigoSubPrograma" ColumnName="CodigoSubPrograma" />
+                <ScalarProperty Name="NombreSubPrograma" ColumnName="NombreSubPrograma" />
+                <ScalarProperty Name="CodigoPrograma" ColumnName="CodigoPrograma" />
+                <ScalarProperty Name="NombrePrograma" ColumnName="NombrePrograma" />
+                <ScalarProperty Name="UsuarioEnvio" ColumnName="UsuarioEnvio" />
+                <ScalarProperty Name="NombreFuente" ColumnName="NombreFuente" />
+                <ScalarProperty Name="ValorVigente" ColumnName="ValorVigente" />
+				<ScalarProperty Name="CodigoProceso" ColumnName="CodigoProceso" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="uspPostActualizaCampoRemitenteConcepto" FunctionName="Model.Store.uspPostActualizaCampoRemitenteConcepto" />
+          <FunctionImportMapping FunctionImportName="uspGetObtenerDetalleTramite" FunctionName="Model.Store.uspGetObtenerDetalleTramite">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ModeloMGAWebTransaccional.uspGetObtenerDetalleTramite_Result">
+                <ScalarProperty Name="TramiteId" ColumnName="TramiteId" />
+                <ScalarProperty Name="SectorId" ColumnName="SectorId" />
+                <ScalarProperty Name="NombreSector" ColumnName="NombreSector" />
+                <ScalarProperty Name="EntidadId" ColumnName="EntidadId" />
+                <ScalarProperty Name="NombreEntidad" ColumnName="NombreEntidad" />
+                <ScalarProperty Name="TipoTramiteId" ColumnName="TipoTramiteId" />
+                <ScalarProperty Name="TipoTramite" ColumnName="TipoTramite" />
+                <ScalarProperty Name="CodigoTipoTramite" ColumnName="CodigoTipoTramite" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="DescripcionInstancia" ColumnName="DescripcionInstancia" />
+                <ScalarProperty Name="InstanciaId" ColumnName="InstanciaId" />
+                <ScalarProperty Name="CodigoDocumental" ColumnName="CodigoDocumental" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="uspGetDependenciaByOrfeoEntidadId" FunctionName="Model.Store.uspGetDependenciaByOrfeoEntidadId" />
+          <EntitySetMapping Name="SystemConfigurations">
+            <EntityTypeMapping TypeName="ModeloMGAWebTransaccional.SystemConfigurations">
+              <MappingFragment StoreEntitySet="SystemConfigurations">
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

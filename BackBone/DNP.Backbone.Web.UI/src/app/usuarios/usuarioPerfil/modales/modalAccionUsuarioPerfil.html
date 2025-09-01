@@ -1,0 +1,71 @@
+﻿<modal-dialog cerrar="vm.cerrar" guardar="vm.guardarUsuarioPerfil" ng-init="vm.init()" id="guardar-usuario-perfil-modal">
+    <div class="row ">
+        <div class="col-md-12">
+            <div class="titulo-modal">
+                <span>ADICIONAR PERFILES</span>
+            </div>
+        </div>
+    </div>
+
+    <!--<div class="row">
+        <div class="col-md-12">
+            <select ng-model="vm.tipoEntidad" ng-options="x.clave as x.nombre for x in vm.listadoTipoEntidades" ng-change="vm.onChangeTipoEntidad()" name="selTipos" id="selTipos" class="form-control">
+                <option value="" selected>Tipos</option>
+            </select>
+        </div>
+    </div>-->
+    <br />
+    <div class="row">
+        <div class="col-md-12">
+            <label for="entidad" class="form-label"><b>Entidad <span class="text-danger">*</span></b></label>
+            <select chosen 
+                    options="vm.listadoEntidades"
+                    ng-model="vm.idEntidad"
+                    ng-options="x.Id as x.Nombre for x in vm.listadoEntidades"
+                    name="selEntidad"
+                    id="selEntidad"
+                    no-results-text="No hay ningún resultado para su búsqueda"
+                    placeholder-text-single="Opciones"
+                    class="form-control pt-0 pb-0 pl-4"
+                    style="z-index: 10000"
+                    ng-change="vm.onChangeEntidad()"
+                    require>
+                <option value="" selected>Seleccione una opción</option>
+            </select>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-12">
+            <select ng-model="vm.idPerfil" ng-options="x.id as x.nombre for x in vm.listaPerfiles" name="selPerfiles" id="selPerfiles" class="form-control">
+                <option value="" selected>Perfil</option>
+            </select>
+        </div>
+    </div>
+
+    <!--<div class="row">
+        <div class="col-md-12">
+            <input type="text" ng-model="vm.perfil" name="txtPerfil" id="txtPerfil" class="form-control input-lg" placeholder="Perfil" />
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-10 pr-0">
+            <select ng-model="vm.idRol" ng-options="x.Id as x.Nombre for x in vm.listaRoles" name="selRoles" id="selRoles" class="form-control input-lg pt-0 pb-0 pl-4">
+                <option value="" selected>Roles</option>
+            </select>
+
+        </div>
+        <div class="col-md-2 mt-0">
+            <button type="button" class="btn btn-success btn-add-rol" ng-click="vm.addRol()" tooltip-placement="auto" uib-tooltip="Add Rol">Add Rol</button>
+        </div>
+    </div>-->
+    <!--ng-if="vm.gridOptions.data.length"-->
+    <!--<div class="row">
+        <div class="col-md-12 mt-2 ">
+            <div class="clearfix"
+                 ui-grid="vm.gridOptions"
+                 ng-style="{ height: (vm.gridOptions.data.length * 35) + 32 + 'px'}">
+            </div>
+        </div>
+    </div>-->
+</modal-dialog>

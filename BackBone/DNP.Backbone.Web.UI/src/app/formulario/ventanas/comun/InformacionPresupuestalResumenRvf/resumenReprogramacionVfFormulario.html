@@ -1,0 +1,479 @@
+﻿<section>
+    <div style="margin-left:20px;" class="container-fluid inbox" ng-init="vm.init();">
+        <div>
+
+            <div style="text-align: left;">
+                <h3 class="row" style="padding-left: 2rem; padding-right: 2rem; text-align: left; color: #004884">&nbsp;&nbsp;Tabla de resumen</h3>
+            </div>
+            <div class="row">
+                <div class="" style="padding: 0 !important">
+                    <div class="alert panel-heading">
+                        <p class="col-md-12">
+                            <span class="NomItemAccordDNP">Código proceso:</span>
+                            <span class="InfoItemAccordDNP">{{datos.CodigoProceso}}. </span>
+                            <span class="NomItemAccordDNP">Fecha autorización:</span>
+                            <span class="InfoItemAccordDNP">{{datos.FechaAutorizacion}}.</span>
+                            <span class="NomItemAccordDNP">Código autorización:</span>
+                            <span class="InfoItemAccordDNP">{{datos.CodigoAutorizacion}}.</span>
+                        </p>
+                        <p class="col-md-12">
+                            <br />
+                            <span class="InfoItemAccordDNP">
+                                Los valores solicitados pueden aprobarse inicialmente mediante el botón "Guardar". Si necesita modificarlo, edite y guarde.
+                                <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg" ng-click="vm.abrirTooltip()">
+                            </span>
+                        </p>
+                    </div>
+                    <div class="col-md-12">
+                        <div id="informacionpresupuestalresumenreprogramacion-error" class="hidden uMensajeError"></div>
+                    </div>
+                </div>
+               
+                    <div ng-if="datos.EsConstante">
+                        <div class="col-md-1" style="margin-top: 15px; text-align: left; width: 110px; height: 50px;">
+                            <span class="uLabelCampo_fp">Año base</span>
+                        </div>
+                        <div class="col-md-1" style="text-align:left">
+                            <table class="table-white">
+                                <thead>
+                                    <tr style="text-align:center;" class="utitulo-grilla">
+                                        <td style="width: 15%; text-align: center; height: 50px "><label class="col-form-label"><span class="uLabelCampo_fp">{{datos.AnioBase}}</span></label></td>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                        <div class="col-md-10" style="text-align:left">
+                            &nbsp;
+                        </div>
+                        <br />
+                    </div>
+                </div>
+                <div class="tab-container col-md-12" style="width:100%;">
+                    <ul class="nav nav-tabs" ng-if="datos.EsConstante">
+                        <li id="liPreinversion" ng-class="{active : 1 === vm.pagina}">
+                            <a href="" ng-click="vm.mostrarTab(1)" data-toggle="tab">
+                                <img class="img-advertencia mr-2" src="Img/u11.svg" ng-if="vm.errores.constante" />
+                                <b>Valores constantes</b>
+                            </a>
+                        </li>
+                        <li id="liInversion" ng-class="{active : 2 === vm.pagina}">
+                            <a href="" ng-click="vm.mostrarTab(2)" data-toggle="tab">
+                                <img class="img-advertencia mr-2" src="Img/u11.svg" ng-if="vm.errores.corriente" />
+                                <b>Valores corrientes</b>
+                            </a>
+                        </li>
+                    </ul>
+                    <br />
+                    <span ng-if="vm.habilitaBotones && vm.Origen == 1" class="buttonbar pull-right">
+                        <button type="button" class="btneditarDNP" tooltip-placement="top" ng-click="datos.EditarAjusteConTramite ? vm.CancelarValores(datos) : vm.EditarValores(datos)" uib-tooltip="{{datos.EditarAjusteConTramite ? 'CANCELAR' : 'EDITAR'}}">
+                            {{datos.EditarAjusteConTramite ? 'CANCELAR' : 'EDITAR'}}
+                        </button>
+                        <button ng-disabled="!datos.EditarAjusteConTramite" type="button" class="{{datos.EditarAjusteConTramite ? 'btnguardarDNP' : 'btnguardarDisabledDNP'}}" tooltip-placement="top" uib-tooltip="Guardar" tabindex="0" ng-click="vm.GuardarValores(datos)">
+                            GUARDAR
+                        </button>
+                    </span>
+                    <!--Inicio información vigencia-->
+                    <div ng-repeat="objResumen in datos.ResumenTramite">
+                        <br />
+
+                        <div style="text-align: left;" ng-if="vm.Origen == 1">
+                            <div class="row col-md-12">
+                                <div class="alert panel-heading">
+                                    <table class="TableDNP">
+                                        <thead>
+                                            <tr ng-if="!datos.EsConstante">
+                                                <th class="columAcc" style="width:4%"></th>
+                                                <th class="textleftDNP" style="width:10%">Vigencia</th>
+                                                <th class="textleftDNP" style="width:14%">Tipo de recurso</th>
+                                                <th class="textRightDNP" style="width:17%">Utilizado $</th>
+                                                <th class="textRightDNP" style="width:17%">Solicitud <br /> reprogramado $</th>
+                                                <th class="textRightDNP" style="width:17%">Aprobado <br /> reprogramado $</th>
+                                                <th class="textRightDNP" style="width:17%">Modificado $ <br /> (cálculo automático)</th>
+                                                <th class="columAcc" style="width:4%"></th>
+                                            </tr>
+                                            <tr ng-if="datos.EsConstante">
+                                                <th class="columAcc" style="width:4%"></th>
+                                                <th class="textleftDNP" style="width:8%">Vigencia</th>
+                                                <th class="textleftDNP" style="width:8%">Deflactor</th>
+                                                <th class="textleftDNP" style="width:12%">Tipo de recurso</th>
+                                                <th class="textRightDNP" style="width:16%">Utilizado $</th>
+                                                <th class="textRightDNP" style="width:16%">Solicitud <br /> reprogramado $</th>
+                                                <th class="textRightDNP" style="width:16%">Aprobado <br /> reprogramado $</th>
+                                                <th class="textRightDNP" style="width:16%">Modificado $ <br /> (cálculo automático)</th>
+                                                <th class="columAcc" style="width:4%"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody ng-repeat="detallevigencia in objResumen.Valores" ng-init="detallevigenciaindex2 = $index">
+                                            <tr>
+                                                <td rowspan="2"></td>
+                                                <td rowspan="2" class="textleftDNP"><span>{{detallevigencia.Vigencia}}</span></td>
+                                                <td rowspan="2" class="textleftDNP" ng-if="datos.EsConstante"><span>{{detallevigencia.Deflactor}}</span></td>
+                                                <td class="textleftDNP"><span>Nación</span></td>
+                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(detallevigencia.UtilizadoNacion)}}</div></td>
+                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(detallevigencia.ReprogramadoNacion)}}</div></td>
+                                                <td ng-if="!datos.EditarAjusteConTramite || detallevigencia.Vigencia < datos.VigenciaActual" class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(detallevigencia.AprobadoNacion)}}</div></td>
+                                                <td ng-if="datos.EditarAjusteConTramite && detallevigencia.Vigencia >= datos.VigenciaActual" class="textRightDNP">
+                                                    <input id="input-AprobadoNacion2" type="number" string-to-number min="0.00"
+                                                           ng-readonly="!datos.EditarAjusteConTramite"
+                                                           ng-keypress="vm.validateFormat($event)"
+                                                           ng-keyup="vm.validarTamanio($event)"
+                                                           ng-blur="vm.actualizaFila($event, datos)"
+                                                           ng-value="detallevigencia.AprobadoNacion"
+                                                           ng-model="datos.ResumenTramite[0].Valores[detallevigenciaindex2].AprobadoNacion"
+                                                           required class="form-control editInputDNP" style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px; background-color:white" />
+                                                </td>
+                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(detallevigencia.ModificadoNacionAprobado)}}</div></td>
+                                                <td rowspan="2">&nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="textleftDNP"><span>Propios</span></td>
+                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(detallevigencia.UtilizadoPropios)}}</div></td>
+                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(detallevigencia.ReprogramadoPropios)}}</div></td>
+                                                <td ng-if="!datos.EditarAjusteConTramite || detallevigencia.Vigencia < datos.VigenciaActual" class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(detallevigencia.AprobadoPropios)}}</div></td>
+                                                <td ng-if="datos.EditarAjusteConTramite && detallevigencia.Vigencia >= datos.VigenciaActual" class="textRightDNP">
+                                                    <input id="input-AprobadoPropios2" type="number" string-to-number min="0.00"
+                                                           ng-readonly="!datos.EditarAjusteConTramite"
+                                                           ng-keypress="vm.validateFormat($event)"
+                                                           ng-keyup="vm.validarTamanio($event)"
+                                                           ng-blur="vm.actualizaFila($event, datos)"
+                                                           ng-value="detallevigencia.AprobadoPropios"
+                                                           ng-model="datos.ResumenTramite[0].Valores[detallevigenciaindex2].AprobadoPropios"
+                                                           required class="form-control editInputDNP" style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px; background-color:white" />
+                                                </td>
+                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(detallevigencia.ModificadoPropiosAprobado)}}</div></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <br />
+                                    <table class="TableDNP">
+                                        <tbody>
+                                            <tr ng-if="!datos.EsConstante">
+                                                <td rowspan="2" style="width:4%">&nbsp;</td>
+                                                <td rowspan="2" style="width:10%">&nbsp;</td>
+                                                <td class="textleftDNP" style="width:14%"><span>Nación</span></td>
+                                                <td class="textRightDNP" style="width:17%"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(vm.sumUtilizadoNacionConstanteVig)}}</div></td>
+                                                <td class="textRightDNP" style="width:17%"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(vm.sumReprogramadoNacionConstanteVig)}}</div></td>
+                                                <td class="textRightDNP" style="width:17%"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(vm.sumAprobadoNacionConstanteVig)}}</div></td>
+                                                <td class="textRightDNP" style="width:17%"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(vm.sumModificadoNacionAprobadoConstanteVig)}}</div></td>
+                                                <td rowspan="2" class="columAcc" style="width:4%"></td>
+                                            </tr>
+                                            <tr ng-if="datos.EsConstante">
+                                                <td rowspan="2" style="width:4%">&nbsp;</td>
+                                                <td rowspan="2" style="width:8%">&nbsp;</td>
+                                                <td rowspan="2" style="width:8%">&nbsp;</td>
+                                                <td class="textleftDNP" style="width:12%"><span>Nación</span></td>
+                                                <td class="textRightDNP" style="width:16%"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(vm.sumUtilizadoNacionConstanteVig)}}</div></td>
+                                                <td class="textRightDNP" style="width:16%"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(vm.sumReprogramadoNacionConstanteVig)}}</div></td>
+                                                <td class="textRightDNP" style="width:16%"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(vm.sumAprobadoNacionConstanteVig)}}</div></td>
+                                                <td class="textRightDNP" style="width:16%"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(vm.sumModificadoNacionAprobadoConstanteVig)}}</div></td>
+                                                <td rowspan="2" class="columAcc" style="width:4%"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="textleftDNP"><span>Propios</span></td>
+                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(vm.sumUtilizadoPropiosConstanteVig)}}</div></td>
+                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(vm.sumReprogramadoPropiosConstanteVig)}}</div></td>
+                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(vm.sumAprobadoPropiosConstanteVig)}}</div></td>
+                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(vm.sumModificadoPropiosAprobadoConstanteVig)}}</div></td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td class="textleftDNP"><b>=</b></td>
+                                                <td class="textleftDNP"><b>Total</b></td>
+                                                <td class="textleftDNP">&nbsp;</td>
+                                                <td class="textleftDNP" ng-if="datos.EsConstante">&nbsp;</td>
+                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(vm.totalUtilizadoConstanteVig)}}</div></td>
+                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(vm.totalReprogramadoConstanteVig)}}</div></td>
+                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(vm.totalAprobadoConstanteVig)}}</div></td>
+                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(vm.totalModificadoAprobadoConstanteVig)}}</div></td>
+                                                <td class="columAcc"></td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="text-align: left;" ng-if="vm.Origen == 2">
+                            <div class="row col-md-12">
+                                <div class="alert panel-heading">
+                                    <table class="TableDNP">
+                                        <thead>
+                                            <tr>
+                                                <th class="columAcc" style="width:4%"></th>
+                                                <th class="textleftDNP" style="width:8%">Vigencia</th>
+                                                <th class="textleftDNP" style="width:8%">Deflactor</th>
+                                                <th class="textleftDNP" style="width:12%">Tipo de recurso</th>
+                                                <th class="textRightDNP" style="width:16%">Utilizado $</th>
+                                                <th class="textRightDNP" style="width:16%">Solicitud <br /> reprogramado $</th>
+                                                <th class="textRightDNP" style="width:16%">Aprobado <br /> reprogramado $</th>
+                                                <th class="textRightDNP" style="width:16%">Modificado $ <br /> (cálculo automático)</th>
+                                                <th class="columAcc" style="width:4%"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody ng-repeat="detallevigencia1 in objResumen.ValoresCorrientes" ng-init="detallevigenciaindex1 = $index">
+                                            <tr>
+                                                <td rowspan="2"></td>
+                                                <td rowspan="2" class="textleftDNP"><span>{{detallevigencia1.Vigencia}}</span></td>
+                                                <td rowspan="2" class="textleftDNP"><span>{{detallevigencia1.Deflactor}}</span></td>
+                                                <td class="textleftDNP"><span>Nación</span></td>
+                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(detallevigencia1.UtilizadoNacion)}}</div></td>
+                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(detallevigencia1.ReprogramadoNacion)}}</div></td>
+                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(detallevigencia1.AprobadoNacion)}}</div></td>
+                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(detallevigencia1.ModificadoNacionAprobado)}}</div></td>
+                                                <td rowspan="2">&nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="textleftDNP"><span>Propios</span></td>
+                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(detallevigencia1.UtilizadoPropios)}}</div></td>
+                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(detallevigencia1.ReprogramadoPropios)}}</div></td>
+                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(detallevigencia1.AprobadoPropios)}}</div></td>
+                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(detallevigencia1.ModificadoPropiosAprobado)}}</div></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <br />
+                                    <br />
+                                    <table class="TableDNP">
+                                        <tbody>
+                                            <tr>
+                                                <td rowspan="2" style="width:4%">&nbsp;</td>
+                                                <td rowspan="2" style="width:8%">&nbsp;</td>
+                                                <td rowspan="2" style="width:8%">&nbsp;</td>
+                                                <td class="textleftDNP" style="width:12%"><span>Nación</span></td>
+                                                <td class="textRightDNP" style="width:16%"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(vm.sumUtilizadoNacionCorrienteVig)}}</div></td>
+                                                <td class="textRightDNP" style="width:16%"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(vm.sumReprogramadoNacionCorrienteVig)}}</div></td>
+                                                <td class="textRightDNP" style="width:16%"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(vm.sumAprobadoNacionCorrienteVig)}}</div></td>
+                                                <td class="textRightDNP" style="width:16%"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(vm.sumModificadoNacionAprobadoCorrienteVig)}}</div></td>
+                                                <td rowspan="2" class="columAcc" style="width:4%"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="textleftDNP"><span>Propios</span></td>
+                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(vm.sumUtilizadoPropiosCorrienteVig)}}</div></td>
+                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(vm.sumReprogramadoPropiosCorrienteVig)}}</div></td>
+                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(vm.sumAprobadoPropiosCorrienteVig)}}</div></td>
+                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(vm.sumModificadoPropiosAprobadoCorrienteVig)}}</div></td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td class="textleftDNP"><b>=</b></td>
+                                                <td class="textleftDNP"><b>Total</b></td>
+                                                <td class="textleftDNP">&nbsp;</td>
+                                                <td class="textleftDNP">&nbsp;</td>
+                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(vm.totalUtilizadoCorrienteVig)}}</div></td>
+                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(vm.totalReprogramadoCorrienteVig)}}</div></td>
+                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(vm.totalAprobadoCorrienteVig)}}</div></td>
+                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(vm.totalModificadoAprobadoCorrienteVig)}}</div></td>
+                                                <td class="columAcc"></td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Fin información vigencia-->
+                    <div ng-repeat="objObjetivos in datos.Objetivos" ng-init="rowIndexObj = $index">
+                        <div class="row">
+                            <div class="col-md-12 ">
+                                <br />
+                                <br />
+                                <span class="TituloPincFormularioDNP">
+                                    Objetivo {{rowIndexObj + 1}}
+                                </span>
+                            </div>
+                            <div class="col-md-12 ">
+                                <br />
+                                <span style="font-family:'Work Sans  Roman', 'Work Sans Regular Roman', 'Work Sans';font-weight:600;color:#4B4B4B;">Nombre objetivo {{objObjetivos.ObjetivoEspecifico}}</span>
+                            </div>
+                        </div>
+                        <br />
+                        <!--Inicio información productos-->
+                        <div class="row" ng-repeat="objProducto in objObjetivos.Productos" ng-init="rowIndexProd = $index">
+                            <section id="SelectExam" class="SelectExam" ng-if="objProducto.TotalReprogramadoCorriente > 0 || objProducto.TotalReprogramadoConstante > 0">
+                                <div>
+                                    <div class="alert panel-heading">
+                                        <div class="card card-body pull-left  divAccordionDNP">
+                                            <div class="line-clamp">
+                                                <p class="col-md-11" style="line-height: 1.1; margin-left: 55px">
+                                                    <span class="NomItemAccordDNP">Producto {{rowIndexProd + 1}}: </span>
+                                                    <span class="InfoItemAccordDNP">{{objProducto.NombreProducto}}</span>
+                                                    <span class="NomItemAccordDNP">Etapa: </span>
+                                                    <span class="InfoItemAccordDNP">{{objProducto.Etapa}}</span>
+                                                </p>
+                                            </div>
+                                            <p class="panelbtnalertAcordnp col-md-11">
+                                                <button class="btnaccion btnAccordionDNP" type="button" data-toggle="collapse" data-target="#prod{{rowIndexObj}}_{{rowIndexProd}}" ng-click="vm.AbrilNivel('Objet' + objProducto.ProductoId)">
+                                                    <img id="icoObjet{{objProducto.ProductoId}}" src="Img/btnMas.svg">
+                                                </button>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <div class="collapse" id="prod{{rowIndexObj}}_{{rowIndexProd}}">
+                                        <br />
+                                        <div class="LineaEncabezadodivDNP"></div>
+                                        <h3 class="row tituloEncabezadodivDNP">Detalle producto</h3>
+                                        <div ng-if="datos.EsConstante">
+                                            <div class="col-md-1" style="margin-left: 20px; margin-top: 15px; text-align: left; width: 110px; height: 50px">
+                                                <span class="uLabelCampo_fp">Año base</span>
+                                            </div>
+                                            <div class="col-md-1" style="text-align:left">
+                                                <table class="table-white">
+                                                    <thead>
+                                                        <tr style="text-align:center;" class="utitulo-grilla">
+                                                            <td style="width: 15%; text-align: center; height: 50px "><label class="col-form-label"><span class="uLabelCampo_fp">{{datos.AnioBase}}</span></label></td>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                            </div>
+                                            <div class="col-md-10" style="text-align:left">
+                                                &nbsp;
+                                            </div>
+                                            <br />
+                                        </div>
+                                        <div class="tab-container col-md-12" style="width:100%;">
+                                            <ul class="nav nav-tabs" ng-if="datos.EsConstante">
+                                                <li id="liPreinversion" ng-class="{active : 1 === vm.paginaProducto}">
+                                                    <a href="" ng-click="vm.mostrarTabProducto(rowIndexProd,1)" data-toggle="tab">
+                                                        <b>Valores constantes</b>
+                                                    </a>
+                                                </li>
+                                                <li id="liInversion" ng-class="{active : 2 === vm.paginaProducto}">
+                                                    <a href="" ng-click="vm.mostrarTabProducto(rowIndexProd,2)" data-toggle="tab">
+                                                        <b>Valores corrientes</b>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                            <div style="text-align: left;">
+                                                <br>
+                                                <div class="row col-md-12">
+                                                    <div class="alert panel-heading">
+                                                        <table class="TableDNP">
+                                                            <thead>
+                                                                <tr ng-if="!datos.EsConstante">
+                                                                    <th class="columAcc" style="width:4%"></th>
+                                                                    <th class="textleftDNP" style="width:10%">Vigencia</th>
+                                                                    <th class="textleftDNP" style="width:14%">Tipo recurso</th>
+                                                                    <th class="textRightDNP" style="width:34%">Utilizado $</th>
+                                                                    <th class="textRightDNP" style="width:34%">Reprogramado $</th>
+                                                                    <th class="columAcc" style="width:4%"></th>
+                                                                </tr>
+                                                                <tr ng-if="datos.EsConstante">
+                                                                    <th class="columAcc" style="width:4%"></th>
+                                                                    <th class="textleftDNP" style="width:8%">Vigencia</th>
+                                                                    <th class="textleftDNP" style="width:8%">Deflactor</th>
+                                                                    <th class="textleftDNP" style="width:12%">Tipo recurso</th>
+                                                                    <th class="textRightDNP" style="width:32%">Utilizado $</th>
+                                                                    <th class="textRightDNP" style="width:32%">Reprogramado $</th>
+                                                                    <th class="columAcc" style="width:4%"></th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody ng-repeat="objValoresProducto in vm.OrigenProducto == 1 ? objProducto.Valores : objProducto.ValoresCorrientes">
+                                                                <tr>
+                                                                    <td rowspan="2"></td>
+                                                                    <td rowspan="2" class="textleftDNP">{{objValoresProducto.Vigencia}}</td>
+                                                                    <td rowspan="2" class="textleftDNP" ng-if="datos.EsConstante"><span>{{objValoresProducto.Deflactor}}</span></td>
+                                                                    <td class="textleftDNP"><span>Nación</span></td>
+                                                                    <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(objValoresProducto.UtilizadoNacion)}}</div></td>
+                                                                    <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(objValoresProducto.ReprogramadoNacion)}}</div></td>
+                                                                    <td rowspan="2"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="textleftDNP"><span>Propios</span></td>
+                                                                    <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(objValoresProducto.UtilizadoPropios)}}</div></td>
+                                                                    <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(objValoresProducto.ReprogramadoPropios)}}</div></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        <br />
+                                                        <!--Información totales vigencia-->
+                                                        <table class="TableDNP" ng-if="datos.EsConstante && vm.OrigenProducto == 1">
+                                                            <tbody>
+                                                                <tr ng-if="!datos.EsConstante">
+                                                                    <td rowspan="2" style="width:4%">&nbsp;</td>
+                                                                    <td rowspan="2" style="width:10%">&nbsp;</td>
+                                                                    <td class="textleftDNP" style="width:14%"><span>Nación</span></td>
+                                                                    <td class="textRightDNP" style="width:34%"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(objProducto.TotalUtilizadoConstanteNacion)}}</div></td>
+                                                                    <td class="textRightDNP" style="width:34%"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(objProducto.TotalReprogramadoConstanteNacion)}}</div></td>
+                                                                    <td rowspan="2" class="columAcc" style="width:4%"></td>
+                                                                </tr>
+                                                                <tr ng-if="datos.EsConstante">
+                                                                    <td rowspan="2" style="width:4%">&nbsp;</td>
+                                                                    <td rowspan="2" style="width:8%">&nbsp;</td>
+                                                                    <td rowspan="2" style="width:8%">&nbsp;</td>
+                                                                    <td class="textleftDNP" style="width:12%"><span>Nación</span></td>
+                                                                    <td class="textRightDNP" style="width:32%"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(objProducto.TotalUtilizadoConstanteNacion)}}</div></td>
+                                                                    <td class="textRightDNP" style="width:32%"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(objProducto.TotalReprogramadoConstanteNacion)}}</div></td>
+                                                                    <td rowspan="2" class="columAcc" style="width:4%"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="textleftDNP"><span>Propios</span></td>
+                                                                    <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(objProducto.TotalUtilizadoConstantePropios)}}</div></td>
+                                                                    <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(objProducto.TotalReprogramadoConstantePropios)}}</div></td>
+                                                                </tr>
+                                                            </tbody>
+                                                            <tfoot>
+                                                                <tr>
+                                                                    <td class="textleftDNP"><b>=</b></td>
+                                                                    <td class="textleftDNP"><b>Total</b></td>
+                                                                    <td class="textleftDNP">&nbsp;</td>
+                                                                    <td class="textleftDNP" ng-if="datos.EsConstante">&nbsp;</td>
+                                                                    <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(objProducto.TotalUtilizadoConstante)}}</div></td>
+                                                                    <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(objProducto.TotalReprogramadoConstante)}}</div></td>
+                                                                    <td class="columAcc"></td>
+                                                                </tr>
+                                                            </tfoot>
+                                                        </table>
+                                                        <table class="TableDNP" ng-if="!datos.EsConstante || (datos.EsConstante && vm.OrigenProducto == 2)">
+                                                            <tbody>
+                                                                <tr ng-if="!datos.EsConstante">
+                                                                    <td rowspan="2" style="width:4%">&nbsp;</td>
+                                                                    <td rowspan="2" style="width:10%">&nbsp;</td>
+                                                                    <td class="textleftDNP" style="width:14%"><span>Nación</span></td>
+                                                                    <td class="textRightDNP" style="width:34%"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(objProducto.TotalUtilizadoCorrienteNacion)}}</div></td>
+                                                                    <td class="textRightDNP" style="width:34%"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(objProducto.TotalReprogramadoCorrienteNacion)}}</div></td>
+                                                                    <td rowspan="2" class="columAcc" style="width:4%"></td>
+                                                                </tr>
+                                                                <tr ng-if="datos.EsConstante">
+                                                                    <td rowspan="2" style="width:4%">&nbsp;</td>
+                                                                    <td rowspan="2" style="width:8%">&nbsp;</td>
+                                                                    <td rowspan="2" style="width:8%">&nbsp;</td>
+                                                                    <td class="textleftDNP" style="width:12%"><span>Nación</span></td>
+                                                                    <td class="textRightDNP" style="width:32%"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(objProducto.TotalUtilizadoCorrienteNacion)}}</div></td>
+                                                                    <td class="textRightDNP" style="width:32%"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(objProducto.TotalReprogramadoCorrienteNacion)}}</div></td>
+                                                                    <td rowspan="2" class="columAcc" style="width:4%"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="textleftDNP"><span>Propios</span></td>
+                                                                    <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(objProducto.TotalUtilizadoCorrientePropios)}}</div></td>
+                                                                    <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(objProducto.TotalReprogramadoCorrientePropios)}}</div></td>
+                                                                </tr>
+                                                            </tbody>
+                                                            <tfoot>
+                                                                <tr>
+                                                                    <td class="textleftDNP"><b>=</b></td>
+                                                                    <td class="textleftDNP"><b>Total</b></td>
+                                                                    <td class="textleftDNP">&nbsp;</td>
+                                                                    <td class="textleftDNP" ng-if="datos.EsConstante">&nbsp;</td>
+                                                                    <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(objProducto.TotalUtilizadoCorriente)}}</div></td>
+                                                                    <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(objProducto.TotalReprogramadoCorriente)}}</div></td>
+                                                                    <td class="columAcc"></td>
+                                                                </tr>
+                                                            </tfoot>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                        <!--Fin información productos-->
+                        <br />
+                    </div>
+                </div>
+            </div>
+    </div>
+</section>

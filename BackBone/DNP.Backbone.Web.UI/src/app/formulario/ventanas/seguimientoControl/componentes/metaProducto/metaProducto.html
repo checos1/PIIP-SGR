@@ -1,0 +1,27 @@
+﻿<section>
+    <div class="container-fluid inbox" ng-init="vm.init();">
+        <div class="tab-content">
+            <div class="ui-accordion-container hidden" id="accordion-metaproductoavancemetacap">
+                <div class="alert panel-heading row ui-accordion-header">
+
+                    <button type="button" data-toggle="collapse" data-target="#metaproductoavancemetacap" ng-click="vm.changeArrow('metaproductoavancemetacap')">
+                        <span class="d-inline-block" id="alert-metaproductoavancemetacap"></span>
+                        <span id="name-capitulo-metaproductoavancemetacap"></span>
+                        <span class="hidden" id="id-capitulo-metaproductoavancemetacap"></span>
+                        <span id="arrow-metaproductoavancemetacap" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#metaproductoavancemetacap"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="metaproductoavancemetacap">
+                    <div class="row m-0 mb-3">
+                        <avance-meta-cap bpin="{{vm.globalVariables.bpin}}"
+                                            guardadoevent="vm.guardadoevent(nombreComponenteHijo)"
+                                            notificacioncambios="vm.notificacionCambiosCapitulosExternos(handler,nombreComponente)"
+                                            notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                            notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)">
+                        </avance-meta-cap>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

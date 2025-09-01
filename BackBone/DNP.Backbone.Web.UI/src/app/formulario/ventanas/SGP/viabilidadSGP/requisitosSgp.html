@@ -1,0 +1,49 @@
+﻿<section class="ventana-ajsutes mt-4" ng-init="vm.init()">
+    <div class="row m-0">
+        <div class="col-md-12" style="text-align:right">
+            <span class="spanbuttonenabled">Devolver a MGA</span>
+            <button class="btnaccion"
+                    tooltip-class="customClass"
+                    uib-tooltip="Devolver"
+                    ng-click="vm.devolverProyecto()"
+                    ng-disabled="vm.habilitarDevolverProyecto">
+                <span> <img class="icoVolverDNP" ng-src="{{vm.habilitarDevolverProyecto ? 'Img/IcoVolverDisabled.svg' : 'Img/IcoVolver.svg'}}"></span>
+            </button>
+        </div>
+        <div class="form-group">
+            <div class="tab-container col-md-12">
+                <div class="tab-content">
+                    <div class="tab-pane active cont col-md-12" style="padding-left:0 !important;padding-top:20px !important" id="dsgpviabilidadrequisitosdatosgenerales">
+                        <requisitos-datos-generales-sgp callback="vm.notificarGuardado()"
+                                                        guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                                        notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                                        notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)"
+                                                        notificacioncambios="vm.notificacionCambiosAjustes(handler, nombreComponente)">
+                        </requisitos-datos-generales-sgp>
+                    </div>
+                    <div class="tab-pane  cont col-md-12" style="padding-left:0 !important;padding-top:20px !important" id="dsgpviabilidadrequisitosverificacion">
+                        <verificacion-sgp callback="vm.notificarGuardado()"
+                                          guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                          notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                          notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)"
+                                          notificacioncambios="vm.notificacionCambiosAjustes(handler, nombreComponente)">
+                        </verificacion-sgp>
+                    </div>
+                    <div class="tab-pane  cont col-md-12" style="padding-left:0 !important;padding-top:20px !important;text-align:left;" id="dsgpviabilidadrequisitossoportes">
+                        <alojar-documentos-requisitos-sgp tipotramiteid="{{vm.tipoTramiteId}}"
+                                                          tramiteid="{{vm.tramiteId}}"
+                                                          nivel="{{vm.IdNivel}}"
+                                                          rol="{{vm.IdRol}}"
+                                                          section="{{vm.section}}"
+                                                          callback="vm.notificarGuardado()"
+                                                          guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                                          notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                                          notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)"
+                                                          notificacioncambios="vm.notificacionCambiosAjustes(handler, nombreComponente)">
+                        </alojar-documentos-requisitos-sgp>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

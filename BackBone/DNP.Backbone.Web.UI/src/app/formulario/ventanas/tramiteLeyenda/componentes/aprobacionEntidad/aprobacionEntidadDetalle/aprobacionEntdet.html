@@ -1,0 +1,70 @@
+﻿
+<div div style="margin-left:20px;margin-top:1.5rem;" ng-init="vm.init();">
+    <div class="row">
+        <div class="col-md-12 form-group text-right" style="padding-right: 2rem;">
+            <div style="text-align: right;">
+                <div class="col-md-12 form-group text-right" style="padding-right:2rem;">
+                    <!--<button id="Editar"-->
+                    <button has-claim has-opciones="['tramite:aclaracionleyendapaso2']" type="button" class="btneditarDNP" tooltip-placement="top" ng-click="vm.disabled ? vm.Cancelar() : vm.Editar()" uib-tooltip="{{vm.disabled ? 'CANCELAR' : 'EDITAR'}}">
+                        {{vm.disabled ? 'CANCELAR' : 'EDITAR'}}
+                    </button>
+                    &nbsp;
+                    <!--<button id="Guardar"-->
+                    <button has-claim has-opciones="['tramite:aclaracionleyendapaso2']" ng-disabled="!vm.disabled2" type="button" class="{{vm.disabled ? 'btnguardarDNP' : 'btnguardarDNP'}}" tooltip-placement="top" uib-tooltip="Guardar" tabindex="0" ng-click="vm.Guardar()">
+                        GUARDAR
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-12 DetacolumnDNP">
+            <span class="detapregun">{{vm.Preguntas.JustificacionPregunta}} *&nbsp; </span>
+           
+        </div>
+        <br />
+        <br />
+        <div id="respuesta-pregunta" class="hidden text-left color-red">
+            <img class="img img-advertencia" src="Img/u11.svg" />
+            <span id="respuesta-pregunta-mns"></span>
+        </div>
+        <div class="col-md-12 DetacolumnDNP">
+            <label>
+                <input type="radio" value="1" ng-model="respuesta" ng-disabled="!vm.disabled2">
+                <span>SI</span>
+            </label>
+            <label>
+                <input type="radio" value="2" ng-model="respuesta" ng-disabled="!vm.disabled2">
+                <span>NO</span>
+            </label>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div id="observacion-pregunta" class="hidden text-left color-red">
+            <img class="img img-advertencia" src="Img/u11.svg" />
+            <span id="observacion-pregunta-mns"></span>
+        </div>
+        <div class="col-md-12" style="padding-bottom: 55px !important;padding-right: 4rem !important">
+            <div id="u5226_div" class="divPanelPregRespDNP" style="width: 100% !important">
+                <div class="respAdon" style="width: 30% !important">
+                    <span style="vertical-align: middle; display: table-cell;font-weight: 400; font-style: normal; font-size: 20px;">Justificación</span>
+                </div>
+                <div class="textAreDivRes" style="width: 70% !important">
+                    <textarea rows="3"
+                              id="justificacionnAprobacion"
+                              name="justificacionnAprobacion"
+                              ng-value="vm.Preguntas.ObservacionPregunta"
+                              ng-model="justificacion"
+                              placeholder=""
+                              minlength="1"
+                              maxlength="5000"
+                              ng-disabled="!vm.disabled"
+                              class="textareObservaDNP" ng-required="true"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

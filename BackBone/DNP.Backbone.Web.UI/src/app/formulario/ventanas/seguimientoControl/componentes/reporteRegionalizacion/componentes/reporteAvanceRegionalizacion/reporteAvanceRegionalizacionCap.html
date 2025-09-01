@@ -1,0 +1,1135 @@
+﻿<style>
+    .d-none {
+        display: none;
+    }
+
+    .content-title {
+        padding-left: 50px;
+    }
+
+    .content-ayuda {
+        font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif;
+        font-weight: 500;
+        font-style: normal;
+        font-size: 14px;
+        color: #4B4B4B;
+    }
+
+    .requiere-niveles {
+        padding: 3px 10px;
+        font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif;
+        font-weight: 500;
+        font-size: 16px;
+        color: #004884;
+        text-align: left;
+        background-color: rgba(230, 239, 253, 1);
+    }
+
+    .objetivo-header {
+        background-color: rgba(249, 252, 253, 1);
+        box-sizing: border-box;
+        border-width: 2px;
+        border-style: solid;
+        border-color: rgba(230, 239, 253, 1);
+        padding: 25px 10px 25px 55px;
+    }
+
+    .objetivo-header {
+        text-align: left;
+    }
+
+        .objetivo-header h4.header-titulo {
+            color: #004884;
+            font-family: 'Work Sans SemiBold Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            margin: 0
+        }
+
+        .objetivo-header p.header-content {
+            font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif;
+            font-weight: 400;
+            font-size: 16px;
+            color: #4B4B4B;
+            margin: 0;
+        }
+
+    .objetivo-productos .divAccordionDNP {
+        border-top: 0;
+        max-height: fit-content;
+    }
+
+    .indicadores .LineaEncabezadodivDNP {
+        margin-left: 15px;
+    }
+
+    .ico-check {
+        color: #004884;
+    }
+
+    .f-16 {
+        font-size: 16px;
+    }
+
+    .font-total {
+        font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif;
+        font-weight: 400;
+        color: #4B4B4B;
+    }
+
+    .font-Actividades {
+        font-family: 'Work Sans Medium', 'Work Sans Regular Roman', 'Work Sans', sans-serif;
+        font-weight: 500;
+        font-style: normal;
+        font-size: 16px;
+        color: #004884;
+        line-height: 22px;
+        margin-left: 97px !important;
+    }
+
+    .list-Actividades {
+        background-color: white;
+        box-sizing: border-box;
+        border-width: 2px;
+        border-style: solid;
+        border-color: rgba(230, 239, 253, 1);
+        border-radius: 0px;
+        font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif;
+        font-style: normal;
+        margin-left: 54px;
+        margin-right: 10px;
+    }
+
+    .progAct-list-Actividades-simples {
+        background-color: white;
+        box-sizing: border-box;
+        border-width: 2px;
+        border-style: solid;
+        border-color: rgba(230, 239, 253, 1);
+        border-radius: 0px;
+        font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif;
+        font-style: normal;
+    }
+
+    .divisor-Actividades {
+        border-width: 0px;
+        position: absolute;
+        left: 56px;
+        top: 12px;
+        width: 29px;
+        height: 17px;
+        background: inherit;
+        background-color: rgba(255, 255, 255, 1);
+        box-sizing: border-box;
+        border-width: 2px;
+        border-style: solid;
+        border-color: rgba(51, 102, 204, 1);
+        border-top: 0px;
+        border-right: 0px;
+        border-radius: 0px;
+        border-top-left-radius: 0px;
+        border-bottom-right-radius: 0px;
+        -moz-box-shadow: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
+
+    .contenedor-Actividades {
+        position: relative;
+    }
+
+    /* Modificaciones estructura */
+    .indicadores .tituloEncabezadodivDNP {
+        margin-left: 95px !important;
+        width: auto !important;
+    }
+
+    .indicadores-content .panel-headingAcc2DNP {
+        height: auto !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+
+    .indicadores-content .LineaEncabezado2divDNP {
+        margin-top: 0px !important;
+        margin-left: 16px !important;
+        width: 145px !important;
+    }
+
+    .indicadores-content .LineaEncabezado3divDNP {
+        margin-top: 0px !important;
+        margin-left: 16px !important;
+        width: 190px !important;
+    }
+
+    .indicadores-content .LineaEncabezado4divDNP {
+        margin-top: 0px !important;
+        margin-left: 16px !important;
+        width: 240px !important;
+    }
+
+    .indicadores-content .tituloEncabezadodiv2DNP {
+        margin-left: 145px !important;
+        width: auto !important;
+    }
+
+    .indicadores-content .tituloEncabezadodiv3DNP {
+        margin-left: 205px !important;
+        width: auto !important;
+    }
+
+    .indicadores-content .tituloEncabezadodiv4DNP {
+        margin-left: 255px !important;
+        width: auto !important;
+    }
+
+    .indicadores .btneditarDNP {
+        width: auto !important;
+    }
+
+    .nivel-sin-actividad {
+        height: 130px;
+        background-color: rgba(249, 252, 253, 1);
+        border-width: 2px;
+        border-style: solid;
+        border-color: rgba(230, 239, 253, 1);
+        border-radius: 0px;
+        -moz-box-shadow: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 14px;
+        color: #4B4B4B;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .title-actividades {
+        margin-bottom: 20px;
+    }
+
+    .align-selft-center {
+        align-self: center;
+    }
+
+    .d-flex {
+        display: flex;
+    }
+
+    .detalle-nivel-1 {
+        margin-left: 55px;
+    }
+
+        .detalle-nivel-1 > span {
+            margin-left: 0;
+        }
+
+    .detalle-nivel {
+        margin-left: 55px;
+    }
+
+        .detalle-nivel > span {
+            margin-left: 0;
+        }
+
+    .panelbtnalertAcordnp {
+        display: inline-flex;
+        margin: 10px;
+    }
+
+    .errores-contenedor {
+        margin: 15px 0 0 5px;
+    }
+
+    .detalle-actividad-cell {
+        height: 70px;
+        overflow-y: auto;
+    }
+
+    .actividad-width-80 {
+        width: 100px;
+    }
+
+    .actividad-width-180 {
+        width: 180px;
+    }
+
+    .actividad-width-90 {
+        width: 120px;
+    }
+
+    .text-fuente {
+        margin: 12px 0 0 5px;
+    }
+
+    .blue-bg {
+        text-decoration: underline;
+        color: #36C !important;
+        font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans';
+        font-weight: 600;
+        font-style: normal;
+        font-size: 14px;
+        line-height: 18px;
+        text-align: right;
+        background-color: transparent;
+        border-color: transparent;
+    }
+
+    .grey-bg {
+        opacity: .65;
+        text-decoration: underline;
+        color: rgba(186, 186, 186, 0.996) !important;
+        font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans';
+        font-weight: 600;
+        font-style: normal;
+        font-size: 14px;
+        line-height: 18px;
+        text-align: right;
+        background-color: transparent;
+        border-color: transparent;
+        cursor: not-allowed;
+    }
+
+    .blue-bg-button-examinar {
+        -webkit-border-radius: 50px;
+        background-color: transparent !important;
+        border-width: 2px !important;
+        border-style: solid !important;
+        border-color: #3366CC !important;
+        color: #3366CC !important;
+        padding-right: 18px !important;
+        padding-left: 18px !important;
+        padding: 3px 0px 3px 0px;
+        padding: 2px !important;
+        font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans';
+        font-weight: 500 !important;
+        font-style: normal;
+        font-size: 14px !important;
+        padding: 0px;
+        border-radius: 5px;
+        width: 87px;
+        height: 100%;
+        position: relative;
+        min-height: 1px;
+        float: left;
+    }
+
+    .grey-bg-button-examinar {
+        -webkit-border-radius: 50px;
+        background-color: transparent !important;
+        border-width: 2px !important;
+        border-style: solid !important;
+        border-color: rgba(186, 186, 186, 0.996) !important;
+        color: rgba(186, 186, 186, 0.996) !important;
+        padding-right: 18px !important;
+        padding-left: 18px !important;
+        padding: 3px 0px 3px 0px;
+        padding: 2px !important;
+        font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans';
+        font-weight: 500 !important;
+        font-style: normal;
+        font-size: 14px !important;
+        padding: 0px;
+        border-radius: 5px;
+        width: 87px;
+        height: 100%;
+        position: relative;
+        min-height: 1px;
+        float: left;
+        cursor: not-allowed;
+    }
+
+    .blue-bg-button-cancelar {
+        border-radius: 50px;
+        -moz-border-radius: 50px;
+        -webkit-border-radius: 50px;
+        background: #36C !important;
+        border-color: transparent;
+        color: #fff !important;
+        text-transform: uppercase;
+        padding-right: 28px;
+        padding-left: 28px;
+        font-size: 16px;
+        font-weight: 500 !important;
+        padding: 2px !important;
+        font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans';
+        font-style: normal;
+        font-size: 14px !important;
+        padding: 0px;
+        border-radius: 5px;
+        width: 25px;
+        height: 100%;
+        position: relative;
+        min-height: 1px;
+        float: right;
+    }
+
+    .grey-bg-button-cancelar {
+        background-color: transparent !important;
+        border-color: rgba(186, 186, 186, 0.996) !important;
+        color: rgba(186, 186, 186, 0.996) !important;
+        padding: 0px;
+        border-radius: 5px;
+        width: 25px;
+        float: right;
+        cursor: not-allowed;
+    }
+
+</style>
+<script>
+    let x = document.querySelectorAll(".myDIV");
+    for (let i = 0, len = x.length; i < len; i++) {
+        let num = Number(x[i].innerHTML)
+            .toLocaleString('en');
+        x[i].innerHTML = num;
+        x[i].classList.add("currSign");
+    }
+</script>
+
+<section class="container-fluid inbox" ng-init="vm.init();">
+
+    <div class="row">
+        <br />
+        <div class="col-md-12">
+            <div class="col-md-1">
+
+            </div>
+            <div class="col-md-1">
+                <div class="divInfoAplicRADNP">
+                    <span><img src="Img/u2392.svg" />  Abierto</span>
+                </div>
+            </div>
+            <div class="col-md-1">
+
+            </div>
+            <div class="col-md-4" ng-repeat="listaPeriodosActivos in datosavanceRegionalizacion.ListaPeriodosActivos" style="padding-bottom:8px">
+                <div class="form-group editReferenciaDNP" style="text-align:center;padding-top:8px">
+                    <span><b>{{listaPeriodosActivos.Vigencia}}/{{listaPeriodosActivos.Mes}}.</b> {{listaPeriodosActivos.FechaDesde | date:'dd/MM/yyyy'}} - {{listaPeriodosActivos.FechaHasta | date:'dd/MM/yyyy'}}</span>
+                </div>
+            </div>
+            <div class="col-md-1">
+
+            </div>
+        </div>
+    </div>
+
+    <br />
+
+    <div class="pr-3" ng-repeat="fuente in datosavanceRegionalizacion.Fuentes" ng-init="objetivoIndex = $index">
+        <div class="row" style="color: #004884">
+            <!-- Objetivos-->
+            <div class="objetivo-header">
+                <p class="header-content">
+                    <span style="font-weight: 600; color: #004884" id="avanceMeta-objetivo-nombre-{{objetivoIndex}}-min"> Fuente: </span>
+                    <span id="avanceMeta-objetivo-nombre-{{objetivoIndex}}-max"> {{fuente.NombreFuente}}</span>
+                </p>
+            </div>
+            <!-- Productos-->
+            <div class="objetivo-productos">
+                <div class="card card-body divAccordionDNP">
+                    <div>
+                        <div class="alert panel-heading">
+                            <table class="TableDNP">
+                                <thead>
+                                    <tr>
+                                        <th class="columAcc"></th>
+                                        <th class="textLeftDNP"><span class="uLabelCampo">Periodo</span></th>
+                                        <th class="textLeftDNP">Comparativo</th>
+                                        <th class="textRightDNP">Compromisos $</th>
+                                        <th class="textRightDNP">Obligaciones $</th>
+                                        <th class="textRightDNP">Pagos $</th>
+                                        <th class="columAcc"></th>
+                                    </tr>
+                                </thead>
+                                <tbody ng-repeat="vigenciaperiodo in vm.fuentes | filter:fuente.FuenteId | orderBy:'Vigencia'" ng-init="vigenciaperiodoindex = $index">
+                                    <tr>
+                                        <td class="columAcc" style="background: transparent">
+                                            <img id="imgcptj-{{fuente.FuenteId}}-{{vigenciaperiodo.Vigencia}}-{{vigenciaperiodo.NunMes}}" class="iconoErrorDNP" src="Img/u4630.svg" style="display:none;">
+                                            <div id="icocptj-{{fuente.FuenteId}}-{{vigenciaperiodo.Vigencia}}-{{vigenciaperiodo.NunMes}}" class="hidden iconoErrorDNP"></div>
+                                        </td>
+                                        <td class="textLeftDNP"><input type="text" class="form-control editInputDNP " style="text-align:left;padding: 0px 5px 0px 5px;margin-left: 5px" disabled value="{{vigenciaperiodo.Vigencia}}/{{vigenciaperiodo.Mes}}" /></td>
+                                        <td class="textLeftDNP"><input type="text" class="form-control editInputDNP " style="text-align:left;padding: 0px 5px 0px 5px;margin-left: 5px; width:300px !important;" disabled value="{{vigenciaperiodo.Comparativo}}" /></td>
+                                        <td class="textRightDNP"><input type="text" class="form-control editInputDNP " style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px" disabled value="{{vigenciaperiodo.Compromisos}}" /></td>
+                                        <td class="textRightDNP"><input type="text" class="form-control editInputDNP " style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px" disabled value="{{vigenciaperiodo.Obligaciones}}" /></td>
+                                        <td class="textRightDNP"><input type="text" class="form-control editInputDNP " style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px" disabled value="{{vigenciaperiodo.Pagos}}" /></td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="7">
+                                            <div id="errortottal-{{fuente.FuenteId}}" class=" text-left color-red iconoErrorDNPError" style="display:none;">
+                                                <img class="img img-advertencia" src="Img/u11.svg" />
+                                                <span id="errortottalmsn-{{fuente.FuenteId}}"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="panelbtnalertAcordnp">
+                    <button id="button-{{fuente.FuenteId}}"
+                            class="btnaccion btnAccordionDNP"
+                            type="button"
+                            data-toggle="collapse"
+                            data-target="#avanceMeta-indicadores-{{fuente.FuenteId}}"
+                            ng-click="vm.abrilNivelFuente('avanceMeta-'+fuente.FuenteId, fuente.FuenteId)">
+                        <img src="Img/btnMas.svg" id="avanceMeta-{{fuente.FuenteId}}-mas">
+                        <img class="hidden" src="Img/btnMenos.svg" id="avanceMeta-{{fuente.FuenteId}}-menos">
+                    </button>
+
+                    <span class="text-fuente" id="error-button-avanceMeta-{{fuente.FuenteId}}">
+                        <span class="uLabelCampo">Reporte avance regionalización</span>
+                    </span>
+
+                    <span class="errores-contenedor d-none" id="error-button-avanceMeta-{{fuente.FuenteId}}">
+                        <span class="img iconadverdnp"><img src="Img/u4630.svg"> </span>
+                        <span class="messagealerttableDNP" id="error-button-avanceMeta-{{fuente.FuenteId}}-txt"></span>
+                    </span>
+                </div>
+                <div ng-if="vm.FuenteSeleccionada == fuente.FuenteId">
+                    <!-- Indicadores -->
+                    <div class="collapse indicadores" ng-init="objetivoIndex = $index" id="avanceMeta-indicadores-{{fuente.FuenteId}}">
+                        <div class="LineaEncabezadodivDNP mt-0"></div>
+                        <div class="inlineBlock">
+                            <div class="tituloEncabezadodivDNP">
+                                <span class="uLabelCampo">Objetivos y productos</span>
+                            </div>
+                        </div>
+                        <div class="objetivo-header">
+                            <div ng-repeat="objetivo in fuente.Objetivos">
+                                <div class="card card-body divAccordionDNP">
+                                    <div class="content-title">
+                                        <div class="mb-2">
+                                            <span class="uLabelCampo">{{indicador.NombreTipoIndicador}}</span>
+                                            <span id="avanceMeta-indicador-nombre-{{indicador.IndicadorId}}-min"> {{indicador.NombreIndicadorCorto}}</span>
+                                            <span class="hidden" id="avanceMeta-indicador-nombre-{{indicador.IndicadorId}}-max"> {{indicador.NombreIndicador}}</span>
+                                            <a id="avanceMeta-indicador-nombre-{{indicador.IndicadorId}}-val"
+                                               ng-if="indicador.NombreIndicadorCorto !=indicador.NombreIndicador"
+                                               ng-click="vm.verNombreCompleto('avanceMeta-indicador-nombre-', indicador.IndicadorId)">VER MÁS</a>
+                                        </div>
+                                        <div class="mb-2">
+                                            <p class="header-content">
+                                                <span class="uLabelCampo" id="avanceMeta-objetivo-nombre-{{fuente.FuenteId}}-{{objetivo.ObjetivoEspecificoId}}-min">Objetivo {{objetivo.NumeroObjetivo}}</span>
+                                                <span id="avanceMeta-objetivo-nombre-{{fuente.FuenteId}}-{{objetivo.ObjetivoEspecificoId}}-min"> {{objetivo.ObjetivoEspecificoCorto}}</span>
+                                                <span class="hidden" id="avanceMeta-objetivo-nombre-{{fuente.FuenteId}}-{{objetivo.ObjetivoEspecificoId}}-max"> {{objetivo.ObjetivoEspecifico}}</span>
+                                                <a id="avanceMeta-objetivo-nombre-{{objetivo.ObjetivoEspecificoId}}-val"
+                                                   ng-click="vm.verNombreCompleto('avanceMeta-objetivo-nombre-', (fuente.FuenteId+'-'+objetivo.ObjetivoEspecificoId))">VER MÁS</a>
+                                            </p>
+                                            <br>
+                                            <div class="mb-2" ng-repeat="producto in objetivo.Productos">
+                                                <span class="uLabelCampo">Producto {{objetivo.NumeroObjetivo}}.{{producto.NumeroProducto}} </span>
+                                                <span>{{producto.NombreProducto}}</span>
+                                                <a id="avanceMeta-producto-nombre-{{producto.ProductoId}}-val"
+                                                   ng-click="vm.verNombreCompleto('avanceMeta-producto-nombre-', producto.ProductoId)">VER MÁS</a>
+                                                <br>
+                                                <span class="uLabelCampo">Etapa: </span>
+                                                <span>{{producto.Etapa}} </span>
+                                                <span class="uLabelCampo">Costo total producto: </span>
+                                                <span>${{producto.CostoProductoF}}</span>
+                                                <span class="uLabelCampo">
+                                                    Fecha
+                                                    inicio:
+                                                </span>
+
+                                                <span>{{producto.FechaInicio | date:'dd/MM/yyyy'}}</span>
+                                                <span class="uLabelCampo">Fecha fin: </span>
+                                                <span>{{producto.FechaFin | date:'dd/MM/yyyy'}}</span>
+                                                <br>
+                                                <div class="panelbtnalertAcordnp">
+                                                    <button id="button-{{fuente.FuenteId}}-{{objetivo.ObjetivoEspecificoId}}"
+                                                            class="btnaccion btnAccordionDNP"
+                                                            type="button"
+                                                            data-toggle="collapse"
+                                                            data-target="#avanceMeta-indicadordetalle-{{fuente.FuenteId}}-{{producto.ProductoId}}-{{objetivo.ObjetivoEspecificoId}}"
+                                                            ng-click="vm.abrilNivelObjetivo('avanceMeta-'+fuente.FuenteId+'-'+ producto.ProductoId + '-' +objetivo.ObjetivoEspecificoId, objetivo.ObjetivoEspecificoId, producto.ProductoId )">
+                                                        <img src="Img/btnMas.svg" id="avanceMeta-{{fuente.FuenteId}}-{{producto.ProductoId}}-{{objetivo.ObjetivoEspecificoId}}-mas">
+                                                        <img class="hidden" src="Img/btnMenos.svg" id="avanceMeta-{{fuente.FuenteId}}-{{producto.ProductoId}}-{{objetivo.ObjetivoEspecificoId}}-menos">
+                                                    </button>
+                                                    <span class="errores-contenedor d-none" id="error-button-avanceMeta-{{fuente.FuenteId}}-{{producto.ProductoId}}-{{objetivo.ObjetivoEspecificoId}}">
+                                                        <span class="img iconadverdnp"><img src="Img/u4630.svg"> </span>
+                                                        <span class="messagealerttableDNP" id="error-button-avanceMeta-{{fuente.FuenteId}}-{{producto.ProductoId}}-{{objetivo.ObjetivoEspecificoId}}-txt"></span>
+                                                    </span>
+                                                </div>
+                                                <div ng-if="vm.ObjetivoSeleccionadoReportAvance == objetivo.ObjetivoEspecificoId && vm.ProductoSeleccionadoReportAvance == producto.ProductoId">
+                                                    <div class="collapse indicadores" id="avanceMeta-indicadordetalle-{{fuente.FuenteId}}-{{producto.ProductoId}}-{{objetivo.ObjetivoEspecificoId}}">
+                                                        <div class="LineaEncabezadodivDNP mt-0"></div>
+                                                        <div class="inlineBlock">
+                                                            <div class="tituloEncabezadodivDNP">
+                                                                <span class="uLabelCampo">Localizaciones</span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div class="alert panel-heading">
+                                                                <table class="TableDNP">
+
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th class="columAcc"></th>
+                                                                            <th class="textLeftDNP"><span class="uLabelCampo">Departamento</span></th>
+                                                                            <th class="textLeftDNP">Municipio</th>
+                                                                            <th class="textLeftDNP">Tipo de Agrupación</th>
+                                                                            <th class="textLeftDNP">Agrupación</th>
+                                                                            <th class="columAcc"></th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <!--<tbody ng-repeat="localizacion in producto.Localizaciones" ng-init="localizacionindex = $index">-->
+                                                                    <tbody ng-repeat="localizacion in datosavanceRegionalizacion.ListaLocalizacion" ng-init="localizacionindex = $index">
+                                                                        <tr>
+                                                                            <td>
+                                                                                <button class="btnaccion btnAccordionDNP"
+                                                                                        style="margin-left: -5px"
+                                                                                        type="button"
+                                                                                        ng-click="vm.abrilNivelLocalizacion('avanceMeta-'+producto.ProductoId + '-' + fuente.FuenteId+'-'+localizacion.LocalizacionId, fuente.FuenteId, producto.ProductoId , localizacion.LocalizacionId)"
+                                                                                        data-toggle="collapse"
+                                                                                        data-target="#avanceMeta-indicadordetalleresumen-{{producto.ProductoId}}-{{fuente.FuenteId}}-{{localizacion.LocalizacionId}}">
+                                                                                    <img src="Img/btnMas.svg" id="avanceMeta-{{producto.ProductoId}}-{{fuente.FuenteId}}-{{localizacion.LocalizacionId}}-mas">
+                                                                                    <img class="hidden" src="Img/btnMenos.svg" id="avanceMeta-{{producto.ProductoId}}-{{fuente.FuenteId}}-{{localizacion.LocalizacionId}}-menos">
+                                                                                </button>
+                                                                                <span class="errores-contenedor d-none" id="error-button-avanceMeta-{{producto.ProductoId}}-{{fuente.FuenteId}}-{{localizacion.LocalizacionId}}">
+                                                                                    <span class="img iconadverdnp"><img src="Img/u4630.svg"> </span>
+                                                                                    <span class="messagealerttableDNP" id="error-button-avanceMeta-{{producto.ProductoId}}-{{fuente.FuenteId}}-{{localizacion.LocalizacionId}}-txt"></span>
+                                                                                </span>
+                                                                            </td>
+                                                                            <td class="textLeftDNP">{{localizacion.Departamento == null ? '' : localizacion.Departamento}}</td>
+                                                                            <td class="textLeftDNP">{{localizacion.Municipio == null ? '' : localizacion.Municipio}}</td>
+                                                                            <td class="textLeftDNP">{{localizacion.TipoAgrupacion == null ? '' : localizacion.TipoAgrupacion}}</td>
+                                                                            <td class="textLeftDNP">{{localizacion.Agrupacion == null? '' : localizacion.Agrupacion}}</td>
+                                                                        </tr>
+                                                                        <tr ng-if="vm.localizacionReportAvanceSeleccionada == localizacion.LocalizacionId" class="no-border collapse alert panel-heading" id="avanceMeta-indicadordetalleresumen-{{producto.ProductoId}}-{{fuente.FuenteId}}-{{localizacion.LocalizacionId}}">
+                                                                            <td colspan="5" class="p-0">
+                                                                                <div class="LineaEncabezadodivDNP mt-0"></div>
+                                                                                <div class="inlineBlock">
+                                                                                    <div class="tituloEncabezadodivDNP">
+                                                                                        <span class="uLabelCampo">Avance Regionalización recursos y metas </span>
+                                                                                    </div>
+                                                                                </div>
+
+
+                                                                                <div class="row">
+                                                                                    <div class="col-md-11">
+                                                                                        <h3 class="text-left ui-seccion-title mb-5">
+                                                                                            Recursos
+
+                                                                                            <span class="buttonbar pull-right" ng-if="!vm.soloLectura">
+                                                                                                <!--<button id="Editar"-->
+                                                                                                <button type="button" class="btneditarDNP" tooltip-placement="top"
+                                                                                                        ng-click="vm.HabilitaEditarIndicador ? vm.Cancelar(localizacion, vm.fuentes, fuente.FuenteId, objetivo.ObjetivoEspecificoId,producto.ProductoId, localizacion.LocalizacionId)
+                                                                                                : vm.Editar(localizacion, vm.fuentes, fuente.FuenteId, objetivo.ObjetivoEspecificoId,producto.ProductoId, localizacion.LocalizacionId)" uib-tooltip="{{vm.HabilitaEditarIndicador ? 'CANCELAR' : 'EDITAR'}}">
+                                                                                                    {{vm.HabilitaEditarIndicador ? 'CANCELAR' : 'EDITAR'}}
+                                                                                                </button>
+                                                                                                &nbsp;
+                                                                                                <!--<button id="Guardar"-->
+                                                                                                <button id="btnGuardar{{fuente.FuenteId}}-{{localizacion.LocalizacionId}}" ng-disabled="!vm.HabilitaEditarIndicador" type="button" class="{{vm.HabilitaEditarIndicador ? 'btnguardarDNP' : 'btnguardarDNP'}}" tooltip-placement="top" uib-tooltip="Guardar" tabindex="0" ng-click="vm.Guardar(fuente, fuente.FuenteId, localizacion.LocalizacionId)">
+                                                                                                    GUARDAR
+                                                                                                </button>
+                                                                                            </span>
+                                                                                        </h3>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="alert panel-heading">
+                                                                                    <div class="tab-container col-md-12" style="width: 100%; text-align: left">
+                                                                                        <ul class="nav nav-tabs">
+                                                                                            <li id="livalConstantesduvf-{{fuente.FuenteId}}-{{localizacion.LocalizacionId}}" class="nav-item" ng-class="{active : 1===1}">
+                                                                                                <a href="" class="nav-link" data-target="#tabValConstantesduvf-{{fuente.FuenteId}}-{{localizacion.LocalizacionId}}" data-toggle="tab">
+                                                                                                    <b>
+                                                                                                        <span id="valutilizados-liberacion-vigencia-futura-constante" class="img iconadverdnp hidden" style="margin-left:0px">   <img src="Img/u4630.svg"> </span>
+                                                                                                        Del mes
+                                                                                                    </b>
+                                                                                                </a>
+                                                                                            </li>
+                                                                                        </ul>
+                                                                                    </div>
+
+                                                                                    <div class="tab-content">
+                                                                                        <div class="tab-pane active cont col-md-12" style="padding-left:0 !important;padding-top:20px !important; padding-bottom:0" id="tabValConstantesduvf-{{fuente.FuenteId}}-{{localizacion.LocalizacionId}}">
+                                                                                            <table class="TableDNP2">
+                                                                                                <thead>
+                                                                                                    <tr>
+                                                                                                        <th class="columAcc"></th>
+                                                                                                        <th class="textRightDNP"><span class="uLabelCampo">Vigencia/Periodo</span></th>
+                                                                                                        <th class="textRightDNP">Compromisos $</th>
+                                                                                                        <th class="textRightDNP">Obligaciones $</th>
+                                                                                                        <th class="textRightDNP">Pagos $</th>
+                                                                                                        <th class="textLeftDNP">Observaciones</th>
+                                                                                                        <th class="columAcc"></th>
+                                                                                                    </tr>
+                                                                                                </thead>
+                                                                                                <tbody ng-repeat="recursosA in vm.DetalleRegionalizacion.RecursosPeriodosActivos" ng-init="EnFirmeindex = $index">
+                                                                                                    <tr>
+                                                                                                        <td>
+                                                                                                            <img id="imgcptj{{EnFirmeindex}}{{recursosA.Vigencia}}{{recursosA.Mes}}{{localizacion.LocalizacionId}}{{fuente.FuenteId}}{{objetivo.ObjetivoEspecificoId}}{{producto.ProductoId}}" class="iconoErrorDNP" src="Img/u4630.svg" style="display:none;">
+                                                                                                            <div id="icocptj{{EnFirmeindex}}{{recursosA.Vigencia}}{{recursosA.Mes}}{{localizacion.LocalizacionId}}{{fuente.FuenteId}}{{objetivo.ObjetivoEspecificoId}}{{producto.ProductoId}}" class="hidden iconoErrorDNP"></div>
+                                                                                                        </td>
+                                                                                                        <td class="textRightDNP">
+                                                                                                            {{recursosA.Vigencia}}/{{recursosA.Mes}}
+                                                                                                        </td>
+                                                                                                        <td class="textRightDNP">
+                                                                                                            <input ng-show="!vm.HabilitaEditarIndicador" id="inputCompromisosF{{EnFirmeindex}}{{recursosA.Vigencia}}{{recursosA.Mes}}{{localizacion.LocalizacionId}}{{fuente.FuenteId}}{{objetivo.ObjetivoEspecificoId}}{{producto.ProductoId}}" type="text" class="form-control editInputDNP editText" style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px" disabled value="{{recursosA.CompromisosF == null ? 0: recursosA.CompromisosF}}" oninput="validateInput()" />
+                                                                                                            <input ng-show="vm.HabilitaEditarIndicador" id="inputCompromisos{{EnFirmeindex}}{{recursosA.Vigencia}}{{recursosA.Mes}}{{localizacion.LocalizacionId}}{{fuente.FuenteId}}{{objetivo.ObjetivoEspecificoId}}{{producto.ProductoId}}" type="text"
+                                                                                                                   ng-keypress="vm.validateFormatNegative($event)"
+                                                                                                                   ng-keyup="vm.validarTamanioNegative($event)"
+                                                                                                                   ng-value="recursosA.Compromisos"
+                                                                                                                   ng-model="recursosA.Compromisos"
+                                                                                                                   ng-blur="vm.actualizaFila(vm.DetalleRegionalizacion.RecursosPeriodosActivos,vm.DetalleRegionalizacion.ResumenRecursosMetas,1, EnFirmeindex, recursosA.Vigencia, recursosA.Mes, localizacion.LocalizacionId, fuente.FuenteId, objetivo.ObjetivoEspecificoId, producto.ProductoId)"
+                                                                                                                   required class="form-control editInputDNP editText" style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px" />
+
+                                                                                                        </td>
+                                                                                                        <td class="textRightDNP">
+                                                                                                            <input ng-show="!vm.HabilitaEditarIndicador" id="inputObligacionesF{{EnFirmeindex}}{{recursosA.Vigencia}}{{recursosA.Mes}}{{localizacion.LocalizacionId}}{{fuente.FuenteId}}{{objetivo.ObjetivoEspecificoId}}{{producto.ProductoId}}" type="text" class="form-control editInputDNP editText" style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px" disabled value="{{recursosA.ObligacionesF == null ? 0: recursosA.ObligacionesF}}" />
+                                                                                                            <input ng-show="vm.HabilitaEditarIndicador" id="inputObligaciones{{EnFirmeindex}}{{recursosA.Vigencia}}{{recursosA.Mes}}{{localizacion.LocalizacionId}}{{fuente.FuenteId}}{{objetivo.ObjetivoEspecificoId}}{{producto.ProductoId}}" type="text"
+                                                                                                                   ng-keypress="vm.validateFormatNegative($event)"
+                                                                                                                   ng-keyup="vm.validarTamanioNegative($event)"
+                                                                                                                   ng-value="recursosA.Obligaciones"
+                                                                                                                   ng-model="recursosA.Obligaciones"
+                                                                                                                   ng-blur="vm.actualizaFila(vm.DetalleRegionalizacion.RecursosPeriodosActivos,vm.DetalleRegionalizacion.ResumenRecursosMetas,1, EnFirmeindex, recursosA.Vigencia, recursosA.Mes, localizacion.LocalizacionId, fuente.FuenteId, objetivo.ObjetivoEspecificoId, producto.ProductoId)"
+                                                                                                                   required class="form-control editInputDNP editText" style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px" />
+
+                                                                                                        </td>
+                                                                                                        <td class="textRightDNP">
+                                                                                                            <input ng-show="!vm.HabilitaEditarIndicador" id="txtPagosEF{{EnFirmeindex}}{{recursosA.Vigencia}}{{recursosA.Mes}}{{localizacion.LocalizacionId}}{{fuente.FuenteId}}{{objetivo.ObjetivoEspecificoId}}{{producto.ProductoId}}" type="text" class="form-control editInputDNP editText" style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px" disabled value="{{recursosA.PagosF == null ? 0: recursosA.PagosF}}" />
+                                                                                                            <input ng-show="vm.HabilitaEditarIndicador" id="txtPagosE{{EnFirmeindex}}{{recursosA.Vigencia}}{{recursosA.Mes}}{{localizacion.LocalizacionId}}{{fuente.FuenteId}}{{objetivo.ObjetivoEspecificoId}}{{producto.ProductoId}}" type="text"
+                                                                                                                   ng-keypress="vm.validateFormatNegative($event)"
+                                                                                                                   ng-keyup="vm.validarTamanioNegative($event)"
+                                                                                                                   ng-value="recursosA.Pagos"
+                                                                                                                   ng-model="recursosA.Pagos"
+                                                                                                                   ng-blur="vm.actualizaFila(vm.DetalleRegionalizacion.RecursosPeriodosActivos,vm.DetalleRegionalizacion.ResumenRecursosMetas,1, EnFirmeindex, recursosA.Vigencia, recursosA.Mes, localizacion.LocalizacionId, fuente.FuenteId, objetivo.ObjetivoEspecificoId, producto.ProductoId)"
+                                                                                                                   required class="form-control editInputDNP editText" style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px" />
+
+                                                                                                        </td>
+                                                                                                        <td class="textLeftDNP">
+                                                                                                            <textarea id="txtObservacionesRecursos{{EnFirmeindex}}{{recursosA.Vigencia}}{{recursosA.Mes}}{{localizacion.LocalizacionId}}{{fuente.FuenteId}}{{objetivo.ObjetivoEspecificoId}}{{producto.ProductoId}}"
+                                                                                                                      ng-value="recursosA.ObservacionRecurso"
+                                                                                                                      ng-model="recursosA.ObservacionRecurso"
+                                                                                                                      minlength="2"
+                                                                                                                      maxlength="58000"
+                                                                                                                      placeholder="Escriba su observación"
+                                                                                                                      ng-blur="vm.actualizaFila(vm.DetalleRegionalizacion.RecursosPeriodosActivos,vm.DetalleRegionalizacion.ResumenRecursosMetas,1, EnFirmeindex, recursosA.Vigencia, recursosA.Mes, localizacion.LocalizacionId, fuente.FuenteId, objetivo.ObjetivoEspecificoId, producto.ProductoId)"
+                                                                                                                      ng-disabled="!vm.HabilitaEditarIndicador"
+                                                                                                                      required class="textareObservaDNP" style="text-align:left;padding: 0px 5px 0px 5px;margin-left: 5px" />
+                                                                                                        </td>
+                                                                                                        <td></td>
+                                                                                                    </tr>
+                                                                                                </tbody>
+                                                                                                <tfoot>
+                                                                                                    <tr>
+                                                                                                        <td colspan="7">
+                                                                                                            <div id="errortottal{{localizacion.LocalizacionId}}{{fuente.FuenteId}}{{objetivo.ObjetivoEspecificoId}}{{producto.ProductoId}}" class=" text-left color-red iconoErrorDNPError" style="display:none;">
+                                                                                                                <img class="img img-advertencia" src="Img/u11.svg" />
+                                                                                                                <span id="errortottalmsn{{localizacion.LocalizacionId}}{{fuente.FuenteId}}{{objetivo.ObjetivoEspecificoId}}{{producto.ProductoId}}"></span>
+                                                                                                            </div>
+                                                                                                        </td>
+                                                                                                    </tr>
+                                                                                                </tfoot>
+                                                                                            </table>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+
+                                                                                <div class="row">
+                                                                                    <div class="col-md-12">
+                                                                                        <h3 class="text-left ui-seccion-title mb-5">
+                                                                                            Metas
+                                                                                        </h3>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="row">
+                                                                                    <div class="alert panel-heading">
+                                                                                        <table class="TableDNP">
+
+                                                                                            <thead>
+                                                                                                <tr>
+                                                                                                    <th class="columAcc"></th>
+                                                                                                    <th class="textRightDNP"><span class="uLabelCampo">Vigencia/Periodo</span></th>
+                                                                                                    <th class="textRightDNP">Acumulado al mes anterior</th>
+                                                                                                    <th class="textRightDNP">Avance en el mes</th>
+                                                                                                    <th class="textLeftDNP">Observación del mes</th>
+                                                                                                    <th class="columAcc"></th>
+                                                                                                </tr>
+                                                                                            </thead>
+                                                                                            <tbody ng-repeat="recursosM in vm.DetalleRegionalizacion.MetasPeriodosActivos" ng-init="EnFirmeindex = $index">
+                                                                                                <tr>
+                                                                                                    <td class="columAcc">
+                                                                                                    </td>
+                                                                                                    <td class="textRightDNP">
+                                                                                                        {{recursosM.Vigencia}}/{{recursosM.Mes}}
+                                                                                                    </td>
+                                                                                                    <td class="textRightDNP"><input type="text" class="form-control editInputDNP " style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px" disabled value="{{recursosM.AcumuladoMesAnteriorF == null ? 0: recursosM.AcumuladoMesAnteriorF}}" /></td>
+                                                                                                    <td ng-show="!vm.HabilitaEditarIndicador" id="txtAvanceMesF{{EnFirmeindex}}{{recursosM.Vigencia}}{{recursosM.Mes}}{{localizacion.LocalizacionId}}{{fuente.FuenteId}}{{objetivo.ObjetivoEspecificoId}}{{producto.ProductoId}}" class="textRightDNP"><input type="text" class="form-control editInputDNP " style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px" disabled value="{{recursosM.AvanceMesF == null ? 0: recursosM.AvanceMesF}}" /></td>
+                                                                                                    <td ng-show="vm.HabilitaEditarIndicador" class="textRightDNP">
+                                                                                                        <input id="txtAvanceMes{{EnFirmeindex}}{{recursosM.Vigencia}}{{recursosM.Mes}}{{localizacion.LocalizacionId}}{{fuente.FuenteId}}{{objetivo.ObjetivoEspecificoId}}{{producto.ProductoId}}" type="number" string-to-number min="0.00"
+                                                                                                               ng-keypress="vm.validateFormat($event)"
+                                                                                                               ng-keyup="vm.validarTamanio($event)"
+                                                                                                               ng-value="recursosM.AvanceMes"
+                                                                                                               ng-model="recursosM.AvanceMes"
+                                                                                                               ng-blur="vm.actualizaFila(recursosM,vm.DetalleRegionalizacion.RecursosPeriodosActivos,2, EnFirmeindex, recursosM.Vigencia, recursosM.Mes, localizacion.LocalizacionId, fuente.FuenteId, objetivo.ObjetivoEspecificoId, producto.ProductoId)"
+                                                                                                               ng-disabled="!vm.HabilitaEditarIndicador"
+                                                                                                               required class="form-control editInputDNP" style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px" />
+
+                                                                                                    </td>
+                                                                                                    <td class="textLeftDNP">
+                                                                                                        <textarea id="txtObservacionesMeta{{EnFirmeindex}}{{recursosM.Vigencia}}{{recursosM.Mes}}{{localizacion.LocalizacionId}}{{fuente.FuenteId}}{{objetivo.ObjetivoEspecificoId}}{{producto.ProductoId}}"
+                                                                                                                  ng-value="recursosM.ObservacionMeta"
+                                                                                                                  ng-model="recursosM.ObservacionMeta"
+                                                                                                                  minlength="2"
+                                                                                                                  maxlength="58000"
+                                                                                                                  placeholder="Escriba su observación"
+                                                                                                                  ng-disabled="!vm.HabilitaEditarIndicador"
+                                                                                                                  required class="textareObservaDNP" style="text-align:left;padding: 0px 5px 0px 5px;margin-left: 5px"
+                                                                                                                  ng-blur="vm.actualizaFila(recursosM,vm.DetalleRegionalizacion.RecursosPeriodosActivos,2, EnFirmeindex, recursosM.Vigencia, recursosM.Mes, localizacion.LocalizacionId, fuente.FuenteId, objetivo.ObjetivoEspecificoId, producto.ProductoId)" />
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                                <tr class="no-border collapse alert panel-heading" id="avanceMeta-indicadordetalleresumen-{{indicador.IndicadorId}}-{{resumenperiodo.Vigencia}}">
+                                                                                                    <td colspan="5" class="p-0">
+                                                                                                        <div class="LineaEncabezadodivDNP mt-0"></div>
+                                                                                                        <div class="inlineBlock">
+                                                                                                            <div class="tituloEncabezadodivDNP">
+                                                                                                                <span class="uLabelCampo">Detalle </span>
+                                                                                                                <span>{{resumenperiodo.Vigencia}}</span>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                        <table class="TableDNP no-border">
+                                                                                                            <thead>
+                                                                                                                <tr>
+                                                                                                                    <th class="columAcc"></th>
+                                                                                                                    <th class="textRightDNP" style="width: 136px;"><span>Periodo </span></th>
+                                                                                                                    <th class="textRightDNP" style="width: 260px;"><span>Meta programada para el mes</span></th>
+                                                                                                                    <th class="textRightDNP" style="width: 260px;"><span>Avance ejecutado para el mes</span></th>
+                                                                                                                    <th class="textRightDNP" style="width: 260px;"><span>Observación</span></th>
+                                                                                                                    <th class="columAcc"></th>
+                                                                                                                </tr>
+                                                                                                            </thead>
+                                                                                                            <tbody>
+                                                                                                                <tr>
+                                                                                                                    <td></td>
+                                                                                                                    <td class="textRightDNP"><input type="text" class="form-control editInputDNP " style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px" disabled value="{{detalleVigencia.Mes}}" /></td>
+                                                                                                                    <td ng-if="indicador.EsPrincipal" class="textRightDNP"><input type="text" class="form-control editInputDNP " style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px" disabled value="{{detalleVigencia.MetaProgramadaMes}}" /></td>
+                                                                                                                    <td ng-if="!indicador.EsPrincipal" class="textRightDNP">N/A</td>
+                                                                                                                    <td class="textRightDNP"><input type="text" class="form-control editInputDNP " style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px" disabled value="{{detalleVigencia.AvanceEjecutadoMes}}" /></td>
+                                                                                                                    <td class="textLeftDNP">
+                                                                                                                        <textarea id="{{indicador.IndicadorId}}-{{resumenperiodo.Vigencia}}-{{detalleVigencia.PeriodoPeriodicidadId}}"
+                                                                                                                                  ng-value="detalleVigencia.Observacion"
+                                                                                                                                  ng-model="detalleVigencia.Observacion"
+                                                                                                                                  minlength="2"
+                                                                                                                                  maxlength="58000"
+                                                                                                                                  ng-disabled="true"
+                                                                                                                                  cols="40"
+                                                                                                                                  required class="textareObservaDNP" style="text-align:left;padding: 0px 5px 0px 5px;margin-left: 5px"
+                                                                                                                                  ng-blur="vm.actualizaFila(recursosM,vm.DetalleRegionalizacion.RecursosPeriodosActivos,1, EnFirmeindex, recursosM.Vigencia, recursosM.Mes, localizacion.LocalizacionId, fuente.FuenteId, objetivo.ObjetivoEspecificoId, producto.ProductoId)" />
+                                                                                                                    </td>
+                                                                                                                    <td class="columAcc"></td>
+                                                                                                                </tr>
+                                                                                                            </tbody>
+                                                                                                            <tfoot>
+                                                                                                                <tr>
+                                                                                                                    <td class="columAcc" style="font-family: 'Work Sans SemiBold Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 600; font-style: normal; font-size: 30px; color: rgba(50, 102, 204, 0.996078431372549);"><span style="margin-top: 55%">=</span></td>
+                                                                                                                    <td class="textRightDNP"><span>Total $</span></td>
+                                                                                                                    <td ng-if="indicador.EsPrincipal" class="textRightDNP"><input type="text" class="form-control editInputDNP " style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 500; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px" disabled value="{{resumenperiodo.TotalMetaProgramada}}" /></td>
+                                                                                                                    <td ng-if="!indicador.EsPrincipal" class="textRightDNP">N/A</td>
+                                                                                                                    <td class="textRightDNP"><input type="text" class="form-control editInputDNP " style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 500; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px" disabled value="{{resumenperiodo.TotalMetaEjecutada}}" /></td>
+                                                                                                                    <td></td>
+                                                                                                                </tr>
+                                                                                                            </tfoot>
+                                                                                                        </table>
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                            </tbody>
+                                                                                        </table>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <br>
+                                                                                <div>
+                                                                                    <div class="row">
+                                                                                        <div class="col-md-12">
+                                                                                            <h3 class="text-left ui-seccion-title mb-5">
+                                                                                                Resumen recursos y metas
+                                                                                            </h3>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    <div class="alert panel-heading">
+                                                                                        <div class="tab-container col-md-12" style="width: 100%; text-align: left">
+                                                                                            <ul class="nav nav-tabs">
+                                                                                                <li id="livalConstantesduvf2-{{fuente.FuenteId}}-{{producto.ProductoId}}-{{objetivo.ObjetivoEspecificoId}}-{{localizacion.LocalizacionId}}" class="nav-item" ng-class="{active : 1===1}">
+                                                                                                    <a href="" class="nav-link" data-target="#tabValConstantesduvf-{{fuente.FuenteId}}-{{producto.ProductoId}}-{{objetivo.ObjetivoEspecificoId}}-{{localizacion.LocalizacionId}}" data-toggle="tab">
+                                                                                                        <b>
+                                                                                                            <span id="valutilizados-liberacion-vigencia-futura-constante" class="img iconadverdnp hidden" style="margin-left:0px">   <img src="Img/u4630.svg"> </span>
+                                                                                                            Resumen regionalización recursos
+                                                                                                        </b>
+                                                                                                    </a>
+                                                                                                </li>
+                                                                                                <li id="liCorrientesduvg2-{{fuente.FuenteId}}-{{producto.ProductoId}}-{{objetivo.ObjetivoEspecificoId}}-{{localizacion.LocalizacionId}}" class="nav-item">
+                                                                                                    <a href="" class="nav-link" data-target="#tabValCorrienteduvf-{{fuente.FuenteId}}-{{producto.ProductoId}}-{{objetivo.ObjetivoEspecificoId}}-{{localizacion.LocalizacionId}}" data-toggle="tab">
+                                                                                                        <span id="valutilizados-liberacion-vigencia-futura-corriente" class="img iconadverdnp hidden" style="margin-left:0px">   <img src="Img/u4630.svg"> </span>
+                                                                                                        <b>Resumen regionalización metas</b>
+                                                                                                    </a>
+                                                                                                </li>
+                                                                                            </ul>
+                                                                                        </div>
+
+                                                                                        <div class="tab-content">
+                                                                                            <div class="tab-pane active cont col-md-12" style="padding-left:0 !important;padding-top:20px !important; padding-bottom:0" id="tabValConstantesduvf-{{fuente.FuenteId}}-{{producto.ProductoId}}-{{objetivo.ObjetivoEspecificoId}}-{{localizacion.LocalizacionId}}">
+                                                                                                <div class="row">
+                                                                                                    <div class="alert panel-heading">
+                                                                                                        <table class="TableDNP">
+                                                                                                            <thead>
+                                                                                                                <tr>
+                                                                                                                    <th class="columAcc"></th>
+                                                                                                                    <th class="textRightDNP"><span class="uLabelCampo">Vigencia</span></th>
+                                                                                                                    <th class="textRightDNP">Compromisos $</th>
+                                                                                                                    <th class="textRightDNP">Obligaciones $</th>
+                                                                                                                    <th class="textRightDNP">Pagos $</th>
+                                                                                                                    <th class="columAcc"></th>
+                                                                                                                </tr>
+                                                                                                            </thead>
+                                                                                                            <tbody ng-repeat="recursosMR in vm.DetalleRegionalizacion.ResumenRecursosMetas" ng-init="EnFirmeindex = $index">
+                                                                                                                <tr>
+                                                                                                                    <td class="columAcc">
+                                                                                                                        <button class="btnaccion btnAccordionDNP"
+                                                                                                                                style="margin-left: -5px"
+                                                                                                                                type="button"
+                                                                                                                                ng-click="vm.abrilNivel('avanceMeta-indicadordetalleresumenrecursos-'+ fuente.FuenteId + '-' + localizacion.LocalizacionId + recursosMR.Vigencia + producto.ProductoId + '-' + objetivo.ObjetivoEspecificoId)"
+                                                                                                                                data-toggle="collapse"
+                                                                                                                                data-target="#avanceMeta-indicadordetalleresumenrecursos-{{fuente.FuenteId}}-{{localizacion.LocalizacionId}}{{recursosMR.Vigencia}}{{producto.ProductoId}}-{{objetivo.ObjetivoEspecificoId}}">
+                                                                                                                            <img src="Img/btnMas.svg" id="avanceMeta-indicadordetalleresumenrecursos-{{fuente.FuenteId}}-{{localizacion.LocalizacionId}}{{recursosMR.Vigencia}}{{producto.ProductoId}}-{{objetivo.ObjetivoEspecificoId}}-mas">
+                                                                                                                            <img class="hidden" src="Img/btnMenos.svg" id="avanceMeta-indicadordetalleresumenrecursos-{{fuente.FuenteId}}-{{localizacion.LocalizacionId}}{{recursosMR.Vigencia}}{{producto.ProductoId}}-{{objetivo.ObjetivoEspecificoId}}-menos">
+                                                                                                                        </button>
+                                                                                                                        <span class="errores-contenedor d-none" id="error-button-avanceMeta-indicadordetalleresumenrecursos-{{fuente.FuenteId}}-{{localizacion.LocalizacionId}}{{recursosMR.Vigencia}}{{producto.ProductoId}}-{{objetivo.ObjetivoEspecificoId}}">
+                                                                                                                            <span class="img iconadverdnp"><img src="Img/u4630.svg"> </span>
+                                                                                                                            <span class="messagealerttableDNP" id="error-button-avanceMeta-indicadordetalleresumenrecursos-{{fuente.FuenteId}}-{{localizacion.LocalizacionId}}{{recursosMR.Vigencia}}{{producto.ProductoId}}-{{objetivo.ObjetivoEspecificoId}}-txt"></span>
+                                                                                                                        </span>
+                                                                                                                    </td>
+                                                                                                                    <td class="textRightDNP">
+                                                                                                                        {{recursosMR.Vigencia}}
+                                                                                                                    </td>
+                                                                                                                    <td class="textRightDNP"><input type="text" class="form-control editInputDNP " style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px" disabled value="{{recursosMR.TotaCompromisosF}}" id="RecursosCompromisos-{{recursosMR.Vigencia}}-{{fuente.FuenteId}}-{{localizacion.LocalizacionId}}-{{objetivo.ObjetivoEspecificoId}}-{{producto.ProductoId}}" /></td>
+                                                                                                                    <td class="textRightDNP"><input type="text" class="form-control editInputDNP " style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px" disabled value="{{recursosMR.TotalObligacionesF}}" id="RecursosObligaciones-{{recursosMR.Vigencia}}-{{fuente.FuenteId}}-{{localizacion.LocalizacionId}}-{{objetivo.ObjetivoEspecificoId}}-{{producto.ProductoId}}" /></td>
+                                                                                                                    <td class="textRightDNP"><input type="text" class="form-control editInputDNP " style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px" disabled value="{{recursosMR.TotalPagosF}}" id="RecursosPagos-{{recursosMR.Vigencia}}-{{fuente.FuenteId}}-{{localizacion.LocalizacionId}}-{{objetivo.ObjetivoEspecificoId}}-{{producto.ProductoId}}" /></td>
+                                                                                                                    <td class="textRightDNP">
+                                                                                                                    </td>
+                                                                                                                </tr>
+                                                                                                                <tr class="no-border collapse alert panel-heading" id="avanceMeta-indicadordetalleresumenrecursos-{{fuente.FuenteId}}-{{localizacion.LocalizacionId}}{{recursosMR.Vigencia}}{{producto.ProductoId}}-{{objetivo.ObjetivoEspecificoId}}">
+                                                                                                                    <td colspan="8" class="p-6">
+                                                                                                                        <div class="LineaEncabezadodivDNP mt-0"></div>
+                                                                                                                        <div class="inlineBlock">
+                                                                                                                            <div class="tituloEncabezadodivDNP">
+                                                                                                                                <span class="uLabelCampo">Detalle recursos</span>
+                                                                                                                                <span>{{recursosMR.Vigencia}}</span>
+                                                                                                                            </div>
+                                                                                                                        </div>
+                                                                                                                        <table class="TableDNP">
+                                                                                                                            <thead>
+                                                                                                                                <tr>
+                                                                                                                                    <td class="columAcc"></td>
+                                                                                                                                    <th class="textLeftDNP"><span>Periodo</span></th>
+                                                                                                                                    <th class="textRightDNP"><span>Compromisos $</span></th>
+                                                                                                                                    <th class="textRightDNP"><span>Obligaciones $</span></th>
+                                                                                                                                    <th class="textRightDNP"><span>Pagos $</span></th>
+                                                                                                                                    <th class="textRightDNP"><span>Observación</span></th>
+                                                                                                                                    <th class="columAcc"></th>
+                                                                                                                                </tr>
+                                                                                                                            </thead>
+                                                                                                                            <tbody ng-repeat="recursosMRD in recursosMR.DetalleVigencia" ng-init="EnFirmeindex = $index">
+                                                                                                                                <tr>
+                                                                                                                                    <td class="columAcc"></td>
+                                                                                                                                    <td class="textLeftDNP">{{recursosMRD.Mes}}</td>
+                                                                                                                                    <td class="textRightDNP" style="width: 20%;"><input type="text" class="form-control editInputDNP " style="text-align: right; margin-left: 5px;" disabled value="{{recursosMRD.ValorCompromisosF}}" id="DetalleRecursosCompromisos-{{recursosMR.Vigencia}}-{{recursosMRD.Mes}}-{{fuente.FuenteId}}-{{localizacion.LocalizacionId}}-{{objetivo.ObjetivoEspecificoId}}-{{producto.ProductoId}}" /></td>
+                                                                                                                                    <td class="textRightDNP" style="width: 20%;"><input type="text" class="form-control editInputDNP " style="text-align: right; margin-left: 5px;" disabled value="{{recursosMRD.ValorObligacionesF}}" id="DetalleRecursosObligaciones-{{recursosMR.Vigencia}}-{{recursosMRD.Mes}}-{{fuente.FuenteId}}-{{localizacion.LocalizacionId}}-{{objetivo.ObjetivoEspecificoId}}-{{producto.ProductoId}}" /></td>
+                                                                                                                                    <td class="textRightDNP" style="width: 20%;"><input type="text" class="form-control editInputDNP " style="text-align: right; margin-left: 5px;" disabled value="{{recursosMRD.ValorPagosF}}" id="DetalleRecursosPagos-{{recursosMR.Vigencia}}-{{recursosMRD.Mes}}-{{fuente.FuenteId}}-{{localizacion.LocalizacionId}}-{{objetivo.ObjetivoEspecificoId}}-{{producto.ProductoId}}" /></td>
+                                                                                                                                    <td class="textRightDNP" style="width: 20%;">
+                                                                                                                                        <textarea ng-value="recursosMRD.ObservacionRecurso"
+                                                                                                                                                  ng-model="recursosMRD.ObservacionRecurso"
+                                                                                                                                                  minlength="2"
+                                                                                                                                                  maxlength="58000"
+                                                                                                                                                  ng-disabled="true"
+                                                                                                                                                  cols="20"
+                                                                                                                                                  required style="width: 100%;" style="text-align:left;padding: 0px 5px 0px 5px;margin-left: 5px"
+                                                                                                                                                  id="DetalleRecursosObservacion-{{recursosMR.Vigencia}}-{{recursosMRD.Mes}}-{{fuente.FuenteId}}-{{localizacion.LocalizacionId}}-{{objetivo.ObjetivoEspecificoId}}-{{producto.ProductoId}}" />
+                                                                                                                                    </td>
+                                                                                                                                </tr>
+                                                                                                                            </tbody>
+                                                                                                                            <tfoot>
+                                                                                                                                <tr>
+                                                                                                                                    <td class="columAcc" style="font-family: 'Work Sans SemiBold Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 600; font-style: normal; font-size: 30px; color: rgba(50, 102, 204, 0.996078431372549);"><span style="margin-top: 55%">=</span></td>
+                                                                                                                                    <td class="textRightDNP"><span>Total $</span></td>
+                                                                                                                                    <td class="textRightDNP"><input type="text" class="form-control editInputDNP " style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 500; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px" disabled value="{{recursosMR.TotaCompromisosF}}" id="DetalleRecursosTotalCompromisos-{{recursosMR.Vigencia}}-{{fuente.FuenteId}}-{{localizacion.LocalizacionId}}-{{objetivo.ObjetivoEspecificoId}}-{{producto.ProductoId}}" /></td>
+                                                                                                                                    <td class="textRightDNP"><input type="text" class="form-control editInputDNP " style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 500; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px" disabled value="{{recursosMR.TotalObligacionesF}}" id="DetalleRecursosTotalObligaciones-{{recursosMR.Vigencia}}-{{fuente.FuenteId}}-{{localizacion.LocalizacionId}}-{{objetivo.ObjetivoEspecificoId}}-{{producto.ProductoId}}" /></td>
+                                                                                                                                    <td class="textRightDNP"><input type="text" class="form-control editInputDNP " style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 500; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px" disabled value="{{recursosMR.TotalPagosF}}" id="DetalleRecursosTotalPagos-{{recursosMR.Vigencia}}-{{fuente.FuenteId}}-{{localizacion.LocalizacionId}}-{{objetivo.ObjetivoEspecificoId}}-{{producto.ProductoId}}" /></td>
+                                                                                                                                    <td class="columAcc" style="font-family: 'Work Sans SemiBold Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 600; font-style: normal; font-size: 30px; color: rgba(50, 102, 204, 0.996078431372549);"><span style="margin-top: 55%"></span></td>
+                                                                                                                                    <td class="columAcc" style="font-family: 'Work Sans SemiBold Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 600; font-style: normal; font-size: 30px; color: rgba(50, 102, 204, 0.996078431372549);"><span style="margin-top: 55%"></span></td>
+                                                                                                                                </tr>
+                                                                                                                            </tfoot>
+                                                                                                                        </table>
+                                                                                                                    </td>
+                                                                                                                </tr>
+                                                                                                            </tbody>
+                                                                                                            <tfoot ng-init="EnFirmeindex = $index">
+                                                                                                                <tr>
+                                                                                                                    <td class="columAcc icontotaldnp"><span>=</span></td>
+                                                                                                                    <td class="textRightDNP">Total</td>
+                                                                                                                    <td class="textRightDNP"><div class="blockReferenciaDNP"><input type="text" class="form-control editInputDNP " style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px" disabled id="TotaCompromisos-{{fuente.FuenteId}}-{{localizacion.LocalizacionId}}-{{objetivo.ObjetivoEspecificoId}}-{{producto.ProductoId}}" value="{{vm.DetalleRegionalizacion.ResumenRecursosMetasTotales[0].TotalGeneralCompromisosF}}" /></div></td>
+                                                                                                                    <td class="textRightDNP"><div class="blockReferenciaDNP"><input type="text" class="form-control editInputDNP " style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px" disabled id="TotalObligaciones-{{fuente.FuenteId}}-{{localizacion.LocalizacionId}}-{{objetivo.ObjetivoEspecificoId}}-{{producto.ProductoId}}" value="{{vm.DetalleRegionalizacion.ResumenRecursosMetasTotales[0].TotalGeneralObligacionesF}}" /></div></td>
+                                                                                                                    <td class="textRightDNP"><div class="blockReferenciaDNP"><input type="text" class="form-control editInputDNP " style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px" disabled id="TotalPagos-{{fuente.FuenteId}}-{{localizacion.LocalizacionId}}-{{objetivo.ObjetivoEspecificoId}}-{{producto.ProductoId}}" value="{{vm.DetalleRegionalizacion.ResumenRecursosMetasTotales[0].TotalGeneralPagosF}}" /></div></td>
+                                                                                                                    <td></td>
+                                                                                                                </tr>
+                                                                                                            </tfoot>
+                                                                                                        </table>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+
+                                                                                            <div class="tab-pane cont col-md-12" style="padding-left:0 !important;padding-top:20px !important; padding-bottom:0" id="tabValCorrienteduvf-{{fuente.FuenteId}}-{{producto.ProductoId}}-{{objetivo.ObjetivoEspecificoId}}-{{localizacion.LocalizacionId}}">
+                                                                                                <div class="row">
+                                                                                                    <div class="alert panel-heading">
+                                                                                                        <table class="TableDNP">
+
+                                                                                                            <thead>
+                                                                                                                <tr>
+                                                                                                                    <th class="columAcc"></th>
+                                                                                                                    <th class="textRightDNP" style="width: 250px;"><span class="uLabelCampo">Vigencia</span></th>
+                                                                                                                    <th class="textRightDNP">Avance acumulado para la vigencia</th>
+                                                                                                                    <th class="columAcc"></th>
+                                                                                                                </tr>
+                                                                                                            </thead>
+                                                                                                            <tbody ng-repeat="recursosMRDD in vm.DetalleRegionalizacion.ResumenRecursosMetas" ng-init="EnFirmeindex = $index">
+                                                                                                                <tr>
+                                                                                                                    <td class="columAcc">
+                                                                                                                        <button class="btnaccion btnAccordionDNP"
+                                                                                                                                style="margin-left: -5px"
+                                                                                                                                type="button"
+                                                                                                                                ng-click="vm.abrilNivelRecursosMRDD('avanceMeta-'+'m-'+fuente.FuenteId + '-' + localizacion.LocalizacionId + recursosMRDD.Vigencia + producto.ProductoId + '-' + objetivo.ObjetivoEspecificoId, recursosMRDD.Vigencia)"
+                                                                                                                                data-toggle="collapse"
+                                                                                                                                data-target="#avanceMeta-indicadordetalleresumen-m-{{fuente.FuenteId}}-{{localizacion.LocalizacionId}}{{recursosMRDD.Vigencia}}{{producto.ProductoId}}-{{objetivo.ObjetivoEspecificoId}}">
+                                                                                                                            <img src="Img/btnMas.svg" id="avanceMeta-m-{{fuente.FuenteId}}-{{localizacion.LocalizacionId}}{{recursosMRDD.Vigencia}}{{producto.ProductoId}}-{{objetivo.ObjetivoEspecificoId}}-mas">
+                                                                                                                            <img class="hidden" src="Img/btnMenos.svg" id="avanceMeta-m-{{fuente.FuenteId}}-{{localizacion.LocalizacionId}}{{recursosMRDD.Vigencia}}{{producto.ProductoId}}-{{objetivo.ObjetivoEspecificoId}}-menos">
+                                                                                                                        </button>
+                                                                                                                        <span class="errores-contenedor d-none" id="error-button-avanceMeta-m-{{fuente.FuenteId}}-{{localizacion.LocalizacionId}}{{recursosMRDD.Vigencia}}{{producto.ProductoId}}-{{objetivo.ObjetivoEspecificoId}}">
+                                                                                                                            <span class="img iconadverdnp"><img src="Img/u4630.svg"> </span>
+                                                                                                                            <span class="messagealerttableDNP" id="error-button-avanceMeta-m-{{fuente.FuenteId}}-{{localizacion.LocalizacionId}}{{recursosMRDD.Vigencia}}{{producto.ProductoId}}-{{objetivo.ObjetivoEspecificoId}}-txt"></span>
+                                                                                                                        </span>
+                                                                                                                    </td>
+                                                                                                                    <td class="textRightDNP">{{recursosMRDD.Vigencia}}</td>
+                                                                                                                    <td class="textRightDNP"><input id="Meta-{{recursosMRDD.Vigencia}}-{{fuente.FuenteId}}-{{localizacion.LocalizacionId}}-{{EnFirmeindex}}-{{objetivo.ObjetivoEspecificoId}}-{{producto.ProductoId}}" type="text" class="form-control editInputDNP" style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px" disabled value="{{recursosMRDD.TotalAvanceAcumuladoF}}" /></td>
+                                                                                                                </tr>
+                                                                                                                <tr ng-if="vm.VigenciaMRDDReportAvanceSelecionada == recursosMRDD.Vigencia" class="no-border collapse alert panel-heading" id="avanceMeta-indicadordetalleresumen-m-{{fuente.FuenteId}}-{{localizacion.LocalizacionId}}{{recursosMRDD.Vigencia}}{{producto.ProductoId}}-{{objetivo.ObjetivoEspecificoId}}">
+                                                                                                                    <td colspan="5" class="p-0">
+                                                                                                                        <div class="LineaEncabezadodivDNP mt-0"></div>
+                                                                                                                        <div class="inlineBlock">
+                                                                                                                            <div class="tituloEncabezadodivDNP">
+                                                                                                                                <span class="uLabelCampo">Detalle metas</span>
+                                                                                                                                <span>{{recursosMR.Vigencia}}</span>
+                                                                                                                            </div>
+                                                                                                                        </div>
+                                                                                                                        <table class="TableDNP no-border">
+                                                                                                                            <thead>
+                                                                                                                                <tr>
+                                                                                                                                    <td class="columAcc"></td>
+                                                                                                                                    <th class="textLeftDNP" style="width: 136px;"><span>Periodo</span></th>
+                                                                                                                                    <th class="textRightDNP" style="width: 500px;"><span>Avance para el mes</span></th>
+                                                                                                                                    <th class="textLeftDNP" style="width: 500px;"><span>Observación</span></th>
+                                                                                                                                    <td class="columAcc"></td>
+                                                                                                                                </tr>
+                                                                                                                            </thead>
+                                                                                                                            <tbody ng-repeat="recursosMRD in recursosMRDD.DetalleVigencia" ng-init="EnFirmeindex = $index">
+                                                                                                                                <tr>
+                                                                                                                                    <td class="columAcc"></td>
+                                                                                                                                    <td class="textLeftDNP">{{recursosMRD.Mes}}</td>
+                                                                                                                                    <td class="textRightDNP"><input type="text" class="form-control editInputDNP " style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px; width:500px;" disabled value="{{recursosMRD.AvanceMesF}}" id="MetaDetalle-{{recursosMRDD.Vigencia}}-{{recursosMRD.Mes}}-{{fuente.FuenteId}}-{{localizacion.LocalizacionId}}-{{objetivo.ObjetivoEspecificoId}}-{{producto.ProductoId}}" /></td>
+                                                                                                                                    <td class="textLeftDNP">
+                                                                                                                                        <textarea ng-value="recursosMRD.ObservacionMeta"
+                                                                                                                                                  ng-model="recursosMRD.ObservacionMeta"
+                                                                                                                                                  minlength="2"
+                                                                                                                                                  maxlength="58000"
+                                                                                                                                                  placeholder=""
+                                                                                                                                                  required class="textareObservaDNP" style="text-align:left;padding: 0px 5px 0px 5px;margin-left: 5px; width:500px;" disabled
+                                                                                                                                                  id="DetalleMetasObservacion-{{recursosMRDD.Vigencia}}-{{recursosMRD.Mes}}-{{fuente.FuenteId}}-{{localizacion.LocalizacionId}}-{{objetivo.ObjetivoEspecificoId}}-{{producto.ProductoId}}" />
+                                                                                                                                    </td>
+                                                                                                                                    <td class="columAcc"></td>
+                                                                                                                                </tr>
+                                                                                                                            </tbody>
+                                                                                                                        </table>
+                                                                                                                    </td>
+                                                                                                                </tr>
+                                                                                                            </tbody>
+                                                                                                        </table>
+                                                                                                    </div>
+                                                                                                </div>
+
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="regionalizacioncargamasiva" class="alert panel-heading">
+                <div class="row" style="text-align:left">
+                    <div class="col-md-12 DetacolumnDNP">
+                        <span>
+                            Archivo plantilla carga masiva <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg" ng-click="vm.abrirMensajeArchivoRegionalizacion()">
+                        </span>
+                        <button ng-disabled="vm.HabilitaCargue" ng-class="{'blue-bg': isBlue, 'grey-bg': isGrey}" type="button" ng-click="vm.ObtenerParaCargueMasivo(fuente.FuenteId)" id="btnDescargar-{{fuente.FuenteId}}">
+                            DESCARGAR PLANTILLA PARA LA FUENTE:   {{fuente.NombreFuente}}
+                        </button>
+                    </div>
+                </div>
+                <br />
+                <div class="row" ng-disabled="vm.HabilitaCargue" ng-if="!vm.soloLectura">
+                    <div class="col-md-8">
+                        <div class="divpanelcargarchivoDNP" style="">
+                            <button ng-disabled="vm.HabilitaCargue" ng-class="{'blue-bg-button-examinar': isBlue, 'grey-bg-button-examinar': isGrey}" id="btnExaminar{{fuente.FuenteId}}" type="button" uib-tooltip="Editar" ng-click="vm.adjuntarArchivo(fuente.FuenteId)">
+                                EXAMINAR
+                            </button>
+                            <input ng-disabled="vm.HabilitaCargue" type="file" style="display:none" id="fileRegionalizacion{{fuente.FuenteId}}" name='files[]' onchange="angular.element(this).scope().fileNameChanged(this)" accept="{{vm.modelo.ext}}" multiple />
+                            <input ng-disabled="vm.HabilitaCargue" type="search" style="display:none" id="regionalizacionnombrearchivo{{fuente.FuenteId}}" ng-model="vm.nombrearchivo" class="form-control InputSearchDNP " placeholder="" ng-change="ChangeSet()">
+                            <span id="regionalizacionnombrearchivo2{{fuente.FuenteId}}"></span>
+                            <button ng-disabled="vm.HabilitaCargue" ng-class="{'blue-bg-button-cancelar': isBlue, 'grey-bg-button-cancelar': isGrey}" type="button" uib-tooltip="Cancelar" ng-click="vm.limpiarArchivo(fuente.FuenteId)" id="btnCancelar{{fuente.FuenteId}}">
+                                X
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <span class="buttonbar pull-right">
+                            <button disabled="disabled" id="btnRegionalizacionValidarArchivo{{fuente.FuenteId}}" type="button" class="btn btnguardarDNP" tooltip-placement="top" uib-tooltip="Validar" tabindex="1" ng-click="vm.validarArchivo()">
+                                VALIDAR
+                            </button>
+                            <button disabled="disabled" id="btnRegionalizacionLimpiarArchivo{{fuente.FuenteId}}" type="button" class="btn btnguardarDNP" tooltip-placement="top" uib-tooltip="Cancelar" tabindex="2" ng-click="vm.limpiarArchivo(fuente.FuenteId)">
+                                CANCELAR
+                            </button>
+                            <button disabled="disabled" id="btnRegionalizacionArchivoSeleccionado{{fuente.FuenteId}}" class="btn btnguardarDNP" type="button" tooltip-placement="top" uib-tooltip="Cargar" tabindex="3" ng-click="vm.GuardarArchivo(1)">
+                                CARGAR
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,126 @@
+﻿
+<div class="container-fluid inbox" style="height: 800px; overflow: scroll; padding-left: 20px;" ng-init="vm.init();">
+    <form id="AgregarSectoresSgpForm" name="agregarSectoresSgpForm" novalidate>
+        <div class="row">
+            <div>
+             <br />
+             <table border="0" width="95%">
+                    <tr>
+                        <td colspan="4">
+                            <span class="TituloPincFormularioDNP">Selección sector / tipología</span>
+                            <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg">
+                        </td>
+                    </tr>
+                    <tr>
+                        <!--<td colspan="2">
+                            <br /><div class="form-group DetacolumnDNP"><span>Seleccione el acuerdo*</span></div>
+                        </td>-->
+                        <td colspan="2">
+                            <br /><div class="form-group DetacolumnDNP"><span>Seleccione el sector*</span></div>
+                        </td>
+                        <td>
+                            <br /><div class="form-group DetacolumnDNP"><span>Seleccione la tipología*</span></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <!--<td colspan="2">
+                            <div>
+                                <select class="form-control" ng-model="vm.Acuerdos.AcuerdoId" style="width:80%" ng-change="vm.leerSectores()"
+                                         ng-options="x.AcuerdoId as (x.AcuerdoId + '-' + x.NombreAcuerdo) for x in vm.Acuerdos"/>                                  
+                            </div>
+                        </td>-->
+                        <td colspan="2" style="width:45%">
+                            <div>
+                                <select class="form-control" ng-model="vm.Sectores.AcuerdoSectorId" style="width:90%" ng-change="vm.leerClasificadores()">
+                                    <option value=0 disable selected hidden>Seleccione</option>
+                                    <option ng-repeat="Fila in vm.Sectores" value="{{Fila.AcuerdoSectorId}}">{{Fila.NombreSector}}</option>
+                                </select>
+                            </div>
+                        </td>
+                        <td style="width:45%">
+                            <div>
+                                <select class="form-control" ng-model="vm.Clasificadores.AcuerdoSectorClasificadorId" style="width:90%" ng-change="vm.cambioClasificador()">
+                                    <option value=0 disable selected hidden>Seleccione</option>
+                                    <option ng-repeat="Fila in vm.Clasificadores" value="{{Fila.AcuerdoSectorClasificadorId}}">{{Fila.NombreClasificador}}</option>
+                                </select>
+                            </div>
+                        </td>
+
+                    </tr>
+                    <tr class="filaAnidada">
+                        <td style="width:1%">
+                            <div id="indicador-" class="img pull-right iconadverdnp"><img class="" src="Img/u4630.svg" ng-if="vm.tieneMensajeValidacion"> </div>
+                        </td>
+                        <td colspan="3" align="left">
+                            <span class="messagealerttableDNP">{{vm.mensajeValidacion}}</span>
+                        </td>
+                    </tr>
+                <tr>
+                    <td colspan="4">
+                        <br />
+                        <div>
+                            <span class="buttonbar pull-right">
+                                <button ng-if="!vm.soloLectura"
+                                        id="btnCancelar"
+                                        type="button"
+                                        class="btneditarDNP"
+                                        tooltip-placement="top"
+                                        tabindex="0"
+                                        ng-click="vm.Cancelar()"
+                                        ng-disabled="vm.disabledCancelar">
+                                    CANCELAR
+                                </button>
+                                &nbsp;
+                                <button ng-if="!vm.soloLectura"
+                                        id="btnAgregar"
+                                        type="button"
+                                        class="{{vm.disabledAgregar ? 'btnguardarDisabledDNP' : 'btnguardarDNP'}}"
+                                        tooltip-placement="top"
+                                        ng-click="vm.AgregarRegistro()">
+                                    AGREGAR
+                                </button>
+                            </span>
+                        </div>
+                    </td>
+                </tr>
+                </table>
+             <br /><br />
+             <br /><br />
+                   <table border="0" width="95%">
+                       <tr>
+                       <!--<center>-->
+                           <div class="titulo-jerarquia flex-inline" ng-show="vm.MostrarGrid">
+                               <div class="form-group DetacolumnDNP">
+                                   <span> Sectores / Tipologías agregadas</span>
+                                   <table class="TableDNP" width="100%">
+                                       <thead>
+                                           <tr>
+                                               <!--<th class="textLeftDNP" style="width:35%"><span class="textLeftDNP">Acuerdo</span></th>-->
+                                               <th class="textLeftDNP" style="width:50%"><span class="textLeftDNP">Sector</span></th>
+                                               <th class="textLeftDNP" style="width:40%"><span class="textLeftDNP">Tipología</span></th>
+                                               <th class="columAcc" style="width:2%"></th>
+                                           </tr>
+                                       </thead>
+                                       <tr ng-repeat="fila in vm.AcuerdoProyecto">
+                                           <!--<td>
+                            <input type="hidden" ng-value="{{fila.Id}}" ng-model="vm.AcuerdoProyecto.Id" />
+                            <span>{{fila.AcuerdoId}}-{{fila.NombreAcuerdo}}</span>
+                        </td>-->
+                                           <td><span>{{fila.NombreSector}}</span></td>
+                                           <td><span>{{fila.NombreClasificador}}</span></td>
+                                           <td class="textCenterDNP">
+                                               <button class="btnaccion" ng-show="fila.NombreSector!= '6.4. REQUISITOS GENERALES ADICIONALES'" tooltip-class="customClass" uib-tooltip="Eliminar Registro" ng-click="vm.clickIconoEliminar(fila.Id)" ng-if="!vm.soloLectura">
+                                                   <span> <img src="Img/IcoDelete.svg"></span>
+                                               </button>
+                                           </td>
+                                       </tr>
+                                   </table>
+                               </div>
+                           </div>
+                       <!--</center>-->
+                       </tr>
+                   </table>
+</div>
+        </div>
+    </form>
+</div>

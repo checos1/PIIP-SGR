@@ -1,0 +1,46 @@
+﻿<section>
+    <div class="container-fluid inbox" ng-init="vm.init();">
+        <div class="tab-content">
+            <div class="ui-accordion-container hidden" id="accordion-recursosgrfuentesdefinanc">
+                <div class="alert panel-heading row ui-accordion-header" style="border-color: #E6EFFD; border-left-color: #004884; height: 50px;">
+                    <button type="button" data-toggle="collapse" data-target="#rfuentesId" ng-click="vm.changeArrow('rfuentesId')">
+                        <!--<span class="textLeftDNP" style="font-size: 20px;"> Fuentes de financiación</span>-->
+                        <span id="arrow-rfuentesId" class="glyphicon glyphicon-chevron-up pull-right" data-toggle="collapse" data-target="#rfuentesId"></span>
+                        <!--<span id="name-capitulo-recursosgr"></span>
+                        <span class="hidden" id="id-seccioncapitulo-recursosgr"></span>-->
+                        <span class="d-inline-block" id="alert-recursosgrfuentesdefinanc"></span>
+                        <span id="name-capitulo-recursosgrfuentesdefinanc"></span>
+                        <span class="hidden" id="id-capitulo-recursosgrfuentesdefinanc"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="rfuentesId" style="width: 97%;margin-left:15px;">
+                    <br /> <fuentes guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                    notificacioncambios="vm.notificacionCambiosCapitulosExternos(handler, nombreComponente)"
+                                    notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                    notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"
+                                    notificarrefresco="vm.notificarRefresco(handler, nombreComponente)"></fuentes>
+                </div>
+            </div>
+
+            <div class="ui-accordion-container hidden"  id="accordion-recursosgrregionalizacion">
+                <div class="alert panel-heading row ui-accordion-header" style="border-color: #E6EFFD; border-left-color: #004884; height: 50px;">
+                    <button type="button" data-toggle="collapse" data-target="#recursosgrregionalizacion" ng-click="vm.changeArrow('rregionalizacionId')">
+                        <!--<span class="textLeftDNP" style="font-size: 20px;"> Regionalización </span>-->
+                        <span id="arrow-rregionalizacionId" class="glyphicon glyphicon-chevron-up pull-right" data-toggle="collapse" data-target="#recursosgrregionalizacion"></span>
+                        <span class="d-inline-block" id="alert-recursosgrregionalizacion"></span>
+                        <span id="name-capitulo-recursosgrregionalizacion"></span>
+                        <span class="hidden" id="id-capitulo-recursosgrregionalizacion"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="recursosgrregionalizacion" style="width: 95%;margin-left: 40px;">
+                    <br />   <regionalizacion-fuentes guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                                      notificacioncambios="vm.notificacionCambiosCapitulosExternos(handler, nombreComponente)"
+                                                      notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                      notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"
+                                                      recargaregionalizacion="vm.recargarReg(handler)"></regionalizacion-fuentes>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>

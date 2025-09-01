@@ -1,0 +1,7 @@
+﻿<div ng-controller="urlLinkController">
+    <div class="form-group schema-form-{{form.type}} {{form.htmlClass}}" ng-class="{'has-error': form.disableErrorState !== true && hasError(), 'has-success': form.disableSuccessState !== true && hasSuccess(), 'has-feedback': form.feedback !== false }">
+        <label class="control-label {{form.labelHtmlClass}}" ng-class="{'sr-only': !showTitle()}" for="{{form.key.slice(-1)[0]}}">
+            <a href="{{form.urlEndPoint}}" target="{{form.target}}" uib-tooltip="{{form.tooltip}}">{{form.title}}</a>
+        </label>    
+    </div>
+</div>

@@ -1,0 +1,256 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B20F5062-15B9-49E4-88C5-79F109F947EF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DNP.ServiciosNegocio.Comunes</RootNamespace>
+    <AssemblyName>DNP.ServiciosNegocio.Comunes</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Dev|AnyCPU'">
+    <OutputPath>bin\Dev\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'QA|AnyCPU' ">
+    <OutputPath>bin\Qa\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'UAT|AnyCPU' ">
+    <OutputPath>bin\Uat\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Local|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Local\</OutputPath>
+    <DefineConstants>CODE_ANALYSIS;DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DevNT|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\DevNT\</OutputPath>
+    <DefineConstants>CODE_ANALYSIS;CODE_ANALYSIS;DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'UatNT|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\UatNT\</OutputPath>
+    <DefineConstants>CODE_ANALYSIS;CODE_ANALYSIS;CODE_ANALYSIS;DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'QA2|AnyCPU'">
+    <OutputPath>bin\QA2\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'QA3|AnyCPU'">
+    <OutputPath>bin\QA3\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'QA4|AnyCPU'">
+    <OutputPath>bin\QA4\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'SGR|AnyCPU'">
+    <OutputPath>bin\SGR\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'UATSGR|AnyCPU'">
+    <OutputPath>bin\UATSGR\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.IdentityModel.Tokens.Jwt, Version=4.0.40306.1554, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.4.0.4.403061554\lib\net45\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.4\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.4\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WebApiContrib.Formatting.JavaScriptSerializer, Version=0.9.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebApiContrib.Formatting.JavaScriptSerializer.0.9.4.0\lib\net40\WebApiContrib.Formatting.JavaScriptSerializer.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Auditoria\AuditoriaUtilidades.cs" />
+    <Compile Include="Autorizacion\AutorizacionUtilidades.cs" />
+    <Compile Include="Autorizacion\IAutorizacionUtilidades.cs" />
+    <Compile Include="CargaArchivo.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CargaArchivo.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Dto\CommonResponseDto.cs" />
+    <Compile Include="Dto\ExcepcionFormatoDto.cs" />
+    <Compile Include="Dto\FichaPlantillaReporteDto.cs" />
+    <Compile Include="Dto\Formulario\ConfiguracionFormulario.cs" />
+    <Compile Include="Dto\Formulario\DisenoFormulario.cs" />
+    <Compile Include="Dto\Formulario\ParametrosConsultaProductoDto.cs" />
+    <Compile Include="Dto\Formulario\ParametrosPostProductoDto.cs" />
+    <Compile Include="Dto\Formulario\ParametrosConsultaDto.cs" />
+    <Compile Include="Dto\Formulario\ParametrosGuardarDto.cs" />
+    <Compile Include="Dto\ObjetosNegocio\ObjetoNegocio.cs" />
+    <Compile Include="Dto\ObjetosNegocio\BPINsProyectosDto.cs" />
+    <Compile Include="Dto\ObjetosNegocio\ParametrosProyectosDto.cs" />
+    <Compile Include="Dto\ObjetosNegocio\ParametrosProyectoVerificacionSgrDto.cs" />
+    <Compile Include="Dto\ParametrosAuditoriaDto.cs" />
+    <Compile Include="Dto\PreguntasEnvioPoliticaSubDireccionDto.cs" />
+    <Compile Include="Dto\Programacion\CargueSaldoDto.cs" />
+    <Compile Include="Dto\Programacion\CargueCreditoDto.cs" />
+    <Compile Include="Dto\Tramites\AnalistaResponsableDto.cs" />
+    <Compile Include="Dto\Tramites\AsociarTramiteConpesRequestDto.cs" />
+    <Compile Include="Dto\Tramites\CerrarRadicadoDto.cs" />
+    <Compile Include="Dto\Tramites\DatosDocumentoElectronicoDSDto.cs" />
+    <Compile Include="Dto\Tramites\DatosDocumentoElectronicoDto.cs" />
+    <Compile Include="Dto\Tramites\DatosRadicadoDto.cs" />
+    <Compile Include="Dto\Tramites\DetalleTramiteDto.cs" />
+    <Compile Include="Dto\Tramites\PeriodoPresidencialDto.cs" />
+    <Compile Include="Dto\Tramites\RadicadoSalidaRequestDto.cs" />
+    <Compile Include="Dto\Tramites\ReasignacionRadicadoDto.cs" />
+    <Compile Include="Dto\Tramites\RemoverAsociacionConpesTramiteDto.cs" />
+    <Compile Include="Dto\Tramites\ResponseDto.cs" />
+    <Compile Include="Dto\Tramites\TramiteProyectoDto.cs" />
+    <Compile Include="Dto\Tramites\UsuarioRadicacionDto.cs" />
+    <Compile Include="Dto\Viabilidad\BieniosSGRDto.cs" />
+    <Compile Include="Dto\Viabilidad\DatosAdicionalesCofinanciadorDto.cs" />
+    <Compile Include="Dto\Viabilidad\DelegarViabilidadDto.cs" />
+    <Compile Include="Dto\Viabilidad\EntidadesNoSGRDto.cs" />
+    <Compile Include="Dto\Viabilidad\EntidadesSGRDto.cs" />
+    <Compile Include="Dto\Viabilidad\EtapaNoSGRDto.cs" />
+    <Compile Include="Dto\Viabilidad\EtapaSGRDto.cs" />
+    <Compile Include="Dto\Viabilidad\VigenciasFuentesNoSGRDto.cs" />
+    <Compile Include="Dto\Viabilidad\VigenciasSGRDto.cs" />
+    <Compile Include="Dto\Viabilidad\VigenciasNoSGRDto.cs" />
+    <Compile Include="Dto\Viabilidad\VigenciasValoresNoSGRDto.cs" />
+    <Compile Include="Enum\MetodosServiciosWeb.cs" />
+    <Compile Include="Enum\TipoPoliticaEnum.cs" />
+    <Compile Include="Enum\CatalogoEnum.cs" />
+    <Compile Include="Enum\EntidadEnum.cs" />
+    <Compile Include="Enum\EstadoAccionPorInstanciaEnum.cs" />
+    <Compile Include="Enum\EstadoAutorizacion.cs" />
+    <Compile Include="Enum\TipoEventoEnum.cs" />
+    <Compile Include="Enum\TipoGrillaPreguntasEnum.cs" />
+    <Compile Include="Enum\TipoMensajeEnum.cs" />
+    <Compile Include="Excepciones\AccionException.cs" />
+    <Compile Include="Excepciones\AutorizacionException.cs" />
+    <Compile Include="Excepciones\FuenteFinanciacionProyectoException.cs" />
+    <Compile Include="Excepciones\ProductoException.cs" />
+    <Compile Include="Excepciones\ServiciosNegocioHttpResponseException.cs" />
+    <Compile Include="Excepciones\ServiciosNegocioException.cs" />
+    <Compile Include="Excepciones\CargaArchivosException.cs" />
+    <Compile Include="Excepciones\ProyectoException.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Interfaces\IAccionUtilidades.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="RutasPreviewRecursos.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RutasPreviewRecursos.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ServiciosNegocioRecursos.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServiciosNegocioRecursos.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Utilidades\AccionUtilidades.cs" />
+    <Compile Include="Utilidades\ConvertUtilidades.cs" />
+    <Compile Include="Utilidades\JsonUtilidades.cs" />
+    <Compile Include="Utilidades\JwtTokenManager.cs" />
+    <Compile Include="Utilidades\SerializadorJson.cs" />
+    <Compile Include="Utilidades\UtilidadesApi.cs" />
+    <Compile Include="Utilidades\UtilidadTokenAutorizacion.cs" />
+    <Compile Include="Utilidades\ValidadorParametros.cs" />
+    <Compile Include="Utilidades\ValidationFilterAttribute.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DNP.ServiciosNegocio.Dominio\DNP.ServiciosNegocio.Dominio.csproj">
+      <Project>{694221D1-E217-4D2E-87E3-B196C4C6BE94}</Project>
+      <Name>DNP.ServiciosNegocio.Dominio</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CargaArchivo.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>CargaArchivo.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RutasPreviewRecursos.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RutasPreviewRecursos.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServiciosNegocioRecursos.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>ServiciosNegocioRecursos.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

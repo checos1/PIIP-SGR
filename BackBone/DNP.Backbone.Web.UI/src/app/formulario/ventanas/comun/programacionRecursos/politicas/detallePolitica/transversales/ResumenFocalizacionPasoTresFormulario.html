@@ -1,0 +1,530 @@
+﻿<div ng-init="vm.init();">
+    <form id="resumenPoliticas" novalidate>
+        <div id="recursosfuentesdefinanc-validacionguardar-error" class="hidden text-left color-red">
+            <img class="img img-advertencia" src="Img/u11.svg" />
+            <span id="recursosfuentesdefinanc-validacionguardar-error-mns"></span>
+        </div>
+        <div id="fuentes" class="collapsed panel-body">
+            <table class="TableDNP no-border">
+                <thead>
+                    <tr>
+                        <th class="columAcc"></th>
+                        <th class="textLeftDNP">Política</th>
+                        <th class="textLeftDNP">Categoría</th>
+                        <th class="columAcc"></th>
+                    </tr>
+                </thead>
+                <tbody ng-repeat="objPoliticas in vm.listaPoliticasCategorias.ListadoPoliticas">
+                    <tr>
+                        <td class="columAcc" style="background: transparent">
+                            <span id="Politicas-{{vm.proyectoidcategoria}}-{{objPoliticas.PoliticaId}}" class="hidden uMensajeError"></span>
+                            <span ng-if="objPoliticas.presentaError || objPoliticas.presentaErrorVacio">
+                                <img class="img img-advertencia" src="Img/u11.svg" />
+                            </span>
+                        </td>
+                        <td>
+                            {{objPoliticas.NombrePolitica}}
+                        </td>
+                        <td><a class="cVerMas" ng-click="vm.VerPolitica(objPoliticas.PoliticaId)">INGRESAR</a></td>
+                        <td class="columAcc" style="background: transparent">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </form>
+
+    <div class="row" ng-repeat="politicasIndicadores in vm.listaPoliticasCategorias.PoliticasCategorias" ng-init="indexPoliticas = $index">
+        <div ng-if="politicasIndicadores.PoliticaId == vm.PoliticaMostar">
+
+            <div ng-if="!vm.TieneCategorias(politicasIndicadores)" id="politica-{{politicasIndicadores.PoliticaId}}-{{vm.proyectoidcategoria}}" class="panel-body">
+                <span class="buttonbar pull-right">
+                    <button class="btnaccion btnAccordionDNP" type="button" ng-click="vm.volver()">
+                        <img src="Img/scroll_to.svg">
+                    </button>
+                </span>
+
+                <h3 class="text-left ui-seccion-title">Política {{politicasIndicadores.NombrePolitica}}. <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg" ng-click="vm.abrirMensajeInformacionRegionalizacion()"></h3>
+                <!--vm.abrirMensajeInformacionRegionalizacion()-->
+                <span id="politicaError1-{{indexPoliticas}}" class="text-left color-red err-politica-validacion" ng-if="politicasIndicadores.presentaErrorVacioPol">
+                    <img class="img img-advertencia" src="Img/u11.svg" />
+                    <span id="politicaError1Msg-{{indexPoliticas}}">{{politicasIndicadores.mensajeError1Politica}}</span>
+                </span>
+                <div class="add-new-fuente row mx-0 mt-4 text-right" ng-if="politicasIndicadores.TieneConceptoPendiente == false && vm.habilitaBotones == true">
+                    <a ng-click="vm.abrirModalAgregarCategoriaPolitica(politicasIndicadores)" has-claim has-opciones="['Ajustes:GeneralComponente']"><span class="uLabelCampo_fp" style="text-decoration:underline">AGREGAR CATEGORÍA</span></a>
+                </div>
+            </div>
+            <div ng-if="vm.TieneCategorias(politicasIndicadores)" id="politica-{{politicasIndicadores.PoliticaId}}-titulo-{{vm.proyectoidcategoria}}" class="panel-body text-left">
+                <div class="col-md-8">
+                    <h3 class="text-left ui-seccion-title">
+                        <span ng-if="politicasIndicadores.presentaError"><img class="img img-advertencia" src="Img/u11.svg" /></span>
+                        Política {{politicasIndicadores.NombrePolitica}}. Categoría
+                        <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg" ng-click="vm.abrirMensajeInformacionRegionalizacion()">
+                    </h3>
+                </div>
+                <div class="col-md-4" ng-if="vm.habilitaBotones == true">
+                    <span class="buttonbar pull-right">
+                        <button type="button" id="btnPol-{{politicasIndicadores.PoliticaId}}" class=" btneditarDNP" ng-click="vm.EditarPolitica(politicasIndicadores)">
+                            {{politicasIndicadores.Editar == true? 'CANCELAR': 'EDITAR'}}
+                        </button>
+
+                        <button type="button" class="  btneditarDNP" ng-if="politicasIndicadores.Editar == true" ng-click="vm.GuardarPolitica(politicasIndicadores)">
+                            GUARDAR
+                        </button>
+
+                        <button type="button" class="  btnguardarDisabledDNP" disabled ng-if="politicasIndicadores.Editar != true">
+                            GUARDAR
+                        </button>
+                    </span>
+                </div>
+                <span id="politicaError1-{{indexPoliticas}}" class="color-red err-politica-validacion text-left" ng-if="politicasIndicadores.presentaErrorVacioPol">
+                    <img class="img img-advertencia" src="Img/u11.svg" />
+                    <span id="politicaError1Msg-{{indexPoliticas}}">{{politicasIndicadores.mensajeError1Politica}}</span>
+                </span>
+
+                <div class="col-md-12">
+                    <span class="pull-left">Las categorías sobre las que ya registró información sobre su ejecución no se encuentran disponibles para ser eliminadas.</span>
+                </div>
+                <br />
+                <div class="col-md-12" ng-if="politicasIndicadores.TieneConceptoPendiente == true">
+                    <span class="DetalleFormularioDNP pull-left">La política no se puede eliminar ni editar porque se encuentra en proceso de aprobación de modificación por parte de la dirección técnica del DNP o porque fue aprobada para modificación</span>
+                </div>
+
+            </div>
+
+            <span class="buttonbar pull-right">
+                <button class="btnaccion btnAccordionDNP" type="button" ng-click="vm.volver()">
+                    <img src="Img/scroll_to.svg">
+                </button>
+            </span>
+
+            <!--<table class="TableDNP no-border">
+                <tbody>
+                    <tr class="bottontransDNP">
+                        <td class="columAcc textdespleDNP">
+                            <a data-toggle="collapse" data-target="#ind1" ng-click="vm.AbrilNivelTabla(1)">
+                                <span class="text-column-info">Ajustes</span>
+                            </a>
+                        </td>
+                        <td class="textLeftDNP">
+                            <p class="texttituloceldatableDNP"><span>120600100 / P  / SI </span></p> <textareaa class="textAreatableDNP">Cupos penitenciarios y carcelarios entregados (nacionales y territoriales)</textareaa>
+                        </td>
+                        <td class="textRightDNP">2022</td>
+                        <td class="textRightDNP">2022</td>
+                        <td class="textRightDNP">2022</td>
+                        <td class="textRightDNP">2022</td>
+                        <td class="textCenterDNP">
+                            <button class="btnaccion" title="Eliminar Indicador Secundario" disabled>
+                                <span> <img src="Img/btnElimdisabled.svg"></span>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr class="filaAnidada">
+                        <td colspan="1">
+                            <button class="btnaccion btntablednp" type="button" data-toggle="collapse" data-target="#ind1" ng-click="vm.AbrilNivelTabla(1)">
+                                <img ng-show="vm.BanderaTa == '+'" src="Img/btnMasTb.svg">
+                                <img ng-show="vm.BanderaTa == '-'" src="Img/btnMenosTb.svg">
+                            </button>
+                            <div id="indicador-" class="img pull-right iconadverdnp">   <img class="" src="Img/u4630.svg"> </div>
+                        </td>
+                        <td colspan="6">
+                            <span class="messagealerttableDNP">Espacio reservado para información de validaciones. </span>
+                        </td>
+                    </tr>
+                    <tr class="no-border collapse alert panel-heading" id="ind1">
+                        <td colspan="8" class="p-0">
+                            <div class="LineaEncabezado2tabDNP"></div>
+                            <h3 class="row tituloEncabezadotabDNP">
+                                Ajustar de indicador
+                                <span class="totaldespleDNP">
+                                    Total: <span> 2</span>
+                                </span>
+                                <span class="buttonbar pull-right">
+                                    <button ng-if="!vm.HabilitaEditarBandera" type="button" class="btneditarDNP" tooltip-placement="top" uib-tooltip="Editar" tabindex="0" ng-click="vm.HabilitaEditar(true)">
+                                        EDITAR
+                                    </button>
+                                    <button ng-if="vm.HabilitaEditarBandera" type="button" class=" btneditarDNP" tooltip-placement="top" uib-tooltip="Cancelar" tabindex="0" ng-click="vm.HabilitaEditar(false)">
+                                        CANCELAR
+                                    </button>
+                                    <button ng-disabled="!vm.HabilitaEditarBandera" class="btnguardarDisabledDNP" type="button" tooltip-placement="top" uib-tooltip="Guardar" tabindex="0" ng-click="">
+                                        GUARDAR
+                                    </button>
+                                </span>
+                            </h3>
+
+                            <div class="row detalletableanidnp">
+                                <label>
+                                    "Meta en ajuste": para "Acumulativo" será igual a la suma de las metas de todas las vigencias, para "No acumulativo" será el mayor valor registrado
+                                </label>
+                            </div>
+                            <div class="row">
+                                <div class="alert panel-heading">
+                                    <table class="TableDNP">
+                                        <thead>
+                                            <tr>
+                                                <th class="columAcc"></th>
+                                                <th class="textRightDNP"><span class="uLabelCampo">Vigencia</span></th>
+                                                <th class="textRightDNP">Número </th>
+                                                <th class="textRightDNP">Número</th>
+                                                <th class="textRightDNP">Número</th>
+                                                <th class="columAcc"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td></td>
+                                                <td class="textRightDNP">
+                                                    <input type="text" class="form-control editInputDNP " disabled value="2022" />
+                                                </td>
+                                                <td class="textRightDNP"><input type="text" class="form-control editInputDNP " disabled value="20.000,00" /></td>
+                                                <td class="textRightDNP"><input type="text" class="form-control editInputDNP " disabled value="500.000,00" /></td>
+                                                <td class="textRightDNP">
+                                                    100.000,00
+                                                </td>
+                                                <td></td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td class="columAcc icontotaldnp"><span>=</span></td>
+                                                <td class="textRightDNP"><span>Total $</span></td>
+                                                <td class="textRightDNP">
+                                                    <input type="text" class="form-control editInputDNP " disabled value="20.000,00" />
+                                                </td>
+                                                <td class="textRightDNP">
+                                                    <input type="text" class="form-control editInputDNP " disabled value="500.000,00" />
+                                                </td>
+                                                <td class="textRightDNP">
+                                                    <input type="text" class="form-control editInputDNP " disabled value="100.000,00" />
+                                                </td>
+                                                <td></td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="bottontransDNP">
+                        <td>
+                        </td>
+                        <td class="textLeftDNP">
+                            <p class="texttituloceldatableDNP"><span>120600100 / P  / SI </span></p> <textareaa class="textAreatableDNP">Cupos penitenciarios y carcelarios entregados (nacionales y territoriales)</textareaa>
+                        </td>
+                        <td class="textRightDNP">2022</td>
+                        <td class="textRightDNP">2022</td>
+                        <td class="textRightDNP">2022</td>
+                        <td class="textRightDNP">2022</td>
+                        <td class="textCenterDNP">
+                            <button class="btnaccion" title="Eliminar Indicador Secundario">
+                                <span style="cursor:pointer"> <img src="Img/u928.svg"></span>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr class="filaAnidada">
+                        <td colspan="1">
+                            <button class="btnaccion btntablednp" type="button" data-toggle="collapse" data-target="#ind2" ng-click="vm.AbrilNivelTabla(2)">
+                                <img ng-show="vm.BanderaTa2 == '+'" src="Img/btnMasTb.svg">
+                                <img ng-show="vm.BanderaTa2 == '-'" src="Img/btnMenosTb.svg">
+                            </button>
+
+                            <div id="indicador-2" class="img pull-right iconadverdnp">   <img class="" src="Img/u4630.svg"> </div>
+                        </td>
+                        <td colspan="6">
+                            <span class="messagealerttableDNP">Espacio reservado para información de validaciones. </span>
+                        </td>
+                    </tr>
+                    <tr class="no-border collapse alert panel-heading" id="ind2">
+                        <td colspan="8" class="p-0">
+                            <div class="LineaEncabezado2tabDNP"></div>
+                            <h3 class="row tituloEncabezadotabDNP">
+                                Ajustar de indicador
+                                <span class="buttonbar pull-right">
+                                    <button ng-if="!vm.HabilitaEditarBandera" type="button" class="btneditarDNP" tooltip-placement="top" uib-tooltip="Editar" tabindex="0" ng-click="vm.HabilitaEditar(true)">
+                                        EDITAR
+                                    </button>
+                                    <button ng-if="vm.HabilitaEditarBandera" type="button" class=" btneditarDNP" tooltip-placement="top" uib-tooltip="Cancelar" tabindex="0" ng-click="vm.HabilitaEditar(false)">
+                                        CANCELAR
+                                    </button>
+                                    <button ng-disabled="!vm.HabilitaEditarBandera" class="btnguardarDisabledDNP" type="button" tooltip-placement="top" uib-tooltip="Guardar" tabindex="0" ng-click="">
+                                        GUARDAR
+                                    </button>
+                                </span>
+                            </h3>
+                            <div class="row detalletableanidnp">
+                                <label>
+                                    "Meta en ajuste": para "Acumulativo" será igual a la suma de las metas de todas las vigencias, para "No acumulativo" será el mayor valor registrado
+                                </label>
+                            </div>
+                            <div class="row">
+                                <div class="alert panel-heading">
+                                    <table class="TableDNP">
+                                        <thead>
+                                            <tr>
+                                                <th class="columAcc"></th>
+                                                <th class="textRightDNP"><span class="uLabelCampo">Vigencia</span></th>
+                                                <th class="textRightDNP">Número </th>
+                                                <th class="textRightDNP">Número</th>
+                                                <th class="textRightDNP">Número</th>
+                                                <th class="columAcc"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td></td>
+                                                <td class="textRightDNP">
+                                                    <input type="text" class="editInputDNP " disabled value="2022" />
+                                                </td>
+                                                <td class="textRightDNP"><input type="text" class="form-control editInputDNP " disabled value="20.000,0000" /></td>
+                                                <td class="textRightDNP"><input type="text" class="form-control editInputDNP " disabled value="500.000,0000" /></td>
+                                                <td class="textRightDNP">
+                                                    100.000,0000
+                                                </td>
+                                                <td></td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td class="columAcc icontotaldnp"><span>=</span></td>
+                                                <td class="textRightDNP"><span>Total $</span></td>
+                                                <td class="textRightDNP">
+                                                    <input type="text" class="form-control editInputDNP " disabled value="20.000,0000" />
+                                                </td>
+                                                <td class="textRightDNP">
+                                                    <input type="text" class="form-control editInputDNP " disabled value="500.000,0000" />
+                                                </td>
+                                                <td class="textRightDNP">
+                                                    <input type="text" class="form-control editInputDNP " disabled value=" 100.000,0000" />
+                                                </td>
+                                                <td></td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>-->
+
+            <div id="politica-{{politicasIndicadores.PoliticaId}}" class="panel-body" ng-repeat="itemCategorias in politicasIndicadores.Categorias" ng-init="indexCategorias = $index" ng-if="vm.TieneCategorias(politicasIndicadores)">
+                <!--***************************************************************************************
+                ***************************************************************************************
+                ***************************************************************************************
+                ***************************************************************************************
+                ***************************************************************************************
+                ***************************************************************************************-->
+                <!--vm.abrirMensajeInformacionRegionalizacion()-->
+                <!--<span class="encabezadoTitulos">Fuentes</span>-->
+                <!--<div ng-repeat="item in itemCategorias.Fuentes" ng-init="indexFuentes = $index">-->
+                <!--<div class="row" style="color: #004884" ng-if="indexFuentes == 0">-->
+                <div class="row" style="color: #004884">
+                    <div class="" style="padding: 0 !important">
+                        <div class="alert panel-heading" style="height:50px">
+                            <div class="card card-body pull-left  divAccordionDNP" style="line-height:18px;max-height:140px">
+                                <div class="col-md-10">
+                                    <!--<span ng-if="item.presentaError1Fuente || item.presentaError2Fuente"><img class="img img-advertencia" src="Img/u11.svg" /></span>-->
+                                    <span class="encabezadoTitulos">Categoría: </span>
+                                    <span style="font-family:'Work Sans  Roman', 'Work Sans Regular Roman', 'Work Sans';font-weight:400;color:#4B4B4B;">{{itemCategorias.NombreCategoria}}. </span>
+                                    <span class="encabezadoTitulos">Subcategoría: </span>
+                                    <span style="font-family:'Work Sans  Roman', 'Work Sans Regular Roman', 'Work Sans';font-weight:400;color:#4B4B4B;">{{itemCategorias.NombreSubcategoria}}.</span>
+
+                                    <p style="padding: 0px; margin-bottom: 0px;">
+                                        <button class="btnaccion btnAccordionDNP" type="button" data-toggle="collapse" data-target="#obj-{{vm.proyectoidcategoria}}-{{indexPoliticas}}-{{indexCategorias}}" ng-click="vm.AbrilNivel1(vm.proyectoidcategoria, indexPoliticas, indexCategorias)">
+                                            <img id="imgmas-{{vm.proyectoidcategoria}}-{{indexPoliticas}}-{{indexCategorias}}" src="Img/btnMas.svg">
+                                            <img id="imgmenos-{{vm.proyectoidcategoria}}-{{indexPoliticas}}-{{indexCategorias}}" style="display:none" src="Img/btnMenos.svg">
+                                            <span id="ico-{{vm.proyectoidcategoria}}-{{indexPoliticas}}-{{indexCategorias}}" style="display:none">+</span>
+                                        </button>
+                                        <!--<span id="categoriaError1-0" class="text-left color-red err-categoria-validacion" ng-if="item.presentaError1Fuente">
+                                            <img class="img img-advertencia" src="Img/u11.svg" />
+                                            <span id="categoriaError1Msg-0">{{item.mensajeError1Fuente}}</span>
+                                        </span>-->
+                                    </p>
+                                </div>
+                                <div class="col-md-2" ng-if="vm.habilitaBotones == true">
+                                    <button class="btnaccion" title="Eliminar" ng-click="vm.EliminarCategoria(politicasIndicadores, itemCategorias.DimensionId)">
+                                        <span style="cursor:pointer"> <img src="Img/u928.svg"></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="collapse" id="obj-{{vm.proyectoidcategoria}}-{{indexPoliticas}}-{{indexCategorias}}">
+                            <div class="LineaEncabezadodivDNP" style="margin-top:1px"></div>
+                            <h3 class="row tituloEncabezadodivDNP">Localizaciones</h3>
+                            <!--<div ng-repeat="producto in item.Productos" ng-init="indexProducto = $index" style="">-->
+                            <!--<div class="row" style="margin-left: 0px; margin-right: 0px" ng-if="indexProducto == 0">-->
+                            <div class="row" style="margin-left: 0px; margin-right: 0px">
+                                <div class="alert panel-heading">
+                                    <table class="TableDNP no-border">
+                                        <thead>
+                                            <tr>
+                                                <th class="columAcc" style="width:2%"></th>
+                                                <th class="textLeftDNP" style="width:20%"><span>Localización / Organización - acuerdo </span></th>
+                                                <th class="textLeftDNP" style="width:12%"><span>Tipo de recurso </span></th>
+                                                <th class="textRightDNP" style="width:22%"><span>Recursos solicitados $ </span></th>
+                                                <th class="textRightDNP" style="width:22%"><span>Distribución de recursos $ </span></th>
+                                                <th class="textRightDNP" style="width:22%"><span>Recuros aprobados $ </span></th>
+                                                <th class="columAcc" style="width:2%"></th>
+                                            </tr>
+                                        </thead>
+                                        <!--<tbody ng-repeat="localizacion in producto.Localizaciones">-->
+                                        <tbody ng-repeat="localizacion in itemCategorias.Localizaciones">
+                                            <tr>
+                                                <td class="columAcc"
+                                                    style="background: transparent"
+                                                    rowspan="2">
+                                                </td>
+                                                <td rowspan="2"><span>{{localizacion.NombreLocalizacion}}</span></td>
+                                                <td><span>Nación</span></td>
+                                                <td class="textRightDNP"><span>{{localizacion.RecursosSolicitadosNacion | number:2}}</span></td>
+                                                <td class="textRightDNP"><span>{{localizacion.ValorDistribuidoNacion | number:2}}</span></td>
+                                                <td class="textRightDNP" ng-if="politicasIndicadores.Editar != true"><span>{{localizacion.ValorRecursosAprobadosNacion | number:2}}</span></td>
+                                                <td class="textRightDNP" ng-if="politicasIndicadores.Editar == true">
+                                                    <input id="input-1" type="number" string-to-number min="0.00"
+                                                           ng-keypress="vm.validateFormat($event, 2)"
+                                                           ng-keyup="vm.validarTamanio($event, 2)"
+                                                           ng-value="localizacion.ValorRecursosAprobadosNacion"
+                                                           ng-model="localizacion.ValorRecursosAprobadosNacion" />
+                                                </td>
+                                                <td></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><span>Propios</span></td>
+                                                <td class="textRightDNP"><span>{{localizacion.RecursosSolicitadosPropios | number:2}}</span></td>
+                                                <td class="textRightDNP"><span>{{localizacion.ValorDistribuidoPropios | number:2}}</span></td>
+                                                <td class="textRightDNP" ng-if="politicasIndicadores.Editar != true"><span>{{localizacion.ValorRecursosAprobadosPropios | number:2}}</span></td>
+                                                <td class="textRightDNP" ng-if="politicasIndicadores.Editar == true">
+                                                    <input id="input-1" type="number" string-to-number min="0.00"
+                                                           ng-keypress="vm.validateFormat($event, 2)"
+                                                           ng-keyup="vm.validarTamanio($event, 2)"
+                                                           ng-value="localizacion.ValorRecursosAprobadosPropios"
+                                                           ng-model="localizacion.ValorRecursosAprobadosPropios" />
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td class="columAcc icontotaldnp"><span>=</span></td>
+                                                <td class="textRightDNP" colspan="2"><span>Total $</span></td>
+                                                <td class="textRightDNP" style="width:29%">
+                                                    <input type="text" class="form-control editInputDNP " disabled value="{{vm.CalcularSolicitados(itemCategorias.Localizaciones) | number:2}}" />
+                                                </td>
+                                                <td class="textRightDNP" style="width:29%">
+                                                    <input type="text" class="form-control editInputDNP " disabled value="{{vm.CalcularDistribuidos(itemCategorias.Localizaciones) | number:2}}" />
+                                                </td>
+                                                <td class="textRightDNP" style="width:29%">
+                                                    <input type="text" class="form-control editInputDNP " disabled value="{{vm.CalcularAprobados(itemCategorias.Localizaciones) | number:2}}" />
+                                                </td>
+                                                <td></td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+
+                                </div>
+                            </div>
+                            <!--</div-->
+                        </div>
+                    </div>
+                </div>
+                <!--</div>-->
+            </div>
+            <div class="row" style="margin-right: 20px !important" ng-if="vm.habilitaBotones == true">
+                <!--<div class="add-new-fuente row mx-0 mt-5 text-right">
+                    <button type="button" class="btn btn-link btn-md buttonhiperDNP" ng-click="vm.ejecutarConsultaCargueMasivo(politicasIndicadores.PoliticaId)">
+                        DESCARGAR PLANTILLA PARA {{politicasIndicadores.NombrePolitica}}
+                    </button>
+
+                    <div class="col-md-12" style="margin-left: 10px;">
+                        <div class="col-md-8">
+                            <div class="divpanelcargarchivoDNP" style="">
+                                <button class="btncargarch" type="button" uib-tooltip="Editar" ng-click="vm.adjuntarArchivo()">
+                                    EXAMINAR
+                                </button>
+                                <input type="file" style="display:none" id="politicastransversales" name='filesfocalizacion[]' onchange="angular.element(this).scope().politicastransversalesNameChanged(this)" accept="{{vm.Focalizacion.ext}}" multiple />
+                                <input type="search" style="display:none" id="focalizacionnombrearchivo" ng-model="vm.nombrearchivo" class="form-control InputSearchDNP " placeholder="" ng-change="ChangeFocalizacionSet()">
+                                <span>{{vm.nombrearchivo}}</span>
+                                <button class="btncancearch" type="button" uib-tooltip="Cancelar" ng-click="vm.limpiarArchivo()">
+                                    X
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-md-4" ng-if="!vm.BloquearCargue">
+                            <span class="buttonbar pull-right">
+                                <button disabled="disabled" id="btnPoliticasTransversalesValidarArchivo" type="button" class="btn btnguardarDNP" tooltip-placement="top" uib-tooltip="Validar" tabindex="1" ng-click="vm.validarArchivo()" has-claim has-opciones="['Ajustes:GeneralComponente']">
+                                    VALIDAR
+                                </button>
+                                <button disabled="disabled" id="btnPoliticasTransversalesLimpiarArchivo" type="button" class="btn btnguardarDNP" tooltip-placement="top" uib-tooltip="Cancelar" tabindex="2" ng-click="vm.limpiarArchivo()" has-claim has-opciones="['Ajustes:GeneralComponente']">
+                                    CANCELAR
+                                </button>
+                                <button disabled="disabled" id="btnPoliticasTransversalesArchivoSeleccionado" class="btn btnguardarDNP" type="button" tooltip-placement="top" uib-tooltip="Cargar" tabindex="3" ng-click="vm.GuardarArchivoFocalizacion(false,1)" has-claim has-opciones="['Ajustes:GeneralComponente']">
+                                    CARGAR
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>-->
+
+                <div class="add-new-fuente row mx-0 mt-5 text-right">
+                    <a ng-click="vm.abrirModalAgregarCategoriaPolitica(politicasIndicadores)" has-claim has-opciones="['Ajustes:GeneralComponente']"><span class="uLabelCampo_fp" style="text-decoration:underline">AGREGAR CATEGORÍA</span></a>
+                </div>
+            </div>
+
+            <div id="focalizacioncargamasiva" ng-if="vm.existeFocalizacion && vm.TieneCategorias(politicasIndicadores) && vm.habilitaBotones == true" style="margin-left:20px;">
+                <div class="row" style="text-align: left; margin-left: 0px;">
+                    <div class="col-md-12 DetacolumnDNP">
+                        <span>
+                            Archivo plantilla carga masiva <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg" ng-click="vm.abrirMensajeArchivoFocalizacion()">
+                        </span>
+                        <button type="button" class="btn btn-link btn-md buttonhiperDNP" ng-click="vm.ejecutarConsultaCargueMasivo(politicasIndicadores)">
+                            DESCARGAR PLANTILLA
+                        </button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="divpanelcargarchivoDNP" style="">
+                            <button class="btncargarch" type="button" uib-tooltip="Editar" ng-click="vm.adjuntarArchivo(politicasIndicadores.PoliticaId)">
+                                EXAMINAR
+                            </button>
+                            <input type="file" style="display:none" id="politicastransversales-{{politicasIndicadores.PoliticaId}}" name='filesfocalizacion[]' onchange="angular.element(this).scope().politicastransversalesNameChanged(this)" accept=".xlsx, .xls, .csv" multiple />
+                            <input type="search" style="display:none" id="focalizacionnombrearchivo-{{politicasIndicadores.PoliticaId}}" ng-model="vm.nombrearchivo" class="form-control InputSearchDNP " placeholder="" ng-change="ChangeFocalizacionSet()">
+                            <span>{{vm.nombrearchivo}}</span>
+                            <button class="btncancearch" type="button" uib-tooltip="Cancelar" ng-click="vm.limpiarArchivo(politicasIndicadores.PoliticaId)">
+                                X
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-md-4" ng-if="!vm.BloquearCargue">
+                        <span class="buttonbar pull-right">
+                            <button disabled="disabled" id="btnPoliticasTransversalesValidarArchivo-{{politicasIndicadores.PoliticaId}}" type="button" class="btn btnguardarDNP" tooltip-placement="top" uib-tooltip="Validar" tabindex="1" ng-click="vm.validarArchivo(politicasIndicadores.PoliticaId)" has-claim has-opciones="['Ajustes:GeneralComponente']">
+                                VALIDAR
+                            </button>
+                            <button disabled="disabled" id="btnPoliticasTransversalesLimpiarArchivo-{{politicasIndicadores.PoliticaId}}" type="button" class="btn btnguardarDNP" tooltip-placement="top" uib-tooltip="Cancelar" tabindex="2" ng-click="vm.limpiarArchivo(politicasIndicadores.PoliticaId)" has-claim has-opciones="['Ajustes:GeneralComponente']">
+                                CANCELAR
+                            </button>
+                            <button disabled="disabled" id="btnPoliticasTransversalesArchivoSeleccionado-{{politicasIndicadores.PoliticaId}}" class="btn btnguardarDNP" type="button" tooltip-placement="top" uib-tooltip="Cargar" tabindex="3" ng-click="vm.CargarArchivoPoliticasTransversales(politicasIndicadores)" has-claim has-opciones="['Ajustes:GeneralComponente']">
+                                CARGAR
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <br />
+            </div>
+        </div>
+
+
+    </div>
+    <br />
+
+
+    <div class="row">
+        <div class="col-lg-offset-1 col-md-11">
+            <div id="focalizacionpolresumendeformul-focFuenteProducto-error" class="hidden text-left color-red"></div>
+        </div>
+        <div class="col-lg-offset-1 col-md-11">
+            <div id="focalizacionpolresumendeformul-focProducto-error" class="hidden text-left color-red"></div>
+        </div>
+    </div>
+</div>

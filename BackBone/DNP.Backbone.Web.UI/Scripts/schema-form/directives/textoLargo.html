@@ -1,0 +1,19 @@
+﻿<div ng-controller="textoLargoController" class="form-group has-feedback {{form.htmlClass}} schema-form-textarea" ng-class="{'has-error': form.disableErrorState !== true && hasError(), 'has-success': form.disableSuccessState !== true && hasSuccess()}">
+    <label class="{{form.labelHtmlClass}}" ng-class="{'sr-only': !showTitle()}" for="{{form.key.slice(-1)[0]}}">{{form.title}}</label>
+    <div ng-class="{'input-group': (form.fieldAddonLeft || form.fieldAddonRight)}">
+        <span ng-if="form.fieldAddonLeft" class="input-group-addon" ng-bind-html="form.fieldAddonLeft"></span>
+        <textarea class="form-control {{form.fieldHtmlClass}}"
+                  id="{{form.key.slice(-1)[0]}}"
+                  maxlength="{{form.maxLength}}"
+                  ng-pattern="form.pattern"
+                  sf-changed="form"
+                  placeholder="{{form.placeholder}}"
+                  ng-disabled="opciones.deshabilitarControles"
+                  ng-model="$$value$$"
+                  ng-model-options="form.ngModelOptions"
+                  schema-validate="form"
+                  name="{{form.key.slice(-1)[0]}}"
+                  uib-tooltip="{{form.tooltip}}"></textarea>
+    </div>
+    <span class="help-block" sf-message="(form.key[0]!==form.description)?form.description:''"></span>
+</div>

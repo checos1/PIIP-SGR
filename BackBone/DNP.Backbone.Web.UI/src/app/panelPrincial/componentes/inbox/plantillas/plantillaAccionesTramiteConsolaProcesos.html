@@ -1,0 +1,11 @@
+﻿<div class="text-center">
+    <button class="btnaccion" ng-click="grid.appScope.vm.alcanceTramite(row.entity)" tooltip-placement="auto" uib-tooltip="Alcance Trámite" ng-show="grid.appScope.vm.opcionCrearAlcance && row.entity.estadoId == 3 && row.entity.anio == row.entity.anio_actual">
+        <span><img class="grid-icon-accion" src="Img/iconsgrid/iconAccionNovo.png" /></span>
+    </button>
+    <button class="btnaccion" ng-click="grid.appScope.vm.mostrarLog(row.entity)" tooltip-placement="auto" uib-tooltip="Ver log">
+        <span><img class="grid-icon-accion" src="Img/iconsgrid/iconAccionCalendar.svg" /></span>
+    </button>
+    <button class="btnaccion" ng-click="grid.appScope.vm.detenerTramite(row.entity)" tooltip-placement="auto" uib-tooltip="Eliminar Tramite" ng-show="row.entity.estadoId != 5 && row.entity.tipoTramiteId==4">
+        <span><img class="grid-icon-accion" src="Img/iconsgrid/iconAccionStop.svg" /></span>
+    </button>
+</div>

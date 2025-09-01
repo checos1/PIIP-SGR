@@ -1,0 +1,31 @@
+﻿<section class="ventana-seguimiento mt-4" ng-init="vm.init()">
+    <div class="row m-0">
+        <div class="form-group">
+            <!--<div class="tab-container col-md-12">-->
+            <div class="tab-content">
+                <div class="tab-pane cont col-md-12 p-0" id="ddesagregaredt">
+                    <desagregaredt guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                   notificacioncambios="vm.notificacionCambiosAjustes(handler, nombreComponente)"
+                                   notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                   notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente, handlerCapitulos)"></desagregaredt>
+                </div>
+                <div class="tab-pane cont col-md-12 p-0" id="dprogramaractiv">
+                    <programaractiv guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                    notificacioncambios="vm.notificacionCambiosAjustes(handler,nombreComponente)"
+                                    notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                    notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente, handlerCapitulos)"></programaractiv>
+                </div>
+                <div class="tab-pane cont col-md-12 p-0" id="dprogramarprod">
+                    <programarprod guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                   notificacioncambios="vm.notificacionCambiosAjustes(handler,nombreComponente)"
+                                   notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                   notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente, handlerCapitulos)"></programarprod>
+                </div>               
+                <!--TODO div para financiero
+    dentro este componente -
+    -->
+            </div>
+            </div>
+        </div>
+    <!--</div>-->
+</section>

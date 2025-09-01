@@ -1,0 +1,432 @@
+﻿<style type="text/css">
+    .module {
+        margin: 0 0 1em 0;
+        overflow: hidden;
+    }
+
+        .module p {
+            margin: 0;
+        }
+
+    .line-clamp {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+    }
+
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+
+    .modal-content {
+        left: 0px;
+        top: 0px;
+        width: 743px;
+        height: 440px;
+        background: inherit;
+        background-color: rgba(255, 255, 255, 1);
+        box-sizing: border-box;
+        border-width: 1px;
+        border-style: solid;
+        border-color: rgba(170, 170, 170, 1);
+        border-radius: 5px;
+        -moz-box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.349019607843137);
+        -webkit-box-shadow: 0px 0px 30px rgb(0 0 0 / 35%);
+        box-shadow: 0px 0px 30px rgb(0 0 0 / 35%);
+        font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans';
+        font-weight: 400;
+        font-style: normal;
+        font-size: 16px;
+        margin: auto;
+    }
+
+    .check2DNP[disabled] {
+        color: #AAAAAA;
+    }
+</style>
+<style>
+    .clickable {
+        color: #096beb;
+    }
+
+    input {
+        text-align: right;
+    }
+
+    .texto {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 450px;
+        white-space: nowrap;
+    }
+</style>
+<div ng-init="vm.init();">
+    <span class="label pull-left" style="width: 22px;height: 50px;">Ajustes por Producto&nbsp;</span>
+    <br>
+    <br>
+    <div class="row">
+        <table class="table table-white" style="border:none; width: 90%; ">
+            <thead>
+                <tr class="utitulo-grilla">
+                    <td></td>
+                    <td class="texto">Total Costo proyecto ajustado </td>
+                    <td><span class="glyphicon glyphicon-arrow-right"></span></td>
+                    <td><input ng-value="vm.costoTotal | number:2" /></td>
+                    <td></td>
+                </tr>
+            </thead>
+        </table>
+    </div>
+
+
+    <div ng-repeat="objetivos in vm.datos.Objetivos" ng-init="indexObjetivo = $index">
+        <div class="row" style="color: #004884">
+            <div class="" style="padding: 0 !important">
+                <div class="alert panel-heading" style="height: 50px;">
+                    <div class="card card-body pull-left  divAccordionDNP">
+                        <span class="d-inline-block error-costos" id="alert-objetivo-{{objetivos.ObjetivoEspecificoId}}"></span>
+                        <span class="uLabelCampo" style="margin-left: 55px">
+                            Objetivo {{$index + 1}}:
+                        </span>
+                        <br />
+
+                        <div class=" line-clamp" style="margin-left: 55px; max-height: 18px">
+                            <p style="color: #4B4B4B;">
+                                <span ng-if="vm.validarLongitudObjetivo(objetivos.ObjetivoEspecifico)">
+                                    {{objetivos.ObjetivoEspecifico}}
+                                </span>
+                                <span ng-if="!vm.validarLongitudObjetivo(objetivos.ObjetivoEspecifico)" id=obj{{$index}}>
+                                    {{objetivos.ObjetivoEspecifico.substring(0,vm.longMaxText)}}
+                                    <a ng-click="vm.clickVerMas('obj'+$index, objetivos.ObjetivoEspecifico)">...VER MÁS</a>
+                                </span>
+                            </p>
+                        </div>
+
+                        <p style="padding: 0px; margin-bottom: 0px;">
+
+                            <button class="btnaccion btnAccordionDNP"
+                                    type="button"
+                                    data-toggle="collapse"
+                                    ng-click="vm.mostrarOcultar('Objet' + objetivos.ObjetivoEspecificoId)"
+                                    data-target="#objet{{objetivos.ObjetivoEspecificoId}}">
+
+                                <img id="icoObjet{{objetivos.ObjetivoEspecificoId}}" src="Img/btnMas.svg">
+
+                            </button>
+                        </p>
+                    </div>
+                </div>
+                <br />
+
+                <div class="collapse" id="objet{{objetivos.ObjetivoEspecificoId}}">
+
+                    <div class="LineaEncabezadodivDNP"></div>
+                    <h3 class="row tituloEncabezadodivDNP">Productos</h3>
+
+                    <div style="text-align: left; margin-left: 15px; margin-right: 15px;">
+
+                        <!--*****************************************************************************************************-->
+                        <table class="TableDNP no-border">
+                            <thead>
+                                <tr>
+                                    <th class="columAcc"> </th>
+                                    <th class="textCenterDNP" style="width:640px;">Producto</th>
+                                    <th class="textCenterDNP" style="width:180px;">Etapa</th>
+                                    <th class="textCenterDNP" style="width:180px;">Costos en firme $</th>
+                                    <th class="textCenterDNP" style="width:180px;">Costo ajustado $</th>
+                                    <th class="columAcc"> </th>
+                                </tr>
+                            </thead>
+                            <tbody ng-repeat="productos in objetivos.Productos" ng-init="indexProducto = $index">
+                                <tr class="bottontransDNP">
+                                    <td>
+                                    </td>
+
+                                    <td class="textLeftDNP" ng-if="vm.validarLongitud(productos.Producto)">
+                                        <span class="d-inline-block error-costos" id="alert-objetivo-{{objetivos.ObjetivoEspecificoId}}-producto-{{productos.ProductoId}}"></span>
+                                        {{indexObjetivo + 1}}.{{$index + 1}}. {{productos.Producto}}
+                                    </td>
+                                    <td class="textLeftDNP" ng-if="!vm.validarLongitud(productos.Producto)" id=prod{{objetivos.ObjetivoEspecificoId}}{{productos.ProductoId}}>
+                                        <span class="d-inline-block error-costos" id="alert-objetivo-{{objetivos.ObjetivoEspecificoId}}-producto-{{productos.ProductoId}}"></span>
+                                        {{objetivos.ObjetivoEspecificoId}}.{{productos.ProductoId}}. {{productos.Producto.substring(0, vm.longMaxText)}}
+                                        <a ng-click="vm.clickVerMas('prod'+objetivos.ObjetivoEspecificoId+productos.ProductoId,objetivos.ObjetivoEspecificoId + '.' + productos.ProductoId + '. ' + productos.Producto)">...VER MÁS</a>
+                                    </td>
+                                    <td class="textLeftDNP">{{productos.Etapa}}</td>
+                                    <td class="textRightDNP">{{productos.CostoFirme | number:2}}</td>
+                                    <td class="textRightDNP">{{productos.CostoAjuste | number:2}}</td>
+                                    <td class="textCenterDNP">
+                                    </td>
+                                </tr>
+                                <tr class="filaAnidada">
+                                    <td colspan="1">
+                                        <button class="btnaccion btntablednp"
+                                                type="button"
+                                                data-toggle="collapse"
+                                                ng-click="vm.mostrarOcultarTB('Producto' + objetivos.ObjetivoEspecificoId + productos.ProductoId + productos.Etapa)"
+                                                data-target="#Producto{{objetivos.ObjetivoEspecificoId}}{{productos.ProductoId}}{{productos.Etapa}}">
+
+                                            <img id="icoProducto{{objetivos.ObjetivoEspecificoId}}{{productos.ProductoId}}{{productos.Etapa}}" src="Img/btnMasTb.svg">
+
+                                        </button>
+                                    </td>
+                                    <td colspan="5">
+                                        <span class="d-inline-block error-costos" id="alert-objetivo-{{objetivos.ObjetivoEspecificoId}}-producto-{{productos.ProductoId}}"></span>
+                                    </td>
+                                </tr>
+                                <tr class="no-border collapse " id="Producto{{objetivos.ObjetivoEspecificoId}}{{productos.ProductoId}}{{productos.Etapa}}">
+
+                                    <td colspan="6" class="p-0">
+                                        <div class="LineaEncabezado2tabDNP"></div>
+                                        <h3 class="row tituloEncabezadotabDNP">
+                                            Detalle del producto
+                                            <span class="buttonbar pull-right">
+                                                <button type="button" class="btn btn-default btn-md" tooltip-placement="top" ng-click="productos.HabilitaEditar ? vm.Cancelar(productos) : vm.habilitaEditar(productos)" uib-tooltip="{{productos.HabilitaEditar ? 'CANCELAR' : 'EDITAR'}}" has-claim has-opciones="['Ajustes:GeneralComponente']">
+                                                    {{productos.HabilitaEditar ? 'CANCELAR' : 'EDITAR'}}
+                                                </button>
+                                                <button ng-disabled="!productos.HabilitaEditar" type="button" class="btn btn-default btn-md" tooltip-placement="top" uib-tooltip="Guardar" tabindex="0" ng-click="vm.Guardar(productos)" has-claim has-opciones="['Ajustes:GeneralComponente']">
+                                                    Guardar
+                                                </button>
+                                            </span>
+                                        </h3>
+
+                                        <div class="row detalletableanidnp">
+                                            <label>
+                                                Edite el costo ajustado en cada vigencia.
+                                            </label>
+                                        </div>
+                                        <div class="row">
+                                            <div class="alert panel-heading">
+                                                <div class="tab-container col-md-12" style="width:100%;">
+                                                    <ul class="nav nav-tabs">
+                                                        <li ng-repeat="fechaVigencia in productos.Vigencias" ng-show="$index%4 === 0" id="liDgenerales" ng-class="{active : $index === vm.pagina}" class="nav-item">
+                                                            <a href="" class="nav-link" ng-click="vm.cambiarPagina($index)" data-toggle="tab">
+                                                                <b>{{fechaVigencia.Vigencia}}-{{productos.Vigencias[$index+3].Vigencia? productos.Vigencias[$index+3].Vigencia:(productos.Vigencias[$index+2].Vigencia? productos.Vigencias[$index+2].Vigencia: (productos.Vigencias[$index+1].Vigencia? productos.Vigencias[$index+1].Vigencia: fechaVigencia.Vigencia))}}</b>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <br>
+                                                <div class="tab-container col-md-12" style="width:100%;">
+                                                    <ul class="nav nav-tabs">
+                                                        <li id="liAjustados" class="nav-item" ng-class="{active : 1===1}">
+                                                            <a href="" class="nav-link" data-target="#tabAjustados{{productos.ProductoId}}" data-toggle="tab">
+                                                                <b>Costos Ajustados</b>
+                                                            </a>
+                                                        </li>
+                                                        <li id="liFirmes" class="nav-item">
+                                                            <a href="" class="nav-link" data-target="#tabFirme{{productos.ProductoId}}" data-toggle="tab">
+                                                                <b>Costos en firme</b>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+
+                                                <div class="tab-content">
+                                                    <span>Edite el costo ajustado en cada vigencia.</span>
+                                                    <div class="tab-pane active cont col-md-12"
+                                                         style="padding-left:0 !important;padding-top:20px !important" id="tabAjustados{{productos.ProductoId}}">
+                                                        <table ng-repeat="Vigencias in productos.Vigencias | limitTo:1" class="TableDNP" ng-init="indexVigencias = $index">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th class="columAcc"></th>
+                                                                    <th class="textLeftDNP"  style="width: 276px;">{{productos.AplicaEDT === 1? "Entregable Nivel 1" : "Actividad"}}</th>
+                                                                    <th class="textRightDNP" style="width: 180px;">Costos ajustados para el proyecto $</th>
+                                                                    <th class="textRightDNP" style="width: 180px;">{{productos.Vigencias[vm.pagina].Vigencia}} $</th>
+                                                                    <th ng-if="productos.Vigencias[vm.pagina + 1]" class="textRightDNP" style="width: 180px;">{{productos.Vigencias[vm.pagina + 1].Vigencia}} $</th>
+                                                                    <th ng-if="productos.Vigencias[vm.pagina + 2]" class="textRightDNP" style="width: 180px;">{{productos.Vigencias[vm.pagina + 2].Vigencia}} $</th>
+                                                                    <th ng-if="productos.Vigencias[vm.pagina + 3]" class="textRightDNP" style="width: 180px;">{{productos.Vigencias[vm.pagina + 3].Vigencia}} $</th>
+                                                                    <th class="columAcc"></th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr ng-repeat="EntregablesActividades in Vigencias.EntregablesActividades" ng-init="indexEntregables = $index">
+                                                                    <td><img class="img-advertencia hidden" src="Img/u11.svg" id=alert-{{objetivos.ObjetivoEspecificoId}}{{productos.ProductoId}}{{EntregablesActividades.EntregableActividadId}}></td>
+                                                                    <td class="textLeftDNP" ng-if="vm.validarLongitud(EntregablesActividades.EntregableActividad)">
+                                                                        {{indexObjetivo + 1}}.{{indexProducto + 1}}.{{$index + 1}} {{EntregablesActividades.EntregableActividad}}
+                                                                    </td>
+                                                                    <td class="textLeftDNP" ng-if="!vm.validarLongitud(EntregablesActividades.EntregableActividad)"
+                                                                        id=actAjus{{objetivos.ObjetivoEspecificoId}}{{productos.ProductoId}}{{EntregablesActividades.EntregableActividadId}}>
+                                                                        {{objetivos.ObjetivoEspecificoId}}.{{productos.ProductoId}}.{{EntregablesActividades.EntregableActividadId}} {{EntregablesActividades.EntregableActividad.substring(0,vm.longMaxText)}}
+                                                                        <a ng-click="vm.clickVerMas('actAjus'+objetivos.ObjetivoEspecificoId+productos.ProductoId+EntregablesActividades.EntregableActividadId ,objetivos.ObjetivoEspecificoId + '.' + productos.ProductoId + '.' +  EntregablesActividades.EntregableActividadId + '. ' +  EntregablesActividades.EntregableActividad)">...VER MÁS</a>
+
+                                                                    </td>
+                                                                    <td class="textRightDNP">
+                                                                        {{EntregablesActividades.TotalCostoAjusteProyecto| number:2}}
+                                                                    </td>
+                                                                    <td class="textRightDNP">
+                                                                        <div ng-if="!productos.HabilitaEditar || productos.Vigencias[vm.pagina].Vigencia < vm.vigenciaActual">{{productos.Vigencias[vm.pagina].EntregablesActividades[$index].CostoAjusteProyecto | number:2}}</div>
+                                                                        <input type="number" string-to-number min="0.00"
+                                                                               ng-if="productos.HabilitaEditar && productos.Vigencias[vm.pagina].Vigencia >= vm.vigenciaActual"
+                                                                               ng-readonly="productos.Vigencias[vm.pagina].Vigencia < vm.vigenciaActual"
+                                                                               ng-value="productos.Vigencias[vm.pagina].EntregablesActividades[$index].CostoAjusteProyecto"
+                                                                               ng-model="productos.Vigencias[vm.pagina].EntregablesActividades[$index].CostoAjusteProyecto"
+                                                                               ng-blur="vm.recorrerObjetivosNumber($event, vm.datos.Objetivos)"
+                                                                               ng-keypress="vm.validateFormat($event)"
+                                                                               ng-keyup="vm.validarTamanio($event)" />
+                                                                    </td>
+                                                                    <td ng-if="productos.Vigencias[vm.pagina + 1]" class="textRightDNP">
+
+                                                                        <div ng-if="!productos.HabilitaEditar || productos.Vigencias[vm.pagina+1].Vigencia < vm.vigenciaActual">{{productos.Vigencias[vm.pagina+1].EntregablesActividades[$index].CostoAjusteProyecto | number:2}}</div>
+                                                                        <input type="number" string-to-number min="0.00"
+                                                                               ng-if="productos.HabilitaEditar && productos.Vigencias[vm.pagina+1].Vigencia >= vm.vigenciaActual" ng-readonly="productos.Vigencias[vm.pagina+1].Vigencia < vm.vigenciaActual"
+                                                                               ng-value="productos.Vigencias[vm.pagina+1].EntregablesActividades[$index].CostoAjusteProyecto"
+                                                                               ng-model="productos.Vigencias[vm.pagina+1].EntregablesActividades[$index].CostoAjusteProyecto"
+                                                                               ng-blur="vm.recorrerObjetivos(vm.datos.Objetivos)"
+                                                                               ng-keypress="vm.validateFormat($event)"
+                                                                               ng-keyup="vm.validarTamanio($event)" />
+                                                                    </td>
+                                                                    <td ng-if="productos.Vigencias[vm.pagina + 2]" class="textRightDNP">
+                                                                        <div ng-if="!productos.HabilitaEditar || productos.Vigencias[vm.pagina+2].Vigencia < vm.vigenciaActual">{{productos.Vigencias[vm.pagina+2].EntregablesActividades[$index].CostoAjusteProyecto | number:2}}</div>
+                                                                        <input type="number" string-to-number min="0.00"
+                                                                               ng-if="productos.HabilitaEditar && productos.Vigencias[vm.pagina+2].Vigencia >= vm.vigenciaActual" ng-readonly="productos.Vigencias[vm.pagina+2].Vigencia < vm.vigenciaActual"
+                                                                               ng-value="productos.Vigencias[vm.pagina+2].EntregablesActividades[$index].CostoAjusteProyecto"
+                                                                               ng-model="productos.Vigencias[vm.pagina+2].EntregablesActividades[$index].CostoAjusteProyecto"
+                                                                               ng-blur="vm.recorrerObjetivos(vm.datos.Objetivos)"
+                                                                               ng-keypress="vm.validateFormat($event)"
+                                                                               ng-keyup="vm.validarTamanio($event)" />
+                                                                    </td>
+
+                                                                    <td ng-if="productos.Vigencias[vm.pagina + 3]" class="textRightDNP">
+                                                                        <div ng-if="!productos.HabilitaEditar || productos.Vigencias[vm.pagina+3].Vigencia < vm.vigenciaActual">{{productos.Vigencias[vm.pagina+3].EntregablesActividades[$index].CostoAjusteProyecto | number:2}}</div>
+                                                                        <input type="number" string-to-number min="0.00"
+                                                                               ng-if="productos.HabilitaEditar && productos.Vigencias[vm.pagina+3].Vigencia >= vm.vigenciaActual" ng-readonly="productos.Vigencias[vm.pagina+3].Vigencia < vm.vigenciaActual"
+                                                                               ng-value="productos.Vigencias[vm.pagina+3].EntregablesActividades[$index].CostoAjusteProyecto"
+                                                                               ng-model="productos.Vigencias[vm.pagina+3].EntregablesActividades[$index].CostoAjusteProyecto"
+                                                                               ng-blur="vm.recorrerObjetivos(vm.datos.Objetivos)"
+                                                                               ng-keypress="vm.validateFormat($event)"
+                                                                               ng-keyup="vm.validarTamanio($event)" />
+                                                                    </td>
+                                                                    <td><a ng-if="productos.Vigencias[vm.pagina+1].EntregablesActividades[$index].Firme === 0" ng-click="vm.EliminarEntregable(productos.Vigencias[vm.pagina+1].EntregablesActividades[$index])"><span class="glyphicon glyphicon-trash"></span></a></td>
+
+                                                                </tr>
+
+                                                            </tbody>
+                                                            <tfoot>
+                                                                <tr>
+                                                                    <td class="columAcc icontotaldnp"><span>=</span></td>
+                                                                    <td colspan="2" class="textRightDNP">
+                                                                        Total costo ajustados por vigencia
+                                                                    </td>
+                                                                    <td class="textRightDNP">{{productos.Vigencias[vm.pagina].TotalVigenciaAJuste | number:2}}</td>
+                                                                    <td ng-if="productos.Vigencias[vm.pagina + 1]" class="textRightDNP">{{productos.Vigencias[vm.pagina + 1].TotalVigenciaAJuste | number:2}}</td>
+                                                                    <td ng-if="productos.Vigencias[vm.pagina + 2]" class="textRightDNP">{{productos.Vigencias[vm.pagina + 2].TotalVigenciaAJuste | number:2}}</td>
+                                                                    <td ng-if="productos.Vigencias[vm.pagina + 3]" class="textRightDNP">{{productos.Vigencias[vm.pagina + 3].TotalVigenciaAJuste | number:2}}</td>
+                                                                    <td></td>
+                                                                </tr>
+
+                                                            </tfoot>
+                                                        </table>
+
+                                                        <button type="button" class="btn btn-link btn-md pull-right" tooltip-placement="top" uib-tooltip="Agregar {{productos.AplicaEDT === 1? 'Entregable' : 'Actividad'}}" tabindex="0" ng-click="vm.AgregarEntregable(productos, objetivos.ObjetivoEspecifico)" data="{{productos}}" has-claim has-opciones="['Ajustes:GeneralComponente']">
+                                                            Agregar {{productos.AplicaEDT === 1? "Entregable" : "Actividad"}}
+                                                        </button>
+
+                                                    </div>
+                                                    <div class="tab-pane cont col-md-12"
+                                                         style="padding-left:0 !important;padding-top:20px !important" id="tabFirme{{productos.ProductoId}}">
+                                                        <table ng-repeat="Vigencias in productos.Vigencias | limitTo:1" class="TableDNP">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th class="columAcc"></th>
+                                                                    <th class="textLeftDNP"  style="width: 276px;">{{productos.AplicaEDT === 1? "Entregable Nivel 1" : "Actividad"}}</th>
+                                                                    <th class="textRightDNP" style="width: 180px;">Costos en firme para el proyecto $</th>
+                                                                    <th class="textRightDNP" style="width: 180px;">{{productos.Vigencias[vm.pagina].Vigencia}} $</th>
+                                                                    <th ng-if="productos.Vigencias[vm.pagina + 1]" class="textRightDNP" style="width: 180px;">{{productos.Vigencias[vm.pagina + 1].Vigencia}} $</th>
+                                                                    <th ng-if="productos.Vigencias[vm.pagina + 2]" class="textRightDNP" style="width: 180px;">{{productos.Vigencias[vm.pagina + 2].Vigencia}} $</th>
+                                                                    <th ng-if="productos.Vigencias[vm.pagina + 3]" class="textRightDNP" style="width: 180px;">{{productos.Vigencias[vm.pagina + 3].Vigencia}} $</th>
+                                                                    <th class="columAcc"></th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr ng-repeat="EntregablesActividades in Vigencias.EntregablesActividades">
+                                                                    <td></td>
+                                                                    <td class="textLeftDNP" ng-if="vm.validarLongitud(EntregablesActividades.EntregableActividad)">
+                                                                        {{indexObjetivo + 1}}.{{indexProducto + 1}}.{{$index + 1}} {{EntregablesActividades.EntregableActividad}}
+                                                                    </td>
+                                                                    <td class="textLeftDNP" ng-if="!vm.validarLongitud(EntregablesActividades.EntregableActividad)"
+                                                                        id=actFirme{{objetivos.ObjetivoEspecificoId}}{{productos.ProductoId}}{{EntregablesActividades.EntregableActividadId}}>
+                                                                        {{objetivos.ObjetivoEspecificoId}}.{{productos.ProductoId}}.{{EntregablesActividades.EntregableActividadId}} {{EntregablesActividades.EntregableActividad.substring(0,vm.longMaxText)}}
+                                                                        <a ng-click="vm.clickVerMas('actFirme'+objetivos.ObjetivoEspecificoId+productos.ProductoId+EntregablesActividades.EntregableActividadId ,objetivos.ObjetivoEspecificoId + '.' + productos.ProductoId + '.' +  EntregablesActividades.EntregableActividadId + '. ' +  EntregablesActividades.EntregableActividad)">...VER MÁS</a>
+
+                                                                    </td>
+                                                                    <td class="textRightDNP">
+                                                                        {{EntregablesActividades.TotalCostoFirmeProyecto | number:2}}
+                                                                    </td>
+                                                                    <td class="textRightDNP">
+                                                                        <div>{{productos.Vigencias[vm.pagina].EntregablesActividades[$index].CostoFirmeProyecto | number:2}}</div>
+                                                                    </td>
+                                                                    <td ng-if="productos.Vigencias[vm.pagina + 1]" class="textRightDNP">
+                                                                        <div>{{productos.Vigencias[vm.pagina + 1].EntregablesActividades[$index].CostoFirmeProyecto | number:2}}</div>
+
+                                                                    </td>
+                                                                    <td ng-if="productos.Vigencias[vm.pagina + 2]" class="textRightDNP">
+                                                                        <div>{{productos.Vigencias[vm.pagina + 2].EntregablesActividades[$index].CostoFirmeProyecto | number:2}}</div>
+
+                                                                    </td>
+                                                                    <td ng-if="productos.Vigencias[vm.pagina + 3]" class="textRightDNP">
+                                                                        <div>{{productos.Vigencias[vm.pagina + 3].EntregablesActividades[$index].CostoFirmeProyecto | number:2}}</div>
+
+                                                                    </td>
+                                                                    <td></td>
+                                                                </tr>
+                                                            </tbody>
+
+                                                            <tfoot>
+                                                                <tr>
+                                                                    <td class="columAcc icontotaldnp"><span>=</span></td>
+                                                                    <td class="textRightDNP" colspan="2">
+                                                                        Total costos en firme por vigencia
+                                                                    </td>
+                                                                    <td class="textRightDNP">{{productos.Vigencias[vm.pagina].TotalVigenciaFirme | number:2}}</td>
+                                                                    <td ng-if="productos.Vigencias[vm.pagina + 1]" class="textRightDNP">{{productos.Vigencias[vm.pagina + 1].TotalVigenciaFirme | number:2}}</td>
+                                                                    <td ng-if="productos.Vigencias[vm.pagina + 2]" class="textRightDNP">{{productos.Vigencias[vm.pagina + 2].TotalVigenciaFirme | number:2}}</td>
+                                                                    <td ng-if="productos.Vigencias[vm.pagina + 3]" class="textRightDNP">{{productos.Vigencias[vm.pagina + 3].TotalVigenciaFirme | number:2}}</td>
+                                                                    <td></td>
+                                                                </tr>
+
+                                                            </tfoot>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <span class="d-inline-block text-left color-red" id="alert-objetivo-{{objetivos.ObjetivoEspecificoId}}-producto-{{productos.ProductoId}}-error"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td></td>
+                                    <td class="columAcc icontotaldnp"><span>=</span></td>
+                                    <td class="textRightDNP">
+                                        Total Objetivo <span class="glyphicon glyphicon-arrow-right"></span>
+                                    </td>
+                                    <td class="textRightDNP">{{vm.listaCostoFirme[$index] | number:2}}</td>
+                                    <td class="textRightDNP">{{vm.listaCostoAjuste[$index] | number:2}}</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                        <!--*****************************************************************************************************-->
+                    </div>
+
+                    <div>
+                        <span class="d-inline-block text-left color-red" id="alert-objetivo-{{objetivos.ObjetivoEspecificoId}}-producto-{{productos.ProductoId}}-error"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+    </div>
+
+    <div class="mt-4">
+        <resumen-costos-fuentes-ajustes validacionerrorfuentes="vm.validacionErroresCost003(handler)" refrescar="vm.refrescarResumen(handler)"></resumen-costos-fuentes-ajustes>
+    </div>
+</div>

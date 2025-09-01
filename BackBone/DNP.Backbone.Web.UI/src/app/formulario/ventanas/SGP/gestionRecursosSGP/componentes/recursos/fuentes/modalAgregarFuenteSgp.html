@@ -1,0 +1,178 @@
+﻿<style>
+
+    #u7541_div {
+    }
+</style>
+
+<modal-dialog cerrar="vm.cerrar" guardar="vm.guardar" txt-guardar="Agregar" ng-init="vm.init()">
+
+    <form id="formAgregarFuente" name="formAgregarFuente" style="background-color:white!important">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="textLeftDNP" style="margin-left: 50px;">
+                    <span class="text-left ui-seccion-title" style="font-size:20px"> <b>Agregar Fuente</b></span>
+                    <p style="font-size:18px;"><span style="font-family:'Montserrat Medium', 'Montserrat Regular', 'Montserrat';font-weight:500;">Selección de criterios</span></p>
+                </div>
+            </div>
+        </div>
+        <br />
+
+        <div style="background-color: white !important; margin-left: 50px;">
+            <!--etapa-->
+            <div class="row" style="height: 45px;">
+                <div class="col-md-4" style=" border-width: 0px;left: 0px;top: 0px;height: 35px; background: inherit; background-color: rgba(249, 252, 253, 1); box-sizing: border-box; border-width: 2px;
+                              border-style: solid;    border-color: rgba(230, 239, 253, 1);     border-radius: 5px;     -moz-box-shadow: none;     -webkit-box-shadow: none;     box-shadow: none;
+                              font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans';
+                              font-weight: 500;     font-style: normal;     font-size: 16px;     color: #004884;     text-align: left;    line-height: 30px;">
+                    <label for="selEtapas" class="textRightDNP" style="font-size: 16px;">Etapa:</label>
+                </div>
+                <div class="col-md-6">
+                    <select name="selEtapa" id="selectEtapas" ng-model="vm.model.idEtapa" ng-required="true" class="form-control">
+                        <option value="" disabled selected hidden>Seleccione</option>
+                        <option ng-repeat="etapa in vm.Etapas" ng-value="etapa.Id">{{ etapa.Name }} </option>
+                    </select>
+                </div>
+            </div>
+            <!--Tipo Entidad-->
+            <div class="row" style="height: 45px;">
+                <div class="col-md-4" style=" border-width: 0px;left: 0px;top: 0px;height: 35px; background: inherit; background-color: rgba(249, 252, 253, 1); box-sizing: border-box; border-width: 2px;
+                              border-style: solid;    border-color: rgba(230, 239, 253, 1);     border-radius: 5px;     -moz-box-shadow: none;     -webkit-box-shadow: none;     box-shadow: none;
+                              font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans';
+                              font-weight: 500;     font-style: normal;     font-size: 16px;     color: #004884;     text-align: left;    line-height: 30px;">
+                    <label for="tipoEntidad" class="textRightDNP" style="font-size: 16px;">Tipo financiador:</label>
+                </div>
+                <div class="col-md-6">
+                    <select ng-model="vm.model.idTipoEntidad" ng-required="true" class="form-control"
+                            name="selTipoEntidad"
+                            ng-change="vm.cambiarTipoEntidad()">
+                        <option value="" disabled selected hidden>Seleccione</option>
+                        <option ng-repeat="tipo in vm.tiposEntidades" ng-value="tipo.Id">{{ tipo.Name }} </option>
+                    </select>
+                </div>
+            </div>
+            <!--sector-->
+            <div class="row" ng-if="vm.sectorVisible" style="height: 45px;">
+                <div class="col-md-4" style=" border-width: 0px;left: 0px;top: 0px;height: 35px; background: inherit; background-color: rgba(249, 252, 253, 1); box-sizing: border-box; border-width: 2px;
+                              border-style: solid;    border-color: rgba(230, 239, 253, 1);     border-radius: 5px;     -moz-box-shadow: none;     -webkit-box-shadow: none;     box-shadow: none;
+                              font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans';
+                              font-weight: 500;     font-style: normal;     font-size: 16px;     color: #004884;     text-align: left;    line-height: 30px;">
+                    <label for="entidad" class="textRightDNP" style="font-size: 16px;">Sector:</label>
+                </div>
+                <div class="col-md-6">
+                    <select name="sector" class="form-control"
+                            ng-options="sector as sector.Name for sector in vm.listaSectores track by sector.Name"
+                            ng-model="vm.model.Sector"
+                            ng-required="true"
+                            ng-change="vm.cambioSector()">
+                        tabindex="0">
+                        <option value="" selected disabled>Seleccione</option>
+                    </select>
+                </div>
+            </div>
+            <!--Comunidad-->
+            <div class="row" ng-if="vm.comunidadVisible" style="height: 45px;">
+                <div class="col-md-4" style=" border-width: 0px;left: 0px;top: 0px;height: 35px; background: inherit; background-color: rgba(249, 252, 253, 1); box-sizing: border-box; border-width: 2px;
+                              border-style: solid;    border-color: rgba(230, 239, 253, 1);     border-radius: 5px;     -moz-box-shadow: none;     -webkit-box-shadow: none;     box-shadow: none;
+                              font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans';
+                              font-weight: 500;     font-style: normal;     font-size: 16px;     color: #004884;     text-align: left;    line-height: 30px;">
+                    <label for="comunidad" class="textRightDNP" style="font-size: 16px;">Comunidad:</label>
+                </div>
+                <div class="col-md-6">
+                    <select name="comunidad" class="form-control"
+                            ng-options="comunidad as comunidad.Nombre for comunidad in vm.listaComunidades track by comunidad.Nombre"
+                            ng-model="vm.model.Comunidad"
+                            ng-required="true"
+                            ng-change="vm.cambioComunidad()">
+                        tabindex="0">
+                        <option value="" selected disabled>Seleccione</option>
+                    </select>
+                </div>
+            </div>
+            <!--Departamento-->
+            <div class="row" ng-if="vm.municipioVisible" style="height: 45px;">
+                <div class="col-md-4" style=" border-width: 0px;left: 0px;top: 0px;height: 35px; background: inherit; background-color: rgba(249, 252, 253, 1); box-sizing: border-box; border-width: 2px;
+                              border-style: solid;    border-color: rgba(230, 239, 253, 1);     border-radius: 5px;     -moz-box-shadow: none;     -webkit-box-shadow: none;     box-shadow: none;
+                              font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans';
+                              font-weight: 500;     font-style: normal;     font-size: 16px;     color: #004884;     text-align: left;    line-height: 30px;">
+                    <label for="entidad" class="textRightDNP" style="font-size: 16px;">Departamento:</label>
+                </div>
+                <div class="col-md-6">
+                    <select name="Departamento" class="form-control"
+                            ng-options="Departamento as Departamento.Nombre for Departamento in vm.listaDepartamento track by Departamento.Nombre"
+                            ng-model="vm.model.Departamento"
+                            ng-required="true"
+                            ng-change="vm.cambioDepartamento()">
+                        tabindex="0">
+                        <option value="" selected disabled>Seleccione</option>
+                    </select>
+                </div>
+            </div>
+            <!--entidad-->
+            <div class="row" ng-if="vm.EntidadVisible" style="height: 45px;">
+                <div class="col-md-4" style=" border-width: 0px;left: 0px;top: 0px;height: 35px; background: inherit; background-color: rgba(249, 252, 253, 1); box-sizing: border-box; border-width: 2px;
+                              border-style: solid;    border-color: rgba(230, 239, 253, 1);     border-radius: 5px;     -moz-box-shadow: none;     -webkit-box-shadow: none;     box-shadow: none;
+                              font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans';
+                              font-weight: 500;     font-style: normal;     font-size: 16px;     color: #004884;     text-align: left;    line-height: 30px;">
+                    <label for="entidad" class="textRightDNP" style="font-size: 16px;">Financiador(a):</label>
+                </div>
+                <div class="col-md-6">
+                    <select id="chosenEntidades"
+                            ng-model="vm.model.Entidad"
+                            ng-options="entidad as entidad.nombreEntidad for entidad in vm.listaEntidades  track by entidad.nombreEntidad"
+                            ng-change="vm.cambiarRecurso()"
+                            class="form-control">
+                        <option value="" disabled selected hidden>Seleccione</option>
+                    </select>
+
+                    <!--<select id="chosenEntidades"
+                            chosen options="vm.listaEntidades"
+                            ng-model="vm.model.Entidad"
+                            ng-options="entidad as entidad.nombreEntidad for entidad in vm.listaEntidades  track by entidad.nombreEntidad"
+                            no-results-text="No hay ningún resultado para su búsqueda" placeholder-text-single="Opciones"
+                            ng-change="vm.cambiarRecurso()"
+                            class="form-control">
+                    </select>-->
+                </div>
+            </div>
+            <!--recurso-->
+            <div class="row" ng-if="vm.RecursoVisible" style="height: 45px;">
+                <div class="col-md-4" style=" border-width: 0px;left: 0px;top: 0px;height: 35px; background: inherit; background-color: rgba(249, 252, 253, 1); box-sizing: border-box; border-width: 2px;
+                              border-style: solid;    border-color: rgba(230, 239, 253, 1);     border-radius: 5px;     -moz-box-shadow: none;     -webkit-box-shadow: none;     box-shadow: none;
+                              font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans';
+                              font-weight: 500;     font-style: normal;     font-size: 16px;     color: #004884;     text-align: left;    line-height: 30px;">
+                    <label for="entidad" class="textRightDNP" style="font-size: 16px;">Recurso:</label>
+                </div>
+                <div class="col-md-6">
+                    <select id="chosenRecursos"
+                            ng-model="vm.model.Recurso"
+                            ng-options="recurso as recurso.nombreRecurso for recurso in vm.listaRecursosSgp  track by recurso.nombreRecurso"
+                            ng-change="vm.entidadSeleccionado()"
+                            class="form-control">
+                        <option value="" disabled selected hidden>Seleccione</option>
+                    </select>
+                    <!--<select id="chosenRecursos"
+                            chosen options="vm.listaRecursos"
+                            ng-model="vm.model.Recurso"
+                            ng-options="recurso as recurso.nombreRecurso for recurso in vm.listaRecursos  track by recurso.nombreRecurso"
+                            no-results-text="No hay ningún resultado para su búsqueda" placeholder-text-single="Opciones"
+                            ng-change="vm.entidadSeleccionado()"
+                            class="form-control">
+                    </select>-->
+                </div>
+            </div>
+            <!--privada-->
+            <div class="row" ng-if="vm.nombrePrivadoRecurso" style="height: 45px;">
+                <div class="col-md-4" style=" border-width: 0px;left: 0px;top: 0px;height: 35px; background: inherit; background-color: rgba(249, 252, 253, 1); box-sizing: border-box; border-width: 2px;
+                              border-style: solid;    border-color: rgba(230, 239, 253, 1);     border-radius: 5px;     -moz-box-shadow: none;     -webkit-box-shadow: none;     box-shadow: none;
+                              font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans';
+                              font-weight: 500;     font-style: normal;     font-size: 16px;     color: #004884;     text-align: left;    line-height: 30px;">
+                    <label for="nombrePrivadoRecurso" class="textRightDNP" style="font-size: 16px;">Nombre:</label>
+                </div>
+                <div class="col-md-6">
+                    <input id="nombrePrivadoRecurso" class="form-control" type="text" ng-model="vm.nombrePrivado" required />
+                </div>
+            </div>
+        </div>
+
+    </form>
+</modal-dialog>

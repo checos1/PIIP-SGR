@@ -1,0 +1,62 @@
+﻿<div ng-init="vm.init();">
+    <div id="fuentes" class="collapsed panel-body">
+        <h3 class="text-left ui-seccion-title">{{vm.mensaje1}} <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg"></h3>
+    </div>
+    <div class="modal-body modalebodyDNP" id="modal-body">
+        <table class="TableDNP">
+            <thead>
+                <tr>
+                    <th class="textLeftDNP">
+                        Fecha de solicitud
+                    </th>
+                    <th class="textLeftDNP">
+                        Fecha de emisión de concepto
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <span class="uLabelCampo" style="margin-left: 55px">{{vm.conceptosAnteriores.FechaSolicitudUltimoConcepto}}</span>
+                    </td>
+                    <td>
+                        <span class="uLabelCampo" style="margin-left: 55px">{{vm.conceptosAnteriores.FechaEmisionUltimoConcepto}}</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="fuentes" class="collapsed panel-body">
+        <h3 class="text-left ui-seccion-title">{{vm.mensaje2}} <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg"></h3>
+    </div>
+    <div class="modal-body modalebodyDNP" id="modal-body">
+        <table class="TableDNP">
+            <thead>
+                <tr>
+                    <th class="textLeftDNP" width="25%">
+                        Total de conceptos emitidos
+                    </th>
+                    <th class="textLeftDNP" width="25%">
+                        Número de concepto
+                    </th>
+                    <th class="textLeftDNP" width="50%">
+                        Fecha de emisión
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="concepto in vm.conceptosAnteriores.ConceptosEmitidos" style="width:99%" ng-init="conceptoIndex = $index">
+                    <td ng-if="conceptoIndex == 0" rowspan={{vm.conceptosAnteriores.ConceptosEmitidos.length}} style="vertical-align: top;">
+                        <span class="uLabelCampo" style="margin-left: 55px">{{vm.conceptosAnteriores.TotalConceptosEmitidos}}</span>
+                    </td>
+                    <td>
+                        <span class="uLabelCampo" style="margin-left: 55px">{{concepto.Id}}</span>
+                    </td>
+                    <td>
+                        <span class="uLabelCampo" style="margin-left: 55px">{{concepto.FechaEmision}}</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

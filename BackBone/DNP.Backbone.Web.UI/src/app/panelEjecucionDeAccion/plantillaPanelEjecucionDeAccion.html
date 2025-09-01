@@ -1,0 +1,39 @@
+﻿
+<div class="container">
+    <nav class="breadcrumb">
+        <!-- ReSharper disable UnknownCssClass -->
+        <a class="breadcrumb-item" href="/">Dashboard</a>
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+        <span class="breadcrumb-item active">{{vm.bpin}}</span>
+    </nav>
+
+    <div class="dashboard">
+        <div class="row">
+            <div class="col-xs-12">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" data-target="#Formulario1"> Formulario 1</a></li>
+                    <li><a data-toggle="tab" data-target="#Formulario2">Formulario 2</a></li>
+                    <li><a data-toggle="tab" data-target="#Formulario3">Formulario 3</a></li>
+                    <li><a data-toggle="tab" data-target="#Formulario4">Formulario 4</a></li>
+                    <li><a data-toggle="tab" data-target="#Formulario5">Formulario 5</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="tab-content col-xs-12">
+
+            <div id="Formulario1" class="tab-pane fade in active"> <h3>Formulario 1</h3></div>
+            <div id="Formulario2" class="tab-pane fade"> <h3>Formulario 2</h3></div>
+            <div id="Formulario3" class="tab-pane fade"> <h3>Formulario 3</h3></div>
+            <div id="Formulario4" class="tab-pane fade"> <h3>Formulario 4</h3></div>
+            <div id="Formulario5" class="tab-pane fade"> <h3>Formulario 5</h3></div>
+            
+        </div>
+        <div class="col-xs-12  text-right">
+            <button class="btn btn-primary" ng-click="vm.cancelarEjecucionDeAccion()" uib-tooltip="Cancelar">CANCELAR</button>
+            <button class="btn btn-success" ng-click="vm.guardarConfiguracionDeEstado()" uib-tooltip="Guardar">GUARDAR</button>
+        </div>
+
+      
+    </div>
+</div>

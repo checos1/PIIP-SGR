@@ -1,0 +1,152 @@
+﻿<div class="row">
+    <div class="col-md-12">
+        <button class="accordion">
+            <div class="col-md-12">
+                <p ng-if="vm.mostrarLinea1" style="margin:0px 0px 0px !important">
+                    <span class="encabezadoTitulos" ">Proceso: </span>
+                    <span class="encabezadoInfo">{{vm.CodigoProceso}}</span>
+                    <span class="encabezadoTitulos"> Fecha: </span>
+                    <span class="encabezadoInfo"> {{vm.Fecha}}</span>
+                    <span class="encabezadoTitulos" ng-if="vm.modelo.Tipo != ''"> Tipo: </span>
+                    <span class="encabezadoInfo" ng-if="vm.modelo.Tipo != ''">{{vm.modelo.Tipo}} </span>
+                </p>
+
+                <p ng-if="vm.ProyectoId > 0" style="margin:0px 0px 0px !important">
+                    <span ng-if="vm.mostrarLinea2" class="encabezadoTitulos">ID: </span>
+                    <span ng-if="vm.mostrarLinea2" class="encabezadoInfo">{{vm.ProyectoId}}</span>
+                    <span ng-if="vm.mostrarLinea2" class="encabezadoTitulos"> BPIN: </span>
+                    <span ng-if="vm.mostrarLinea2" class="encabezadoInfo">{{vm.CodBPIN}}</span>
+                    <span class="encabezadoTitulos" ng-show="vm.modelo.AplicaEjecucionPlaneacion==1">Periodo abierto: </span>
+                    <span class="encabezadoInfo" ng-show="vm.modelo.AplicaEjecucionPlaneacion==1">{{vm.PeriodoAbierto}}</span>
+                    <span class="encabezadoTitulos" ng-show="vm.modelo.AplicaEjecucionPlaneacion==1">Fecha inicio reporte: </span>
+                    <span class="encabezadoInfo" ng-show="vm.modelo.AplicaEjecucionPlaneacion==1">{{vm.FechaInicioReporte}}</span>
+                    <span class="encabezadoTitulos" ng-show="vm.modelo.AplicaEjecucionPlaneacion==1">Fecha límite reporte: </span>
+                    <span class="encabezadoInfo" ng-show="vm.modelo.AplicaEjecucionPlaneacion==1">{{vm.FechaLimiteReporte}}</span>
+                </p>
+            </div>
+            <div class="col-md-2">
+                <img id="u4_img" src="Img/iconsmenu/u4.svg" ng-if="vm.mostrarLinea3">    
+            </div>
+            
+        </button>
+
+        <div id="panel" class="panel" ng-if="vm.mostrarLinea3">
+            <p style="margin:10px !important">
+                <span class="encabezadoTitulos">Nombre de proyecto: </span>
+                <span class="encabezadoInfo">{{vm.modelo.NombreProyecto}} </span>
+                <span class="encabezadoTitulos">Entidad: </span>
+                <span class="encabezadoInfo">{{vm.modelo.entidad }}</span>
+                <span class="encabezadoTitulos">Sector: </span>
+                <span class="encabezadoInfo">{{vm.modelo.sector}}</span>
+                <span class="encabezadoTitulos">Estado: </span>
+                <span class="encabezadoInfo">{{vm.modelo.Estado}}</span>
+                <span class="encabezadoTitulos">Horizonte: </span>
+                <span class="encabezadoInfo" ng-show="vm.modelovigencias==undefined">{{vm.modelo.Horizonte}}</span>
+                <span class="encabezadoInfo" ng-show="vm.modelovigencias!=undefined">{{vm.modelovigencias}}</span>
+                <span class="encabezadoTitulos">Valor total: </span>
+                <span class="encabezadoInfo">{{vm.modelo.valorTotal | currency}} </span>
+                <span class="encabezadoTitulos">Apropiación inicial: </span>
+                <span class="encabezadoInfo">{{vm.modelo.apropiacionInicial | currency}} </span>
+                <span class="encabezadoTitulos">Apropiación vigente: </span>
+                <span class="encabezadoInfo">{{vm.modelo.apropiacionVigente | currency}}</span>
+                <span class="encabezadoTitulos" ng-show="vm.modelo.ContieneTramite==1">Apropiación vigente con trámite actual: </span>
+                <span class="encabezadoInfo" ng-show="vm.modelo.ContieneTramite==1">{{vm.modelo.ApropiacionVigenteConTramiteActual | currency}}</span>
+                <span class="encabezadoTitulos" ng-show="vm.modelo.ContieneTramite==1">Valor total con trámite actual: </span>
+                <span class="encabezadoInfo" ng-show="vm.modelo.ContieneTramite==1">{{vm.modelo.ValorTotalConTramiteActual | currency}}</span>
+
+                <span class="encabezadoTitulos" ng-show="vm.modelo.AplicaEjecucionPlaneacion==1">Alcance y metas del proyecto: </span>
+                <span class="encabezadoInfo" ng-show="vm.modelo.AplicaEjecucionPlaneacion==1">{{vm.modelo.Alcanceproyecto}}</span>
+                <span class="encabezadoTitulos" ng-show="vm.modelo.AplicaEjecucionPlaneacion==1">Costo total del proyecto: </span>
+                <span class="encabezadoInfo" ng-show="vm.modelo.AplicaEjecucionPlaneacion==1">{{vm.modelo.CostoTotalProyecto | currency}}</span>
+                <span class="encabezadoTitulos" ng-show="vm.modelo.AplicaEjecucionPlaneacion==1">Ejecutor: </span>
+                <span class="encabezadoInfo" ng-show="vm.modelo.AplicaEjecucionPlaneacion==1">{{vm.modelo.Ejecutor}}</span>
+                <span class="encabezadoTitulos" ng-show="vm.modelo.AplicaEjecucionPlaneacion==1">Fecha real de inicio: </span>
+                <span class="encabezadoInfo" ng-show="vm.modelo.AplicaEjecucionPlaneacion==1">{{vm.FechaRealInicio}}</span>
+                <span class="encabezadoTitulos" ng-show="vm.ProyectoId !== ''">PND: </span>
+                <span class="encabezadoInfo" ng-show="vm.ProyectoId !== ''">
+                    <a ng-click="vm.abriPND()">{{vm.PND.PND}}</a> 
+                </span>
+
+            </p>
+        </div>
+    </div>
+</div>
+<style>
+    .accordion {
+        cursor: pointer;
+        border: none;
+        width:100%;
+        padding:10px;
+        text-align: left;
+        font-size: 16px;
+        transition: 0.4s;
+        background-color: rgba(230, 239, 253, 1);
+        box-sizing: border-box;
+        border-width: 1px;
+        border-style: solid;
+        border-color: rgba(205, 216, 254, 1);
+        border-radius: 5px;
+        image-orientation: unset;
+    }
+
+
+    .panel {
+        margin-bottom:5px;
+        background: inherit;
+        background-color: rgba(253, 253, 253, 1);
+        box-sizing: border-box;
+        border-width: 1px;
+        border-style: solid;
+        border-color: rgba(205, 216, 254, 1);
+        border-radius: 5px;
+        -moz-box-shadow: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        font-size: 16px;
+        text-align: left;
+        line-height: 26px;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.2s ease-out;
+    }
+
+    #u4_img {
+        margin-left: 5px;
+        width: 15px;
+        right: 10px;
+        position: absolute;
+        -webkit-transform: rotate(180deg);
+        -moz-transform: rotate(180deg);
+        -ms-transform: rotate(180deg);
+        transform: rotate(180deg);
+    }
+</style>
+<script>
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+    var rotated = false;
+    for (i = 0; i < acc.length; i++) {
+        toggleAccordion(acc[i]);
+        acc[i].addEventListener("click", function () {
+            toggleAccordion(this);
+        });
+    };
+
+    function toggleAccordion(obj) {
+        obj.classList.toggle("active");
+        var panel = obj.nextElementSibling;
+        if (panel.style.maxHeight) {
+            panel.style.maxHeight = null;
+        } else {
+            panel.style.maxHeight = panel.scrollHeight + "px";
+        }
+        var div = document.getElementById('u4_img'),
+            deg = rotated ? 180 : 0;
+        div.style.webkitTransform = 'rotate(' + deg + 'deg)';
+        div.style.mozTransform = 'rotate(' + deg + 'deg)';
+        div.style.msTransform = 'rotate(' + deg + 'deg)';
+        div.style.oTransform = 'rotate(' + deg + 'deg)';
+        div.style.transform = 'rotate(' + deg + 'deg)';
+        rotated = !rotated;
+    }
+</script>

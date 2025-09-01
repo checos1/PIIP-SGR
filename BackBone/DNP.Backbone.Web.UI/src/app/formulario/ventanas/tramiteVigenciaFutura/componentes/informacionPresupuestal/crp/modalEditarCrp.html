@@ -1,0 +1,162 @@
+﻿<modal-dialog cerrar="vm.cerrar" txt-cerrar="CANCELAR" guardar="vm.guardar" txt-guardar="ACEPTAR" ng-init="vm.init()">
+
+    <form id="formAgregarFuente" name="formAgregarFuente">
+        <div id="tituloAgregar" class="ax_default label">
+            <div id="u5761_div" class=""></div>
+            <div id="u5761_text" class="text ">
+                <p style="font-size:16px;"><span style="font-family:'Montserrat SemiBold', 'Montserrat Regular', 'Montserrat', sans-serif;font-weight:600;">Agregar RP</span></p><p style="font-size:18px;"><span style="font-family:'Montserrat Medium', 'Montserrat Regular', 'Montserrat', sans-serif;font-weight:500;">Carga individual</span></p>
+            </div>
+        </div>
+        <div id="tituloEditar" class="ax_default label" style="visibility:hidden; display:none">
+            <div id="u5761_div_editar" class=""></div>
+            <div id="u5761_text_editar" class="text ">
+                <p style="font-size:16px;"><span style="font-family:'Montserrat SemiBold', 'Montserrat Regular', 'Montserrat', sans-serif;font-weight:600;">Editar RP</span></p><p style="font-size:18px;"><span style="font-family:'Montserrat Medium', 'Montserrat Regular', 'Montserrat', sans-serif;font-weight:500;">Carga individual</span></p>
+            </div>
+        </div>
+        <div id="u5765" class="ax_default label" style="color: #333333;">
+            <div id="u5765_text" class="text ">
+                <p><span>Los campos con asterisco (*) son obligatorios. </span></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-2">
+                    <div id="u5751" class="ax_default box_1">
+                        <div id="u5751_text" class="text ">
+                            <p><span>Número RP*</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <input type="text" name="inputText" value="" ng-model="vm.model.idNumero" ng-required="true" />
+                </div>
+                <div class="col-md-2">
+                    <div id="u5751" class="ax_default box_1">
+                        <div id="u5751_text" class="text ">
+                            <p><span>Valor RP $*</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <input type="number" name="inputCDPValue" value="" ng-model="vm.model.idValorCDPTramite" ng-required="true" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-6">
+                    <div id="errorNumero" class="ax_default label" style="color: #A80521; visibility: hidden;">
+                        <p>
+                            <img id="u5756_img" class="img " src="../../../../../../../../Img/u1052.svg" />
+                            <span style="font-family:'Work Sans  Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif;font-weight:400;">Campo requerido. </span>
+                            <span style="font-family:'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif;font-weight:500;text-decoration:underline ;">VER MÁS</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="col-md-6">
+                        <div id="errorValorRP" class="ax_default label" style="color: #A80521; visibility: hidden;">
+                            <p>
+                                <img id="u5756_img" class="img " src="../../../../../../../../Img/u1052.svg" />
+                                <span style="font-family:'Work Sans  Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif;font-weight:400;">Campo requerido. </span>
+                                <span style="font-family:'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif;font-weight:500;text-decoration:underline ;">VER MÁS</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-3">
+                    <div id="u5751" class="ax_default box_2">
+                        <div id="u5751_text" class="text ">
+                            <p><span>Número Contrato*</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <input type="text" name="inputText" value="" ng-model="vm.model.idNumeroContrato" ng-required="true" style="width: 130px;" />
+                </div>
+
+                <div class="col-md-2">
+                    <div id="u5751" class="ax_default box_1">
+                        <div id="u5751_text" class="text ">
+                            <p><span>Fecha*</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <input type="date" name="inputDate" value="DD/MM/AAAA" ng-model="vm.model.idFecha" ng-required="true" />
+                </div>
+                <div class="col-md-1">
+                    <div id="u5756" class="ax_default icon">
+                        <div id="u5756_text" class="text " style="display:none; visibility: hidden">
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-1">
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-6">
+                    <div id="errorNumeroContrato" class="ax_default label" style="color: #A80521; visibility: hidden;">
+                        <p>
+                            <img id="u5756_img" class="img " src="../../../../../../../../Img/u1052.svg" />
+                            <span style="font-family:'Work Sans  Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif;font-weight:400;">Campo requerido. </span>
+                            <span style="font-family:'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif;font-weight:500;text-decoration:underline ;">VER MÁS</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="col-md-6">
+                        <div id="errorFecha" class="ax_default label" style="color: #A80521; visibility: hidden;">
+                            <p>
+                                <img id="u5756_img" class="img " src="../../../../../../../../Img/u1052.svg" />
+                                <span style="font-family:'Work Sans  Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif;font-weight:400;">Campo requerido. </span>
+                                <span style="font-family:'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif;font-weight:500;text-decoration:underline ;">VER MÁS</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-2">
+                    <div id="u5751" class="ax_default box_1">
+                        <div id="u5751_text" class="text ">
+                            <p><span>Valor total $*</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <input type="number" name="inputTotalValue" value="" ng-model="vm.model.idValorTotal" ng-required="true" />
+                </div>
+                <div class="col-md-6">
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-6">
+                    <div id="errorValorTotal" class="ax_default label" style="color: #A80521; visibility: hidden;">
+                        <p>
+                            <img id="u5756_img" class="img " src="../../../../../../../../Img/u1052.svg" />
+                            <span style="font-family:'Work Sans  Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif;font-weight:400;">Campo requerido. </span>
+                            <span style="font-family:'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif;font-weight:500;text-decoration:underline ;">VER MÁS</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+
+                </div>
+            </div>
+        </div>
+    </form>
+</modal-dialog>

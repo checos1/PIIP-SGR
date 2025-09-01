@@ -1,0 +1,123 @@
+﻿<div ng-init="vm.inicialiazarAsociacion();">
+    <div class="ui-accordion-container " id="accordion-asociarProyecto">
+        <div class="alert panel-heading row ui-accordion-header">
+            <button type="button" data-toggle="collapse"
+                    data-target="#asociarProyecto"
+                    ng-click="vm.changeArrow(vm.nombreComponenteHijo)">
+                <span class="d-inline-block" id="alert-{{vm.nombreComponenteHijo}}"></span>
+                <span id="name-capitulo-{{vm.nombreComponenteHijo}}"></span>
+                <span class="hidden" id="id-capitulo-{{vm.nombreComponenteHijo}}"></span>
+                <span id="arrow-{{vm.nombreComponenteHijo}}" class="glyphicon-chevron-down glyphicon pull-right"
+                      data-toggle="collapse" 
+                      data-target="#asociarProyecto"></span>
+            </button>
+
+        </div>
+        <div class="collapse" id="asociarProyecto">
+            <div class="row m-0 mb-3">
+                <br>
+                <div class="col-md-12">
+                    <asociar-proyecto-formulario tramiteid="{{vm.tramiteid}}"
+                                                 tipotramiteid="{{vm.tipotramiteid}}"
+                                                 nombrecomponentepaso="{{vm.nombreComponenteHijo}}"
+                                                 guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                                 notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                 notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"
+                                                 callback="vm.callback()"
+                                                 deshabilitarconcepto="vm.deshabilitarConcepto(estado)">
+                    </asociar-proyecto-formulario>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ui-accordion-container " id="accordion-selecionarvigenautorizacionmin">
+        <div class="alert panel-heading row ui-accordion-header" ng-if="vm.estadoAjusteCreado">
+            <button type="button" data-toggle="collapse" data-target="#seleccionarTramite" ng-click="vm.changeArrow('seleccionarTramite')">
+                <span class="d-inline-block" id="alert-selecionarvigenciafuturaseleccionarvigenciasfuturas"></span>
+                <span id="name-capitulo-selecionarvigenciafuturaseleccionarvigenciasfuturas">Seleccionar vigencias futuras</span>
+                <span class="hidden" id="id-capitulo-selecionarvigenciafuturaseleccionarvigenciasfuturas"></span>
+                <span id="arrow-seleccionarTramite" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#seleccionarTramite"></span>
+            </button>
+        </div>
+        <div class="collapse" id="seleccionarTramite">
+            <div class="row m-0 mb-3">
+                <br>
+                <div class="col-md-12">
+                    <seleccionar-vigencias tramiteid="{{vm.tramiteid}}"
+                                            tipotramiteid="{{vm.tipotramiteid}}"
+                                            tramiteproyectoid="{{vm.tramiteProyectoId}}"
+                                            guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                            notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                            notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"
+                                            callback="vm.callback()"
+                                            deshabilitarconcepto="vm.deshabilitarConcepto(estado)">
+                    </seleccionar-vigencias>
+
+                </div>
+            </div>
+        </div>
+    </div>    
+
+    <div class="ui-accordion-container " id="accordion-selecionarvigenciafuturaautorizacionminhacienda">
+        <div class="alert panel-heading row ui-accordion-header">
+            <button type="button" data-toggle="collapse" data-target="#selecionarvigenciafuturaautorizacionminhacienda" ng-click="vm.changeArrow('selecionarvigenciafuturaautorizacionminhacienda')">
+                <span class="d-inline-block" id="alert-selecionarvigenciafuturaautorizacionminhacienda"></span>
+                <span id="name-capitulo-selecionarvigenciafuturaautorizacionminhacienda">Autorización MINHACIENDA</span>
+                <span class="hidden" id="id-capitulo-selecionarvigenciafuturaautorizacionminhacienda"></span>
+                <span id="arrow-selecionarvigenciafuturaautorizacionminhacienda" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#selecionarvigenciafuturaautorizacionminhacienda"></span>
+            </button>
+        </div>
+        <div class="collapse" id="selecionarvigenciafuturaautorizacionminhacienda">
+            <div class="row m-0 mb-3">
+                <br>
+                <div class="col-md-12 ">
+                    <autorizacionliberacion tipotramiteid="{{vm.tipotramiteid}}"
+                                            tramiteid="{{vm.tramiteid}}"
+                                            nivel="{{vm.nivel}}"
+                                            rol="{{vm.rol}}"
+                                            section="{{vm.section}}"
+                                            nombrecomponentepaso="{{vm.nombreComponenteHijo}}"
+                                            guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                            notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                            notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"
+                                            actualizacomponentes ="vm.actualizacomponentes">
+                    </autorizacionliberacion>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="ui-accordion-container " id="accordion-selecionarvigenciafuturavaloresutilizados">
+        <div class="alert panel-heading row ui-accordion-header">
+            <button type="button" data-toggle="collapse" data-target="#selecionarvigenciafuturavaloresutilizados" ng-click="vm.changeArrow('selecionarvigenciafuturavaloresutilizados')">
+                <span class="d-inline-block" id="alert-selecionarvigenciafuturavaloresutilizados"></span>
+                <span id="name-capitulo-selecionarvigenciafuturavaloresutilizados">Valores utilizados</span>
+                <span class="hidden" id="id-capitulo-selecionarvigenciafuturavaloresutilizados"></span>
+                <span id="arrow-selecionarvigenciafuturavaloresutilizados" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#selecionarvigenciafuturavaloresutilizados"></span>
+            </button>
+        </div>
+        <div class="collapse" id="selecionarvigenciafuturavaloresutilizados">
+            <div class="row m-0 mb-3">
+                <br>
+                <div class="col-md-12 ">
+                    <utilizadoliberacion tipotramiteid="{{vm.tipotramiteid}}"
+                                            tramiteid="{{vm.tramiteid}}"
+                                            nivel="{{vm.nivel}}"
+                                            rol="{{vm.rol}}"
+                                            section="{{vm.section}}"
+                                            nombrecomponentepaso="{{vm.nombreComponenteHijo}}"
+                                            guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                            notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                            notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"
+                                            actualizacomponentes ="{{vm.actualizacomponentes}}">
+                    </utilizadoliberacion>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

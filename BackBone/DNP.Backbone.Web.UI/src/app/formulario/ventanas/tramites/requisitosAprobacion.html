@@ -1,0 +1,76 @@
+﻿<div class="container-fluid inbox"  style="min-height:900px;overflow:scroll;">
+
+  
+
+
+    <div class="row" style="width:100%;" ng-init="vm.inicializar();">
+        <div class="row" style="padding-left: 3rem;padding-right: 2rem;">
+            <div class="form-group" style="border:1px solid #aecbea;width:100%;">
+                <div class="text-justify" style="padding-right: 1em; display: -webkit-inline-box;">
+                    <div>
+                        <img ng-click="vm.retornar()" class="btnRegresar" src="../../../../../Img/flechaAtras.png" alt="Regresar" align="left">
+                    </div>
+                    <div ng-hide="vm.TabActived">
+                        <p style="padding-right:6em;">
+                              
+                            <span class="ng-binding">
+                                <span>Requisitos {{vm.TipoProyecto}}. BPIN {{vm.Bpin}} {{vm.NombreProyecto}}</span>
+                            </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="form-group" style=" padding-top: 2rem;width:90%;" >
+                <div class="tab-container col-md-12" style="width:100%;">
+                    <ul class="nav nav-tabs">
+                        <li ng-class="{active : !vm.TabActived}"  ><a data-target="#Proyecto" data-toggle="tab"></a></li>
+                        <li ng-class="{active : vm.TabActived}"  ><a data-target="#Tramite" data-toggle="tab" ng-click="vm.cambioTipoRequisito(vm.tipoFiltroTramite)" llamar-funcion-con-tecla="vm.cambioTipoRequisito(vm.tipoFiltroTramite)"></a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane cont col-md-12" style="padding-left:0 !important;padding-top:20px !important" id="Proyecto" ng-class="{active : !vm.TabActived}">
+                            <div class="tab-container" style="padding-left:0 !important;">
+                                <ul class="nav nav-tabs" style="font-size:11px;">
+                                    <li class="active" style="width: 150px;padding: 0 15px 0 0px;height:45px !important;display:flex;align-items: center;"><a data-target="#Fuentes" data-toggle="tab">Información Presupuestal</a></li>
+                                    <li ng-click="vm.tabcdpEsActivo()" ng-if="vm.TipoProyecto !== 'Credito'" style="width: 150px;padding: 0 15px 0 0px;height:45px !important;display:flex;align-items: center;"><a data-target="#CDP-RP" data-toggle="tab">CDP-RP</a></li>
+                                    <li style="width: 150px;padding: 0 15px 0 0px;height:45px !important;display:flex;align-items: center;"><a data-target="#JustificacionProyecto" data-toggle="tab">Justificación proyecto</a></li>
+                                    <li style="width: 250px;padding: 0 15px 0 0px;height:45px !important;display:flex;align-items: center;"><a data-target="#DocumentoSoporte" data-toggle="tab">Documentos Soporte</a></li>
+                                    <!--<li style="width: 250px;padding: 0 15px 0 0px;height:45px !important;display:flex;align-items: center;"><a data-target="#ConceptoT" data-toggle="tab">Concepto Técnico</a></li>-->
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="tab-pane active cont" id="Fuentes">
+                                        <aprobacion-fuentes></aprobacion-fuentes>
+                                    </div>
+
+                                    <div class="tab-pane cont" id="CDP-RP">
+                                        <cdp-tramite></cdp-tramite>
+                                    </div>
+
+                                    <div class="tab-pane" id="JustificacionProyecto">
+                                        <justificacion-proyecto></justificacion-proyecto>
+                                    </div>
+                                    <div class="tab-pane" id="DocumentoSoporte">
+                                        <documento-soporte></documento-soporte>
+                                    </div>
+                                    <!--<div class="tab-pane" id="ConceptoT">
+                                        <concepto_Tecnico></concepto_Tecnico>
+                                    </div>-->  
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane" id="Tramite" ng-class="{active : vm.TabActived}">
+                            <requerimientos-tramite></requerimientos-tramite>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+

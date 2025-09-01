@@ -1,0 +1,25 @@
+﻿
+
+<div class="modal-header" ng-init="vm.init();" style="border-bottom: 0px solid #e5e5e5; margin-left:30px">
+
+    <button type='button' class='swal2-close' aria-label='Close this dialog' ng-click="vm.cerrar()" style='display: flex;right: 30px; top: 0px'>×</button>
+    <h3 style="font-family: 'Montserrat SemiBold', 'Montserrat Regular', 'Montserrat'; font-weight: 600; font-size: 16px; font-style: normal; color: #004884; margin-top: 30px" class="modal-title" id="modal-title">Agregar Indicador Secundario </h3>
+    <span style="font-style: normal; color: #004884; font-size: 18px; font-family: 'Montserrat Medium', 'Montserrat Regular', 'Montserrat'; font-weight: 500; ">  Objetivo {{vm.ObjetivoId}} Producto {{vm.ProductoId}} </span>
+</div>
+<div class="modal-body" style="background: transparent !important; margin-left: 45px;padding:0px !important" id="modal-body">
+    <p style="font-size: 14px; text-align: left;font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 500; font-style: normal; color: #4B4B4B ">Los indicadores secundarios inactivos ya están agregados al producto.</p>
+    <br />
+    <div style="border-width: 0px;left: 0px; top: 0px; width: 624px; height: 161px; overflow: auto; -webkit-overflow-scrolling: touch; -ms-overflow-x: hidden; overflow-x: hidden; background-image: none; border: none; border-radius: 0px; -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none;">
+        <div ng-repeat="indicador in vm.IndicadoresSec | orderBy:'CodigoIndicador'">
+
+            <input type="checkbox" class="check2DNP" name="indicador" id="chk-{{indicador.IndicadorId}}" ng-model="indicador.isChecked" ng-value="indicador" ng-change="vm.toggleCurrency(indicador)" ng-disabled="indicador.Marcado == 2">
+            <label ng-disabled="indicador.Marcado == 2" class="check2DNP" for="chk-{{indicador.IndicadorId}}"><b>{{indicador.CodigoIndicador}}.</b> {{indicador.NombreIndicador}}</label>
+            <b>
+        </div>
+    </div>
+</div>
+<div class="modal-footer textCenterDNP">
+    <button class=" btneditarDNP" type="button" ng-click="vm.cerrar()">CANCELAR</button>
+    <button class="  btnguardarDNP" type="button" ng-click="vm.guardar()" ng-disabled="vm.habiltaAgregar == false">AGREGAR</button>
+</div>
+

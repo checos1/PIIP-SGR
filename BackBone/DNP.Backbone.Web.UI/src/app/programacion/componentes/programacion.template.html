@@ -1,0 +1,68 @@
+﻿<div class="dashboard">
+    <div id="proyectos" class="project">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="titlebar">
+                    <span>Preparación</span>
+                </div>
+            </div>
+        </div>
+        <!--Inicio de tabs-->
+
+
+        <div class="tab-container tabDNP col-md-12 " style="width:100%;">
+            <ul class="nav nav-tabs">
+                <li id="liCargaCuotas" class="nav-item {{vm.TabActivo == 1 ? 'active':''}}" style="border-bottom-width: 2px;" ng-class="{active : vm.TabActivo === 1}" ng-click="vm.ActivarTab(1)">
+                    <a href="" class="nav-link" data-target="#tabopcion1" data-toggle="tab">
+                        <b>Carga de Cuotas</b>
+                    </a>
+                </li>
+                <li id="liCalendario" class="nav-item {{vm.TabActivo == 2 ? 'active':''}}" style="border-bottom-width:2px;" ng-class="{active : vm.TabActivo === 2}" ng-click="vm.ActivarTab(2)">
+                    <a href="" class="nav-link" data-target="#tabopcion2" data-toggle="tab">
+                        <b>Calendario</b>
+                    </a>
+                </li>
+
+                <li id="liCodigosPresupuestales" class="nav-item {{vm.TabActivo == 3 ? 'active':''}}" style="border-bottom-width:2px;" ng-click="vm.ActivarTab(3)">
+                    <a href="" class="nav-link" data-target="#tabopcion3" data-toggle="tab">
+                        <b>Códigos Presupuestales</b>
+                    </a>
+                </li>
+
+                <li id="liCargaCreditos" class="nav-item {{vm.TabActivo == 4 ? 'active':''}}" style="border-bottom-width:2px;" ng-click="vm.ActivarTab(4)">
+                    <a href="" class="nav-link" data-target="#tabopcion4" data-toggle="tab">
+                        <b>Carga de Créditos</b>
+                    </a>
+                </li>
+                <li id="liCargaSaldos" class="nav-item {{vm.TabActivo == 5 ? 'active':''}}" style="border-bottom-width:2px;" ng-click="vm.ActivarTab(5)">
+                    <a href="" class="nav-link" data-target="#tabopcion5" data-toggle="tab">
+                        <b>Cargue saldos MH</b>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!--Fin de tabs-->
+
+        <div class="tab-content tabContentDNP">
+
+            <div class="tab-pane active cont col-md-12" id="tabopcion1">
+                <cuota></cuota>
+            </div>
+            <div class="tab-pane  cont col-md-12" id="tabopcion2">
+                <calendario></calendario>
+            </div>
+            <div class="tab-pane  cont col-md-12" id="tabopcion3">
+                <presupuestal></presupuestal>
+            </div>
+            <div class="tab-pane  cont col-md-12" id="tabopcion4">
+                <credito></credito>
+            </div>
+            <div class="tab-pane  cont col-md-12" id="tabopcion5">
+                <saldos></saldos>
+            </div>
+        </div>
+
+
+    </div>
+</div>

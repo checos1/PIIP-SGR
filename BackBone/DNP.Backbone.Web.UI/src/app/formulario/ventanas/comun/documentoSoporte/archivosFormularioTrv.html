@@ -1,0 +1,124 @@
+﻿<div style="background-color:white;padding-top:2rem;padding-bottom:0px !important;max-width:auto !important;" ng-init="vm.initArchivosFormulario()">
+    <div id="{{vm.nombreComponente}}-archivo-error" class="col-md-12 hidden uMensajeError"></div>
+    <div id="{{vm.nombreComponente}}A-archivo-error" class="col-md-12 hidden uMensajeError"></div>
+    <div id="{{vm.nombreComponente}}B-archivo-error" class="col-md-12 hidden uMensajeError"></div>
+    <div class="col-md-12" style="padding-bottom:15px; text-align:right;">
+        <span class="uLabelCampoNegro">Agregar Documento </span>
+        <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Agregar Documento" ng-click="vm.abrirModal()">
+            <span>
+                <img style="width: 24px; height: 28px;" src="Img/DocumentoSoporte/normal_u346.svg">
+            </span>
+        </button>
+    </div>
+    <div class="row">
+        <table class="TableDNP">
+            <thead>
+                <tr>
+                    <th class="columAcc" style="vertical-align: middle;"> <img ng-if="vm.listaAnidada.length > 0" style="width: 18px; height: 21px;" src="Img/DocumentoSoporte/normal_u386.svg"> </th>
+                    <th class="textLeftDNP">Tipo de documento</th>
+                    <th class="textLeftDNP">Documento</th>
+                    <th class="textLeftDNP">Descripción</th>
+                    <th class="textRightDNP"></th>
+                    <th class="textRightDNP"></th>
+                    <th class="textRightDNP"></th>
+                </tr>
+            </thead>
+            <tbody ng-repeat="objArchivo in vm.listaPrincipal" style="width:99%;" ng-init="objArchivoIndex = $index">
+                <tr>
+                    <td style="vertical-align:bottom;">
+                        <button style="background: #fff; border: thin;" ng-click="vm.toggleVersions(objArchivo)" ng-if="vm.listaAnidada[objArchivo.tipoDocumentoId].length > 0">
+                            <img ng-if="!objArchivo.showVersions" style="width: 18px; height: 18px;" src="Img/btnMas.svg">
+                            <img ng-if="objArchivo.showVersions" style="width: 18px; height: 18px;" src="Img/btnMenos.svg">
+                        </button>
+                    </td>
+                    <td class="textLeftDNP">
+                        <span>{{objArchivo.tipoDocumento}} </span>
+                    </td>
+                    <td class="textLeftDNP">
+                        <span class="uLabelCampoNegro">Versión {{objArchivo.versionDocumentoSoporte}}. </span>
+                        <span style="color:#36C; text-decoration: underline;">{{objArchivo.nombreArchivo}}</span>
+                        <br />
+                        <span>{{objArchivo.datosDocumento}} </span>
+                    </td>
+                    <td>
+                        <textarea disabled class="textAreatableDNP" style="height:75px;">{{objArchivo.descripcion}}</textarea>
+                    </td>
+                    <td>
+                        <button class="btn" style="background:#fff;" uib-tooltip="Agregar versión" ng-if="vm.permiteVersionamiento" ng-click="vm.abrirModalVersion(objArchivo)" ng-disabled="objArchivo.noPermiteVersion">
+                            <span>
+                                <img style="width: 17px; height: 19px;" src="Img/DocumentoSoporte/normal_u397.svg">
+                            </span>
+                        </button>
+                    </td>
+                    <td>
+                        <button class="btn" style="background:#fff;" uib-tooltip="Descargar archivo" ng-click="vm.descargarArchivoBlob(objArchivo)">
+                            <span>
+                                <img style="width: 22px; height: 16px;" src="Img/IcoDownload.svg">
+                            </span>
+                        </button>
+                    </td>
+                    <td>
+                        <button class="btn" style="background: #fff;" uib-tooltip="Eliminar archivo" ng-disabled="objArchivo.noPermiteEliminar" ng-click="vm.eliminarArchivoBlob(objArchivo)" ng-if="vm.habilitaBotones">
+                            <span>
+                                <img style="width: 16px; height: 17px;" src="Img/IcoDelete.svg">
+                            </span>
+                        </button>
+                    </td>
+                </tr>
+
+                <!-- El contenido de las versiones anidadas -->
+
+                <tr style="border-left: hidden; border-right: hidden;" ng-if="objArchivo.showVersions">
+                    <td colspan="7">
+                        <div style="margin-top: -16px; margin-right: -6px; margin-left: -15px;">
+                            <div class="LineaEncabezadodivDNP"></div>
+                            <div class="row">
+                                <h3 class="tituloEncabezadodivDNP">
+                                    Versiones anteriores
+                                </h3>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr style="background-color: rgba(249, 252, 253, 1);" ng-repeat="subArchivo in vm.listaAnidada[objArchivo.tipoDocumentoId]" ng-if="objArchivo.showVersions">
+
+                    <td></td>
+                    <td class="textLeftDNP">{{subArchivo.tipoDocumento}} </td>
+                    <td class="textLeftDNP">
+                        <span class="uLabelCampoNegro">Versión {{subArchivo.versionDocumentoSoporte}}. </span>
+                        <span style="color:#36C; text-decoration: underline;">{{subArchivo.nombreArchivo}}</span>
+                        <br />
+                        <span>{{subArchivo.datosDocumento}} </span>
+                    </td>
+                    <td>
+                        <textarea disabled class="textAreatableDNP" style="height:75px;">{{subArchivo.descripcion}}</textarea>
+                    </td>
+                    <td>
+                        <button disabled class="btn" style="background:#fff;" uib-tooltip="Agregar versión" ng-if="vm.permiteVersionamiento" ng-click="vm.abrirModalVersion(subArchivo)">
+                            <span><img style="width: 17px; height: 19px;" src="Img/DocumentoSoporte/normal_u397.svg"></span>
+                        </button>
+                    </td>
+                    <td>
+                        <button class="btn" style="background:#fff;" uib-tooltip="Descargar archivo" ng-click="vm.descargarArchivoBlob(subArchivo)">
+                            <span><img style="width: 22px; height: 16px;" src="Img/IcoDownload.svg"></span>
+                        </button>
+                    </td>
+                    <td>
+                        <button disabled class="btn" style="background: #fff;" uib-tooltip="Eliminar archivo" ng-click="vm.eliminarArchivoBlob(subArchivo)">
+                            <span><img style="width: 16px; height: 17px;" src="Img/IcoDelete.svg"></span>
+                        </button>
+                    </td>
+                </tr>
+
+                <!-- Tr vacío para el espacio -->
+                <tr style="height: 30px; border-left: hidden; border-right:hidden;" ng-if="objArchivo.showVersions">
+                    <td colspan="8"></td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <br />
+</div>
+

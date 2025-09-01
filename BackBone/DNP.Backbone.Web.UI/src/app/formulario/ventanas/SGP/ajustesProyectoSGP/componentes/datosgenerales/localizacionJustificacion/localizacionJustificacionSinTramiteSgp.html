@@ -1,0 +1,95 @@
+﻿<div class="tab-content" ng-init="vm.init();">
+    <br /><br />
+    <table class="TableDNP">
+        <thead>
+            <tr>
+                <th class="columAcc"></th>
+                <th class="textLeftDNP">Departamento</th>
+                <th class="textLeftDNP">Municipio</th>
+                <th class="textLeftDNP">Tipo agrupación</th>
+                <th class="textLeftDNP">Agrupación</th>
+                <th class="columAcc"></th>
+                <th class="columAcc"></th>
+            </tr>
+        </thead>
+        <tbody ng-repeat="objLocalizacion in vm.DatosLocalizacion">
+            <tr>
+                <td></td>
+                <td class="textLeftDNP">{{objLocalizacion.Departamento}}</td>
+                <td class="textLeftDNP">{{objLocalizacion.Municipio}} </td>
+                <td class="textLeftDNP">{{objLocalizacion.Tipo}}</td>
+                <td class="textLeftDNP">{{objLocalizacion.Agrupacion}}</td>
+                <td>
+                    <button class="btnaccion" tooltip-placement="Auto" uib-tooltip="Editar" ng-disabled="objLocalizacion.Eliminar" disabled="{{objLocalizacion.Eliminar}}" ng-click="vm.abrirModalAgregarLocalizacion(objLocalizacion.LocalizacionId)" ng-if="!vm.soloLectura">
+                        <span ng-show="!objLocalizacion.Eliminar" style="cursor:pointer"> <img src="Img/iconsgrid/iconAccEditar.svg"></span>
+                        <span ng-show="objLocalizacion.Eliminar" style="cursor:pointer"> <img src="Img/iconsgrid/iconAccEditClaro.svg"></span>
+                    </button>
+                </td>
+                <td>
+                    <button class="btnaccion" tooltip-placement="Auto" uib-tooltip="Eliminar" ng-disabled="objLocalizacion.Eliminar" disabled="{{objLocalizacion.Eliminar}}" ng-click="vm.eliminarLocalizacion(objLocalizacion.LocalizacionId)" ng-if="!vm.soloLectura">
+                        <span style="cursor:pointer" ng-show="!objLocalizacion.Eliminar"> <img src="Img/u928.svg"></span>
+                        <span ng-show="objLocalizacion.Eliminar"> <img src="Img/btnElimdisabled.svg"></span>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<br />
+<br />
+
+<div class="row" style="margin-right:5px">
+    <button type="button" class="btn btn-link btn-md pull-right buttonhiper" id="btn-agregar-localizacion" tooltip-placement="top" uib-tooltip="Agregar Localizacion" tabindex="0" ng-click="vm.abrirModalAgregarLocalizacion(0)" ng-if="!vm.soloLectura">
+        Agregar Localizacion
+    </button>
+</div>
+<div ng-if="false">
+    <br />
+    <div class="row">
+        <div class="col-md-6" style="text-align:left">
+            <span class="uLabelCampo" style="font-family: 'Montserrat'; font-weight: 400; font-style: normal; font-size: 24px; color: #004884; text-align: left; line-height: 18px;">Justificación</span>
+        </div>
+        <div class="col-md-6 pull-right text-right">
+            <button type="button" class="btneditarDNP" ng-show="vm.isEdicion == false" ng-click="vm.editar('editar')" id="btn-editar-edicion1" name="btn-editar-edicion1" tooltip-placement="auto" uib-tooltip="Editar" ng-if="!vm.soloLectura">
+                EDITAR
+            </button>
+
+            <button type="button" class="btneditarDNP" ng-show="vm.isEdicion == true" ng-click="vm.editar('cancelar')" id="btn-cancelar-edicion" name="btn-cancelar-edicion" tooltip-placement="auto" uib-tooltip="Cancelar" ng-if="!vm.soloLectura">
+                CANCELAR
+            </button>
+
+            <button type="button" class="{{vm.isEdicion ? 'btnguardarDNP' : 'btnguardarDisabledDNP'}}" ng-click="vm.guardarJustificacion()" id="btn-guardar-edicion" tooltip-placement="auto" uib-tooltip="Guardar" ng-if="!vm.soloLectura">
+                GUARDAR
+            </button>
+        </div>
+    </div>
+
+    <br />
+    <br />
+    <div class="col-md-12 text-left" ng-init="vm.init();">
+        <span>
+            <strong>Justifique la modificación </strong> (Máximo 8.000 caracteres)
+        </span>
+
+    </div>
+
+    <div class="col-md-12">
+
+        <div>
+            <div id="datosGenerales-justificacion-error" class="hidden text-left color-red">
+                <img class="img img-advertencia" src="Img/u11.svg" />
+                <span id="datosGenerales-justificacion-error-mns"></span>
+            </div>
+        </div>
+        <textarea rows="3"
+                  style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-size: 16px; "
+                  id="Justificacionlocalizacion1"
+                  name="Justificacionlocalizacion1"
+                  placeholder="Maximo 8.000 caracteres"
+                  minlength="1"
+                  maxlength="8000"
+                  class="form-control disabled" ng-required="true"></textarea>
+
+    </div>
+
+</div>

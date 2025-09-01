@@ -1,0 +1,20 @@
+﻿<div ng-if="form.visible === true" label-directive>
+    <div ng-if="form.textAling=='center'" class="text-center">
+        <p ng-if="form.tamano === 'big'" class="big-label" id="{{form.id}}">{{form.label}}<input class="text-center" ng-model="$$value$$" readonly tooltip-placement="bottom" uib-tooltip="{{$$value$$}}" /></p>
+        <p ng-if="form.tamano === 'medium'" class="medium-label" id="{{form.id}}">{{form.label}}<input class="text-center" ng-model="$$value$$" readonly tooltip-placement="bottom" uib-tooltip="{{$$value$$}}" /></p>
+        <p ng-if="form.tamano === 'small'" class="small-label" id="{{form.id}}">{{form.label}}<input class="text-center" ng-model="$$value$$" readonly tooltip-placement="bottom" uib-tooltip="{{$$value$$}}" /></p>
+    </div>
+
+    <div ng-if="form.textAling=='left'" class="text-left">
+        <p ng-if="form.tamano === 'big'" class="big-label" id="{{form.id}}">{{form.label}}<input class="text-left" ng-model="$$value$$" readonly tooltip-placement="bottom-left" uib-tooltip="{{$$value$$}}" /></p>
+        <p ng-if="form.tamano === 'medium'" class="medium-label" id="{{form.id}}">{{form.label}}<input class="text-left" ng-model="$$value$$" readonly tooltip-placement="bottom-left" uib-tooltip="{{$$value$$}}" /></p>
+        <p ng-if="form.tamano === 'small'" class="small-label" id="{{form.id}}">{{form.label}}<input class="text-left" ng-model="$$value$$" readonly tooltip-placement="bottom-left" uib-tooltip="{{$$value$$}}"/></p>
+    </div>
+
+    <div ng-if="form.textAling=='right'" class="text-right">
+        <p ng-if="form.tamano === 'big'" class="big-label" id="{{form.id}}">{{form.label}}<input class="text-right" ng-model="$$value$$" readonly tooltip-placement="bottom-right" uib-tooltip="{{$$value$$}}" /></p>
+        <p ng-if="form.tamano === 'medium'" class="medium-label" id="{{form.id}}">{{form.label}}<input class="text-right" ng-model="$$value$$" readonly tooltip-placement="bottom-right" uib-tooltip="{{$$value$$}}" /></p>
+        <p ng-if="form.tamano === 'small'" class="small-label" id="{{form.id}}">{{form.label}}<input class="text-right" ng-model="$$value$$" readonly tooltip-placement="bottom-right" uib-tooltip="{{$$value$$}}" /></p>
+    </div>
+    
+</div>

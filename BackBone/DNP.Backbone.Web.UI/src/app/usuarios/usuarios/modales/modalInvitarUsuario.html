@@ -1,0 +1,104 @@
+﻿<modal-dialog cerrar="vm.cerrar" guardar="vm.submitInvitarUsuario" txt-guardar="Invitar Usuario" ng-init="vm.init()">
+    <div class="col-md-12" id="modalInvitarUsuario">
+        <div class="row">
+            <div class="titlebar marginb-15">
+                <span>INVITAR USUARIO</span>
+            </div>
+        </div>
+        <div class="row">
+            <form id="formInvitarUsuario" name="formInvitarUsuario">
+                <div class="row mt-4">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="correo"><b>Correo</b></label>
+                            <input type="email" class="form-control" id="correo" ng-model="vm.model.correo" ng-keyup="vm.validarCorreo()" required>
+                            <button type="button" id="buscarDir" class="btn btn-primary btn-md" tooltip-placement="bottom" uib-tooltip="buscar" ng-click="vm.buscarDirectorio()" style="display:none">BUSCAR</button>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+
+                            <label for="apellido"><b>Usuario</b></label>
+                            <input type="text" class="form-control" id="usuario" ng-model="vm.model.usuario" readonly>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="apellido"><b>Apellido(s)</b></label>
+                            <input type="text" class="form-control" id="apellido" ng-model="vm.model.apellido" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="nombre"><b>Nombre(s)</b></label>
+                            <input type="text" class="form-control" id="nombre" ng-model="vm.model.nombre" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="correo"><b>Tipo Identificación</b></label>
+                            <select class="form-control" ng-model="vm.model.tipoIdentificacion" ng-change="vm.LstTipoDocumento()" required>
+                                <option value="" disabled selected hidden>Tipo Identificación</option>
+                                <option ng-repeat="tipo in vm.tiposIdentificacion" ng-value="tipo">{{ tipo }} </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="apellido"><b>Identificación</b></label>
+                            <input type="text" class="form-control" id="inputIdentificacion" placeholder="Identificación" ng-model="vm.model.identificacion"
+                                   ng-keyup="vm.IdentificacionCambio()" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="display:none">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label><b>Modulos</b></label>
+                            <div class="mt-4 checkboxes-modulos">
+                                <input type="checkbox" id="moduloAdministracion" disabled
+                                       ng-model="vm.model.modulos.administracion" />
+                                <label for="moduloAdministracion">Administración</label>
+
+                                <input type="checkbox" id="moduloBackBone" disabled
+                                       ng-model="vm.model.modulos.backbone" />
+                                <label for="moduloBackBone">Backbone</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-4" ng-if="vm.model.modulos.backbone">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="entidad" class="form-label"><b>Entidad</b></label>
+                            <select chosen options="vm.listaEntidades" ng-model="vm.model.idEntidad"
+                                    ng-options="x.Id as x.Nombre for x in vm.listaEntidades" name="selEntidad" id="selEntidad"
+                                    no-results-text="No hay ningún resultado para su búsqueda" placeholder-text-single="Opciones"
+                                    class="form-control pt-0 pb-0 pl-4">
+                                <option value="" selected>Opciones</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-4" ng-if="vm.model.modulos.backbone">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="moduloBackbone"><b>Perfil de acceso</b></label>
+                            <select chosen options="vm.listaPerfilesBackbone" id="moduloBackbone" name="moduloBackbone"
+                                    ng-model="vm.model.idPerfilBackbone"
+                                    ng-options="x.IdPerfil as x.NombrePerfil for x in vm.listaPerfilesBackbone"
+                                    no-results-text="No hay ningún resultado para su búsqueda" placeholder-text-single="Opciones"
+                                    class="form-control pt-0 pb-0 pl-4"
+                                    required>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</modal-dialog>

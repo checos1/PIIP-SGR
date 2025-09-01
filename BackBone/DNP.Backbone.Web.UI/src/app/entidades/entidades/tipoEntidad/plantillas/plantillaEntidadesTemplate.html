@@ -1,0 +1,11 @@
+<div class="agr">
+    <span ng-if="row.entity.AgrupadorEntidad" class="agr-blue">
+        {{ row.entity.AgrupadorEntidad }}
+    </span>
+    <span ng-if="row.entity.AgrupadorEntidad && row.entity.Entidad"> - </span>
+    <span ng-if="row.entity.AgrupadorEntidad && row.entity.Entidad" class="agr-black">{{ row.entity.Entidad }}</span>
+    <span ng-if="!row.entity.AgrupadorEntidad && row.entity.Entidad" class="agr-blue">{{ row.entity.Entidad }}</span>
+    
+    <span ng-if="row.entity.CabezaSector && row.entity.Entidad"> - </span>
+    <span ng-if="row.entity.CabezaSector" class="agr-olive">Cabeza Sector</span>
+</div>

@@ -1,0 +1,51 @@
+﻿@using DNP.Backbone.Dominio.Dto;
+@model List<DNP.Autorizacion.Dominio.Dto.PerfilDto>
+@{
+    Layout = null;
+    ViewBag.Title = "PerfilesPDF";
+}
+<html>
+<head>
+    @Html.Partial("_IncludeEstilosRelatorios")
+</head>
+<body class="pdf">
+    @Html.Partial("_CabecalhoRelatorio", "Informe del perfiles")
+
+    <div class="mt-5">
+        @if (Model == null)
+        {
+            <table class="table table-sm table-borderless">
+                <thead>
+                    <tr>
+                        <th class="text-left">
+                            No hubo registros para los filtros seleccionados.
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+        }
+        else
+        {
+            <div id="containerbody">
+                <table class="table  table-borderless border-table">
+                    <thead>
+                        <tr>
+                            <th width="200">Perfil</th>
+                            <th>Roles</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.NombrePerfil</td>
+                                <td>@item.RolesConcat</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </div>
+</body>
+</html>

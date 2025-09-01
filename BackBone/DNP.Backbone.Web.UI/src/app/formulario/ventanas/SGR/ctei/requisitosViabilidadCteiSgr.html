@@ -1,0 +1,48 @@
+﻿<section class="ventana-ajsutes mt-4" ng-init="vm.init()">
+    <div class="row m-0">
+        <div class="form-group">
+            <div class="tab-container col-md-12">
+                <div class="tab-content">
+                    <div class="tab-pane active cont col-md-12" style="padding-left: 0 !important; padding-top: 0 !important; padding-right: 0 !important; padding-bottom: 0 !important;" id="dsgrcteidatosctei">
+                        <requisitos-datos-ctei-sgr callback="vm.notificarGuardado()"
+                                                   guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                                   notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                                   notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)"
+                                                   notificacioncambios="vm.notificacionCambiosAjustes(handler, nombreComponente)">
+                        </requisitos-datos-ctei-sgr>
+                    </div>
+                    <div class="tab-pane cont col-md-12" style="padding-left: 0 !important; padding-top: 0 !important; padding-right: 0 !important; padding-bottom: 0 !important;" id="dsgrviabilidadrequisitosdatosgenerales">
+                        <requisitos-datos-generales-sgr callback="vm.notificarGuardado()"
+                                                        guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                                        notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                                        notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)"
+                                                        notificacioncambios="vm.notificacionCambiosAjustes(handler, nombreComponente)">
+                        </requisitos-datos-generales-sgr>
+                    </div>
+
+                    <div class="tab-pane  cont col-md-12" style="padding-left: 0 !important; padding-top: 0 !important; padding-right: 0 !important; padding-bottom: 0 !important;" id="dsgrviabilidadrequisitosverificacion">
+                        <verificacion-sgr callback="vm.notificarGuardado()"
+                                          guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                          notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                          notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)"
+                                          notificacioncambios="vm.notificacionCambiosAjustes(handler, nombreComponente)">
+                        </verificacion-sgr>
+                    </div>
+                    <div class="tab-pane  cont col-md-12" style="padding-left:0 !important;padding-top:20px !important;text-align:left;" id="dsgrviabilidadrequisitossoportes">
+                        <alojar-documentos-requisitos-sgr tipotramiteid="{{vm.tipoTramiteId}}"
+                                                          tramiteid="{{vm.tramiteId}}"
+                                                          nivel="{{vm.IdNivel}}"
+                                                          rol="{{vm.IdRol}}"
+                                                          section="{{vm.section}}"
+                                                          callback="vm.notificarGuardado()"
+                                                          guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                                          notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                                          notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)"
+                                                          notificacioncambios="vm.notificacionCambiosAjustes(handler, nombreComponente)">
+                        </alojar-documentos-requisitos-sgr>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

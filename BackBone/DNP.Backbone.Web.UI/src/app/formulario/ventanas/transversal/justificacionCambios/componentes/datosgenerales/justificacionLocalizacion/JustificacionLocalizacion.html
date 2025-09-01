@@ -1,0 +1,127 @@
+﻿<div class="tab-content" ng-init="vm.init();">
+	<br /><br />
+	<div class="row">
+		<div class="col-md-12 text-left">
+			<span>
+				<strong>Ruta: </strong> Datos Generales / Localizaciones
+			</span>
+		</div>
+	</div>
+	<br /><br />
+	<ul class="nav nav-tabs tabsLocalizaciones">
+		<li id="localizacionFirme" class="active">
+			<a href="" ng-click="vm.mostrarTab(1)" data-toggle="tab">
+				<b>Localizaciones en firme</b>
+			</a>
+		</li>
+
+		<li id="LocalizacionesModificadas">
+			<a href="" ng-click="vm.mostrarTab(2)" data-toggle="tab">
+				<b>Modificación Localizaciones</b>
+			</a>
+		</li>
+	</ul>
+	<div class="mt-5">
+		<table class="TableDNP">
+			<thead>
+				<tr>
+					<th class="columAcc"></th>
+					<th class="textLeftDNP">Departamento</th>
+					<th class="textLeftDNP">Municipio</th>
+					<th class="textLeftDNP">Tipo agrupación</th>
+					<th class="textLeftDNP">Agrupación</th>
+					<th class="columAcc"></th>
+					<th class="columAcc"></th>
+				</tr>
+			</thead>
+			<tbody ng-repeat="objLocalizacion in vm.DatosLocalizacion">
+				<tr>
+					<td></td>
+					<td class="textLeftDNP">
+						<div class="editReferenciaDNP textLeftDNP" style="line-height: 43px;" ng-if="objLocalizacion.DepartamentId == 1 || objLocalizacion.Nuevos == 1">{{objLocalizacion.Departamento}}</div>
+						<div class="textLeftDNP" ng-if="objLocalizacion.DepartamentId == 0 || objLocalizacion.Enfirme == 1">{{objLocalizacion.Departamento}}</div>
+					</td>
+					<td class="textLeftDNP">
+						<div class="editReferenciaDNP textLeftDNP" style="line-height: 43px;" ng-if="objLocalizacion.MunicipalityId == 1 || objLocalizacion.Nuevos == 1">{{objLocalizacion.Municipio}}</div>
+						<div class="textLeftDNP" ng-if="objLocalizacion.MunicipalityId == 0 || objLocalizacion.Enfirme == 1">{{objLocalizacion.Municipio}}</div>
+					</td>
+					<td class="textLeftDNP">
+						<div class="editReferenciaDNP textLeftDNP" style="line-height: 43px;" ng-if="objLocalizacion.AgrupacionId == 1 || objLocalizacion.Nuevos == 1">{{objLocalizacion.TipoAgrupacion}}</div>
+						<div class="textLeftDNP" ng-if="objLocalizacion.AgrupacionId == 0 || objLocalizacion.Enfirme == 1">{{objLocalizacion.TipoAgrupacion}}</div>
+					</td>
+					<td class="textLeftDNP">
+						<div class="editReferenciaDNP textLeftDNP" style="line-height: 43px;" ng-if="objLocalizacion.TipoAgrupacionId == 1 || objLocalizacion.Nuevos == 1">{{objLocalizacion.Agrupacion}}</div>
+						<div class="textLeftDNP" ng-if="objLocalizacion.TipoAgrupacionId == 0 || vm.Enfirme == 1">{{objLocalizacion.Agrupacion}}</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<br />
+		<br />
+	</div>
+	<div class="text-left" style="margin-right: 15px;" ng-if="vm.Modificar == 1">
+		<label class="uLabelCampo">Detalle del Ajuste: </label>
+	</div>
+
+	<div ng-if="vm.Modificar == 1">
+		<div class="col-md-3 text-left">
+			<span><label>Se añade la localización: </label></span>
+		</div>
+		<br />
+		<div ng-repeat="nuevas in vm.listaLocalizacionNuevos" class="text-left col-md-9">
+			<span>Departamento: {{nuevas.Departamento}}- Municipio: {{nuevas.Municipio}}- Tipo Agrupación: {{nuevas.TipoAgrupacion}}- Agrupación: {{nuevas.Agrupacion}}</span>
+		</div>
+	</div>
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<div ng-if="vm.Modificar1 == 1">
+		<div class="col-md-3 text-left">
+			<span><label>Se elimina la localización: </label></span>
+		</div>
+		<div ng-repeat="borrados in vm.listaLocalizacionModBorrados" class="text-left col-md-9">
+			<span>Departamento: {{borrados.Departamento}}- Municipio: {{borrados.Municipio}}- Tipo Agrupación: {{borrados.TipoAgrupacion}}- Agrupación: {{borrados.Agrupacion}}</span>
+		</div>
+	</div>
+
+	<br />
+	<br />
+	<div class="row">
+		<div class="col-md-6" style="text-align:left">
+			<span class="uLabelCampo" style="font-family: 'Montserrat'; font-weight: 400; font-style: normal; font-size: 24px; color: #004884; text-align: left; line-height: 18px;">Justificación</span>
+		</div>
+		<div class="col-md-6 pull-right text-right">
+			<button ng-if="vm.isEdicion == true" ng-click="vm.editar('cancelar')" id="btn-cancelar-edicion" type="button" class="btn btncancelarLocalizacion" tooltip-placement="auto" uib-tooltip="Cancelar">CANCELAR</button>
+			<button ng-if="vm.isEdicion == false" ng-click="vm.editar('editar')" id="btn btncancelarLocalizacion" type="button" class="btn btncancelarLocalizacion" tooltip-placement="auto" uib-tooltip="Editar">EDITAR</button>
+			<button ng-click="vm.guardar()" type="button" id="btn-guardar-edicion-localizacion" class="{{vm.ClasesbtnGuardar}}" tooltip-placement="auto" uib-tooltip="Guardar">GUARDAR</button>
+		</div>
+	</div>
+
+	<br /><br />
+	<div class="col-md-12 text-left" ng-init="vm.init();">
+		<span>
+			<strong>Justifique la modificación* </strong> (Máximo 8.000 caracteres)
+		</span>
+
+	</div>
+	<div class="col-md-12">
+		<div>
+			<div id="justificacionlocalizacion-justificacion-error" class="hidden text-left color-red">
+				<img class="img img-advertencia" src="Img/u11.svg" />
+				<span id="justificacionlocalizacion-justificacion-error-mns"></span>
+			</div>
+		</div>
+		<textarea rows="3"
+				  style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-size: 16px; "
+				  id="Justificacion-justificacionLocalizacion"
+				  name="Justificacion-justificacionLocalizacion"
+				  placeholder="Maximo 8.000 caracteres"
+				  minlength="1"
+				  maxlength="8000"
+				  class="form-control disabled" ng-required="true"></textarea>
+
+	</div>
+
+</div>

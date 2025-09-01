@@ -1,0 +1,66 @@
+﻿
+<div ng-init="vm.init();">
+    <div class="ui-accordion-container " id="accordion-conceptossolicitarconsul">
+        <div class="alert panel-heading row ui-accordion-header">
+            <button type="button" data-toggle="collapse" data-target="#conceptossolicitarconsul" ng-click="vm.changeArrow('conceptossolicitarconsul')">
+                <span class="d-inline-block" id="alert-conceptossolicitarconsul"></span>
+                <span id="name-capitulo-conceptossolicitarconsul">nnnnn</span>
+                <span class="hidden" id="id-capitulo-conceptossolicitarconsul"></span>
+                <span id="arrow-conceptossolicitarconsul" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#conceptossolicitarconsul"></span>
+            </button>
+        </div>
+        <div class="collapse" id="conceptossolicitarconsul">
+            <div class="row m-0 mb-3">
+                <br>
+                <div class="col-md-12 ">
+                    <solicitud-Concepto-Formulario tipotramiteid="{{vm.tipotramiteid}}"
+                                                   tramiteid="{{vm.tramiteid}}"
+                                                   nivel="{{vm.nivel}}"
+                                                   rol="{{vm.rol}}"
+                                                   section="{{vm.section}}"
+                                                   nombrecomponentepaso="{{vm.nombreComponenteHijo}}"
+                                                   guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                                   notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                   notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"
+                                                   callback="vm.notificarGuardado(botonDevolver, botonSiguiente, ocultarDevolver)"
+                                                   deshabilitarconcepto="vm.deshabilitarConcepto(estado)"
+                                                   bpin="{{vm.bpin}}">
+                    </solicitud-Concepto-Formulario>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ui-accordion-container " id="accordion-conceptoselaborartecnico" >
+        <div class="alert panel-heading row ui-accordion-header">
+            <button type="button"  data-toggle="collapse" data-target="#conceptoselaborartecnico" ng-click="vm.changeArrow('conceptoselaborartecnico')">
+                <span class="d-inline-block" id="alert-conceptoselaborartecnico"></span>
+                <span id="name-capitulo-conceptoselaborartecnico"></span>
+                <span class="hidden" id="id-capitulo-conceptoselaborartecnico"></span>
+                <span id="arrow-conceptoselaborartecnico" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#conceptoselaborartecnico"></span>
+            </button>
+        </div>
+        <div class="collapse" id="conceptoselaborartecnico">
+            <div class="row m-0 mb-3">
+                <br>
+                <div class="col-md-12 ">
+                    <elaborar-Conceptoal tipotramiteid="{{vm.tipotramiteid}}"
+                                         tramiteid="{{vm.tramiteid}}"
+                                         nivel="{{vm.nivel}}"
+                                         rol="{{vm.rol}}"
+                                         rolanalista ="{{vm.rolanalista}}"
+                                         section="{{vm.section}}"
+                                         nombrecomponentepaso="{{vm.nombreComponenteHijo}}"
+                                         guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                         notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                         notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)">
+                    </elaborar-Conceptoal>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+

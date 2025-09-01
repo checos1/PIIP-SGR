@@ -1,0 +1,94 @@
+﻿<div class="container-fluid inbox">
+    <nav class="breadcrumb">
+        <a href="/">
+            <span class="breadcrumb-item active">
+                <i class="fa fa-home" aria-hidden="true"></i> Inicio
+            </span>
+        </a>
+        /
+        <span class="breadcrumb-item active">Reportes PIIP</span>
+    </nav>
+
+    <div class="dashboard">
+        <div id="alertas" class="project" ng-init="vm.init();">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="titlebar">
+                        <span>Reportes PIIP</span>
+                    </div>
+                </div>
+            </div>
+            <br />
+
+            <div id="agrupadores">
+                <div ng-repeat="agrupador in vm.listadoAgrupador">
+                    <div class="row">
+                        <div class="alert panel-headingAccDNP">
+                            <div class="card card-body pull-left  divAccordionDNP">
+                                <span class="uLabelCampo">{{agrupador.descripcion}}</span>
+                                <p class="panelbtnalertAcordnp">
+                                    <button class="btnaccion btnAccordionDNP" type="button" data-toggle="collapse" data-target="#{{agrupador.id}}" ng-click="vm.AbrilNivel(agrupador.id)">
+                                        <img ng-show="agrupador.estadoAgr == '+'" src="Img/btnMas.svg">
+                                        <img ng-show="agrupador.estadoAgr == '-'" src="Img/btnMenos.svg">
+                                    </button>
+                                </p>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="collapse" id="{{agrupador.id}}">
+                            <div class="LineaEncabezadodivDNP"></div>
+                            <div class="row">
+                                <h3 class="tituloEncabezadodivDNP">
+                                    Listado de reportes
+                                </h3>
+                                <br />
+                                <div class="row" style="margin: 0px 0px 0px 0px;">
+                                    <div class="col-md-12 ">
+                                        <table class="TableDNP">
+                                            <thead>
+                                                <tr>
+                                                    <th class="columAcc"></th>
+                                                    <th class="textLeftDNP">Subproceso</th>
+                                                    <th class="textLeftDNP">Reporte</th>
+                                                    <th class="textLeftDNP">Descripción</th>
+                                                    <th class="columAcc" style="width:15%"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="reportes in vm.listadoReportes" ng-if="reportes.idAgrupadorReportesPIIP == agrupador.id">
+                                                    <td></td>
+                                                    <td class="textLeftDNP"> {{reportes.subproceso}}</td>
+                                                    <td class="textLeftDNP" > {{reportes.nombre}}</td>
+                                                    <td class="textLeftDNP" > {{reportes.descripcion}}</td>
+                                                    <td>
+                                                        <div class="row rowbotonesicoDNP" style="margin-right: 20px;">
+
+                                                            <div class="col-md-12 text-right nopadding">
+                                                                <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Filtros" ng-click="vm.abrirModalFiltros(reportes.idReporte)" title="Agregar filtros">
+                                                                    <span> <img id="icoLimpiarBusqueda" class="icoBusquedasDNP" src="Img/u1341.svg"></span>
+                                                                </button>
+                                                                <!--<button class="btnaccion" ng-click="vm.downloadPdf(reportes.idReporte)" title="Descargar formato PDF">
+                                                                    <span> <img class="icoBusquedasDNP" src="Img/etapas/u1089.svg"></span>
+                                                                </button>-->
+                                                                <button class="btnaccion" ng-click="vm.downloadExcel(reportes.idReporte)" title="Descargar formato Excel">
+                                                                    <span> <img class="icoBusquedasDNP" src="Img/etapas/u1090.svg"></span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="clearfix borderTop4 grid-monitoreo-proyecto">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,34 @@
+﻿<modal-dialog cerrar="vm.cerrar" guardar="vm.guardarPerfil" ng-init="vm.init()">
+    <div class="row ">
+        <div class="col-md-12">
+            <div class="titulo-modal">
+                <span>CREAR PERFIL </span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <input type="text" ng-model="vm.perfil" name="txtPerfil" id="txtPerfil" class="form-control input-lg" placeholder="Perfil" />
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-10 pr-0">
+            <select ng-model="vm.idRol" ng-options="x.IdRol as x.Nombre for x in vm.listaRoles" name="selRoles" id="selRoles" class="form-control input-lg pt-0 pb-0 pl-4">
+                <option value="" selected>Roles</option>
+            </select>
+
+        </div>
+        <div class="col-md-2 mt-0">
+            <button type="button" class="btn btn-success btn-add-rol" ng-click="vm.addRol()" tooltip-placement="auto" uib-tooltip="Agregar Rol">Agregar Rol</button>
+        </div>
+    </div>
+    <!--ng-if="vm.gridOptions.data.length"-->
+    <div class="row">
+        <div class="col-md-12 mt-2 ">
+            <div class="clearfix"
+                 ui-grid="vm.gridOptions"
+                 ng-style="{ height: (vm.gridOptions.data.length * 40) + 32 + 'px'}">
+            </div>
+        </div>
+    </div>
+</modal-dialog>

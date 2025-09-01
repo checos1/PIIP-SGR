@@ -1,0 +1,26 @@
+﻿<section>
+	<div class="container-fluid inbox" ng-init="vm.init();">
+		<div class="tab-content">
+			<div class="ui-accordion-container hidden" id="accordion-programarprodprogramarprodcap">
+				<div class="alert panel-heading row ui-accordion-header">
+					<button type="button" data-toggle="collapse" data-target="#programarprodprogramarprodcap" ng-click="vm.changeArrow('programarprodprogramarprodcap')">
+						<span class="d-inline-block" id="alert-programarprodprogramarprodcap"></span>
+						<span id="name-capitulo-programarprodprogramarprodcap"></span>
+						<span class="hidden" id="id-capitulo-programarprodprogramarprodcap"></span>
+						<span id="arrow-programarprodprogramarprodcap" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#programarprodprogramarprodcap"></span>
+					</button>
+				</div>
+				<div class="collapse" id="programarprodprogramarprodcap">
+					<div class="row m-0 mb-3">
+						<programar-prod-cap bpin="{{vm.globalVariables.bpin}}"
+										   guardadoevent="vm.guardadoevent(nombreComponenteHijo)"
+										   notificacioncambios="vm.notificacionCambiosCapitulosExternos(handler,nombreComponente)"
+										   notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+										   notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)">
+						</programar-prod-cap>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

@@ -1,0 +1,33 @@
+﻿
+<div ng-init="vm.init();">
+    <div class="ui-accordion-container " id="accordion-sgrctussoportesalojararchivo">
+        <div class="alert panel-heading row ui-accordion-header">
+            <button type="button" data-toggle="collapse" data-target="#sgrctussoportesalojararchivo" ng-click="vm.changeArrow('sgrctussoportesalojararchivo')">
+                <span class="d-inline-block" id="alert-sgrctussoportesalojararchivo"></span>
+                <span id="name-capitulo-sgrctussoportesalojararchivo"></span>
+                <span class="hidden" id="id-capitulo-sgrctussoportesalojararchivo"></span>
+                <span id="arrow-sgrctussoportesalojararchivo" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#sgrctussoportesalojararchivo"></span>
+            </button>
+        </div>
+        <div class="collapse" id="sgrctussoportesalojararchivo">
+            <div class="row m-0 mb-3">
+                <br>
+                <div class="col-md-12 ">
+                    <archivos-formulario-trv tipotramiteid="{{vm.tipotramiteid}}"
+                                         tramiteid="{{vm.tramiteid}}"
+                                         nivel="{{vm.nivel}}"
+                                         rol="{{vm.rol}}"
+                                         section="{{vm.section}}"
+                                         objetonegocioid="{{vm.IdObjetoNegocio}}"
+                                         nombrecomponentepaso="{{vm.nombreComponenteHijo}}"
+                                         guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                         notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                         notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)">
+                    </archivos-formulario-trv>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

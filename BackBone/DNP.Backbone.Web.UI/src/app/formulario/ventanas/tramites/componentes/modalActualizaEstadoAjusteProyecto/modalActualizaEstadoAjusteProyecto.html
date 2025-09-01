@@ -1,0 +1,37 @@
+﻿<modal-dialog cerrar="vm.cerrar" guardar="vm.guardar" txt-guardar="Guardar" ng-init="vm.init()">
+
+    <form id="formActualizaEstadoAjusteProyecto" name="formActualizaEstadoAjusteProyecto">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="titlebar marginb-15">
+                    <span>Actualiza Estado Ajuste Proyecto</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-6" style="padding-right: 3px; padding-left: 3px;">
+                    <input type="radio"   required ng-model="vm.model.devolucion" value="0" /><span class="uLabelCampo" > Devolución para ampliar concepto técnico</span>
+                   
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6" style="padding-right: 3px; padding-left: 3px;">
+                    <input type="radio"   required ng-model="vm.model.devolucion" value="1"  /> <span class="uLabelCampo" > Devolución para modificar valores</span>
+                    
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-12" style="padding-right: 4px; padding-left: 4px;">
+                    <span class="uLabelCampo"> Observación</span>
+                    <textarea id="observacion" class="uLabelCampoNegro" ng-model="vm.model.observacion"  minlength="1" maxlength="1000"></textarea>
+                    <span class="error font_error" data-ng-show="cuerpoconcepto.entidadTramite.$error.required">Texto obligatorio!</span>
+                </div>
+            </div>
+   
+        </div>
+        
+    </form>
+</modal-dialog>
+

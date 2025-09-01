@@ -1,0 +1,60 @@
+﻿<section>
+    <div class="container-fluid inbox" ng-init="vm.init();">
+        <div class="tab-content">
+            <br />
+            <br />
+            <div style="text-align: left;" class="col-md-12">
+                <div class="col-md-12 form-group text-right" style="padding-right:2rem;">
+                    <button id="Editar1"
+                            type="submit"
+                            class="btneditarDNP"
+                            tooltip-placement="top"
+                            ng-click="vm.ActivarEditar()"
+                            has-claim has-opciones="['FuentesGR:JefePlaneacion']"
+                            uib-tooltip="Clic para editar la información">
+                        EDITAR
+                    </button>
+                    <button type="submit"
+                            id="Guardar1"
+                            class="btnguardarDisabledDNP"
+                            tooltip-placement="top"
+                            uib-tooltip="Guardar modificación"
+                            has-claim has-opciones="['FuentesGR:JefePlaneacion']"
+                            ng-click="vm.registroRespuesta()"
+                            disabled>
+                        GUARDAR
+                    </button>
+                    <br />
+                </div>
+            </div>
+            <div id="aprobaciongraprobaciongr-validacionFuentesErrores1-error" src="Img/u11.svg" class=" img hidden text-left color-red">
+                <span id="aprobaciongraprobaciongr-validacionFuentesErrores1-error-mns" style="font-size:!important 16px"></span>
+            </div>
+            <div ng-repeat="preguntas in vm.PreguntasJefe">
+                <div class="row">
+                    <div class="col-md-12 DetacolumnDNP" style="text-align: left;">
+                        <span class="detapregun">{{preguntas.Pregunta}}</span>
+                        <span class="notapregun" ng-if="preguntas.TipoPregunta == 'Texto'">(Máximo 8.000 caracteres)</span>
+                    </div>
+                    <div class="textAreDivRes" ng-if="preguntas.TipoPregunta == 'Lista'" style="text-align: left;">
+                        <div ng-repeat="respuestas in vm.RespuestasJefe" class="col-md-1">
+                            <div ng-if="respuestas.Respuesta !=''">
+                                <input type="radio" value="{{preguntas.idPregunta}}-{{respuestas.idRespuesta}}"
+                                       ng-checked="{{respuestas.valor}} == {{respuestas.idRespuesta}} ? true : false"
+                                       name="rbJefe"
+                                       id="{{preguntas.idPregunta}}-{{respuestas.idRespuesta}}" disabled>
+                                <label for="{{preguntas.idPregunta}}-{{respuestas.idRespuesta}}">{{respuestas.Respuesta}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div id="aprobaciongraprobaciongr-validacionFuentesErrores2-error" src="Img/u11.svg" class=" img hidden text-left color-red">
+                <span id="aprobaciongraprobaciongr-validacionFuentesErrores1-error-mns" style="font-size:!important 16px"></span>
+            </div>
+            <br />
+        </div>
+    </div>
+
+</section>

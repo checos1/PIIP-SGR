@@ -1,0 +1,130 @@
+<div class="container-fluid inbox">
+
+    <div ng-init="vm.init()">
+
+        <div ng-if="vm.mostrarFormulario">
+            <hr style="border-top: 1px solid #C4C7C9;" />
+            <h2>Nueva contraseña</h2>
+            <br />
+            <br />
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="correo"><b>Tipo Identificación</b></label>
+                        <select id="tipoIdentificacion"
+                                class="form-control"
+                                ng-model="vm.model.tipoDocumento"
+                                ng-disabled="true"
+                                required>
+                            <option ng-selected="vm.model.tipoDocumento == tipo.id"
+                                    ng-repeat="tipo in vm.tiposIdentificacion"
+                                    ng-value="tipo.id">
+                                {{ tipo.name }}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="apellido"><b>Identificación</b></label>
+                        <input type="text"
+                               class="form-control"
+                               id="inputIdentificacion"
+                               placeholder="Identificación"
+                               ng-model="vm.model.numeroDocumento"
+                               ng-disabled="true"
+                               required>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="apellido"><b>Contraseña actual <span class="text-danger">*</span></b></label>
+                        <input type="text"
+                               class="form-control"
+                               id="inputIdentificacion"
+                               placeholder="Contraseña actual"
+                               ng-model="vm.model.claveActual"
+                               ng-keyup="vm.validarCampoClaveActual()"
+                               required>
+                        <small ng-if="!vm.esCampoClaveActualValido" class="text-danger">Este campo es obligatorio</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="apellido"><b>Nueva contraseña <span class="text-danger">*</span></b></label>
+                        <input type="text"
+                               class="form-control"
+                               id="inputIdentificacion"
+                               placeholder="Nueva contraseña"
+                               ng-model="vm.model.nuevaClave"
+                               ng-keyup="vm.validarCampoNuevaClave()"
+                               required>
+                        <small ng-if="!vm.esCampoNuevaClaveValido" class="text-danger">Este campo es obligatorio</small>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="apellido"><b>Confirmación nueva contraseña <span class="text-danger">*</span></b></label>
+                        <input type="text"
+                               class="form-control"
+                               id="inputIdentificacion"
+                               placeholder="Confirmación nueva contraseña"
+                               ng-model="vm.model.confirmarClave"
+                               ng-keyup="vm.validarCampoConfirmarClave()"
+                               required>
+                        <small ng-if="!vm.esCampoConfirmacionClaveValido" class="text-danger">Este campo es obligatorio</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    La contraseña de contener:
+                    <ul>
+                        <li>Mínimo (8) ocho y máximo (12) doce carácteres</li>
+                        <li>Al menos (1) un número y (1) un carácter especial</li>
+                        <li>Máximo (3) letras o números secuenciales</li>
+                        <li>Al menos (1) una letra minúscula y (1) una mayúscula</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <button type="button" class="btn btn-sm btn-success btn-footer" ng-click="vm.enviar()" ng-if="vm.esFormularioValido">
+                        Aceptar
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="text-center" ng-if="vm.mostrarMensajeURLInvalida">
+            <h2>El acceso mediante este espacio ha caducado</h2>
+            <p>Diríjase a la página de ingreso de la PIIP y solicite un acceso temporal mediante el vínculo <br /> <b>"¿Olvidó mi contraseña?"</b></p>
+            <br />
+            <br />
+            <div style="text-align: center">
+                <a href="/"
+                   style="
+                        font-family: Arial, Helvetica, sans-serif;
+                        background-color: rgba(50, 102, 204, 1);
+                        border: none;
+                        border-radius: 55px;
+                        color: white;
+                        padding: 12px 32px;
+                        text-align: center;
+                        text-decoration: none;
+                        font-size: 16px;
+                        margin: 4px 2px;
+                        cursor: pointer;
+                        width: 140px;
+                        height: 40px;
+                ">Ingresar</a>
+            </div>
+
+        </div>
+    </div>
+</div>

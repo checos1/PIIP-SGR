@@ -1,0 +1,430 @@
+﻿<div>
+    <!--<div class="container-fluid inbox" style="height: 800px; overflow: scroll; padding-left: 20px;" ng-init="vm.init();">-->
+    <div class="container-fluid inbox" ng-init="vm.init();">
+        <form id="fuentesNoSGRForm" name="fuentesNoSGRForm" novalidate>
+            <div class="row" style="margin-left: -20px">
+                <span class="d-inline-block errorpregDatosPre2 ml-4" id="alert-sgrviabilidadpreviosrecursosfuentesnosgr"></span>
+                <span class="hidden" style="padding-left: 5px; display: flex; text-align: left; font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans'; font-size: 12px; font-style: normal; color: #A80521;" id="RECNOSGRsgrviabilidadpreviosrecursosfuentesnosgr"></span>
+            </div>
+            <div class="row" ng-repeat="etapa in vm.listaFuentesTemp.Etapas">
+                <div ng-repeat="objVigencias in etapa.Vigencias">
+                    <div id="CRCVSSNOSGR{{etapa.EtapaId}}{{objVigencias.Vigencia}}" class="hidden" style="text-align: left; font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans'; font-size: 12px; font-style: normal; color: #A80521;"></div>
+                    <div id="CRCVSSNOSGRCOF{{etapa.EtapaId}}{{objVigencias.Vigencia}}" class="hidden" style="text-align: left; font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans'; font-size: 12px; font-style: normal; color: #A80521;"></div>
+                </div>
+            </div>
+            <div class="row">
+                <br />
+                <br />
+                <div class="tab-container col-md-8 textLeftDNP">
+                    <ul id="lstEtapas" class="nav nav-tabs tabsCostosAct">
+                        <li id="liPreinversion" ng-class="{active : 1 === vm.etapaIdNoSGR}">
+                            <a href="" ng-click="vm.mostrarTab(1)" data-toggle="tab">
+                                <img class="img-advertencia mr-2" src="Img/u11.svg" ng-if="vm.errores.preinversion" />
+                                <b>Preinversión</b>
+                            </a>
+                        </li>
+                        <li id="liInversion" ng-class="{active : 2 === vm.etapaIdNoSGR}">
+                            <a href="" ng-click="vm.mostrarTab(2)" data-toggle="tab">
+                                <img class="img-advertencia mr-2" src="Img/u11.svg" ng-if="vm.errores.inversion" />
+                                <b>Inversión</b>
+                            </a>
+                        </li>
+                        <li id="liOperacion" ng-class="{active : 3 === vm.etapaIdNoSGR}">
+                            <a href="" ng-click="vm.mostrarTab(3)" data-toggle="tab">
+                                <img class="img-advertencia mr-2" src="Img/u11.svg" ng-if="vm.errores.operacion" />
+                                <b>Operación</b>
+                            </a>
+                        </li>
+                    </ul>
+                    <br />
+                </div>
+                <div class="col-md-4 textLeftDNP">
+                    <div class="form-group DetacolumnDNP">
+                        <span>
+                            Total fuentes no SGR $:
+                        </span>
+                        <br>
+                        <input type="text" class="form-control editInputDNP" ng-model="vm.totalFuentes" disabled format="currency" />
+                    </div>
+                </div>
+            </div>
+            <br />
+            <br />
+            <div class="row" ng-repeat="etapaEntidades in vm.listaFuentesEtapaNoSGR">
+                <div class="col-md-8 DetacolumnDNP">
+                    <div class="textLeftDNP">
+                        <span>
+                            Entidad:
+                        </span>
+                        <br>
+                        <select class="form-control selectDNP" ng-model="vm.entidadEtapaNoSGR" ng-change="vm.filtrar()">
+                            <option value="" selected>Todas las entidades de etapa</option>
+                            <option ng-repeat="entidad in etapaEntidades.ComboEntidades" ng-value="{{entidad.EntidadId}}">{{entidad.NombreConcatenadoEntidad}} </option>
+                        </select>
+                    </div>
+                </div>
+                <!--<div class="col-md-4 textLeftDNP">
+                    <div class="form-group DetacolumnDNP">
+                        <span>
+                            Total fuentes SGR $:
+                        </span>
+                        <br>
+                        <input type="text" class="form-control editInputDNP" ng-model="vm.totalFuentes" disabled format="currency" />
+                    </div>
+                </div>-->
+            </div>
+            <br />
+            <div class="row" ng-repeat="etapaEntidades in vm.listaFuentesEtapaNoSGR">
+                <div class="col-md-8 DetacolumnDNP">
+                    <!--<div class="textLeftDNP">
+                        <span>
+                            Tipo Recurso:
+                        </span>
+                        <br>
+                        <select class="form-control selectDNP" ng-model="vm.tipoRecursoNoSGR" ng-change="vm.filtrar()">
+                            <option value="" selected>Todas los tipos de recursos de etapa</option>
+                            <option ng-repeat="recurso in etapaEntidades.ComboTipoRecursos" ng-value="{{recurso.TipoRecursoId}}">{{recurso.TipoRecurso}} </option>
+                        </select>
+                    </div>-->
+                </div>
+                <div class="col-md-4">
+                    <span></span>
+                    <br>
+                    <span class="buttonbar pull-right">
+                        <button id="EditarG"
+                                type="button"
+                                class="btneditarDNP"
+                                tooltip-placement="top"
+                                uib-tooltip="Editar"
+                                tabindex="0"
+                                ng-click="vm.ActivarEditar()"
+                                ng-disabled="vm.disabled"
+                                ng-if="vm.guardarVisible">
+                            {{vm.Editar}}
+                        </button>
+                        &nbsp;
+                        <button id="GuardarG"
+                                type="submit"
+                                class="{{vm.activar ? 'btnguardarDisabledDNP' : 'btnguardarDNP'}}"
+                                tooltip-placement="top"
+                                uib-tooltip="Guardar"
+                                ng-click="vm.Guardar()"
+                                ng-disabled="vm.activar"
+                                ng-if="vm.guardarVisible">
+                            GUARDAR
+                        </button>
+                    </span>
+                </div>
+            </div>
+            <br />
+            <div class="row" ng-repeat="objdatos in vm.listaFuentesEtapaNoSGR">
+                <table class="TableDNP">
+                    <thead>
+                        <tr>
+                            <!--<th class="columAcc" style="width:1%"></th>-->
+                            <th class="textRightDNP" style="width:17%">Año / costos MGA $ </th>
+                            <th class="textLeftDNP" style="width:20%">Tipo Entidad / Entidad ingresada en transferencia </th>
+                            <th class="textLeftDNP" style="width:18%">Tipo Recurso </th>
+                            <th class="textLeftDNP" style="width:25%">Vigencia                         </th>
+                            <th class="textRightDNP" style="width:18%">Valor Solicitado $ </th>
+                            <th class="columAcc" style="width:2%"></th>
+                            <!--<th class="columAcc" style="width:2%"></th>
+                            <th class="columAcc" style="width:2%"></th>-->
+                        </tr>
+                    </thead>
+                    <tbody ng-repeat="objVigencias in objdatos.Vigencias" ng-init="vigenciaIndex = $index">
+                        <!--<td></td>-->
+                        <tr>
+                            <td class="textRightDNP" rowspan="{{objVigencias.Entidades.length}}">
+                                <div style="min-height: 165px; height: auto !important; " class="blockReferencia2DNP">
+                                    <span>{{objVigencias.Vigencia}}</span>
+                                    <br />
+                                    <span>{{objVigencias.Costo | currency}}</span>
+                                </div>
+                            </td>
+                            <td class="textLeftDNP" ng-if="objVigencias.Entidades[0].filtrarEntidad == null">
+                                <div style="min-height: 70px;" class="blockReferencia2DNP">
+                                    <span>{{objVigencias.Entidades[0].TipoEntidad}} / </span>{{ (objVigencias.Entidades[0].EntidadVerMas == null || objVigencias.Entidades[0].EntidadVerMas === false) ? (objVigencias.Entidades[0].Entidad | limitTo: 110)  : objVigencias.Entidades[0].Entidad }}
+                                    <span ng-if="objVigencias.Entidades[0].Entidad.length > 110">
+                                        {{ (objVigencias.Entidades[0].EntidadVerMas == null || objVigencias.Entidades[0].EntidadVerMas === false) ? "..." : ""}}
+                                    </span>
+                                    <button type="button" style="color: #3366CC;line-height:20px " class="btn btn-link btn-md  buttonhiper" tooltip-placement="top" tabindex="0"
+                                            ng-click="vm.verMas(objVigencias.Entidades[0])" data=""
+                                            ng-if="objVigencias.Entidades[0].Entidad.length > 110">
+                                        {{ (objVigencias.Entidades[0].EntidadVerMas == null || objVigencias.Entidades[0].EntidadVerMas === false) ? "Ver más" : "Ver menos"}}
+                                    </button>
+                                </div>
+                            </td>
+                            <td class="textLeftDNP" ng-if="objVigencias.Entidades[0].filtrarEntidad == null">
+                                <!--<div style="min-height: 70px;" class="blockReferencia2DNP">
+                                    <textarea disabled class="textAreatableDNP">{{objVigencias.Entidades[0].TipoRecurso}}</textarea>
+                                </div>-->
+                                <div style="min-height: 70px;" class="blockReferencia2DNP">
+                                    {{ (objVigencias.Entidades[0].RecursoVerMas == null || objVigencias.Entidades[0].RecursoVerMas === false) ? (objVigencias.Entidades[0].TipoRecurso | limitTo: 110)  : objVigencias.Entidades[0].TipoRecurso }}
+                                    <span ng-if="objVigencias.Entidades[0].Entidad.length > 110">
+                                        {{ (objVigencias.Entidades[0].RecursoVerMas == null || objVigencias.Entidades[0].RecursoVerMas === false) ? "..." : ""}}
+                                    </span>
+                                    <button type="button" style="color: #3366CC;line-height:20px " class="btn btn-link btn-md  buttonhiper" tooltip-placement="top" tabindex="0"
+                                            ng-click="vm.verMasRecurso(objVigencias.Entidades[0])" data=""
+                                            ng-if="objVigencias.Entidades[0].TipoRecurso.length > 110">
+                                        {{ (objVigencias.Entidades[0].RecursoVerMas == null || objVigencias.Entidades[0].RecursoVerMas === false) ? "Ver más" : "Ver menos"}}
+                                    </button>
+                                </div>
+                            </td>
+                            <td class="textLeftDNP" ng-if="objVigencias.Entidades[0].filtrarEntidad == null">
+                                <div ng-repeat="objVig in objVigencias.Entidades[0].Vigencias" ng-init="bienioIndex = $index">
+                                    <div style="height: 36px; vertical-align: middle; display: table-cell;">
+                                        <select class="form-control selectDNP" ng-model="objVig.Vigencia" ng-disabled="true" ng-change="vm.ValidarVigencias(vigenciaIndex, entidadIndex, objVig.Vigencia)">
+                                            <option value="0" selected>Seleccione</option>
+                                            <option ng-repeat="vig in objdatos.ComboVigencias" ng-value="{{vig.Vigencia}}">{{vig.Vigencia}} </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="textLeftDNP" ng-if="objVigencias.Entidades[0].filtrarEntidad == null">
+                                <div ng-repeat="objVig in objVigencias.Entidades[0].Vigencias">
+                                    <div ng-if="vm.activar" style="height: 36px; vertical-align: middle; display: table-cell;">
+                                        <label class="textRightDNP" style="font-size: !important 16px;">
+                                            {{vm.ConvertirNumero(objVig.ValorSolicitado)}}
+                                        </label>
+                                    </div>
+                                    <input type="text" class="form-control editInputDNP" numbers="enteros:14;precision:2;negativos:false" min="0.0000"
+                                           ng-model="objVig.ValorSolicitado"
+                                           ng-if="!vm.activar"
+                                           ng-value="vm.ConvertirNumero2(objVig.ValorSolicitado)"
+                                          
+                                           ng-keypress="vm.validateFormat($event)"
+                                           ng-change="vm.CalcularTotalFuentes()"
+                                            />
+                                </div>
+                            </td>
+                            <td class="textCenterDNP" ng-if="objVigencias.Entidades[0].filtrarEntidad == null">
+                                <div ng-repeat="objVig in objVigencias.Entidades[0].Vigencias" ng-init="entidadIndex = $index">
+                                    <div style="height: 36px; vertical-align: middle; display: table-cell;">
+                                        <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Cofinanciación" ng-disabled="vm.activar">
+                                            <div ng-switch on="objVig.RegistraConfinanciador">
+                                                <div ng-switch-when="true">
+                                                    <span ng-if="vm.activar == true || objVig.ValorSolicitado == 0"><img style="width: 20px;height:20px" src="Img/icoCofinanciadorCompletedD.svg"></span>
+                                                    <span ng-if="vm.activar == false ? objVig.ValorSolicitado > 0 : false"><img style="width: 20px;height:20px" src="Img/icoCofinanciadorCompleted.svg" ng-click="vm.abrirModalDocumentosAdicionales(vigenciaIndex, 0, $index)"></span>
+                                                </div>
+                                                <div ng-switch-default>
+                                                    <span ng-if="vm.activar == true || objVig.ValorSolicitado == 0"><img style="width: 20px;height:20px" src="Img/icoCofinaciadorD.svg"></span>
+                                                    <span ng-if="vm.activar == false ? objVig.ValorSolicitado > 0 : false"><img style="width: 20px;height:20px" src="Img/icoCofinaciador.svg" ng-click="vm.abrirModalDocumentosAdicionales(vigenciaIndex, 0, $index)"></span>
+
+                                                </div>
+                                            </div>
+                                        </button>
+                                    </div>
+                                </div>
+                            </td>
+                            <!--<td class="textCenterDNP">
+                                <div ng-repeat="objVig in objVigencias.Entidades[0].Vigencias">
+                                    <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Eliminar">
+                                        <span ng-if="vm.activar == true"><img style="width: 20px;height:20px" src="Img/IcoDeleteD.svg"></span>
+                                        <span ng-if="vm.activar == false"><img style="width: 20px;height:20px" src="Img/IcoDelete.svg" ng-click="vm.EliminarVigencia(vigenciaIndex, 0, $index)"></span>
+                                    </button>
+                                </div>
+                            </td>
+                            <td class="textCenterDNP">
+                                <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Adicionar" ng-disabled="vm.activar">
+                                    <span ng-if="vm.AddVigencia == true"><img style="width: 20px;height:20px" src="Img/IcoAddD.svg"></span>
+                                    <span ng-if="vm.AddVigencia == false"><img style="width: 20px;height:20px" src="Img/IcoAdd.svg" ng-click="vm.AdicionarVigencia(vigenciaIndex, 0)"></span>
+                                </button>
+                            </td>-->
+                        </tr>
+                        <tr ng-repeat="objEntidades in objVigencias.Entidades" ng-init="entidadIndex = $index" ng-if="$index != 0 && (objEntidades.filtrarEntidad == null)">
+                            <td class="textLeftDNP">
+                                <div style="min-height: 70px;" class="blockReferencia2DNP">
+                                    <span>{{objEntidades.TipoEntidad}} / </span>{{ (objEntidades.EntidadVerMas == null || objEntidades.EntidadVerMas === false) ? (objEntidades.Entidad | limitTo: 110)  : objEntidades.Entidad }}
+                                    <span ng-if="objEntidades.Entidad.length > 110">
+                                        {{ (objEntidades.EntidadVerMas == null || objEntidades.EntidadVerMas === false) ? "..." : ""}}
+                                    </span>
+                                    <button type="button" style="color: #3366CC;line-height:20px " class="btn btn-link btn-md  buttonhiper" tooltip-placement="top" tabindex="0"
+                                            ng-click="vm.verMas(objEntidades)" data=""
+                                            ng-if="objEntidades.Entidad.length > 110">
+                                        {{ (objEntidades.EntidadVerMas == null || objEntidades.EntidadVerMas === false) ? "Ver más" : "Ver menos"}}
+                                    </button>
+                                </div>
+                            </td>
+                            <td style="min-height: 70px;" class="textLeftDNP">
+                                <!--<div class="blockReferencia2DNP">
+                                    <textarea disabled class="textAreatableDNP">{{objEntidades.TipoRecurso}}</textarea>
+                                </div>-->
+                                <div style="min-height: 70px;" class="blockReferencia2DNP">
+                                    {{ (objEntidades.RecursoVerMas == null || objEntidades.RecursoVerMas === false) ? (objEntidades.TipoRecurso | limitTo: 110)  : objEntidades.TipoRecurso }}
+                                    <span ng-if="objEntidades.TipoRecurso.length > 110">
+                                        {{ (objEntidades.RecursoVerMas == null || objEntidades.RecursoVerMas === false) ? "..." : ""}}
+                                    </span>
+                                    <button type="button" style="color: #3366CC;line-height:20px " class="btn btn-link btn-md  buttonhiper" tooltip-placement="top" tabindex="0"
+                                            ng-click="vm.verMasRecurso(objEntidades)" data=""
+                                            ng-if="objEntidades.TipoRecurso.length > 110">
+                                        {{ (objEntidades.RecursoVerMas == null || objEntidades.RecursoVerMas === false) ? "Ver más" : "Ver menos"}}
+                                    </button>
+                                </div>
+                            </td>
+                            <td class="textLeftDNP">
+                                <div ng-repeat="objVig in objEntidades.Vigencias" ng-init="bienioIndex = $index">
+                                     <div style="height: 36px; vertical-align: middle; display: table-cell;">
+                                        <select class="form-control selectDNP" ng-model="objVig.Vigencia" ng-disabled="true" ng-change="vm.ValidarVigencias(vigenciaIndex, entidadIndex, objVig.Vigencia)">
+                                            <option value="0" selected>Seleccione</option>
+                                            <option ng-repeat="vig in objdatos.ComboVigencias" ng-value="{{vig.Vigencia}}">{{vig.Vigencia}} </option>
+                                        </select>
+                                     </div>
+                                </div>
+                            </td>
+                            <td class="textLeftDNP">
+                                <div ng-repeat="objVig in objEntidades.Vigencias">
+                                    <div ng-if="vm.activar" style="height: 36px; vertical-align: middle; display: table-cell;">
+                                        <label class="textRightDNP" style="font-size: !important 16px;">
+                                            {{vm.ConvertirNumero(objVig.ValorSolicitado)}}
+                                        </label>
+                                    </div>
+                                    <input type="text" class="form-control editInputDNP" numbers="enteros:14;precision:2;negativos:false" min="0.0000"
+                                           ng-model="objVig.ValorSolicitado"
+                                           ng-if="!vm.activar"
+                                           ng-value="vm.ConvertirNumero2(objVig.ValorSolicitado)"
+                                           
+                                           ng-keypress="vm.validateFormat($event)"
+                                           ng-change="vm.CalcularTotalFuentes()"
+                                            />
+                                </div>
+                            </td>
+                            <td class="textCenterDNP">
+                                <div ng-repeat="objVig in objEntidades.Vigencias" ng-init="entidadIndex = $index">
+                                    <div style="height: 36px; vertical-align: middle; display: table-cell;">
+                                        <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Cofinanciación" ng-disabled="vm.activar">
+                                            <!--<span ng-if="vm.activar == true"><img style="width: 20px;height:20px" src="Img/IcoEditD.svg"></span>
+                                            <span ng-if="vm.activar == false "><img style="width: 20px;height:20px" src="Img/IcoEdit.svg" ng-click="vm.abrirModalDocumentosAdicionales(vigenciaIndex, entidadIndex, $index)"></span>-->
+
+                                            <div ng-switch on="objVig.RegistraConfinanciador">
+                                                <div ng-switch-when="true">
+                                                    <span ng-if="vm.activar == true || objVig.ValorSolicitado == 0"><img style="width: 20px;height:20px" src="Img/icoCofinanciadorCompletedD.svg"></span>
+                                                    <span ng-if="vm.activar == false ? objVig.ValorSolicitado > 0 : false"><img style="width: 20px;height:20px" src="Img/icoCofinanciadorCompleted.svg" ng-click="vm.abrirModalDocumentosAdicionales(vigenciaIndex, entidadIndex, $index)"></span>
+                                                </div>
+                                                <div ng-switch-default>
+                                                    <span ng-if="vm.activar == true || objVig.ValorSolicitado == 0"><img style="width: 20px;height:20px" src="Img/icoCofinaciadorD.svg"></span>
+                                                    <span ng-if="vm.activar == false ? objVig.ValorSolicitado > 0 : false"><img style="width: 20px;height:20px" src="Img/icoCofinaciador.svg" ng-click="vm.abrirModalDocumentosAdicionales(vigenciaIndex, entidadIndex, $index)"></span>
+
+                                                </div>
+                                            </div>
+
+                                        </button>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="textCenterDNP">
+                                <!--<div ng-repeat="objVig in objEntidades.Vigencias">
+                                        <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Eliminar">
+                                            <span ng-if="vm.activar == true"><img style="width: 20px;height:20px" src="Img/IcoDeleteD.svg"></span>
+                                            <span ng-if="vm.activar == false"><img style="width: 20px;height:20px" src="Img/IcoDelete.svg" ng-click="vm.EliminarVigencia(vigenciaIndex, entidadIndex, $index)"></span>
+                                        </button>
+                                    </div>
+                                </td>
+                                <td class="textCenterDNP">
+                                    <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Adicionar" ng-disabled="vm.activar">
+                                        <span ng-if="vm.AddVigencia == true"><img style="width: 20px;height:20px" src="Img/IcoAddD.svg"></span>
+                                        <span ng-if="vm.AddVigencia == false"><img style="width: 20px;height:20px" src="Img/IcoAdd.svg" ng-click="vm.AdicionarVigencia(vigenciaIndex, entidadIndex)"></span>
+                                    </button>
+                                </td>-->
+                        </tr>
+                    </tbody>
+                    <!--<tbody>
+                        <tr ng-repeat="objVigencias in objdatos.Vigencias" ng-init="vigenciaIndex = $index">
+                            <td></td>
+                            <td class="textRightDNP" rowspan="{{objVigencias.Entidades.Length}}">
+                                <div style="height:165px" class="blockReferencia2DNP">
+                                    <span>{{objVigencias.Vigencia}}</span>
+                                    <br />
+                                    <span>{{objVigencias.Costo | currency}}</span>
+                                </div>
+                            </td>
+                            <td class="textLeftDNP">
+                                <div ng-repeat="objEntidades in objVigencias.Entidades">
+                                    <textarea disabled class="textAreatableDNP">{{objEntidades.Entidad}}</textarea>
+                                </div>
+                            </td>
+                            <td class="textLeftDNP">
+                                <div ng-repeat="objEntidadesRecurso in objVigencias.Entidades">
+                                    <textarea disabled class="textAreatableDNP">{{objEntidadesRecurso.TipoRecurso}}</textarea>
+                                </div>
+                            </td>
+                            <td class="textLeftDNP">
+                                <div ng-repeat="objEntidadesVig in objVigencias.Entidades" ng-init="entidadIndex = $index">
+                                    <div ng-repeat="objVig in objEntidadesVig.Vigencias" ng-init="vigIndex = $index">
+                                        <select class="form-control selectDNP" ng-model="objVig.Vigencia" ng-disabled="vm.activar" ng-change="vm.ValidarVigencias(vigenciaIndex, entidadIndex, objVig.Vigencia)">
+                                            <option value="0" selected>Seleccione</option>
+                                            <option ng-repeat="vig in objdatos.ComboVigencias" ng-value="{{vig.Vigencia}}">{{vig.Vigencia}} </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="textLeftDNP">
+                                <div ng-repeat="objEntidadesVig in objVigencias.Entidades">
+                                    <div ng-repeat="objVig in objEntidadesVig.Vigencias">
+                                        <input type="text" only-digits class="form-control editInputDNP" ng-model="objVig.ValorSolicitado" ng-disabled="vm.activar" value="{{objVig.ValorSolicitado}}" ng-change="vm.CalcularTotalFuentes()" />
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="textCenterDNP">
+                                <div ng-repeat="objEntidadesVig in objVigencias.Entidades" ng-init="entidadIndex = $index">
+                                    <div ng-repeat="objVig in objEntidadesVig.Vigencias">
+                                        <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Cofinanciación" ng-disabled="vm.activar">
+                                            <span ng-if="vm.activar == true"><img style="width: 20px;height:20px" src="Img/IcoEditD.svg"></span>
+                                            <span ng-if="vm.activar == false"><img style="width: 20px;height:20px" src="Img/IcoEdit.svg" ng-click="vm.abrirModalDocumentosAdicionales(vigenciaIndex, entidadIndex, $index)"></span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="textCenterDNP">
+                                <div ng-repeat="objEntidadesVig in objVigencias.Entidades" ng-init="entidadIndex = $index">
+                                    <div ng-repeat="objVig in objEntidadesVig.Vigencias">
+                                        <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Eliminar" ng-disabled="vm.activar">
+                                            <span ng-if="vm.activar == true"><img style="width: 20px;height:20px" src="Img/IcoDeleteD.svg"></span>
+                                            <span ng-if="vm.activar == false"><img style="width: 20px;height:20px" src="Img/IcoDelete.svg" ng-click="vm.EliminarVigencia(vigenciaIndex, entidadIndex, $index)"></span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="textCenterDNP">
+                                <div ng-repeat="objEntidadesVig in objVigencias.Entidades" ng-init="entidadIndex = $index">
+                                    <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Adicionar" ng-disabled="vm.activar">
+                                        <span ng-if="vm.AddVigencia == true"><img style="width: 20px;height:20px" src="Img/IcoAddD.svg" ></span>
+                                        <span ng-if="vm.AddVigencia == false"><img style="width: 20px;height:20px" src="Img/IcoAdd.svg" ng-click="vm.AdicionarVigencia(vigenciaIndex, entidadIndex)"></span>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="CustomTDTableDNP">
+                            <td class="columAcc icontotaldnp"><span>=</span></td>
+                            <td class="textRightDNP"></td>
+                            <td class="textLeftDNP">
+                                <span>Total {{vm.nombreEtapaNoSGR}} $</span>
+                            </td>
+                            <td class="textRightDNP"></td>
+                            <td class="textRightDNP"></td>
+                            <td class="textRightDNP" colspan="2">
+                                <input type="text" class="form-control editInputDNP" disabled ng-model="vm.totalFuentes" format="currency" />
+                            </td>
+                            <td></td>
+                        </tr>
+                    </tbody>-->
+                    <tbody>
+                        <tr class="CustomTDTableDNP">
+                            <!--<td class="columAcc icontotaldnp"><span>=</span></td>-->
+                            <td class="textRightDNP"></td>
+                            <td class="textLeftDNP">
+                                <span>Total {{vm.nombreEtapaNoSGR}} $</span>
+                            </td>
+                            <td class="textRightDNP"></td>
+                            <td class="textRightDNP"></td>
+                            <td class="textRightDNP" colspan="2">
+                                <input type="text" only-digits class="form-control editInputDNP" disabled ng-model="vm.totalFuenteActiva" format="currency" />
+                            </td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </form>
+    </div>
+</div>

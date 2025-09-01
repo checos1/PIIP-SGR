@@ -1,0 +1,23 @@
+﻿<section>
+    <div class="container-fluid inbox" ng-init="vm.init();">
+        <div class="tab-content">
+            <div class="ui-accordion-container hidden" id="accordion-aprobaciongraprobaciongr">
+                <div class="alert panel-heading row ui-accordion-header" style="border-color: #E6EFFD; border-left-color: #004884; height: 50px;">
+                    <button type="button" data-toggle="collapse" data-target="#rAprobacion" ng-click="vm.changeArrow('aprobaciongraprobaciongr')">
+                        <span id="arrow-aprobaciongraprobaciongr" class="glyphicon glyphicon-chevron-up pull-right" data-toggle="collapse" data-target="#rAprobacion"></span>
+                        <span class="d-inline-block" id="alert-aprobaciongraprobaciongr"></span>
+                        <span id="name-capitulo-aprobaciongraprobaciongr"></span>
+                        <span class="hidden" id="id-capitulo-aprobaciongraprobaciongr"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="rAprobacion" style="width: 100%;">
+                    <aprobacion-grdet guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                            notificacioncambios="vm.notificacionCambiosCapitulosExternos(handler, nombreComponente)"
+                                            notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                            notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)">
+                    </aprobacion-grdet>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,361 @@
+﻿<div ng-init="vm.init();">
+    <form id="regionalizacionf" novalidate>
+        <div id="recursossgpfuentesdefinancsintramitesgp-validacionguardar-error" class="hidden text-left color-red">
+            <img class="img img-advertencia" src="Img/u11.svg" />
+            <span id="regionalizacion-validacionguardar-error-mns"></span>
+        </div>
+        <div id="regionalizacion" class="collapsed panel-body" style="text-align:left">
+            <h3 class="text-left ui-seccion-title">Regionalización por fuentes de financiación - productos <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg" ng-click="vm.abrirMensajeInformacionRegionalizacion()"></h3>
+
+            <div ng-repeat="errores in vm.ErrorProductoDes.recursosregionalizacion">
+                <span ng-if="errores.Error.includes('ErrorProducto-')" class="text-left color-red">
+                    <img class="img img-advertencia" src="Img/u11.svg" />
+                    <span>{{errores.Descripcion}}</span>
+                </span>
+            </div>
+
+            <span class="encabezadoTitulos">Fuentes</span>
+            <div ng-repeat="item in vm.modelo.Fuentes">
+                <div class="row" style="color: #004884">
+                    <div class="" style="padding: 0 !important">
+                        <div class="alert panel-heading" style="height:50px">
+                            <div class="card card-body pull-left  divAccordionDNP" style="line-height:18px;max-height:140px">
+                                <div class="col-md-12">
+                                    <div class="col-md-6">
+                                        <div class="col-md-12">
+                                            <span class="encabezadoTitulos">Etapa: </span>
+                                            <span style="font-family:'Work Sans  Roman', 'Work Sans Regular Roman', 'Work Sans';font-weight:400;color:#4B4B4B;">{{item.Etapa}}. </span>
+                                            <span class="encabezadoTitulos">Tipo financiador: </span>
+                                            <span style="font-family:'Work Sans  Roman', 'Work Sans Regular Roman', 'Work Sans';font-weight:400;color:#4B4B4B;">{{item.TipoFinanciador}}.</span>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <span class="encabezadoTitulos">Financiador: </span>
+                                            <span style="font-family:'Work Sans  Roman', 'Work Sans Regular Roman', 'Work Sans';font-weight:400;color:#4B4B4B;">{{item.Financiador}}.</span>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <span class="encabezadoTitulos">Recurso: </span>
+                                            <span style="font-family:'Work Sans  Roman', 'Work Sans Regular Roman', 'Work Sans';font-weight:400;color:#4B4B4B;">{{item.Recurso}}.</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="col-md-12" style="text-align:right">
+                                            <span>Total fuente $ </span>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="blockReferenciaDNP" style="text-align:right">{{vm.ConvertirNumero2decimales(item.TotalFuente)}}</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="col-md-12" style="text-align:right">
+                                            <span>Total regionalizado fuente $ </span>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="blockReferenciaDNP" style="text-align:right">{{vm.ConvertirNumero2decimales(item.TotalRegionalizadoFuente)}}</div>
+                                        </div>
+                                    </div>
+
+                                </div>                     
+
+                                <div class="col-md-12" style="margin-top:-2rem">
+                                    <p style="padding: 0px; margin-bottom: 0px;">
+                                        <button class="btnaccion btnAccordionDNP" type="button" data-toggle="collapse" data-target="#objfuent{{item.FuenteId}}" ng-click="vm.AbrilNivel1(item.FuenteId)">
+
+                                            <img id="imgmas{{item.FuenteId}}" src="Img/btnMas.svg">
+                                            <img id="imgmenos{{item.FuenteId}}" style="display:none" src="Img/btnMenos.svg">
+                                            <span id="ico{{item.FuenteId}}" style="display:none">+</span>
+                                        </button>
+
+                                        <span id="ErrorFuenteIconError-{{item.FuenteId}}" class=" hidden text-left color-red">
+                                            <img class="img img-advertencia" src="Img/u11.svg" />
+                                        </span>
+                                        <span id="ErrorFuente-{{item.FuenteId}}" class="hidden text-left color-red">
+                                            <img class="img img-advertencia" src="Img/u11.svg" />
+                                            <span id="ErrorFuenteErrorMsg-{{item.FuenteId}}"></span>
+                                        </span>                                       
+                                    </p>
+                                </div>
+
+                            </div>
+                        </div>
+                        <br />
+                        <div class="collapse" id="objfuent{{item.FuenteId}}" style="margin-top:1rem">
+                            <div class="LineaEncabezadodivDNP" style="margin-top:61px"></div>
+                            <h3 class="row tituloEncabezadodivDNP">Productos</h3>
+                            <div ng-repeat="producto in item.Productos">
+                                <div class="row" style="margin-left: 0px; margin-right: 0px">
+                                    <div class="alert panel-heading" style="height: 50px">
+                                        <div class="card card-body pull-left bordesencillo" style="border-color: #E6EFFD; text-align: left; width: 100%; padding-top: 10px;padding-bottom: 10px;">
+                                            <div class="col-md-12">
+                                                <div class="col-md-6">
+                                                    <div class="col-md-12">
+                                                        <span class="encabezadoTitulos">Producto: </span>
+                                                        <span style="font-family:'Work Sans  Roman', 'Work Sans Regular Roman', 'Work Sans';font-weight:400;color:#4B4B4B;">
+                                                            {{producto.Producto | limitTo: 50}}<span ng-if="producto.Producto.length > 50">...</span>
+                                                            <span ng-if="producto.Producto.length > 50" style="color: #3366CC; text-decoration: underline;" tooltip-placement="top" uib-tooltip="ver más" tabindex="0" ng-click="vm.ObjetivoVerMas(producto.Producto,'Producto')">
+                                                                <strong>VER MÁS </strong>
+                                                            </span>
+                                                        </span>
+                                                        <span class="encabezadoTitulos">Objetivo especifico: </span>
+                                                        <span style="font-family:'Work Sans  Roman', 'Work Sans Regular Roman', 'Work Sans';font-weight:400;color:#4B4B4B;">
+                                                            {{producto.ObjetivoEspecifico | limitTo: 35}}<span ng-if="producto.ObjetivoEspecifico.length > 35">...</span>
+                                                            <span ng-if="producto.ObjetivoEspecifico.length > 35" style="color: #3366CC;text-decoration:underline;" tooltip-placement="top" uib-tooltip="ver más" tabindex="0" ng-click="vm.ObjetivoVerMas(producto.ObjetivoEspecifico,'Objetivo especifico')">
+                                                                <strong>VER MÁS </strong>
+                                                            </span>
+                                                        </span>
+                                                        <span class="encabezadoTitulos">Indicador principal: </span>
+                                                        <span style="font-family:'Work Sans  Roman', 'Work Sans Regular Roman', 'Work Sans';font-weight:400;color:#4B4B4B;">
+                                                            {{producto.IndicadorPrincipal | limitTo: 35}}<span ng-if="producto.IndicadorPrincipal.length > 35">...</span>
+                                                            <span ng-if="producto.IndicadorPrincipal.length > 35" style="color: #3366CC; text-decoration: underline;" tooltip-placement="top" uib-tooltip="ver más" tabindex="0" ng-click="vm.ObjetivoVerMas(producto.IndicadorPrincipal,'Indicador principal')">
+                                                                <strong>VER MÁS </strong>
+                                                            </span>
+                                                        </span>
+                                                        <span class="encabezadoTitulos">Unidad de medida: </span>
+                                                        <span style="font-family:'Work Sans  Roman', 'Work Sans Regular Roman', 'Work Sans';font-weight:400;color:#4B4B4B;">{{producto.UnidadMedidaProducto}}. </span>
+                                                        <span class="encabezadoTitulos">Meta total: </span>
+                                                        <span style="font-family:'Work Sans  Roman', 'Work Sans Regular Roman', 'Work Sans';font-weight:400;color:#4B4B4B;">{{producto.CantidadProductoF}}. </span>
+                                                        <span class="encabezadoTitulos">Es acumulativo: </span>
+                                                        <span style="font-family:'Work Sans  Roman', 'Work Sans Regular Roman', 'Work Sans';font-weight:400;color:#4B4B4B;">{{producto.EsAcumulativoProducto}}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="col-md-12" style="text-align:right">
+                                                        <span>Total costo producto $ </span>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="blockReferenciaDNP" style="text-align:right">{{vm.ConvertirNumero(producto.TotalCostoProducto)}}</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="col-md-12" style="text-align:right">
+                                                        <span>Total regionalizado producto $ </span>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="blockReferenciaDNP" style="text-align:right">{{vm.ConvertirNumero(producto.TotalRegionalizacionProducto)}}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        
+                                            <p style="padding: 0px; margin-bottom: 0px; ">
+                                                <button class="btnaccion btnAccordionDNP" type="button" data-toggle="collapse" data-target="#prod{{item.FuenteId}}-{{producto.ProductoId}}" ng-click="vm.AbrilNivel2(item.FuenteId,producto.ProductoId)">
+                                                    <img id="imgmas{{item.FuenteId}}-{{producto.ProductoId}}" style="width:18px;height:18px" src="Img/btnMasn2.svg">
+                                                    <img id="imgmenos{{item.FuenteId}}-{{producto.ProductoId}}" style="width:18px;height:18px;display:none" src="Img/btnMenosn2.svg">
+                                                    <span id="ico{{item.FuenteId}}-{{producto.ProductoId}}" style="display:none">+</span>
+                                                </button>
+                                                <span id="ErrorProducto-{{item.FuenteId}}-{{producto.ProductoId}}" class="hidden text-left color-red">
+                                                    <img class="img img-advertencia" src="Img/u11.svg" />
+                                                    <span id="ErrorProductoErrorMsg-{{item.FuenteId}}-{{producto.ProductoId}}"></span>
+                                                </span>
+                                            </p>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="collapse" id="prod{{item.FuenteId}}-{{producto.ProductoId}}">
+                                    <div class="LineaEncabezado2divDNP" style="margin-top:0px"></div>
+                                    <h3 class="row tituloEncabezadodiv2DNP" style="">Localizaciones</h3>
+                                    <div>
+                                        <div class="alert panel-heading">
+
+                                            <table class="TableDNP no-border">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="columAcc" style="width:2%"></th>
+                                                        <th class="textLeftDNP" style="width:26%"><span>Departamento </span></th>
+                                                        <th class="textLeftDNP" style="width:24%"><span>Municipio </span></th>
+                                                        <th class="textLeftDNP" style="width:24%"><span>Tipo de Agrupación </span></th>
+                                                        <th class="textLeftDNP" style="width:24%"><span>Agrupación </span></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody ng-repeat="localizacion in producto.Localizaciones">
+                                                    <tr>
+                                                        <td class="columAcc"
+                                                            style="background: transparent">
+                                                            <button class="btnaccion " style="margin-left: -5px" type="button" ng-click="vm.AbrilNivel3(producto.ProductoId, item.FuenteId,localizacion.LocalizacionId)" data-toggle="collapse"
+                                                                    data-target="#detalleLocalizacion{{producto.ProductoId}}-{{item.FuenteId}}-{{localizacion.LocalizacionId}}">
+
+                                                                <img id="imgmas-{{producto.ProductoId}}-{{item.FuenteId}}-{{localizacion.LocalizacionId}}" style="width:18px;height:18px" src="Img/btnMasTb.svg">
+                                                                <img id="imgmenos-{{producto.ProductoId}}-{{item.FuenteId}}-{{localizacion.LocalizacionId}}" style="width:18px;height:18px;display:none" src="Img/btnMenosTb.svg">
+                                                                <span id="ico{{producto.ProductoId}}-{{item.FuenteId}}-{{localizacion.LocalizacionId}}" style="display:none">+</span>
+                                                            </button>
+                                                            <div id="indicadoricon-{{producto.ProductoId}}-{{item.FuenteId}}-{{localizacion.LocalizacionId}}" class="img pull-right iconadverdnp hidden">   <img class="" src="Img/u4630.svg"> </div>
+                                                            <span id="localizacionError-{{item.FuenteId}}-{{producto.ProductoId}}-{{localizacion.LocalizacionId}}" class="hidden text-left color-red">
+                                                                <img class="img img-advertencia" src="Img/u11.svg" />
+                                                            </span>
+                                                        </td>
+                                                        <td><span>{{localizacion.Departamento}}</span></td>
+                                                        <td><span>{{localizacion.Municipio}}</span></td>
+                                                        <td><span>{{localizacion.TipoAgrupacion}}</span></td>
+                                                        <td><span>{{localizacion.Agrupacion}}</span></td>
+                                                    </tr>
+                                                    <tr class="no-border hidden" id="detail-{{producto.ProductoId}}-{{item.FuenteId}}-{{localizacion.LocalizacionId}}">
+                                                        <td colspan="8" class="p-0">
+                                                            <div ng-if="vm.fuenteConsultada == item.FuenteId && vm.productoConsultado == producto.ProductoId  && vm.localizacionConsultada == localizacion.LocalizacionId">
+                                                                <div class="LineaEncabezado2divDNP" style="margin-top: 0px; margin-left: 11px;"></div>
+                                                                <h3 class="row tituloEncabezadodivDNP" style="margin-left:17%;width:83%">
+                                                                    Detalle Localización
+                                                                    <span class="buttonbar pull-right">
+                                                                        <button id="Editar{{producto.ProductoId}}-{{item.FuenteId}}-{{localizacion.LocalizacionId}}"
+                                                                                type="button"
+                                                                                class="btn btncancelarHorizonte"
+                                                                                tooltip-placement="top"
+                                                                                ng-click="vm.ActivarEditar(producto.ProductoId, item.FuenteId, localizacion, 1)"
+                                                                                uib-tooltip="{{localizacion.habilitarFinal ? 'CANCELAR' : 'EDITAR'}}"
+                                                                                ng-if="!vm.soloLectura">
+                                                                            {{localizacion.habilitarFinal  ? 'CANCELAR' : 'EDITAR'}}
+                                                                        </button>
+                                                                        <button id="Guardar{{producto.ProductoId}}{{item.FuenteId}}{{localizacion.LocalizacionId}}"
+                                                                                type="submit"
+                                                                                ng-class="localizacion.habilitarFinal  ? 'btn btn-default btn-mdHorizonte' : 'btn btnguardarHorizonte' "
+                                                                                tooltip-placement="top"
+                                                                                ng-click="vm.actualizarVigencia(producto.ProductoId, item.FuenteId, localizacion, 1, item)"
+                                                                                ng-disabled="!localizacion.habilitarFinal"
+                                                                                ng-if="!vm.soloLectura">
+                                                                            GUARDAR
+                                                                        </button>
+                                                                    </span>
+                                                                </h3>
+                                                                <div class="level-1-content mt-4">
+                                                                    <table class="TableDNP no-border">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th class="columAcc"></th>
+                                                                                <th class="textRightDNP" style="width:10%"><span>Vigencia</span></th>
+                                                                                <th class="textRightDNP" style="width:25%"><span>En firme $ </span></th>
+                                                                                <th class="textRightDNP" style="width:25%"><span>En ajuste $ </span></th>
+                                                                                <th class="textRightDNP" style="width:25%"><span>Meta en firme </span></th>
+                                                                                <th class="textRightDNP" style="width:25%"><span>Meta en ajuste </span></th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody ng-repeat="vigencia in localizacion.Vigencias">
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <span id="localizacionIconError-{{item.FuenteId}}-{{producto.ProductoId}}-{{localizacion.LocalizacionId}}-{{vigencia.Vigencia}}" class="hidden text-left color-red">
+                                                                                        <img class="img img-advertencia" src="Img/u11.svg" />
+                                                                                    </span>
+                                                                                </td>
+                                                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{vigencia.Vigencia}}</div></td>
+                                                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{vigencia.EnFirmeF}}</div></td>
+                                                                                <td class="textRightDNP">
+                                                                                    <div class="blockReferenciaDNP" ng-if="!localizacion.habilitarFinal">{{vigencia.EnAjusteF}}</div>
+                                                                                    <div class="blockReferenciaDNP" ng-if="localizacion.habilitarFinal &&vigencia.Vigencia <vm.CurrentDateYear">{{vigencia.EnAjusteF}}</div>
+                                                                                    <input id="input-1" type="text" min="0.00"
+                                                                                           name="vigenciaLocalizacion{{producto.ProductoId}}{{item.FuenteId}}{{localizacion.LocalizacionId}}"
+                                                                                           ng-if="localizacion.habilitarFinal && vigencia.Vigencia >=vm.CurrentDateYear"
+                                                                                           ng-keypress="vm.validateFormat($event, 2)"
+                                                                                           ng-keyup="vm.validarTamanio($event, 2)"
+                                                                                           ng-value="vigencia.EnAjuste"
+                                                                                           ng-blur="vm.actualizaFila($event, 2, localizacion.Vigencias, 1)"
+                                                                                           ng-model="vigencia.EnAjuste" />
+                                                                                </td>
+                                                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{vigencia.MetaEnFirmeF}}</div></td>
+                                                                                <td class="textRightDNP">
+                                                                                    <div class="blockReferenciaDNP" ng-if="!localizacion.habilitarFinal">{{vigencia.MetaEnAjusteF}}</div>
+                                                                                    <div class="blockReferenciaDNP" ng-if="localizacion.habilitarFinal && vigencia.Vigencia <vm.CurrentDateYear">{{vigencia.MetaEnAjusteF}}</div>
+                                                                                    <input id="input-1" type="text" min="0.0000"
+                                                                                           ng-if="localizacion.habilitarFinal && vigencia.Vigencia >=vm.CurrentDateYear"
+                                                                                           name="vigenciaLocalizacion{{producto.ProductoId}}{{item.FuenteId}}{{localizacion.LocalizacionId}}"
+                                                                                           ng-keypress="vm.validateFormat($event, 4)"
+                                                                                           ng-keyup="vm.validarTamanio($event, 4)"
+                                                                                           ng-value="vigencia.MetaEnAjuste"
+                                                                                           ng-blur="vm.actualizaFila($event, 4, localizacion.Vigencias, 0)"
+                                                                                           ng-model="vigencia.MetaEnAjuste" />
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                        <tfoot>
+                                                                            <tr>
+                                                                                <td class="textLeftDNP"><span>{{localizacion.Vigencias.ResumenSubTotal.icono}}</span></td>
+                                                                                <td class="textRightDNP"><span>{{localizacion.Vigencias.ResumenSubTotal.tituloOperacion}}</span></td>
+                                                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero2decimales(localizacion.Vigencias.ResumenSubTotal.TotalEnFirme)}}</div></td>
+                                                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero2decimales(localizacion.Vigencias.ResumenSubTotal.TotalEnAjuste)}}</div></td>
+                                                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(localizacion.Vigencias.ResumenSubTotal.TotalMetaEnFirme)}}</div></td>
+                                                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(localizacion.Vigencias.ResumenSubTotal.TotalMetaEnAjuste)}}</div></td>
+                                                                                <td></td>
+                                                                            </tr>
+                                                                        </tfoot>
+                                                                    </table>
+                                                                    <br />
+                                                                    <div class="row m-0">
+                                                                        <span id="localizacionFooterError-{{item.FuenteId}}-{{producto.ProductoId}}-{{localizacion.LocalizacionId}}" class="hidden text-left color-red">
+                                                                            <img class="img img-advertencia" src="Img/u11.svg" />
+                                                                            <span id="regionalizacionErrorMsg-{{item.FuenteId}}-{{producto.ProductoId}}">Debe relacionar recursos en las localizaciones donde la meta es mayor a cero. Realice el ajuste para poder continuar.</span>
+                                                                        </span>
+                                                                    </div>
+                                                                    <div class="row m-0">
+                                                                        <span class="buttonbar pull-right">
+                                                                            <button id="ValoresCero{{producto.ProductoId}}{{item.FuenteId}}{{localizacion.LocalizacionId}}" type="submit" class="btn btncancelarHorizonte" tooltip-placement="top" ng-click="vm.valoresEnCero(producto.ProductoId, item.FuenteId,  localizacion)" ng-if="!vm.soloLectura">
+                                                                                Asignar Valores en Cero
+                                                                            </button>
+                                                                        </span>
+                                                                    </div>
+                                                                    <br />
+                                                                </div>
+                                                            </div>
+
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+
+                                        <br />
+                                        <br />
+                                        <br />
+                                        
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div id="regionalizacioncargamasiva" ng-if="vm.existeRegionalizacion" style="padding-top:1rem">
+            <div class="row" style="text-align:left">
+                <div class="col-md-12 DetacolumnDNP">
+                    <span>
+                        Archivo plantilla carga masiva <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg" ng-click="vm.abrirMensajeArchivoRegionalizacion()">
+                    </span>
+                    <button type="button" class="btn btn-link btn-md buttonhiperDNP" ng-click="vm.exportExcel()" ng-if="!vm.soloLectura">
+                        DESCARGAR PLANTILLA
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="divpanelcargarchivoDNP" style="">
+                        <button class="btncargarch" type="button" uib-tooltip="Editar" ng-click="vm.adjuntarArchivo()" ng-if="!vm.soloLectura">
+                            EXAMINAR
+                        </button>
+                        <input type="file" style="display:none" id="file" name='files[]' onchange="angular.element(this).scope().fileNameChanged(this)" accept="{{vm.modelo.ext}}" multiple />
+                        <input type="search" style="display:none" id="nombrearchivo" ng-model="vm.nombrearchivo" class="form-control InputSearchDNP " placeholder="" ng-change="ChangeSet()">
+                        <span>{{vm.nombrearchivo}}</span>
+                        <button class="btncancearch" type="button" uib-tooltip="Cancelar" ng-click="vm.limpiarArchivo()">
+                            X
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <span class="buttonbar pull-right">
+                        <button disabled="disabled" id="btnRegionalizacionValidarArchivo" type="button" class="btn btnguardarDNP" tooltip-placement="top" uib-tooltip="Validar" tabindex="1" ng-click="vm.validarArchivo()" ng-if="!vm.soloLectura">
+                            VALIDAR
+                        </button>
+                        <button disabled="disabled" id="btnRegionalizacionLimpiarArchivo" type="button" class="btn btnguardarDNP" tooltip-placement="top" uib-tooltip="Cancelar" tabindex="2" ng-click="vm.limpiarArchivo()" ng-if="!vm.soloLectura">
+                            CANCELAR
+                        </button>
+                        <button disabled="disabled" id="btnRegionalizacionArchivoSeleccionado" class="btn btnguardarDNP" type="button" tooltip-placement="top" uib-tooltip="Cargar" tabindex="3" ng-click="vm.GuardarArchivo(false,1)" ng-if="!vm.soloLectura">
+                            CARGAR
+                        </button>
+                    </span>
+                </div>
+            </div>
+            <br />
+        </div>
+    </form>
+</div>

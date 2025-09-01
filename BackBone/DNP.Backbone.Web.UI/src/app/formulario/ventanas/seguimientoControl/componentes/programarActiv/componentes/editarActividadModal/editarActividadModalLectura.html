@@ -1,0 +1,165 @@
+﻿<style>
+    .niveles-opciones-container {
+        height: 120px;
+        overflow: auto;
+    }
+
+    .modal-editar-actividad {
+        height: 400px;
+        overflow: auto;
+    }
+</style>
+
+<div class="modal-header" ng-init="vm.init()">
+    <button type='button' class='swal2-close closemodalDNP' aria-label='Cierra modal de actividades' data-dismiss="modal" ng-click="vm.cerrar()">×</button>
+    <h3 class="modal-title TituloModal1DNP" id="modal-title">Datos actividad</h3>
+</div>
+<div class="modal-body modal-editar-actividad">
+    <div class="row mx-0">
+        <div class="col-md-6 pl-0">
+            <div class="row mx-0">
+                <div class="col-md-12 pl-0">
+                    <div class="labelbuscadorDNP">
+                        <span>Unidad de medida *</span>
+                        <div class="messagealerttableDNP" ng-if="vm.errores.UnidadMedida != ''">
+                            <span class="img iconadverdnp mr-2"><img src="Img/u4630.svg"></span>
+                            {{vm.errores.UnidadMedida}}
+                        </div>
+                    </div>
+                    <select ng-if="vm.isNivel1" name="selUnidadMedida" id="selUnidadMedida"
+                            ng-model="vm.editarActividad.UnidadMedida"
+                            ng-required="true"
+                            ng-options="option.Text for option in vm.listadoUnidadesMedida track by option.Id"
+                            class="form-control">
+                    </select>
+                    <p ng-if="!vm.isNivel1">
+                        {{vm.editarActividad.UnidadMedida}}
+                    </p>
+                </div>
+                <div class="col-md-12 mt-3 pl-0">
+                    <div class="row mx-0">
+                        <div class="col-md-12 p-0 mb-3">
+                            <div class="labelbuscadorDNP">
+                                <span>Cantidad total *</span>
+                                <div class="messagealerttableDNP" ng-if="vm.errores.CantidadTotal != ''">
+                                    <span class="img iconadverdnp mr-2"><img src="Img/u4630.svg"></span>
+                                    {{vm.errores.CantidadTotal}}
+                                </div>
+                            </div>
+                            <input id="input-1" type="number" string-to-number min="0.00" class="form-control " ng-model="vm.editarActividad.CantidadTotal"
+                                   ng-value="vm.editarActividad.CantidadTotal"
+                                   ng-blur="vm.actualizaFila($event,2)"
+                                   ng-keypress="vm.validateFormat($event,2)"
+                                   ng-keyup="vm.validarTamanio($event,2)" />
+                        </div>
+                        <div class="col-md-12 p-0 mb-3">
+                            <div class="labelbuscadorDNP">
+                                <span>Costo total de la actividad *</span>
+                                <div class="messagealerttableDNP" ng-if="vm.errores.CostoTotal != ''">
+                                    <span class="img iconadverdnp mr-2"><img src="Img/u4630.svg"></span>
+                                    {{vm.errores.CostoTotal}}
+                                </div>
+                            </div>
+                            <div class="blockReferenciaDNP">{{vm.editarActividad.CostoTotal | number:2}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-12 mb-3  pl-0">
+                    <div class="labelbuscadorDNP">
+                        <span>Duración optimista (días) *</span>
+                        <div class="messagealerttableDNP" ng-if="vm.errores.DuracionOptimista != ''">
+                            <span class="img iconadverdnp mr-2"><img src="Img/u4630.svg"></span>
+                            {{vm.errores.DuracionOptimista}}
+                        </div>
+                    </div>
+                    <input type="number" string-to-number min="0" class="form-control " ng-model="vm.editarActividad.DuracionOptimista" />
+                </div>
+                <div class="col-md-12 mb-3  pl-0">
+                    <div class="labelbuscadorDNP">
+                        <span>Duración probable (días) *</span>
+                        <div class="messagealerttableDNP" ng-if="vm.errores.DuracionProbable != ''">
+                            <span class="img iconadverdnp mr-2"><img src="Img/u4630.svg"></span>
+                            {{vm.errores.DuracionProbable}}
+                        </div>
+                    </div>
+                    <input type="number" string-to-number min="0" class="form-control " ng-model="vm.editarActividad.DuracionProbable" />
+                </div>
+                <div class="col-md-12 mb-3  pl-0">
+                    <div class="labelbuscadorDNP">
+                        <span>Duración pesimista (días) *</span>
+                        <div class="messagealerttableDNP" ng-if="vm.errores.DuracionPesimista != ''">
+                            <span class="img iconadverdnp mr-2"><img src="Img/u4630.svg"></span>
+                            {{vm.errores.DuracionPesimista}}
+                        </div>
+                    </div>
+                    <input type="number" string-to-number min="0" class="form-control " ng-model="vm.editarActividad.DuracionPesimista" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mx-0 mb-3">
+        <div class="col-md-12 pl-0">
+            <div class="labelbuscadorDNP">
+                <span>Actividad dependiente *</span>
+                <div class="messagealerttableDNP" ng-if="vm.errores.Predecesora != ''">
+                    <span class="img iconadverdnp mr-2"><img src="Img/u4630.svg"></span>
+                    {{vm.errores.Predecesora}}
+                </div>
+            </div>
+            <select name="actividad-Predecesora"
+                    ng-model="vm.editarActividad.ActividadPredecesora"
+                    ng-required="true"
+                    ng-options="option.Nombre for option in vm.listadoActividades track by option.Index"
+                    ng-change="vm.onChangePredecesora()"
+                    class="form-control">
+            </select>
+        </div>
+    </div>
+    <div class="row mx-0 mb-3">
+        <div class="col-md-6 pl-0">
+            <div class="labelbuscadorDNP">
+                <span>Tipo</span>
+            </div>
+            <select ng-if="vm.editarActividad.ActividadPredecesora.Index != ''"
+                    name="tipo-actividad"
+                    ng-model="vm.editarActividad.Tipo"
+                    ng-required="true"
+                    ng-options="option.Text for option in vm.Tipo track by option.Id"
+                    ng-change="vm.onChangeTipo()"
+                    class="form-control">
+            </select>
+            <label ng-if="vm.editarActividad.ActividadPredecesora.Index == ''">
+                {{vm.editarActividad.Tipo.Text}}
+            </label>
+        </div>
+    </div>
+    <div class="row mx-0 mb-3" ng-if="vm.editarActividad.ActividadPredecesora.Index != ''">
+        <div class="col-md-6 pl-0">
+            <div class="labelbuscadorDNP">
+                <span>Posposición (días)</span>
+                <div class="messagealerttableDNP" ng-if="vm.errores.PosPosicion != ''">
+                    <span class="img iconadverdnp mr-2"><img src="Img/u4630.svg"></span>
+                    {{vm.errores.PosPosicion}}
+                </div>
+            </div>
+            <input type="number" string-to-number min="0" class="form-control" ng-model="vm.editarActividad.PosPosicion" />
+        </div>
+        <div class="col-md-6" ng-if="vm.editarActividad.Tipo.Id == 'FC'">
+            <div class="labelbuscadorDNP">
+                <span>Adelanto (días)</span>
+                <div class="messagealerttableDNP" ng-if="vm.errores.Adelanto != ''">
+                    <span class="img iconadverdnp mr-2"><img src="Img/u4630.svg"></span>
+                    {{vm.errores.Adelanto}}
+                </div>
+            </div>
+            <input type="number" string-to-number min="0" class="form-control " ng-model="vm.editarActividad.Adelanto" />
+        </div>
+    </div>
+</div>
+<div class="modal-footer textCenterDNP">
+    <button class="btneditarDNP" type="button" ng-click="vm.cancelar()">CANCELAR</button>
+</div>

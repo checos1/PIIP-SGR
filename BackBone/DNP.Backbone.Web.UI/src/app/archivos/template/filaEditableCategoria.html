@@ -1,0 +1,12 @@
+﻿<div ng-class="{ 'my-css-class': grid.appScope.rowFormatter( row ) }">
+    <div ng-if="!row.entity.editable" ng-repeat="(colRenderIndex, col) in colContainer.renderedColumns track by col.colDef.name" class="ui-grid-cell" ng-class="{ 'ui-grid-row-header-cell': col.isRowHeader }" ui-grid-cell></div>
+    <div ng-if="row.entity.editable">
+        <!-- ReSharper disable Html.TagNotResolved -->
+        <crear-Modificar-Categoria categoria-A-Editar="row.entity"
+                                   retorno-Guardar="grid.appScope.vm.finalizarCreacion()"
+                                   retorno-Cancelar="grid.appScope.vm.cancelaCrearOEditar()"
+                                   crear-Categorias="row.entity.abrirEditarCategoria"
+                                   formulario-modificado-categoria="grid.appScope.vm.estaEditandoCategoria">
+        </crear-Modificar-Categoria>
+    </div>
+</div>

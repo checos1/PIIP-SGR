@@ -1,0 +1,698 @@
+﻿<style>
+	.d-none {
+		display: none;
+	}
+
+    .edtMessagealerttableDNP {
+        font-family: 'Work Sans  Roman', 'Work Sans Regular Roman', 'Work Sans';
+        font-weight: 400;
+        font-style: normal;
+        font-size: 12px;
+        color: #A80521;
+    }
+
+	.content-title {
+		padding-left: 50px;
+	}
+
+	.content-ayuda {
+		font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif;
+		font-weight: 500;
+		font-style: normal;
+		font-size: 14px;
+		color: #4B4B4B;
+	}
+
+	.requiere-niveles {
+		padding: 3px 10px;
+		font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif;
+		font-weight: 500;
+		font-size: 16px;
+		color: #004884;
+		text-align: left;
+		background-color: rgba(230, 239, 253, 1);
+	}
+
+	.objetivo-header {
+		background-color: rgba(249, 252, 253, 1);
+		box-sizing: border-box;
+		border-width: 2px;
+		border-style: solid;
+		border-color: rgba(230, 239, 253, 1);
+		padding: 25px 10px 25px 55px;
+	}
+
+	.objetivo-header {
+		text-align: left;
+	}
+
+		.objetivo-header h4.header-titulo {
+			color: #004884;
+			font-family: 'Work Sans SemiBold Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif;
+			font-weight: 600;
+			font-size: 16px;
+			margin: 0
+		}
+
+		.objetivo-header p.header-content {
+			font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif;
+			font-weight: 400;
+			font-size: 16px;
+			color: #4B4B4B;
+			margin: 0;
+		}
+
+	.objetivo-productos .divAccordionDNP {
+		border-top: 0;
+		max-height: fit-content;
+	}
+
+	.productos-nivel-1 .LineaEncabezadodivDNP {
+		margin-left: 15px;
+	}
+
+	.ico-check {
+		color: #004884;
+	}
+
+	.f-16 {
+		font-size: 16px;
+	}
+
+	.font-total {
+		font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif;
+		font-weight: 400;
+		color: #4B4B4B;
+	}
+
+	.font-Actividades {
+		font-family: 'Work Sans Medium', 'Work Sans Regular Roman', 'Work Sans', sans-serif;
+		font-weight: 500;
+		font-style: normal;
+		font-size: 16px;
+		color: #004884;
+		line-height: 22px;
+		margin-left: 97px !important;
+	}
+
+	.list-Actividades-container {
+		height: 170px;
+		overflow: auto;
+	}
+
+	.list-Actividades {
+		background-color: white;
+		box-sizing: border-box;
+		border-width: 2px;
+		border-style: solid;
+		border-color: rgba(230, 239, 253, 1);
+		border-radius: 0px;
+		font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif;
+		font-style: normal;
+		margin-left: 54px;
+		margin-right: 10px;
+	}
+
+	.list-Actividades-simples {
+		background-color: rgba(249, 252, 253, 1);
+		box-sizing: border-box;
+		border-width: 2px;
+		border-style: solid;
+		border-color: rgba(230, 239, 253, 1);
+		border-radius: 0px;
+		font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif;
+		font-style: normal;
+	}
+
+	.divisor-Actividades {
+		border-width: 0px;
+		position: absolute;
+		left: 56px;
+		top: 12px;
+		width: 29px;
+		height: 17px;
+		background: inherit;
+		background-color: rgba(255, 255, 255, 1);
+		box-sizing: border-box;
+		border-width: 2px;
+		border-style: solid;
+		border-color: rgba(51, 102, 204, 1);
+		border-top: 0px;
+		border-right: 0px;
+		border-radius: 0px;
+		border-top-left-radius: 0px;
+		border-bottom-right-radius: 0px;
+		-moz-box-shadow: none;
+		-webkit-box-shadow: none;
+		box-shadow: none;
+	}
+
+	.contenedor-Actividades {
+		position: relative;
+	}
+
+	/* Modificaciones estructura */
+	.productos-nivel-1 .tituloEncabezadodivDNP {
+		margin-left: 95px !important;
+		width: auto !important;
+	}
+
+	.productos-nivel-1-content .panel-headingAcc2DNP {
+		height: auto !important;
+		padding-top: 0 !important;
+		padding-bottom: 0 !important;
+	}
+
+	.productos-nivel-1-content .LineaEncabezado2divDNP {
+		margin-top: 0px !important;
+		margin-left: 16px !important;
+		width: 145px !important;
+	}
+
+	.productos-nivel-1-content .LineaEncabezado3divDNP {
+		margin-top: 0px !important;
+		margin-left: 16px !important;
+		width: 190px !important;
+	}
+
+	.productos-nivel-1-content .tituloEncabezadodiv2DNP {
+		margin-left: 145px !important;
+		width: auto !important;
+	}
+
+	.productos-nivel-1-content .tituloEncabezadodiv3DNP {
+		margin-left: 205px !important;
+		width: auto !important;
+	}
+
+	.productos-nivel-1 .btneditarDNP {
+		width: auto !important;
+	}
+
+	.nivel-sin-actividad {
+		height: 130px;
+		background-color: rgba(249, 252, 253, 1);
+		border-width: 2px;
+		border-style: solid;
+		border-color: rgba(230, 239, 253, 1);
+		border-radius: 0px;
+		-moz-box-shadow: none;
+		-webkit-box-shadow: none;
+		box-shadow: none;
+		font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif;
+		font-weight: 400;
+		font-style: normal;
+		font-size: 14px;
+		color: #4B4B4B;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.title-actividades {
+		margin-bottom: 20px;
+	}
+
+	.align-selft-center {
+		align-self: center;
+	}
+
+	.ico-check.ico-trash {
+		font-size: 16px;
+	}
+
+	.d-flex {
+		display: flex;
+	}
+
+	.detalle-nivel-1 {
+		margin-left: 55px;
+	}
+
+		.detalle-nivel-1 > span {
+			margin-left: 0;
+		}
+
+	.detalle-nivel {
+		margin-left: 55px;
+	}
+
+		.detalle-nivel > span {
+			margin-left: 0;
+		}
+
+	.panelbtnalertAcordnp {
+		display: inline-flex;
+		margin: 10px;
+	}
+
+	.errores-contenedor-EDT {
+		margin: 15px 0 0 5px;
+	}
+</style>
+
+<section class="container-fluid inbox" ng-init="vm.init();">
+	<div class="row">
+		<div class="col-md-6">
+			<h3 class="text-left ui-seccion-title mb-5">Estructura de desglose de trabajo <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg" ng-click="vm.abrirMensajeQueEsEsto()"></h3>
+		</div>
+		<br />
+		<div class="col-md-6">
+			<!-- <a ng-click="vm.abrirGantt()" class="pull-right" style="height:75px; display:flex; align-items:center">pwbi<img src="Img/icono_power_bi.svg"></a>-->
+			<img class="pull-right" ng-src="Img/icono_power_bi.svg" uib-tooltip="Estructura de Desglose de Trabajo" ng-click="vm.abrirDiagramaActividades()" style="height:30px" />
+		</div>
+	</div>
+	<div class="objetivos-container">
+
+		<div class="pr-3" ng-repeat="objetivos in vm.listadoObjProdNiveles" ng-init="objetivoIndex = $index+1">
+			<div class="mb-4">
+				<!-- Objetivos-->
+				<div class="objetivo-header">
+					<h4 class="header-titulo">
+						<span class="errores-contenedor-EDT d-none" id="edt-error-button-{{objetivos.IdCompuesto}}">
+							<span class="img iconadverdnp"><img src="Img/u4630.svg"> </span>
+							<span class="edtMessagealerttableDNP" id="edt-error-button-{{productos.IdCompuesto}}-txt">
+
+							</span>
+						</span>
+						Objetivo {{objetivos.NumeroObjetivo}}
+					</h4>
+					<p class="header-content">
+						<span id="objetivo-nombre-{{objetivoIndex}}-min"> {{objetivos.ObjetivoEspecificoCorto}}</span>
+						<span class="hidden" id="objetivo-nombre-{{objetivoIndex}}-max"> {{objetivos.ObjetivoEspecifico}}</span>
+						<a id="objetivo-nombre-{{objetivoIndex}}-val"
+						   ng-if="objetivos.ObjetivoEspecificoCorto != objetivos.ObjetivoEspecifico"
+						   ng-click="vm.verNombreCompleto('objetivo-nombre-', objetivoIndex)">VER MÁS</a>
+					</p>
+				</div>
+				<!-- Productos-->
+				<div class="objetivo-productos" ng-repeat="productos in objetivos.Productos" ng-init="productoIndex = $index+1">
+					<div class="card card-body divAccordionDNP">
+						<div class="content-title">
+							<div class="mb-2">
+								<span class="uLabelCampo">Producto {{objetivos.NumeroObjetivo}}.{{productos.NumeroProducto}}</span>
+								<span id="producto-nombre-{{IdCompuesto}}-min"> {{productos.NombreProductoCorto}}</span>
+								<span class="hidden" id="producto-nombre-{{IdCompuesto}}-max"> {{productos.NombreProducto}}</span>
+								<a id="producto-nombre-{{IdCompuesto}}-val"
+								   ng-if="productos.NombreProductoCorto !=productos.NombreProducto"
+								   ng-click="vm.verNombreCompleto('producto-nombre-', IdCompuesto)">VER MÁS</a>
+							</div>
+							<div class="mb-2">
+								<span class="uLabelCampo">Indicador principal</span>
+								<span>{{productos.IndicadorPrincipal}}</span>
+							</div>
+							<div class="mb-2">
+								<span class="uLabelCampo">Unidad de medida</span>
+								<span>{{productos.UnidadMedidaProducto}}</span>
+								<span class="ml-2 uLabelCampo">Es acumulativo</span>
+								<span>{{productos.EsAcumulativo}}</span>
+							</div>
+							<div>
+								<span class="requiere-niveles"> Requiere:</span>
+								<span ng-repeat="requisitos in productos.RequisitosObligatorios" class="mr-3">
+									<span>{{requisitos.Nombre}}</span>
+									<i class="fa fa-check-square ico-check" aria-hidden="true" ng-if="requisitos.RequisitoCumple"></i>
+									<i class="fa fa-square-o ico-check" aria-hidden="true" ng-if="!requisitos.RequisitoCumple"></i>
+								</span>
+							</div>
+						</div>
+						<div class="panelbtnalertAcordnp">
+							<button id="button-{{productos.IdCompuesto}}"
+									class="btnaccion btnAccordionDNP"
+									type="button"
+									data-toggle="collapse"
+									data-target="#productos-nivel-1-{{productos.ProductoId}}"
+									ng-click="vm.abrilNivel(productos.IdCompuesto)">
+								<img src="Img/btnMas.svg" id="{{productos.IdCompuesto}}-mas">
+								<img class="hidden" src="Img/btnMenos.svg" id="{{productos.IdCompuesto}}-menos">
+							</button>
+							<span class="errores-contenedor-EDT d-none" id="edt-error-button-{{productos.IdCompuesto}}">
+								<span class="img iconadverdnp"><img src="Img/u4630.svg"> </span>
+								<span class="edtMessagealerttableDNP" id="edt-error-button-{{productos.IdCompuesto}}-txt">
+
+								</span>
+							</span>
+						</div>
+					</div>
+					<!--  Solo entregables Nivel 1- Desplegado -->
+					<div class="collapse productos-nivel-1" id="productos-nivel-1-{{productos.ProductoId}}">
+						<div class="LineaEncabezadodivDNP mt-0"></div>
+						<div class="inlineBlock">
+							<div class="tituloEncabezadodivDNP">
+								Entregables nivel 1
+								<span class="ml-4 font-total">Total: </span>
+								<span ng-if="productos.EntregablesNivel1.length > 0">{{productos.EntregablesNivel1.length}}</span>
+								<span ng-if="productos.EntregablesNivel1 == undefined || productos.EntregablesNivel1 == null">0</span>
+							</div>
+						</div>
+
+						<!-- Nivel 1 - Listado de niveles (Niveles 2) o actividades -->
+						<div class="text-left productos-nivel-1-content">
+							<div class="content-ayuda mb-3">Si requiere agregar un entregable de Nivel 1, debe proceder a adelantar un ajuste del proyecto <i class="fa fa-question-circle ico-check" aria-hidden="true"></i></div>
+
+							<div ng-repeat="nivel1 in productos.EntregablesNivel1" ng-init="entregableNivel1Index = $index+1">
+
+								<!-- Nivel 1 - Encabezado -->
+								<div class="row mx-0 panel-headingAcc2DNP px-0">
+									<div class="card card-body pull-left bordesencillo">
+										<div class="detalle-nivel-1 mr-4">
+											<span class="ml-0">{{objetivos.NumeroObjetivo}}.{{productos.NumeroProducto}}.{{nivel1.NumeroEntregableNivel1}}</span>
+											<span class="ml-0 uLabelCampo" id="{{nivel1.IdCompuesto}}-min"> {{nivel1.NombreEntregableCorto}}</span>
+											<span class="hidden ml-3" id="{{nivel1.IdCompuesto}}-max"> {{nivel1.NombreEntregable}}</span>
+											<a class="ml-3"
+											   id="{{nivel1.IdCompuesto}}-val"
+											   ng-if="nivel1.NombreEntregableCorto !=nivel1.NombreEntregable"
+											   ng-click="vm.verNombreCompleto('', nivel1.IdCompuesto)">VER MÁS</a>
+											<div>
+												<span class="ml-0">Costo </span>
+												<span class="ml-0 uLabelCampo">{{nivel1.Costo | currency:"$"}}</span>
+											</div>
+										</div>
+
+										<div class="panelbtnalertAcordnp">
+											<div class="d-inline-block">
+												<button type="button"
+														class="btnaccion btnAccordionDNP"
+														data-toggle="collapse"
+														data-target="#items-{{nivel1.IdCompuesto}}"
+														ng-click="vm.abrilNivel('items-'+nivel1.IdCompuesto)">
+													<img src="Img/btnMasn2.svg" id="items-{{nivel1.IdCompuesto}}-mas">
+													<img class="hidden" src="Img/btnMenosn2.svg" id="items-{{nivel1.IdCompuesto}}-menos">
+												</button>
+											</div>
+											<div class="errores-contenedor-EDT d-none" id="edt-error-button-{{nivel1.IdCompuesto}}">
+												<div class="d-inline-block">
+													<div class="edtMessagealerttableDNP d-none" id="edt-error-button-{{nivel1.IdCompuesto}}-text-error01"></div>
+													<div class="edtMessagealerttableDNP d-none" id="edt-error-button-{{nivel1.IdCompuesto}}-text-error02"></div>
+													<div class="edtMessagealerttableDNP d-none" id="edt-error-button-{{nivel1.IdCompuesto}}-text-error03"></div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<!-- Nivel 2 - Catalogo con Nivel 2-->
+								<div ng-if="nivel1.Nivel2" class="collapse mb-5" id="items-{{nivel1.IdCompuesto}}">
+
+									<div class="LineaEncabezado2divDNP"></div>
+									<div class="tituloEncabezadodiv2DNP ">
+										Entregables nivel 2
+										<span class="ml-4 font-total">Total: </span>
+										<span ng-if="nivel1.NivelesRegistrados.length > 0">{{nivel1.NivelesRegistrados.length}}</span>
+										<span ng-if="nivel1.NivelesRegistrados == undefined || nivel1.NivelesRegistrados == null || nivel1.NivelesRegistrados.length == 0">0</span>
+										<span class="buttonbar pull-right">
+											<button type="button" tooltip-placement="top" uib-tooltip="Nivel 2" tabindex="0"
+													ng-if="!vm.soloLectura"
+													ng-disabled="nivel1.ExcedeEntregablesSinCatalogo"
+													ng-class="{'btnguardarDisabledDNP': nivel1.ExcedeEntregablesSinCatalogo, 'btneditarDNP': !nivel1.ExcedeEntregablesSinCatalogo }"
+													ng-click="vm.abrirModalAgregar('Nivel 2', nivel1.DataAgregarModal)">
+												+ NIVEL 2
+											</button>
+										</span>
+									</div>
+									<div class="content-ayuda mb-3">Se requieren como mínimo 2 entregables del catálogo. <i class="fa fa-question-circle ico-check" aria-hidden="true"></i></div>
+
+									<!-- Validación 2.1 : No registra niveles 2-->
+									<div ng-if="nivel1.NivelesRegistrados == undefined || nivel1.NivelesRegistrados == null || nivel1.NivelesRegistrados.length == 0">
+										<div class="nivel-sin-actividad text-center">
+											<p>No se han agregado entregables nivel 2</p>
+										</div>
+									</div>
+
+									<!-- Validación 2.2 : Registra niveles 2-->
+									<div ng-if="nivel1.NivelesRegistrados.length > 0" ng-repeat="nivel2 in nivel1.NivelesRegistrados" ng-init="entregableNivel2Index = $index+1">
+
+										<!-- Nivel 2 - Encabezado -->
+										<div class="row mx-0 panel-headingAcc2DNP px-0">
+											<div class="card card-body bordesencillo">
+												<div class="d-flex">
+													<div class="mr-4 detalle-nivel">
+														<span class="ml-0" id="{{nivel2.IdCompuesto}}-label-nivel">{{objetivos.NumeroObjetivo}}.{{productos.NumeroProducto}}.{{nivel1.NumeroEntregableNivel1}}.{{nivel2.NumeroEntregableNivel2}}</span>
+														<span class="ml-0 uLabelCampo" id="{{nivel2.IdCompuesto}}-min"> {{nivel2.NombreEntregableCorto}}</span>
+														<span class="ml-0 uLabelCampo hidden" id="{{nivel2.IdCompuesto}}-max"> {{nivel2.NombreEntregable}}</span>
+														<a class="ml-3"
+														   id="{{nivel2.IdCompuesto}}-val"
+														   ng-if="nivel2.NombreEntregableCorto !=nivel2.NombreEntregable"
+														   ng-click="vm.verNombreCompleto(nivel2.IdCompuesto, '')">VER MÁS</a>
+
+													</div>
+													<div class="align-selft-center ml-auto mr-3">
+														<button type="button" class="btn p-0 bg-transparent" ng-click="vm.eliminar('Entregable', nivel2)" ng-if="!vm.soloLectura">
+															<i class="fa fa-trash ico-check ico-trash" aria-hidden="true"></i>
+														</button>
+													</div>
+												</div>
+												<div class="panelbtnalertAcordnp">
+													<div class="d-inline-block">
+														<button type="button"
+																class="btnaccion btnAccordionDNP"
+																data-toggle="collapse"
+																data-target="#items-{{nivel2.IdCompuesto}}"
+																ng-click="vm.abrilNivel('items-'+nivel2.IdCompuesto)">
+															<img src="Img/btnMasn2.svg" id="items-{{nivel2.IdCompuesto}}-mas">
+															<img class="hidden" src="Img/btnMenosn2.svg" id="items-{{nivel2.IdCompuesto}}-menos">
+														</button>
+													</div>
+													<span class="errores-contenedor-EDT d-none" id="edt-error-button-{{nivel2.IdCompuesto}}">
+														<div class="d-inline-block">
+															<div class="edtMessagealerttableDNP" id="edt-error-button-{{nivel2.IdCompuesto}}-text-error01"></div>
+															<div class="edtMessagealerttableDNP" id="edt-error-button-{{nivel2.IdCompuesto}}-text-error02"></div>
+															<div class="edtMessagealerttableDNP" id="edt-error-button-{{nivel2.IdCompuesto}}-text-error03"></div>
+														</div>
+													</span>
+												</div>
+											</div>
+										</div>
+										<!-- Nivel 3 - Catalogo con Nivel 3-->
+										<div ng-if="nivel2.ContieneSiguienteNivel" class="collapse mb-5" id="items-{{nivel2.IdCompuesto}}">
+
+											<div class="LineaEncabezado3divDNP LineaEncabezado2divDNP"></div>
+											<div class="tituloEncabezadodiv2DNP tituloEncabezadodiv3DNP pb-5">
+												Entregables nivel 3
+												<span class="ml-4 font-total">Total: </span>
+												<span ng-if="nivel2.Hijos.length > 0">{{nivel2.Hijos.length}}</span>
+												<span ng-if="nivel2.Hijos == undefined || nivel2.Hijos == null || nivel2.Hijos.length == 0">0</span>
+
+												<span class="buttonbar pull-right">
+													<button type="button" tooltip-placement="top" uib-tooltip="Nivel 3" tabindex="0"
+															ng-if="!vm.soloLectura"
+															ng-class="{'btnguardarDisabledDNP': nivel2.ExcedeEntregablesSinCatalogo, 'btneditarDNP': !nivel2.ExcedeEntregablesSinCatalogo }"
+															ng-click="vm.abrirModalAgregar('Nivel 3', nivel2.DataAgregarModal)">
+														+ NIVEL 3
+													</button>
+												</span>
+											</div>
+
+											<!-- Validación 2.1 : No registra niveles 3-->
+											<div ng-if="nivel2.Hijos == undefined || nivel2.Hijos == null ||nivel2.Hijos.length == 0">
+												<div class="nivel-sin-actividad text-center">
+													<p>No se han agregado entregables nivel 3</p>
+												</div>
+											</div>
+
+											<!-- Validación 3.2 : Registra niveles 3-->
+											<div ng-if="nivel2.Hijos.length > 0" ng-repeat="nivel3 in nivel2.Hijos" ng-init="entregableNivel3Index = $index+1">
+
+												<!-- Nivel 3 - Encabezado -->
+												<div class="panel-headingAcc2DNP row mx-0 px-0">
+													<div class="card card-body bordesencillo">
+														<div class="d-flex">
+															<div class="mr-4 detalle-nivel">
+																<!--<div class="edtMessagealerttableDNP" id="error-button-{{nivel3.IdCompuesto}}-text-error01"></div>
+																<div class="edtMessagealerttableDNP" id="error-button-{{nivel3.IdCompuesto}}-text-error02"></div>
+																<div class="edtMessagealerttableDNP" id="error-button-{{nivel3.IdCompuesto}}-text-error03"></div>-->
+																<span class="errores-contenedor-EDT d-none" id="edt-error-button-{{nivel3.IdCompuesto}}">
+																	<div class="d-inline-block">
+																		<div class="edtMessagealerttableDNP" id="edt-error-button-{{nivel3.IdCompuesto}}-text-error01"></div>
+																		<div class="edtMessagealerttableDNP" id="edt-error-button-{{nivel3.IdCompuesto}}-text-error02"></div>
+																		<div class="edtMessagealerttableDNP" id="edt-error-button-{{nivel3.IdCompuesto}}-text-error03"></div>
+																	</div>
+																</span>
+																<span class="ml-0" id="{{nivel3.IdCompuesto}}-label-nivel"> {{objetivos.NumeroObjetivo}}.{{productos.NumeroProducto}}.{{nivel1.NumeroEntregableNivel1}}.{{nivel2.NumeroEntregableNivel2}}.{{nivel3.NumeroEntregableNivel3}}</span>
+
+																<span class="ml-0 uLabelCampo" id="{{nivel3.IdCompuesto}}-min"> {{nivel3.NombreEntregableCorto}}</span>
+																<span class="hidden ml-3" id="{{nivel3.IdCompuesto}}-max"> {{nivel3.NombreEntregable}}</span>
+																<a class="ml-0 uLabelCampo" id="{{nivel3.IdCompuesto}}-val"
+																   ng-if="nivel3.NombreEntregableCorto !=nivel3.NombreEntregable"
+																   ng-click="vm.verNombreCompleto(nivel3.IdCompuesto,'')">VER MÁS</a>
+															</div>
+															<div class="align-selft-center ml-auto mr-3">
+																<button type="button" class="btn p-0 bg-transparent" ng-click="vm.eliminar('Entregable', nivel3)" ng-if="!vm.soloLectura">
+																	<i class="fa fa-trash ico-check ico-trash" aria-hidden="true"></i>
+																</button>
+															</div>
+														</div>
+														<!-- Actividades -->
+														<div class="py-4 contenedor-Actividades" style="min-height:30px">
+															<div class="mr-3 title-actividades">
+																<div class="divisor-Actividades"></div>
+																<span class="font-Actividades">Actividades</span>
+																<span class="ml-3"> Total:</span>
+																<span class="ml-0 uLabelCampo" ng-if="nivel3.Hijos.length > 0">{{nivel3.Hijos.length}}</span>
+																<span class="ml-0 uLabelCampo" ng-if="nivel3.Hijos == undefined || nivel3.Hijos == null || nivel3.Hijos.length == 0">0</span>
+																<span class="buttonbar pull-right mr-2">
+																	<button type="button" class="btneditarDNP" tooltip-placement="top" uib-tooltip="Actividad" tabindex="0"
+																			ng-if="!vm.soloLectura"
+																			ng-click="vm.abrirModalAgregar('Actividad', nivel3.DataAgregarModal)">
+																		+ ACTIVIDAD
+																	</button>
+																</span>
+															</div>
+
+															<!-- Validación 2.1 : No registra niveles 2-->
+															<div ng-if="nivel3.Hijos == undefined || nivel3.Hijos == null ||nivel3.Hijos.length == 0">
+																<div class="nivel-sin-actividad text-center mx-3 bg-white">
+																	<p>No se han agregado actividades</p>
+																</div>
+															</div>
+
+															<div ng-if="nivel3.Hijos.length > 0" class="list-Actividades-container">
+																<div class="list-Actividades my-3" ng-repeat="actividades in nivel3.Hijos" ng-init="actividadIndex = $index+1">
+																	<div class="d-flex">
+																		<div class="mr-4 ml-3 detalle-nivel">
+																			<div class="px-5 py-3">
+																				<span class="ml-0" id="{{actividades.IdCompuesto}}-label-nivel">{{objetivos.NumeroObjetivo}}.{{productos.NumeroProducto}}.{{nivel1.NumeroEntregableNivel1}}.{{nivel2.NumeroEntregableNivel2}}.{{nivel3.NumeroEntregableNivel3}}.{{actividades.NumeroActividad}}</span>
+																				<span class="ml-0 uLabelCampo" id="{{actividades.IdCompuesto}}-min"> {{actividades.NombreEntregableCorto}}</span>
+																				<span class="ml-0 uLabelCampo hidden" id="{{actividades.IdCompuesto}}-max"> {{actividades.NombreEntregable}}</span>
+																				<a class="ml-0 uLabelCampo" id="{{actividades.IdCompuesto}}-val"
+																				   ng-if="actividades.NombreEntregableCorto !=actividades.NombreEntregable"
+																				   ng-click="vm.verNombreCompleto(actividades.IdCompuesto,'')">VER MÁS</a>
+																				<span class="ml-0" id="{{actividades.IdCompuesto}}-label-nivel">UM: </span><span class="ml-0 uLabelCampo">{{actividades.UnidadMedida}}</span>
+
+																			</div>
+																		</div>
+																		<div class="align-selft-center ml-auto mr-3">
+																			<button type="button" class="btn p-0 bg-transparent" ng-click="vm.eliminar('Actividad', actividades)" ng-if="!vm.soloLectura">
+																				<i class="fa fa-trash ico-check ico-trash" aria-hidden="true"></i>
+																			</button>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<!-- Nivel 2 - Catalogo con Actividad -->
+										<div ng-if="!nivel2.ContieneSiguienteNivel" class="collapse mb-5" id="items-{{nivel2.IdCompuesto}}">
+
+											<div class="LineaEncabezado3divDNP LineaEncabezado2divDNP"></div>
+											<div class="tituloEncabezadodiv2DNP tituloEncabezadodiv3DNP pb-5">
+
+												<label ng-if="nivel2.Hijos.length > 0"><b>Actividades</b></label>
+												<span class="ml-4 font-total" ng-if="nivel2.Hijos.length > 0">Total: </span>
+												<span ng-if="nivel2.Hijos.length > 0">{{nivel2.Hijos.length}}</span>
+												<!--<span ng-if="nivel2.Hijos == undefined || nivel2.Hijos == null || nivel2.Hijos.length == 0">0</span>-->
+
+												<span class="buttonbar pull-right">
+													<button type="button" tooltip-placement="top" uib-tooltip="Nivel 3" tabindex="0"
+															ng-if="(nivel2.Hijos == undefined || nivel2.Hijos == null || nivel2.Hijos.length == 0) && !vm.soloLectura"
+															ng-class="{'btnguardarDisabledDNP': nivel2.ExcedeEntregablesSinCatalogo, 'btneditarDNP': !nivel2.ExcedeEntregablesSinCatalogo }"
+															ng-click="vm.abrirModalAgregar('Nivel 3', nivel2.DataAgregarModal)">
+														+ NIVEL 3
+													</button>
+													<button type="button" class="btneditarDNP" tooltip-placement="top" uib-tooltip="Nivel 3" tabindex="0"
+															ng-if="!vm.soloLectura && (productos.RequisitosObligatorios|filter:{Nombre:'Nivel 3',RequisitoCumple:true}).length == 0"
+															ng-click="vm.abrirModalAgregar('Actividad', nivel2.DataAgregarModal)">
+														+ ACTIVIDAD
+													</button>
+												</span>
+											</div>
+											<div class="content-ayuda mb-3">Se requieren como mínimo 2 actividades del catálogo. <i class="fa fa-question-circle ico-check" aria-hidden="true"></i></div>
+
+											<!-- Validación 1.1 : No registra Actividades-->
+											<div class="my-3" ng-if="nivel2.Hijos == undefined || nivel2.Hijos == null || nivel2.Hijos.length == 0">
+												<div class="nivel-sin-actividad text-center">
+													<p>No se han agregado actividades</p>
+												</div>
+											</div>
+
+											<!-- Validación 1.2 : Registra Actividades 3-->
+											<div ng-if="nivel2.Hijos.length > 0" class="list-Actividades-simples my-3" ng-repeat="actividades in nivel2.Hijos" ng-init="actividadIndex = $index+1">
+												<div class="py-3 d-flex">
+													<div class="mr-4 detalle-nivel">
+														<span class="ml-0" id="{{actividades.IdCompuesto}}-label-nivel"> {{objetivos.NumeroObjetivo}}.{{productos.NumeroProducto}}.{{nivel1.NumeroEntregableNivel1}}.{{nivel2.NumeroEntregableNivel2}}.{{actividades.NumeroActividad}}</span>
+														<span class="ml-0 uLabelCampo" id="{{actividades.IdCompuesto}}-min"> {{actividades.NombreEntregableCorto}}</span>
+														<span class="ml-0 uLabelCampo hidden" id="{{actividades.IdCompuesto}}-max"> {{actividades.NombreEntregable}}</span>
+														<a class="ml-0 uLabelCampo" id="{{actividades.IdCompuesto}}-val"
+														   ng-if="actividades.NombreEntregableCorto !=actividades.NombreEntregable"
+														   ng-click="vm.verNombreCompleto(actividades.IdCompuesto,'')">VER MÁS</a>
+														<span id="{{actividades.IdCompuesto}}-label-nivel">UM: </span><span class="uLabelCampo ml-2">{{actividades.UnidadMedida}}</span>
+													</div>
+													<div class="align-selft-center ml-auto mr-3">
+														<button type="button" class="btn p-0 bg-transparent" ng-click="vm.eliminar('Actividad', actividades)" ng-if="!vm.soloLectura">
+															<i class="fa fa-trash ico-check ico-trash" aria-hidden="true"></i>
+														</button>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<!-- Nivel 2 - Catalogo con Actividad -->
+								<div ng-if="!nivel1.Nivel2" class="collapse mb-5" id="items-{{nivel1.IdCompuesto}}">
+									<div class="LineaEncabezado2divDNP"></div>
+									<div class="tituloEncabezadodiv2DNP ">
+										<label ng-if="nivel1.NivelesRegistrados.length > 0"><b>Actividades</b></label>
+
+										<span class="ml-4 font-total" ng-if="nivel1.NivelesRegistrados.length > 0">Total: </span>
+										<span ng-if="nivel1.NivelesRegistrados.length > 0">{{nivel1.NivelesRegistrados.length}}</span>
+										<!--<span ng-if="nivel1.NivelesRegistrados == undefined || nivel1.NivelesRegistrados == null">0</span>-->
+
+										<span class="buttonbar pull-right mr-2">
+											<button type="button" tooltip-placement="top" uib-tooltip="Nivel 2" tabindex="0"
+													ng-if="(nivel1.NivelesRegistrados.length == 0|| nivel1.NivelesRegistrados == undefined || nivel1.NivelesRegistrados == null) && !vm.soloLectura" 
+													ng-disabled="nivel1.ExcedeEntregablesSinCatalogo"
+													ng-class="{'btnguardarDisabledDNP': nivel1.ExcedeEntregablesSinCatalogo, 'btneditarDNP': !nivel1.ExcedeEntregablesSinCatalogo }"
+													ng-click="vm.abrirModalAgregar('Nivel 2', nivel1.DataAgregarModal)">
+												+ NIVEL 2
+											</button>
+											<button type="button" class="btneditarDNP" tooltip-placement="top" uib-tooltip="Actividad" tabindex="0"
+													ng-if="!vm.soloLectura && (productos.RequisitosObligatorios|filter:{Nombre:'Nivel 2',RequisitoCumple:true}).length == 0"
+													ng-click="vm.abrirModalAgregar('Actividad', nivel1.DataAgregarModal)">
+												+ ACTIVIDAD
+											</button>
+										</span>
+									</div>
+
+									<!-- Validación 1.1 : No registra Actividades-->
+									<div class="my-3" ng-if="nivel1.NivelesRegistrados.length == 0|| nivel1.NivelesRegistrados == undefined || nivel1.NivelesRegistrados == null">
+										<div class="nivel-sin-actividad text-center">
+											<p>No se han agregado actividades</p>
+										</div>
+									</div>
+
+									<!-- Validación 1.2 : Registra actividades 3-->
+									<div ng-if="nivel1.NivelesRegistrados.length > 0" class="list-Actividades-simple my-3" ng-repeat="actividades in nivel1.NivelesRegistrados" ng-init="actividadIndex = $index+1">
+										<div class="py-3 d-flex">
+											<div class="mr-4 detalle-nivel">
+												<span class="ml-0" id="{{actividades.IdCompuesto}}-label-nivel">{{objetivos.NumeroObjetivo}}.{{productos.NumeroProducto}}.{{nivel1.NumeroEntregableNivel1}}.{{actividades.NumeroActividad}}</span>
+												<span class="uLabelCampo ml-0" id="{{actividades.IdCompuesto}}-min"> {{actividades.NombreEntregableCorto}}</span>
+												<span class="hidden" id="{{actividades.IdCompuesto}}-max"> {{actividades.NombreEntregable}}</span>
+												<a class="ml-0" id="{{actividades.IdCompuesto}}-val"
+												   ng-if="actividades.NombreEntregableCorto !=actividades.NombreEntregable"
+												   ng-click="vm.verNombreCompleto(actividades.IdCompuesto,'')">VER MÁS</a>
+												<span class="uLabelCampo ml-0" id="{{actividades.IdCompuesto}}-label-nivel">UM: </span><span>{{actividades.UnidadMedida}}</span>
+											</div>
+											<div class="align-selft-center ml-auto mr-3">
+												<button type="button" class="btn p-0 bg-transparent" ng-click="vm.eliminar('Actividad', actividades)" ng-if="!vm.soloLectura">
+													<i class="fa fa-trash ico-check ico-trash" aria-hidden="true"></i>
+												</button>
+											</div>
+										</div>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Solo Actividades Nivel 1 -->
+				</div>
+			</div>
+		</div>
+		</div>
+</section>

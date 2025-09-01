@@ -1,0 +1,187 @@
+﻿<section>
+
+    <div class="container-fluid inbox" ng-init="vm.init();">
+        <div class="form-group">
+            <div class="form-group">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        &nbsp;
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 pull-right text-left" style="padding-bottom: 5px; ">
+                        <label style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-size: 14px; font-weight: 500; "> Buscar por número o nombre del Conpes</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3" style="font-family: 'Montserrat'; font-weight: 400; font-style: normal; font-size: 24px; color: #004884; text-align: left; line-height: 18px;">
+                        Documentos Conpes
+                    </div>
+                    <div class="col-md-4 pull-right">
+                        <div class="input-group ">
+
+                            <input type="search" ng-model="vm.conpes" class="form-control InputSearchDNP " placeholder="Buscar">
+                            <span class="input-group-append imgTituloAccion spanSearchDNP" ng-click="vm.buscar()" has-claim has-opciones="['Ajustes:GeneralComponente']">
+                                <i class="fa fa-search "></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-3 text-left" ng-show="vm.consultoConpes || vm.resultConpes != '' ">
+                        <span style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 600; font-size: 16px; ">Resultados de búsqueda:</span>
+
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-3 text-left" style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-size: 16px; " ng-show="vm.resultConpes != ''">
+                        <p>Coincidencias para: "<strong>{{vm.busquedaConpes}}</strong>"</p>
+
+                    </div>
+
+
+                    <div class="col-md-3 text-left" style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-size: 16px; " ng-show="vm.resultConpes == '' && vm.consultoConpes ">
+                        <p>No se encontraron coincidencias para:  "<strong>{{vm.busquedaConpes}}</strong>"</p>
+                    </div>
+
+                    <div class="col-md-4 pull-right text-right" style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-size: 16px; " ng-show="vm.consultoConpes || vm.resultConpes != '' " style="padding-bottom: 5px; ">
+                        <label>Total: <strong style="color:#004884">{{vm.resultConpes}} </strong></label>
+                    </div>
+                </div>
+
+
+
+
+
+
+                <div class="panel-body" style="padding: 0px">
+                    <div class="row">
+                        <div class="col-md-12">
+                            &nbsp;
+                        </div>
+                    </div>
+                    <div class="row" ng-if="vm.encontroconpes">
+
+                        <div class="col-md-12">
+
+                            <div class="container-table" ui-i18n="{{vm.lang}}" style="display: inline-block; width: 100%; padding-right: 0px !important; padding-bottom: 0px !important;">
+
+                                <div class="clearfix grid-icon grid2" id="uigprojecto" ui-grid="vm.gridOptions" style="text-align: center;"
+                                     ui-grid-resize-columns ui-grid-pinning ui-grid-pagination>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" ng-if="vm.encontroconpes">
+                        <div class="col-md-12">
+                            &nbsp;
+                        </div>
+                    </div>
+                    <div class="row" ng-if="vm.encontroconpes">
+                        <div class="col-md-10">
+                            &nbsp;
+                        </div>
+                        <!--<div class="col-md-2">
+                            <button type="button" class="btn  btncancelarHorizonte " ng-click="vm.agregarConpes()" tooltip-placement="auto" uib-tooltip="Agregar">Agregar</button>
+                        </div>-->
+
+                        <div class="col-md-2" style="text-align:right">
+
+                            <p><a ng-click="vm.limpiar()" class="buttonhiper" style="text-decoration: underline;">CANCELAR</a>  &nbsp;<a ng-click="vm.agregarConpes()" class="buttonhiper" style="text-decoration: underline;" has-claim has-opciones="['Ajustes:GeneralComponente']">AGREGAR</a></p>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            &nbsp;
+                        </div>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-7" style="text-align:left" ng-show="vm.dataCONPESAsociados.length == 0">
+                            <span class="uLabelCampo" style="color:#4B4B4B !important; ">Aún no se han asociado Documentos Conpes</span>
+                        </div>
+                        <div class="col-md-7" style="text-align:left" ng-show="vm.dataCONPESAsociados.length > 0">
+                            <span class="uLabelCampo" style="color:#4B4B4B !important; ">Documentos Conpes Asociados</span>
+                        </div>
+
+
+                        <div class="col-md-5" style="text-align:right">
+                            <span class="uLabelDetalle" style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans';">{{vm.cantresult}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1">
+                            &nbsp;
+                        </div>
+                        <div class="col-md-11">
+                            <div id="datosgeneralesrelacionconlapl-proyectosconpes-error" class="hidden text-left color-red"></div>
+                        </div>
+                    </div>
+
+                    <div class="row" ng-if="vm.dataCONPESAsociados.length > 0" ng-style="vm.getTableHeightCDPGR()">
+                        <div class="col-md-12">
+                            <div class="container-table" ui-i18n="{{vm.lang}}" style="display: inline-block; width: 100%; padding-right: 0px !important; padding-bottom: 0px !important;">
+
+                                <div class="clearfix grid-icon grid2" id="uigprojectoConpes" ui-grid="vm.gridOptionsConpes" style="text-align: center;"
+                                     ui-grid-resize-columns ui-grid-pinning>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            &nbsp;
+                        </div>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-6" style="text-align:left">
+                            <span class="uLabelCampo" style="font-family: 'Montserrat'; font-weight: 400; font-style: normal; font-size: 24px; color: #004884; text-align: left; line-height: 18px;">Justificación</span>
+                        </div>
+                        <div class="col-md-6 pull-right text-right">
+
+                            <button type="button" class="btn btncancelarHorizonte" uib-tooltip="{{vm.habilitarFinal ? 'CANCELAR' : 'EDITAR'}}" ng-click="vm.habilitarBotones()" tooltip-placement="top" tabindex="0" has-claim has-opciones="['Ajustes:GeneralComponente']">
+                                {{vm.habilitarFinal ? 'CANCELAR' : 'EDITAR'}}
+                            </button>
+
+                            <button ng-disabled="!vm.habilitaGuardar" type="button" ng-class="vm.ClasesbtnGuardar" tooltip-placement="top" ng-click="vm.guardarConpes()" uib-tooltip="Guardar" tabindex="0" has-claim has-opciones="['Ajustes:GeneralComponente']">
+                                GUARDAR
+                            </button>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12" style="text-align:left">
+                            <span class="uLabelCampo" style="color: #4B4B4B !important;font-size: 14px; ">Justifique el hecho de haber asociado los documentos Conpes a la tabla* (Máximo 8.000 caracteres)</span>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+
+                        <div class="col-md-12">
+                            <div id="datosgeneralesrelacionconlapl-justificacionconpes-error" class="hidden text-left color-red"></div>
+                            <textarea rows="3"
+                                      style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-size: 16px; "
+                                      id="justificacionConpes"
+                                      name="justificacionConpes"
+                                      placeholder="Mi justificación..."
+                                      minlength="1"
+                                      maxlength="8000"
+                                      class="{{vm.habilitarJustificacion ? 'form-control' : 'disablegrid form-control'}}"
+                                      ng-required="true"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>

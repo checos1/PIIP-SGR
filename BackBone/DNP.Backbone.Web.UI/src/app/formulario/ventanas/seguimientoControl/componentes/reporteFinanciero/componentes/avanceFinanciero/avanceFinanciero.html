@@ -1,0 +1,475 @@
+﻿<style>
+    .d-none {
+        display: none;
+    }
+
+    .errores-contenedorFinanciero {
+        margin: 15px 0 0 5px;
+    }
+</style>
+
+<div class="container-fluid inbox" ng-init="vm.init();">
+    <div class="tab-content">
+        <br />
+        <br />
+        <div class="row">
+            <div style="text-align: left;" class="col-md-8">
+                <span class="TituloPincFormularioDNP">Preguntas Básicas <!--<img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg" ng-click="vm.abrirMensajePreguntasBasicas()">--></span>
+            </div>
+            <div style="text-align: left;" class="col-md-4" ng-if="!vm.soloLectura">
+                <div class="col-md-12 form-group text-right" style="padding-right:2rem;">
+                    <button id="Editar"
+                            type="submit"
+                            class="btneditarDNP"
+                            tooltip-placement="top"
+                            ng-click="vm.ActivarEditar()"
+                            uib-tooltip="Clic para editar la información">
+                        EDITAR
+                    </button>
+                    <button type="submit"
+                            id="GuardarPreguntas"
+                            class="btnguardarDisabledDNP"
+                            tooltip-placement="top"
+                            uib-tooltip="Guardar modificación"
+                            ng-click="vm.registroRespuesta()">
+                        GUARDAR
+                    </button>
+                    <br />
+                </div>
+            </div>
+        </div>
+        <!--<div class="row">
+            <div style="text-align: left;" class="col-md-12">
+                <span class="DetalleFormularioDNP">
+                    El avance de flujo de caja es diferente al avance presupuestal cuando intervienen patrimonios autónomos para la ejecución de los proyectos
+                </span>
+            </div>
+        </div>-->
+        <br />
+        <div class="row">
+            <div style="text-align: left;" class="col-md-12">
+                <table class="TableDNP no-border">
+                    <thead>
+                        <tr>
+                            <th class="columAcc"></th>
+                            <th class="textLeftDNP" ng-repeat="pregunta in vm.PreguntasAvanceFinanciero.Preguntas" ng-init="indexpregunta = $index">
+                                {{pregunta.Pregunta}}
+                                <div ng-if="indexpregunta == 0">
+                                    <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg" ng-click="vm.abrirMensajefechaestimada()">
+                                </div>
+                                <div ng-if="indexpregunta == 1">
+                                    <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg" ng-click="vm.abrirMensajeInffecha()">
+                                </div>
+                                <div ng-if="indexpregunta == 2">
+                                    <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg" ng-click="vm.abrirMensajePregunta()">
+                                </div>
+                            </th>
+                            <th class="columAcc"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="bottontransDNP">
+                            <td></td>
+                            <td class="textLeftDNP" ng-repeat="preguntas in vm.PreguntasAvanceFinanciero.Preguntas" ng-init="indexrespuestas = $index">
+                                <div ng-if="preguntas.TipoPregunta == 'Fecha'">
+                                    <input type="date" id="fecha{{preguntas.PreguntaId}}" formControlName="docdatetime{{preguntas.PreguntaId}}" style="width: 150px;"
+                                           value="{{preguntas.Respuesta}}" disabled>
+                                    <div id="fechaerrorfecha{{preguntas.PreguntaId}}" class=" text-left color-red" style="display:none;">
+                                        <img class="img img-advertencia" src="Img/u11.svg" />
+                                        <span id="fechaerrorfechamsn{{preguntas.PreguntaId}}"></span>
+                                    </div>
+                                </div>
+                                <div ng-if="preguntas.TipoPregunta == 'Opcion'">
+                                    <div class="col-md-2 form-check" ng-repeat="opciones in preguntas.OpcionesRespuesta" ng-init="indexpregunta = $index">
+                                        <input disabled type="radio" ng-model="preguntas.Respuesta" id="radio{{preguntas.PreguntaId}}{{indexpregunta}}" name="radio{{preguntas.PreguntaId}}" value="{{opciones.OpcionId}}"> {{opciones.ValorOpcion}}
+                                    </div>
+                                    <div id="radioerrorfecha{{preguntas.PreguntaId}}" class=" text-left color-red" style="display:none;">
+                                        <img class="img img-advertencia" src="Img/u11.svg" />
+                                        <span id="radioerrorfechamsn{{preguntas.PreguntaId}}"></span>
+                                    </div>
+                                    <span class="errores-contenedorFinanciero text-left color-red d-none" id="preguntaAvanceFinanciero-error-button-{{preguntas.PreguntaId}}">
+                                        <span class="img iconadverdnp"><img src="Img/u4630.svg"> </span>
+                                        <span class="messagealerttableDNP" id="preguntaAvanceFinanciero-error-button-{{preguntas.PreguntaId}}-txt"></span>
+                                    </span>
+                                </div>
+                            </td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div style="text-align: left;" class="col-md-12">
+                <span class="TituloPincFormularioDNP">Tabla de resumen <!--<img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg" ng-click="vm.abrirMensajeTablaResumen()">--></span>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div style="text-align: left;" class="col-md-12">
+                <div style="text-align: left;" class="col-md-2">
+                    <span class="uLabelCampo">Periodos abiertos</span>
+                </div>
+                <!--<div style="text-align: left;" class="col-md-3">
+                    <span class="uLabelCampo">Vigencia</span>
+                </div>
+                <div style="text-align: left;" class="col-md-3">
+                    <span class="uLabelCampo">Periodo</span>
+                </div>
+                <div style="text-align: left;" class="col-md-4">
+                    &nbsp;
+                </div>-->
+            </div>
+            <div style="text-align: left;" class="col-md-12">
+                <div style="text-align: left;" class="col-md-2">
+                    <div class="row" ng-repeat="periodos in vm.AvanceFinanciero.PeriodosActivos">
+                        <div style="text-align: left;" class="col-md-12">
+                            <a href="#" ng-click="vm.buscar(periodos.Vigencia,periodos.PeriodosPeriodicidadId,0)">{{periodos.NombrePeriodo}} {{periodos.Vigencia}}</a>
+                        </div>
+                    </div>
+                </div>
+                <!--
+                <div style="text-align: left;" class="col-md-3">
+                    <select name="selectVigencia" id="selectVigencia" ng-model="vm.model.PeriodoProyectoId" ng-required="true" class="form-control">
+                        <option value="" disabled selected hidden>Vigencia</option>
+                        <option ng-repeat="vigencia in vm.AvanceFinanciero.Vigencias" ng-value="vigencia.PeriodoProyectoId">{{ vigencia.Vigencia }} </option>
+                    </select>
+                </div>
+                <div style="text-align: left;" class="col-md-3">
+                    <select name="selectPeriodo" id="selectPeriodo" ng-model="vm.model.PeriodosPeriodicidadId" ng-required="true" class="form-control">
+                        <option value="" disabled selected hidden>Periodo</option>
+                        <option ng-repeat="periodo in vm.AvanceFinanciero.Periodos" ng-value="periodo.PeriodosPeriodicidadId">{{ periodo.Mes }} </option>
+                    </select>
+                </div>
+                <div style="text-align: left;" class="col-md-4">
+                    <span class="input-group-append imgTituloAccion spanSearchDNP" ng-click="vm.buscar(vm.model.PeriodoProyectoId,vm.model.PeriodosPeriodicidadId,1)">
+                        <i class="fa fa-search "></i>
+                    </span>
+                </div>
+                -->
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div style="text-align: left;" class="col-md-12">
+                <div style="text-align: left;" class="col-md-2">
+                    <div class="col-md-12 divInfoPendienteDNP" ng-if="vm.AvanceFinanciero.Estado == 0" style="height:40px !important">
+                        <span><img src="Img/u14500.svg" />Cerrado</span>
+                    </div>
+                    <div class="col-md-12 divInfoAplicDNP" ng-if="vm.AvanceFinanciero.Estado == 1" style="height:40px !important">
+                        <span><img src="Img/u2392.svg" /> Abierto</span>
+                    </div>
+                </div>
+                <div class="col-md-1">
+                    &nbsp;
+                </div>
+                <div class="col-md-9 editReferenciaDNP">
+                    <div class="col-md-2">
+                        <span class="uLabelCampo">{{vm.AvanceFinanciero.VigenciaPeriodo}}</span>
+                    </div>
+                    <div class="col-md-4">
+                        <span>{{vm.AvanceFinanciero.FechaPeriodo}}</span>
+                    </div>
+                    <div class="col-md-3">
+                        <span>Ejecución acumulada $ <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg" ng-click="vm.abrirMensajeEjecucionPeriodo()"></span>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" readonly value="{{vm.ConvertirNumero2decimales(vm.AvanceFinanciero.SumaAB)}}" class="form-control textRightDNP" />
+                    </div>
+                </div>
+                <!--<div class="col-md-1">
+                    &nbsp;
+                </div>-->
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div style="text-align: left;" class="col-md-12" ng-if="vm.AvanceFinanciero.Estado == 1">
+                <div style="text-align: left;" class="col-md-9">
+                    &nbsp;
+                </div>
+                <div style="text-align: left;" class="col-md-3" ng-if="!vm.soloLectura">
+                    <div class="col-md-12 form-group text-right">
+                        <button id="Editargrilla"
+                                type="submit"
+                                class="btneditarDNP"
+                                tooltip-placement="top"
+                                ng-click="vm.ActivarEditarGrilla()"
+                                uib-tooltip="Clic para editar la información">
+                            EDITAR
+                        </button>
+                        <button type="submit"
+                                id="GuardarPreguntasgrilla"
+                                class="btnguardarDisabledDNP"
+                                tooltip-placement="top"
+                                uib-tooltip="Guardar modificación"
+                                ng-click="vm.registroRespuestaGrilla()">
+                            GUARDAR
+                        </button>
+                        <br />
+                    </div>
+                </div>
+                <!--<div style="text-align: left;" class="col-md-1">
+                    &nbsp;
+                </div>-->
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div style="text-align: left;" class="col-md-12">
+                <span class="uLabelCampo"> Recursos vigentes</span>
+            </div>
+        </div>
+        <div class="row">
+            <div style="text-align: left;" class="col-md-12">
+                <table class="TableDNP no-border">
+                    <thead>
+                        <tr>
+                            <th class="columAcc"></th>
+                            <th class="textLeftDNP">Fuente de financiación</th>
+                            <th class="textRightDNP">Apropiación inicial $</th>
+                            <th class="textRightDNP">Apropiación vigente $</th>
+                            <th class="textRightDNP">Acumulado compromisos $</th>
+                            <th class="textRightDNP">Acumulado obligaciones $<!--<span style="color:#069169;">(a)</span>--></th>
+                            <th class="textRightDNP">Acumulado pagos $</th>
+                            <th class="columAcc"></th>
+                        </tr>
+                    </thead>
+
+                    <tbody ng-repeat="fuentes in vm.AvanceFinanciero.Fuentes" ng-init="indexFuentes = $index">
+                        <tr class="uTexto-grilla" ng-repeat="recursos in fuentes.RecursosVigentes" ng-init="indexrecursosrv = $index">
+                            <td class="columAcc icontotaldnp">
+                                <img id="imgavfrvval{{fuentes.FuenteId}}-{{indexFuentes}}-{{indexrecursosrv}}" class="iconoErrorDNP" src="Img/u4630.svg" style="display:none;">
+                                <div id="icoavfrvval{{fuentes.FuenteId}}-{{indexFuentes}}-{{indexrecursosrv}}" class="hidden iconoErrorDNP"></div>
+                            </td>
+                            <td class="textLeftDNP">{{fuentes.NombreFuente}}</td>
+                            <td class="textRightDNP">
+                                <div class="blockReferenciaDNP" ng-if="!recursos.HabilitaApropiacionInicialValor">{{vm.ConvertirNumero2decimales(recursos.RecursosVigentesApropiacionInicial)}}</div>
+                                <input id="inputvalorafrv{{fuentes.FuenteId}}-{{indexFuentes}}-{{indexrecursosrv}}"
+                                       type="number" string-to-number min="0.00"
+                                       name="RecursosVigentesApropiacionInicial{{fuentes.FuenteId}}-{{indexFuentes}}-{{indexrecursosrv}}"
+                                       ng-if="recursos.HabilitaApropiacionInicialValor"
+                                       ng-keypress="vm.validateFormat($event, 2)"
+                                       ng-keyup="vm.validarTamanio($event, 2)"
+                                       ng-value="recursos.RecursosVigentesApropiacionInicial"
+                                       ng-blur="vm.actualizaFila(fuentes,1,fuentes.FuenteId,indexFuentes,indexrecursosrv)"
+                                       ng-model="recursos.RecursosVigentesApropiacionInicial" />
+                            </td>
+                            <td class="textRightDNP">
+                                <div class="blockReferenciaDNP" ng-if="!recursos.HabilitaApropiacionVigenteValor">{{vm.ConvertirNumero2decimales(recursos.RecursosVigentesApropiacionVigente)}}</div>
+                                <input id="inputvalorafapv{{fuentes.FuenteId}}-{{indexFuentes}}-{{indexrecursosrv}}"
+                                       type="number" string-to-number min="0.00"
+                                       name="RecursosVigentesApropiacionInicial{{fuentes.FuenteId}}-{{indexFuentes}}-{{indexrecursosrv}}"
+                                       ng-if="recursos.HabilitaApropiacionVigenteValor"
+                                       ng-keypress="vm.validateFormat($event, 2)"
+                                       ng-keyup="vm.validarTamanio($event, 2)"
+                                       ng-value="recursos.RecursosVigentesApropiacionVigente"
+                                       ng-blur="vm.actualizaFila(fuentes,1,fuentes.FuenteId,indexFuentes,indexrecursosrv)"
+                                       ng-model="recursos.RecursosVigentesApropiacionVigente" />
+                            </td>
+                            <td class="textRightDNP">
+                                <div class="blockReferenciaDNP" ng-if="!recursos.HabilitaAcumuladoCompromisosValor">{{vm.ConvertirNumero2decimales(recursos.RecursosVigentesAcumuladoCompromisos)}}</div>
+                                <input id="inputvalorafac{{fuentes.FuenteId}}-{{indexFuentes}}-{{indexrecursosrv}}"
+                                       type="number" string-to-number min="0.00"
+                                       name="RecursosVigentesApropiacionInicial{{fuentes.FuenteId}}-{{indexFuentes}}-{{indexrecursosrv}}"
+                                       ng-if="recursos.HabilitaAcumuladoCompromisosValor"
+                                       ng-keypress="vm.validateFormat($event, 2)"
+                                       ng-keyup="vm.validarTamanio($event, 2)"
+                                       ng-value="recursos.RecursosVigentesAcumuladoCompromisos"
+                                       ng-blur="vm.actualizaFila(fuentes,1,fuentes.FuenteId,indexFuentes,indexrecursosrv)"
+                                       ng-model="recursos.RecursosVigentesAcumuladoCompromisos" />
+                            </td>
+                            <td class="textRightDNP">
+                                <div class="blockReferenciaDNP" ng-if="!recursos.HabilitaAcumuladoObligacionValor">{{vm.ConvertirNumero2decimales(recursos.RecursosVigentesAcumuladoObligaciones)}}</div>
+                                <input id="inputvalorafob{{fuentes.FuenteId}}-{{indexFuentes}}-{{indexrecursosrv}}"
+                                       type="number" string-to-number min="0.00"
+                                       name="RecursosVigentesApropiacionInicial{{fuentes.FuenteId}}-{{indexFuentes}}-{{indexrecursosrv}}"
+                                       ng-if="recursos.HabilitaAcumuladoObligacionValor"
+                                       ng-keypress="vm.validateFormat($event, 2)"
+                                       ng-keyup="vm.validarTamanio($event, 2)"
+                                       ng-value="recursos.RecursosVigentesAcumuladoObligaciones"
+                                       ng-blur="vm.actualizaFila(fuentes,1,fuentes.FuenteId,indexFuentes,indexrecursosrv)"
+                                       ng-model="recursos.RecursosVigentesAcumuladoObligaciones" />
+                            </td>
+                            <td class="textRightDNP">
+                                <div class="blockReferenciaDNP" ng-if="!recursos.HabilitaAcumuladoPagosValor">{{vm.ConvertirNumero2decimales(recursos.RecursosVigentesAcumuladoPagos)}}</div>
+                                <input id="inputvalorafap{{fuentes.FuenteId}}-{{indexFuentes}}-{{indexrecursosrv}}"
+                                       type="number" string-to-number min="0.00"
+                                       name="RecursosVigentesApropiacionInicial{{fuentes.FuenteId}}-{{indexFuentes}}-{{indexrecursosrv}}"
+                                       ng-if="recursos.HabilitaAcumuladoPagosValor"
+                                       ng-keypress="vm.validateFormat($event, 2)"
+                                       ng-keyup="vm.validarTamanio($event, 2)"
+                                       ng-value="recursos.RecursosVigentesAcumuladoPagos"
+                                       ng-blur="vm.actualizaFila(fuentes,1,fuentes.FuenteId,indexFuentes,indexrecursosrv)"
+                                       ng-model="recursos.RecursosVigentesAcumuladoPagos" />
+                            </td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td class="columAcc icontotaldnp"><span>=</span></td>
+                            <td class="textRightDNP">Total</td>
+                            <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero2decimales(vm.AvanceFinanciero.SumaRecursosVigentesApropiacionInicial)}}</div></td>
+                            <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero2decimales(vm.AvanceFinanciero.SumaRecursosVigentesApropiacionVigente)}}</div></td>
+                            <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero2decimales(vm.AvanceFinanciero.SumaRecursosVigentesAcumuladoCompromisos)}}</div></td>
+                            <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero2decimales(vm.AvanceFinanciero.SumaRecursosVigentesAcumuladoObligaciones)}}</div></td>
+                            <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero2decimales(vm.AvanceFinanciero.SumaRecursosVigentesAcumuladoPagos)}}</div></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td colspan="6">
+                                <div ng-if="vm.VerErrormsnRV == 0" class=" text-left color-red">
+                                    <img class="img img-advertencia" src="Img/u11.svg" />
+                                    <span id="errorRV">{{vm.MensajeErrorRV}}<a ng-click="vm.verNombreCompletoRV(1)"> ...VER MÁS</a></span>
+                                </div>
+                                <div ng-if="vm.VerErrormsnRV == 1" class=" text-left color-red">
+                                    <img class="img img-advertencia" src="Img/u11.svg" />
+                                    <span id="errorRV">{{vm.MensajeErrorRVTotal}} <a ng-click="vm.verNombreCompletoRV(2)"> ...VER MENOS</a></span>
+                                </div>
+                                <div ng-if="vm.VerErrormsnRV == 2" class=" text-left color-red">
+                                    <img class="img img-advertencia" src="Img/u11.svg" />
+                                    <span id="errorRV">{{vm.MensajeErrorRVTotal}}</span>
+                                </div>
+                            </td>
+                        </tr>
+                    </tfoot>
+
+
+                </table>
+
+            </div>
+        </div>
+        <br />
+        <br />
+        <div class="row">
+            <div style="text-align: left;" class="col-md-12">
+                <span class="uLabelCampo">Reservas presupuestales</span>
+            </div>
+        </div>
+        <div class="row">
+            <div style="text-align: left;" class="col-md-12">
+                <table class="TableDNP no-border">
+                    <thead>
+                        <tr>
+                            <th class="columAcc"></th>
+                            <th class="textLeftDNP">Fuente de financiación</th>
+                            <th class="textRightDNP">Apropiación inicial $</th>
+                            <th class="textRightDNP">Apropiación vigente $</th>
+                            <th class="textRightDNP">Acumulado compromisos $</th>
+                            <th class="textRightDNP">Acumulado obligaciones $<!--<span style="color:#069169;">(b)</span>--></th>
+                            <th class="textRightDNP">Acumulado pagos $</th>
+                            <th class="columAcc"></th>
+                        </tr>
+                    </thead>
+                    <tbody ng-repeat="fuentes in vm.AvanceFinanciero.Fuentes" ng-init="indexFuentes = $index">
+                        <tr class="uTexto-grilla" ng-repeat="recursos in fuentes.RecursosPresupuestales" ng-init="indexrecursosp = $index">
+                            <td class="columAcc icontotaldnp">
+                                <img id="imgavrpval1{{fuentes.FuenteId}}-{{indexFuentes}}-{{indexrecursosp}}" class="iconoErrorDNP" src="Img/u4630.svg" style="display:none;">
+                                <div id="icoavrpval1{{fuentes.FuenteId}}-{{indexFuentes}}-{{indexrecursosp}}" class="hidden iconoErrorDNP"></div>
+                            </td>
+                            <td class="textLeftDNP">{{fuentes.NombreFuente}}</td>
+                            <td class="textRightDNP">
+                                <div class="blockReferenciaDNP" ng-if="!recursos.HabilitaApropiacionInicialValor">{{vm.ConvertirNumero2decimales(recursos.ReservaPresupuestalApropiacionInicial)}}</div>
+                                <input id="inputvaloraf{{fuentes.FuenteId}}-{{indexFuentes}}-{{indexrecursosp}}"
+                                       type="number" string-to-number min="0.00"
+                                       name="RecursosVigentesApropiacionInicial{{fuentes.FuenteId}}-{{indexFuentes}}-{{indexrecursosp}}"
+                                       ng-if="recursos.HabilitaApropiacionInicialValor"
+                                       ng-keypress="vm.validateFormat($event, 2)"
+                                       ng-keyup="vm.validarTamanio($event, 2)"
+                                       ng-value="recursos.ReservaPresupuestalApropiacionInicial"
+                                       ng-blur="vm.actualizaFila(fuentes,1,fuentes.FuenteId,indexFuentes,indexrecursosp)"
+                                       ng-model="recursos.ReservaPresupuestalApropiacionInicial" />
+                            </td>
+                            <td class="textRightDNP">
+                                <div class="blockReferenciaDNP" ng-if="!recursos.HabilitaApropiacionVigenteValor">{{vm.ConvertirNumero2decimales(recursos.ReservaPresupuestalApropiacionVigente)}}</div>
+                                <input id="inputvalorafrpap1{{fuentes.FuenteId}}-{{indexFuentes}}-{{indexrecursosp}}"
+                                       type="number" string-to-number min="0.00"
+                                       name="RecursosVigentesApropiacionInicial{{fuentes.FuenteId}}-{{indexFuentes}}-{{indexrecursosp}}"
+                                       ng-if="recursos.HabilitaApropiacionVigenteValor"
+                                       ng-keypress="vm.validateFormat($event, 2)"
+                                       ng-keyup="vm.validarTamanio($event, 2)"
+                                       ng-value="recursos.ReservaPresupuestalApropiacionVigente"
+                                       ng-blur="vm.actualizaFila(fuentes,1,fuentes.FuenteId,indexFuentes,indexrecursosp)"
+                                       ng-model="recursos.ReservaPresupuestalApropiacionVigente" />
+                            </td>
+                            <td class="textRightDNP">
+                                <div class="blockReferenciaDNP" ng-if="!recursos.HabilitaAcumuladoCompromisosValor">{{vm.ConvertirNumero2decimales(recursos.ReservaPresupuestalAcumuladoCompromisos)}}</div>
+                                <input id="inputvalorafrpac{{fuentes.FuenteId}}-{{indexFuentes}}-{{indexrecursosp}}"
+                                       type="number" string-to-number min="0.00"
+                                       name="RecursosVigentesApropiacionInicial{{fuentes.FuenteId}}-{{indexFuentes}}-{{indexrecursosp}}"
+                                       ng-if="recursos.HabilitaAcumuladoCompromisosValor"
+                                       ng-keypress="vm.validateFormat($event, 2)"
+                                       ng-keyup="vm.validarTamanio($event, 2)"
+                                       ng-value="recursos.ReservaPresupuestalAcumuladoCompromisos"
+                                       ng-blur="vm.actualizaFila(fuentes,1,fuentes.FuenteId,indexFuentes,indexrecursosp)"
+                                       ng-model="recursos.ReservaPresupuestalAcumuladoCompromisos" />
+                            </td>
+                            <td class="textRightDNP">
+                                <div class="blockReferenciaDNP" ng-if="!recursos.HabilitaAcumuladoObligacionValor">{{vm.ConvertirNumero2decimales(recursos.ReservaPresupuestalAcumuladoObligaciones)}}</div>
+                                <input id="inputvalorafrpao{{fuentes.FuenteId}}-{{indexFuentes}}-{{indexrecursosp}}"
+                                       type="number" string-to-number min="0.00"
+                                       name="RecursosVigentesApropiacionInicial{{fuentes.FuenteId}}-{{indexFuentes}}-{{indexrecursosp}}"
+                                       ng-if="recursos.HabilitaAcumuladoObligacionValor"
+                                       ng-keypress="vm.validateFormat($event, 2)"
+                                       ng-keyup="vm.validarTamanio($event, 2)"
+                                       ng-value="recursos.ReservaPresupuestalAcumuladoObligaciones"
+                                       ng-blur="vm.actualizaFila(fuentes,1,fuentes.FuenteId,indexFuentes,indexrecursosp)"
+                                       ng-model="recursos.ReservaPresupuestalAcumuladoObligaciones" />
+                            </td>
+                            <td class="textRightDNP">
+                                <div class="blockReferenciaDNP" ng-if="!recursos.HabilitaAcumuladoPagosValor">{{vm.ConvertirNumero2decimales(recursos.ReservaPresupuestalAcumuladoPagos)}}</div>
+                                <input id="inputvalorafrpap{{fuentes.FuenteId}}-{{indexFuentes}}-{{indexrecursosp}}"
+                                       type="number" string-to-number min="0.00"
+                                       name="RecursosVigentesApropiacionInicial{{fuentes.FuenteId}}-{{indexFuentes}}-{{indexrecursosp}}"
+                                       ng-if="recursos.HabilitaAcumuladoPagosValor"
+                                       ng-keypress="vm.validateFormat($event, 2)"
+                                       ng-keyup="vm.validarTamanio($event, 2)"
+                                       ng-value="recursos.ReservaPresupuestalAcumuladoPagos"
+                                       ng-blur="vm.actualizaFila(fuentes,1,fuentes.FuenteId,indexFuentes,indexrecursosp)"
+                                       ng-model="recursos.ReservaPresupuestalAcumuladoPagos" />
+                            </td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td class="columAcc icontotaldnp"><span>=</span></td>
+                            <td class="textRightDNP">Total</td>
+                            <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero2decimales(vm.AvanceFinanciero.SumaReservaPresupuestalApropiacionInicial)}}</div></td>
+                            <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero2decimales(vm.AvanceFinanciero.SumaReservaPresupuestalApropiacionVigente)}}</div></td>
+                            <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero2decimales(vm.AvanceFinanciero.SumaReservaPresupuestalAcumuladoCompromisos)}}</div></td>
+                            <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero2decimales(vm.AvanceFinanciero.SumaReservaPresupuestalAcumuladoObligaciones)}}</div></td>
+                            <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero2decimales(vm.AvanceFinanciero.SumaReservaPresupuestalAcumuladoPagos)}}</div></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td colspan="6">
+                                <div ng-if="vm.VerErrormsnRP == 0" class=" text-left color-red">
+                                    <img class="img img-advertencia" src="Img/u11.svg" />
+                                    <span id="errorRV">{{vm.MensajeErrorRP}}<a ng-click="vm.verNombreCompletoRP(1)"> ...VER MÁS</a></span>
+                                </div>
+                                <div ng-if="vm.VerErrormsnRP == 1" class=" text-left color-red">
+                                    <img class="img img-advertencia" src="Img/u11.svg" />
+                                    <span id="errorRV">{{vm.MensajeErrorRPTotal}} <a ng-click="vm.verNombreCompletoRP(2)"> ...VER MENOS</a></span>
+                                </div>
+                                <div ng-if="vm.VerErrormsnRP == 2" class=" text-left color-red">
+                                    <img class="img img-advertencia" src="Img/u11.svg" />
+                                    <span id="errorRV">{{vm.MensajeErrorRPTotal}}</span>
+                                </div>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+        <br />
+    </div>
+    <br />
+</div>

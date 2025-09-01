@@ -1,0 +1,8 @@
+﻿<div class="text-center">
+    <button ng-if="row.entity.TieneInstancia" class="btnaccion" ng-click="grid.appScope.vm.abrirModalInstanciasProyecto(row.entity)" tooltip-placement="auto" uib-tooltip="Ver Instancias">
+        <span>Si</span>
+    </button>
+    <button ng-if="!row.entity.TieneInstancia" class="btnaccion" >
+        <span>No</span>
+    </button>
+</div> 

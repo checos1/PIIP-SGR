@@ -1,0 +1,137 @@
+﻿<div ng-init="vm.inicializar();">
+    <div class="text-left mb-3">
+        <span class="uLabelCampo">Resumen ajustes de fuentes de financiación</span>
+    </div>
+    <div class="row">
+        <div class="col-md-12 mb-4">
+            <div ng-if="vm.verInversion == 1 && vm.verOperacion == 1 && vm.verPreinversion == 1">
+                <ul class="nav nav-tabs">
+                    <li id="liDgenerales" class="active">
+                        <a href="" ng-click="vm.mostrarTab(1)" data-toggle="tab">
+                            <b>Preinversión</b>
+                        </a>
+                    </li>
+                    <li id="liRecursos">
+                        <a href="" ng-click="vm.mostrarTab(2)" data-toggle="tab">
+                            <b>Inversión</b>
+                        </a>
+                    </li>
+                    <li id="lijustificacion">
+                        <a href="" ng-click="vm.mostrarTab(3)" data-toggle="tab">
+                            <b>Operación</b>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div ng-if="vm.verInversion == 0 && vm.verOperacion == 0 && vm.verPreinversion == 1">
+                <ul class="nav nav-tabs">
+                    <li id="liDgenerales" class="active">
+                        <a href="" ng-click="vm.mostrarTab(1)" data-toggle="tab">
+                            <b>Preinversión</b>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+            <div ng-if="vm.verInversion == 0 && vm.verOperacion == 1 && vm.verPreinversion == 0">
+                <ul class="nav nav-tabs">
+
+                    <li id="lijustificacion" class="active">
+                        <a href="" ng-click="vm.mostrarTab(3)" data-toggle="tab">
+                            <b>Operación</b>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div ng-if="vm.verInversion == 1 && vm.verOperacion == 0 && vm.verPreinversion == 0">
+                <ul class="nav nav-tabs">
+
+                    <li id="liRecursos" class="active">
+                        <a href="" ng-click="vm.mostrarTab(2)" data-toggle="tab">
+                            <b>Inversión</b>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+            <div ng-if="vm.verInversion == 0 && vm.verOperacion == 0 && vm.verPreinversion == 0">
+            </div>
+            <div ng-if="vm.verInversion == 0 && vm.verOperacion == 1 && vm.verPreinversion == 1">
+                <ul class="nav nav-tabs">
+                    <li id="liDgenerales" class="active">
+                        <a href="" ng-click="vm.mostrarTab(1)" data-toggle="tab">
+                            <b>Preinversión</b>
+                        </a>
+                    </li>
+                    <li id="lijustificacion">
+                        <a href="" ng-click="vm.mostrarTab(3)" data-toggle="tab">
+                            <b>Operación</b>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div ng-if="vm.verInversion == 1 && vm.verOperacion == 0 && vm.verPreinversion == 1">
+                <ul class="nav nav-tabs">
+                    <li id="liDgenerales" class="active">
+                        <a href="" ng-click="vm.mostrarTab(1)" data-toggle="tab">
+                            <b>Preinversión</b>
+                        </a>
+                    </li>
+                    <li id="liRecursos">
+                        <a href="" ng-click="vm.mostrarTab(2)" data-toggle="tab">
+                            <b>Inversión</b>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div ng-if="vm.verInversion == 1 && vm.verOperacion == 1 && vm.verPreinversion == 0">
+                <ul class="nav nav-tabs">
+                    <li id="liRecursos" class="active">
+                        <a href="" ng-click="vm.mostrarTab(2)" data-toggle="tab">
+                            <b>Inversión</b>
+                        </a>
+                    </li>
+                    <li id="lijustificacion">
+                        <a href="" ng-click="vm.mostrarTab(3)" data-toggle="tab">
+                            <b>Operación</b>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div id="divresumenrff" class="mt-5">
+                <table class="TableDNP">
+                    <thead>
+                        <tr>
+                            <th class="columAcc"></th>
+                            <th class="textRightDNP">Vigencia</th>
+                            <th class="textRightDNP">En firme $</th>
+                            <th class="textRightDNP">En ajuste $</th>
+                            <th class="textRightDNP">Diferencia $</th>
+                            <th class="columAcc"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="uTexto-grilla" ng-repeat="objResumen in vm.listaResumen">
+                            <td></td>
+                            <td class="textRightDNP">{{objResumen.vigencia}}</td>
+                            <td class="textRightDNP"><div class="blockReferenciaDNP">{{objResumen.Firme}}</div></td>
+                            <td class="textRightDNP"><div class="editReferenciaDNP textRightDNP" style="line-height: 43px;">{{objResumen.Ajuste}}</div></td>
+                            <td class="textRightDNP"><div class="blockReferenciaDNP">{{objResumen.Diferencia}}</div></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td class="textLeftDNP"><span>{{vm.ResumenSubTotal.icono}}</span></td>
+                            <td class="textRightDNP"><span>{{vm.ResumenSubTotal.titulo}}</span></td>
+                            <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(vm.ResumenSubTotal.Firme)}}</div></td>
+                            <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(vm.ResumenSubTotal.Ajuste)}}</div></td>
+                            <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(vm.ResumenSubTotal.Diferencia)}}</div></td>
+                            <td></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

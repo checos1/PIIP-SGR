@@ -1,0 +1,223 @@
+﻿<div ng-init="vm.init()">
+    <div class="row" style="padding-top:2rem;">
+        <div class="col-md-8" style="display:inline-flex;">
+            <span style="color: #004884; font-size: 24px; font-weight: 400;">Proyectos asociados</span>
+        </div>
+    </div>
+    <div ng-if="vm.habilitaBotones" style="text-align: right;" class="col-md-12">
+        <div class="col-md-12 form-group text-right" style="padding-right:2rem;" ng-If="vm.listaEntidadesProy != undefined">
+            <!--<button id="Editar"-->
+            <button id="Editar" name="Editar"
+                    type="button"
+                    tooltip-placement="top"
+                    uib-tooltip="Activar Editar"
+                    ng-click="vm.ActivarEditar()"
+                    ng-disabled="vm.cantProyectosAsociados==0"
+                    ng-class="vm.getEstiloBtnEditar()">
+                {{vm.Editar}}
+            </button>
+            &nbsp;
+            <!--<button id="Guardar"-->
+            <button id="Guardar"
+                    ng-class="vm.getEstiloBtnGuardar()"
+                    ng-click="vm.actualizarValores()"
+                    tooltip-placement="top"
+                    uib-tooltip="Guardar"
+                    ng-disabled="vm.disabled"
+                    tabindex="0">
+                GUARDAR
+            </button>
+            <br />
+            <br />
+        </div>
+    </div>
+    <div class="row" style="padding-top:2rem;">
+        <div class="col-md-10" style="display:inline-flex;">
+            <span class="textRightDNP" style="font-weight: 400 !important;">{{vm.nombreEstadoAsociacion}}</span>
+        </div>
+        <div class="col-md-2" style="display:inline-flex;" ng-if="vm.estadoAsociacion">
+            <span class="textRightDNP" style="font-weight: 400 !important;"> Total:</span>
+            <span class="textRightDNP" style="font-weight: 400 !important; color: #004884;"> {{vm.cantProyectosAsociados}}</span>
+        </div>
+    </div>
+    <div>
+        <div id="detalleMuchosProyectos-ProyectoContracredito-error" class="hidden uMensajeError"></div>
+        <div id="detalleMuchosProyectos-ProyectoCredito-error" class="hidden uMensajeError"></div>
+        <div id="detalleMuchosProyectos-NoCreditoContracredito-error" class="hidden uMensajeError"></div>
+        <div id="detalleMuchosProyectos-ProgramaSubprogramaCreditoContracredito-error" class="hidden uMensajeError"></div>
+        <div id="detalleMuchosProyectos-EstadoControlPosterior-error" class="hidden uMensajeError"></div>
+        <div id="detalleMuchosProyectos-ValidaTotalAprobado-error" class="hidden uMensajeError"></div>
+        <div id="detalleMuchosProyectos-montoDiligenciados-error" class="hidden uMensajeError"></div>
+        <table class="TableDNP" id="tablatest">
+            <thead>
+                <tr>
+                    <th class="columAcc"></th>
+                    <th class="textLeftDNP" style="width: 25%;">Proyecto / Estado / Cod. programa / Cod. subprograma</th>
+                    <th class="textRightDNP" style="width: 15%;">Operación / Código presupuestal</th>
+                    <th class="textRightDNP" style="width: 18%;">Monto del proyecto $</th>
+                    <th class="textRightDNP" style="width: 18%;">Monto del trámite $</th>
+                    <th class="textRightDNP" style="width: 15%;">Estado actualización</th>
+                    <th class="textCenterDNP" ng-if="vm.mostrarPaso1">
+                        <button ng-if="vm.habilitaBotones" class="btnaccion" tooltip-class="customClass" uib-tooltip="Ajuste Masivo" ng-click="vm.generarInstanciasMasiva()">
+                            <span> <img src="Img/iconsgrid/iconAccionPlayBlue.svg"></span>
+                        </button>
+                    </th>
+                    <th class="columAcc" ng-if="vm.mostrarPaso1"></th>
+                    <th class="columAcc" ng-if="vm.mostrarPaso3"></th>
+                    <th class="columAcc" ng-if="vm.mostrarPaso3"><span> <img src="Img/btn/icono_ajustar_valores.svg"></span></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="objValor in vm.listaEntidadesProy" ng-init="valorIndex = $index">
+
+                    <td>
+
+                        <span id="AS006-{{objValor.ProyectoId}}" class="hidden text-left color-red erroras006"></span>
+                    </td>
+
+                    <td>{{objValor.BPIN}}. {{objValor.NombreProyecto}} / {{objValor.Estado}} / {{objValor.Programa}} / {{objValor.SubPrograma}}</td>
+                    <td>
+                        <span>{{objValor.TipoProyecto}}</span>
+                        <br>
+                        <textarea class="editInputDNP" disabled="disabled" style="overflow: hidden; resize: none; font-size:15px;width:100%;" rows="3">{{objValor.CodigoPresupuestal.substr(0,6)}}
+{{objValor.CodigoPresupuestal.substr(6,4)}}-{{objValor.CodigoPresupuestal.substr(10,4)}}-{{objValor.CodigoPresupuestal.substr(14,4)}}-{{objValor.CodigoPresupuestal.substr(18,4)}}
+                        </textarea>
+                    </td>
+                    <td>
+                        <p>Nación</p>
+                        <input type="text" class="form-control editInputDNP textRightDNP" disabled value={{objValor.ValorMontoProyectoNacion}} />
+                        <p>Propios</p>
+                        <input type="text" class="form-control editInputDNP textRightDNP" disabled value={{objValor.ValorMontoProyectoPropios}} />
+                    </td>
+                    <td>
+                        <p>Nación</p>
+                        <!--<input type="text" class="form-control editInputDNP textRightDNP" disabled value={{objValor.ValorMontoTramiteNacion}} />-->
+
+                        <input type="text" class="form-control editInputDNP textRightDNP"
+                               id="input{{objValor.BPIN}}"
+                               ng-value="objValor.ValorMontoTramiteNacion"
+                               ng-model="vm.listaEntidadesProy[valorIndex].ValorMontoTramiteNacion"
+                               ng-blur="vm.actualizarMontos($event,objValor.BPIN ,valorIndex)"
+                               ng-focus="vm.focus($event)"
+                               ng-disabled="vm.disabled" />
+                        <p>Propios</p>
+                        <!-- <input type="text" class="form-control editInputDNP textRightDNP" disabled value={{objValor.ValorMontoTramitePropios}} />-->
+
+                        <input type="text" class="form-control editInputDNP textRightDNP"
+                               id="input{{objValor.BPIN}}"
+                               ng-value="objValor.ValorMontoTramitePropios"
+                               ng-model="vm.listaEntidadesProy[valorIndex].ValorMontoTramitePropios"
+                               ng-blur="vm.actualizarMontos($event,objValor.BPIN ,valorIndex)"
+                               ng-focus="vm.focus($event)"
+                               ng-disabled="vm.disabled" />
+                    </td>
+                    <td>
+                        <textarea ng-if="vm.tipoaccion !== 'O'" class="" disabled="disabled" style="overflow: hidden; resize: none; background-color: rgba(246, 248, 249, 1)" rows="3">{{objValor.EstadoActualizacion}}</textarea>
+                    </td>
+                    <td class="textCenterDNP" ng-if="vm.mostrarPaso1">
+                        <button ng-if="vm.habilitaBotones && !objValor.TieneInstancia && ( vm.formNumero(objValor.ValorMontoTramiteNacion)>0 || vm.formNumero(objValor.ValorMontoTramitePropios)>0)" class="btnaccion" tooltip-class="customClass" uib-tooltip="Crear proceso de ajuste del proyecto" ng-click="vm.iniciarInstanciaProyecto(objValor)">
+                            <span> <img src="Img/iconsgrid/iconAccionPlayBlue.svg"></span>
+                        </button>
+                        <button ng-if="vm.habilitaBotones && !objValor.TieneInstancia && ( vm.formNumero(objValor.ValorMontoTramiteNacion)<1 &&  vm.formNumero(objValor.ValorMontoTramitePropios)<1)" class="btnaccion" tooltip-class="customClass" uib-tooltip="Crear proceso de ajuste del proyecto">
+                            <span> <img src="Img/iconsgrid/iconAccionPlayD.svg"></span>
+                        </button>
+                        <button ng-if="vm.habilitaBotones && objValor.TieneInstancia" class="btnaccion" style="width:28px" tooltip-class="customClass" uib-tooltip="Crear proceso de ajuste del proyecto">
+                            <span> <img src="Img/iconsgrid/iconAccionPlayCheck.svg"></span>
+                        </button>
+                    </td>
+                    <td class="textCenterDNP" ng-if="vm.mostrarPaso1">
+                        <button ng-if="vm.habilitaBotones" class="btnaccion" tooltip-class="customClass" uib-tooltip="Eliminar Registro" ng-click="vm.eliminarAsociacion(objValor.ProyectoId, objValor.BPIN, objValor.TipoProyecto)">
+                            <span> <img src="Img/IcoDelete.svg"></span>
+                        </button>
+                    </td>
+                    <td class="textCenterDNP" ng-if="vm.mostrarPaso3 && vm.habilitaBotonesPaso3">
+                        <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Ampliar Concepto" ng-click="vm.actualizaEstado(objValor.BPIN)">
+                            <span> <img src="Img/btn/btnVolver.png"></span>
+                        </button>
+                    </td>
+                    <td class="textCenterDNP" ng-if="vm.mostrarPaso3 && vm.habilitaBotonesPaso3" uib-tooltip="Devolución por ajuste de valores" tooltip-placement="top">
+                        <input type="checkbox" id="{{objValor.ProyectoId}}">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <div class="col-md-7" style="display:inline-flex;">
+
+        </div>
+        <div class="col-md-5" style="display:inline-flex;">
+            <span class="textRightDNP" style="font-weight: 400 !important;" ng-if="vm.mostrarPaso3 && vm.habilitaBotonesPaso3">Ajustar valores:</span>
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            <span class="buttonbar pull-right" ng-if="vm.mostrarPaso3 && vm.habilitaBotonesPaso3">
+                <a ng-click="vm.cancelar()"><span class="uLabelCampo_fp1" style="text-decoration:underline">CANCELAR</span></a>
+            </span>
+            &nbsp;
+            &nbsp;
+            <span class="buttonbar pull-right" ng-if="vm.mostrarPaso3 && vm.habilitaBotonesPaso3">
+                <a ng-click="vm.devolverSeleccion()"><span class="uLabelCampo_fp1" style="text-decoration:underline">DEVOLVER SELECCIONADOS</span></a>
+            </span>
+        </div>
+    </div>
+    <br />
+    <div>
+        <div class="row" style="padding-top:2rem;">
+            <div class="col-md-8" style="display:inline-flex;">
+                <span style="color: #004884; font-size: 24px; font-weight: 400;">Valor total del trámite</span>
+            </div>
+        </div>
+        <div id="detalleMuchosProyectos-ValorCreditoContracredito-error" class="hidden uMensajeError"></div>
+        <table class="TableDNP">
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td class="textRightDNP">Total contracrédito</td>
+                    <td> <input type="text" class="form-control editInputDNP textRightDNP" disabled value="{{vm.ValorTotalMontoRCC}}" /></td>
+                    <td class="textRightDNP">Total crédito</td>
+                    <td> <input type="text" class="form-control editInputDNP textRightDNP" disabled value={{vm.ValorTotalMontoRC}} /></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td> <label>Contracrédito nación</label><input type="text" class="form-control editInputDNP textRightDNP" disabled value="{{vm.ValorTotalMontoNacionRCC}}" /></td>
+                    <td> <label>Contracrédito propios</label><input type="text" class="form-control editInputDNP textRightDNP" disabled value="{{vm.ValorTotalMontoPropiosRCC}}" /></td>
+                    <td> <label>Crédito nación</label><input type="text" class="form-control editInputDNP textRightDNP" disabled value="{{vm.ValorTotalMontoNacionRC}}" /></td>
+                    <td> <label>Crédito propios</label><input type="text" class="form-control editInputDNP textRightDNP" disabled value={{vm.ValorTotalMontoPropiosRC}} /></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="modal " id="IPModal" tabindex="-1" role="dialog" aria-labelledby="IPModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content modal-contentDNP">
+                <div class="modal-header">
+
+                    <button type='button' class='swal2-close closemodalDNP' aria-label='Close this dialog' data-dismiss="modal">×</button>
+                    <h3 class="modal-title TituloModal1DNP" id="modal-title">{{vm.tituloMensaje}} </h3>
+                    <span class="TituloModal2DNP"> </span>
+                </div>
+                <div class="modal-body">
+                    <p class="descripcionbodyDNP">{{vm.mensaje}}</p>
+                    <p>
+                        <div class="col-md-12 DetacolumnDNP">
+                            <span class="notapregun">(Máximo 8.000 caracteres)</span>
+                        </div>
+
+                        <textarea rows="3" id="observacion" class="uLabelCampoNegro"
+                                  ng-model="vm.model.observacion" minlength="1" maxlength="5000"></textarea>
+
+
+                    </p>
+                </div>
+                <div class="modal-footer textCenterDNP">
+                    <button class="btneditarDNP" type="button" data-dismiss="modal">CANCELAR</button>
+                    <button class="btnguardarDNP" type="button" ng-click="vm.aceptar()">ACEPTAR</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,265 @@
+﻿<div id="centro-ayuda" class="dashboard" ng-init="vm.init();">
+    <!-- #region breadcrumb  class="container-fluid" -->
+    <nav class="breadcrumb">
+        <a href="/">
+            <span class="breadcrumb-item">
+                <i class="fa fa-home" aria-hidden="true"></i> Inicio
+            </span>
+        </a>
+        /
+        <span class="breadcrumb-item">Centro de ayuda</span>
+
+    </nav>
+    <!-- #endregion breadcrumb -->
+    <!-- #region Título e accíon -->
+    <!--<div class="titulo-e-accion">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="titulo">
+                    <span>Centro de Ayuda</span>
+                    <span class="button-bar">
+                        <button type="button" class="btn btn-default btn-md" ng-click="vm.agregarNuevaAyuda()" tooltip-placement="auto" uib-tooltip="Adicionar">Adicionar</button>
+                        <button type="button" class="btn btn-default btn-md" ng-click="vm.conmutadorFiltro()" tooltip-placement="auto" uib-tooltip="Filtro">Filtro</button>
+                        <a id="aDescargarPdf" href="" download target="_blank" ng-click="vm.aDescargarPdf_OnClick($event, $event.target)" tooltip-placement="auto" uib-tooltip="Exportar PDF" class="btn btn-default btn-md btnRedondo">PDF</a>
+                        <a href="" download target="_blank" ng-click="vm.downloadExcel()" tooltip-placement="auto" uib-tooltip="Exportar XLS" class="btn btn-default btn-md btnRedondo">XLS</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>-->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="titlebar">
+                <span>Centro de ayuda</span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div>
+            <button class="btnCrearProceso pull-right" style="margin-right: 15px;" ng-click="vm.agregarNuevaAyuda()">+ NUEVO</button>
+        </div>
+    </div>
+    <!-- #endregion -->
+    <!-- #region Tabs -->
+    <div class="form-group clearfix">
+        <div class="row">
+            <div class="col-sm-12 tabs radio radio-primary">
+                <ul class="nav nav-tabs tabsFiltro">
+                    <li class="active">
+                        <a data-toggle="tab" ng-click="vm.cambiarFiltroTab('Centro de Ayuda')" data-target="">
+                            Centro de ayuda
+                        </a>
+                    </li>
+                    <li>
+                        <a data-toggle="tab" ng-click="vm.cambiarFiltroTab('Videos')">
+                            Videos
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row rowbotonesicoDNP">
+
+                    <div class="col-md-12 text-right nopadding">
+                        <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Limpiar" ng-click="vm.limpiarCamposFiltro()">
+                            <span> <img id="icoLimpiarBusqueda" class="icoBusquedasDNP" src="Img/IcolimpiarBusqD.svg"></span>
+                        </button>
+                        <button tooltip-class="customClass" uib-tooltip="Buscar" class="btnicobuscarDNP" type="button" data-toggle="collapse" data-target="#IdPanelBuscador" ng-click="vm.conmutadorFiltro()">
+                            <span> <img id="arrow-IdPanelBuscador" class="icoBusquedas2DNP glyphicon-chevron-down-busqDNP" src="Img/IcoBusqUp.svg" data-toggle="collapse" data-target="#IdPanelBuscador"></span>
+                        </button>
+                        <button class="btnaccion" ng-click="vm.aDescargarPdf_OnClick($event, $event.target)">
+                            <span> <img class="icoBusquedasDNP" src="Img/etapas/u1089.svg"></span>
+                        </button>
+                        <!--<button class="btnaccion" ng-click="vm.downloadExcel()">
+                            <span> <img class="icoBusquedasDNP" src="Img/etapas/u1090.svg"></span>
+                        </button>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--<div class="form-group clearfix">
+    <div class="form-group clearfix mt-3">-->
+    <!--<div class="row" ng-if="vm.cambiarTipoEntidadFiltroTab">-->
+    <!--<div class="row" id="renglon-encabezado-tabs">
+            <div class="radio radio-primary">
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a data-toggle="tab" ng-click="vm.cambiarFiltroTab('Centro de Ayuda')">
+                            <div class="upper-selection"></div>
+                            <span>Centro de Ayuda</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a data-toggle="tab" ng-click="vm.cambiarFiltroTab('Videos')">
+                            <div class="upper-selection"></div>
+                            <span>Videos</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>-->
+    <!--inicio filtro-->
+    <div class="row panelbuscadorDNP collapse" id="IdPanelBuscador">
+
+        <div class="row">
+            <div class="col-md-6 col-sm-6" ng-if="vm.tipoTab === 'Centro de Ayuda'">
+                <div class="labelbuscadorDNP"> <span>Tema general</span></div>
+                <input type="text" class="form-control InputBuscadorDNP" placeholder="Tema general" ng-model="vm.filtros.general" />
+            </div>
+            <div class="col-md-6 col-sm-6" ng-if="vm.tipoTab === 'Centro de Ayuda'">
+                <div class="labelbuscadorDNP"> <span>Tema específico</span></div>
+                <input type="text" class="form-control InputBuscadorDNP" placeholder="Tema específico" ng-model="vm.filtros.especifico" />
+            </div>
+            <div class="col-md-12 col-sm-12" ng-if="vm.tipoTab !== 'Centro de Ayuda'">
+                <div class="labelbuscadorDNP"> <span>Video</span></div>
+                <input type="text" class="form-control InputBuscadorDNP" placeholder="Buscar" ng-model="vm.filtros.tema" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 pull-left text-left" ng-if="vm.BusquedaRealizada">
+                <span class="spanresultadobusquedaDNP pull-left" ng-if="vm.totalRegistrosEntontrados > 0">
+                    Se encontraron ({{vm.totalRegistrosEntontrados}}) resultados.
+                </span>
+                <span class="spanresultadobusqueda2DNP pull-left" style="margin-top: 0px;" ng-if="vm.gridOptions.data.length === 0 && vm.gridOptionsVideos.data.length === 0">
+                    No se encontraron resultados.
+                </span>
+            </div>
+            <div class="col-md-6 pull-right text-right">
+                <span class="pull-right">
+                    <button type="button" class=" btnBuscarDNP " tooltip-class="customClass" uib-tooltip="Buscar" ng-click="vm.filtrarAyuda()">
+                        BUSCAR
+                    </button>
+                </span>
+            </div>
+        </div>
+    </div>
+    <!--fim filtro-->
+    <!--</div>-->
+    <!-- #endregion Tabs -->
+    <!-- #region Tabla -->
+    <div class="row">
+        <div class="col-xs-12 col-md-12">
+            <div ng-if="vm.abaAyuda && vm.gridOptions.data.length" class="row">
+                <div class="" style="padding: 0 !important" ng-repeat="articulo in vm.gridOptions.data">
+                    <div class="alert panel-headingAccDNP">
+                        <div class="card card-body pull-left  divAccordionDNP">
+                            <span class="uLabelCampo">{{articulo.Nombre}}</span>
+                            <div class="pull-right" style="margin-right:15px;">
+                                <a ng-click="vm.crearSubTema({$row: articulo})"><span class="uLabelCampo" style="margin-left:10px">Crear</span></a>
+                                <a ng-click="vm.actualizarTema({$row: articulo})"><span class="uLabelCampo" style="margin-left:10px">Editar</span></a>
+                                <a ng-click="vm.eliminarTema({$row: articulo, TipoAyuda: 1})"><span class="uLabelCampo" style="margin-left:10px">Eliminar</span></a>
+                            </div>
+                            <p class="panelbtnalertAcordnp">
+                                <button class="btnaccion btnAccordionDNP" type="button" data-toggle="collapse" data-target="#obj_{{articulo.Id}}" ng-click="vm.AbrilNivel(articulo.Id)">
+                                    <img ng-show="articulo.estadoArticulo == '+'" src="Img/btnMas.svg">
+                                    <img ng-show="articulo.estadoArticulo == '-'" src="Img/btnMenos.svg">
+                                </button>
+                            </p>
+
+                        </div>
+                    </div>
+                    <br />
+                    <div class="collapse" id="obj_{{articulo.Id}}" style="margin-top: -20px;">
+                        <div class="LineaEncabezadodivDNP"></div>
+                        <div class="row">
+                            <h3 class="tituloEncabezadodivDNP">
+                                Temas: {{articulo.SubItems.length}}
+                            </h3>
+                        </div>
+
+                        <div class="row" style="margin: 0px 0px 0px 0px;">
+                            <div class="col-md-12 ">
+
+                                <table class="TableDNP">
+                                    <thead>
+                                        <tr>
+                                            <th class="columAcc"></th>
+                                            <th class="textLeftDNP">Tema</th>
+                                            <th class="columAcc"></th>
+                                            <th class="columAcc"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="datos in articulo.subGridOptions.data">
+                                            <td></td>
+                                            <td class="textLeftDNP">
+                                                {{datos.Nombre}}
+                                            </td>
+                                            <td>
+                                                <button class="btnaccion ng-scope" tooltip-class="customClass" uib-tooltip="Editar" ng-click="vm.actualizarSubTema({$row: datos})" style="">
+                                                    <span> <img src="Img/IcoEdit.svg"></span>
+                                                </button>
+                                            </td>
+                                            <td>
+                                                <button class="btnaccion ng-scope" tooltip-class="customClass" uib-tooltip="Eliminar " ng-click="vm.eliminarTema({$row: datos, TipoAyuda: 1})" style="">
+                                                    <span> <img src="Img/IcoDelete.svg"></span>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div ng-if="vm.abaAyuda && !vm.gridOptions.data.length" class="text-center intro-help min-mh no-result-watermark">
+                <h3> No hay ningún resultado para su búsqueda</h3>
+            </div>
+            <div ng-if="vm.abaVideo && vm.gridOptionsVideos.data.length" class="row">
+
+                <div class="row" style="margin: 0px 0px 0px 0px;">
+                    <div class="col-md-12 ">
+                        <br />
+                        <table class="TableDNP">
+                            <thead>
+                                <tr>
+                                    <th class="columAcc"></th>
+                                    <th class="textLeftDNP">Video</th>
+                                    <th class="columAcc"></th>
+                                    <th class="columAcc"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="datos in vm.gridOptionsVideos.data">
+                                    <td></td>
+                                    <td class="textLeftDNP">
+                                        {{datos.Nombre}}
+                                    </td>
+                                    <td>
+                                        <button class="btnaccion ng-scope" tooltip-class="customClass" uib-tooltip="Editar" ng-click="vm.actualizarItemAyudaVideo({$row: datos})" style="">
+                                            <span> <img src="Img/IcoEdit.svg"></span>
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button class="btnaccion ng-scope" tooltip-class="customClass" uib-tooltip="Eliminar " ng-click="vm.eliminarTema({$row: datos, TipoAyuda: 3})" style="">
+                                            <span> <img src="Img/IcoDelete.svg"></span>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+            <!--<div ng-if="vm.abaVideo && vm.gridOptionsVideos.data.length" class="clearfix grid-icon" ui-grid="vm.gridOptionsVideos" ui-grid-resize-columns ui-grid-pinning ui-grid-pagination ui-grid-expandable></div>-->
+            <div ng-if="vm.abaVideo && !vm.gridOptionsVideos.data.length" class="text-center intro-help min-mh no-result-watermark">
+                <h3> No hay ningún resultado para su búsqueda</h3>
+            </div>
+        </div>
+    </div>
+    <!-- #endregion Tabla -->
+</div>
+

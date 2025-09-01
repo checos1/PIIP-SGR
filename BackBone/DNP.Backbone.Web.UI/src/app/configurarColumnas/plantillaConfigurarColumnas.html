@@ -1,0 +1,72 @@
+﻿<!-- ReSharper disable once UnknownCssClass -->
+<div class="modal-dashboard">
+    <div class="modal-header">
+        <div class="col-md-12 text-right">
+            <button type="button" class="btn btn-sm btn-primary btnCloseModal" ng-click="cancel()">x</button>
+        </div>        
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="titlebarmodal fndAzul">
+                    <span>Configurar columnas </span>
+                    <!--<span class="buttonbar pull-right">
+                         <a href="" download target="_blank" tooltip-placement="auto" uib-tooltip="button"><img src="/Img/btn/buttonhere.png" alt="BUTTON" /></a>
+                    </span>-->
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+                <label>Columnas disponibles</label>
+            </div>
+            <div class="col-md-2"></div>
+            <div class="col-md-5">
+                <label>Columnas seleccionadas</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+                <ul class="list-group">
+                    <li class="list-group-item"
+                        ng-repeat="columna in vm.items.columnasDisponibles"
+                        ng-class="columna === vm.columnaSeleccionada?'columnaSeleccionada':''"ng-click="vm.seleccionarColumna(columna, 'derecha')">
+                     
+                            {{columna}}
+                       
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-2 text-center">
+                <div class="row  top5">
+                    <a ng-click="vm.moverDeIzquierdaADerecha()" class="btn btn-default">
+                        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                    </a>
+                </div>
+                <div class="row">
+                    <a ng-click="vm.moverDeDerechaAIzquierda()" class="btn btn-default">
+                        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <ul class="list-group">
+                    <li class="list-group-item"
+                        ng-repeat="columna in vm.items.columnasActivas"
+                        ng-class="columna === vm.columnaSeleccionada?'columnaSeleccionada':''" ng-click="vm.seleccionarColumna(columna, 'izquierda')">
+                       
+                            {{columna}}
+                      
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="row">
+            <div class="col-md-12">
+                <button class="btn btn-default" type="button" ng-click="cancel()">Cancelar</button>
+                <button class="btn btn-success" type="button" ng-click="ok()">Guardar</button>
+            </div>
+        </div>
+    </div>

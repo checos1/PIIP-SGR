@@ -1,0 +1,417 @@
+﻿<style>
+    .align-form {
+        display: flex;
+        align-items: flex-end;
+    }
+
+    .sIcon {
+        width: 16px;
+        height: 16px
+    }
+
+
+    .pagination-custom {
+        display: flex;
+        margin: 20px auto;
+        justify-content: center;
+    }
+
+        .pagination-custom li {
+            margin: 0 3px;
+        }
+
+            .pagination-custom li a,
+            .pagination-custom li span {
+                color: #004884;
+                font-size: 16px;
+                font-weight: bold;
+                text-decoration: none;
+                border: none;
+                padding: 6px 12px;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+
+            .pagination-custom li.active a {
+                background-color: #004884 !important;
+                color: white;
+                pointer-events: none;
+            }
+
+            .pagination-custom li a:hover {
+                background-color: #e0f7fa;
+                color: #004884;
+            }
+
+        .pagination-custom .dots {
+            font-size: 16px;
+            color: #555;
+        }
+
+        .pagination-custom li.disabled a {
+            cursor: not-allowed;
+            color: #bbb;
+        }
+
+    .data-item {
+        padding: 10px;
+        border: 1px solid #ccc;
+        margin-bottom: 5px;
+    }
+</style>
+<!-- #region breadcrumb -->
+<nav class="breadcrumb">
+    <a href="/">
+        <span class="breadcrumb-item">
+            <i class="fa fa-home" aria-hidden="true"></i> Inicio
+        </span>
+    </a>
+    /
+    <span class="breadcrumb-item active">Administración Tipos de Documentos</span>
+</nav>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="titlebar">
+                <span>Administración Tipos de Documentos</span>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<section id="documento" ng-init="vm.init();">
+    <!-- Tabs (2)-->
+    <div class="container-fluid inbox">
+        <ul class="nav nav-tabs tabsFiltro mt-3 mb-2">
+            <li id="liDgenerales" ng-class="{'active' : vm.tabs === 1 }">
+                <a href="" data-toggle="tab" ng-click="vm.activarTabs(1)">
+                    Catálogo tipo de Documento
+                </a>
+            </li>
+            <li id="liRecursos" ng-class="{'active' : vm.tabs === 2 }">
+                <a href="" data-toggle="tab" ng-click="vm.activarTabs(2)">
+                    Configurar usos de documento
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!--refactor -->
+    <!-- Tab no. 1 -->
+    <div class="row" style="padding-left: 3rem;padding-right: 2rem;" ng-if="vm.tabs == 1">
+
+        <!-- Acciones -->
+        <div class="row rowbotonesicoDNP" style="margin-right: 20px;">
+            <div class="col-md-12 text-right nopadding">
+                <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Limpiar" ng-click="vm.limpiarCamposFiltro()">
+                    <span> <img id="icoLimpiarBusqueda" class="icoBusquedasDNP" src="Img/IcolimpiarBusqD.svg"></span>
+                </button>
+                <button tooltip-class="customClass" uib-tooltip="Buscar" class="btnicobuscarDNP" type="button" data-toggle="collapse" data-target="#IdPanelBuscador" ng-click="vm.conmutadorFiltro()">
+                    <span> <img id="arrow-IdPanelBuscador" class="icoBusquedas2DNP glyphicon-chevron-down-busqDNP" src="Img/IcoBusqUp.svg" data-toggle="collapse" data-target="#IdPanelBuscador"></span>
+                </button>
+                <button class="btnaccion" title="Descargar formato PDF">
+                    <span> <img class="icoBusquedasDNP" src="Img/etapas/u1089.svg"></span>
+                </button>
+                <button class="btnaccion" title="Descargar formato Excel">
+                    <span> <img class="icoBusquedasDNP" src="Img/etapas/u1090.svg"></span>
+                </button>
+            </div>
+        </div>
+
+        <div class="form-group" style=" padding-top: 2rem;width:90%;">
+            <div class="tab-content">
+                <!-- Filtrar Datos -->
+                <div ng-if="vm.mostrarFiltro">
+
+                    <table border="0" width="100%" class="mb-5">
+                        <tbody class="">
+                            <tr>
+                                <td colspan="3">
+                                    <span class="TituloPincFormularioDNP">Tipos Documento </span>
+                                    <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg">
+                                </td>
+                            </tr>
+                            <tr class="filaAnidada">
+                                <td colspan="3">
+                                    <div id="indicador-" class="img pull-left iconadverdnp"></div>&nbsp;
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="form-group">
+                                        <label class="pt-2"><strong>Tipo Documento</strong></label>
+                                        <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty" id="txNit" placeholder="" ng-model="vm.formSearch.Nombre" ng-disabled="vm.buscadorDisabled">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="col-md-4">
+                                        <span class="buttonbar pull-left pt-4">
+                                            <button type="button" class="btnguardarDNP" tooltip-placement="top" tooltip-class="customClass" uib-tooltip="Pulse para buscar" ng-click="vm.actionConsultarDocumento(vm.formSearch.Nombre)" ng-disabled="vm.formSearch.Nombre == ''">
+                                                BUSCAR
+                                            </button>
+                                        </span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="col-md-4">
+                                        <span class="buttonbar pull-left pt-4">
+                                            <button type="button" ng-click="vm.actionAgregarElemento()" class="btnguardarDNP" tooltip-placement="top" tooltip-class="customClass" uib-tooltip="Pulse para agregar" ng-disabled="!vm.visibleAgregar || vm.formSearch.Nombre == ''">
+                                                AGREGAR
+                                            </button>
+                                        </span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Display List Tipos de Documento -->
+
+
+                <div>
+                    <table class="TableDNP" border="0">
+                        <thead>
+                            <tr>
+                                <th class="columAcc" style="width:5%"></th>
+                                <th style="width:50%" class="textLeftDNP">Tipo Documento</th>
+                                <th style="width:15%" class="textLeftDNP">Código</th>
+                                <th style="width:20%" class="textLeftDNP">Activo/Inactivo</th>
+                                <th style="width:5%"></th>
+                                <th style="width:5%"></th>
+                                <th style="width:5%"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Formulario para agregar Tipos de Documento -->
+                            <tr ng-if="vm.visibleNuevo == true" class="ng-scope">
+                                <td colspan="1"></td>
+                                <td>
+                                    <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty" id="nuevoDocumento" placeholder="" ng-model="vm.formData.Nombre">
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-isolate-scope ng-empty" id="nuevoCodigo" placeholder="" ng-model="vm.formData.Codigo">
+                                </td>
+                                <td></td>
+                                <td class="textCenterDNP">
+                                    <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Guardar Documento" ng-click="vm.actionGuardar()">
+                                        <span> <img class="sIcon" src="Img/IcoSave.svg"></span>
+                                    </button>
+                                </td>
+                                <td class="textCenterDNP">
+                                    <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Cancelar" ng-click="vm.actionCancelar()">
+                                        <span> <img class="sIcon" src="Img/IcoX.svg"></span>
+                                    </button>
+                                </td>
+                                <td class="textCenterDNP">
+                                    <label class="switchDNP">
+                                        <input type="checkbox" ng-checked="vm.formData.Activo" ng-model="vm.formData.Activo">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr ng-if="vm.visibleNuevo == true && vm.mensajeValidacion != null">
+                                <td colspan="1">
+                                    <div id="indicador-" class="img pull-right iconadverdnp"><img class="" src="Img/u4630.svg" ng-if="vm.tieneMensajeValidacion"> </div>
+                                </td>
+                                <td colspan="4">
+                                    <span class="messagealerttableDNP" ng-repeat="item in vm.mensajeValidacion">
+                                        {{item}}
+                                    </span>
+                                </td>
+                            </tr>
+
+                            <!-- List Data -->
+                            <tr ng-repeat="item in vm.pageData track by $index" class="ng-scope">
+                                <td colspan="1"></td>
+                                <td>{{ item.Descripcion }}</td>
+                                <td>{{ item.Codigo }}</td>
+                                <td>{{ item.Activo ? 'Activo' : 'Inactivo' }}</td>
+                                <td class="textCenterDNP">
+                                    <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Editar documento" ng-click="vm.actionEdit(item)">
+                                        <img class="sIcon" src="Img/IcoEdit.svg">
+                                    </button>
+                                </td>
+                                <td class="textCenterDNP">
+                                    <label class="switchDNP">
+                                        <input type="checkbox" ng-checked="item.Activo" ng-model="item.Activo" ng-click="vm.actionEstadoDocumento(item, $index)">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </td>
+                                <td class="textCenterDNP">
+                                    <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Eliminar documento" ng-click="vm.actionEliminarDocumento(item.Id)">
+                                        <img class="sIcon" src="Img/IcoDelete.svg">
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="7" class="text-center">
+                                    <ul class="pagination pagination-custom">
+                                        <li ng-class="{disabled: vm.currentPage === 1}">
+                                            <a href="#" ng-click="vm.changePage(vm.currentPage - 1)">&lsaquo;</a>
+                                        </li>
+                                        <li ng-repeat="page in vm.pages track by $index" ng-class="{active: page === vm.currentPage}">
+                                            <a href="#" ng-click="vm.changePage(page)" ng-if="page !== '...'">{{ page }}</a>
+                                            <span class="dots" ng-if="page === '...'">...</span>
+                                        </li>
+                                        <li ng-class="{disabled: vm.currentPage === vm.totalPages}">
+                                            <a href="#" ng-click="vm.changePage(vm.currentPage + 1)">&rsaquo;</a>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tfoot>
+
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tab no. 2 -->
+    <div class="row" style="padding-left: 3rem;padding-right: 2rem;" ng-if="vm.tabs == 2">
+        <!-- Acciones -->
+        <div class="row rowbotonesicoDNP" style="margin-right: 20px;">
+            <div class="col-md-12 text-right nopadding">
+                <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Limpiar" ng-click="vm.limpiarCamposUso()">
+                    <span> <img id="icoLimpiarBusqueda" class="icoBusquedasDNP" src="Img/IcolimpiarBusqD.svg"></span>
+                </button>
+                <button tooltip-class="customClass" uib-tooltip="Buscar" class="btnicobuscarDNP" type="button" data-toggle="collapse" data-target="#IdPanelBuscador" ng-click="vm.conmutadorFiltro2()">
+                    <span> <img id="arrow-IdPanelBuscador" class="icoBusquedas2DNP glyphicon-chevron-down-busqDNP" src="Img/IcoBusqUp.svg" data-toggle="collapse" data-target="#IdPanelBuscador"></span>
+                </button>
+                <button class="btnaccion" title="Descargar formato PDF">
+                    <span> <img class="icoBusquedasDNP" src="Img/etapas/u1089.svg"></span>
+                </button>
+                <button class="btnaccion" title="Descargar formato Excel">
+                    <span> <img class="icoBusquedasDNP" src="Img/etapas/u1090.svg"></span>
+                </button>
+            </div>
+        </div>
+        <div class="form-group" style=" padding-top: 2rem;width:95%;">
+            <div class="tab-content">
+                <div class="card mt-4 p-5" style="background-color: #fafafa " ng-if="vm.mostrarFiltro2">
+                    <div class="card-body">
+                        <form id="formularioUso" name="formularioUso" class="ng-pristine ng-valid">
+                            <div class="row">
+                                <div class="form-group col-md-4">
+                                    <label for="tipoDocumento"><strong>Tipo de Documento</strong></label>
+                                    <select id="tipoDocumento" class="form-control" ng-model="vm.formUsoSearch.TipoDocumentoId">
+                                        <option value="" selected>Seleccione...</option>
+                                        <option ng-repeat="item in vm.Referencias.Documentos" ng-value="item.Id">{{item.Descripcion}}</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="tramite"><strong>Tipo de Trámite</strong></label>
+                                    <select id="tramite"
+                                            class="form-control"
+                                            ng-model="vm.formUsoSearch.TipoTramiteId"
+                                            ng-change="vm.onTramiteSearchChange(vm.formUsoSearch.TipoTramiteId)">
+                                        <option value="" selected>Seleccione...</option>
+                                        <option ng-repeat="item in vm.Referencias.Tramites" ng-value="item.Id">{{item.Nombre}}</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="fase"><strong>Fase</strong></label>
+                                    <select id="fase"
+                                            class="form-control"
+                                            ng-model="vm.formUsoSearch.FaseId"
+                                            ng-disabled="!vm.formUsoSearch.TipoTramiteId"
+                                            ng-change="vm.onFaseChange(vm.formUsoSearch.FaseId)">
+                                        >
+                                        <option value="" selected>Seleccione...</option>
+                                        <option ng-repeat="item in vm.filteredSearchFases" ng-value="item.FaseId">{{item.NombreFase}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row mt-4">
+                                <div class="form-group col-md-4">
+                                    <label for="rol"><strong>Rol</strong></label>
+                                    <select id="rol"
+                                            class="form-control"
+                                            ng-model="vm.formUsoSearch.RolId"
+                                            ng-disabled="!vm.formUsoSearch.FaseId">
+                                        <option value="" selected>Seleccione...</option>
+                                        <option ng-repeat="item in vm.filteredSearchRoles" ng-value="item.IdRol">{{item.NombreRol}}</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="ValidaObligatoriedad"><strong>Función que valida obligatoriedad</strong></label>
+                                    <select id="ValidaObligatoriedad" class="form-control" ng-model="vm.formUsoSearch.ValidaObligatoriedad">
+                                        <option value="" selected>Seleccione...</option>
+                                        <option ng-repeat="item in vm.Referencias.TipoValidaciones" ng-value="item.Id">{{item.Funcion}}</option>                                        
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="ValidaVisibilidad"><strong>Función que valida visibilidad</strong></label>
+                                    <select id="ValidaVisibilidad" class="form-control" ng-model="vm.formUsoSearch.ValidaVisibilidad">
+                                        <option value="" selected>Seleccione...</option>
+                                        <option ng-repeat="item in vm.Referencias.TipoValidaciones" ng-value="item.Id">{{item.Funcion}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="row">
+                        <div class=" col-md-12 mt-5 mb-3 pull-right">
+                            <span class="buttonbar pull-right">
+                                <button type="button" ng-click="vm.actionConsultarUsoDocumento()" class="btnguardarDNP" tooltip-placement="top" tooltip-class="customClass" uib-tooltip="Pulse para buscar" ng-disabled="vm.IdUso ==''">
+                                    BUSCAR
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class=" col-md-12 mt-5 mb-3 p-2">
+                        <span class="buttonbar pull-right">
+                            <button type="button" ng-disabled="false" ng-click="vm.mostrarModalUso()" class="btnguardarDNP" tooltip-placement="top" tooltip-class="customClass" uib-tooltip="Pulse para agregar" disabled="disabled">
+                                AGREGAR
+                            </button>
+                        </span>
+                    </div>
+                    <table class="table table-bordered TableDNP">
+                        <thead>
+                            <tr>
+                                <th style="width:15%">Tipo</th>
+                                <th style="width:15%">Tipo de Trámite</th>
+                                <th style="width:10%">Fase</th>
+                                <th style="width:10%">Rol(es)</th>
+                                <th style="width:20%">Función Validación Obligatoriedad</th>
+                                <th style="width:20%">Función Validación Visibilidad</th>
+                                <th style="width:5%"></th>
+
+                                <th style="width:5%"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in vm.listaFiltradaUso" style="font-size: 0.9rem">
+                                <td style="font-size: 13px">{{item.TipoDocumento}}</td>
+                                <td style="font-size: 13px">{{item.NombreTramite}}</td>
+                                <td style="font-size: 13px">{{item.NombreFase}}</td>
+                                <td style="font-size: 13px; word-break: break-all">{{item.Rol}}</td>
+                                <td style="font-size: 13px; word-break: break-all">{{item.TDVisualizacionFuncion}}</td>
+                                <td style="font-size: 13px; word-break: break-all">{{item.TDValidacionFuncion}}</td>
+
+                                <td class="textCenterDNP">
+                                    <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Editar documento" ng-click="vm.EditarUsoDocumento(item)">
+                                        <img class="sIcon" src="Img/IcoEdit.svg">
+                                    </button>
+                                </td>
+
+                                <td class="textCenterDNP">
+                                    <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Eliminar documento" ng-click="vm.actionEliminarUsoDocumento(item)">
+                                        <img class="sIcon" src="Img/IcoDelete.svg">
+                                    </button>
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

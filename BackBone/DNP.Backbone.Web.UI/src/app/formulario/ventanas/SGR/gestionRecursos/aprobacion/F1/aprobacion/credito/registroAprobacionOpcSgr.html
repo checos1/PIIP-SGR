@@ -1,0 +1,305 @@
+﻿
+<div ng-init="vm.init();">
+    <form class="formCenter" id="generalesForm" name="generalesForm" novalidate>
+        <div style="padding-top:50px;">
+            <span class="buttonbar pull-right">
+                <button id="EditarOpcG"
+                        type="button"
+                        class="btneditarDNP"
+                        tooltip-placement="top"
+                        uib-tooltip="Editar"
+                        tabindex="0"
+                        ng-click="vm.ActivarEditar()"
+                        ng-disabled="vm.disabled">
+                    EDITAR
+                </button>
+                &nbsp;
+                <button id="GuardarOpcG"
+                        type="submit"
+                        class="{{vm.activar ? 'btnguardarDisabledDNP' : 'btnguardarDNP'}}"
+                        tooltip-placement="top"
+                        uib-tooltip="Guardar"
+                        ng-click="vm.Guardar()"
+                        ng-disabled="vm.activar">
+                    GUARDAR
+                </button>
+            </span>
+        </div>
+
+        <div id="APROPCIMPEST" class="hidden mb-3 ml-5 errorSeccionInformacionGeneralViabilidad" style="text-align: left; font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans'; font-size: 12px; font-style: normal; color: #A80521;"></div>
+        <div id="APROPCVALCRE" class="hidden mb-3 ml-5 errorSeccionInformacionGeneralViabilidad" style="text-align: left; font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans'; font-size: 12px; font-style: normal; color: #A80521;"></div>
+        <div id="APRAPRDECISIONOPC" class="hidden mb-3 ml-5 errorSeccionInformacionGeneralViabilidad" style="text-align: left; font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans'; font-size: 12px; font-style: normal; color: #A80521;"></div>
+        <div id="APRAPRFECAPROOPC" class="hidden mb-3 ml-5 errorSeccionInformacionGeneralViabilidad" style="text-align: left; font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans'; font-size: 12px; font-style: normal; color: #A80521;"></div>
+        <div id="APRAPRFECACTADMOPC" class="hidden mb-3 ml-5 errorSeccionInformacionGeneralViabilidad" style="text-align: left; font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans'; font-size: 12px; font-style: normal; color: #A80521;"></div>
+
+        <div class="row">
+            &nbsp;
+        </div>
+
+        <div class="row">
+            <div class="col-md-12" style="margin-bottom: 5px;">
+                <span class="labelQuestions" style="padding-left: 5px;">1.¿El proyecto fue aprobado por la entidad o instancia?*</span>
+            </div>
+        </div>
+        <div class="col-md-12" style="text-align: left;">
+            <div id="MensajePreguntaAprobado" class="hidden" style="text-align: left;">
+                <img src="Img/u4630.svg">
+                <span class="messagealerttableDNP" style="text-align: left;font-family: 'Work Sans'; font-size: 14px; font-style: normal;">
+                    Campo obligatorio.
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-3 form-check" style="text-align: left; padding-left: 6px;">
+                    <input type="radio" id="preguntaaprobado1" ng-disabled="vm.activar" name="preguntaaprobado1" ng-model="vm.listaRecursosEtapa.Aprobado" value="1" ng-change="vm.aprobadoChange()">
+                    <label for="preguntaaprobado1" style="padding-right: 78px;">
+                        Si
+                    </label>
+                    <input type="radio" id="preguntaaprobado2" ng-disabled="vm.activar" name="preguntaaprobado2" ng-model="vm.listaRecursosEtapa.Aprobado" value="2" ng-change="vm.aprobadoChange()">
+                    <label for="preguntaaprobado2">
+                        No
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            &nbsp;
+        </div>
+
+        <div class="row">
+            <div class="col-md-12" style="margin-bottom: 5px;">
+                <span class="labelQuestions" style="padding-left: 5px;">2.¿El proyecto fue declarado de importancia estratégica?*</span>
+            </div>
+        </div>
+        <div class="col-md-12" style="text-align: left;">
+            <div id="MensajePreguntaIEstrategica" class="hidden" style="text-align: left;">
+                <img src="Img/u4630.svg">
+                <span class="messagealerttableDNP" style="text-align: left;font-family: 'Work Sans'; font-size: 14px; font-style: normal;">
+                    Campo obligatorio.
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-3 form-check" style="text-align: left; padding-left: 6px;">
+                    <input type="radio" id="preguntaiestrategica1" ng-disabled="vm.activarAprobado" name="preguntaiestrategica1" ng-model="vm.listaRecursosEtapa.IEstrategica" value="1" ng-change="vm.iEstrategicaChange()">
+                    <label for="preguntaiestrategica1" style="padding-right: 78px;">
+                        Si
+                    </label>
+                    <input type="radio" id="preguntaiestrategica2" ng-disabled="vm.activarAprobado" name="preguntaiestrategica2" ng-model="vm.listaRecursosEtapa.IEstrategica" value="2" ng-change="vm.iEstrategicaChange()">
+                    <label for="preguntaiestrategica2">
+                        No
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            &nbsp;
+        </div>
+        <div class="row">
+            <div class="col-md-12" style="margin-bottom: 5px;">
+                <span class="labelQuestions" style="padding-left: 5px;">3. Detalle de la operación de crédito público por bienio presupuestal.*</span>
+            </div>
+        </div>
+        <div class="col-md-12" style="text-align: left;">
+            <div id="MensajeValorCreditoIgualASolicitado" class="hidden" style="text-align: left;">
+                <img src="Img/u4630.svg">
+            </div>
+        </div>
+        <div class="col-md-12" style="text-align: left;">
+            <div id="MensajeCostoFinancieroIgualASolicitado" class="hidden" style="text-align: left;">
+                <img src="Img/u4630.svg">
+            </div>
+        </div>
+        <div class="col-md-12" style="text-align: left;">
+            <div id="MensajePatrimonioAutonomoIgualASolicitado" class="hidden" style="text-align: left;">
+                <img src="Img/u4630.svg">
+            </div>
+        </div>
+        <div class="row">
+            <table class="TableDNP">
+                <thead>
+                    <tr>
+                        <th class="columAcc" style="width:2%"></th>
+                        <th class="textLeftDNP" style="width:16%">Entidad / Etapa / Tipo recurso </th>
+                        <th class="textLeftDNP" style="width:15%">Valor solicitado $</th>
+                        <th class="textLeftDNP" style="width:11%">Bienio solicitado</th>
+
+                        <th class="textLeftDNP" style="width:11%">Bienio crédito</th>
+                        <th class="textLeftDNP" style="width:15%">Valor del crédito $</th>
+                        <th class="textLeftDNP" style="width:15%">Costo financiero $</th>
+                        <th class="textLeftDNP" style="width:15%">Patrimonio autónomo $</th>
+
+                        <th class="columAcc" style="width:1%"></th>
+                        <th class="columAcc" style="width:1%"></th>
+                    </tr>
+                </thead>
+                <tbody ng-repeat="objdatos in vm.listaRecursosEtapa.TipoRecursos" ng-init="recursoIndex = $index">
+                    <tr>
+
+                        <td></td>
+
+                        <td class="textLeftDNP">
+                            <div style="min-height: 70px;" class="blockReferencia2DNP">
+                                <span>
+                                    {{vm.listaRecursosEtapa.TipoEntidad}} /
+                                </span>
+                                {{ vm.listaRecursosEtapa.NombreEntidad }} /
+                                {{ objdatos.TipoRecurso }}
+                            </div>
+                        </td>
+
+                        <td class="textRightDNP">
+                            <div style="min-height: 70px;" class="blockReferencia2DNP">
+                                {{ objdatos.ValorSolicitado }}
+                            </div>
+                        </td>
+
+                        <td class="textRightDNP">
+                            <div style="min-height: 70px;" class="blockReferencia2DNP">
+                                {{ objdatos.BienioSolicitado }}
+                            </div>
+                        </td>
+
+                        <td class="textLeftDNP" colspan="4">
+
+                            <table class="TableDNP">
+                                <tbody>
+
+                                    <tr ng-repeat="objbienio in objdatos.Bienios" ng-init="bienioIndex = $index">
+
+                                        <td class="textLeftDNP" style="width:20%">
+                                            <div style="min-height: 70px;" class="blockReferencia2DNP">
+                                                {{ vm.obtenerBienio(objbienio.BienioId) }}
+                                            </div>
+                                        </td>
+
+                                        <td class="textLeftDNP" style="width:27%">
+                                            <input type="text" class="form-control editInputDNP" numbers="enteros:14;precision:2;negativos:false" min="0.0000"
+                                                   ng-model="objbienio.VrCreditoAprobado" ng-disabled="vm.activarAprobado" ng-value="'{{objbienio.VrCreditoAprobado}}'" />
+                                        </td>
+
+                                        <td class="textLeftDNP" style="width:27%">
+                                            <input type="text" class="form-control editInputDNP" numbers="enteros:14;precision:2;negativos:false"
+                                                   ng-model="objbienio.VrCostoFinanciero" ng-disabled="vm.activarAprobado" ng-value="'{{objbienio.VrCostoFinanciero}}'" />
+                                        </td>
+
+                                        <td class="textLeftDNP" style="width:27%">
+                                            <input type="text" class="form-control editInputDNP" numbers="enteros:14;precision:2;negativos:false"
+                                                   ng-model="objbienio.VrPatrimonioAutonomo" ng-disabled="vm.activarAprobado" ng-value="'{{objbienio.VrPatrimonioAutonomo}}'" />
+                                        </td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </td>
+
+                        <td class="textCenterDNP">
+                            <div style="height: 36px; vertical-align: middle; display: table-cell;">
+                                <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Eliminar">
+
+                                    <span ng-if="vm.activarAprobado == true"><img style="width: 20px;height:20px" src="Img/IcoDeleteD.svg"></span>
+                                    <span ng-if="vm.activarAprobado == false"><img style="width: 20px;height:20px" src="Img/IcoDelete.svg" ng-click="vm.EliminarBienio(recursoIndex)"></span>
+
+                                </button>
+                            </div>
+                        </td>
+
+                        <td class="textCenterDNP">
+                            <!--                            <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Adicionar" ng-disabled="vm.activar">-->
+                            <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Adicionar">
+                                <span ng-if="vm.AddVigencia == true"><img style="width: 20px;height:20px" src="Img/IcoAddD.svg"></span>
+                                <span ng-if="vm.AddVigencia == false"><img style="width: 20px;height:20px" src="Img/IcoAdd.svg" ng-click="vm.AdicionarBienio(recursoIndex)"></span>
+                            </button>
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="row">
+            &nbsp;
+        </div>
+        <div class="row">
+            <div class="col-md-12" style="margin-bottom: 5px;">
+                <span class="labelQuestions" style="padding-left: 5px;">4.¿Fecha de decisión de aprobación o no aprobación? *</span>
+            </div>
+        </div>
+        <div class="col-md-12" style="text-align: left;">
+            <div id="MensajeFechaAprobacion" class="hidden" style="text-align: left;">
+                <img src="Img/u4630.svg">
+                <span class="messagealerttableDNP" style="text-align: left;font-family: 'Work Sans'; font-size: 14px; font-style: normal;">
+                    Campo obligatorio - la fecha no debe ser superior a la fecha actual.
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3" style="margin-top: 10px; padding-left: 6px;">
+                <input type="date" id="FechaAprobacion" class="form-control selectDNP" ng-disabled="vm.activar" name="FechaAprobacion"
+                       ng-model="vm.listaRecursosEtapa.FechaAprobacion" />
+            </div>
+        </div>
+
+        <div class="row">
+            &nbsp;
+        </div>
+        <div class="row">
+            <div class="col-md-12" style="margin-bottom: 5px;">
+                <span class="labelQuestions" style="padding-left: 5px;">5.¿Fecha de publicación del acto administrativo? </span>
+            </div>
+        </div>
+        <div class="col-md-12" style="text-align: left;">
+            <div id="MensajeFechaActoAdmtvo" class="hidden" style="text-align: left;">
+                <img src="Img/u4630.svg">
+                <span class="messagealerttableDNP" style="text-align: left;font-family: 'Work Sans'; font-size: 14px; font-style: normal;">
+                    La fecha no debe ser superior a la fecha actual.
+                </span>
+            </div>
+        </div>
+        <div class="col-md-12" style="text-align: left;">
+            <div id="MensajeFechaActoAdmtvoVsFechaAprobacion" class="hidden" style="text-align: left;">
+                <img src="Img/u4630.svg">
+                <span class="messagealerttableDNP" style="text-align: left;font-family: 'Work Sans'; font-size: 14px; font-style: normal;">
+                    Esta fecha no puede ser inferior a la fecha de aprobación.
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3" style="margin-top: 10px; padding-left: 6px;">
+                <input type="date" id="FechaActoAdmtvo" class="form-control selectDNP" ng-disabled="vm.activar" name="FechaActoAdmtvo"}"
+                       ng-model="vm.listaRecursosEtapa.FechaActoAdmtvo" />
+            </div>
+        </div>
+
+        <!--Sesión Espacio Formulario-->
+        <div class="col-md-12">
+            <div class="col-md-6">
+                &nbsp;
+            </div>
+            <div class="col-md-6">
+                &nbsp;
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="col-md-6">
+                &nbsp;
+            </div>
+            <div class="col-md-6">
+                &nbsp;
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="col-md-6">
+                &nbsp;
+            </div>
+            <div class="col-md-6">
+                &nbsp;
+            </div>
+        </div>
+    </form>
+</div>

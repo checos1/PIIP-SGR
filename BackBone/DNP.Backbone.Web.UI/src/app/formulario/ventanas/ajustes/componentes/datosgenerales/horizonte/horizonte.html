@@ -1,0 +1,95 @@
+﻿<section>
+    <div class="container-fluid inbox" ng-init="vm.init();">
+        <br />
+        <!--<span class="pull-left uLabelCampo" style="margin-left: 80px;">{{vm.mensaje1}}</span>{{vm.mensaje2}}-->
+        <div class="col-md-12" style="padding-left:0px">
+            <span class="pull-left" style=""><span class="uLabelCampo">{{vm.mensaje1}}</span></span>
+        </div>
+       
+        <div class="col-md-12" style="padding-left:0px">
+            <span class="pull-left"><span>{{vm.mensaje2}} </span> <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg" ng-click="vm.abrirMensajeInformacionHorizonte()"> </span>
+        </div>
+             <br /><br />
+        <span class="buttonbar pull-right">
+            <button type="button" class="btn btncancelarHorizonte" tooltip-placement="top" uib-tooltip="{{vm.habilitarFinal ? 'CANCELAR' : 'EDITAR'}}" tabindex="0" ng-click="vm.habilitarVigencias()" has-claim has-opciones="['Ajustes:GeneralComponente']">
+                {{vm.habilitarFinal ? 'CANCELAR' : 'EDITAR'}}
+            </button>
+            <!--<button type="button" class="btn btn-default btn-md" tooltip-placement="top" uib-tooltip="Actualizar" tabindex="0">
+                Actualizar
+            </button>-->
+            <button ng-disabled="!vm.habilitaGuardar" type="button" ng-class="vm.ClasesbtnGuardar" tooltip-placement="top" uib-tooltip="Guardar" tabindex="0" ng-click="vm.Guardar()" has-claim has-opciones="['Ajustes:GeneralComponente']">
+                Guardar
+            </button>
+        </span>
+        <br /><br />
+
+
+
+
+        <div class="row" style="margin-left: 20px;padding-right: 10px;">
+
+            <div class="col" style="width:99%">
+                <div class="row headerrowBigDNP">
+                    <div class="col-xs-1 text-center headerBigColumnDNP " style="width:50px">  </div>
+                    <div class="col-md-3 text-center headerBigColumnDNP"> <label style="font-weight: 500;"> </label> </div>
+                    <div class="col-md-3 text-center headerBigColumnDNP" style=""> <label style="font-weight: 500;">Año inicio</label> </div>
+                    <div class="col-md-3 text-center headerBigColumnDNP" style=""> <label style="font-weight: 500;">Año fin</label> </div>
+                    <div class="col-md-3 text-center headerBigColumnDNP" style=""> <label style="font-weight: 500;"> </label> </div>
+                    <div class="col-xs-1 text-center headerBigColumnDNP " style="width:50px">  </div>
+                </div>
+                <div class="row bodyrowBigDNP">
+                    <div class="col-xs-1 text-center bodyBigcolumnDNP" style="width:50px"> <img ng-if="vm.habilitaAlertaError" style="padding: 28px 5px 5px 25px" class="img " src="Img/u4630.svg"> </div>
+                    <div class="col-md-3 text-center bodyBigcolumnDNP" style=""> <label style=""></label> </div>
+                    <div class="col-md-3 text-center bodyBigcolumnDNP"> <input id="anioInicio" type="number" class="form-control edithorizonte" ng-class="!vm.habilitar? 'disablegrid':vm.ClasesinputIni" ng-model="vm.anioInicio" required ng-change="vm.evaluarVerBotones()" /> </div>
+                    <div class="col-md-3 text-center bodyBigcolumnDNP"> <input type="number" id="anioFinal" class="form-control edithorizonte" ng-class="!vm.habilitarFinal? 'disablegrid':vm.ClasesinputFin" ng-model="vm.anioFinal" ng-required="true" min="1900" max="9999" /> </div>
+                    <div class="col-md-3 text-center bodyBigcolumnDNP" style=""> <label style=""></label> </div>
+                    <div class="col-xs-1 text-center bodyBigcolumnDNP" style="width:50px">  </div>
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <span ng-if="vm.habilitaAlertaError" class="pull-left" style="margin-left: 35px;"><img class="img " src="Img/u4630.svg"><span style="color:rgba(163, 0, 20, 1)"> {{vm.AlertaMensajeError}}</span>  </span>
+        <br /><br /><br />
+
+        <div ng-if="vm.verBotones">
+            <!--<div class="col-md-6">
+                <label>
+                    <input type="radio" value="1" ng-model="vm.app">
+                    Conservar datos diligenciados de vigencia en firme.
+                </label>
+            </div>
+            <div class="col-md-3">
+                <label>
+                    <input type="radio" value="0" ng-model="vm.app">
+                    Mover datos de vigencia en firme a nuevas vigencias
+                </label>
+            </div>-->
+
+            <div class="radio_opciones" style="text-align:left;">
+                <div class="col-md-12" style="padding-left:0px">
+                    <span class="pull-left" style="">
+                        <span class="uLabelCampo">
+                            Seleccione la opción para ajustar el horizonte del proyecto: <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg" ng-click="vm.abrirMensajeInformacionHorizonte2()">
+                        </span>
+                    </span>
+                </div>
+                    <label>
+                        <input type="radio" ng-model="vm.EsMover" name="optradio"
+                               ng-value="false"
+                               ng-checked="!vm.EsMover"> Conservar datos diligenciados de vigencia en firme.
+                    </label>
+                    <label>
+                        <input type="radio" ng-model="vm.EsMover" name="optradio"
+                               ng-value="true"
+                               ng-checked="vm.EsMover"> Mover datos de vigencia en firme a nuevas vigencias
+                    </label>
+                </div>
+            </div>
+        <br /><br /><br /><br />
+    </div>
+</section>
+<link href="/Content/ui-gridDNP.css" rel="stylesheet" />

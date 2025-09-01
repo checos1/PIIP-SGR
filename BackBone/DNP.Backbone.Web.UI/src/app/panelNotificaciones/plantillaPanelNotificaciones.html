@@ -1,0 +1,109 @@
+﻿<!-- ReSharper disable All -->
+
+<div class="container-fluid inbox">
+    <nav class="breadcrumb">
+        <!-- ReSharper disable UnknownCssClass -->
+        <a href="/">
+            <span class="breadcrumb-item active">
+                <i class="fa fa-home" aria-hidden="true"></i> Inicio
+            </span>
+        </a>
+        /
+        <span class="breadcrumb-item active">Notificaciones</span>
+    </nav>
+
+    <!--COMPONENTE INICIO-->
+    <div class="dashboard">
+
+        <div id="proyectos" class="project">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="titlebar">
+                        <span>Notificaciones </span>
+                        <span class="buttonbar pull-right">
+                            <button type="button" class="btn btn-default btn-md" ng-click="vm.conmutadorFiltro()" tooltip-placement="auto" uib-tooltip="Filtro">
+                                Filtro
+                            </button>
+                             
+                            <a href="" download class="btn btn-default btn-md btnRedondo" target="_blank" ng-click="vm.downloadPdf()" tooltip-placement="auto" uib-tooltip="Exportar PDF">
+                                PDF
+                            </a>
+                            <a href="" download class="btn btn-default btn-md btnRedondo" target="_blank" ng-click="vm.downloadExcel()" tooltip-placement="auto" uib-tooltip="Exportar XLS">
+                                XLS
+                            </a>                            
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- #region Tabs -->
+            <div class="form-group clearfix filtro-sem-tabla">
+                <!--inicio filtro-->
+                <div class="filtro">
+                    <div class="clearfix">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <div class="col-md-12 ">
+                                    <input type="text" ng-model="vm.perfilFiltro" name="txtPerfil" id="txtPerfil" class="form-control" placeholder="Notificación" />
+                                </div>
+                            </div>
+                            <div class="col-md-2 text-right">
+                                <button type="button" class="btn btn-filtro" ng-click="vm.buscar()" tooltip-placement="auto" uib-tooltip="Buscar">Buscar</button>
+                                <button type="button" class="btn btn-filtro" ng-click="vm.limpiarCamposFiltro()" tooltip-placement="auto" uib-tooltip="Limpar">Limpar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--fim filtro-->
+            </div>
+            <!-- #endregion Tabs -->
+            <!-- #region Tabla -->
+            <div class="row">
+                <tabla-entidad opciones="vm.opciones"
+                               definicion-columna-datos="vm.columnDef"
+                               datos="vm.datos"
+                               accion1="vm.abrirModalCrearEditar($row)"
+                               accion2="vm.abrirModalEliminar($row)">
+                </tabla-entidad>
+            </div>
+            <!-- #endregion Tabla -->
+
+
+        </div>
+
+    </div>
+    <!--COMPONENTE FIN-->
+
+</div>
+
+
+
+<!--<div class="container">
+    <nav class="breadcrumb">-->
+<!-- ReSharper disable UnknownCssClass -->
+<!--<a class="breadcrumb-item" href="/">Dashboard</a>
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+        <span class="breadcrumb-item active">Notificaciones</span>
+    </nav>
+    <div class="dashboard clearfix">
+        <div class="col-xs-3">
+            <div class="row">
+                <ul class="list-group">
+                    <li class="list-group-item" ng-repeat="notificacion in vm.notificaciones">
+                        <a ng-click="vm.seleccionarNotificacion(notificacion)">
+                            <div class="asunto">{{notificacion.Asunto}}</div>
+                        </a>
+                        <p class="contenido-mensaje">{{notificacion.Mensaje}}</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-xs-9 mensaje">
+                <h3>{{vm.notificacionSeleccionada.Asunto}}</h3>
+                <span class="usuario"><strong ng-if="vm.notificacionSeleccionada">Para:</strong> {{vm.notificacionSeleccionada.UsuarioResponsable}}</span>
+                <hr ng-if="vm.notificacionSeleccionada" />
+                <p>{{vm.notificacionSeleccionada.Mensaje}}</p>
+                <span class="pull-right">{{vm.notificacionSeleccionada.Fecha}}</span>
+        </div>
+    </div>
+</div>-->

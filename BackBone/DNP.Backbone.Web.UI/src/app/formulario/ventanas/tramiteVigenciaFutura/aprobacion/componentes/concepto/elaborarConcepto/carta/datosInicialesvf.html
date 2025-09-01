@@ -1,0 +1,197 @@
+﻿
+<div id="paneldatosiniciales" class="paneldatos" style="background-color: white;" ng-init="vm.init();">
+                
+    <form name="datosiniciales" ng-submit="vm.guardarDatosIniciales()" >
+
+        <div class="col-md-12  field " style="padding-bottom:2rem;" >
+            
+            <div class="col-md-8" style="display:inline-flex;">
+                <span class="textRightDNP" style="font-weight: 400 !important;">&nbsp;</span>
+            </div>
+            <div style="text-align: right;" class="col-md-4">
+                <div class="col-md-12 form-group text-right" style="padding-right:2rem;">
+                    <!--<button id="Editar"-->
+                    <button id="Editar" name="Editar"
+                            type="button" class="btneditarDNP"
+                            tooltip-placement="top"
+                            uib-tooltip="Clic para editar la información"
+                            ng-click="vm.ActivarEditar()"
+                            >
+                        {{vm.Editar}}
+                    </button>
+                    &nbsp;
+                    <!--<button id="Guardar"-->
+                    <button id="Guardar"
+                            type="submit" ng-class="vm.getEstiloBtnGuardar()"
+                            tooltip-placement="top"
+                            uib-tooltip="Guardar"
+                            ng-disabled="vm.disabledc"
+                            tabindex="0"
+                            >
+                        GUARDAR
+                    </button>
+                </div>
+            </div>
+
+            <div class="row" style="padding-top:5rem;">
+                <div class="col-md-3">
+                    <span class="uLabelCampoNegro">Ciudad remitente</span>
+                    <div style="padding-top:2rem;">
+                        <input type="text" name="ciudad" class="form-control" ng-readonly="true" ng-model="vm.carta.ListaCartaSecciones[0].ListaCartaCampos[0].DatoValor" required />
+                    </div>
+                    <span class="error font_error" data-ng-show="datosiniciales.ciudad.$error.required">Nombre usuario destinatario es obligatorio!</span>
+
+                </div>
+                <div class="col-md-3">
+                    <span class="uLabelCampoNegro">Fecha</span>
+                    <div style="padding-top:2rem;">
+                        <input type="date" name="fecha" value="DD/MM/AAAA" class="form-control"
+                               ng-model="vm.carta.ListaCartaSecciones[0].ListaCartaCampos[1].DatoValor"
+                               ng-disabled="vm.disabledc" ng-readonly="vm.disabledc" style="line-height: normal;" required />
+                    </div>
+                    <span class="error font_error" data-ng-show="datosiniciales.fecha.$error.required">Fecha es obligatorio!</span>
+
+                </div>
+                <div class="col-md-6"></div>
+            </div>
+
+            <div class="row" style="padding-top:2rem;">
+                <div class="col-md-12" style="padding-top:3rem;">
+                    <span class="uLabelCampoNegro">Destinatario en {{vm.carta.Entidad}}*</span>
+                </div>
+            </div>
+            <div class="row" style="padding-top:2rem;">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-6" style="padding-top:2rem;">
+                            <div class="form-group">
+                                <select name="ddlTipoUsuarioDestinatario" class="form-control" id="ddlTipoUsuarioDestinatario" style="width:100%;" ng-model="vm.carta.ListaCartaSecciones[0].ListaCartaCampos[2].DatoValor"
+                                        ng-change="vm.cargarusuariosdestinatarios(true)" ng-disabled="vm.disabledc">
+                                    <option class="option" value='' selected>Seleccione...</option>
+                                    <option class="option" ng-repeat="tipoUsuarioDestinatario in vm.listaTipoUsuario" ng-value="tipoUsuarioDestinatario.id">{{ tipoUsuarioDestinatario.nombre }} </option>
+                                </select>
+
+                            </div>
+
+                        </div>
+                        <div class="col-md-6">
+
+                        </div>
+                        <div class="col-md-12" style="padding-top:1rem;" ng-show="vm.carta.ListaCartaSecciones[0].ListaCartaCampos[2].DatoValor === ''">
+                            <span style="padding-top:1.5rem;" class="error font_error" data-ng-show="vm.carta.ListaCartaSecciones[0].ListaCartaCampos[2].DatoValor === ''">El tipo de usuario es obligatorio!</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row" style="padding-top:3rem;" ng-show="vm.tipoUsuarioRegistradoMostrar">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-6" style="padding-top:2rem;">
+                            <div class="form-group">
+                                <select name="ddlUsuarioDestinatario" class="form-control" id="ddlUsuarioDestinatario" style="width:100%;" ng-model="vm.carta.ListaCartaSecciones[0].ListaCartaCampos[6].DatoValor"
+                                        ng-change="vm.cambiarusuarioregistrado(true)" ng-disabled="vm.disabledc">
+                                    <option class="option" value='' selected>Seleccione...</option>
+                                    <option class="option" ng-repeat="usuarioDestinatario in  vm.listaUsuariosDestinatario" ng-value="usuarioDestinatario.id">{{ usuarioDestinatario.valor }} </option>
+                                </select>
+                            </div>
+
+
+                        </div>
+                        <div class="col-md-6"></div>
+                        <div class="col-md-12" style="padding-top:1rem;" ng-show="vm.carta.ListaCartaSecciones[0].ListaCartaCampos[2].DatoValor === '2' && vm.carta.ListaCartaSecciones[0].ListaCartaCampos[6].DatoValor === ''">
+                            <span style="padding-top:1.5rem;" class="error font_error" data-ng-show="vm.carta.ListaCartaSecciones[0].ListaCartaCampos[2].DatoValor !== '' && vm.carta.ListaCartaSecciones[0].ListaCartaCampos[6].DatoValor === ''">El usuario registrado es obligatorio!</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row" style="padding-top:3rem;" ng-show="vm.tipoUsuarioNoRegistradoMostrar">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-4">
+
+                            <div class="form-group">
+                                <span class="uLabelCampoNegro">Nombre</span>
+
+                                <div style="padding-top:1rem;">
+                                    <input type="text" name="nombreDestinatario" class="form-control" style="width:100%;" ng-model="vm.carta.ListaCartaSecciones[0].ListaCartaCampos[3].DatoValor" required ng-disabled="vm.disabledc"/>
+                                </div>
+                                <div ng-show="vm.carta.ListaCartaSecciones[0].ListaCartaCampos[2].DatoValor === '1' && vm.carta.ListaCartaSecciones[0].ListaCartaCampos[3].DatoValor === undefined ">
+                                    <span class="error font_error" data-ng-show="datosiniciales.nombreDestinatario.$error.required && vm.carta.ListaCartaSecciones[0].ListaCartaCampos[2].DatoValor === '1'">Nombre destinatario es obligatorio!</span>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <span class="uLabelCampoNegro">Cargo</span>
+                                <div style="padding-top:1rem;">
+                                    <input type="text" name="Cargo" class="form-control" style="width:100%;" ng-model="vm.carta.ListaCartaSecciones[0].ListaCartaCampos[4].DatoValor" required ng-disabled="vm.disabledc"/>
+                                </div>
+                                <div ng-show="vm.carta.ListaCartaSecciones[0].ListaCartaCampos[2].DatoValor === '1' && vm.carta.ListaCartaSecciones[0].ListaCartaCampos[4].DatoValor === undefined ">
+                                    <span class="error font_error" data-ng-show="datosiniciales.Cargo.$error.required && vm.carta.ListaCartaSecciones[0].ListaCartaCampos[2].DatoValor === '1'">Cargo destinatario es obligatorio!</span>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+
+                            <div class="form-group ">
+                                <span class="uLabelCampoNegro">Correo</span>
+                                <div style="padding-top:1rem;">
+                                    <input id="email" name="email" class="form-control" style="width:100%;" type="email" ng-model="vm.carta.ListaCartaSecciones[0].ListaCartaCampos[5].DatoValor" required ng-disabled="vm.disabledc"/>
+                                </div>
+                                <span class="error font_error" data-ng-show="datosiniciales.email.$error.email && vm.carta.ListaCartaSecciones[0].ListaCartaCampos[2].DatoValor === '1'">Correo no válido!</span>
+                                <div ng-show="vm.carta.ListaCartaSecciones[0].ListaCartaCampos[2].DatoValor === '1' && vm.carta.ListaCartaSecciones[0].ListaCartaCampos[5].DatoValor === undefined ">
+                                    <span class="error font_error" data-ng-show="datosiniciales.email.$error.required && vm.carta.ListaCartaSecciones[0].ListaCartaCampos[2].DatoValor === '1'">Correo es obligatorio!</span>
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="padding-top:2rem;">
+                <div class="col-md-6">
+                    <span class="uLabelCampoNegro">Asunto *</span>
+                    <div style="padding-top:2rem;">
+                        <input type="text" name="asunto" class="form-control" style="width:100%;" ng-model="vm.carta.ListaCartaSecciones[0].ListaCartaCampos[7].DatoValor" required ng-disabled="vm.disabledc" maxlength="250" />
+                    </div>
+                    <div class="col-md-12" style="padding-top:1rem;" ng-show="vm.carta.ListaCartaSecciones[0].ListaCartaCampos[7].DatoValor === undefined">
+                        <span class="error font_error" data-ng-show="datosiniciales.asunto.$error.required">Asunto es obligatorio!</span>
+                    </div>
+
+                </div>
+                <div class="col-md-4">
+                    <span class="uLabelCampoNegro">Código del proceso</span>
+                    <div style="padding-top:2rem;">
+                        <input type="text" name="codigoProceso" class="form-control" ng-readonly="true" ng-model="vm.carta.ListaCartaSecciones[0].ListaCartaCampos[8].DatoValor" required />
+                    </div>
+                    <div class="col-md-12" style="padding-top:1rem;" ng-show="vm.carta.ListaCartaSecciones[0].ListaCartaCampos[8].DatoValor === undefined">
+                        <span class="error font_error" data-ng-show="datosiniciales.codigoProceso.$error.required">Código de proceso es obligatorio!</span>
+                    </div>
+
+                </div>
+            </div>
+            <!--<div class="row" tyle="padding-top:3rem;">
+                <div class="col-md-12">
+                    <span class="buttonbar pull-right">
+                        <button type="submit" class="btn btn-default btn-md" tooltip-placement="top" uib-tooltip="Guardar datos iniciales"
+                                tabindex="0">
+                            Guardar
+                        </button>
+                    </span>
+                </div>
+            </div>-->
+
+        </div>
+    </form>
+</div>
+      

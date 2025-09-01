@@ -1,0 +1,98 @@
+﻿<div ng-init="vm.inicializarBusqueda()">
+    <div ng-show="vm.mostrar">
+        <div class="row" style="padding-top:2rem;">
+            <div class="col-md-5" style="display:inline-flex;">
+                <span style="color: #004884; font-size: 24px; font-weight: 400;">Autorización del proyecto asociado</span>
+            </div>
+            <div ng-click="vm.abrirTooltip()" style="padding-left: 1rem; padding-top: 1rem; ">
+                <svg class="mi-card__tooltip-icon" xmlns="http://www.w3.org/2000/svg" width="17.037" height="17.037" viewBox="0 0 17.037 17.037">
+                    <g id="Grupo_5110" data-name="Grupo 5110" transform="translate(0 0)">
+                        <path id="Caminho_9243" data-name="Caminho 9243" d="M8.552,0A8.552,8.552,0,0,0,0,8.485a8.609,8.609,0,0,0,8.552,8.552A8.519,8.519,0,0,0,8.552,0Zm0,14.542a1,1,0,1,1,1-1A1,1,0,0,1,8.552,14.542Zm1.769-6.136A2.663,2.663,0,0,0,9.55,10.22v.262a1,1,0,0,1-2,0V10.22A4.614,4.614,0,0,1,9.141,6.8,1,1,0,1,0,7.554,5.99a1,1,0,0,1-2,0,2.995,2.995,0,1,1,4.764,2.416Z" transform="translate(0 0)" fill="#36c"></path>
+                    </g>
+                </svg>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-8" style="display:inline-flex;padding-top:2rem;">
+
+            </div>
+            <!--<div class="col-md-4" style="display:inline-flex;" ng-if="vm.proyectoId==0">-->
+            <div class="col-md-4" style="display:inline-flex;" ng-if="vm.proyectoAsociadoREPId==0">
+                <span class="textLeftDNP" style="font-weight: 400 !important;">Buscar por código de proceso o autorización u objeto de contratación</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8" style="display:inline-flex;padding-top:2rem;">
+
+            </div>
+            <!--<div class="col-md-4 pull-right" ng-if="vm.proyectoId==0">-->
+            <div class="col-md-4 pull-right" ng-if="vm.proyectoAsociadoREPId==0">
+                <div class="input-group ">
+                    <input type="search" ng-model="vm.textoBuscar" class="form-control InputSearchDNP " placeholder="Buscar">
+                    <span class="input-group-addon imgTituloAccion spanSearchDNP" ng-click="vm.buscarProyecto()">
+                        <i class="fa fa-search "></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <br />
+        <!--<div class="row" ng-if="vm.proyectoId==0">-->
+        <div class="row" ng-if="vm.proyectoAsociadoREPId==0">
+            <div class="col-md-12 grid-autorizaciones ">
+                <div ui-grid="vm.gridAutorizaciones" ng-style="vm.getTableHeightProyectos()" style="width: 1240px;" ui-grid-selection ui-grid-pinning ui-grid-resize-columns></div>
+            </div>
+        </div>
+        <!--<div class="row" style="padding-top:2rem;" ng-if="vm.proyectoId==0">-->
+        <div class="row" style="padding-top:2rem;" ng-if="vm.proyectoAsociadoREPId==0">
+            <div class="col-md-9" style="display:inline-flex;">
+
+            </div>
+            <div ng-if="vm.habilitaBotones" class="col-md-2" style="display:inline-flex;">
+                <span class="buttonbar pull-right">
+                    <a ng-click="vm.borrarFiltro()"><span class="uLabelCampo_fp1" style="text-decoration:underline">BORRAR FILTRO</span></a>
+                </span>
+            </div>
+            <div ng-if="vm.habilitaBotones" class="col-md-1" style="display:inline-flex;">
+                <span class="buttonbar pull-right">
+                    <a ng-click="vm.crearAsociacion()"><span class="uLabelCampo_fp1" style="text-decoration:underline">AGREGAR</span></a>
+                </span>
+            </div>
+        </div>
+        <div></div>
+        <datos-autorizacion-rvf datosreprogramacion="{{vm.datosreprogramacion}}" autorizacionasociada="vm.autorizacionasociada" ng-if="vm.proyectoAsociadoREPId!=0"></datos-autorizacion-rvf>
+
+
+        <div class="modal " id="IPModal" tabindex="-1" role="dialog" aria-labelledby="IPModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content modal-contentDNP">
+                    <div class="modal-header">
+
+                        <button type='button' class='swal2-close closemodalDNP' aria-label='Close this dialog' data-dismiss="modal">×</button>
+                        <h3 class="modal-title TituloModal1DNP" id="modal-title">{{vm.tituloMensaje}} </h3>
+                        <span class="TituloModal2DNP"> </span>
+                    </div>
+                    <div class="modal-body">
+                        <p class="descripcionbodyDNP">{{vm.mensaje}}</p>
+                        <p>
+                            <div class="col-md-12 DetacolumnDNP">
+                                <span class="notapregun">(Máximo 8.000 caracteres)</span>
+                            </div>
+
+                            <textarea rows="3" id="observacion" class="uLabelCampoNegro"
+                                      ng-model="vm.model.observacion" minlength="1" maxlength="5000"></textarea>
+
+
+                        </p>
+                    </div>
+                    <div class="modal-footer textCenterDNP">
+                        <button class="btneditarDNP" type="button" data-dismiss="modal">CANCELAR</button>
+                        <button class="btnguardarDNP" type="button" ng-click="vm.aceptar()">ACEPTAR</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<link href="/Content/ui-gridDNP.css" rel="stylesheet" />

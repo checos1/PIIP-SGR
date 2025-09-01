@@ -1,0 +1,74 @@
+﻿<!--Inicio de tabs-->
+
+<div class="tab-container tabDNP col-md-12 " style="width:100%;margin-left: 5px;" ng-init="vm.initDetalle();">
+    <ul class="nav nav-tabs">
+        <li id="liCargaCuotas" class="nav-item active" style="border-bottom-width: 2px;">
+            <a href="" class="nav-link" data-target="#tabopcion1-{{vm.proyectoid}}" data-toggle="tab">
+                <b>Incluir políticas</b>
+            </a>
+        </li>
+
+        <li id="liConceptoPoliticas" class="nav-item" style="border-bottom-width: 2px;" ng-show="vm.mostrarTabConcepto">
+            <a href="" class="nav-link" data-target="#tabconcepto-{{vm.proyectoid}}" data-toggle="tab">
+                <b>Solicitar / Consultar inclusión víctimas</b>
+            </a>
+        </li>
+
+        <li id="liCalendario" class="nav-item " style="border-bottom-width:2px;">
+            <a href="" class="nav-link" data-target="#tabopcion2-{{vm.proyectoid}}" data-toggle="tab">
+                <b>Políticas transversales</b>
+            </a>
+        </li>
+
+        <li id="liConceptoPoliticasValores" class="nav-item" style="border-bottom-width: 2px;" ng-show="vm.mostrarTabConceptoValores">
+            <a href="" class="nav-link" data-target="#tabvalores-{{vm.proyectoid}}" data-toggle="tab">
+                <b>Solicitar / Consultar valores</b>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<!--Fin de tabs-->
+<div class="tab-content tabContentDNP">
+    <div class="tab-pane active cont col-md-12" id="tabopcion1-{{vm.proyectoid}}">
+
+        <politicas-transversales-ml-formulario tramiteproyectoid="{{vm.tramiteproyectoid}}"
+                                               proyectoid="{{vm.proyectoid}}"
+                                               guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                               calendariopoliticastransversales="{{vm.calendariopoliticastransversales}}"
+                                               notificarrefresco="vm.notificarRefresco(handler, nombreComponente)">
+        </politicas-transversales-ml-formulario>
+    </div>
+    <div class="tab-pane  cont col-md-12" id="tabconcepto-{{vm.proyectoid}}">
+        <concepto-victimas-ml proyectoid="{{vm.proyectoid}}"
+                              codigobpin="{{vm.codigobpin}}"
+                              tramiteproyectoid="{{vm.tramiteproyectoid}}"
+                              guardadoevent="vm.guardado(nombreComponenteHijo)"
+                              calendariopoliticastransversales="{{vm.calendariopoliticastransversales}}"
+                              notificarrefresco="vm.notificarRefresco(handler, nombreComponente)">
+
+        </concepto-victimas-ml>
+    </div>
+
+    <div class="tab-pane  cont col-md-12" id="tabopcion2-{{vm.proyectoid}}">
+        <resumen-focalizacion-ml-formulario tramiteproyectoidcategoria="{{vm.tramiteproyectoid}}"
+                                             proyectoidcategoria="{{vm.proyectoid}}"
+                                             guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                             callback="vm.notificarGuardado()"
+                                             calendariopoliticastransversales="{{vm.calendariopoliticastransversales}}"
+                                             notificarrefresco="vm.notificarRefresco(handler, nombreComponente)">
+
+        </resumen-focalizacion-ml-formulario>
+    </div>
+    <div class="tab-pane  cont col-md-12" id="tabvalores-{{vm.proyectoid}}">
+        <concepto-valores-ml proyectoid="{{vm.proyectoid}}"
+                              codigobpin="{{vm.codigobpin}}"
+                              tramiteproyectoid="{{vm.tramiteproyectoid}}"
+                              guardadoevent="vm.guardado(nombreComponenteHijo)"
+                              calendariopoliticastransversales="{{vm.calendariopoliticastransversales}}"
+                              mostrarconcepto="{{vm.mostrarTabConcepto}}"
+                              notificarrefresco="vm.notificarRefresco(handler, nombreComponente)">
+
+        </concepto-valores-ml>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+<modal-dialog cerrar="vm.cerrar" guardar="vm.guardar">
+    <div class="container__ayuda" ng-init="vm.init()">
+        <div class="row ">
+            <div class="col-md-12">
+                <div class="titulo-modal">
+                    <span>{{ vm.params.Title }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <label>Nombre</label>
+                <input type="text" class="form-control" ng-model="vm.model.Nombre" placeholder="Ingrese un nombre del ayuda">
+            </div>
+            <div class="col-md-4 padding-left-off">
+                <label>Estado</label>
+                <select class="form-control" ng-model="vm.model.Activo" ng-options="estado.valor as estado.descricion for estado in vm.estados">
+                    <option value="" disabled selected hidden>Seleccione...</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <label>Descripción</label>
+                <textarea class="form-control" ng-model="vm.model.Descripcion" placeholder="Ingrese una descripción del ayuda"></textarea>
+            </div>
+        </div>
+        <div class="container__contenido">
+            <div class="row">
+                <div class="col-md-12" ng-show="vm.params.TipoAyuda == vm.AyudaTipoConstante.AyudaEspecifico">
+                    <label>Contenido</label>
+                    <div id="editor"></div>
+                </div>
+        
+                <div class="col-md-12" ng-show="vm.params.TipoAyuda == vm.AyudaTipoConstante.AyudaVideo">
+                    <label>Contenido</label>
+                    <input type="text" class="form-control" ng-model="vm.model.Contenido" placeholder="Ingrese la URL incrustada (Embedded) del video...">
+                    <br/>
+                    <div class="box__frame" ng-bind-html="vm.bindVideo()"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</modal-dialog>

@@ -1,0 +1,50 @@
+﻿<section>
+    <div class="container-fluid inbox" ng-init="vm.init();">
+        <div class="tab-content">
+            <div class="row" style="margin-left: 0px; margin-right: 0px; padding-bottom: 1rem">
+
+                <div class="alert panel-heading row ui-accordion-header" style="">
+                    <button class="button" type="button" data-toggle="collapse" data-target="#informacionpresupuestalsolicitudincorporacion" ng-click="vm.changeArrow('informacionpresupuestalsolicitudincorporacion')">
+                        <span class="d-inline-block" id="alert-informacionpresupuestalsolicitudincorporacion"></span>
+                        <span id="name-capitulo-informacionpresupuestalsolicitudincorporacion"></span>
+                        <span class="hidden" id="id-capitulo-informacionpresupuestalsolicitudincorporacion"></span>
+                        <span id="arrow-informacionpresupuestalsolicitudincorporacion" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#informacionpresupuestalsolicitudincorporacion"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="informacionpresupuestalsolicitudincorporacion" style="padding-right: 15px; padding-left: 0px; margin-left: -15px;">
+                    <div class="row" style="margin-left:20px" ng-if="!vm.mostrarinformacionpresupuestal">
+                        <solicitudincorporacion tipotramiteid="{{vm.tipotramiteid}}"
+                                                tramiteid="{{vm.tramiteid}}"
+                                                nivel="{{vm.nivel}}"
+                                                rol="{{vm.rol}}"
+                                                section="{{vm.section}}"
+                                                nombrecomponentepaso="{{vm.nombreComponenteHijo}}"
+                                                guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                                notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"
+                                                actualizacomponentes="{{vm.actualizacomponentes}}">
+                        </solicitudincorporacion>
+                    </div>
+
+                    <div class="row" style="margin-left:20px" ng-if="vm.mostrarinformacionpresupuestal">
+                        <aprobacionincorporacion tipotramiteid="{{vm.tipotramiteid}}"
+                                                tramiteid="{{vm.tramiteid}}"
+                                                nivel="{{vm.nivel}}"
+                                                rol="{{vm.rol}}"
+                                                section="{{vm.section}}"
+                                                nombrecomponentepaso="{{vm.nombreComponenteHijo}}"
+                                                guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                                notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"
+                                                actualizacomponentes="{{vm.actualizacomponentes}}">
+                        </aprobacionincorporacion>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+</section>

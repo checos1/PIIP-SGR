@@ -1,0 +1,129 @@
+﻿<section>
+    <div class="container-fluid inbox" ng-init="vm.init()">
+        <br />
+        <div>
+            <div class="row">
+                <div class="row" style="padding-left: 3rem;padding-right:15px;">
+                    <div class="form-group" style=" padding-top: 2rem;width:100%;">
+                        <div class="tab-content">
+                            <div  class="tab-pane cont col-md-12" style="padding-left:0 !important;padding-top:20px !important" id="dproyecto">
+                                <asociar-proyecto-traslado tramiteid="{{vm.tramiteDetail.tramiteId}}"
+                                                           tipotramiteid="{{vm.tramiteDetail.tipoTramiteId}}"
+                                                           deshabilitar="{{vm.deshabilitar}}"
+                                                           rolanalista ="{{vm.rolAnalista}}"
+                                                           actualizacomponentes ="vm.actualizacomponentes"
+                                                           callback="vm.notificarGuardado()"
+                                                           guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                                           notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                                           notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)"
+                                                           notificacioncambios="vm.notificacionCambiosAjustes(handler, nombreComponente)">
+                                </asociar-proyecto-traslado>
+                            </div>
+                            <div  class="tab-pane  cont col-md-12 p-0" id="dinformacionpresupuestal">
+                                <informacion-presupuestal-traslado tipotramiteid="{{vm.tramiteDetail.tipoTramiteId}}" 
+                                                                   tramiteid="{{vm.tramiteDetail.tramiteId}}"
+                                                                   actualizacomponentes ="{{vm.actualizacomponentes}}"
+                                                                   rolanalista ="{{vm.rolAnalista}}"
+                                                                    deshabilitar="{{vm.deshabilitar}}"
+                                                                   callback="vm.notificarGuardado()"
+                                                                   guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                                                   notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                                                   notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)"
+                                                                   notificacioncambios="vm.notificacionCambios(handler, nombreComponente)">
+
+                                </informacion-presupuestal-traslado>
+                            </div>
+                            <div  class="tab-pane  cont col-md-12 p-0" id="djustificacion">
+                                <justificacion-traslado tipotramiteid="{{vm.tramiteDetail.tipoTramiteId}}" 
+                                                        tramiteid="{{vm.tramiteDetail.tramiteId}}"
+                                                        idnivel="{{vm.IdNivel}}"
+                                                        actualizacomponentes ="{{vm.actualizacomponentes}}"
+                                                        
+                                                        callback="vm.notificarGuardado()"
+                                                        guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                                        notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                                        notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)"
+                                                        notificacioncambios="vm.notificacionCambios(handler, nombreComponente)">
+
+                                </justificacion-traslado>
+                            </div>
+                            <div class="tab-pane cont col-md-12 p-0" id="dconceptos">
+                                <conceptos-traslado tipotramiteid="{{vm.tipoTramiteId}}"
+                                                    tramiteid="{{vm.tramiteId}}"
+                                                    nivel="{{vm.IdNivel}}"
+                                                    rol="{{vm.IdRol}}"
+                                                    section="{{vm.section}}"
+                                                    rolanalista ="{{vm.rolAnalista}}"
+                                                    deshabilitar ="vm.deshabilitar"
+                                                    muestracapitulospaso3  ="{{vm.muestracapitulospaso3}}"
+                                                    callback="vm.notificarGuardado(botonDevolver, botonSiguiente, ocultarDevolver)"
+                                                    guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                                    notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                                    notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)"
+                                                    notificacioncambios="vm.notificacionCambiosAjustes(handler, nombreComponente)" 
+                                                     >
+                                </conceptos-traslado>
+
+
+                            </div>
+                            <div class="tab-pane  cont col-md-12" id="daprobacionfinal" style="padding:0;">
+                                <firma-traslado tipotramiteid="{{vm.tipoTramiteId}}"
+                                                tramiteid="{{vm.tramiteId}}"
+                                                callback="vm.notificarGuardado()"
+                                                guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                                notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                                notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)"
+                                                notificacioncambios="vm.notificacionCambiosAjustes(handler, nombreComponente)">
+                                </firma-traslado>
+                            </div>
+                            <div class="tab-pane cont col-md-12" style="padding-left:0 !important;padding-top:20px !important" id="dsoporte">
+                                <documento-soporte-tramite-traslado-ordinario tipotramiteid="{{vm.tipoTramiteId}}"
+                                                                              tramiteid="{{vm.tramiteId}}"
+                                                                              nivel="{{vm.IdNivel}}"
+                                                                              rol="{{vm.IdRol}}"
+                                                                              section="{{vm.section}}"
+                                                                              callback="vm.notificarGuardado()"
+                                                                              guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                                                              notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                                                              notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)"
+                                                                              notificacioncambios="vm.notificacionCambiosAjustes(handler, nombreComponente)">
+                                </documento-soporte-tramite-traslado-ordinario>
+                            </div>
+                            <!--<div class="tab-pane  cont col-md-12" id="daprobacionfinal" style="padding:0;">
+                                <firma tipotramiteid="{{vm.tipoTramiteId}}"
+                                       tramiteid="{{vm.tramiteId}}"
+                                       callback="vm.notificarGuardado()"
+                                       guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                       notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                       notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)"
+                                       notificacioncambios="vm.notificacionCambiosAjustes(handler, nombreComponente)">
+                                </firma>
+                            </div>-->
+                            <div class="tab-pane  cont col-md-12 p-0" id="daprobacion">
+                                <aproent-ordinario tipotramiteid="{{vm.tramiteDetail.tipoTramiteId}}" tramiteid="{{vm.tramiteDetail.tramiteId}}"
+                                                   callback="vm.notificarGuardado(botonDevolver, botonSiguiente, ocultarDevolver)"
+                                                   guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                                   notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                                   notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)"
+                                                   notificacioncambios="vm.notificacionCambiosAjustes(handler, nombreComponente)">
+                                </aproent-ordinario>
+                            </div>
+                            <div class="tab-pane  cont col-md-12 p-0" id="daprobacionpaso4">
+                                <aprosuper-ordinario tipotramiteid="{{vm.tramiteDetail.tipoTramiteId}}" tramiteid="{{vm.tramiteDetail.tramiteId}}"
+                                                   callback="vm.notificarGuardado(botonDevolver, botonSiguiente, ocultarDevolver)"
+                                                   guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                                   notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                                   notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)"
+                                                   notificacioncambios="vm.notificacionCambiosAjustes(handler, nombreComponente)">
+                                </aprosuper-ordinario>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</section>

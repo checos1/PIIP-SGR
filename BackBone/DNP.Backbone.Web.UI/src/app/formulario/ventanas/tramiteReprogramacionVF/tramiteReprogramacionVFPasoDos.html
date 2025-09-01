@@ -1,0 +1,28 @@
+﻿<section>
+    <div class="container-fluid inbox" ng-init="vm.init();">
+        <br />
+        <div>
+            <div class="row">
+                <div class="row" style="padding-left: 3rem;padding-right: 2rem;">
+                    <div class="form-group" style=" padding-top: 2rem;width:90%;">
+
+
+                        <div class="tab-content">
+
+                            <div class="tab-pane  cont col-md-12 p-0" id="daprobacion">
+                                <aprobacion-entidad-rvf tipotramiteid="{{vm.tramiteDetail.tipoTramiteId}}" tramiteid="{{vm.tramiteDetail.tramiteId}}"
+                                             callback="vm.notificarGuardado(botonDevolver, botonSiguiente, ocultarDevolver)"
+                                             guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                             notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                             notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)"
+                                             notificacioncambios="vm.notificacionCambiosAjustes(handler, nombreComponente)">
+                                </aprobacion-entidad-rvf>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

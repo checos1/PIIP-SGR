@@ -1,0 +1,121 @@
+﻿<div ng-init="vm.init();">
+    <form id="generalesForm" name="generalesForm" novalidate>
+        <br>
+        <div class="col-md-12" style="text-align:left">
+            <div id="{{vm.nombreComponente}}-mensaje-error" style="padding-left: 0.5rem;" class="col-md-12 hidden uMensajeError"></div>
+            <br />
+            <span class="TituloPincFormularioDNP">
+                Programación datos generales <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg">
+            </span>
+        </div>
+        <br />
+        <span class="buttonbar pull-right">
+            <button id="EditarDG"
+                    type="button"
+                    class="btneditarDNP"
+                    tooltip-placement="top"
+                    uib-tooltip="Editar"
+                    tabindex="0"
+                    ng-click="vm.ActivarEditar()"
+                    ng-disabled="vm.disabled">
+                EDITAR
+            </button>
+            &nbsp;
+            <button id="GuardarDG"
+                    type="submit"
+                    class="{{vm.activar ? 'btnguardarDisabledDNP' : 'btnguardarDNP'}}"
+                    tooltip-placement="top"
+                    uib-tooltip="Guardar"
+                    ng-click="vm.guardar(vm.Valores)"
+                    ng-disabled="vm.activar">
+                GUARDAR
+            </button>
+        </span>
+        <br />
+        <div class="col-md-12">
+            <label id="labelResultadoG" class="col-md-12 col-form-label" style="text-align: left;font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans'; color: #004884; font-size: 14px; font-style: normal;"></label>
+            <br />
+        </div>
+        <br />
+        <table class="TableDNP no-border">
+            <thead>
+                <tr style="text-align:center;">
+                    <th scope="col"><span class="uLabelCampo_fp">&nbsp;</span></th>
+                    <th scope="col" class="textRightDNP"><span class="uLabelCampo_fp">&nbsp;</span></th>
+                    <th scope="col" class="textLeftDNP"><span class="uLabelCampo_fp">Criterio</span></th>
+                    <th scope="col" class="textRightDNP"><span class="uLabelCampo_fp">Valor $</span></th>
+                    <th scope="col"><span class="uLabelCampo_fp">&nbsp;</span></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td style="text-align: right"><span class="uLabelCampo_fp">1</span></td>
+                    <td class="textLeftDNP"><span class="uLabelCampo_fp">Valor total del proyecto</span></td>
+                    <td class="textRightDNP">
+                        <span id="label1" class="uLabelCampo_fp">
+                            {{vm.ConvertirNumero(vm.Valores.Criterios[0].Valor)}}
+                        </span>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="d-inline-block" id="alert-OCDG_VP"></span></td>
+                    <td style="text-align: right"><span class="uLabelCampo_fp">2</span></td>
+                    <td class="textLeftDNP"><span class="uLabelCampo_fp">Costo administración patrimonio autónomo</span></td>
+                    <td class="textRightDNP">
+                        <div ng-if="!vm.permiteEditar || !vm.Valores.Criterios[1].Habilita"><span class="uLabelDetalle_FP">{{vm.Valores.Criterios[1].Habilita ? vm.ConvertirNumero(vm.Valores.Criterios[1].Valor) : 'N/A'}}</span></div>
+                        <input type="text" class="form-control editInputDNP" numbers="enteros:14;precision:2;negativos:false" min="0.0000" ng-if="vm.permiteEditar && vm.Valores.Criterios[1].Habilita"
+                               ng-model="vm.Valores.Criterios[1].Valor" ng-disabled="vm.activar" ng-value="vm.Valores.Criterios[1].Valor" ng-blur="vm.actualizainput2($event)"/>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td style="text-align: right"><span class="uLabelCampo_fp">3</span></td>
+                    <td class="textLeftDNP"><span class="uLabelCampo_fp">Valor servicio de la deuda </span><span class="spanresultadobusquedaDNP" style="font-size: 16px;">(4+5)</span></td>
+                    <td class="textRightDNP">
+                        <span id="label3" class="uLabelCampo_fp">
+                            {{vm.ConvertirNumero(vm.Valores.Criterios[2].Valor)}}
+                        </span>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="d-inline-block" id="alert-OCDG_VTC"></span></td>
+                    <td style="text-align: right"><span class="uLabelDetalle_FP">4</span></td>
+                    <td class="textLeftDNP"><span class="uLabelDetalle_FP">Valor total del crédito</span></td>
+                    <td class="textRightDNP">
+                        <div ng-if="!vm.permiteEditar || !vm.Valores.Criterios[3].Habilita"><span class="uLabelDetalle_FP">{{vm.ConvertirNumero(vm.Valores.Criterios[3].Valor)}}</span></div>
+                        <input type="text" class="form-control editInputDNP" numbers="enteros:14;precision:2;negativos:false" min="0.0000" ng-if="vm.permiteEditar && vm.Valores.Criterios[3].Habilita"
+                               ng-model="vm.Valores.Criterios[3].Valor" ng-disabled="vm.activar" ng-value="vm.Valores.Criterios[3].Valor" ng-blur="vm.actualizainput4($event)"/>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="d-inline-block" id="alert-OCDG_VF"></span></td>
+                    <td style="text-align: right"><span class="uLabelDetalle_FP">5</span></td>
+                    <td class="textLeftDNP"><span class="uLabelDetalle_FP">Costo financiero del crédito</span></td>
+                    <td class="textRightDNP">
+                        <div ng-if="!vm.permiteEditar || !vm.Valores.Criterios[4].Habilita"><span class="uLabelDetalle_FP">{{vm.ConvertirNumero(vm.Valores.Criterios[4].Valor)}}</span></div>
+                        <input type="text" class="form-control editInputDNP" numbers="enteros:14;precision:2;negativos:false" min="0.0000" ng-if="vm.permiteEditar && vm.Valores.Criterios[4].Habilita"
+                               ng-model="vm.Valores.Criterios[4].Valor" ng-disabled="vm.activar" ng-value="vm.Valores.Criterios[4].Valor" ng-blur="vm.actualizainput5($event)"/>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td style="text-align: right"><span class="uLabelCampo_fp">6</span></td>
+                    <td class="textLeftDNP"><span class="uLabelCampo_fp">Valor a financiar del proyecto </span><span class="spanresultadobusquedaDNP" style="font-size: 16px;">(1+2+5)</span></td>
+                    <td class="textRightDNP">
+                        <span id="label6" class="uLabelCampo_fp">
+                            {{vm.ConvertirNumero(vm.Valores.Criterios[5].Valor)}}
+                        </span>
+                    </td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+        <br />
+    </form>
+</div>

@@ -1,0 +1,32 @@
+﻿<div class="modal-header" ng-init="vm.init()">
+    <button type='button' class='swal2-close closemodalDNP' aria-label='Close this dialog' data-dismiss="modal" ng-click="vm.cerrar()">×</button>
+    <h3 class="modal-title TituloModal1DNP" id="modal-title">Agregar Categoría</h3>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-12">
+            <label for="selectCategoria" class="form-label"><b>Categoría:</b></label>
+        </div>
+        <div class="col-md-12">
+            <select name="selectCategoria" id="selectCategoria" ng-model="vm.model.idCategoria" ng-required="true" class="form-control" ng-change="vm.cambiarCategoria(1)">
+                <option value="" disabled selected hidden>Categoría</option>-->
+                <option ng-repeat="categoria in vm.listaCategoriaPoliticas" ng-value="categoria.categoriaId">{{ categoria.categoriaNombre }} </option>
+            </select>
+        </div>
+    </div>
+    <div class="row" ng-if="vm.tieneSubcategoria">
+        <div class="col-md-12">
+            <label for="selectSubcategoria" class="form-label"><b>Subcategoría:</b></label>
+        </div>
+        <div class="col-md-12">
+            <select name="selectSubcategoria" id="selectSubcategoria" ng-required="true" class="form-control" ng-model="vm.model.idSubcategoria" ng-change="vm.cambiarCategoria(2)">
+                <option value="" disabled selected hidden>Subcategoría</option>-->
+                <option ng-repeat="subcategoria in vm.listaSubcategoriaPoliticas" ng-value="subcategoria.categoriaId">{{ subcategoria.categoriaNombre }} </option>
+            </select>
+        </div>
+    </div>
+</div>
+<div class="modal-footer textCenterDNP">
+    <button class="btn btn-default btn-md" type="button" ng-click="vm.cerrar()">Cancelar</button>
+    <button class="btn btn-default btn-md" type="button" ng-click="vm.guardar()" ng-disabled="vm.btnGuardarDisable === true">Aceptar</button>
+</div>

@@ -1,0 +1,83 @@
+﻿<div style="margin-left: 20px;" ng-init="vm.init();">
+    <form class="formCenter" id="generalesForm" name="generalesForm" novalidate>
+        <div ng-if="vm.tipoVisualizacionAsignar === 'tipo1'">
+            <div class="row">
+                &nbsp;
+            </div>
+            <div class="row">
+                &nbsp;
+            </div>
+            <div class="row">
+                &nbsp;
+            </div>
+            <div>
+                <span class="concepto-preliminar-contenedor" style="text-align: center; font-family: 'Work Sans'; font-size: 16px; font-style: normal; padding: 40px 0px 40px 0px; ">Este capítulo se activará si selecciona NO en el capítulo anterior "Delegar Viabilidad".</span>
+            </div>
+        </div>
+        <div ng-if="vm.tipoVisualizacionAsignar === 'tipo2'">
+            <div style="padding-top:50px;">
+                <span class="buttonbar pull-right">
+                    <button has-opciones="['ctusAsignacionConceptoSGR:formularioEditar']"
+                            id="EditarG"
+                            type="button"
+                            class="btneditarDNP"
+                            tooltip-placement="top"
+                            uib-tooltip="Editar"
+                            tabindex="0"
+                            ng-click="vm.ActivarEditar()"
+                            ng-disabled="vm.disabledAsig">
+                        EDITAR
+                    </button>
+                    &nbsp;
+                    <button has-opciones="['ctusAsignacionConceptoSGR:formularioGuardar']"
+                            id="GuardarG"
+                            type="submit"
+                            class="{{vm.activar ? 'btnguardarDisabledDNP' : 'btnguardarDNP'}}"
+                            tooltip-placement="top"
+                            uib-tooltip="Guardar"
+                            ng-click="vm.guardar()"
+                            ng-disabled="vm.activar">
+                        GUARDAR
+                    </button>
+                </span>
+            </div>
+            <br />
+            <br />
+            <br />
+            <div class="row">
+                <div class="col-md-12" style="margin-bottom: 5px;">
+                    <span class="d-inline-block errorpregDatosPre2 ml-4" id="alert-sgrctusasignacionasignar"></span>
+                    <span class="messagealerttableDNP" style="padding-left: 5px; display:flex;" id="ASIGCTUSsgrctusasignacionasignar"></span>
+                    <label for="selectCategoria" class="labelQuestions" style="padding-left: 5px;">Funcionario encargado de la elaboración del CTUS*</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6" style="padding-left: 20px;">
+                    <div class="SelectBuscadorDNP" style="width: auto;">
+                        <select class="form-control selectDNP" chosen options="vm.usuariosEncargados"
+                                ng-model="vm.data.IdUsuarioDNP"
+                                ng-change="vm.datosUsuarioSeleccionado()"
+                                ng-options="x.IdUsuarioDNP as (x.NombreUsuario + ' - ' + x.Correo) for x in vm.usuariosEncargados"
+                                name="ddlUsuarioEncargadoSgr" id="ddlUsuarioEncargadoSgr"
+                                placeholder-text-single="Seleccione..."
+                                no-results-text="No hay ningún resultado para su búsqueda"
+                                ng-disabled="vm.activar"
+                                required>
+                            <option value="" selected>Seleccione...</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Sesión Espacio Formulario-->
+        <div class="row">
+            &nbsp;
+        </div>
+        <div class="row">
+            &nbsp;
+        </div>
+        <div class="row">
+            &nbsp;
+        </div>
+    </form>
+</div>

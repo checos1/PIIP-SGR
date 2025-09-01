@@ -1,0 +1,48 @@
+﻿<modal-dialog cerrar="vm.cerrar" guardar="vm.guardar" ng-init="vm.init()">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="titulo-modal">
+                <span>ALCANCE DEL TRÁMITE</span>
+            </div>
+        </div>
+    </div>
+
+    <!--Inicio de tabla-->
+    <div class="modal-body" style="height:400px">
+        <div class="form-group">
+            <div class="col-md-12">
+                <div class="col-md-6">
+                    <label>
+                        <input type="radio" ng-model="vm.tipoProceso" value="MA">
+                        Modificación del Alcance
+                    </label>
+                </div>
+                <div class="col-md-6">
+                    <label>
+                        <input type="radio" ng-model="vm.tipoProceso" value="A">
+                        Anulación
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-12" style="padding-top:15px">
+                <div class="clearfix grid-icon" id="uigconsolaalertas" ui-grid="vm.gridOptions"
+                     ui-grid-resize-columns ui-grid-pagination>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-12" style="padding-top:10px; text-align:center">
+                <label>Motivo del Alcance</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-12" style="padding-top:5px">
+                <div class="input-group mb-3">
+                    <textarea class="form-control" rows="4" ng-model="vm.descripcion"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</modal-dialog>

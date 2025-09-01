@@ -1,0 +1,63 @@
+﻿<section>
+    <div class="container-fluid inbox" ng-init="vm.init();">
+        <br />
+        <div>
+            <div class="row">
+                <div class="row" style="padding-left: 3rem;padding-right: 2rem;">
+                    <div class="form-group" style=" padding-top: 2rem;width:90%;">
+
+
+                        <div class="tab-content">
+                            <div class="tab-pane   cont col-md-12 p-0" id="dproyecto" >
+                                <proyectos-tad tramiteid="{{vm.tramiteDetail.tramiteId}}"
+                                               tipotramiteid="{{vm.tramiteDetail.tipoTramiteId}}"	
+                                               callback="vm.notificarGuardado()"
+                                               guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                               notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                               notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)"
+                                               notificacioncambios="vm.notificacionCambiosAjustes(handler, nombreComponente)">
+                                </proyectos-tad>
+                            </div>
+                            <div class="tab-pane  cont col-md-12 p-0" id="dinformacionpresupuestal">
+                                <informacion-presupuestal-tad tipotramiteid="{{vm.tramiteDetail.tipoTramiteId}}" tramiteid="{{vm.tramiteDetail.tramiteId}}"
+                                                              callback="vm.notificarGuardado()"
+                                                              guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                                              notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                                              notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)"
+                                                              notificacioncambios="vm.notificacionCambiosAjustes(handler, nombreComponente)">
+
+                                </informacion-presupuestal-tad>
+                            </div>
+                            <div class="tab-pane  cont col-md-12 p-0" id="djustificacion">
+                                <justificacion-tad tipotramiteid="{{vm.tramiteDetail.tipoTramiteId}}" tramiteid="{{vm.tramiteDetail.tramiteId}}"
+                                                   callback="vm.notificarGuardado()"
+                                                   guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                                   notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                                   notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)"
+                                                   notificacioncambios="vm.notificacionCambiosAjustes(handler, nombreComponente)">
+
+
+                                </justificacion-tad>
+
+                            </div>
+                            <div class="tab-pane  cont col-md-12 p-0" id="dsoporte">
+                                <soporte-tad tipotramiteid="{{vm.tipoTramiteId}}"
+                                            tramiteid="{{vm.tramiteId}}"
+                                            nivel="{{vm.IdNivel}}"
+                                            rol="{{vm.IdRol}}"
+                                            section="{{vm.section}}"
+                                             callback="vm.notificarGuardado()"
+                                             guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                             notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                             notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)"
+                                             notificacioncambios="vm.notificacionCambiosAjustes(handler, nombreComponente)">
+                                </soporte-tad>
+                            </div>
+                          </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

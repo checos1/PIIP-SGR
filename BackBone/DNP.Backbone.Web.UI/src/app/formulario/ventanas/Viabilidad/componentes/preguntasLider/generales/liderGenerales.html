@@ -1,0 +1,194 @@
+﻿<div ng-init="vm.init();">
+    <form id="lidergeneralesForm" name="lidergeneralesForm" novalidate>
+        <br>
+        <span class="buttonbar pull-right">
+            <button has-claim has-opciones="['viabilidad:preguntasEditar']"
+                    id="EditarG"
+                    type="button"
+                    class="btneditarDNP"
+                    tooltip-placement="top"
+                    uib-tooltip="Editar"
+                    tabindex="0"
+                    ng-click="vm.ActivarEditar()"
+                    ng-disabled="vm.disabled">
+                EDITAR
+            </button>
+            &nbsp;
+            <button has-claim has-opciones="['viabilidad:preguntasGuardar']"
+                    id="GuardarG"
+                    type="submit"
+                    class="{{vm.activar ? 'btnguardarDisabledDNP' : 'btnguardarDNP'}}"
+                    tooltip-placement="top"
+                    uib-tooltip="Guardar"
+                    ng-click="vm.guardarLider(vm.PreguntasPersonalizadas)"
+                    ng-disabled="vm.activar">
+                GUARDAR
+            </button>
+        </span>
+        <br />
+        <br />
+        <div class="input-group pull-right">
+            <input type="search" ng-model="vm.codigoG" class="form-control InputSearchDNP " placeholder="Buscar">
+            <span class="input-group-append imgTituloAccion spanSearchDNP" ng-click="vm.buscarGenerales()">
+                <i class="fa fa-search "></i>
+            </span>
+        </div>
+        <br />
+        <div class="col-md-12">
+            <label id="labelResultadoG" class="col-md-12 col-form-label" style="text-align: left;font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans'; color: #004884; font-size: 14px; font-style: normal;"></label>
+        </div>
+        <div class="col-md-12">
+            <div id="ErrorG" class="hidden" style="text-align: left; font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans'; font-size: 12px; font-style: normal; color: #A80521;"></div>
+        </div>
+        <br />
+        <div ng-repeat="preguntasGenerales in vm.PreguntasPersonalizadas.PreguntasGenerales" ng-init="preguntasGeneralesIndex = $index">
+            <div class="row">
+                <div class="" style="padding: 0 !important">
+                    <div class="alert panel-headingAccDNP">
+                        <div class="card card-body pull-left  divAccordionDNP">
+                            <span class="uLabelCampo">{{preguntasGenerales.Tematica}}</span>
+                            <div class="line-clamp">
+
+                            </div>
+                            <p class="panelbtnalertAcordnp">
+                                <button class="btnaccion btnAccordionDNP" type="button" data-toggle="collapse" data-target="#TematicaIdG{{preguntasGenerales.OrdenTematica}}" ng-click="vm.BtnTematica(preguntasGenerales.OrdenTematica)">
+                                    <img id="img{{preguntasGenerales.OrdenTematica}}" src="Img/btnMas.svg">
+                                </button>
+                                <img id="u9_imgG{{preguntasGenerales.OrdenTematica}}" class="imgViabilidad" src="Img/u9.svg" style="display:none;">
+                                <span class="d-inline-block" id="alert-viabilidadgenerales{{preguntasGenerales.OrdenTematica}}"></span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="collapse" id="TematicaIdG{{preguntasGenerales.OrdenTematica}}">
+                        <br />
+                        <div class="LineaEncabezadodivDNP"></div>
+                        <h3 class="row tituloEncabezadodivDNP">
+                            <!--Items Nivel 1-->
+                        </h3>
+                        <div ng-repeat="pregunta in preguntasGenerales.Preguntas" ng-init="preguntaIndex = $index">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="col-md-1" style="text-align:left">
+                                        <span id="spanId{{pregunta.IdPregunta}}" class="keyPregResObservapDNP">{{pregunta.IdPregunta}}</span>
+                                        <span class="d-inline-block" id="alert-viabilidadgenerales{{preguntasGenerales.OrdenTematica}}{{pregunta.IdPregunta}}"></span>
+                                    </div>
+                                    <div class="col-md-11 DetacolumnDNP" style="text-align:justify">
+                                        <label id="labelId{{pregunta.IdPregunta}}" for="pregunta" class="col-md-12 col-form-label">{{pregunta.Pregunta}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="col-md-1">
+                                        &nbsp;
+                                    </div>
+                                    <div class="col-md-11">
+                                        <div id="ErrorG{{preguntasGenerales.OrdenTematica}}{{pregunta.IdPregunta}}" class="hidden" style="text-align: left; font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans'; font-size: 12px; font-style: normal; color: #A80521;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="col-md-1">
+                                        &nbsp;
+                                    </div>
+                                    <div class="col-md-5" style="text-align:left">
+                                        <div class="col-md-2 form-check" ng-repeat="opciones in pregunta.OpcionesRespuesta">
+                                            <input type="radio" ng-model="vm.PreguntasPersonalizadas.PreguntasGenerales[preguntasGeneralesIndex].Preguntas[preguntaIndex].Respuesta" name="Respuesta{{pregunta.IdPregunta}}" value="{{opciones.OpcionId}}" id="pregunta{{pregunta.IdPregunta}}" ng-disabled="vm.activar"> {{opciones.ValorOpcion}}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6" style="text-align:justify">
+                                        <p>
+                                            <img data-toggle="collapse" data-target="#opcionesId{{pregunta.IdPregunta}}" class="img" src="Img/u32.svg">
+                                        </p>
+                                        <div class="collapse" id="opcionesId{{pregunta.IdPregunta}}">
+                                            <div class="card card-body">
+                                                {{pregunta.AyudaOpcionesRespuesta}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="col-md-6">
+                                        &nbsp;
+                                    </div>
+                                    <div class="col-md-6">
+                                        &nbsp;
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="col-md-6" style="text-align:left">
+                                        <span class="spanPregResObservapDNP"> Explicación </span><span class="contPregunObservaDNP">(1)</span>
+                                    </div>
+                                    <div class="col-md-6" style="text-align:left">
+                                        <span class="spanPregResObservapDNP"> Justificación </span><span class="notapregun">(Máximo 5.000 caracteres)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="col-md-6 divPanelPregResObservapDNP">
+                                        <div class="textAreDivRes">
+                                            <textarea rows="5"
+                                                      ng-disabled="true"
+                                                      class="textareObservaDNP">{{pregunta.Explicacion}}</textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 divPanelPregResObservapDNP margindnpobser">
+                                        <div class="textAreDivRes2">
+                                            <textarea rows="3"
+                                                      id="justificacion{{pregunta.IdPregunta}}"
+                                                      name="justificacion{{pregunta.IdPregunta}}"
+                                                      placeholder="Justifique su respuesta."
+                                                      ng-model="vm.PreguntasPersonalizadas.PreguntasGenerales[preguntasGeneralesIndex].Preguntas[preguntaIndex].ObservacionPregunta"
+                                                      ng-value="pregunta.ObservacionPregunta"
+                                                      minlength="1"
+                                                      maxlength="5000"
+                                                      class="textareObservaDNP"
+                                                      ng-disabled="vm.activar">
+                                            </textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="col-md-6">
+                                        &nbsp;
+                                    </div>
+                                    <div class="col-md-6">
+                                        &nbsp;
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal" id="IPModalVermas" tabindex="-1" role="dialog" aria-labelledby="IPModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content modal-contentDNP">
+                        <div class="modal-header">
+
+                            <button type='button' class='swal2-close closemodalDNP' aria-label='Close this dialog' data-dismiss="modal">×</button>
+                            <h3 class="modal-title TituloModal1DNP" id="modal-title">Texto Titulo Principal </h3>
+                            <span class="TituloModal2DNP">  Texto Titulo Secundario </span>
+                        </div>
+                        <div class="modal-body">
+                            <div>
+                                <textareaa class="form-control " rows="10" cols="50" disabled="disabled">Obtener información técnica eficiente para dar viabilidad a nuevos proyectos de construcción y ampliación de cupos</textareaa>
+                            </div>
+                        </div>
+                        <div class="modal-footer textCenterDNP">
+                            <button class="btnguardarDNP" data-dismiss="modal" type="button">ACEPTAR</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,79 @@
+<div class="modal-dashboard intercambio-entidad" ng-cloak
+    ng-init="modalIntercambioCtrl.eventos.mondaIntercambio_$onInit()">
+    <!-- // header -->
+    <div class="modal-header">
+        <div class="col-md-12 text-right">            
+            <button type="button" class="btn btn-sm btn-primary btnCloseModal" ng-click="modalIntercambioCtrl.eventos.btnCancelarIntercambio_onClick($event, $event.target)">x</button>
+        </div>
+    </div>
+
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12">
+
+                <!-- // tittle -->
+                <div class="titlebarmodal fndAzul">
+                    <!-- {{modalIntercambioCtrl.$parentScope.control.entidadClaveSeleccionada}} -->
+                    <span>Cambio de entidad</span> - <span
+                        class="modal-text-enphasis">{{modalIntercambioCtrl.$parentScope.tipoEntidad}}</span>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- // proyecto -->
+        <div class="row">
+            <div class="col-md-12">
+
+                <!-- // proyecto -->
+                <div class="input-group mb-3">
+                    <!-- // proyecto seleccionado -->
+                    <textarea class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"
+                        rows="2" maxlength="200" ng-model="modalIntercambioCtrl.modelo.proyectoNombre"
+                        disabled="disabled">
+                    </textarea>
+
+                </div>
+                <div class="input-group mb-3">
+                    <select chosen options="modalIntercambioCtrl.catalogos.listaEntidades"
+                        ng-model="modalIntercambioCtrl.modelo.entidadSeleccionada"
+                        ng-options="entidad as entidad.NombreCompleto for entidad in modalIntercambioCtrl.catalogos.listaEntidades"
+                        no-results-text="No hay ningún resultado para su búsqueda" placeholder-text-single="Entidades">
+                    </select>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- // relacion -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="container-table">
+
+                    <!-- // start: data table -->
+                    <div style="padding: 20px; margin-top: 5px;"
+                        ng-if="modalIntercambioCtrl.modelo.proyectoEntidadHistorialLista.length > 0"
+                        ui-grid="modalIntercambioCtrl.grid.intercambioOptions" ui-grid-move-columns
+                        ui-grid-draggable-rows ui-grid-pinning ui-grid-resize-columns ui-grid-pagination>
+                    </div>
+                    <!-- // end: data table -->
+
+                    <div class="text-center intro-help  min-mh no-result-watermark"
+                        ng-if="modalIntercambioCtrl.modelo.proyectoEntidadHistorialLista.length === 0">
+                        <h4>{{ 'No hay ningún resultado para su búsqueda para el proyecto actual' }} </h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <div class="row">
+        <div class="col-md-12">
+            <button id="btnCancelarIntercambio" class="btn btn-sm btn-primary btn-footer" type="button"
+                ng-click="modalIntercambioCtrl.eventos.btnCancelarIntercambio_onClick($event, $event.target)">Cancelar</button>
+            <button id="btnGuardarIntercambio" class="btn btn-sm btn-success" type="button"
+                ng-click="modalIntercambioCtrl.eventos.btnGuardarIntercambio_onClick($event, $event.target)">Guardar</button>
+        </div>
+    </div>
+</div>

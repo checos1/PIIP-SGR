@@ -1,0 +1,987 @@
+﻿@* ReSharper disable All*@
+<!DOCTYPE html>
+@using DNP.Backbone.Web.UI.Code52.i18n;
+<html lang="es" html ng-app="backbone">
+
+<head>
+    <base href="/" />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Backbone</title>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;600;700&display=swap" rel="stylesheet">
+    @Styles.Render("~/Content/css")
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" " type="text/css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" " type="text/css" rel="stylesheet" />
+    @*<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;600;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@500&display=swap" rel="stylesheet">*@
+
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+
+    <script type='text/javascript'>
+        var instrumentationKey = '@(string.IsNullOrEmpty(ViewBag.InstrumentationKey) ? "3bf2c408-1809-4ebc-a19b-5684182b1b36" : ViewBag.InstrumentationKey)';
+        var appInsights = window.appInsights || function(config) {
+            function r(config) {
+                t[config] = function() {
+                    var i = arguments;
+                    t.queue.push(function() {
+                        t[config].apply(t, i)
+                    })
+                }
+            }
+            var t = {
+                    config: config
+                },
+                u = document,
+                e = window,
+                o = 'script',
+                s = u.createElement(o),
+                i, f;
+            for (s.src = config.url || '//az416426.vo.msecnd.net/scripts/a/ai.0.js', u.getElementsByTagName(o)[0].parentNode.appendChild(s), t.cookie = u.cookie, t.queue = [], i = ['Event', 'Exception', 'Metric', 'PageView', 'Trace', 'Ajax']; i.length;) r('track' + i.pop());
+            return r('setAuthenticatedUserContext'), r('clearAuthenticatedUserContext'), config.disableExceptionTracking || (i = 'onerror', r('_' + i), f = e[i], e[i] = function(config, r, u, e, o) {
+                var s = f && f(config, r, u, e, o);
+                return s !== !0 && t['_' + i](config, r, u, e, o), s
+            }), t
+        }({
+            instrumentationKey: instrumentationKey
+        });
+
+        window.appInsights = appInsights;
+        appInsights.trackPageView();
+    </script>
+    <!--Inicio Monitoreo Power BI-->
+    <script>
+        function openFullscreen() {
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen();
+            } else if (elem.mozRequestFullScreen) { /* Firefox */
+                elem.mozRequestFullScreen();
+            } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+                elem.webkitRequestFullscreen();
+            } else if (elem.msRequestFullscreen) { /* IE/Edge */
+                elem.msRequestFullscreen();
+            }
+        }
+
+        function closeFullscreen() {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.mozCancelFullScreen) { /* Firefox */
+                document.mozCancelFullScreen();
+            } else if (document.webkitExitFullscreen) { /* Chrome, Safari and Opera */
+                document.webkitExitFullscreen();
+            } else if (document.msExitFullscreen) { /* IE/Edge */
+                document.msExitFullscreen();
+            }
+        }
+    </script>
+    <script>
+        function lista() {
+            var x = document.getElementById("myLista");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+            $(".col-md-9,.col-lg-12").toggleClass('col-lg-12').toggleClass('col-md-9');
+        }
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("#sidebar-wrapper").height($("#wrapper").height() + 165);
+            checkForChanges();
+        });
+        function changeHeight() {
+            $("#sidebar-wrapper").height($("#wrapper").height() + 161);
+        }
+
+        function checkForChanges() {
+            changeHeight();
+            setTimeout(checkForChanges, 100);
+        }
+    </script>
+    <!--Fim Monitoreo Power BI-->
+
+    <link rel="icon" href="~/img/dnp-logo.png" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="Fixed" id="headerPrincipal">
+        @if (!Request.RawUrl.Contains("seleccionDeProyectos") && !Request.RawUrl.Contains("resumenDeProyectos"))
+        {
+
+            <a id="imgLogo" href="https://www.gov.co/home/" target="_blank">
+                <img src="/Img/logos/logo_gov_co.svg" alt="Logo DNP" title="Inicio" height="25" width="129" />
+            </a>
+
+            <div class="vinculoGovCo">
+                <a href="https://www.gov.co/home/" target="_blank">Ir a Gov.co</a>
+            </div>
+        }
+    </header>
+    <!-- /Header -->
+    <!-- Contenedor Formularios -->
+    <div id="wrapper" class="container-fluid active">
+
+        @if (!Request.RawUrl.Contains("seleccionDeProyectos") && !Request.RawUrl.Contains("resumenDeProyectos"))
+        {
+            <header class="Fixed" id="headerPageContent" style="max-width: 1280px; margin-left: auto; margin-right: auto;">
+                <div style="display:flex; align-items:center">
+                    <div class="header-title">
+                        <a href="/" id="lnkHome">
+                            <img style="width: 65px; height: 58px" src="/Img/logos/u190.svg" alt="PIIP" />
+                        </a>
+                    </div>
+                    <div class="header-title">
+                        <a href="/" id="lnkHome">
+                            <img style="width: 187px; height: 32px" src="/Img/logos/escudo_colombia_c.svg" alt="DNP" />
+                        </a>
+                    </div>
+                    <div class="header-title">
+                        @(string.IsNullOrEmpty(ViewBag.NombreEntorno) ? "" : "Ambiente - " + ViewBag.NombreEntorno)
+                    </div>
+                </div>
+
+                @if (!string.IsNullOrEmpty(ViewBag.UsuarioDNP))
+                {
+                    <div class="info-user">
+                        <notificaciones></notificaciones>
+                        @Html.Partial("_LoginPartial")
+                    </div>
+                }
+            </header>
+
+            <!-- Sidebar -->
+            <div id="sidebar-wrapper">
+                @if (!string.IsNullOrEmpty(ViewBag.UsuarioDNP))
+                {
+                    <div class="nav-side-menu">
+
+                        <div class="headersidebar">
+
+                            <img src="/Img/iconsheader/icoMenu.svg" width="27" height="27" alt="Menu" class="menu-amburguer" />
+
+                            <p class="nav-side-title-text">
+                                PIIP
+                            </p>
+                        </div>
+
+                        <div class="menu-list">
+
+                            <ul id="menu-content" class="menu-content collapse out">
+
+                                @if (!string.IsNullOrEmpty(ViewBag.UsuarioDNP))
+                                {
+                                    <!-- Inicio -->
+                                    <li class="collapsed active" id="lnkInicio">
+                                        <div class="dropdown">
+
+                                            <a href="/" class="first-level" tooltip-placement="auto" uib-tooltip="Inicio">
+                                                <img src="/Img/iconsmenu/iconInicio.svg">
+                                                Inicio
+                                            </a>
+
+                                        </div>
+                                    </li>
+                                }
+
+                                <!-- Banco de Proyectos -->
+                                @if (!(ViewBag.Menus is null))
+                                {
+                                    <li class="collapsed active">
+                                        <notificacion-cantidad-proyectos use-Html-Menu="true"></notificacion-cantidad-proyectos>
+                                    </li>
+                                    if (ViewBag.Menus.Contains("AsignarVerificacionSGR"))
+                                    {
+                                        <li class="collapsed active">
+                                            <notificacion-cantidad-mis-procesos-asignar-verificacion-sgr use-Html-Menu="true"></notificacion-cantidad-mis-procesos-asignar-verificacion-sgr>
+                                        </li>
+                                    }
+                                    if (ViewBag.Menus.Contains("SeguimientoControlVerificacionSGR"))
+                                    {
+                                        <li class="collapsed active">
+                                            <notificacion-cantidad-mis-procesos-seguimiento-control-verificacion-sgr use-Html-Menu="true"></notificacion-cantidad-mis-procesos-seguimiento-control-verificacion-sgr>
+                                        </li>
+                                    }
+                                    if (ViewBag.Menus.Contains("RevisionCoordinadorVerificacionSGR"))
+                                    {
+                                        <li class="collapsed active">
+                                            <notificacion-cantidad-mis-procesos-revision-coordinador-verificacion-sgr use-Html-Menu="true"></notificacion-cantidad-mis-procesos-revision-coordinador-verificacion-sgr>
+                                        </li>
+                                    }
+                                    if (ViewBag.Menus.Contains("SubdirectorVerificacionSGR"))
+                                    {
+                                        <li class="collapsed active">
+                                            <notificacion-cantidad-mis-procesos-subdirector-verificacion-sgr use-Html-Menu="true"></notificacion-cantidad-mis-procesos-subdirector-verificacion-sgr>
+                                        </li>
+                                    }
+                                }
+
+                                <!-- Mis Procesos -->
+                                <!-- TODO Agregar validacion acceso Modulo -->
+                                @if (!string.IsNullOrEmpty(ViewBag.UsuarioDNP))
+                                {
+                                    <li class="collapsed active">
+                                        <notificacion-cantidad-mis-procesos use-Html-Menu="true"></notificacion-cantidad-mis-procesos>
+                                    </li>
+                                }
+
+                                @if (!(ViewBag.Menus is null))
+                                {
+
+                                    <li class="collapsed active">
+                                        <div class="dropdown notif">
+
+                                            <a href="/consolaprocesos/index" class="first-level" tooltip-placement="auto" uib-tooltip="Consola de procesos">
+                                                <img src="/Img/iconsmenu/iconConsolaProc.svg">
+                                                Consola de procesos
+                                            </a>
+                                        </div>
+                                    </li>
+
+                                    if (ViewBag.Menus.Contains("AdminBancos"))
+                                    {
+                                        <li class="collapsed active">
+                                            <div class="dropdown notif">
+
+                                                <a href="/adminBancos" class="first-level" tooltip-placement="auto" uib-tooltip="Admin bancos">
+                                                    <img src="/Img/iconsmenu/iconAdministracion.svg">
+                                                    Admin bancos
+                                                </a>
+
+                                            </div>
+                                        </li>
+                                    }
+
+                                    if ((ViewBag.Menus.Contains("MonitoreoEntidades") || ViewBag.Menus.Contains("MonitoreoProyectos")))
+                                    {
+                                        <li class="collapsed active">
+                                            <div class="dropdown notif">
+
+                                            </div>
+                                        </li>
+                                    }
+                                }
+
+                                @if (!(ViewBag.Menus is null))
+                                {
+                                    if ((ViewBag.Menus.Contains("MonitoreoEntidades") || ViewBag.Menus.Contains("MonitoreoProyectos")))
+                                    {
+                                        <li class="collapsed active">
+                                            <div class="dropdown notif">
+
+                                                <a href="/tableroControlProyectos" class="first-level" tooltip-placement="auto" uib-tooltip="Tablero de control">
+                                                    <img src="/Img/iconsmenu/iconTablero.svg">
+                                                    Tablero de control
+                                                </a>
+
+                                            </div>
+                                        </li>
+                                    }
+                                }
+
+                                <!-- ReportesPIIP -->
+                                @if (!(ViewBag.Menus is null))
+                                {
+                                    if ((ViewBag.Menus.Contains("ReportesPIIP")))
+                                    {
+                                        <li class="collapsed active" id="lnkInicio">
+                                            <div class="dropdown">
+
+                                                <a href="/ReportesPIIP" class="first-level" tooltip-placement="auto" uib-tooltip="Reportes PIIP">
+                                                    <img src="~/Img/iconsmenu/u833.svg">
+                                                    Reportes PIIP
+                                                </a>
+                                            </div>
+                                        </li>
+                                    }
+                                }
+
+                                <!-- Administración -->
+                                @if (!(ViewBag.Menus is null))
+                                {
+                                    if (ViewBag.Menus.Contains("Usuarios") ||
+                                          ViewBag.Menus.Contains("MonitoreoConfAlertas") || ViewBag.Menus.Contains("Perfiles") ||
+                                          ViewBag.Menus.Contains("Entidades") || ViewBag.Menus.Contains("Roles") ||
+                                          ViewBag.Menus.Contains("EntidadesCargarDatos") || ViewBag.Menus.Contains("MantenimientoMensajes"))
+                                    {
+
+                                        <li data-toggle="collapse" data-target="#administracion" class="collapsed active">
+
+                                            <a id="menu-item-first-level-administracion" class="first-level icon-first-level menu-item-first-level" href="#" tooltip-placement="auto" uib-tooltip="Administración">
+                                                <img src="Img/iconsmenu/iconAdministracion.svg" class="menu-item-image" />
+                                                <i class="icon-arrow-list-down menu-item-arrow" id="icon-open-admin-option"></i>
+                                                <i class="icon-arrow-list-up menu-item-arrow" id="icon-close-admin-option"></i>
+                                                Administración
+                                            </a>
+
+                                            <!-- SubMenu Administracion -->
+                                            <ul class="sub-menu collapse" id="administracion">
+
+                                                @if (ViewBag.Menus.Contains("Usuarios"))
+                                                {
+                                                    <li>
+                                                        <a href="usuarios" id="lnkUsuarios" tooltip-placement="auto" uib-tooltip="Usuarios">
+                                                            Usuarios
+                                                        </a>
+                                                    </li>
+                                                }
+
+                                                @if (ViewBag.Menus.Contains("Entidades"))
+                                                {
+                                                    @*<li>
+                <a href="/entidades" id="lnkEntidades" tooltip-placement="auto" uib-tooltip="Entidades">
+                    Entidades
+                </a>
+            </li>*@
+                                                    <li>
+                                                        <a href="/unidadresponsable" id="lnkBancoTerritorio" tooltip-placement="auto" uib-tooltip="Banco Territorio">
+                                                            Banco Territorio
+                                                        </a>
+                                                    </li>
+                                                }
+
+                                                @if (ViewBag.Menus.Contains("EntidadesCargarDatos"))
+                                                {
+                                                    <li>
+                                                        <a href="/cargaDatos" id="lnkCargues" tooltip-placement="auto" uib-tooltip="Cargues">
+                                                            Cargues
+                                                        </a>
+                                                    </li>
+                                                }
+
+                                                @if (ViewBag.Menus.Contains("MonitoreoConfAlertas"))
+                                                {
+                                                    <li>
+                                                        <a href="/consolaAlertas" id="lnkAlertas" tooltip-placement="auto" uib-tooltip="Configuración Alertas">
+                                                            Configuración Alertas
+                                                        </a>
+                                                    </li>
+                                                }
+
+                                                @if (ViewBag.Menus.Contains("Perfiles"))
+                                                {
+                                                    <li>
+                                                        <a href="perfiles" id="lnkPerfiles" tooltip-placement="auto" uib-tooltip="Perfiles">
+                                                            Perfiles
+                                                        </a>
+                                                    </li>
+                                                }
+
+                                                @if (ViewBag.Menus.Contains("Roles"))
+                                                {
+                                                    <li>
+                                                        <a href="roles" id="lnkRoles" tooltip-placement="auto" uib-tooltip="Roles">
+                                                            Roles
+                                                        </a>
+                                                    </li>
+                                                }
+
+                                                @if (ViewBag.Menus.Contains("MantenimientoMensajes"))
+                                                {
+                                                    <li>
+                                                        <a href="/listaMensajeMantenimiento" id="lnkMensajes" tooltip-placement="auto" uib-tooltip="Mensajes">
+                                                            Mensajes
+                                                        </a>
+                                                    </li>
+
+                                                }
+
+                                                @if (ViewBag.Menus.Contains("AdministraProgramacion"))
+                                                {
+                                                    <li>
+                                                        <a href="/programacion" id="lnkProgramacion" tooltip-placement="auto" uib-tooltip="Programación">
+                                                            Programación
+                                                        </a>
+
+                                                    </li>
+
+                                                }
+
+                                                @if (ViewBag.Menus.Contains("EjecutorSGR"))
+                                                {
+                                                    <li>
+                                                        <a href="/ejecutorSGR" id="lnkEjecutor" tooltip-placement="auto" uib-tooltip="Ejecutor">
+                                                            Ejecutor SGR
+                                                        </a>
+                                                    </li>
+
+                                                }
+                                                @if (ViewBag.Menus.Contains("EjecutorSGR"))
+                                                {
+                                                    <li>
+                                                        <a href="/documento" id="lnkEjecutor" tooltip-placement="auto" uib-tooltip="Documento">
+                                                            Documentos
+                                                        </a>
+                                                    </li>
+
+                                                }
+                                            </ul>
+                                            <!-- /SubMenu Administracion -->
+
+                                        </li>
+                                    }
+                                }
+
+                                <!-- /Administración -->
+                                <!-- Logs -->
+
+                                @if (!(ViewBag.Menus is null))
+                                {
+
+                                    if (ViewBag.Menus.Contains("LogsProyectos") || ViewBag.Menus.Contains("LogsTramites"))
+                                    {
+
+                                        <li data-toggle="collapse" data-target="#logs" class="collapsed active">
+
+                                            <a id="menu-item-first-level-logs" class="first-level icon-first-level" href="#" tooltip-placement="auto" uib-tooltip="Logs">
+                                                <img src="Img/iconsmenu/iconsMenuEntidades.png" style="height: 18px" class="menu-item-image" />
+                                                <i class="icon-arrow-list-down menu-item-arrow" id="icon-open-log-option"></i>
+                                                <i class="icon-arrow-list-up menu-item-arrow" id="icon-close-log-option"></i>
+                                                Logs
+                                            </a>
+
+                                            <!-- SubMenu Logs -->
+                                            <ul class="sub-menu collapse" id="logs">
+
+                                                @if (ViewBag.Menus.Contains("LogsProyectos"))
+                                                {
+                                                    <li>
+                                                        <a href="/logs/proyectos" id="lnkLogsProyectos" tooltip-placement="auto" uib-tooltip="Proyectos">
+                                                            Proyectos
+                                                        </a>
+                                                    </li>
+                                                }
+
+                                                @if (ViewBag.Menus.Contains("LogsTramites"))
+                                                {
+                                                    <li>
+                                                        <a href="/logs/tramites" id="lnkLogsTramites" tooltip-placement="auto" uib-tooltip="Tramites">
+                                                            Tramites
+                                                        </a>
+                                                    </li>
+                                                }
+                                            </ul>
+                                            <!-- /SubMenu Logs -->
+                                        </li>
+                                    }
+
+                                }
+                                <!-- / Logs -->
+                                <!-- Notificaciones -->
+
+                                @if (!(ViewBag.Menus is null))
+                                {
+
+                                    if (ViewBag.Menus.Contains("NotificacionUsuario"))
+                                    {
+                                        <li class="collapsed active">
+                                            <div class="dropdown notif">
+
+                                                <a href="/NotificacionesMantenimiento/ListaNotificaciones" class="first-level" tooltip-placement="auto" uib-tooltip="Notificaciones">
+                                                    <img src="/Img/iconsmenu/iconNotificacion.svg">
+                                                    Notificaciones
+                                                </a>
+
+                                            </div>
+                                        </li>
+                                    }
+
+                                }
+
+                                @if (!(ViewBag.Menus is null))
+                                {
+
+                                    if (ViewBag.Menus.Contains("CentroAyuda"))
+                                    {
+                                        <li class="collapsed active">
+                                            <div class="dropdown notif">
+                                                <a href="/centroAyuda" class="first-level" tooltip-placement="auto" uib-tooltip="Centro de ayuda">
+                                                    <img src="/Img/iconsmenu/iconMenuAyuda.png">
+                                                    Centro de ayuda
+                                                </a>
+                                            </div>
+                                        </li>
+                                    }
+                                }
+                            </ul>
+
+                        </div>
+                    </div>
+                }
+            </div>
+            <!-- /Sidebar -->
+
+            <div class="sidebar__centro__ayuda">
+                <div id="sidebarAyuda" class="sidenav">
+                    <centro-ayuda></centro-ayuda>
+                </div>
+            </div>
+
+            <mensajes-mantenimiento></mensajes-mantenimiento>
+            <cambiar-contrasena id="cambiar-contrasena">
+            </cambiar-contrasena>
+
+        }
+        else
+        {
+            <script>
+                $("#wrapper").css('padding-left', '30px')
+            </script>
+        }
+
+        <!-- Page content -->
+        <div id="page-content-wrapper" style="max-width: 1280px;margin-left: auto;margin-right: auto;">
+            <div class="page-content inset">
+                <div class="content">
+                    <div>
+                        <main>
+                            @RenderBody()
+                        </main>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Page content -->
+
+    </div>
+    <!-- /Contenedor Formularios -->
+    <!-- Footer -->
+    <div>
+        @if (!Request.RawUrl.Contains("seleccionDeProyectos") && !Request.RawUrl.Contains("resumenDeProyectos"))
+        {
+            <footer class="container-fluid">
+
+                <div class="row">
+                    <div class="col-md-3 item-footer" id="logosFooter">
+                        <a href="https://www.gov.co/home/" target="_blank">
+                            <img src="/Img/logos/logo_gov_co.svg" alt="Logo DNP" title="Logo DNP" height="50" width="226" />
+                        </a>
+                        <br />
+                        <a href="https://www.colombia.co/" target="_blank">
+                            <img src="/Img/logos/logo_colombia.svg" alt="Logo Colombia" height="100" height="100" />
+                        </a>
+                    </div>
+                    <div class="col-md-4 item-footer" id="social">
+                        <h3>Plataforma Integrada de Inversión Pública</h3>
+
+                        <p>Dirección: Calle 26 # 13-19 - Edificio ENTerritorio / Bogotá D.C., Colombia</p>
+                        <p>Código Postal: 110311</p>
+                        <p>Horario de Atención: 8:00 a.m. - 4:30 p.m. jornada continua</p>
+
+                        <div id="icoSocial">
+                            <ul>
+                                <li>
+                                    <a href="https://twitter.com/DNP_Colombia" target="_blank">
+                                        <img src="/Img/iconsFooter/icoTwitter.png" width="36" height="36" alt="Twitter">Twitter
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://www.instagram.com/dnp_colombia/" target="_blank"><img src="/Img/iconsFooter/icoInstagram.png" width="36" height="36" alt="Instagram">Instagram</a>
+                                </li>
+                                <li>
+                                    <a href="https://www.facebook.com/departamentonacionaldeplaneacion/" target="_blank"><img src="/Img/iconsFooter/icoFacebook.png" width="36" height="36" alt="Facebook">Facebook</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-5 item-footer" id="contacto">
+                        <h3><i class="fa fa-phone"></i> Contacto</h3>
+
+                        <p>Conmutador: +57 (1) 381 50 00</p>
+                        <p>Línea Gratuita: 01 8000 12 12 21</p>
+                        <p>Correo Institucional: info@dnp.gov.co</p>
+                        <p>Correo de notificaciones judiciales: notificacionesjudiciales@dnp.gov.co</p>
+                        <p>Términos y condiciones</p>
+                        <p><a href="https://www.dnp.gov.co/Paginas/Pol%C3%ADtica-de-privacidad.aspx" target="_blank">Política de privacidad y tratamientos de datos personales</a></p>
+                    </div>
+                </div>
+            </footer>
+            <!-- /Footer -->
+            <!-- Scripts Menu -->
+        }
+
+        @if (!string.IsNullOrEmpty(ViewBag.UsuarioDNP) && !Request.RawUrl.Contains("seleccionDeProyectos") && !Request.RawUrl.Contains("resumenDeProyectos"))
+        {
+            <script>
+
+                var subMenuSeleccionado = undefined;
+                var current_href = location.href;
+                var menuAbierto = false;
+                var redireccionando = false;
+                var toogleNavAyuda = false;
+                var toogleMenuAdmin = false;
+                var toogleMenuLog = false;
+
+                $(document).ready(function () {
+
+                    $(".menu-logo").addClass('hide');
+
+                    // valida si la página que se esta mostrando es el home
+                    if (window.location.pathname == "/") {
+                        $("#lnkInicio").addClass("seleccionado");
+                    }
+
+                    $("#icon-close-log-option").hide();
+                    $("#icon-close-admin-option").hide();
+
+                    $("#lnkHome").click(function () {    // al seleccionar el link de Home
+
+                        $("li.seleccionado").removeClass("seleccionado");
+                        $("#lnkInicio").addClass("seleccionado");
+
+                    });
+
+                    $("li.active.collapsed").click(function () {  // al seleccionar un item del menu abierto
+                        if (subMenuSeleccionado == undefined) {
+                            menuAbierto = true;
+                            //CambiarEdoMenu(this);
+                        }
+
+                    });
+
+                    $(".menu-content li.collapsed.active").click(function () {   // al seleccionar un item del menu cerrado
+                        if (subMenuSeleccionado == undefined)
+                            seleccionarItemMenu(this);
+                        else
+                            subMenuSeleccionado = undefined;
+
+                    });
+
+                    $(".sub-menu li").click(function () {       // al seleccionar un item de submenu
+                        subMenuSeleccionado = this;
+                        //CambiarEdoMenu(this);
+                        seleccionarItemMenu(this);
+                        MostrarSubMenuActivo(false);
+                    });
+
+                    $(".headersidebar").click(function (e) { // al seleccionar el titulo en el menu amburguesa del sidebar
+                        CambiarEdoMenuHeaderSidebar(e);
+                    });
+
+                    $('.sub-menu').on('hidden.bs.collapse', function () {   // al ocultar el menu
+
+                        MostrarSubMenuActivo(true);
+
+                        /*var itemPadre = $(this).closest("li")[0];
+
+                        var chevronUp = $(itemPadre).find("a i.fa-chevron-up")[0];
+                        var chevronDown = $(itemPadre).find("a i.fa-chevron-down")[0];
+
+
+                        $(chevronUp).hide();
+                        $(chevronDown).show();*/
+                    });
+
+                    $('.sub-menu').on('shown.bs.collapse', function () {   // al mostrar el menu
+                        /*var itemPadre = $(this).closest("li")[0];
+
+                        var chevronUp = $(itemPadre).find("a i.fa-chevron-up")[0];
+                        var chevronDown = $(itemPadre).find("a i.fa-chevron-down")[0];
+
+                        $(chevronUp).show();
+                        $(chevronDown).hide();      */
+                    });
+
+                    $("#menu-item-first-level-logs").click(function (item) {       // al seleccionar un item expandible
+                        toogleMenuLog = !toogleMenuLog;
+                        if (toogleMenuLog) {
+                            $("#icon-open-log-option").hide();
+                            $("#icon-close-log-option").show();
+                        }
+                        else {
+                            $("#icon-open-log-option").show();
+                            $("#icon-close-log-option").hide();
+                        }
+
+                    });
+
+                    $("#menu-item-first-level-administracion").click(function (item) {       // al seleccionar un item expandible
+                        toogleMenuAdmin = !toogleMenuAdmin;
+                        if (toogleMenuAdmin) {
+                            $("#icon-open-admin-option").hide();
+                            $("#icon-close-admin-option").show();
+                        }
+                        else {
+                            $("#icon-open-admin-option").show();
+                            $("#icon-close-admin-option").hide();
+                        }
+                    });
+
+                    setInterval(() => eventChangeUrl(), 500);
+
+                });
+
+                //$("#wrapper").bind("DOMSubtreeModified", function () {  // detecta el cambio de tamaño y ajusta el alto al sidebar
+                //    $('#sidebar-wrapper').height($('#wrapper').height() + 15);
+                //});
+
+                function eventChangeUrl() {
+                    if (current_href !== location.href) {
+                        current_href = location.href;
+                        var itemMenu = getMenuSelected();
+                        if (itemMenu) {
+                            //CambiarEdoMenu(itemMenu);
+                            seleccionarItemMenu(itemMenu);
+                        }
+                    } else {
+                        var itemMenu = getMenuSelected();
+                        if (itemMenu && !menuAbierto) {
+                            seleccionarItemMenu(itemMenu);
+                        }
+                    }
+
+                    if (currentUrlEqual('/proyectos') && current_href.split('/').length == 4 && !redireccionando) {
+                        redireccionando = true;
+                        redirect('/proyectos/pl');
+                    }
+                }
+
+                function getMenuSelected() {
+                    var menu = undefined;
+                    var menuUrl = {
+                        bancoProyecto: '/bancoproyectos/proyectos',
+                        misProcesos: '/proyectos/pl',
+                        misProcesosAsignar: '/proyectos/verificacion/asignar',
+                        misProcesosSeguimientoControl: '/proyectos/verificacion/seguimiento-control',
+                        misProcesosRevision: '/proyectos/verificacion/revision-coordinador',
+                        misProcesosSubdirector: '/proyectos/verificacion/subdirector',
+                        tableroControl: '/tableroControlProyectos',
+                        notificacionesMantenimiento: '/NotificacionesMantenimiento/ListaNotificaciones',
+                        centroAyuda: '/centroAyuda'
+                    }
+
+                    if (currentUrlEqual(menuUrl.bancoProyecto)) {
+                        menu = $(".first-level[href='" + menuUrl.bancoProyecto + "']")[0].parentElement.parentElement.parentElement;
+                    } else if (currentUrlEqual(menuUrl.misProcesos)) {
+                        menu = $(".first-level[href='" + menuUrl.misProcesos + "']")[0].parentElement.parentElement.parentElement;
+                    } else if (currentUrlEqual(menuUrl.tableroControl)) {
+                        menu = $(".first-level[href='" + menuUrl.tableroControl + "']")[0].parentElement.parentElement;
+                    } else if (currentUrlEqual(menuUrl.notificacionesMantenimiento)) {
+                        menu = $(".first-level[href='" + menuUrl.notificacionesMantenimiento + "']")[0].parentElement.parentElement;
+                    } else if (currentUrlEqual(menuUrl.centroAyuda)) {
+                        menu = $(".first-level[href='" + menuUrl.centroAyuda + "']")[0].parentElement.parentElement;
+                    } else if (currentUrlEqual(menuUrl.misProcesosAsignar)) {
+                        menu = $(".first-level[href='" + menuUrl.misProcesosAsignar + "']")[0].parentElement.parentElement.parentElement;
+                    } else if (currentUrlEqual(menuUrl.misProcesosSeguimientoControl)) {
+                        menu = $(".first-level[href='" + menuUrl.misProcesosSeguimientoControl + "']")[0].parentElement.parentElement.parentElement;
+                    } else if (currentUrlEqual(menuUrl.misProcesosRevision)) {
+                        menu = $(".first-level[href='" + menuUrl.misProcesosRevision + "']")[0].parentElement.parentElement.parentElement;
+                    } else if (currentUrlEqual(menuUrl.misProcesosSubdirector)) {
+                        menu = $(".first-level[href='" + menuUrl.misProcesosSubdirector + "']")[0].parentElement.parentElement.parentElement;
+                    }
+
+                    return menu;
+                }
+
+                function currentUrlEqual(url) {
+                    return current_href.substr(current_href.search(url), current_href.length) == url
+                }
+
+                function redirect(url) {
+                    window.location.replace(url);
+                }
+
+                function CambiarEdoMenuHeaderSidebar(eventLnkHeaderMenu) {
+
+                    eventLnkHeaderMenu.preventDefault();
+
+                    $("#wrapper").toggleClass("active");
+
+                    if ($("#wrapper").hasClass("active")) {
+
+                        // sidebar oculto
+                        $(".menu-logo").addClass('hide');
+                    } else {
+
+                        // sidebar abierto
+                        setTimeout(function () {
+                            $(".menu-logo").removeClass('hide');
+                        }, 300);
+
+                    }
+
+                    $("#wrapper").removeClass("isclosing")
+
+                    MostrarSubMenuActivo(false);
+                };
+
+                function CambiarEdoMenu(lnkMenu) { // Abrir/Cerrar el menu al seleccionar un elemento
+
+                    if ($('#wrapper').hasClass('active') && !$("#wrapper").hasClass("isclosing")) {
+
+                        $("#wrapper").toggleClass("active");    // abre menu
+
+                    } else if (!$('#wrapper').hasClass('active') && !$(lnkMenu).data("target")) {
+
+                        $("#wrapper").toggleClass("active");    // cierra  menu
+                        $("#wrapper").addClass("isclosing");
+                    }
+
+                    $("#wrapper").removeClass("isclosing")
+                };
+
+                function seleccionarItemMenu(lnkMenu) {    // agrega clase que resalta opcion seleccionada
+                    if (subMenuSeleccionado == undefined) {
+                        if (!$(lnkMenu).data("target")) {
+                            $("li.seleccionado").removeClass("seleccionado");
+                            $(lnkMenu).addClass("seleccionado");
+
+                            // oculta los submenus
+                            //$(".sub-menu.collapse").removeClass('in');
+
+                        }
+                    } else {
+                        $("li.seleccionado").removeClass("seleccionado");
+                        $(subMenuSeleccionado).addClass("seleccionado");
+                    }
+                }
+
+                function MostrarSubMenuActivo(validarEdoSidebar) {
+
+                    //$(".sub-menu.collapse").removeClass('in');
+
+                    if (validarEdoSidebar) {
+
+                        if ($(".container-fluid.active").length == 0) // si el sidebar esta abierto
+                            return;
+
+                    }
+
+                    if ($("li.seleccionado").length == 0) {   // sino existe ningun elemento seleccionado
+
+                        if (!validarEdoSidebar) {
+                            $("a i.fa-chevron-up").hide();
+                            $("a i.fa-chevron-down").show();
+                        }
+
+                        return;
+                    }
+
+                    if (!$("li.seleccionado").hasClass("collapsed")) {
+                        var itemPadre = $("li.seleccionado").closest("ul")[0];
+                        $(itemPadre).collapse('show');
+                    } else {
+                        $("a i.fa-chevron-up").hide();
+                        $("a i.fa-chevron-down").show();
+                    }
+
+                }
+
+                //#region Centro de Ayuda
+
+                function openNav() {
+                    toogleNavAyuda = !toogleNavAyuda;
+                    if (toogleNavAyuda) {
+                        $("#sidebarAyuda").width(800);
+                        $("#sidebarAyuda").css({ 'right': '0px', 'z-index': '100' });
+                    }
+                    else {
+                        closeNav();
+                    }
+                }
+
+                function closeNav() {
+                    toogleNavAyuda = false;
+                    $("#sidebarAyuda").width(0);
+                    $("#sidebarAyuda").css({ 'right': '-5px' });
+                }
+
+                function tieneElement(node, element) {
+                    return node == element
+                        || (node.childNodes || []).length && Array.from(node.childNodes)
+                            .filter(x => x.nodeType == 1)
+                            .some(x => tieneElement(x, element));
+                }
+
+                $('body').click(function (event) {
+                    var container = Array.from($("#sidebarAyuda, #centroAyudaIcon, #closeSideBar, .modal__ayuda__exhibicion"));
+                    var result = container.some(node => tieneElement(node, event.target));
+                    if (!result)
+                        closeNav()
+                });
+
+                //#endregion
+
+            </script>
+        }
+
+    </div>
+
+    <script>
+        var usuarioDNP = '@(string.IsNullOrEmpty(ViewBag.UsuarioDNP) ? "" : ViewBag.UsuarioDNP)';
+        var usuarioNombre = '@(string.IsNullOrEmpty(ViewBag.UsuarioLogueado) ? "" : @Html.Raw(ViewBag.UsuarioLogueado))';
+        var esUsuarioB2C = @(ViewBag.UsuarioTipoB2C == null ? false : ViewBag.UsuarioTipoB2C.ToString().ToLower());
+        var usuarioGuid = '@(string.IsNullOrEmpty(ViewBag.UsuarioGuid) ? "" : ViewBag.UsuarioGuid)';
+        var apiBackboneServicioBaseUri = '@(string.IsNullOrEmpty(ViewBag.ApiBackboneServicioBaseUri) ? "" : ViewBag.ApiBackboneServicioBaseUri)';
+        var apiAutorizacionServicioBaseUri = '@(string.IsNullOrEmpty(ViewBag.ApiAutorizacionServicioBaseUri) ? "" : ViewBag.ApiAutorizacionServicioBaseUri)';
+        var apiIdentidadServicioBaseUri = '@(string.IsNullOrEmpty(ViewBag.ApiIdentidadServicioBaseUri) ? "" : ViewBag.ApiIdentidadServicioBaseUri)';
+        var topePaginacionConsultaAplicaciones = '@(string.IsNullOrEmpty(ViewBag.TopePaginacionConsultaAplicaciones) ? "10" : ViewBag.TopePaginacionConsultaAplicaciones)';
+        var topePaginacion = '@(string.IsNullOrEmpty(ViewBag.TopePaginacion) ? "50" : ViewBag.TopePaginacion)';
+        var maximoPaginas = '@(string.IsNullOrEmpty(ViewBag.MaximoPaginas) ? "10" : ViewBag.MaximoPaginas)';
+        var nombreAplicacionBackbone = '@(string.IsNullOrEmpty(ViewBag.NombreAplicacionBackbone) ? "" : ViewBag.NombreAplicacionBackbone)';
+        var apiFlujosServiciosBaseUri = '@(string.IsNullOrEmpty(ViewBag.ApiFlujoServicioBaseUri) ? "" : ViewBag.ApiFlujoServicioBaseUri)';
+        var apiPiipCore = '@(string.IsNullOrEmpty(ViewBag.ApiFormularioServicioBaseUri) ? "" : ViewBag.ApiFormularioServicioBaseUri)';
+        var idTipoProyecto = '@(string.IsNullOrEmpty(ViewBag.IdTipoProyecto) ? "" : ViewBag.IdTipoProyecto)';
+        var idTipoTramite = '@(string.IsNullOrEmpty(ViewBag.IdTipoTramite) ? "" : ViewBag.IdTipoTramite)';
+        var idTipoTramiteProgramacion = '@(string.IsNullOrEmpty(ViewBag.IdTipoTramiteProgramacion) ? "" : ViewBag.IdTipoTramiteProgramacion)';
+        var apiMotorFlujos = '@(string.IsNullOrEmpty(ViewBag.ApiMotorFlujos) ? "" : ViewBag.ApiMotorFlujos)';
+        var apiArchivo = '@(string.IsNullOrEmpty(ViewBag.ApiArchivo) ? "" : ViewBag.ApiArchivo)';
+        var proyectosEstados = @Html.Raw(Json.Encode(ViewBag.ProyectosEstados));
+        var apiArchivo = '@(string.IsNullOrEmpty(ViewBag.ApiArchivo) ? "" : ViewBag.ApiArchivo)';
+        var urlPDFBackbone = '@(string.IsNullOrEmpty(ViewBag.WebPDFBackbone) ? "" : ViewBag.WebPDFBackbone)';
+        var apiCache = '@(string.IsNullOrEmpty(ViewBag.ApiCache) ? "" : ViewBag.ApiCache)';
+        var apiCacheCatalogos = '@(string.IsNullOrEmpty(ViewBag.ApiCacheCatalogos) ? "" : ViewBag.ApiCacheCatalogos)';
+        var nombreEntornoPIIP = '@(string.IsNullOrEmpty(ViewBag.NombreEntorno) ? "" : ViewBag.NombreEntorno)';
+        var administracionURL = '@(string.IsNullOrEmpty(ViewBag.AdministracionURL) ? "" : ViewBag.AdministracionURL)';
+        var backboneURL = '@(string.IsNullOrEmpty(ViewBag.BakcboneURL) ? "" : ViewBag.BakcboneURL)';
+        var menusPermiso = @Html.Raw(Json.Encode(ViewBag.Menus));
+        var idUsuarioPIIP =     '@(string.IsNullOrEmpty(ViewBag.IdUsuarioPIIP) ? "" : ViewBag.IdUsuarioPIIP)';
+        var tipoUsuarioAutenticado =     '@(string.IsNullOrEmpty(ViewBag.TipoUsuario) ? "" : ViewBag.TipoUsuario)';
+        var apiManejadorArchivos = '@(string.IsNullOrEmpty(ViewBag.ApiManejadorArchivos) ? "" : ViewBag.ApiManejadorArchivos)';
+        var keyCollection = '@(string.IsNullOrEmpty(ViewBag.KeyCollection) ? "" : ViewBag.KeyCollection)';
+        var usuarioLogueado = '@(string.IsNullOrEmpty(ViewBag.UsuarioLogueado) ? "" : @Html.Raw(ViewBag.UsuarioLogueado))';
+        var apiFichasProyectosBaseUri = '@(string.IsNullOrEmpty(ViewBag.ApiFichasProyectosBaseUri) ? "" : ViewBag.ApiFichasProyectosBaseUri)';
+        var urlDiagramaGantt = '@(string.IsNullOrEmpty(ViewBag.UrlPowerBIGantt) ? "" : ViewBag.UrlPowerBIGantt)';
+        var urlDiagramaActividades = '@(string.IsNullOrEmpty(ViewBag.urlDiagramaActividades) ? "" : ViewBag.urlDiagramaActividades)';
+    </script>
+
+    @Scripts.Render("~/bundles/angular")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/moment")
+    @Scripts.Render("~/bundles/datetimepicker")
+    @Scripts.Render("~/bundles/schemaform")
+    @Scripts.Render("~/bundles/dropzone")
+    @Scripts.Render("~/bundles/jspath")
+    @Scripts.Render("~/bundles/powerbi")
+
+    @RenderSection("scripts", required: false)
+
+    <script src="/Scripts/globalize/globalize.js"></script>
+    <script type="text/javascript" src="@Url.Content($" /Scripts/globalize/cultures/globalize.culture.{CultureHelper.GetCurrentCulture()}.js ")"></script>
+
+    @if (CultureHelper.GetCurrentNeutralCulture() != "en")
+    {
+        <script type="text/javascript" src="@($" http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/localization/messages_{CultureHelper.GetCurrentNeutralCulture()}.js ")"></script>
+    }
+
+    <script type="text/javascript" src="@Url.Content(" /Scripts/Code52.i18n.js ")"></script>
+    <script type="text/javascript" src="@Url.Content(" /i18n/Code52_i18n_language ")"></script>
+    <script type="text/javascript" src="@Url.Content(" /Scripts/angular-modules/angular-file-saver/dist/angular-file-saver.bundle.js ")"></script>
+    <script type="text/javascript">
+        Code52.Language.Init('@CultureHelper.GetCurrentCulture()');
+
+        //Definición global de TimeZone
+        const currentTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        moment.tz.setDefault(currentTimeZone);
+    </script>
+
+</body>
+
+</html>

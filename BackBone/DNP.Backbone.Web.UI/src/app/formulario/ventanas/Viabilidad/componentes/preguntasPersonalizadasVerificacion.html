@@ -1,0 +1,39 @@
+﻿<section class="ventana-ajsutes mt-4" ng-init="vm.init()">
+    <div class="row m-0">
+        <div class="form-group">
+            <div class="tab-container col-md-12">
+                <ul class="nav nav-tabs">
+                    <li id="liTecnico" class="active" ng-if="vm.mostrarTecnico">
+                        <a data-target="#FaseTecnico" data-toggle="tab">
+                            <img id="u305T_img" class="img" ng-src="Img/u305.svg">
+                            <img id="u306T_img" class="img" ng-src="Img/u306.svg" style="display:none;">
+                            <b>{{vm.ConfiguracionEntidades.Fase}} Técnico</b>
+                        </a>
+                    </li>
+                    <li id="liLider">
+                        <a data-target="#FaseLider" data-toggle="tab">
+                            <img id="u305L_img" class="img" ng-src="Img/u305.svg">
+                            <img id="u306L_img" class="img" ng-src="Img/u306.svg" style="display:none;">
+                            <b>{{vm.ConfiguracionEntidades.Fase}}</b>
+                        </a>
+                    </li>
+                </ul>
+                <span class="buttonbar pull-right">
+                    Número de revisiones: {{vm.revisiones}}
+                </span>
+                <div class="tab-content">
+                    <div class="tab-pane active cont col-md-12" style="padding-left:0 !important;padding-top:20px !important" id="FaseTecnico" ng-if="vm.mostrarTecnico">
+                        <preguntas-tecnico callback="vm.cambiarTab()"></preguntas-tecnico>
+                    </div>
+                    <div class="tab-pane cont col-md-12" style="padding-left:0 !important;padding-top:20px !important" id="FaseLider" ng-if="vm.mostrarTecnico">
+                        <preguntas-lider callback="vm.validaHabilita(arg,aprueba)"></preguntas-lider>
+                    </div>
+                    <div class="tab-pane active cont col-md-12" style="padding-left:0 !important;padding-top:20px !important" id="FaseLider" ng-if="!vm.mostrarTecnico">
+                        <preguntas-lider callback="vm.validaHabilita(arg,aprueba)"></preguntas-lider>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

@@ -1,0 +1,21 @@
+<div class="container-fluid inbox" ng-init="vm.init()">
+    <div class="container-modal-visualizar-mensaje">
+        <div class="cuerpo-modal-visualizar-mensaje form-group clearfix">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="mensaje-texto">
+                        <i class="fa" ng-class="vm.iconos[vm.type].icon" ng-style="vm.iconos[vm.type].style" aria-hidden="true"></i>
+                        <div class="ql-editor template" ng-bind-html="vm.template"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer fixed">
+        <div class="row">
+            <div class="col-md-12 padding-right-off">
+                <button id="botonCerrar" type="button" ng-click="vm.cerrar()" tabindex="0" class="btn btn-sm btn-primary">Ok</button>
+            </div>
+        </div>
+    </div>
+</div>

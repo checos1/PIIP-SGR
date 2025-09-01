@@ -1,0 +1,73 @@
+﻿<section>
+    <div class="container-fluid inbox" ng-init="vm.init();">
+        <div>
+            <div class="tab-container col-md-12" style="width:98%;">
+                <br />
+                <span ng-if="vm.habilitaBotones" class="buttonbar pull-right">
+                    <button type="button" class="btneditarDNP" tooltip-placement="top" ng-click="vm.Editable ? vm.CancelarValores() : vm.EditarValores()" uib-tooltip="{{vm.Editable ? 'CANCELAR' : 'EDITAR'}}">
+                        {{vm.Editable ? 'CANCELAR' : 'EDITAR'}}
+                    </button>
+                    <button ng-disabled="!vm.Editable" type="button" class="{{vm.Editable ? 'btnguardarDNP' : 'btnguardarDisabledDNP'}}" tooltip-placement="top" uib-tooltip="Guardar" tabindex="0" ng-click="vm.GuardarValores(fuentes)">
+                        GUARDAR
+                    </button>
+                </span>
+                <br />
+                <div style="text-align: left;">
+                    <div class="row col-md-12">
+                        <div class="alert panel-heading">
+                            <table class="TableDNP">
+                                <thead>
+                                    <tr>
+                                        <th class="columAcc" width="5%"></th>
+                                        <th class="textleftDNP" width="22%">Tipo de recurso</th>
+                                        <th class="textleftDNP" width="8%">Situación</th>
+                                        <th class="textRightDNP" width="20%">Valor asignado $</th>
+                                        <th class="textRightDNP" width="20%">Valor vigente $</th>
+                                        <th ng-if="vm.origen == 'Adición Presupuesto Paso1'" class="textRightDNP" width="20%">Valor a acreditar $</th>
+                                        <th ng-if="vm.origen == 'Reducción presupuesto paso1'" class="textRightDNP" width="20%">Valor a contracreditar $</th>
+                                        <th class="columAcc" width="5%"></th>
+                                    </tr>
+                                </thead>
+                                <tbody ng-repeat="creditos in fuentes.Creditos" ng-init="creditosindex = $index">
+                                    <tr>
+                                        <td rowspan="2"></td>
+                                        <td rowspan="2">{{creditos.Codigo}}. {{creditos.Nombre}}</td>
+                                        <td class="textRightDNP"><b>CSF</b></td>
+                                        <td><b><input type="text" class="textRightDNP form-control editInputDNP" style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: bold; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px" disabled value="{{vm.ConvertirNumero(creditos.ValorInicialCSF)}}" /></b></td>
+                                        <td><b><input type="text" class="textRightDNP form-control editInputDNP" style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: bold; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px" disabled value="{{vm.ConvertirNumero(creditos.ValorVigenteCSF)}}" /></b></td>
+                                        <td ng-if="!vm.Editable"><b><input type="text" class="textRightDNP form-control editInputDNP" style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: bold; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px" disabled value="{{vm.ConvertirNumero(creditos.ValorAcreditarCSF)}}" /></b></td>
+                                        <td ng-if="vm.Editable" class="textRightDNP">
+                                            <input id="input-ValorAcreditarCSF" type="text" min="0.00"
+                                                   ng-readonly="!vm.Editable"
+                                                   ng-keypress="vm.validateFormat($event)"
+                                                   ng-keyup="vm.validarTamanio($event)"
+                                                   ng-value="creditos.ValorAcreditarCSF"
+                                                   ng-model="fuentes.Creditos[creditosindex].ValorAcreditarCSF"
+                                                   required class="form-control editInputDNP" style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px; background-color:white" />
+                                        </td>
+                                        <td rowspan="2"></td>
+                                    </tr>
+                                    <tr ng-if="creditos.origen == 'N'">
+                                        <td class="textRightDNP"><b>SSF</b></td>
+                                        <td><b><input type="text" class="textRightDNP form-control editInputDNP" style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: bold; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px" disabled value="{{vm.ConvertirNumero(creditos.ValorInicialSSF)}}" /></b></td>
+                                        <td><b><input type="text" class="textRightDNP form-control editInputDNP" style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: bold; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px" disabled value="{{vm.ConvertirNumero(creditos.ValorVigenteSSF)}}" /></b></td>
+                                        <td ng-if="!vm.Editable"><b><input type="text" class="textRightDNP form-control editInputDNP" style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: bold; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px" disabled value="{{vm.ConvertirNumero(creditos.ValorAcreditarSSF)}}" /></b></td>
+                                        <td ng-if="vm.Editable" class="textRightDNP">
+                                            <input id="input-ValorAcreditarSSF" type="text" min="0.00"
+                                                   ng-readonly="!vm.Editable"
+                                                   ng-keypress="vm.validateFormat($event)"
+                                                   ng-keyup="vm.validarTamanio($event)"
+                                                   ng-value="creditos.ValorAcreditarSSF"
+                                                   ng-model="fuentes.Creditos[creditosindex].ValorAcreditarSSF"
+                                                   required class="form-control editInputDNP" style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px; background-color:white" />
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

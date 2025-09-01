@@ -1,0 +1,20 @@
+﻿<div class="modal-header" style="border-bottom: 0px solid #e5e5e5; margin-left:30px" ng-init="vm.init()">
+    <button type='button' class='swal2-close closemodalDNP' aria-label='Close this dialog' data-dismiss="modal" ng-click="vm.cerrar()">×</button>
+    <h3 class="modal-title TituloModal1DNP" id="modal-title">Agregar Política transversal</h3>
+</div>
+<div class="modal-body" style="background: transparent !important; margin-left: 45px;padding:0px !important" id="modal-body">
+    <p style="font-size: 14px; text-align: left;font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 500; font-style: normal; color: #4B4B4B ">Las políticas asociadas al proyecto se presentan deshabilitadas.</p>
+    <br />
+    <div style="border-width: 0px;left: 0px; top: 0px; width: 624px; height: 161px; overflow: auto; -webkit-overflow-scrolling: touch; -ms-overflow-x: hidden; overflow-x: hidden; background-image: none; border: none; border-radius: 0px; -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none;">
+        <div ng-repeat="objPoliticas in vm.listaPoliticasProyectos">
+
+            <input type="checkbox" class="check2DNP" name="indicador" id="chk-{{objPoliticas.politicaId}}" ng-model="objPoliticas.activado" ng-value="indicador" ng-change="vm.toggleCurrency(objPoliticas)" ng-disabled="objPoliticas.deshabilitar">
+            <label ng-disabled="objPoliticas.deshabilitar" class="check2DNP" for="chk-{{objPoliticas.politicaId}}">{{objPoliticas.politica}}</label>
+            <b>
+        </div>
+    </div>
+</div>
+<div class="modal-footer textCenterDNP">
+    <button class="btneditarDNP" type="button" ng-click="vm.cerrar()">Cancelar</button>
+    <button class="btn btn-default btn-md" type="button" ng-click="vm.guardar()" ng-disabled="vm.btnGuardarDisable === true">Agregar</button>
+</div>

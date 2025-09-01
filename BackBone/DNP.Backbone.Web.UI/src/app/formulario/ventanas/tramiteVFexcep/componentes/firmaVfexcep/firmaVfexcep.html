@@ -1,0 +1,26 @@
+﻿<div class="ui-accordion-container " id="accordion-aprobacionfinalfirmaconceptote" ng-init="vm.init();">
+    <div class="alert panel-heading row ui-accordion-header">
+        <button type="button" data-toggle="collapse" data-target="#aprobacionfinalfirmaconceptote" ng-click="vm.changeArrow('aprobacionfinalfirmaconceptote')">
+            <span class="d-inline-block" id="alert-aprobacionfinalfirmaconceptote"></span>
+            <span id="name-capitulo-aprobacionfinalfirmaconceptote"></span>
+            <span class="hidden" id="id-capitulo-aprobacionfinalfirmaconceptote"></span>
+            <span id="arrow-aprobacionfinalfirmaconceptote" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#aprobacionfinalfirmaconceptote"></span>
+        </button>
+    </div>
+    <div class="collapse" id="aprobacionfinalfirmaconceptote">
+        <div class="row m-0 mb-3">
+            <br>
+            <div class="col-md-12 ">
+                <firma-concepto-formulario
+                                           guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                           notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                           notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"
+                                           nombrecomponentepaso="{{vm.nombreComponenteHijo}}">
+
+                </firma-concepto-formulario>
+
+
+            </div>
+        </div>
+    </div>
+</div>

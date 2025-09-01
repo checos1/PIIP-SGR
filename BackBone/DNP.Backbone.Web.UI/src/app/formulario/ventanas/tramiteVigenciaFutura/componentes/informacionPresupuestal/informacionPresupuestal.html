@@ -1,0 +1,108 @@
+﻿<section>
+    <div class="container-fluid inbox" ng-init="vm.init();">
+        <div class="tab-content">
+            <div class="row" style="margin-left: 0px; margin-right: 0px;padding-bottom:1rem">
+                <div class="alert panel-heading row ui-accordion-header" style="">
+
+                    <button class="button" type="button" data-toggle="collapse" data-target="#informacionpresupuestalresumen" ng-click="vm.changeArrow('informacionpresupuestalresumen')">
+                        <span class="d-inline-block" id="alert-informacionpresupuestalresumen"></span>&nbsp;Resumen Solicitud Vigencias Futuras
+                        <span class="hidden" id="id-capitulo-informacionpresupuestalresumen"></span>
+                        <span id="arrow-informacionpresupuestalresumen" class="glyphicon glyphicon-chevron-down pull-right" data-toggle="collapse" data-target="#informacionpresupuestalresumen"></span>
+                    </button>
+
+                </div>
+                <div class="collapse" id="informacionpresupuestalresumen" style="padding-right: 15px; padding-left: 0px; margin-left: -15px;">
+                    <div class="row" style="margin-left:20px" ng-if="!vm.mostrar">
+                        <resumen-informacion-presupuestal tramiteid="{{vm.tramiteid}}"
+                                                          guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                                          notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                          notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)">
+                        </resumen-informacion-presupuestal>
+                    </div>
+                    <div class="row" style="margin-left:20px" ng-if="vm.mostrar">
+                        <resumen-informacion-presupuestal-aprobados tramiteid="{{vm.tramiteid}}"
+                                                                    guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                                                    notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                                    notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)">
+                        </resumen-informacion-presupuestal-aprobados>
+                    </div>
+                </div>
+            </div>
+            <span class="hidden" id="id-capitulo-informacionpresupuestalconpes"></span>
+            <div class="row" style="margin-left: 0px; margin-right: 0px; padding-bottom: 1rem" ng-if="vm.showConpes">
+
+                <div class="alert panel-heading row ui-accordion-header" style="">
+
+                    <button class="button" type="button" data-toggle="collapse" data-target="#conpes" ng-click="vm.changeArrow('informacionasociarconpes')">
+                        <span class="d-inline-block" id="alert-informacionpresupuestalconpes"></span>&nbsp;Asociar CONPES
+                        <span id="arrow-informacionasociarconpes" class="glyphicon glyphicon-chevron-down pull-right" data-toggle="collapse" data-target="#conpes">
+                        </span>
+                    </button>
+
+                </div>
+                <div class="collapse" id="conpes" style="padding-right: 15px; padding-left: 0px; margin-left: -15px;">
+                    <div class="row" style="margin-left:20px">
+                        <conpes-vigencia-futura tramiteid="{{vm.tramiteid}}"
+                                                guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                                notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"></conpes-vigencia-futura>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-left: 0px; margin-right: 0px; padding-bottom: 1rem">
+                <span class="hidden" id="id-capitulo-informacionpresupuestalcdp"></span>
+                <div class="alert panel-heading row ui-accordion-header" style="" ng-if="vm.MostrarCDP">
+                    <button class="button" type="button" data-toggle="collapse" data-target="#rCDPVigenciaFutura" ng-click="vm.changeArrow('informacionpresupuestalcdp')">
+                        <span class="d-inline-block" id="alert-informacionpresupuestalcdp"></span>&nbsp;Certificado de Disponibilidad Presupuestal
+
+                        <span id="arrow-informacionpresupuestalcdp" class="glyphicon glyphicon-chevron-down pull-right" data-toggle="collapse" data-target="#rCDPVigenciaFutura"></span>
+                    </button>
+
+                </div>
+                <div class="collapse" id="rCDPVigenciaFutura" style="padding-right: 15px; padding-left: 0px; margin-left: -15px;">
+                    <div class="row" style="margin-left:20px">
+                        <cdp-vigencias-futuras guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                               notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                               notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"></cdp-vigencias-futuras>
+                    </div>
+                </div>
+            </div>
+            <div class="row" ng-if="vm.mostrarCRP" style="margin-left: 0px; margin-right: 0px; padding-bottom: 1rem">
+                <div class="alert panel-heading row ui-accordion-header" style="">
+
+                    <button class="button" type="button" data-toggle="collapse" data-target="#rCRPVigenciaFutura" ng-click="vm.changeArrow('informacionpresupuestalcrp')">
+                        <span class="d-inline-block" id="alert-informacionpresupuestalrp"></span>&nbsp;Certificado de Registro Presupuestal
+                        <span class="hidden" id="id-capitulo-informacionpresupuestalrp"></span>
+                        <span id="arrow-informacionpresupuestalrp" class="glyphicon glyphicon-chevron-down pull-right" data-toggle="collapse" data-target="#rCRPVigenciaFutura"></span>
+                    </button>
+
+                </div>
+                <div class="collapse" id="rCRPVigenciaFutura" style="padding-right: 15px; padding-left: 0px; margin-left: -15px;">
+                    <div class="row" style="margin-left:20px">
+                        <crp-vigencias-futuras guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                               notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                               notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"></crp-vigencias-futuras>
+                    </div>
+                </div>
+            </div>
+            <div class="row" ng-if="vm.mostrar" style="margin-left: 0px; margin-right: 0px; padding-bottom: 1rem">
+                <div class="alert panel-heading row ui-accordion-header" style="">
+
+                    <button class="button" type="button" data-toggle="collapse" data-target="#cronogramavf" ng-click="vm.changeArrow('cronogramavf')">
+                        <span class="d-inline-block" id="alert-cronogramavf"></span>&nbsp;Cronograma
+                        <span id="arrow-cronogramavf" class="glyphicon glyphicon-chevron-down pull-right" data-toggle="collapse" data-target="#cronogramavf"></span>
+                    </button>
+
+                </div>
+                <div class="collapse" id="cronogramavf" style="padding-right: 15px; padding-left: 0px; margin-left: -15px;">
+                    <div class="row" style="margin-left:20px">
+                        <cronogramavf guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                      notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                      notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"></cronogramavf>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>

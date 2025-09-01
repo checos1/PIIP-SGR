@@ -1,0 +1,66 @@
+<modal-dialog cerrar="vm.cerrar" guardar="vm.guardar" >
+    <div class="row ">
+        <div class="col-md-12">
+            <div class="titulo-modal">
+                <span>CONSULTAR PAGOS - <span class="tipo-entidad-cor">SGR</span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="input-group mb-3 p-1">
+                <div class="input-group-prepend">
+                    <span class="input-group-text bg-light rounded-left-2">Inflexibilidad</span>
+                </div>
+                <span class="form-control rounded-right-2">{{vm.inflexibilidad.nombreInflexibilidad}}</span>
+            </div>
+        </div>
+        <div class="p-1" ng-repeat="pagamento in vm.pagamentos">
+            <div class="col-md-10 p-0">
+
+                <div class="col-md-4 ">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-light rounded-left-2">Valor</span>
+                        </div>
+                        <input type="text" ng-model="pagamento.valor" max="99999999" class="form-control rounded-right-2" ui-number-mask>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="input-group mb-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-light rounded-left-2">Fecha ini</span>
+                        </div>
+                        <input ng-model="pagamento.fechaInicio" type="date" class="form-control rounded-right-2" />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="input-group mb-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-light rounded-left-2">Fecha fin</span>
+                        </div>
+                        <input ng-model="pagamento.fechaFin" type="date" class="form-control rounded-right-2" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 p-0 mt-1 ">
+                <button class="btnaccion" ng-click="vm.adicionarPagamento()" tooltip-placement="Auto" uib-tooltip="Agregar nuevo pagos">
+                    <span><img src="Img/iconsgrid/iconAccionAdicionar.png"></span>
+                </button>
+                <button class="btnaccion" ng-click="vm.removerPagamento($index)" tooltip-placement="Auto" uib-tooltip="Eliminar pagos">
+                    <span><img src="Img/iconsgrid/iconAccionEliminar.png"></span>
+                </button>
+                <button class="btnaccion" ng-click="vm.visualizar(pagamento)" tooltip-placement="Auto" uib-tooltip="Visualizar pagos">
+                    <span><img src="Img/iconsgrid/iconAccionVer.png"></span>
+                </button>
+                <button class="btnaccion" ng-click="vm.enviarDocumento(pagamento)" tooltip-placement="Auto" uib-tooltip="Enviar archivo">
+                    <span><img src="Img/iconsgrid/iconAccionUpload.png"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div>
+        <input type="file" id="file" name="file" style="display:none" onchange="angular.element(this).scope().vm.cargarArchivo()"/>
+    </div>
+</modal-dialog>

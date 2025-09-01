@@ -1,0 +1,23 @@
+﻿<div ng-controller="botonRequeridoController" class="form-group {{form.htmlClass}}">
+    <div class="form-group {{form.htmlClass}}" ng-class="{'has-error': form.disableErrorState !== true && hasError(), 'has-success': form.disableSuccessState !== true && hasSuccess(), 'has-feedback': form.feedback !== false }">
+        <label class="control-label {{form.labelHtmlClass}}" ng-class="{'sr-only': !showTitle()}" for="{{form.key.slice(-1)[0]}}">{{form.etiqueta}}</label>
+        <input ng-show="form.key"
+               type="button"
+               class="btn {{form.style}}"
+               ng-disabled="form.readonly"
+               value="{{form.title}}"
+               ng-click="enClick()"
+               maxLength="{{form.maxLength}}"
+               sf-changed="form"
+               ng-pattern="form.pattern"
+               placeholder="{{form.placeholder}}"
+               id="{{form.key.slice(-1)[0]}}"
+               ng-model-options="form.ngModelOptions"
+               ng-model="$$value$$"
+               schema-validate="form"
+               name="{{form.key.slice(-1)[0]}}"
+               uib-tooltip="{{form.tooltip}}">
+        <span ng-if="hasError() || hasSuccess()" id="{{form.key.slice(-1)[0] + 'Status'}}" class="sr-only">{{ hasSuccess() ? '(success)' : '(error)' }}</span>
+        <span class="help-block" sf-message="(form.key[0]!==form.description)?form.description:''"></span>
+    </div>
+</div>

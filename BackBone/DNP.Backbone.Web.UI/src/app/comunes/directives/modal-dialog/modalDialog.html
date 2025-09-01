@@ -1,0 +1,24 @@
+﻿<div class="modal-componente">
+    <div class="modal-header">
+        <div class="col-md-12 text-right">
+            <button type="button" class="swal2-close closemodalDNP" ng-click="cerrar()" style="top:10px;">x</button>
+        </div>
+    </div>
+    <div class="modal-body" style="background-color: white !important;" ng-transclude></div>
+    <div class="modal-footer textCenterDNP" style="background-color:white!important">
+        <div class="row">
+            <div class="col-md-12" style="display: flex; justify-content: space-around;">
+                <div class="col-md-6 text-right" >
+                    <button type="button" class="btneditarDNP" ng-click="cerrar()" ng-if="cerrar">
+                        {{txtCerrar || 'CERRAR'}}
+                    </button>
+                </div>
+                <div class="col-md-6 text-left">
+                    <button type="button" class="btnguardarDNP" ng-click="guardar()" ng-if="guardar">
+                        {{txtGuardar || 'GUARDAR'}}
+                    </button>
+                </div>
+                </div>
+            </div>
+    </div>
+</div>

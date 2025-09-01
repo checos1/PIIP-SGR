@@ -1,0 +1,181 @@
+﻿<div ng-init="vm.init();">
+    <form id="generalesForm" name="generalesForm" novalidate>
+        <br>
+        <span class="buttonbar pull-right">
+            <button has-claim has-opciones="['viabilidadSGR:preguntasEditar']"
+                    id="EditarG"
+                    type="button"
+                    class="btneditarDNP"
+                    tooltip-placement="top"
+                    uib-tooltip="Editar"
+                    tabindex="0"
+                    ng-click="vm.ActivarEditar()"
+                    ng-disabled="vm.disabled">
+                EDITAR
+            </button>
+            &nbsp;
+            <button has-claim has-opciones="['viabilidadSGR:preguntasGuardar']"
+                    id="GuardarG"
+                    type="submit"
+                    class="{{vm.activar ? 'btnguardarDisabledDNP' : 'btnguardarDNP'}}"
+                    tooltip-placement="top"
+                    uib-tooltip="Guardar"
+                    ng-click="vm.guardar(vm.PreguntasPersonalizadas)"
+                    ng-disabled="vm.activar">
+                GUARDAR
+            </button>
+        </span>
+        <br />
+        <br />
+        <div class="input-group pull-right">
+            <input type="search" ng-model="vm.codigoG" class="form-control InputSearchDNP " placeholder="Buscar">
+            <span class="input-group-append imgTituloAccion spanSearchDNP" ng-click="vm.buscarGenerales()">
+                <i class="fa fa-search "></i>
+            </span>
+        </div>
+        <br />
+        <div class="col-md-12">
+            <label id="labelResultadoG" class="col-md-12 col-form-label" style="text-align: left;font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans'; color: #004884; font-size: 14px; font-style: normal;"></label>
+        </div>
+        <br />
+        <div ng-repeat="preguntasGenerales in vm.PreguntasPersonalizadas.PreguntasGenerales" ng-init="preguntasGeneralesIndex = $index">
+            <div class="row">
+                <div class="" style="padding: 0 !important">
+                    <br />
+                    <div ng-repeat="pregunta in preguntasGenerales.Preguntas" ng-init="preguntaIndex = $index">
+                        <!--Sesión Pregunta-->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div ng-if="pregunta.IdPreguntaPadre > 0" class="col-md-1">
+                                    &nbsp;
+                                </div>
+                                <div class="col-md-1" style="text-align: left; padding-left: 35px">
+                                    <img src="Img\iconsforms\u2.svg">
+                                    <span ng-if="1 == 0" id="spanId{{pregunta.IdPregunta}}" class="keyPregResObservapDNP">{{pregunta.IdPregunta}}</span>
+                                    <span class="d-inline-block" id="alert-viabilidadgenerales{{pregunta.IdPregunta}}"></span>
+                                </div>
+                                <div class="{{pregunta.IdPreguntaPadre > 0 ? 'col-md-10 DetacolumnDNP' : 'col-md-11 DetacolumnDNP'}}" style="text-align:justify">
+                                    <label id="labelId{{pregunta.IdPregunta}}" for="pregunta" class="col-md-12 col-form-label">{{pregunta.Pregunta}}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Sesión Error Pregunta-->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div ng-if="pregunta.IdPreguntaPadre > 0" class="col-md-1">
+                                    &nbsp;
+                                </div>
+                                <div class="col-md-1">
+                                    &nbsp;
+                                </div>
+                                <div class="{{pregunta.IdPreguntaPadre > 0 ? 'col-md-10' : 'col-md-11'}}">
+                                    <div id="ErrorG{{preguntasGenerales.OrdenTematica}}{{pregunta.IdPregunta}}" class="hidden" style="text-align: left; font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans'; font-size: 12px; font-style: normal; color: #A80521;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Sesión Opciones de Respuesta-->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div ng-if="pregunta.IdPreguntaPadre > 0" class="col-md-1">
+                                    &nbsp;
+                                </div>
+                                <div class="col-md-1">
+                                    &nbsp;
+                                </div>
+                                <div class="{{pregunta.IdPreguntaPadre > 0 ? 'col-md-5' : 'col-md-6'}}" style="text-align:left" ng-switch="pregunta.TipoPregunta">
+                                    <div class="col-md-2 form-check" ng-switch-when="Opcion" ng-repeat="opciones in pregunta.OpcionesRespuesta">
+                                        <input type="radio"
+                                               id="pregunta{{pregunta.IdPregunta}}"
+                                               name="Respuesta{{pregunta.IdPregunta}}"
+                                               value="{{opciones.OpcionId}}"
+                                               ng-model="vm.PreguntasPersonalizadas.PreguntasGenerales[preguntasGeneralesIndex].Preguntas[preguntaIndex].Respuesta"
+                                               ng-change="vm.HabilitarPregunta($event,pregunta.IdPregunta,preguntasGeneralesIndex,preguntaIndex)"
+                                               disabled> {{opciones.ValorOpcion}}
+                                    </div>
+                                    <div class="col-md-5 form-check" ng-switch-when="Entero">
+                                        <input type="text"
+                                               string-to-number
+                                               id="pregunta{{pregunta.IdPregunta}}"
+                                               name="Respuesta{{pregunta.IdPregunta}}"
+                                               ng-value="{{pregunta.Respuesta = Null ? 0 :pregunta.Respuesta}}"
+                                               ng-model="vm.PreguntasPersonalizadas.PreguntasGenerales[preguntasGeneralesIndex].Preguntas[preguntaIndex].Respuesta"
+                                               ng-keypress="vm.validateFormat($event)"
+                                               ng-keyup="vm.validarTamanioTexto($event,3)"
+                                               placeholder="0"
+                                               style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px"
+                                               disabled />
+                                    </div>
+                                    <div class="col-md-5 form-check" ng-switch-when="Decimal">
+                                        <input type="text"
+                                               string-to-number
+                                               id="pregunta{{pregunta.IdPregunta}}"
+                                               name="Respuesta{{pregunta.IdPregunta}}"
+                                               ng-value="{{pregunta.Respuesta = Null ? 0 :pregunta.Respuesta}}"
+                                               ng-model="vm.PreguntasPersonalizadas.PreguntasGenerales[preguntasGeneralesIndex].Preguntas[preguntaIndex].Respuesta"
+                                               ng-keypress="vm.validateFormat($event)"
+                                               ng-keyup="vm.validarTamanio($event)"
+                                               placeholder="0"
+                                               style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px"
+                                               disabled />
+                                    </div>
+                                    <div class="col-md-5 form-check" ng-switch-when="Lista">
+                                        <select id="pregunta{{pregunta.IdPregunta}}"
+                                                name="Respuesta{{pregunta.IdPregunta}}"
+                                                ng-model="vm.PreguntasPersonalizadas.PreguntasGenerales[preguntasGeneralesIndex].Preguntas[preguntaIndex].Respuesta"
+                                                disabled>
+                                            <option value="" selected>Seleccione una Entidad</option>
+                                            <option ng-repeat="entidad in vm.lista" ng-value="entidad.Id"> {{ entidad.entidad }} </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-10 form-check" ng-switch-when="Texto">
+                                        <input type="text"
+                                               id="pregunta{{pregunta.IdPregunta}}"
+                                               name="Respuesta{{pregunta.IdPregunta}}"
+                                               ng-model="vm.PreguntasPersonalizadas.PreguntasGenerales[preguntasGeneralesIndex].Preguntas[preguntaIndex].Respuesta"
+                                               style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px"
+                                               ng-keyup="vm.validarTamanioTexto($event,15)"
+                                               disabled />
+                                    </div>
+                                </div>
+                                <div class="col-md-5" style="text-align:justify">
+                                    &nbsp;
+                                </div>
+                            </div>
+                        </div>
+                        <!--Sesión Espacio Pregunta-->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-6">
+                                    &nbsp;
+                                </div>
+                                <div class="col-md-6">
+                                    &nbsp;
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal" id="IPModalVermas" tabindex="-1" role="dialog" aria-labelledby="IPModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content modal-contentDNP">
+                        <div class="modal-header">
+
+                            <button type='button' class='swal2-close closemodalDNP' aria-label='Close this dialog' data-dismiss="modal">×</button>
+                            <h3 class="modal-title TituloModal1DNP" id="modal-title">Texto Titulo Principal </h3>
+                            <span class="TituloModal2DNP">  Texto Titulo Secundario </span>
+                        </div>
+                        <div class="modal-body">
+                            <div>
+                                <textareaa class="form-control " rows="10" cols="50" disabled="disabled">Obtener información técnica eficiente para dar viabilidad a nuevos proyectos de construcción y ampliación de cupos</textareaa>
+                            </div>
+                        </div>
+                        <div class="modal-footer textCenterDNP">
+                            <button class="btnguardarDNP" data-dismiss="modal" type="button">ACEPTAR</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

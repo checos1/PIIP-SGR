@@ -1,0 +1,457 @@
+﻿<div class="container-fluid inbox" ng-init="vm.init();">
+    <div class="div-escopo">
+
+        <!-- #region breadcrumb -->
+        <nav class="breadcrumb">
+            <a href="/">
+                <span class="breadcrumb-item">
+                    <i class="fa fa-home" aria-hidden="true"></i> Inicio
+                </span>
+            </a>
+            /
+            <span class="breadcrumb-item active">Administración Entidades</span>
+        </nav>
+        <!-- #endregion breadcrumb -->
+        
+        <div class="dashboard">
+
+            <!-- #region Título e accíon -->
+            <div class="row">
+                <div class="col-md-12">
+                    
+                    <div class="titlebar">
+                        <span>Administración <i>/ Entidades</i></span>                      
+                    </div>
+
+                </div>
+
+            </div>
+                        
+            <!-- #endregion -->
+
+            <!-- #region Tabs -->
+            <div class="form-group clearfix">
+
+            <!-- #endregion Tabs -->
+            <!-- #region Tabla -->
+            <div class="row">
+                <territorial accion-crear-editar-entidad="vm.accionCrearEditarEntidad($row)"
+                             accion-eliminar-entidad="vm.accionEliminarEntidad($row)"
+                             accion-crear-sub-entidad="vm.accionCrearSubEntidad($row)"
+                             accion-editar-sub-entidad="vm.accionEditarSubEntidad($row)"
+                             accion-flujos-viabilidad="vm.accionFlujosViabilidad($row)"
+                             ng-if="vm.tipoEntidad == 'Territorial'"></territorial>
+
+                <div id="regionalizacion" class="collapsed panel-body" style="text-align:left">
+                    <div ng-repeat="item in vm.modelo">
+                        <div class="row" style="color: #004884">
+                            <div class="" style="padding: 0 !important">
+                                <div class="alert panel-heading">
+                                    <div class="card card-body pull-left  divAccordionDNP" style="line-height: 10px;max-height:140px">
+                                        <div class="col-md-12">
+                                            <div class="col-md-12">
+                                                <span class="encabezadoTitulos">{{item.NombreCompleto}}</span>
+                                            </div>
+                                        </div>
+
+                                        <p style="padding: 0px; margin-bottom: 0px;">
+                                            <button class="btnaccion btnAccordionDNP" type="button" data-toggle="collapse" data-target="#obj{{item.IdEntidad}}" ng-click="vm.AbrilNivel1(item.IdEntidad)">
+
+                                                <img id="imgmas{{item.IdEntidad}}" src="Img/btnMas.svg">
+                                                <img id="imgmenos{{item.IdEntidad}}" style="display:none" src="Img/btnMenos.svg">
+                                                <span id="ico{{item.IdEntidad}}" style="display:none">+</span>
+                                            </button>
+                                        </p>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                                <div class="collapse" id="obj{{item.IdEntidad}}">
+                                    <div class="LineaEncabezadodivDNP" style="height:60px"></div>
+                                    <h3 class="row tituloEncabezadodivDNP">
+                                        Configuración unidades responsables 
+                                    </h3>
+                                    <div>
+                                        <div class="col-md-12">
+                                            <div class="col-sm-12 tabs radio radio-primary">
+                                                <ul class="nav nav-tabs tabsFiltro">
+                                                    <li tabindex="0" class="active">
+                                                        <a data-toggle="tab" data-target="#unidad-{{item.IdEntidad}}" id="tab-unidad-{{item.IdEntidad}}">
+                                                            Unidades responsables
+                                                        </a>
+                                                    </li>
+                                                    <li tabindex="0" class="">
+                                                        <a data-toggle="tab" data-target="#flujo-{{item.IdEntidad}}" id="tab-flujo-{{item.IdEntidad}}">
+                                                            Configuración del flujo
+                                                        </a>
+                                                    </li>
+                                                    <li tabindex="0" class="">
+                                                        <a data-toggle="tab" data-target="#usuario-{{item.IdEntidad}}" id="tab-usuario-{{item.IdEntidad}}">
+                                                            Usuarios
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="tab-content">
+                                            <div class="tab-pane active cont col-md-12 p-0" id="unidad-{{item.IdEntidad}}">
+                                                <div class="alert panel-heading" style="height: 50px;">
+                                                    <div class="col-md-12">
+                                                        <h4 class="text-left ui-seccion-title">
+                                                            Creación unidades responsables <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg" ng-click="vm.abrirMensajeInformacionRegionalizacion()">
+                                                            <span class="buttonbar pull-right">
+                                                                <button id="Agregar-{{item.IdEntidad}}" type="submit" class="btneditarDNP" tooltip-class="customClass" uib-tooltip="Agregar Fila"
+                                                                        tooltip-placement="top" ng-click="vm.enabledRegister(item.IdEntidad, 1)">
+                                                                    Agregar
+                                                                </button>
+                                                                <button id="AgregarD-{{item.IdEntidad}}" type="submit" class="btnguardarDisabledDNP" tooltip-class="customClass" uib-tooltip="Agregar Fila"
+                                                                        tooltip-placement="top" hidden>
+                                                                    Agregar
+                                                                </button>
+                                                            </span>
+                                                        </h4>
+                                                    </div>
+                                                        
+                                                        <div class="col-md-12">
+                                                            <span class="buttonbar pull-right">
+                                                                <span>Activas: {{vm.rowActivos[item.IdEntidad] }}  Inactivas: {{vm.rowInactivos[item.IdEntidad] }}</span>
+                                                            </span>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="card card-body pull-left col-md-12 ">
+                                                                <table class="TableDNP">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th class="columAcc" style="width:5%"></th>
+                                                                            <th class="textLeftDNP" style="width:80%"><span>Nombre unidad responsable </span></th>
+                                                                            <th class="columAcc" style="width:5%"><span></span></th>
+                                                                            <th class="columAcc" style="width:5%"><span></span></th>
+                                                                            <th class="columAcc" style="width:5%"><span></span></th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody ng-repeat="unidad in item.UnidadesResponsables">
+                                                                        <tr>
+                                                                            <td style="width:5%" class="textRightDNP">
+                                                                                <span id="errorColumna-{{item.IdEntidad}}-{{unidad.UnidadResponsableId}}" class="text-left color-red" hidden>
+                                                                                    <img class="img img-advertencia" src="Img/u11.svg" />
+                                                                                </span>
+                                                                                <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Agregar Fila" ng-show="{{ $index+1 == item.UnidadesResponsables.length }}" id="btnAdd-{{item.IdEntidad}}" ng-click="vm.enabledRegister(item.IdEntidad, 1)">
+                                                                                    <span> <img src="Img/IcoAdd.svg"></span>
+                                                                                </button>
+                                                                                <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Agregar Fila" ng-show="{{ $index+1 == item.UnidadesResponsables.length }}" id="btnAddD-{{item.IdEntidad}}" hidden>
+                                                                                    <span> <img src="Img/IcoAddD.svg"></span>
+                                                                                </button>
+                                                                            </td>
+                                                                            <td style="width:80%">
+                                                                                <label id="label-{{item.IdEntidad}}-{{unidad.UnidadResponsableId}}">{{unidad.Nombre}}</label>
+                                                                                <div class="coninput" id="divInput-{{item.IdEntidad}}-{{unidad.UnidadResponsableId}}" hidden>
+                                                                                    <span><input type="text" class="form-control editInputDNP" placeholder="Ingresar nombre unidad responsable" id="inputNombre-{{item.IdEntidad}}-{{unidad.UnidadResponsableId}}" value="{{unidad.Nombre}}" /></span>
+                                                                                    <span id="errorInput-{{item.IdEntidad}}-{{unidad.UnidadResponsableId}}" class="text-left color-red" hidden>
+                                                                                        <img class="img img-advertencia" src="Img/u11.svg" />
+                                                                                        <span id="ErrorMsg-{{item.IdEntidad}}-{{unidad.UnidadResponsableId}}">El campo debe ser diligenciado en esta columna.</span>
+                                                                                    </span>
+                                                                                </div>
+                                                                            </td>
+                                                                            <td style="width:5%">
+                                                                                <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Guardar Registro" ng-click="vm.editUnidadResponsable(unidad, item)" id="btnSaveEdit-{{item.IdEntidad}}-{{unidad.UnidadResponsableId}}" hidden>
+                                                                                    <span> <img src="Img/IcoSave.svg"></span>
+                                                                                </button>
+                                                                            </td>
+                                                                            <td style="width:5%">
+                                                                                <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Editar Registro"  id="btnEdit-{{item.IdEntidad}}" 
+                                                                                        ng-click="vm.editRegister(item.IdEntidad, unidad.UnidadResponsableId, unidad.IsActivo, 1)" ng-show="unidad.IsActivo">
+                                                                                    <span> <img src="Img/IcoEdit.svg"></span>
+                                                                                </button>
+                                                                                <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Editar Registro" id="btnEditD-{{item.IdEntidad}}" ng-hide="vm.rowEditando[unidad.UnidadResponsableId]" hidden>
+                                                                                    <span> <img src="Img/IcoEditFoco.svg"></span>
+                                                                                </button>
+                                                                                <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Editar Registro" id="btnEditDA-{{item.IdEntidad}}" ng-show="!unidad.IsActivo">
+                                                                                    <span> <img src="Img/IcoEditFoco.svg"></span>
+                                                                                </button>
+                                                                                <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Cancelar Edición" ng-click="vm.editRegister(item.IdEntidad, unidad.UnidadResponsableId, unidad.IsActivo, 0)" id="btnCancelEdit-{{item.IdEntidad}}-{{unidad.UnidadResponsableId}}" hidden>
+                                                                                    <span> <img style="width: 16px;height:16px" src="Img/IcoX.svg"></span>
+                                                                                </button>
+                                                                            </td>
+                                                                            <td style="width:5%">
+                                                                                <label class="switchDNP" id="switchUR-{{item.IdEntidad}}" tooltip-class="customClass" uib-tooltip="Modificar Estado">
+                                                                                    <input type="checkbox" checked id="switchURV-{{item.IdEntidad}}-{{unidad.UnidadResponsableId}}"  
+                                                                                           ng-click="vm.editEstadoUnidad(unidad)" ng-checked="unidad.IsActivo">
+                                                                                    <span class="slider round"></span>
+                                                                                </label>
+                                                                                <label class="switchDNP switchDNPIna" id="switchURD-{{item.IdEntidad}}" tooltip-class="customClass" uib-tooltip="Modificar Estado" hidden>
+                                                                                    <input type="checkbox" disabled ng-checked="unidad.IsActivo">
+                                                                                    <span class="slider round"></span>
+                                                                                </label>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                    <tbody ng-show="item.HabilitarRegistro">
+                                                                        <tr>
+                                                                            <td style="width:5%" class="textRightDNP">
+                                                                                <span id="errorColumna-{{item.IdEntidad}}" class="text-left color-red" hidden>
+                                                                                    <img class="img img-advertencia" src="Img/u11.svg" />
+                                                                                </span>
+                                                                            </td>
+                                                                            <td style="width 80%">
+                                                                                <div class="col celdabutinputDNP">
+                                                                                    <div class="coninput">
+                                                                                        <span><input type="text" class="form-control editInputDNP" placeholder="Ingresar nombre unidad responsable" id="inputNombre-{{item.IdEntidad}}" /></span>
+                                                                                        <span id="errorInput-{{item.IdEntidad}}" class="text-left color-red" hidden>
+                                                                                            <img class="img img-advertencia" src="Img/u11.svg" />
+                                                                                            <span id="ErrorMsg-{{item.IdEntidad}}">El campo debe ser diligenciado en esta columna.</span>
+                                                                                        </span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </td>
+                                                                            <td class="textCenterDNP" style="width:5%">
+                                                                                <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Guardar Registro" ng-click="vm.saveRegister(item)">
+                                                                                    <span> <img src="Img/IcoSave.svg"></span>
+                                                                                </button>
+                                                                            </td>
+                                                                            <td class="textCenterDNP" style="width:5%">
+                                                                                <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Cancelar Edición" ng-click="vm.enabledRegister(item.IdEntidad, 0)">
+                                                                                    <span> <img style="width: 16px;height:16px" src="Img/IcoX.svg"></span>
+                                                                                </button>
+                                                                            </td>
+                                                                            <td class="textCenterDNP" style="width:5%"></td>
+
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                            </div>
+                                            <div class="tab-pane cont col-md-12 p-0" id="flujo-{{item.IdEntidad}}">
+                                                <div class="alert panel-heading" style="height: 50px;">
+                                                    <div class="col-md-12">
+                                                        <h4 class="text-left ui-seccion-title">
+                                                            Configuración del flujo <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg" ng-click="vm.abrirMensajeConfiguracionFlujo()">   
+                                                        </h4>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="col-md-12">
+                                                            <span class="buttonbar pull-right" ng-show="vm.flujoConDefinitiva[item.IdEntidad] || vm.flujoSinDefinitiva[item.IdEntidad]">
+                                                                <button id="EditarFlujo-{{item.IdEntidad}}" type="button" class=" btneditarDNP " tooltip-class="customClass" tooltip-placement="top" ng-click="vm.ActivarEditar(item.IdEntidad)" uib-tooltip="{{vm.rowEditar[item.IdEntidad] ? 'CANCELAR' : 'EDITAR'}}">
+                                                                    {{vm.rowEditar[item.IdEntidad]  ? 'CANCELAR' : 'EDITAR'}}
+                                                                </button>
+                                                                <button id="GuardarFlujo-{{item.IdEntidad}}" type="submit" ng-class="vm.rowEditar[item.IdEntidad]  ? '  btnguardarDNP' : '  btnguardarDisabledDNP' "
+                                                                        tooltip-placement="top" tooltip-class="customClass" uib-tooltip="Guardar Configuración" ng-click="vm.GuardarConfiguracionEntidad(item.IdEntidad)"
+                                                                        disabled="disabled">
+                                                                    GUARDAR
+                                                                </button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="card card-body pull-left col-md-12 ">                                                            
+                                                            <table class="TableDNP" ng-show="vm.flujoConDefinitiva[item.IdEntidad] || vm.flujoSinDefinitiva[item.IdEntidad]">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th class="columAcc" style="min-width: 0px; width: 1%"></th>
+                                                                        <th class="textLeftDNP" style="width: 19%"><span>Sector</span></th>
+                                                                        <th class="textLeftDNP" style="width: 20%"><span>Verificación  <br />de requisitos.<br /><label class="labelbuscadorDNP">Rol Verificación de requisitos</label></span></th>
+                                                                        <th class="textLeftDNP" style="width: 20%"><span>Viabilidad definitiva.<br /><label class="labelbuscadorDNP">Rol Viabilidad definitiva</label></span></th>
+                                                                        <th class="textLeftDNP" style="width: 20%"><span>Ajustes proyecto.<br /><label class="labelbuscadorDNP">Rol Formulador</label></span></th>
+                                                                        <th class="textLeftDNP" style="width: 20%"><span>Asociar proyectos.<br /><label class="labelbuscadorDNP">Rol Presupuesto</label></span></th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody ng-repeat="sector in item.ConfiguracionMatriz">
+                                                                    <tr>
+                                                                        <td class="columAcc" style="width: 1%">
+                                                                            <span id="errorColumnaMatriz-{{item.IdEntidad}}-{{sector.SectorId}}" class="text-left color-red" hidden>
+                                                                                <img class="img img-advertencia" src="Img/u11.svg" />
+                                                                            </span>
+                                                                        </td>
+                                                                        <td class="textLeftDNP" style="width: 19%">
+                                                                            <label>{{sector.SectorName}}</label>
+                                                                        </td>
+                                                                        <td class="textLeftDNP" style="width: 20%">
+                                                                            <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Adicionar Unidad" id="btnAddVR-{{item.IdEntidad}}" ng-click="vm.enabledSector(sector.SectorId, item.IdEntidad, 'VR')" hidden>
+                                                                                <span> <img src="Img/IcoAdd.svg"></span>
+                                                                            </button>
+                                                                            <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Adicionar Unidad" id="btnAddVRD-{{item.IdEntidad}}">
+                                                                                <span> <img src="Img/IcoAddD.svg"></span>
+                                                                            </button>
+                                                                            <div class="row DivListaPerfilesDNP3 " id="SVR-{{sector.SectorId}}-{{item.IdEntidad}}" hidden>
+
+                                                                                <div class="col-md-12 colchechkPerfilesDNP3 containerchek">
+                                                                                    <div class="col-md-12" ng-repeat="x in sector.ListaModalVR">
+                                                                                        <ul>
+                                                                                            <li>
+                                                                                                <!--<li>-->
+                                                                                                <input type="checkbox" id="chkR-{{sector.SectorId}}-{{item.IdEntidad}}-{{x.EntityTypeCatalogOptionId}}" name="chkR-{{x.EntityTypeCatalogOptionId}}" ng-checked="x.Seleccionado">
+                                                                                                <label for="chkR-{{sector.SectorId}}-{{item.IdEntidad}}-{{x.EntityTypeCatalogOptionId}}">{{x.Nombre}}</label>
+                                                                                            </li>
+                                                                                        </ul>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <br />
+                                                                                <div class="pull-right text-right">
+
+                                                                                    <button type="button" class="btn btn-link btn-md buttonhiperDNP" ng-click="vm.enabledSector(sector.SectorId, item.IdEntidad, 'VR', 1)" tooltip-placement="top" tabindex="0">
+                                                                                        CANCELAR
+                                                                                    </button>
+                                                                                    <button type="button" class="btn btn-link btn-md buttonhiperDNP" ng-click="vm.procesarUnidadesSeleccionadasFlujo(sector,'VR', item.IdEntidad)" tooltip-placement="top" tabindex="0">
+                                                                                        ACEPTAR
+                                                                                    </button>
+                                                                                </div>
+                                                                            </div>
+                                                                            <input type="hidden" id="valueVR-{{item.IdEntidad}}-{{sector.SectorId}}" value="0" />
+                                                                            <li ng-repeat="entidadAsignada in sector.DataVR | filter: { Estado: 0 }">
+                                                                                <label>{{entidadAsignada.EntidadDestinoAccion}}</label>
+                                                                            </li>
+                                                                        </td>
+                                                                        <td class="textLeftDNP" style="width: 20%">
+                                                                            <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Adicionar Unidad" id="btnAddVD-{{item.IdEntidad}}" ng-click="vm.enabledSector(sector.SectorId, item.IdEntidad, 'VD')" hidden>
+                                                                                <span> <img src="Img/IcoAdd.svg"></span>
+                                                                            </button>
+                                                                            <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Adicionar Unidad" id="btnAddVDD-{{item.IdEntidad}}">
+                                                                                <span> <img src="Img/IcoAddD.svg"></span>
+                                                                            </button>
+                                                                            <div class="row DivListaPerfilesDNP3 " id="SVD-{{sector.SectorId}}-{{item.IdEntidad}}" hidden>
+
+                                                                                <div class="col-md-12 colchechkPerfilesDNP3 containerchek">
+                                                                                    <div class="col-md-12" ng-repeat="x in sector.ListaModalVD">
+                                                                                        <ul>
+                                                                                            <li>
+                                                                                                <!--<li>-->
+                                                                                                <input type="checkbox" id="chkD-{{sector.SectorId}}-{{item.IdEntidad}}-{{x.EntityTypeCatalogOptionId}}" name="chkD-{{x.EntityTypeCatalogOptionId}}" ng-checked="x.Seleccionado">
+                                                                                                <label for="chkD-{{sector.SectorId}}-{{item.IdEntidad}}-{{x.EntityTypeCatalogOptionId}}">{{x.Nombre}}</label>
+                                                                                            </li>
+                                                                                        </ul>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <br />
+                                                                                <div class="pull-right text-right">
+
+                                                                                    <button type="button" class="btn btn-link btn-md buttonhiperDNP" ng-click="vm.enabledSector(sector.SectorId, item.IdEntidad, 'VD', 1)" tooltip-placement="top" tabindex="0">
+                                                                                        CANCELAR
+                                                                                    </button>
+                                                                                    <button type="button" class="btn btn-link btn-md buttonhiperDNP" ng-click="vm.procesarUnidadesSeleccionadasFlujo(sector,'VD', item.IdEntidad)" tooltip-placement="top" tabindex="0">
+                                                                                        ACEPTAR
+                                                                                    </button>
+                                                                                </div>
+                                                                            </div>
+                                                                            <input type="hidden" id="valueVD-{{item.IdEntidad}}-{{sector.SectorId}}" value="0" />
+                                                                            <li ng-repeat="entidadAsignada in sector.DataVD | filter: { Estado: 0 }">
+                                                                                <label>{{entidadAsignada.EntidadDestinoAccion}}</label>
+                                                                            </li>
+                                                                        </td>
+                                                                        <td class="textLeftDNP" style="width: 20%">
+                                                                            <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Adicionar Unidad" id="btnAddAP-{{item.IdEntidad}}" ng-click="vm.enabledSector(sector.SectorId, item.IdEntidad, 'AP')" hidden>
+                                                                                <span> <img src="Img/IcoAdd.svg"></span>
+                                                                            </button>
+                                                                            <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Adicionar Unidad" id="btnAddAPD-{{item.IdEntidad}}">
+                                                                                <span> <img src="Img/IcoAddD.svg"></span>
+                                                                            </button>
+                                                                            <div class="row DivListaPerfilesDNP3 " id="SAP-{{sector.SectorId}}-{{item.IdEntidad}}" hidden>
+
+                                                                                <div class="col-md-12 colchechkPerfilesDNP3 containerchek">
+                                                                                    <div class="col-md-12" ng-repeat="x in sector.ListaModalAP">
+                                                                                        <ul>
+                                                                                            <li>
+                                                                                                <!--<li>-->
+                                                                                                <input type="checkbox" id="chkAP-{{sector.SectorId}}-{{item.IdEntidad}}-{{x.EntityTypeCatalogOptionId}}" name="chkAP-{{x.EntityTypeCatalogOptionId}}" ng-checked="x.Seleccionado">
+                                                                                                <label for="chkAP-{{sector.SectorId}}-{{item.IdEntidad}}-{{x.EntityTypeCatalogOptionId}}">{{x.Nombre}}</label>
+                                                                                            </li>
+                                                                                        </ul>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <br />
+                                                                                <div class="pull-right text-right">
+
+                                                                                    <button type="button" class="btn btn-link btn-md buttonhiperDNP" ng-click="vm.enabledSector(sector.SectorId, item.IdEntidad, 'AP', 1)" tooltip-placement="top" tabindex="0">
+                                                                                        CANCELAR
+                                                                                    </button>
+                                                                                    <button type="button" class="btn btn-link btn-md buttonhiperDNP" ng-click="vm.procesarUnidadesSeleccionadasFlujo(sector,'AP', item.IdEntidad)" tooltip-placement="top" tabindex="0">
+                                                                                        ACEPTAR
+                                                                                    </button>
+                                                                                </div>
+                                                                            </div>
+                                                                            <input type="hidden" id="valueVAP-{{item.IdEntidad}}-{{sector.SectorId}}" value="0" />
+                                                                            <li ng-repeat="entidadAsignada in sector.DataAP | filter: { Estado: 0 }">
+                                                                                <label>{{entidadAsignada.EntidadDestinoAccion}}</label>
+                                                                            </li>
+                                                                        </td>
+                                                                        <td class="textLeftDNP" style="width: 20%">
+                                                                            <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Adicionar Unidad" id="btnAddASP-{{item.IdEntidad}}" ng-click="vm.enabledSector(sector.SectorId, item.IdEntidad, 'ASP')" hidden>
+                                                                                <span> <img src="Img/IcoAdd.svg"></span>
+                                                                            </button>
+                                                                            <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Adicionar Unidad" id="btnAddASPD-{{item.IdEntidad}}">
+                                                                                <span> <img src="Img/IcoAddD.svg"></span>
+                                                                            </button>
+                                                                            <div class="row DivListaPerfilesDNP3 " id="SASP-{{sector.SectorId}}-{{item.IdEntidad}}" hidden>
+
+                                                                                <div class="col-md-12 colchechkPerfilesDNP3 containerchek">
+                                                                                    <div class="col-md-12" ng-repeat="x in sector.ListaModalASP">
+                                                                                        <ul>
+                                                                                            <li>
+                                                                                                <!--<li>-->
+                                                                                                <input type="checkbox" id="chkASP-{{sector.SectorId}}-{{item.IdEntidad}}-{{x.EntityTypeCatalogOptionId}}" name="chkASP-{{x.EntityTypeCatalogOptionId}}" ng-checked="x.Seleccionado">
+                                                                                                <label for="chkASP-{{sector.SectorId}}-{{item.IdEntidad}}-{{x.EntityTypeCatalogOptionId}}">{{x.Nombre}}</label>
+                                                                                            </li>
+                                                                                        </ul>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <br />
+                                                                                <div class="pull-right text-right">
+
+                                                                                    <button type="button" class="btn btn-link btn-md buttonhiperDNP" ng-click="vm.enabledSector(sector.SectorId, item.IdEntidad, 'ASP', 1)" tooltip-placement="top" tabindex="0">
+                                                                                        CANCELAR
+                                                                                    </button>
+                                                                                    <button type="button" class="btn btn-link btn-md buttonhiperDNP" ng-click="vm.procesarUnidadesSeleccionadasFlujo(sector,'ASP', item.IdEntidad)" tooltip-placement="top" tabindex="0">
+                                                                                        ACEPTAR
+                                                                                    </button>
+                                                                                </div>
+                                                                            </div>
+                                                                            <input type="hidden" id="valueVASP-{{item.IdEntidad}}-{{sector.SectorId}}" value="0" />
+                                                                            <li ng-repeat="entidadAsignada in sector.DataASP | filter: { Estado: 0 }">
+                                                                                <label>{{entidadAsignada.EntidadDestinoAccion}}</label>
+                                                                            </li>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                                <tfoot>
+                                                                    <tr>
+                                                                        <td class="textLeftDNP" style="width:100%">
+                                                                            <span id="errorTotalMatriz-{{item.IdEntidad}}" class="text-left color-red" hidden>
+                                                                                <img class="img img-advertencia" src="Img/u11.svg" />
+                                                                                <span id="ErrorMsgTotalMatriz-{{item.IdEntidad}}">Falta realizar la configuración de los sectores que se encuentran marcados con error, para la entidad {{vm.NombreEntidad}}. </span>
+                                                                            </span>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tfoot>
+                                                            </table>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane cont col-md-12 p-0" id="usuario-{{item.IdEntidad}}">
+
+                                                <usuarios-territorio></usuarios-territorio>
+
+                                            </div>                                        
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- #endregion Tabla -->
+        
+        </div>
+
+    </div>
+</div>
+<style type="text/css">
+    .disabled {
+        pointer-events: none;
+        /* for "disabled" effect */
+        opacity: 0.5;
+        background: #CCC;
+    }
+</style>

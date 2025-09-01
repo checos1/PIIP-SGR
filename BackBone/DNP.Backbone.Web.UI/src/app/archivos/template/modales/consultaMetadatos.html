@@ -1,0 +1,25 @@
+﻿<div id="mdlConsultaMetadatos">
+    <div class="modal-header">
+        <h4 class="modal-title">{{'ConsultarMetadatos' | language}}</h4>
+    </div>
+    <div class="modal-body">
+        <div class="container archivos">
+            <form name="vm.MetadatosForm" ng-submit="" novalidate class="metadatos">
+                <div class="col-md-12 p-b">
+                    <div class="row" ui-i18n="{{vm.lang}}">
+                        <div class="modal-grid grid-icon" id="uigMetadatos" ui-grid="vm.grillaMetadatos" ui-grid-edit ui-grid-row-edit ui-grid-cellNav ui-grid-resize-columns style="max-height: 430px" />
+                    </div>
+                    <div class="ui-grid-cell-contents" ng-show="true">
+                        <strong>Total registros: {{vm.archivosPorAplicacion.length}} / {{vm.archivosPorAplicacion.length}}.</strong>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="container text-right">
+            <button id="btnCancelar" type="button" class="btn btn-primary" ng-click="vm.cancelarGuardarMetadatos()"  uib-tooltip="{{ 'Cancelar' | language }}" ng-disabled="false">{{ 'Cancelar' | language }}</button>
+            <button id="btnGuardarMetadatos" type="submit" ng-disabled="vm.archivosPorAplicacion.length == 0" class="btn btn-success" ng-click="vm.guardarMetadatos()" uib-tooltip="Guardar asociación de metadatos">{{'Guardar'|language}}</button>
+        </div>
+    </div>
+</div>

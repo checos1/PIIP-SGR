@@ -1,0 +1,68 @@
+﻿<section>
+    <div class="container-fluid inbox" ng-init="vm.init()">
+        <br />
+        <div>
+            <div class="row">
+                <div class="row" style="padding-left: 3rem; padding-right: 3rem;">
+                    <div class="form-group" style=" padding-top: 2rem;width:100%;">
+                        <div class="tab-content">
+                            <div class="tab-pane cont col-md-12" style="padding-left:0 !important;padding-top:20px !important" id="dproyectostramitesgp">
+                                <asociar-proyecto-traslado-sgp tramiteid="{{vm.tramiteDetail.tramiteId}}"
+                                                               tipotramiteid="{{vm.tramiteDetail.tipoTramiteId}}"
+                                                               deshabilitar="{{vm.deshabilitar}}"
+                                                               rolanalista="{{vm.rolAnalista}}"
+                                                               actualizacomponentes="vm.actualizacomponentes"
+                                                               callback="vm.notificarGuardado()"
+                                                               guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                                               notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                                               notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)"
+                                                               notificacioncambios="vm.notificacionCambiosAjustes(handler, nombreComponente)">
+                                </asociar-proyecto-traslado-sgp>
+                            </div>
+                            <div class="tab-pane  cont col-md-12 p-0" id="dinformacionpresupuestalsgp">
+                                <info-presupuestal-traslado-sgp tipotramiteid="{{vm.tramiteDetail.tipoTramiteId}}"
+                                                                tramiteid="{{vm.tramiteDetail.tramiteId}}"
+                                                                actualizacomponentes="vm.actualizacomponentes"
+                                                                rolanalista="{{vm.rolAnalista}}"
+                                                                deshabilitar="{{vm.deshabilitar}}"
+                                                                callback="vm.notificarGuardado()"
+                                                                guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                                                notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                                                notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)"
+                                                                notificacioncambios="vm.notificacionCambios(handler, nombreComponente)">
+
+                                </info-presupuestal-traslado-sgp>
+                            </div>
+                            <div class="tab-pane  cont col-md-12 p-0" id="djustificacionsgp">
+                                <justificacion-traslado-sgp tipotramiteid="{{vm.tramiteDetail.tipoTramiteId}}"
+                                                            tramiteid="{{vm.tramiteDetail.tramiteId}}"
+                                                            idnivel="{{vm.IdNivel}}"
+                                                            actualizacomponentes="{{vm.actualizacomponentes}}"
+                                                            callback="vm.notificarGuardado()"
+                                                            guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                                            notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                                            notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)"
+                                                            notificacioncambios="vm.notificacionCambios(handler, nombreComponente)">
+
+                                </justificacion-traslado-sgp>
+                            </div>
+                            <div class="tab-pane cont col-md-12 p-0" id="dsoportestramitesgp">
+                                <documentos-soporte-traslado-sgp tipotramiteid="{{vm.tramiteDetail.tipoTramiteId}}"
+                                                                 tramiteid="{{vm.tramiteId}}"
+                                                                 nivel="{{vm.IdNivel}}"
+                                                                 rol="{{vm.IdRol}}"
+                                                                 section="{{vm.section}}"
+                                                                 callback="vm.notificarGuardado()"
+                                                                 guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                                                 notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                                                 notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)"
+                                                                 notificacioncambios="vm.notificacionCambiosAjustes(handler, nombreComponente)">
+                                </documentos-soporte-traslado-sgp>
+                            </div>                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

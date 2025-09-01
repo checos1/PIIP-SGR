@@ -1,0 +1,134 @@
+﻿@using DNP.Backbone.Dominio.Dto.Tramites;
+@model InboxTramite
+@{
+    Layout = null;
+    ViewBag.Title = "ProyectosPDF";
+}
+<html>
+<head>
+    @Html.Partial("_IncludeEstilosRelatorios")
+</head>
+<body class="pdf">
+    @Html.Partial("_CabecalhoRelatorio", "Informe de Trámites")
+
+    <div class="mt-5">
+        @if (Model.ListaGrupoTramiteEntidad == null)
+        {
+            <table class="table table-sm table-borderless">
+                <thead>
+                    <tr>
+                        <th class="text-center">
+                            No hubo registros para los filtros seleccionados.
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+        }
+        else
+        {
+            <div>
+                <div>
+                    <table class="table table-sm table-borderless">
+                        <tr>
+                            <td><b>Tipo Entidad:</b> @Model.ListaGrupoTramiteEntidad.FirstOrDefault().GrupoTramites.FirstOrDefault().NombreTipoEntidad </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            foreach (var grupo in Model.ListaGrupoTramiteEntidad)
+            {
+                <div>
+                    <div class="marginTop10">
+                        <table class="table">
+                            <tr>
+                                <td><b>Sector:</b> <span class="agr-blue"> @grupo.Sector </span> - <b>Nombre Entidad</b> <span class="agr-black">@grupo.NombreEntidad </span></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div id="containerbody">
+                    <table class="table  table-borderless border-table">
+                        <thead>
+                            <tr>
+                                @foreach (var columna in Model.ColumnasVisibles)
+                                {
+                                    if (columna.Equals("numeroTramite"))
+                                    {
+                                        <th>Código</th>
+                                    }
+                                    if (columna.Equals("nombreFlujo"))
+                                    {
+                                        <th>Proceso</th>
+                                    }
+                                    if (columna.Equals("tipoTramite"))
+                                    {
+                                        <th>Tipo</th>
+                                    }
+                                    if (columna.Equals("estadoTramite"))
+                                    {
+                                        <th>Estado proceso</th>
+                                    }
+                                    if (columna.Equals("fecha"))
+                                    {
+                                        <th>Fecha inicio</th>
+                                    }
+                                    if (columna.Equals("nombreAccion"))
+                                    {
+                                        <th>Paso actual</th>
+                                    }
+                                    if (columna.Equals("fechaPaso"))
+                                    {
+                                        <th>Fecha inicio paso</th>
+                                    }
+                                }
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var grpTramites in grupo.GrupoTramites)
+                            {
+                                foreach (var tramite in grpTramites.ListaTramites)
+                                {
+                                    <tr>
+                                        @foreach (var columna in Model.ColumnasVisibles)
+                                        {
+                                            if (columna.Equals("numeroTramite"))
+                                            {
+                                                <td>@tramite.NumeroTramite</td>
+                                            }
+                                            else if (columna.Equals("nombreFlujo"))
+                                            {
+                                                <td>@tramite.NombreFlujo.ToString()</td>
+                                            }
+                                            else if (columna.Equals("tipoTramite"))
+                                            {
+                                                <td>@tramite.TipoTramite.Nombre</td>
+                                            }
+                                            else if (columna.Equals("estadoTramite"))
+                                            {
+                                                <td>@tramite.DescEstado</td>
+                                            }
+                                            else if (columna.Equals("fecha"))
+                                            {
+                                                <td>@tramite.FechaCreacion</td>
+                                            }
+                                            else if (columna.Equals("nombreAccion"))
+                                            {
+                                                <td>@tramite.NombreAccion</td>
+                                            }
+                                            else if (columna.Equals("fechaPaso"))
+                                            {
+                                                <td>@tramite.FechaCreacion</td>
+                                            }
+                                        }
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        }
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,476 @@
+﻿<style>
+    .d-none {
+        display: none;
+    }
+
+    .content-title {
+        padding-left: 50px;
+    }
+
+    .content-ayuda {
+        font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif;
+        font-weight: 500;
+        font-style: normal;
+        font-size: 14px;
+        color: #4B4B4B;
+    }
+
+    .requiere-niveles {
+        padding: 3px 10px;
+        font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif;
+        font-weight: 500;
+        font-size: 16px;
+        color: #004884;
+        text-align: left;
+        background-color: rgba(230, 239, 253, 1);
+    }
+
+    .objetivo-header {
+        background-color: rgba(249, 252, 253, 1);
+        box-sizing: border-box;
+        border-width: 2px;
+        border-style: solid;
+        border-color: rgba(230, 239, 253, 1);
+        padding: 25px 10px 25px 55px;
+    }
+
+    .objetivo-header {
+        text-align: left;
+    }
+
+        .objetivo-header h4.header-titulo {
+            color: #004884;
+            font-family: 'Work Sans SemiBold Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            margin: 0
+        }
+
+        .objetivo-header p.header-content {
+            font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif;
+            font-weight: 400;
+            font-size: 16px;
+            color: #4B4B4B;
+            margin: 0;
+        }
+
+    .objetivo-header2 {
+        background-color: rgba(230, 239, 253, 1);
+        box-sizing: border-box;
+        border-width: 2px;
+        border-style: solid;
+        border-color: rgba(230, 239, 253, 1);
+        padding: 10px 0px 7px 56px;
+    }
+
+    .objetivo-header2 {
+        text-align: left;
+    }
+
+        .objetivo-header2 h4.header-titulo {
+            color: #004884;
+            font-family: 'Work Sans SemiBold Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            margin: 0
+        }
+
+        .objetivo-header2 p.header-content {
+            font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif;
+            font-weight: 400;
+            font-size: 16px;
+            color: #4B4B4B;
+            margin: 0;
+        }
+
+    .objetivo-productos .divAccordionDNP {
+        border-top: 0;
+        max-height: fit-content;
+    }
+
+    .indicadores .LineaEncabezadodivDNP {
+        margin-left: 15px;
+    }
+
+    .ico-check {
+        color: #004884;
+    }
+
+    .f-16 {
+        font-size: 16px;
+    }
+
+    .font-total {
+        font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif;
+        font-weight: 400;
+        color: #4B4B4B;
+    }
+
+    .font-Actividades {
+        font-family: 'Work Sans Medium', 'Work Sans Regular Roman', 'Work Sans', sans-serif;
+        font-weight: 500;
+        font-style: normal;
+        font-size: 16px;
+        color: #004884;
+        line-height: 22px;
+        margin-left: 97px !important;
+    }
+
+    .list-Actividades {
+        background-color: white;
+        box-sizing: border-box;
+        border-width: 2px;
+        border-style: solid;
+        border-color: rgba(230, 239, 253, 1);
+        border-radius: 0px;
+        font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif;
+        font-style: normal;
+        margin-left: 54px;
+        margin-right: 10px;
+    }
+
+    .progAct-list-Actividades-simples {
+        background-color: white;
+        box-sizing: border-box;
+        border-width: 2px;
+        border-style: solid;
+        border-color: rgba(230, 239, 253, 1);
+        border-radius: 0px;
+        font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif;
+        font-style: normal;
+    }
+
+    .divisor-Actividades {
+        border-width: 0px;
+        position: absolute;
+        left: 56px;
+        top: 12px;
+        width: 29px;
+        height: 17px;
+        background: inherit;
+        background-color: rgba(255, 255, 255, 1);
+        box-sizing: border-box;
+        border-width: 2px;
+        border-style: solid;
+        border-color: rgba(51, 102, 204, 1);
+        border-top: 0px;
+        border-right: 0px;
+        border-radius: 0px;
+        border-top-left-radius: 0px;
+        border-bottom-right-radius: 0px;
+        -moz-box-shadow: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
+
+    .contenedor-Actividades {
+        position: relative;
+    }
+
+    /* Modificaciones estructura */
+    .indicadores .tituloEncabezadodivDNP {
+        margin-left: 95px !important;
+        width: auto !important;
+    }
+
+    .indicadores-content .panel-headingAcc2DNP {
+        height: auto !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+
+    .indicadores-content .LineaEncabezado2divDNP {
+        margin-top: 0px !important;
+        margin-left: 16px !important;
+        width: 145px !important;
+    }
+
+    .indicadores-content .LineaEncabezado3divDNP {
+        margin-top: 0px !important;
+        margin-left: 16px !important;
+        width: 190px !important;
+    }
+
+    .indicadores-content .LineaEncabezado4divDNP {
+        margin-top: 0px !important;
+        margin-left: 16px !important;
+        width: 240px !important;
+    }
+
+    .indicadores-content .tituloEncabezadodiv2DNP {
+        margin-left: 145px !important;
+        width: auto !important;
+    }
+
+    .indicadores-content .tituloEncabezadodiv3DNP {
+        margin-left: 205px !important;
+        width: auto !important;
+    }
+
+    .indicadores-content .tituloEncabezadodiv4DNP {
+        margin-left: 255px !important;
+        width: auto !important;
+    }
+
+    .indicadores .btneditarDNP {
+        width: auto !important;
+    }
+
+    .nivel-sin-actividad {
+        height: 130px;
+        background-color: rgba(249, 252, 253, 1);
+        border-width: 2px;
+        border-style: solid;
+        border-color: rgba(230, 239, 253, 1);
+        border-radius: 0px;
+        -moz-box-shadow: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 14px;
+        color: #4B4B4B;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .title-actividades {
+        margin-bottom: 20px;
+    }
+
+    .align-selft-center {
+        align-self: center;
+    }
+
+    .d-flex {
+        display: flex;
+    }
+
+    .detalle-nivel-1 {
+        margin-left: 55px;
+    }
+
+        .detalle-nivel-1 > span {
+            margin-left: 0;
+        }
+
+    .detalle-nivel {
+        margin-left: 55px;
+    }
+
+        .detalle-nivel > span {
+            margin-left: 0;
+        }
+
+    .panelbtnalertAcordnp {
+        display: inline-flex;
+        margin: 10px;
+    }
+
+    .errores-contenedor {
+        margin: 15px 0 0 5px;
+    }
+
+    .detalle-actividad-cell {
+        height: 70px;
+        overflow-y: auto;
+    }
+
+    .actividad-width-80 {
+        width: 100px;
+    }
+
+    .actividad-width-180 {
+        width: 180px;
+    }
+
+    .actividad-width-90 {
+        width: 120px;
+    }
+</style>
+<script>
+    let x = document.querySelectorAll(".myDIV");
+    for (let i = 0, len = x.length; i < len; i++) {
+        let num = Number(x[i].innerHTML)
+            .toLocaleString('en');
+        x[i].innerHTML = num;
+        x[i].classList.add("currSign");
+    }</script>
+<section class="container-fluid inbox" ng-init="vm.init();">
+
+    <div class="pr-3" ng-repeat="fuente in datosResumenavanceRegionalizacion.Fuentes" ng-init="FuenteIndex = $index">
+        <br /><br />
+        <div class="row" style="color: #004884">
+            <!-- Objetivos-->
+            <div class="objetivo-header">
+
+                <span class="header-content">
+                    <span><img src="../../../../../../../../../Img/u18860.svg" /></span>
+                    <span style="font-weight: 600; color: #004884" id="avanceMeta-fuente-nombre-{{FuenteIndex}}-min"> Fuente: </span>
+                    <span id="avanceMeta-fuente-nombre-{{FuenteIndex}}-max"> {{fuente.NombreFuente}}</span>
+                </span>
+            </div>
+            <br />
+            <div ng-repeat="producto in fuente.Productos" ng-init="productoIndex = $index">
+                <div class="objetivo-header2">
+                    <p class="header-content">
+                        <span style="font-weight: 600; color: #004884" id="avanceMeta-fuente-nombre-{{FuenteIndex}}-min"> Producto {{FuenteIndex+1}}.{{productoIndex+1}}: </span>
+                        <span id="avanceMeta-fuente-nombre-{{productoIndex}}-max"> {{producto.NombreProducto}}</span>
+                    </p>
+                </div>
+                <div>
+                    <div>
+                        <div class="alert panel-heading">
+                            <table class="TableDNP">
+                                <thead>
+                                    <tr>
+                                        <th class="columAcc"></th>
+                                        <th class="textLeftDNP"><span class="uLabelCampo">Departamento</span></th>
+                                        <th class="textLeftDNP">Municipio</th>
+                                        <th class="textLeftDNP">Tipo de Agrupación</th>
+                                        <th class="textLeftDNP">Agrupación</th>
+                                        <th class="columAcc"></th>
+                                    </tr>
+                                </thead>
+                                <tbody ng-repeat="localizacion in producto.Localizaciones" ng-init="localizacionindex = $index">
+                                    <tr>
+                                        <td>
+                                            <button class="btnaccion btnAccordionDNP"
+                                                    style="margin-left: -5px"
+                                                    type="button"
+                                                    ng-click="vm.abrilNivel('avanceMetarr-'+producto.ProductoId + '-' + fuente.FuenteId+'-'+localizacion.LocalizacionId)"
+                                                    data-toggle="collapse"
+                                                    data-target="#avanceMeta-indicadordetalleresumenrr-{{producto.ProductoId}}-{{fuente.FuenteId}}-{{localizacion.LocalizacionId}}">
+                                                <img src="Img/btnMas.svg" id="avanceMetarr-{{producto.ProductoId}}-{{fuente.FuenteId}}-{{localizacion.LocalizacionId}}-mas">
+                                                <img class="hidden" src="Img/btnMenos.svg" id="avanceMetarr-{{producto.ProductoId}}-{{fuente.FuenteId}}-{{localizacion.LocalizacionId}}-menos">
+                                            </button>
+                                        </td>
+                                        <td class="textLeftDNP">{{localizacion.Localizacion}}</td>
+                                    </tr>
+                                    <tr class="no-border collapse alert panel-heading" id="avanceMeta-indicadordetalleresumenrr-{{producto.ProductoId}}-{{fuente.FuenteId}}-{{localizacion.LocalizacionId}}">
+                                        <td colspan="5" class="p-0">
+                                            <div class="alert panel-heading">
+                                                <table class="TableDNP">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="columAcc"></th>
+                                                            <th class="textRightDNP"><span class="uLabelCampo">Vigencia</span></th>
+                                                            <!--<th class="textRightDNP">Vigente $</th>-->
+                                                            <th class="textRightDNP">Compromisos $</th>
+                                                            <th class="textRightDNP">Obligaciones $</th>
+                                                            <th class="textRightDNP">Pagos $</th>
+                                                            <th class="textRightDNP">Avance meta</th>
+                                                            <th class="columAcc"></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody ng-repeat="vigencia in localizacion.Vigencias" ng-init="Vigenciasindex = $index">
+                                                        <tr>
+                                                            <td class="columAcc">
+                                                                <button class="btnaccion btnAccordionDNP"
+                                                                        style="margin-left: -5px"
+                                                                        type="button"
+                                                                        ng-click="vm.abrilNivel('avanceMeta-indicadordetalleresumenrecursosx-'+ fuente.FuenteId + '-' + localizacion.LocalizacionId + vigencia.Vigencia + producto.ProductoId)"
+                                                                        data-toggle="collapse"
+                                                                        data-target="#avanceMeta-indicadordetalleresumenrecursosx-{{fuente.FuenteId}}-{{localizacion.LocalizacionId}}{{vigencia.Vigencia}}{{producto.ProductoId}}">
+                                                                    <img src="Img/btnMas.svg" id="avanceMeta-indicadordetalleresumenrecursosx-{{fuente.FuenteId}}-{{localizacion.LocalizacionId}}{{vigencia.Vigencia}}{{producto.ProductoId}}-mas">
+                                                                    <img class="hidden" src="Img/btnMenos.svg" id="avanceMeta-indicadordetalleresumenrecursosx-{{fuente.FuenteId}}-{{localizacion.LocalizacionId}}{{vigencia.Vigencia}}{{producto.ProductoId}}-menos">
+                                                                </button>
+                                                            </td>
+                                                            <td class="textRightDNP">
+                                                                {{vigencia.Vigencia}}
+                                                            </td>
+                                                            <!--<td class="textRightDNP"><input type="text" class="form-control editInputDNP " style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px" disabled value="{{vigencia.TotalValorVigenteVigencia}}" /></td>-->
+                                                            <td class="textRightDNP"><input type="text" class="form-control editInputDNP " style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px" disabled value="{{vigencia.TotalValorCompromisosVigencia}}" /></td>
+                                                            <td class="textRightDNP"><input type="text" class="form-control editInputDNP " style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px" disabled value="{{vigencia.TotalValorObligacionesVigencia}}" /></td>
+                                                            <td class="textRightDNP"><input type="text" class="form-control editInputDNP " style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px" disabled value="{{vigencia.TotalValorPagoVigencia}}" /></td>
+                                                            <td class="textRightDNP"><input type="text" class="form-control editInputDNP " style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px" disabled value="{{vigencia.TotalAvanceMetaVigencia}}" /></td>
+                                                        </tr>
+                                                        <tr class="no-border collapse alert panel-heading" id="avanceMeta-indicadordetalleresumenrecursosx-{{fuente.FuenteId}}-{{localizacion.LocalizacionId}}{{vigencia.Vigencia}}{{producto.ProductoId}}">
+                                                            <td colspan="8" class="p-6">
+                                                                <div class="LineaEncabezadodivDNP mt-0"></div>
+                                                                <div class="inlineBlock">
+                                                                    <div class="tituloEncabezadodivDNP">
+                                                                        <span class="uLabelCampo">Detalle vigencia</span>
+                                                                        <span>{{vigencia.Vigencia}}</span>
+                                                                    </div>
+                                                                </div>
+                                                                <table class="TableDNP">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <td class="columAcc"></td>
+                                                                            <th class="textLeftDNP"><span>Periodo</span></th>
+                                                                            <!--<th class="textRightDNP"><span>Vigente $</span></th>-->
+                                                                            <th class="textRightDNP"><span>Compromisos $</span></th>
+                                                                            <th class="textRightDNP"><span>Obligaciones $</span></th>
+                                                                            <th class="textRightDNP"><span>Pagos $</span></th>
+                                                                            <th class="textRightDNP"><span>Avance meta</span></th>
+                                                                            <th class="textRightDNP"><span>Observaciones</span></th>
+                                                                            <th class="columAcc"></th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody ng-repeat="periodo in vigencia.Periodos" ng-init="Periodosindex = $index">
+                                                                        <tr ng-repeat="valores in periodo.ValoresReportados">
+                                                                            <td class="columAcc"></td>
+                                                                            <td class="textLeftDNP">{{periodo.Mes}}</td>
+                                                                            <!--<td class="textRightDNP"><input type="text" class="form-control editInputDNP " style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px" disabled value="{{valores.ValorVigenteMes}}" /></td>-->
+                                                                            <td class="textRightDNP"><input type="text" class="form-control editInputDNP " style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px" disabled value="{{valores.ValorCompromisosMes}}" /></td>
+                                                                            <td class="textRightDNP"><input type="text" class="form-control editInputDNP " style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px" disabled value="{{valores.ValorObligacionesMes}}" /></td>
+                                                                            <td class="textRightDNP"><input type="text" class="form-control editInputDNP " style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px" disabled value="{{valores.ValorPagosMes}}" /></td>
+                                                                            <td class="textRightDNP"><input type="text" class="form-control editInputDNP " style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px" disabled value="{{valores.AvanceMetaMes}}" /></td>
+                                                                            <td class="textRightDNP">
+                                                                                <textarea 
+                                                                                          ng-value="valores.ObservacionRecursos"
+                                                                                          ng-model="valores.ObservacionRecursos"
+                                                                                          minlength="2"
+                                                                                          maxlength="58000"
+                                                                                          ng-disabled="true"
+                                                                                          cols="20"
+                                                                                          required class="textareObservaDNP" style="text-align:left;padding: 0px 5px 0px 5px;margin-left: 5px" />                                                                             
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                    <tfoot>
+                                                                        <tr>
+                                                                            <td class="columAcc" style="font-family: 'Work Sans SemiBold Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 600; font-style: normal; font-size: 30px; color: rgba(50, 102, 204, 0.996078431372549);"><span style="margin-top: 55%">=</span></td>
+                                                                            <td class="textRightDNP"><span>Total $</span></td>
+                                                                            <!--<td class="textRightDNP"><input type="text" class="form-control editInputDNP " style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 500; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px" disabled value="{{vigencia.TotalValorVigenteVigencia}}" id="DetalleRecursosTotalVigente-{{recursosMR.Vigencia}}-{{fuente.FuenteId}}-{{localizacion.LocalizacionId}}-{{objetivo.ObjetivoEspecificoId}}-{{producto.ProductoId}}" /></td>-->
+                                                                            <td class="textRightDNP"><input type="text" class="form-control editInputDNP " style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 500; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px" disabled value="{{vigencia.TotalValorCompromisosVigencia}}" id="DetalleRecursosTotalCompromisos-{{recursosMR.Vigencia}}-{{fuente.FuenteId}}-{{localizacion.LocalizacionId}}-{{objetivo.ObjetivoEspecificoId}}-{{producto.ProductoId}}" /></td>
+                                                                            <td class="textRightDNP"><input type="text" class="form-control editInputDNP " style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 500; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px" disabled value="{{vigencia.TotalValorObligacionesVigencia}}" id="DetalleRecursosTotalObligaciones-{{recursosMR.Vigencia}}-{{fuente.FuenteId}}-{{localizacion.LocalizacionId}}-{{objetivo.ObjetivoEspecificoId}}-{{producto.ProductoId}}" /></td>
+                                                                            <td class="textRightDNP"><input type="text" class="form-control editInputDNP " style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 500; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px" disabled value="{{vigencia.TotalValorPagoVigencia}}" id="DetalleRecursosTotalPagos-{{recursosMR.Vigencia}}-{{fuente.FuenteId}}-{{localizacion.LocalizacionId}}-{{objetivo.ObjetivoEspecificoId}}-{{producto.ProductoId}}" /></td>
+                                                                            <td class="textRightDNP"><input type="text" class="form-control editInputDNP " style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 500; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px" disabled value="{{vigencia.TotalAvanceMetaVigencia}}" id="DetalleRecursosTotalPagos-{{recursosMR.Vigencia}}-{{fuente.FuenteId}}-{{localizacion.LocalizacionId}}-{{objetivo.ObjetivoEspecificoId}}-{{producto.ProductoId}}" /></td>
+                                                                            <td class="columAcc" style="font-family: 'Work Sans SemiBold Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 600; font-style: normal; font-size: 30px; color: rgba(50, 102, 204, 0.996078431372549);"><span style="margin-top: 55%"></span></td>
+                                                                        </tr>
+                                                                    </tfoot>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                    <tfoot>
+                                                        <tr>
+                                                            <td class="columAcc icontotaldnp"><span>=</span></td>
+                                                            <td class="textRightDNP">Total</td>
+                                                            <!--<td class="textRightDNP"><div class="blockReferenciaDNP"><input type="text" class="form-control editInputDNP " style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px" disabled value="{{localizacion.TotalValorVigente}}" /></div></td>-->
+                                                            <td class="textRightDNP"><div class="blockReferenciaDNP"><input type="text" class="form-control editInputDNP " style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px" disabled value="{{localizacion.TotalValorCompromisos}}" /></div></td>
+                                                            <td class="textRightDNP"><div class="blockReferenciaDNP"><input type="text" class="form-control editInputDNP " style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px" disabled value="{{localizacion.TotalValorObligaciones}}" /></div></td>
+                                                            <td class="textRightDNP"><div class="blockReferenciaDNP"><input type="text" class="form-control editInputDNP " style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px" disabled value="{{localizacion.TotalValorPago}}" /></div></td>
+                                                            <td class="textRightDNP"><div class="blockReferenciaDNP"><input type="text" class="form-control editInputDNP " style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px" disabled value="{{localizacion.TotalAvanceMeta}}" /></div></td>
+                                                            <td></td>
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+                <br />
+            </div>
+        </div>
+    </div>
+</section>

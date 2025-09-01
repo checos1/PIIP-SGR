@@ -1,0 +1,36 @@
+﻿<section>
+    <div class="container-fluid inbox" ng-init="vm.init();">
+        <div class="tab-content">
+
+            <div class="ui-accordion-container hidden" id="accordion-proyectoasociarproyecto">
+
+                <div class="alert panel-heading row ui-accordion-header" style="width: 1280px;">
+                    <button class="button" type="button" data-toggle="collapse" data-target="#proyectoasociarproyecto" ng-click="vm.changeArrow('proyectoasociarproyecto')">
+                        <span class="d-inline-block" id="alert-proyectoasociarproyecto"></span>
+                        <span id="name-capitulo-proyectoasociarproyecto"></span>
+                        <span class="hidden" id="id-capitulo-proyectoasociarproyecto"></span>
+                        <span class="hidden" id="id-capitulo-proyectocrearajuste"></span>
+                        <span id="arrow-proyectoasociarproyecto" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#proyectoasociarproyecto"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="proyectoasociarproyecto" style="padding-right: 15px; padding-left: 0px; margin-left: -15px; width: 1270px;">
+                    <div class="row" style="margin-left:20px">
+                        <seleccion-proyectos-rvf tramiteid="{{vm.tramiteid}}"
+                                                 guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                                 notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                 notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"
+                                                 callback="vm.deshabilitarBotonDevolverAsociarProyectoVF()">
+
+                        </seleccion-proyectos-rvf>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+
+
+        </div>
+    </div>
+</section>

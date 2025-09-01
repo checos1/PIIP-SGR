@@ -1,0 +1,61 @@
+﻿<section class="ventana-ajsutes mt-4" ng-init="vm.init()">
+    <div class="row m-0">
+        <div class="form-group">
+            <div class="tab-content">
+                <div class="tab-pane active cont col-md-12 p-0" id="dproyecto">
+                    <proyectos-rvf-paso-tres tramiteid="{{vm.tramiteDetail.tramiteId}}"
+                                                tipotramiteid="{{vm.tramiteDetail.tipoTramiteId}}"
+                                                rolanalista="{{vm.rolAnalista}}"
+                                                callback="vm.notificarGuardado()"
+                                                guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                                notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                                notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)"
+                                                notificacioncambios="vm.notificacionCambiosAjustes(handler, nombreComponente)">
+                    </proyectos-rvf-paso-tres>
+                </div>
+                <div class="tab-pane  cont col-md-12 p-0" id="dinformacionpresupuestal">
+                    <informacion-presupuestal-rvf-paso-tres tipotramiteid="{{vm.tramiteDetail.tipoTramiteId}}"
+                                                            tramiteid="{{vm.tramiteDetail.tramiteId}}"
+                                                            rolanalista="{{vm.rolAnalista}}"
+                                                            callback="vm.notificarGuardado()"
+                                                            guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                                            notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                                            notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)"
+                                                            notificacioncambios="vm.notificacionCambiosAjustes(handler, nombreComponente)">
+
+                    </informacion-presupuestal-rvf-paso-tres>
+                </div>
+                <div class="tab-pane  cont col-md-12 p-0" id="djustificacion">
+                    <justificacion-rvf-paso-tres tipotramiteid="{{vm.tramiteDetail.tipoTramiteId}}" tramiteid="{{vm.tramiteDetail.tramiteId}}"
+                                                    callback="vm.notificarGuardado()"
+                                                    idnivel="{{vm.IdNivel}}"
+                                                    guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                                    notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                                    notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)"
+                                                    notificacioncambios="vm.notificacionCambiosAjustes(handler, nombreComponente)">
+
+
+                    </justificacion-rvf-paso-tres>
+
+                </div>
+                <div class="tab-pane  cont col-md-12 p-0" id="dconceptos">
+                    <concepto-rvf tipotramiteid="{{vm.tramiteDetail.tipoTramiteId}}"
+                                    tramiteid="{{vm.tramiteDetail.tramiteId}}"
+                                    nivel="{{vm.IdNivel}}"
+                                    rol="{{vm.IdRol}}"
+                                    rolanalista="{{vm.rolAnalista}}"
+                                    deshabilitar="vm.deshabilitar"
+                                    muestracapitulospaso3="{{vm.muestracapitulospaso3}}"
+                                    section="{{vm.section}}"
+                                    callback="vm.notificarGuardado(botonDevolver, botonSiguiente, ocultarDevolver)"
+                                    guardadocomponent="vm.guardadohijos(nombreComponente, nombreComponenteHijo)"
+                                    notificacionestado="vm.notificacionValidacionEstado(estado, nombreComponente)"
+                                    notificacionvalidacion="vm.notificacionValidacion(handler, nombreComponente,handlerCapitulos)"
+                                    notificacioncambios="vm.notificacionCambiosAjustes(handler, nombreComponente)">
+                    </concepto-rvf>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

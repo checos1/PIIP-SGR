@@ -1,0 +1,331 @@
+﻿<div style="margin-left:20px;" class="container-fluid inbox" ng-init="vm.init();">
+    <div id="IPF001-error" class="hidden uMensajeError"></div>
+    <div id="IPF004-error" class="hidden uMensajeError"></div>
+    <div>
+        <h3 class="row" style="padding-left: 2rem; padding-right: 2rem; text-align: left; color: #004884">&nbsp;&nbsp;Tabla de resumen <img id="u1276_img" class="imgTituloAccion " src="Img/u1275.svg" ng-click="vm.abrirMensajeInformacion()"></h3>
+        <div class="row" style="color: #004884">
+            <div class="row col-md-12">
+                <div class="alert panel-heading">
+                    <table ng-repeat="resumenCredito in datos.ResumenProyectos | filter: myFilter" ng-init="resumencreditoindex = $index" class="TableDNP">
+                        <thead>
+                            <tr>
+                                <th class="columAcc" width="5%"></th>
+                                <th class="textRightDNP" width="40%">BPIN / Proyecto / Código presupuestal</th>
+                                <th class="textRightDNP" width="20%">Situación</th>
+                                <th class="textRightDNP" width="15%">Nación</th>
+                                <th class="textRightDNP" width="15%">Propios</th>
+                                <th class="columAcc" width="5%"></th>
+                            </tr>
+                        </thead>
+                        <tbody ng-repeat="resumen in resumenCredito.Proyectos" ng-init="resumen1index = $index">
+                            <tr>
+                                <td rowspan="2"></td>
+                                <td rowspan="2"><b>{{resumen.CodigoBpin}}</b>. {{resumen.NombreProyecto | limitTo: 80}} <span ng-if="resumen.NombreProyecto.length > 110">...</span>  <button ng-if="resumen.NombreProyecto.length > 110" type="button" class="btn btn-link btn-md buttonhiperDNP" tooltip-placement="top" uib-tooltip="ver más" tabindex="0" ng-click="vm.ObjetoVerMas(resumen)" data="{{resumen.NombreProyecto}}">Ver más</button>. <b>{{resumen.CodigoPresupuestal}}</b></td>
+                                <td class="textRightDNP"><b>CSF</b></td>
+                                <td><b><input type="text" class="textRightDNP form-control editInputDNP" style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: bold; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px" disabled value="{{vm.ConvertirNumero(resumen.TotalSolicitadoNacionCSF)}}" /></b></td>
+                                <td><b><input type="text" class="textRightDNP form-control editInputDNP" style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: bold; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px" disabled value="{{vm.ConvertirNumero(resumen.TotalSolicitadoPropiosCSF)}}" /></b></td>
+                                <td rowspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td class="textRightDNP"><b>SSF</b></td>
+                                <td><b><input type="text" class="textRightDNP form-control editInputDNP" style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: bold; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px" disabled value="{{vm.ConvertirNumero(resumen.TotalSolicitadoNacionSSF)}}" /></b></td>
+                                <td><b><input type="text" class="textRightDNP form-control editInputDNP" style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: bold; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px" disabled value="{{vm.ConvertirNumero(resumen.TotalSolicitadoPropiosSSF)}}" /></b></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="TableDNP" ng-repeat="resumenContrato in datos.ResumenProyectos | filter: myFilter2" ng-init="resumencontratoindex = $index">
+                        <tbody ng-repeat="resumencon in resumenContrato.Proyectos" ng-init="resumen3index = $index">
+                            <tr>
+                                <td rowspan="2" width="5%"></td>
+                                <td rowspan="2" width="40%"><b>{{resumencon.CodigoBpin}}</b>. {{resumencon.NombreProyecto | limitTo: 80}} <span ng-if="resumencon.NombreProyecto.length > 110">...</span>  <button ng-if="resumencon.NombreProyecto.length > 110" type="button" class="btn btn-link btn-md buttonhiperDNP" tooltip-placement="top" uib-tooltip="ver más" tabindex="0" ng-click="vm.ObjetoVerMas(resumencon)" data="{{resumencon.NombreProyecto}}">Ver más</button>. <b>{{resumencon.CodigoPresupuestal}}</b></td>
+                                <td class="textRightDNP" width="20%"><b>CSF</b></td>
+                                <td width="15%"><b><input type="text" class="textRightDNP form-control editInputDNP" style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: bold; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px" disabled value="{{vm.ConvertirNumero(resumencon.TotalSolicitadoNacionCSF)}}" /></b></td>
+                                <td width="15%"><b><input type="text" class="textRightDNP form-control editInputDNP" style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: bold; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px" disabled value="{{vm.ConvertirNumero(resumencon.TotalSolicitadoPropiosCSF)}}" /></b></td>
+                                <td width="5%" rowspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td class="textRightDNP" width="20%"><b>SSF</b></td>
+                                <td width="15%"><b><input type="text" class="textRightDNP form-control editInputDNP" style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: bold; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px" disabled value="{{vm.ConvertirNumero(resumencon.TotalSolicitadoNacionSSF)}}" /></b></td>
+                                <td width="15%"><b><input type="text" class="textRightDNP form-control editInputDNP" style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: bold; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px" disabled value="{{vm.ConvertirNumero(resumencon.TotalSolicitadoPropiosSSF)}}" /></b></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <br />
+            <h3 class="row" style="padding-left: 2rem; padding-right: 2rem; text-align: left; color: #004884">&nbsp;&nbsp;Proyectos asociados <img id="u1276_img" class="imgTituloAccion " src="Img/u1275.svg" ng-click="vm.abrirMensajeInformacion()"></h3>
+            <br />
+            <div ng-repeat="asociados in datos.ProyectosAsociados" ng-init="proyectosasociadosIndex = $index">
+                <div class="row">
+                    <div class="" style="padding: 0 !important">
+                        <div class="alert panel-heading">
+                            <div class="card card-body pull-left  divAccordionDNP" style="max-height:280px;">
+                                <div class="line-clamp">
+                                    <p class="col-md-11" style="line-height: 1.1; margin-left: 55px">
+                                        <span class="NomItemAccordDNP">Código BPIN:</span>
+                                        <span class="InfoItemAccordDNP">{{asociados.CodigoBpin}}. </span>
+                                        <span class="NomItemAccordDNP">Nombre proyecto:</span>
+                                        <span class="InfoItemAccordDNP">{{asociados.NombreProyecto | limitTo: 80}} <span ng-if="asociados.NombreProyecto.length > 110">...</span>  <button ng-if="asociados.NombreProyecto.length > 110" type="button" class="btn btn-link btn-md buttonhiperDNP" tooltip-placement="top" uib-tooltip="ver más" tabindex="0" ng-click="vm.ObjetoVerMas(asociados)" data="{{asociados.NombreProyecto}}">Ver más</button>.</span>
+                                        <span class="NomItemAccordDNP">Entidad financiadora:</span>
+                                        <span class="InfoItemAccordDNP">{{asociados.EntidadFinanciadora}}.</span>
+                                        <span class="NomItemAccordDNP">Sector:</span>
+                                        <span class="InfoItemAccordDNP">{{asociados.NombreSector}}.</span>
+                                        <span class="NomItemAccordDNP">Tipo proyecto:</span>
+                                        <span class="InfoItemAccordDNP">{{asociados.TipoProyecto}}.</span>
+                                        <span class="NomItemAccordDNP">Código presupuestal:</span>
+                                        <span class="InfoItemAccordDNP">{{asociados.CodigoPresupuestal}}.</span>
+                                        <span class="NomItemAccordDNP">Vigencia inicial:</span>
+                                        <span class="InfoItemAccordDNP">{{asociados.VigenciaInicial}}.</span>
+                                        <span class="NomItemAccordDNP">Vigencia final:</span>
+                                        <span class="InfoItemAccordDNP">{{asociados.VigenciaFinal}}.</span>
+                                        <br />
+                                        <table class="col-md-11" style="margin-left: 55px;">
+                                            <thead>
+                                                <tr>
+                                                    <td class="textRightDNP" style="width: 5%;">    </td>
+                                                    <td class="textRightDNP" style="width: 10%;">Apropiación inicial $</td>
+                                                    <td class="textRightDNP" style="width: 10%;">Apropiación vigente $</td>
+                                                    <td class="textRightDNP" style="width: 10%;">Vigencias futuras $</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Nación</td>
+                                                    <td><b><input type="text" class="textRightDNP form-control editInputDNP" style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: bold; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px" disabled value="{{vm.ConvertirNumero(asociados.TotalApropiacionInicialNacion)}}" /></b></td>
+                                                    <td><b><input type="text" class="textRightDNP form-control editInputDNP" style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: bold; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px" disabled value="{{vm.ConvertirNumero(asociados.TotalApropiacionVigenteNacion)}}" /></b></td>
+                                                    <td><b><input type="text" class="textRightDNP form-control editInputDNP" style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: bold; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px" disabled value="{{vm.ConvertirNumero(asociados.TotalVigenciasFuturasNacion)}}" /></b></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Propios</td>
+                                                    <td><input type="text" class="textRightDNP form-control editInputDNP" style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: bold; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px" disabled value="{{vm.ConvertirNumero(asociados.TotalApropiacionInicialPropios)}}" /></td>
+                                                    <td><input type="text" class="textRightDNP form-control editInputDNP" style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: bold; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px" disabled value="{{vm.ConvertirNumero(asociados.TotalApropiacionVigentePropios)}}" /></td>
+                                                    <td><input type="text" class="textRightDNP form-control editInputDNP" style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: bold; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px" disabled value="{{vm.ConvertirNumero(asociados.TotalVigenciasFuturasPropios)}}" /></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </p>
+                                </div>
+                                <p class="panelbtnalertAcordnp col-md-11">
+                                    <button class="btnaccion btnAccordionDNP" type="button" data-toggle="collapse" data-target="#asociados-{{proyectosasociadosIndex}}-{{asociados.ProyectoId}}" ng-click="vm.changeBotonAsociados(asociados)" data="{{asociados}}">
+
+                                        <img ng-show="asociados.LabelBoton == '+'" src="Img/btnMas.svg">
+                                        <img ng-show="asociados.LabelBoton == '-'" src="Img/btnMenos.svg">
+                                    </button>
+                                    <!--<span class="img iconadverdnp ">   <img src="Img/u4630.svg"> </span>-->
+                                    <span id="IPF001-{{objProyecto.ProyectoId}}" class="hidden uMensajeError"></span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapse" id="asociados-{{proyectosasociadosIndex}}-{{asociados.ProyectoId}}">
+                    <div class="LineaEncabezadodivDNP"></div>
+                    <h3 class="row tituloEncabezadodivDNP">
+                        Crédito
+                        <span ng-if="vm.habilitaBotones" class="buttonbar pull-right">
+                            <button type="button" class="btneditarDNP" tooltip-placement="top" ng-click="asociados.EditarTramiteIncorporacion ? vm.CancelarAsociados(asociados) : vm.EditarAsociados(asociados)" uib-tooltip="{{asociados.EditarTramiteIncorporacion ? 'CANCELAR' : 'EDITAR'}}">
+                                {{asociados.EditarTramiteIncorporacion ? 'CANCELAR' : 'EDITAR'}}
+                            </button>
+                            <button ng-disabled="!asociados.EditarTramiteIncorporacion" type="button" class="{{asociados.EditarTramiteIncorporacion ? 'btnguardarDNP' : 'btnguardarDisabledDNP'}}" tooltip-placement="top" uib-tooltip="Guardar" tabindex="0" ng-click="vm.GuardarAsociados(asociados)">
+                                GUARDAR
+                            </button>
+                        </span>
+                    </h3>
+
+                    <div class="row col-md-12">
+                        <div class="alert panel-heading">
+                            <table class="TableDNP">
+                                <thead>
+                                    <tr>
+                                        <th class="columAcc"></th>
+                                        <th class="textleftDNP">Tipo de recurso</th>
+                                        <th class="textleftDNP">Situación</th>
+                                        <th class="textRightDNP">Valor inicial $</th>
+                                        <th class="textRightDNP">Valor vigente $</th>
+                                        <th class="textRightDNP">Valor a incorporar $</th>
+                                        <th class="columAcc"></th>
+                                    </tr>
+                                </thead>
+                                <tbody ng-repeat="fuentesasociados in asociados.DetalleFuentes" ng-init="fuentesasociadosindex = $index">
+                                    <tr>
+                                        <td rowspan="2"></td>
+                                        <td rowspan="2">{{fuentesasociados.NombreTipoRecurso}}</td>
+                                        <td class="textRightDNP"><b>CSF</b></td>
+                                        <td><b><input type="text" class="textRightDNP form-control editInputDNP" style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: bold; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px" disabled value="{{vm.ConvertirNumero(fuentesasociados.ValorInicialCSF)}}" /></b></td>
+                                        <td><b><input type="text" class="textRightDNP form-control editInputDNP" style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: bold; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px" disabled value="{{vm.ConvertirNumero(fuentesasociados.ValorVigenteCSF)}}" /></b></td>
+                                        <td ng-if="!asociados.EditarTramiteIncorporacion"><b><input type="text" class="textRightDNP form-control editInputDNP" style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: bold; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px" disabled value="{{vm.ConvertirNumero(fuentesasociados.ValorIncorporarCSF)}}" /></b></td>
+                                        <td ng-if="asociados.EditarTramiteIncorporacion" class="textRightDNP">
+                                            <input id="input-ValorIncorporarCSF" type="number" string-to-number min="0.00"
+                                                   ng-readonly="!asociados.EditarTramiteIncorporacion"
+                                                   ng-keypress="vm.validateFormat($event)"
+                                                   ng-keyup="vm.validarTamanio($event)"
+                                                   ng-blur="vm.actualizaFila($event, datos.ProyectosAsociados[proyectosasociadosIndex])"
+                                                   ng-value="fuentesasociados.ValorIncorporarCSF"
+                                                   ng-model="datos.ProyectosAsociados[proyectosasociadosIndex].DetalleFuentes[fuentesasociadosindex].ValorIncorporarCSF"
+                                                   required class="form-control editInputDNP" style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px; background-color:white" />
+                                        </td>
+                                        <td rowspan="2"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="textRightDNP"><b>SSF</b></td>
+                                        <td><b><input type="text" class="textRightDNP form-control editInputDNP" style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: bold; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px" disabled value="{{vm.ConvertirNumero(fuentesasociados.ValorInicialSSF)}}" /></b></td>
+                                        <td><b><input type="text" class="textRightDNP form-control editInputDNP" style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: bold; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px" disabled value="{{vm.ConvertirNumero(fuentesasociados.ValorVigenteSSF)}}" /></b></td>
+                                        <td ng-if="!asociados.EditarTramiteIncorporacion"><b><input type="text" class="textRightDNP form-control editInputDNP" style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: bold; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px" disabled value="{{vm.ConvertirNumero(fuentesasociados.ValorIncorporarSSF)}}" /></b></td>
+                                        <td ng-if="asociados.EditarTramiteIncorporacion" class="textRightDNP">
+                                            <input id="input-ValorIncorporarSSF" type="number" string-to-number min="0.00"
+                                                   ng-readonly="!asociados.EditarTramiteIncorporacion"
+                                                   ng-keypress="vm.validateFormat($event)"
+                                                   ng-keyup="vm.validarTamanio($event)"
+                                                   ng-blur="vm.actualizaFila($event, datos.ProyectosAsociados[proyectosasociadosIndex])"
+                                                   ng-value="fuentesasociados.ValorIncorporarSSF"
+                                                   ng-model="datos.ProyectosAsociados[proyectosasociadosIndex].DetalleFuentes[fuentesasociadosindex].ValorIncorporarSSF"
+                                                   required class="form-control editInputDNP" style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px; background-color:white" />
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <h3 ng-if="datos.ProyectosAportantes != null" class="row" style="padding-left: 2rem; padding-right: 2rem; text-align: left; color: #004884">&nbsp;&nbsp;Proyectos aportantes <img id="u1276_img" class="imgTituloAccion " src="Img/u1275.svg" ng-click="vm.abrirMensajeInformacion()"></h3>
+            <br />
+            <div ng-repeat="aportantes in datos.ProyectosAportantes" ng-init="proyectosaportantesIndex = $index">
+                <div class="row">
+                    <div class="" style="padding: 0 !important">
+                        <div class="alert panel-heading">
+                            <div class="card card-body pull-left  divAccordionDNP" style="max-height:280px;">
+                                <div class="line-clamp">
+                                    <p class="col-md-11" style="line-height: 1.1; margin-left: 55px">
+                                        <span class="NomItemAccordDNP">Código BPIN:</span>
+                                        <span class="InfoItemAccordDNP">{{aportantes.CodigoBpin}}. </span>
+                                        <span class="NomItemAccordDNP">Nombre proyecto:</span>
+                                        <span class="InfoItemAccordDNP">{{aportantes.NombreProyecto | limitTo: 80}} <span ng-if="aportantes.NombreProyecto.length > 110">...</span>  <button ng-if="aportantes.NombreProyecto.length > 110" type="button" class="btn btn-link btn-md buttonhiperDNP" tooltip-placement="top" uib-tooltip="ver más" tabindex="0" ng-click="vm.ObjetoVerMas(aportantes)" data="{{aportantes.NombreProyecto}}">Ver más</button>.</span>
+                                        <span class="NomItemAccordDNP">Entidad financiadora:</span>
+                                        <span class="InfoItemAccordDNP">{{aportantes.EntidadFinanciadora}}.</span>
+                                        <span class="NomItemAccordDNP">Sector:</span>
+                                        <span class="InfoItemAccordDNP">{{aportantes.NombreSector}}.</span>
+                                        <span class="NomItemAccordDNP">Tipo proyecto:</span>
+                                        <span class="InfoItemAccordDNP">{{aportantes.TipoProyecto}}.</span>
+                                        <span class="NomItemAccordDNP">Código presupuestal:</span>
+                                        <span class="InfoItemAccordDNP">{{aportantes.CodigoPresupuestal}}.</span>
+                                        <span class="NomItemAccordDNP">Vigencia inicial:</span>
+                                        <span class="InfoItemAccordDNP">{{aportantes.VigenciaInicial}}.</span>
+                                        <span class="NomItemAccordDNP">Vigencia final:</span>
+                                        <span class="InfoItemAccordDNP">{{aportantes.VigenciaFinal}}.</span>
+                                        <br />
+                                        <table class="col-md-11" style="margin-left: 55px;">
+                                            <thead>
+                                                <tr>
+                                                    <td class="textRightDNP" style="width: 5%;">    </td>
+                                                    <td class="textRightDNP" style="width: 10%;">Apropiación inicial $</td>
+                                                    <td class="textRightDNP" style="width: 10%;">Apropiación vigente $</td>
+                                                    <td class="textRightDNP" style="width: 10%;">Vigencias futuras $</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Nación</td>
+                                                    <td><b><input type="text" class="textRightDNP form-control editInputDNP" style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: bold; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px" disabled value="{{vm.ConvertirNumero(aportantes.TotalApropiacionInicialNacion)}}" /></b></td>
+                                                    <td><b><input type="text" class="textRightDNP form-control editInputDNP" style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: bold; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px" disabled value="{{vm.ConvertirNumero(aportantes.TotalApropiacionVigenteNacion)}}" /></b></td>
+                                                    <td><b><input type="text" class="textRightDNP form-control editInputDNP" style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: bold; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px" disabled value="{{vm.ConvertirNumero(aportantes.TotalVigenciasFuturasNacion)}}" /></b></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Propios</td>
+                                                    <td><input type="text" class="textRightDNP form-control editInputDNP" style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: bold; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px" disabled value="{{vm.ConvertirNumero(aportantes.TotalApropiacionInicialPropios)}}" /></td>
+                                                    <td><input type="text" class="textRightDNP form-control editInputDNP" style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: bold; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px" disabled value="{{vm.ConvertirNumero(aportantes.TotalApropiacionVigentePropios)}}" /></td>
+                                                    <td><input type="text" class="textRightDNP form-control editInputDNP" style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: bold; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px" disabled value="{{vm.ConvertirNumero(aportantes.TotalVigenciasFuturasPropios)}}" /></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </p>
+                                </div>
+                                <p class="panelbtnalertAcordnp col-md-11">
+                                    <button class="btnaccion btnAccordionDNP" type="button" data-toggle="collapse" data-target="#aportantes-{{aportantes.ProyectoId}}" ng-click="vm.changeBotonAportantes(aportantes)" data="{{aportantes}}">
+
+                                        <img ng-show="aportantes.LabelBoton == '+'" src="Img/btnMas.svg">
+                                        <img ng-show="aportantes.LabelBoton == '-'" src="Img/btnMenos.svg">
+                                    </button>
+                                    <!--<span class="img iconadverdnp ">   <img src="Img/u4630.svg"> </span>-->
+                                    <!--<span class="messagealerttableDNP">Espacio reservado para información de validaciones. </span>-->
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapse" id="aportantes-{{aportantes.ProyectoId}}">
+                    <div class="LineaEncabezadodivDNP"></div>
+                    <h3 class="row tituloEncabezadodivDNP">
+                        Contrato
+                        <span ng-if="vm.habilitaBotones" class="buttonbar pull-right">
+                            <button type="button" class="btneditarDNP" tooltip-placement="top" ng-click="aportantes.EditarTramiteIncorporacion ? vm.CancelarAportantes(aportantes) : vm.EditarAportantes(aportantes)" uib-tooltip="{{aportantes.EditarTramiteIncorporacion ? 'CANCELAR' : 'EDITAR'}}">
+                                {{aportantes.EditarTramiteIncorporacion ? 'CANCELAR' : 'EDITAR'}}
+                            </button>
+                            <button ng-disabled="!aportantes.EditarTramiteIncorporacion" type="button" class="{{aportantes.EditarTramiteIncorporacion ? 'btnguardarDNP' : 'btnguardarDisabledDNP'}}" tooltip-placement="top" uib-tooltip="Guardar" tabindex="0" ng-click="vm.GuardarAportantes(aportantes)">
+                                GUARDAR
+                            </button>
+                        </span>
+                    </h3>
+
+                    <div class="row col-md-12">
+                        <div class="alert panel-heading">
+                            <table class="TableDNP">
+                                <thead>
+                                    <tr>
+                                        <th class="columAcc"></th>
+                                        <th class="textleftDNP">Tipo de recurso</th>
+                                        <th class="textleftDNP">Situación</th>
+                                        <th class="textRightDNP">Valor inicial $</th>
+                                        <th class="textRightDNP">Valor vigente $</th>
+                                        <th class="textRightDNP">Valor a incorporar $</th>
+                                        <th class="columAcc"></th>
+                                    </tr>
+                                </thead>
+                                <tbody ng-repeat="fuentesaportantes in aportantes.DetalleFuentes" ng-init="fuentesaportantesindex = $index">
+                                    <tr>
+                                        <td rowspan="2"></td>
+                                        <td rowspan="2">{{fuentesaportantes.NombreTipoRecurso}}</td>
+                                        <td class="textRightDNP"><b>CSF</b></td>
+                                        <td><b><input type="text" class="textRightDNP form-control editInputDNP" style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: bold; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px" disabled value="{{vm.ConvertirNumero(fuentesaportantes.ValorInicialCSF)}}" /></b></td>
+                                        <td><b><input type="text" class="textRightDNP form-control editInputDNP" style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: bold; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px" disabled value="{{vm.ConvertirNumero(fuentesaportantes.ValorVigenteCSF)}}" /></b></td>
+                                        <td ng-if="!aportantes.EditarTramiteIncorporacion"><b><input type="text" class="textRightDNP form-control editInputDNP" style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: bold; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px" disabled value="{{vm.ConvertirNumero(fuentesaportantes.ValorIncorporarCSF)}}" /></b></td>
+                                        <td ng-if="aportantes.EditarTramiteIncorporacion" class="textRightDNP">
+                                            <input id="input-ValorIncorporarCSF" type="number" string-to-number min="0.00"
+                                                   ng-readonly="!aportantes.EditarTramiteIncorporacion"
+                                                   ng-keypress="vm.validateFormat($event)"
+                                                   ng-keyup="vm.validarTamanio($event)"
+                                                   ng-blur="vm.actualizaFila2($event, datos.ProyectosAportantes[proyectosaportantesIndex])"
+                                                   ng-value="fuentesaportantes.ValorIncorporarCSF"
+                                                   ng-model="datos.ProyectosAportantes[proyectosaportantesIndex].DetalleFuentes[fuentesaportantesindex].ValorIncorporarCSF"
+                                                   required class="form-control editInputDNP" style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px; background-color:white" />
+                                        </td>
+                                        <td rowspan="2"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="textRightDNP"><b>SSF</b></td>
+                                        <td><b><input type="text" class="textRightDNP form-control editInputDNP" style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: bold; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px" disabled value="{{vm.ConvertirNumero(fuentesaportantes.ValorInicialSSF)}}" /></b></td>
+                                        <td><b><input type="text" class="textRightDNP form-control editInputDNP" style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: bold; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px" disabled value="{{vm.ConvertirNumero(fuentesaportantes.ValorVigenteSSF)}}" /></b></td>
+                                        <td ng-if="!aportantes.EditarTramiteIncorporacion"><b><input type="text" class="textRightDNP form-control editInputDNP" style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: bold; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px" disabled value="{{vm.ConvertirNumero(fuentesaportantes.ValorIncorporarSSF)}}" /></b></td>
+                                        <td ng-if="aportantes.EditarTramiteIncorporacion" class="textRightDNP">
+                                            <input id="input-ValorIncorporarSSF" type="number" string-to-number min="0.00"
+                                                   ng-readonly="!aportantes.EditarTramiteIncorporacion"
+                                                   ng-keypress="vm.validateFormat($event)"
+                                                   ng-keyup="vm.validarTamanio($event)"
+                                                   ng-blur="vm.actualizaFila2($event, datos.ProyectosAportantes[proyectosaportantesIndex])"
+                                                   ng-value="fuentesaportantes.ValorIncorporarSSF"
+                                                   ng-model="datos.ProyectosAportantes[proyectosaportantesIndex].DetalleFuentes[fuentesaportantesindex].ValorIncorporarSSF"
+                                                   required class="form-control editInputDNP" style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px; background-color:white" />
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+<br />

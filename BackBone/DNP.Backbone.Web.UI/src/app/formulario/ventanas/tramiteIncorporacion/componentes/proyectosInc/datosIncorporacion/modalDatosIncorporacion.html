@@ -1,0 +1,133 @@
+﻿<modal-dialog cerrar="vm.cerrar" guardar="vm.guardar" txt-guardar="Guardar" ng-init="vm.init()">
+
+
+    <form id="formAgregarDatosIncorporacion" name="formAgregarDatosIncorporacion" style="background-color:white!important">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="textLeftDNP" style="margin-left: 50px;">
+                    <span class="text-left ui-seccion-title" style="font-size:20px"> <b>Agregar Datos Incorporación</b></span>
+                    <p style="font-size:18px;"><span style="font-family:'Montserrat Medium', 'Montserrat Regular', 'Montserrat';font-weight:500;">Selección de criterios</span></p>
+                </div>
+            </div>
+        </div>
+        <br />
+
+        <div style="background-color: white !important; margin-left: 50px;">
+
+            <div class="row">
+                <div class="col-md-4" style=" font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 500;     font-style: normal;     font-size: 16px;     color: #004884;     text-align: left;    line-height: 30px;">
+                    <label for="sector" class="textRightDNP" style="font-size: 16px;">Sector*</label>
+                </div>
+
+                <div class="col-md-4" style=" font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 500;     font-style: normal;     font-size: 16px;     color: #004884;     text-align: left;    line-height: 30px;">
+                    <label for="sector" class="textRightDNP" style="font-size: 16px;">Entidad Aportante*</label>
+                </div>
+
+                <div class="col-md-3" style=" font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 500;     font-style: normal;     font-size: 16px;     color: #004884;     text-align: left;    line-height: 30px;">
+                    <label for="numeroConvenio" class="textRightDNP" style="font-size: 16px;">Numero del convenio*</label>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <select id="sector"
+                            name="sector"
+                            class="form-control"
+                            ng-model="vm.model.Sector"
+                            ng-change="vm.cambioSector()"
+                            required>
+                        <option ng-selected="vm.SectorId"
+                                ng-repeat="sector in vm.listaSectores"
+                                ng-value="sector.Name"
+                                id="{{sector.Id}}">
+                            {{ sector.Name }}
+                        </option>
+                    </select>
+                </div>
+                <!--== entidad.idEntidad-->
+                <div class="col-md-4">
+                    <select id="chosenEntidades"
+                            name="chosenEntidades"
+                            ng-model="vm.model.idEntidad"
+                            class="form-control" required>
+
+                        <option ng-repeat="entidad in vm.listaEntidades"
+                                ng-selected="vm.EntityId"
+                                ng-value="entidad.idEntidad"
+                                id="{{entidad.idEntidad}}">
+                            {{entidad.nombreEntidad}}
+                        </option>
+
+                    </select>
+                </div>
+
+                <div class="col-md-3">
+                    <input id="numeroConvenio" class="form-control" type="text" ng-model="vm.NumeroConvenio" maxlength="40" required />
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-4" style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 500;     font-style: normal;     font-size: 16px;     color: #004884;     text-align: left;    line-height: 30px;">
+                    <label for="valorConvenio" class="textRightDNP" style="font-size: 16px;">Valor del convenio*</label>
+                </div>
+                <div class="col-md-4" style=" font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 500;     font-style: normal;     font-size: 16px;     color: #004884;     text-align: left;    line-height: 30px;">
+                    <label for="valorConvenioVigencia" class="textRightDNP" style="font-size: 16px;">Valor del convenio Vigencia*</label>
+                </div>
+                <div class="col-md-3" style=" font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 500;     font-style: normal;     font-size: 16px;     color: #004884;     text-align: left;    line-height: 30px;">
+                    <label for="objeto" class="textRightDNP" style="font-size: 16px;">Objeto*</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <input id="valorConvenio"
+                           string-to-number 
+                           min="0.00"
+                           type="number" 
+                           maxlength="14"
+                           style="font-family: 'Work Sans'; float: right;"
+                           class="form-control editInputDNP"
+                           ng-model="vm.ValorConvenio"
+                           ng-keypress="vm.validateFormat2($event)"
+                           required />
+                </div>
+                <div class="col-md-4">
+                    <input id="valorConvenioVigencia"
+                           class="form-control editInputDNP"
+                           type="number" 
+                           maxlength="14"
+                           ng-model="vm.ValorConvenioVigencia"
+                           string-to-number min="0.00"
+                           style="font-family: 'Work Sans'; float: right;"
+                           ng-keypress="vm.validateFormat2($event)"
+                           required />
+                </div>
+                <div class="col-md-3">
+                    <textarea id="objeto" class="form-control" name="objeto" rows="2" cols="1" ng-model="vm.Objeto" maxlength="500" required></textarea>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4" style="  font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 500;     font-style: normal;     font-size: 16px;     color: #004884;     text-align: left;    line-height: 30px;">
+                    <label for="fechaInicial" class="textRightDNP" style="font-size: 16px;">Fecha Inicial*</label>
+                </div>
+                <div class="col-md-4" style=" font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 500;     font-style: normal;     font-size: 16px;     color: #004884;     text-align: left;    line-height: 30px;">
+                    <label for="fechaFinal" class="textRightDNP" style="font-size: 16px;">Fecha Final*</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <input id="fechaInicial" type="date" class="form-control" ng-model="vm.FechaInicial" formControlName="docdatetime" required />
+                </div>
+                <div class="col-md-4">
+                    <input id="fechaFinal" type="date" class="form-control" ng-model="vm.FechaFinal" formControlName="docdatetime" required />
+                </div>
+            </div>
+
+        </div>
+    </form>
+</modal-dialog>
+

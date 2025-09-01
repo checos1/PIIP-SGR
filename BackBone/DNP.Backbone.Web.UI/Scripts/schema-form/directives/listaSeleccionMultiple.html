@@ -1,0 +1,48 @@
+﻿<div ng-controller="controladorListaSeleccionMultiple" uib-tooltip="{{form.tooltip}}">
+
+    <div ng-show="form.tipoListaMultiple == 'rbl'">
+        <div sf-array="form" ng-model="form.valor" class="form-group schema-form-radios {{form.htmlClass}}" ng-class="{'has-error': form.disableErrorState !== true && hasError(), 'has-success': form.disableSuccessState !== true && hasSuccess() && form.valor.length > 0}">
+            <div class="lista-seleccion-multiple">
+                <label ng-model="form.valor" ng-model-options="form.ngModelOptions" schema-validate="form" class="control-label {{form.labelHtmlClass}}" ng-show="showTitle()">{{form.title}}</label>
+                <div ng-repeat="elemento in form.titleMap" class="radio radio-primary">
+                    <label ng-required="{{form.required}}">
+                        <input type="radio"
+                               ng-disabled="opciones.deshabilitarControles"
+                               ng-value="elemento.value"
+                               sf-changed="form"
+                               ng-model="form.valor"
+                               name="{{form.key.join('.')}}"
+                               ng-checked="estaSeleccionado(elemento.name)"
+                               ng-click="cambioValorRadio(elemento.value)"
+                               uib-tooltip="{{form.tooltip}}">
+                        <span class="circle"></span><span class="check"></span>{{elemento.name}}
+                    </label>
+                </div>
+            </div>
+            <span class="help-block" sf-message="(form.key[0]!==form.description)?form.description:''"></span>
+        </div>
+    </div>
+
+    <div ng-show="form.tipoListaMultiple == 'cbl'">
+        <div sf-array="form" ng-model="$$value$$" class="form-group schema-form-checkboxes {{form.htmlClass}}" ng-class="{'has-error': form.disableErrorState !== true && hasError(), 'has-success': form.disableSuccessState !== true && hasSuccess() && form.valor.length > 0}">
+            <div class="lista-seleccion-multiple">
+                <label class="control-label {{form.labelHtmlClass}}" ng-show="showTitle()">{{form.title}}</label>
+                <div ng-repeat="elemento in form.titleMap" class="checkbox">
+                    <label ng-required="{{form.required}}">
+                        <input type="checkbox"
+                               name="checkButtonList[]"
+                               value="{{elemento.value}}"
+                               ng-checked="estaSeleccionado(elemento.value)"
+                               ng-click="cambioValorCheckbox(elemento.value)"
+                               uib-tooltip="{{form.tooltip}}"
+                               ng-disabled="opciones.deshabilitarControles">
+                        <span class="checkbox-material"><span class="check"></span></span> <span ng-bind-html="elemento.name"></span>
+
+                    </label>
+                </div>
+            </div>
+            <span class="help-block" sf-message="(form.key[0]!==form.description)?form.description:''"></span>
+        </div>
+    </div>
+</div>
+

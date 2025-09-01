@@ -1,0 +1,128 @@
+﻿<!--<modal-dialog cerrar="vm.cerrar" guardar="vm.tipoUsuario ? vm.submitAbrirFormularioInvitarUsuario : null" txt-guardar="CONTINUAR" ng-init="vm.init()">
+    <div class="col-md-12" id="modalTipoInvitacionUsuario">
+        <div class="row">
+            <div class="titlebar marginb-15">
+                <span>INVITAR USUARIO </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="form-group">
+                    <label for="correo"><b>Tipo usuario <span class="text-danger">*</span></b></label>
+                    <select class="form-control" ng-model="vm.tipoUsuario" required>
+                        <option value="" disabled selected hidden>Seleccione una opción</option>
+                        <option ng-repeat="tipo in vm.tiposUsuario" ng-value="tipo.id">{{ tipo.name }} </option>
+                    </select>
+                    <small ng-if="!vm.tipoUsuario" class="text-danger">Este campo es obligatorio</small>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group text-center">
+                    <small>Los campos marcados con <span class="text-danger">*</span> son obligatorios</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</modal-dialog>-->
+
+
+
+
+
+
+
+<modal-dialog cerrar="vm.cerrar" guardar="vm.tipoUsuario ? vm.submitAbrirFormularioInvitarUsuario : null" txt-guardar="CONTINUAR" ng-init="vm.init()">
+   
+    <div class="modal-body modalebodyDNP" id="modal-body">
+
+        <div class="row  " style="margin-left: 0px; margin-right: 0px; background-color: rgba(249, 252, 253, 1); box-sizing: border-box; border-width: 1px; border-style: solid; border-color: rgba(230, 239, 253, 1); border-radius: 5px; height: 132px; padding-top: 15px">
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label style="font-family: 'Montserrat SemiBold', 'Montserrat Regular', 'Montserrat', sans-serif; font-weight: 600; font-style: normal; font-size: 16px; color: #004884"><b>Invitar Usuario</b></label>
+
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="labelbuscadorDNP" style="height: 45px;">
+                    <label style=" font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif; font-weight: 500; font-style: normal; font-size: 16px; color: #4B4B4B;">Tipo de usuario <span class="text-danger">*</span></label>
+                </div>
+                <select class="form-control selectDNP" ng-model="vm.tipoUsuario" required ng-change="vm.cambiaTipoValor(vm.tipoUsuario)">
+                    <option value="" disabled selected hidden>Seleccione...</option>
+                    <option ng-repeat="tipo in vm.tiposUsuario" ng-value="tipo.id">{{ tipo.name }} </option>
+                </select>
+
+
+               
+
+            </div>
+
+            <div class="col-md-5 ">
+                <div ng-show="vm.isConstante == true">
+                    <div class="labelbuscadorDNP" style="height: 45px;">
+                        <label style=" font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans', sans-serif; font-weight: 500; font-style: normal; font-size: 16px; color: #4B4B4B;" >Correo institucional usuario DNP <span class="text-danger">*</span></label>
+                    </div>
+                    <input type="text" class="form-control InputBuscadorDNP" />
+
+
+                </div>
+            </div>
+            <div class="col-md-2 " style="margin-top:45px">
+                <div ng-show="vm.isConstante == true">
+                    <button type="button" class=" btneditarDNP "  tooltip-class="customClass" uib-tooltip="Buscar">
+                        BUSCAR
+                    </button>
+                </div>
+            </div>
+        </div>
+        <br />
+        <!--<div class="row" style="margin-left:0px;margin-right:0px">
+            <div class="col-md-6">
+                <div class="form-group text-center">
+                    <small>Los campos marcados con <span class="text-danger">*</span> son obligatorios</small>
+                </div>
+            </div>
+        </div>-->
+
+
+    </div>
+    <div class="modal-footer textCenterDNP">
+       
+    </div>
+</modal-dialog>
+
+<style>
+   
+
+    .closemodalDNP {
+        display: flex;
+        right: 30px;
+        top: 0px;
+        margin-top: -20px;
+    }
+    .modalebodyDNP {
+        background: transparent !important;
+        margin-left: 20px !important;
+        padding: 0px !important;
+        margin-right: 20px !important;
+        margin-top: 25px !important;
+
+    }
+    .btneditarDNP[disabled] {
+        -webkit-border-radius: 50px;
+        background-color: transparent !important;
+        border-width: 2px !important;
+        border-style: solid !important;
+        border-color: rgba(186, 186, 186, 0.996) !important;
+        color: rgba(186, 186, 186, 0.996) !important;
+        font-size: 16px !important;
+        font-weight: 500 !important;
+        padding-right: 18px !important;
+        padding-left: 18px !important;
+        padding: 3px 0px 3px 0px;
+        font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans';
+        white-space: nowrap;
+    }
+</style>

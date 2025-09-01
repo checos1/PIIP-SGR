@@ -1,0 +1,98 @@
+﻿<div>
+    <div class="modal-header" style="background-color: transparent !important;">
+        <div class="col-md-12 text-right">
+            <button type="button" class="btn btn-sm btn-primary btnCloseModal" ng-click="vm.cancelar()" uib-tooltip="Cancelar">&times;</button>
+        </div>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12 titulo-modal">
+                <h4><b>{{ 'TextoCrearTarea' | language }}: {{ vm.nombreOpcion }}</b></h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <label>Filtro</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <select id="chosenSector" chosen
+                        options="vm.listaFiltroSectores"
+                        ng-model="vm.filtroSectorId"
+                        ng-options="x.Id as x.Name for x in vm.listaFiltroSectores | orderBy:'Name'"
+                        no-results-text="No hay ningún resultado para su búsqueda"
+                        placeholder-text-single="Sectores">
+                </select>
+            </div>
+            <div class="col-md-2">
+                <select id="chosenEntidad" chosen
+                        options="vm.listaFiltroEntidads"
+                        ng-model="vm.filtroEntidadId"
+                        ng-options="x.Id as x.Name for x in vm.listaFiltroEntidads | orderBy:'Name'"
+                        no-results-text="No hay ningún resultado para su búsqueda"
+                        placeholder-text-single="Entidades">
+                </select>
+            </div>
+            <div class="col-md-2">
+                <select id="chosenBPIN" chosen
+                        options="vm.listaFiltroCodigoBpin"
+                        ng-model="vm.filtroCodigoBpin"
+                        ng-options="x.Id as x.Name for x in vm.listaFiltroCodigoBpin | orderBy:'Name'"
+                        no-results-text="No hay ningún resultado para su búsqueda"
+                        placeholder-text-single="BPIN">
+                </select>
+            </div>
+            <div class="col-md-3">
+                <select id="chosenProyecto" chosen
+                        options="vm.listaFiltroProyectoNombre"
+                        ng-model="vm.filtroProyectoNombre"
+                        ng-options="x.Id as x.Name for x in vm.listaFiltroProyectoNombre | orderBy:'Name'"
+                        no-results-text="No hay ningún resultado para su búsqueda"
+                        placeholder-text-single="Proyectos">
+                </select>
+            </div>
+            <div class="col-md-2">
+                <select id="chosenEstado" chosen
+                        options="vm.listaFiltroEstados"
+                        ng-model="vm.filtroEstado"
+                        ng-options="x.Id as x.Name for x in vm.listaFiltroEstados | orderBy:'Name'"
+                        no-results-text="No hay ningún resultado para su búsqueda"
+                        placeholder-text-single="Estado">
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <select ng-model="vm.filtroTieneInstancia" class="form-control">
+                    <option value="" selected>Instancia en proceso</option>
+                    <option value="false">No</option>
+                    <option value="true">Si</option>
+                </select>
+            </div>
+
+            <div class="col-md-3 text-left">
+                <button type="button" class="btn btn-filtro" ng-click="vm.buscar()" tooltip-placement="auto" uib-tooltip="Buscar">Buscar</button>
+                <button type="button" class="btn btn-filtro" ng-click="vm.limpiarCamposFiltro()" tooltip-placement="auto" uib-tooltip="Limpiar">Limpiar</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="table-top border-grid grid-icon" ui-grid="vm.grillaProyectos" ui-grid-resize-columns ui-grid-pagination="" style="height:450px;">
+                <div class="text-center intro-help no-result-watermark" ng-show="!vm.filasFiltradas">
+                    <img src="img/image-help.png" alt="Sin resultados" />
+                    <h2>{{ vm.mensajeResultado }}</h2>
+                    <h3 ng-if="vm.listaDeProyectos.length > 0">{{ 'TextoSeleccioneFiltrosMensaje' | language }}</h3>
+                </div>
+            </div>
+            <div class="text-center" ng-show="vm.filasFiltradas">
+                <ul uib-pagination previous-text="Anterior" next-text="Siguiente" items-per-page="vm.numeroPorPagina" total-items="vm.grillaProyectos.totalItems"
+                    ng-model="vm.grillaProyectos.paginationCurrentPage" max-size="vm.maximoPaginas" class="pagination-sm"
+                    boundary-link-numbers="true" rotate="false"></ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" id="btnCancelar" class="btn btn-default" ng-click="vm.cancelar()" uib-tooltip="Cancelar">Cancelar</button>
+    </div>
+</div>

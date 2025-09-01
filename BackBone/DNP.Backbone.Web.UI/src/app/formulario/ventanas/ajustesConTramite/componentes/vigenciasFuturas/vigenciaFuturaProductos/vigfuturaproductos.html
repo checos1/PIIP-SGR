@@ -1,0 +1,680 @@
+﻿<style>
+    .d-inline {
+        display: inline!important
+    }
+</style>
+<section>
+    <div class="container-fluid inbox" ng-init="vm.init();">
+        <div ng-if="vm.tipoValor == null || (vm.tipoValor == 1 && vm.aniobase == null)">
+            <div class="col-md-12 mt-3 mb-3">
+                <span>Para visualizar los datos de este capitulo, es necesario hacer selección del tipo de valores en el capitulo anterior "Solicitud vigencia futura"</span>
+            </div>
+        </div>
+        <div ng-if="vm.tipoValor == 0">
+            <div class="col-md-12 mt-2 mb-2">
+                <div class="row">
+                    <div class="col-md-8 text-left">
+                        <h2 class="text-left ui-seccion-title">
+                            <span id="producto-vigencia-futura-producto-resumen" class="img iconadverdnp hidden" style="margin-left:0px"><img src="Img/u4630.svg"> </span>
+                            Resumen solicitud vigencia futura <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg" ng-click="vm.abrirMensajeInformacion()">
+                        </h2>
+                    </div>
+                </div>
+                <div id="producto-vigencia-futura-resumencorriente-mns" class="hidden color-red panel-heading text-left pl-3">
+                    <div class="d-inline-block"><span id="producto-futura-resumencorriente-errorAVPPFD004-mns"></span></div>
+                </div>
+                <div class="row">
+                    <div class="alert panel-heading">
+                        <div class="tab-container col-md-12" style="width:100%; text-align:left">
+                            <ul class="nav nav-tabs">
+                                <li ng-repeat="fechaVigencia in datosCorrientes.AniosVigencias" ng-show="$index%4 === 0" id="liDgeneraless" ng-class="{active : $index === vm.pagina}" class="nav-item">
+                                    <a href="" class="nav-link" ng-click="vm.cambiarPagina($index)" data-toggle="tab">
+                                        <b>{{fechaVigencia.AnioConstante}}-{{datosCorrientes.AniosVigencias[$index+3].AnioConstante? datosCorrientes.AniosVigencias[$index+3].AnioConstante:(datosCorrientes.AniosVigencias[$index+2].AnioConstante? datosCorrientes.AniosVigencias[$index+2].AnioConstante: (datosCorrientes.AniosVigencias[$index+1].AnioConstante? datosCorrientes.AniosVigencias[$index+1].AnioConstante: fechaVigencia.AnioConstante))}}</b>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <br>
+                        <div class="tab-content">
+                            <div class="tab-pane active cont col-md-12"
+                                 style="padding-left:0 !important;padding-top:20px !important; padding-bottom:0" id="tabCorrientessResumen">
+
+                                <table class="TableDNP">
+                                    <thead>
+                                        <tr>
+                                            <th class="columAcc"></th>
+                                            <th class="textLeftDNP" style="width: 30%;"><b>Objetivo / Producto / Total vigencia futura $</b></th>
+                                            <th class="textRightDNP" style="width: 16%;"><b>{{datosCorrientes.AniosVigencias[vm.pagina].AnioConstante}}</b></th>
+                                            <th ng-if="datosCorrientes.AniosVigencias[vm.pagina + 1]" class="textRightDNP" style="width: 16%;"><b>{{datosCorrientes.AniosVigencias[vm.pagina + 1].AnioConstante}}</b></th>
+                                            <th ng-if="datosCorrientes.AniosVigencias[vm.pagina + 2]" class="textRightDNP" style="width: 16%;"><b>{{datosCorrientes.AniosVigencias[vm.pagina + 2].AnioConstante}}</b></th>
+                                            <th ng-if="datosCorrientes.AniosVigencias[vm.pagina + 3]" class="textRightDNP" style="width: 16%;"><b>{{datosCorrientes.AniosVigencias[vm.pagina + 3].AnioConstante}}</b></th>
+                                            <th class="columAcc"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-if="datosCorrientes.TotalesVigenciaFuturaCorriente == 0">
+                                            <td></td>
+                                            <td COLSPAN="5">
+                                                <span>Los datos de esta tabla se visualizaran cuando se diligencien campos en la siguiente sección "Valor de vigencia futura por producto"</span>
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                        <tr ng-if="datosCorrientes.TotalesVigenciaFuturaCorriente > 0" ng-repeat="objetivo in datosCorrientes.ResumenObjetivos" ng-init="objetivosIndex = $index">
+                                            <td></td>
+                                            <td COLSPAN="5">
+                                                <span style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 500; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px"><b>Objetivo: </b></span>{{objetivo.ObjetivoEspecifico | limitTo: 80}}<span ng-if="objetivo.ObjetivoEspecifico.length > 80">...</span>  <button ng-if="objetivo.ObjetivoEspecifico.length > 80" type="button" style="color: #3366CC;line-height:20px " class="btn btn-link btn-md  buttonhiper" tooltip-placement="top" uib-tooltip="ver más" tabindex="0" ng-click="vm.ObjetivoVerMas(objetivo)" data="{{objetivo}}">
+                                                    VER MÁS
+                                                </button>
+                                                <br />
+                                                <table class="TableDNP" style="border:hidden" ng-repeat="prod in objetivo.Productos" ng-init="productosIndex = $index">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="textLeftDNP" style="width: 30%;">
+                                                                <span style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 500; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 0px"><b>Producto </b> {{objetivosIndex + 1}}.{{$index + 1}}: </span>{{prod.Producto | limitTo: 80}}<span ng-if="prod.Producto.length > 80">...</span>  <button ng-if="prod.Producto.length > 80" type="button" style="color: #3366CC;line-height:20px " class="btn btn-link btn-md  buttonhiper" tooltip-placement="top" uib-tooltip="ver más" tabindex="0" ng-click="vm.ProductoVerMas(prod)" data="{{prod}}">
+                                                                    VER MÁS
+                                                                </button> <span style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 500; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 0px"><b>{{prod.ValorTotalVigenteFuturaProducto | number:2}}</b></span>
+                                                            </td>
+                                                            <td class="textRightDNP" style="width: 16%;"><div class="blockReferenciaDNP">{{prod.Vigencias[vm.pagina].VigenciaFuturaSolicitada | number:2}}</div></td>
+                                                            <td ng-if="prod.Vigencias[vm.pagina + 1]" class="textRightDNP" style="width: 16%;"><div class="blockReferenciaDNP">{{prod.Vigencias[vm.pagina + 1].VigenciaFuturaSolicitada | number:2}}</div></td>
+                                                            <td ng-if="prod.Vigencias[vm.pagina + 2]" class="textRightDNP" style="width: 16%;"><div class="blockReferenciaDNP">{{prod.Vigencias[vm.pagina + 2].VigenciaFuturaSolicitada | number:2}}</div></td>
+                                                            <td ng-if="prod.Vigencias[vm.pagina + 3]" class="textRightDNP" style="width: 16%;"><div class="blockReferenciaDNP">{{prod.Vigencias[vm.pagina + 3].VigenciaFuturaSolicitada | number:2}}</div></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot ng-if="datosCorrientes.TotalesVigenciaFuturaCorriente > 0">
+                                        <tr>
+                                            <td class="columAcc icontotaldnp">
+                                                <div>=</div>
+                                                <div id="producto-vigencia-futura-producto-resumen-{{datosConstantes.Deflactores[vm.pagina].AnioConstante}}" class="hidden img pull-right iconadverdnp">
+                                                    <img class="" src="Img/u4630.svg">
+                                                </div>
+                                            </td>
+                                            <td class="textLeftDNP" style="width: 30%;">
+                                                <b>Total vigencia $</b>
+                                            </td>
+                                            <td class="textRightDNP" style="width: 16%;"><div><b>{{datosCorrientes.AniosVigencias[vm.pagina].ValorTotalVigenteFutura | number:2}}</b></div></td>
+                                            <td ng-if="datosCorrientes.AniosVigencias[vm.pagina + 1]" class="textRightDNP" style="width: 16%;"><div><b>{{datosCorrientes.AniosVigencias[vm.pagina + 1].ValorTotalVigenteFutura | number:2}}</b></div></td>
+                                            <td ng-if="datosCorrientes.AniosVigencias[vm.pagina + 2]" class="textRightDNP" style="width: 16%;"><div><b>{{datosCorrientes.AniosVigencias[vm.pagina + 2].ValorTotalVigenteFutura | number:2}}</b></div></td>
+                                            <td ng-if="datosCorrientes.AniosVigencias[vm.pagina + 3]" class="textRightDNP" style="width: 16%;"><div><b>{{datosCorrientes.AniosVigencias[vm.pagina + 3].ValorTotalVigenteFutura | number:2}}</b></div></td>
+                                            <td class="columAcc"></td>
+                                        </tr>
+
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 mt-1 mb-1">
+                <div class="row">
+                    <div class="col-md-8 text-left">                       
+                        <h2 class="text-left ui-seccion-title">
+                            <span id="producto-vigencia-futura-producto-valor" class="img iconadverdnp hidden" style="margin-left:0px"><img src="Img/u4630.svg"> </span>
+                            Valor vigencia futura por producto <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg" ng-click="vm.abrirMensajeInformacion()">
+                        </h2>
+                    </div>
+                </div>
+                <div ng-repeat="objetivo in datosCorrientes.DetalleObjetivos" ng-init="objetivosIndex = $index">
+                    <div class="row" style="color: #004884">
+                        <div class="" style="padding: 0 !important">
+                            <div class="alert panel-heading" style="height: 50px;">
+                                <div class="card card-body pull-left  divAccordionDNP" style="line-height:22px;">
+                                    <span class="uLabelCampo" style="margin-left: 55px">Objetivo {{$index + 1}}:</span>
+                                    <br />
+                                    <div class=" line-clamp" style="margin-left: 55px; max-height: 18px">
+                                        <p style="color: #4B4B4B;">
+                                            {{objetivo.ObjetivoEspecifico | limitTo: 110 }}<span ng-if="objetivo.ObjetivoEspecifico.length > 110">...</span>  <button ng-if="objetivo.ObjetivoEspecifico.length > 110" type="button" style="color: #3366CC;line-height:20px " class="btn btn-link btn-md  buttonhiper" tooltip-placement="top" uib-tooltip="ver más" tabindex="0" ng-click="vm.ObjetivoVerMas(objetivo)" data="{{objetivo}}">
+                                                VER MÁS
+                                            </button>
+                                        </p>
+                                    </div>
+
+                                    <p style="padding: 0px; margin-bottom: 0px;">
+                                        <button class="btnaccion btnAccordionDNP" type="button" data-toggle="collapse" data-target="#objvfpc{{objetivo.ObjetivoEspecificoid}}" ng-model="home" ng-click="vm.BtnObjetivos(objetivo)" data="{{objetivo}}">
+
+                                            <img ng-show="objetivo.LabelBotonObjetivo == '+'" src="Img/btnMas.svg">
+                                            <img ng-show="objetivo.LabelBotonObjetivo == '-'" src="Img/btnMenos.svg">
+                                        </button>
+                                        <span id="objetivo-vigencia-futura-producto-{{objetivo.ObjetivoEspecificoid}}" class="img iconadverdnp hidden" style="margin-left:0px">   <img src="Img/u4630.svg"> </span>
+                                    </p>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="collapse" id="objvfpc{{objetivo.ObjetivoEspecificoid}}">
+                                <div class="LineaEncabezadodivDNP"></div>
+                                <h3 class="row tituloEncabezadodivDNP">Productos Objetivo {{objetivosIndex + 1}}</h3>
+                                <div ng-repeat="prod in objetivo.Productos" ng-init="productosIndex = $index">
+                                    <div class="alert panel-heading" style="height: 50px;padding-top: 0px">
+                                        <div class="card card-body pull-left bordesencillo" style="border-color: #E6EFFD; text-align: left; width: 100%; padding-top: 10px;padding-bottom: 2px;">
+                                            <span class="uLabelCampo" style="margin-left: 55px">Producto {{objetivosIndex + 1}}.{{$index + 1}}:</span>
+
+                                            <div class=" line-clamp" style="margin-left: 55px;max-height:18px">
+                                                <span style="font-size: 16px; font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 400; color: #4B4B4B; ">
+                                                    {{prod.Producto| limitTo: 110}}<span ng-if="prod.Producto.length > 110">...</span>
+                                                    <button ng-if="prod.Producto.length > 110" type="button" style="color: #3366CC;line-height:17px" class="btn btn-link btn-md  buttonhiper" tooltip-placement="top" uib-tooltip="ver más" tabindex="0" ng-click="vm.ProductoVerMas(prod)" data="{{prod}}">
+                                                        VER MÁS
+                                                    </button>
+                                                </span>
+                                            </div>
+
+                                            <p style="padding: 0px; margin-bottom: 0px; ">
+                                                <button class="btnaccion btnAccordionDNP" type="button" data-toggle="collapse" data-target="#prodvfpc{{prod.ProductoId}}" ng-click="vm.BtnProductos(prod)" data="{{prod}}">
+
+                                                    <img style="width:18px;height:18px" ng-show="prod.LabelBotonProducto == '+'" src="Img/btnMasn2.svg">
+                                                    <img style="width:18px;height:18px" ng-show="prod.LabelBotonProducto == '-'" src="Img/btnMenosn2.svg">
+                                                </button>
+
+                                                <span id="producto-vigencia-futura-producto-{{prod.ProductoId}}" class="img iconadverdnp hidden" style="margin-left:0px">   <img src="Img/u4630.svg"> </span>
+
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <div class="collapse" id="prodvfpc{{prod.ProductoId}}">
+                                        <div class="LineaEncabezado2divDNP"></div>
+                                        <h3 class="row tituloEncabezadodivDNP" style="margin-left: 13%;width: 85.7%;">Detalle de la vigencia futura</h3>
+                                        <div id="producto-vigencia-futura-{{prod.ProductoId}}" class="hidden pl-3 color-red panel-heading text-left">
+                                            <div class="d-inline-block"><span id="producto-futura-{{prod.ProductoId}}-errorAVPPFD001-mns"></span></div>
+                                            <div class="d-inline-block"><span id="producto-futura-{{prod.ProductoId}}-errorAVPPFD002-mns"></span></div>
+                                            <div class="d-inline-block"><span id="producto-futura-{{prod.ProductoId}}-errorAVPPFD003-mns"></span></div>
+                                        </div>
+                                        <div class="alert panel-heading">
+                                            <div class="tab-content">
+                                                <div class="tab-pane active cont col-md-12" style="padding-left:0 !important;padding-top:20px !important" id="tabCorrientessDetalle">
+                                                    <div class="buttonbar pull-right mb-3">
+                                                        <button type="button" class="btneditarDNP" tooltip-placement="top" ng-click="prod.HabilitaEditarProducto ? vm.CancelarCorriente(prod) : vm.habilitaEditar(prod)" uib-tooltip="{{prod.HabilitaEditarProducto ? 'CANCELAR' : 'EDITAR'}}" has-claim has-opciones="['Ajustes:GeneralComponente']">
+                                                            {{prod.HabilitaEditarProducto ? 'CANCELAR' : 'EDITAR'}}
+                                                        </button>
+                                                        <button ng-disabled="!prod.HabilitaEditarProducto" type="button" class="{{prod.HabilitaEditarProducto ? 'btnguardarDNP' : 'btnguardarDisabledDNP'}}" tooltip-placement="top" uib-tooltip="Guardar" tabindex="0" ng-click="vm.GuardarCorriente(prod)" has-claim has-opciones="['Ajustes:GeneralComponente']">
+                                                            GUARDAR
+                                                        </button>
+                                                    </div>
+                                                    <table class="TableDNP">
+                                                        <thead>
+                                                            <tr>
+                                                                <th class="columAcc" style="width: 5%;"></th>
+                                                                <th class="textRightDNP" style="width: 10%;"><span class="uLabelCampo">Vigencia</span></th>
+                                                                <th class="textRightDNP" style="width: 16%;"><span class="uLabelCampo">Solicitado $</span></th>
+                                                                <th class="textRightDNP" style="width: 16%;"><span class="uLabelCampo">Decreto $</span></th>
+                                                                <th class="textRightDNP" style="width: 16%;"><span class="uLabelCampo">Vigente / Solicitado $</span></th>
+                                                                <th class="textRightDNP" style="width: 16%;"><span class="uLabelCampo">Solicitado vigencias<br /> futuras anteriores $</span></th>
+                                                                <th class="textRightDNP" style="width: 16%;"><span class="uLabelCampo">Total vigencia futura solicitada $</span></th>
+                                                                <th class="columAcc" style="width: 5%;"></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr ng-repeat="vig in prod.Vigencias" ng-init="vigenciasindex = $index">
+                                                                <td>
+                                                                    <div id="producto-vigencia-futura-producto-{{prod.ProductoId}}-{{vig.Vigencia}}" class="hidden img pull-right iconadverdnp">
+                                                                        <img class="" src="Img/u4630.svg">
+                                                                    </div>
+                                                                </td>
+                                                                <td class="textRightDNP">
+                                                                    <span>{{vig.Vigencia}}</span>
+                                                                </td>
+                                                                <td class="textRightDNP">
+                                                                    <span>{{vm.ConvertirNumero(vig.ValorSolicitado)}}</span>
+                                                                </td>
+                                                                <td class="textRightDNP">
+                                                                    <span>{{vm.ConvertirNumero(vig.Decreto)}}</span>
+                                                                </td>
+                                                                <td class="textRightDNP">
+                                                                    <div id="vigencia-solicitada-producto-vigencia-futura-producto-{{prod.ProductoId}}-{{vig.Vigencia}}" class="textRightDNP">{{vm.ConvertirNumero(vig.ValorVigenteSolicitado)}}</div>
+                                                                </td>
+                                                                <td class="textRightDNP">
+                                                                    <span>{{vm.ConvertirNumero(vig.VigenteFuturasAnteriores)}}</span>
+                                                                </td>
+                                                                <td class="textRightDNP">
+                                                                    <div id="total-vigencias-producto-vigencia-futura-producto-{{prod.ProductoId}}-{{vig.Vigencia}}" ng-if="!prod.HabilitaEditarProducto">{{vm.ConvertirNumero(vig.TotalVigenciasFuturaSolicitada)}}</div>
+                                                                    <div ng-if="prod.HabilitaEditarProducto && vig.Vigencia < vm.vigenciaActual">{{vm.ConvertirNumero(vig.TotalVigenciasFuturaSolicitada)}}</div>
+                                                                    <input id="input-{{vig.Vigencia}}" type="number" string-to-number min="0.0000"
+                                                                           ng-if="prod.HabilitaEditarProducto && vig.Vigencia >= vm.vigenciaActual"
+                                                                           ng-readonly="vig.Vigencia < vm.vigenciaActual"
+                                                                           ng-keypress="vm.validateFormat($event)"
+                                                                           ng-keyup="vm.validarTamanio($event)"
+                                                                           ng-value="vig.TotalVigenciasFuturaSolicitada"
+                                                                           ng-model="datosCorrientes.DetalleObjetivos[objetivosIndex].Productos[productosIndex].Vigencias[vigenciasindex].TotalVigenciasFuturaSolicitada"
+                                                                           ng-blur="vm.actualizaFila($event, fuente)"
+                                                                           required class="form-control" style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px" />
+
+                                                                </td>
+                                                                <td></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div ng-if="vm.tipoValor == 1 && vm.aniobase != null">
+            
+            <div class="col-md-12 mt-2 mb-2">
+                <div class="row">
+                    <div class="col-md-8 text-left">
+                        <h2 class="text-left ui-seccion-title">
+                            <span id="producto-vigencia-futura-producto-resumen" class="img iconadverdnp hidden" style="margin-left:0px"><img src="Img/u4630.svg"> </span>
+                            Resumen solicitud vigencia futura <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg" ng-click="vm.abrirMensajeInformacion()">
+                        </h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2 text-left" style="width:10%">
+                        <h4 class="text-left ui-seccion-title">Año Base</h4>
+                    </div>
+                    <div class="col-md-2 blockReferenciaDNP">
+                        <h4 class="text-left ui-seccion-title"><span style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 500; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px">{{vm.aniobase}}</span></h4>
+                    </div>
+                </div>
+                <div id="producto-vigencia-futura-resumen-mns" class="hidden color-red panel-heading text-left pl-3">
+                    <div class="d-inline-block"><span id="producto-futura-resumen-errorAVPPFD004-mns"></span></div>
+                </div>
+                <div class="row">
+                    <div class="alert panel-heading">
+                        <div class="tab-container col-md-12" style="width:100%; text-align:left">
+                            <ul class="nav nav-tabs">
+                                <li ng-repeat="fechaVigencia in datosConstantes.Deflactores" ng-show="$index%4 === 0" id="liDgenerales" ng-class="{active : $index === vm.pagina}" class="nav-item">
+                                    <a href="" class="nav-link" ng-click="vm.cambiarPagina($index)" data-toggle="tab">
+                                        <b>{{fechaVigencia.AnioConstante}}-{{datosConstantes.Deflactores[$index+3].AnioConstante? datosConstantes.Deflactores[$index+3].AnioConstante:(datosConstantes.Deflactores[$index+2].AnioConstante? datosConstantes.Deflactores[$index+2].AnioConstante: (datosConstantes.Deflactores[$index+1].AnioConstante? datosConstantes.Deflactores[$index+1].AnioConstante: fechaVigencia.AnioConstante))}}</b>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <br>
+                        <div class="tab-container col-md-12" style="width: 100%; text-align: left">
+                            <ul class="nav nav-tabs">
+                                <li id="liConstantes" class="nav-item" ng-class="{active : 1===1}">
+                                    <a href="" class="nav-link" data-target="#tabConstantesResumen" data-toggle="tab">
+                                        <b>
+                                            <span id="producto-vigencia-futura-producto-constante-resumen" class="img iconadverdnp hidden" style="margin-left:0px">   <img src="Img/u4630.svg"> </span>
+                                            Valores Constantes
+                                        </b>
+                                    </a>
+                                </li>
+                                <li id="liCorrientes" class="nav-item">
+                                    <a href="" class="nav-link" data-target="#tabCorrientesResumen" data-toggle="tab">
+                                        <span id="producto-vigencia-futura-producto-corriente-resumen" class="img iconadverdnp hidden" style="margin-left:0px">   <img src="Img/u4630.svg"> </span>
+                                        <b>Valores Corrientes</b>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="tab-content">
+                            <div class="tab-pane active cont col-md-12"
+                                 style="padding-left:0 !important;padding-top:20px !important; padding-bottom:0" id="tabConstantesResumen">
+
+                                <table class="TableDNP">
+                                    <thead>
+                                        <tr>
+                                            <th class="columAcc"></th>
+                                            <th class="textLeftDNP" style="width: 30%;"><b>Objetivo / Producto / Total vigencia futura $</b></th>
+                                            <th class="textRightDNP" style="width: 16%;"><b>{{datosConstantes.Deflactores[vm.pagina].AnioConstante}}</b><br> Deflactor: {{vm.ConvertirNumeroCuatro(datosConstantes.Deflactores[vm.pagina].Deflactor)}}</th>
+                                            <th ng-if="datosConstantes.Deflactores[vm.pagina + 1]" class="textRightDNP" style="width: 16%;"><b>{{datosConstantes.Deflactores[vm.pagina + 1].AnioConstante}}</b><br> Deflactor: {{vm.ConvertirNumeroCuatro(datosConstantes.Deflactores[vm.pagina + 1].Deflactor)}}</th>
+                                            <th ng-if="datosConstantes.Deflactores[vm.pagina + 2]" class="textRightDNP" style="width: 16%;"><b>{{datosConstantes.Deflactores[vm.pagina + 2].AnioConstante}}</b><br> Deflactor: {{vm.ConvertirNumeroCuatro(datosConstantes.Deflactores[vm.pagina + 2].Deflactor)}}</th>
+                                            <th ng-if="datosConstantes.Deflactores[vm.pagina + 3]" class="textRightDNP" style="width: 16%;"><b>{{datosConstantes.Deflactores[vm.pagina + 3].AnioConstante}}</b><br> Deflactor: {{vm.ConvertirNumeroCuatro(datosConstantes.Deflactores[vm.pagina + 3].Deflactor)}}</th>
+                                            <th class="columAcc"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-if="datosConstantes.TotalesVigenciaFuturaConstante == 0 || datosConstantes.TotalesVigenciaFuturaConstante == null">
+                                            <td></td>
+                                            <td COLSPAN="5">
+                                                <span>Los datos de esta tabla se visualizaran cuando se diligencien campos en la siguiente sección "Valor de vigencia futura por producto"</span>
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                        <tr ng-if="datosConstantes.TotalesVigenciaFuturaConstante > 0" ng-repeat="objetivo in datosConstantes.ResumenObjetivos" ng-init="objetivosIndex = $index">
+                                            <td></td>
+                                            <td COLSPAN="5">
+                                                <span style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 500; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px"><b>Objetivo: </b></span>{{objetivo.ObjetivoEspecifico | limitTo: 80}}<span ng-if="objetivo.ObjetivoEspecifico.length > 80">...</span>  <button ng-if="objetivo.ObjetivoEspecifico.length > 80" type="button" style="color: #3366CC;line-height:20px " class="btn btn-link btn-md  buttonhiper" tooltip-placement="top" uib-tooltip="ver más" tabindex="0" ng-click="vm.ObjetivoVerMas(objetivo)" data="{{objetivo}}">
+                                                    VER MÁS
+                                                </button>
+                                                <br />
+                                                <table class="TableDNP" style="border:hidden" ng-repeat="prod in objetivo.Productos" ng-init="productosIndex = $index">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="textLeftDNP" style="width: 30%;">
+                                                                <span style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 500; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 0px"><b>Producto </b>{{objetivosIndex + 1}}.{{$index + 1}}: </span>{{prod.Producto | limitTo: 80}}<span ng-if="prod.Producto.length > 80">...</span>  <button ng-if="prod.Producto.length > 80" type="button" style="color: #3366CC;line-height:20px " class="btn btn-link btn-md  buttonhiper" tooltip-placement="top" uib-tooltip="ver más" tabindex="0" ng-click="vm.ProductoVerMas(prod)" data="{{prod}}">
+                                                                    VER MÁS
+                                                                </button> <span style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 500; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 0px"><b>{{prod.ValorTotalVigenteFuturaProducto | number:2}}</b></span>
+                                                            </td>
+                                                            <td class="textRightDNP" style="width: 16%;"><div class="blockReferenciaDNP">{{prod.Vigencias[vm.pagina].VigenciaFuturaSolicitada | number:2}}</div></td>
+                                                            <td ng-if="prod.Vigencias[vm.pagina + 1]" class="textRightDNP" style="width: 16%;"><div class="blockReferenciaDNP">{{prod.Vigencias[vm.pagina + 1].VigenciaFuturaSolicitada | number:2}}</div></td>
+                                                            <td ng-if="prod.Vigencias[vm.pagina + 2]" class="textRightDNP" style="width: 16%;"><div class="blockReferenciaDNP">{{prod.Vigencias[vm.pagina + 2].VigenciaFuturaSolicitada | number:2}}</div></td>
+                                                            <td ng-if="prod.Vigencias[vm.pagina + 3]" class="textRightDNP" style="width: 16%;"><div class="blockReferenciaDNP">{{prod.Vigencias[vm.pagina + 3].VigenciaFuturaSolicitada | number:2}}</div></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot ng-if="datosConstantes.TotalesVigenciaFuturaConstante > 0">
+                                        <tr>
+                                            <td class="columAcc icontotaldnp">
+                                                <span>=</span>
+                                                <span id="producto-vigencia-futura-producto-resumen" class="hidden img pull-right iconadverdnp">
+                                                    <img class="" src="Img/u4630.svg">
+                                                </span>
+                                            </td>
+                                            <td class="textLeftDNP">
+                                                <b>Total vigencia $</b>
+                                            </td>
+                                            <td class="textRightDNP" style="width: 180px;"><div id="resumen-producto-vigencia-futura-{{datosConstantes.Deflactores[vm.pagina].AnioConstante}}"><b>{{datosConstantes.Deflactores[vm.pagina].ValorTotalVigenteFutura | number:2}}</b></div></td>
+                                            <td ng-if="datosConstantes.Deflactores[vm.pagina + 1]" class="textRightDNP" style="width: 180px;">
+                                                <div id="resumen-producto-vigencia-futura-{{datosConstantes.Deflactores[vm.pagina + 1].AnioConstante}}">
+                                                    <b>{{datosConstantes.Deflactores[vm.pagina + 1].ValorTotalVigenteFutura | number:2}}</b>
+                                                </div>
+                                            </td>
+                                            <td ng-if="datosConstantes.Deflactores[vm.pagina + 2]" class="textRightDNP" style="width: 180px;">
+                                                <div id="resumen-producto-vigencia-futura-{{datosConstantes.Deflactores[vm.pagina + 2].AnioConstante}}">
+                                                    <b>{{datosConstantes.Deflactores[vm.pagina + 2].ValorTotalVigenteFutura | number:2}}</b>
+                                                </div>
+                                            </td>
+                                            <td ng-if="datosConstantes.Deflactores[vm.pagina + 3]" class="textRightDNP" style="width: 180px;">
+                                                <div id="resumen-producto-vigencia-futura-{{datosConstantes.Deflactores[vm.pagina + 3].AnioConstante}}">
+                                                    <b>{{datosConstantes.Deflactores[vm.pagina + 3].ValorTotalVigenteFutura | number:2}}</b>
+                                                </div>
+                                            </td>
+                                            <td></td>
+                                        </tr>
+
+                                    </tfoot>
+                                </table>
+                            </div>
+
+                            <div class="tab-pane cont col-md-12"
+                                 style="padding-left: 0 !important; padding-top: 20px !important; padding-bottom: 0" id="tabCorrientesResumen">
+
+                                <table class="TableDNP">
+                                    <thead>
+                                        <tr>
+                                            <th class="columAcc"></th>
+                                            <th class="textLeftDNP" style="width: 30%;"><b>Objetivo / Producto / Total vigencia futura $</b></th>
+                                            <th class="textRightDNP" style="width: 16%;"><b>{{datosConstantes.Deflactores[vm.pagina].AnioConstante}}</b><br> Deflactor: {{vm.ConvertirNumeroCuatro(datosConstantes.Deflactores[vm.pagina].Deflactor)}}</th>
+                                            <th ng-if="datosConstantes.Deflactores[vm.pagina + 1]" class="textRightDNP" style="width: 16%; "><b>{{datosConstantes.Deflactores[vm.pagina + 1].AnioConstante}}</b><br> Deflactor: {{vm.ConvertirNumeroCuatro(datosConstantes.Deflactores[vm.pagina + 1].Deflactor)}}</th>
+                                            <th ng-if="datosConstantes.Deflactores[vm.pagina + 2]" class="textRightDNP" style="width: 16%;"><b>{{datosConstantes.Deflactores[vm.pagina + 2].AnioConstante}}</b><br> Deflactor: {{vm.ConvertirNumeroCuatro(datosConstantes.Deflactores[vm.pagina + 2].Deflactor)}}</th>
+                                            <th ng-if="datosConstantes.Deflactores[vm.pagina + 3]" class="textRightDNP" style="width: 16%;"><b>{{datosConstantes.Deflactores[vm.pagina + 3].AnioConstante}}</b><br> Deflactor: {{vm.ConvertirNumeroCuatro(datosConstantes.Deflactores[vm.pagina + 3].Deflactor)}}</th>
+                                            <th class="columAcc"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-if="datosConstantes.TotalesVigenciaFuturaConstante == 0">
+                                            <td></td>
+                                            <td COLSPAN="5">
+                                                <span>Los datos de esta tabla se visualizaran cuando se diligencien campos en la siguiente sección "Valor de vigencia futura por producto"</span>
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                        <tr ng-if="datosConstantes.TotalesVigenciaFuturaConstante > 0" ng-repeat="objetivo in datosConstantes.ResumenObjetivos" ng-init="objetivosIndex = $index">
+                                            <td></td>
+                                            <td COLSPAN="5">
+                                                <span style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 500; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 5px"><b>Objetivo: </b></span>{{objetivo.ObjetivoEspecifico | limitTo: 80}}<span ng-if="objetivo.ObjetivoEspecifico.length > 80">...</span>  <button ng-if="objetivo.ObjetivoEspecifico.length > 80" type="button" style="color: #3366CC;line-height:20px " class="btn btn-link btn-md  buttonhiper" tooltip-placement="top" uib-tooltip="ver más" tabindex="0" ng-click="vm.ObjetivoVerMas(objetivo)" data="{{objetivo}}">
+                                                    VER MÁS
+                                                </button>
+                                                <br />
+                                                <table class="TableDNP" style="border:hidden" ng-repeat="prod in objetivo.Productos" ng-init="productosIndex = $index">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="textLeftDNP" style="width: 30%;">
+                                                                <span style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 500; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 0px"><b>Producto </b>{{prod.ProductoId}}: </span>{{prod.Producto | limitTo: 80}}<span ng-if="prod.Producto.length > 80">...</span>  <button ng-if="prod.Producto.length > 80" type="button" style="color: #3366CC;line-height:20px " class="btn btn-link btn-md  buttonhiper" tooltip-placement="top" uib-tooltip="ver más" tabindex="0" ng-click="vm.ProductoVerMas(prod)" data="{{prod}}">
+                                                                    VER MÁS
+                                                                </button> <span style="font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 500; font-style: normal; font-size: 16px; color: #004884; text-align: right; padding: 0px 5px 0px 5px; margin-left: 0px"><b>{{prod.ValorTotalVigenteFuturaProductoCorriente | number:2}}</b></span>
+                                                            </td>
+                                                            <td class="textRightDNP" style="width: 16%;"><div class="blockReferenciaDNP">{{(prod.Vigencias[vm.pagina].VigenciaFuturaSolicitada * prod.Vigencias[vm.pagina].Deflactor) | number:2}}</div></td>
+                                                            <td ng-if="prod.Vigencias[vm.pagina + 1]" class="textRightDNP" style="width: 16%;"><div class="blockReferenciaDNP">{{(prod.Vigencias[vm.pagina + 1].VigenciaFuturaSolicitada * prod.Vigencias[vm.pagina + 1].Deflactor) | number:2}}</div></td>
+                                                            <td ng-if="prod.Vigencias[vm.pagina + 2]" class="textRightDNP" style="width: 16%;"><div class="blockReferenciaDNP">{{(prod.Vigencias[vm.pagina + 2].VigenciaFuturaSolicitada * prod.Vigencias[vm.pagina + 2].Deflactor) | number:2}}</div></td>
+                                                            <td ng-if="prod.Vigencias[vm.pagina + 3]" class="textRightDNP" style="width: 16%;"><div class="blockReferenciaDNP">{{(prod.Vigencias[vm.pagina + 3].VigenciaFuturaSolicitada * prod.Vigencias[vm.pagina + 3].Deflactor) | number:2}}</div></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot ng-if="datosConstantes.TotalesVigenciaFuturaConstante > 0">
+                                        <tr>
+                                            <td class="columAcc icontotaldnp"><span>=</span></td>
+                                            <td class="textLeftDNP" style="width: 30%;">
+                                                <b>Total vigencia $</b>
+                                            </td>
+                                            <td class="textRightDNP" style="width: 16%;"><div><b>{{datosConstantes.Deflactores[vm.pagina].ValorTotalVigenteFuturaCorriente | number:2}}</b></div></td>
+                                            <td ng-if="datosConstantes.Deflactores[vm.pagina + 1]" class="textRightDNP" style="width: 16%;"><div><b>{{datosConstantes.Deflactores[vm.pagina + 1].ValorTotalVigenteFuturaCorriente | number:2}}</b></div></td>
+                                            <td ng-if="datosConstantes.Deflactores[vm.pagina + 2]" class="textRightDNP" style="width: 16%;"><div><b>{{datosConstantes.Deflactores[vm.pagina + 2].ValorTotalVigenteFuturaCorriente | number:2}}</b></div></td>
+                                            <td ng-if="datosConstantes.Deflactores[vm.pagina + 3]" class="textRightDNP" style="width: 16%;"><div><b>{{datosConstantes.Deflactores[vm.pagina + 3].ValorTotalVigenteFuturaCorriente | number:2}}</b></div></td>
+                                            <td></td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 mt-1 mb-1">
+                <div class="row">
+                    <div class="col-md-8 text-left">
+                        <h2 class="text-left ui-seccion-title">
+                            <span id="producto-vigencia-futura-producto-valor" class="img iconadverdnp hidden" style="margin-left:0px"><img src="Img/u4630.svg"> </span>
+                            Valor vigencia futura por producto <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg" ng-click="vm.abrirMensajeInformacion()">
+                        </h2>
+                    </div>
+                </div>
+                <div ng-repeat="objetivo in datosConstantes.DetalleObjetivos" ng-init="objetivosIndex = $index">
+                    <div class="row" style="color: #004884">
+                        <div class="" style="padding: 0 !important">
+                            <div class="alert panel-heading" style="height: 50px;">
+                                <div class="card card-body pull-left  divAccordionDNP" style="line-height:22px;">
+                                    <span class="uLabelCampo" style="margin-left: 55px">Objetivo {{$index + 1}}:</span>
+                                    <br />
+                                    <div class=" line-clamp" style="margin-left: 55px; max-height: 18px">
+                                        <p style="color: #4B4B4B;">
+                                            {{objetivo.ObjetivoEspecifico | limitTo: 110 }}<span ng-if="objetivo.ObjetivoEspecifico.length > 110">...</span>  <button ng-if="objetivo.ObjetivoEspecifico.length > 110" type="button" style="color: #3366CC;line-height:20px " class="btn btn-link btn-md  buttonhiper" tooltip-placement="top" uib-tooltip="ver más" tabindex="0" ng-click="vm.ObjetivoVerMas(objetivo)" data="{{objetivo}}">
+                                                VER MÁS
+                                            </button>
+                                        </p>
+                                    </div>
+
+                                    <p style="padding: 0px; margin-bottom: 0px;">
+                                        <button class="btnaccion btnAccordionDNP" type="button" data-toggle="collapse" data-target="#objvfp{{objetivo.ObjetivoEspecificoid}}" ng-model="home" ng-click="vm.BtnObjetivos(objetivo)" data="{{objetivo}}">
+
+                                            <img ng-show="objetivo.LabelBotonObjetivo == '+'" src="Img/btnMas.svg">
+                                            <img ng-show="objetivo.LabelBotonObjetivo == '-'" src="Img/btnMenos.svg">
+                                        </button>
+
+                                        <span id="objetivo-vigencia-futura-producto-{{objetivo.ObjetivoEspecificoid}}" class="img iconadverdnp hidden" style="margin-left:0px">   <img src="Img/u4630.svg"> </span>
+
+                                    </p>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="collapse" id="objvfp{{objetivo.ObjetivoEspecificoid}}">
+                                <div class="LineaEncabezadodivDNP"></div>
+                                <h3 class="row tituloEncabezadodivDNP">Productos Objetivo {{objetivosIndex + 1}}</h3>
+                                <div ng-repeat="prod in objetivo.Productos" ng-init="productosIndex = $index">
+                                    <div class="alert panel-heading" style="height: 50px;padding-top: 0px">
+                                        <div class="card card-body pull-left bordesencillo" style="border-color: #E6EFFD; text-align: left; width: 100%; padding-top: 10px;padding-bottom: 2px;">
+                                            <span class="uLabelCampo" style="margin-left: 55px">Producto {{objetivosIndex + 1}}.{{$index + 1}}:</span>
+
+                                            <div class=" line-clamp" style="margin-left: 55px;max-height:18px">
+                                                <span style="font-size: 16px; font-family: 'Work Sans Roman', 'Work Sans Regular Roman', 'Work Sans'; font-weight: 400; color: #4B4B4B; ">
+                                                    {{prod.Producto| limitTo: 110}}<span ng-if="prod.Producto.length > 110">...</span>
+                                                    <button ng-if="prod.Producto.length > 110" type="button" style="color: #3366CC;line-height:17px" class="btn btn-link btn-md  buttonhiper" tooltip-placement="top" uib-tooltip="ver más" tabindex="0" ng-click="vm.ProductoVerMas(prod)" data="{{prod}}">
+                                                        VER MÁS
+                                                    </button>
+                                                </span>
+                                            </div>
+
+                                            <p style="padding: 0px; margin-bottom: 0px; ">
+                                                <button class="btnaccion btnAccordionDNP" type="button" data-toggle="collapse" data-target="#prodvfp{{prod.ProductoId}}" ng-click="vm.BtnProductos(prod)" data="{{prod}}">
+
+                                                    <img style="width:18px;height:18px" ng-show="prod.LabelBotonProducto == '+'" src="Img/btnMasn2.svg">
+                                                    <img style="width:18px;height:18px" ng-show="prod.LabelBotonProducto == '-'" src="Img/btnMenosn2.svg">
+                                                </button>
+
+                                                <span id="producto-vigencia-futura-producto-{{prod.ProductoId}}" class="img iconadverdnp hidden" style="margin-left:0px">   <img src="Img/u4630.svg"> </span>
+
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <div class="collapse" id="prodvfp{{prod.ProductoId}}">
+                                        <div class="LineaEncabezado2divDNP"></div>
+                                        <h3 class="row tituloEncabezadodivDNP" style="margin-left: 13%;width: 85.7%;">Detalle de la vigencia futura</h3>
+                                        <div class="row mx-0">
+                                            <label class="col-md-6 pull-left" style="text-align: left; font-family: 'Work Sans Medium Roman', 'Work Sans Regular Roman', 'Work Sans'; color: #4B4B4B; font-style: normal; font-size: 14px;">
+                                                Al diligenciar los valores constantes, la converción a valores corrientes se puede visualizar en la pestaña de valores corrientes.
+                                            </label>
+                                        </div>
+                                        <div id="producto-vigencia-futura-{{prod.ProductoId}}" class="hidden color-red panel-heading text-left pl-3">
+                                            <div class="d-inline-block"><span id="producto-futura-{{prod.ProductoId}}-errorAVPPFD001-mns"></span></div>
+                                            <div class="d-inline-block"><span id="producto-futura-{{prod.ProductoId}}-errorAVPPFD002-mns"></span></div>
+                                            <div class="d-inline-block"><span id="producto-futura-{{prod.ProductoId}}-errorAVPPFD003-mns"></span></div>
+                                        </div>
+                                        <div class="alert panel-heading">
+                                            <div class="tab-container col-md-12" style="width: 100%; text-align: left">
+                                                <ul class="nav nav-tabs">
+                                                    <li id="liConstantes" class="nav-item" ng-class="{active : 1===1}">
+                                                        <a href="" class="nav-link" data-target="#tabConstantesDetalle-{{prod.ProductoId}}" data-toggle="tab">
+                                                            <b>
+                                                                <span id="producto-vigencia-futura-producto-constante-{{prod.ProductoId}}" class="img iconadverdnp hidden" style="margin-left:0px">   <img src="Img/u4630.svg"> </span>
+                                                                Valores Constantes
+                                                            </b>
+                                                        </a>
+                                                    </li>
+                                                    <li id="liCorrientes" class="nav-item">
+                                                        <a href="" class="nav-link" data-target="#tabCorrientesDetalle-{{prod.ProductoId}}" data-toggle="tab">
+                                                            <b>Valores Corrientes</b>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <br />
+                                            <div class="tab-content">
+                                                <div class="tab-pane active cont col-md-12"
+                                                     style="padding-left:0 !important;padding-top:20px !important" id="tabConstantesDetalle-{{prod.ProductoId}}">
+                                                    <span class="buttonbar pull-right mb-3">
+                                                        <button type="button" class="btneditarDNP" tooltip-placement="top" ng-click="prod.HabilitaEditarProducto ? vm.Cancelar(prod) : vm.habilitaEditar(prod)" uib-tooltip="{{prod.HabilitaEditarProducto ? 'CANCELAR' : 'EDITAR'}}" has-claim has-opciones="['Ajustes:GeneralComponente']">
+                                                            {{prod.HabilitaEditarProducto ? 'CANCELAR' : 'EDITAR'}}
+                                                        </button>
+                                                        <button ng-disabled="!prod.HabilitaEditarProducto" type="button" class="{{prod.HabilitaEditarProducto ? 'btnguardarDNP' : 'btnguardarDisabledDNP'}}" tooltip-placement="top" uib-tooltip="Guardar" tabindex="0" ng-click="vm.Guardar(prod)" has-claim has-opciones="['Ajustes:GeneralComponente']">
+                                                            GUARDAR
+                                                        </button>
+                                                    </span>
+                                                    <br />
+                                                    <br />
+                                                    <table class="TableDNP">
+                                                        <thead>
+                                                            <tr>
+                                                                <th class="columAcc" style="width: 5%;"></th>
+                                                                <th class="textRightDNP" style="width: 15%;"><span class="uLabelCampo">Vigencia</span></th>
+                                                                <th class="textRightDNP" style="width: 15%;"><span class="uLabelCampo">Deflactor</span></th>
+                                                                <th class="textRightDNP" style="width: 20%;"><span class="uLabelCampo">Vigente / Solicitado $</span></th>
+                                                                <th class="textRightDNP" style="width: 20%;"><span class="uLabelCampo">Solicitado vigencias<br /> futuras anteriores $</span></th>
+                                                                <th class="textRightDNP" style="width: 20%;"><span class="uLabelCampo">Total vigencia futura solicitada $</span></th>
+                                                                <th class="columAcc" style="width: 5%;"></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr ng-repeat="vig in prod.Vigencias" ng-init="vigenciasindex = $index">
+                                                                <td>
+                                                                    <div id="producto-vigencia-futura-producto-{{prod.ProductoId}}-{{vig.Vigencia}}" class="hidden img pull-right iconadverdnp">
+                                                                        <img class="" src="Img/u4630.svg">
+                                                                    </div>
+                                                                </td>
+                                                                <td class="textRightDNP">
+                                                                    <span>{{vig.Vigencia}}</span>
+                                                                </td>
+                                                                <td class="textRightDNP">
+                                                                    <span>{{vm.ConvertirNumeroCuatro(vig.Deflactor)}}</span>
+                                                                </td>
+                                                                <td class="textRightDNP">
+                                                                    <div id="vigencia-solicitada-producto-vigencia-futura-producto-{{prod.ProductoId}}-{{vig.Vigencia}}">{{vm.ConvertirNumero(vig.ValorVigenteSolicitado)}}</div>
+                                                                </td>
+                                                                <td class="textRightDNP">
+                                                                    <span>{{vm.ConvertirNumero(vig.VigenteFuturasAnteriores)}}</span>
+                                                                </td>
+                                                                <td class="textRightDNP">
+                                                                    <div id="total-vigencias-producto-vigencia-futura-producto-{{prod.ProductoId}}-{{vig.Vigencia}}" ng-if="!prod.HabilitaEditarProducto">{{vm.ConvertirNumero(vig.TotalVigenciasFuturaSolicitada)}}</div>
+                                                                    <div ng-if="prod.HabilitaEditarProducto && vig.Vigencia < vm.vigenciaActual">{{vm.ConvertirNumero(vig.TotalVigenciasFuturaSolicitada)}}</div>
+                                                                    <input id="input-{{vig.Vigencia}}" type="number" string-to-number min="0.0000"
+                                                                           ng-if="prod.HabilitaEditarProducto && vig.Vigencia >= vm.vigenciaActual"
+                                                                           ng-readonly="vig.Vigencia < vm.vigenciaActual"
+                                                                           ng-keypress="vm.validateFormat($event)"
+                                                                           ng-keyup="vm.validarTamanio($event)"
+                                                                           ng-value="vig.TotalVigenciasFuturaSolicitada"
+                                                                           ng-model="datosConstantes.DetalleObjetivos[objetivosIndex].Productos[productosIndex].Vigencias[vigenciasindex].TotalVigenciasFuturaSolicitada"
+                                                                           ng-blur="vm.actualizaFila($event, fuente)"
+                                                                           required class="form-control" style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px" />
+
+                                                                </td>
+                                                                <td></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+                                                <div class="tab-pane cont col-md-12"
+                                                     style="padding-left:0 !important;padding-top:20px !important" id="tabCorrientesDetalle-{{prod.ProductoId}}">
+                                                    <table class="TableDNP">
+                                                        <thead>
+                                                            <tr>
+                                                                <th class="columAcc" style="width: 5%;"></th>
+                                                                <th class="textRightDNP" style="width: 15%;"><span class="uLabelCampo">Vigencia</span></th>
+                                                                <th class="textRightDNP" style="width: 15%;"><span class="uLabelCampo">Solicitado $</span></th>
+                                                                <th class="textRightDNP" style="width: 15%;"><span class="uLabelCampo">Decreto $</span></th>
+                                                                <th class="textRightDNP" style="width: 20%;"><span class="uLabelCampo">Vigente / Solicitado $</span></th>
+                                                                <th class="textRightDNP" style="width: 20%;"><span class="uLabelCampo">Total vigencia futura solicitada $</span></th>
+                                                                <th class="columAcc" style="width: 5%;"></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr ng-repeat="vig in prod.Vigencias" ng-init="vigenciasindex = $index">
+                                                                <td></td>
+                                                                <td class="textRightDNP">
+                                                                    <span>{{vig.Vigencia}}</span>
+                                                                </td>
+                                                                <td class="textRightDNP">
+                                                                    <span>{{vm.ConvertirNumero(vig.ValorSolicitado)}}</span>
+                                                                </td>
+                                                                <td class="textRightDNP">
+                                                                    <span>{{vm.ConvertirNumero(vig.Decreto)}}</span>
+                                                                </td>
+                                                                <td class="textRightDNP">
+                                                                    <span>{{vm.ConvertirNumero(vig.ValorVigenteSolicitado)}}</span>
+                                                                </td>
+                                                                <td class="textRightDNP">
+                                                                    <span>{{(vig.TotalVigenciasFuturaSolicitada * vig.Deflactor) | number:2}}</span>
+                                                                </td>
+                                                                <td></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<link href="/Content/ui-gridDNP.css" rel="stylesheet" />
+

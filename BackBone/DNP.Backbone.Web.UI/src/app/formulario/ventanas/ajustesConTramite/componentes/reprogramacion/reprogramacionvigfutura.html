@@ -1,0 +1,72 @@
+﻿<section>
+    <div class="container-fluid inbox" ng-init="vm.init();">
+        <div class="tab-content">
+            <div class="ui-accordion-container " id="accordion-reprogramacionvfreprogramacionporvigencia">
+                <div class="alert panel-heading row ui-accordion-header" style="">
+                    <button class="button" type="button" data-toggle="collapse" data-target="#reprogramacionvfreprogramacionporvigencia" ng-click="vm.changeArrow('reprogramacionvfreprogramacionporvigencia')">
+                        <span class="d-inline-block" id="alert-reprogramacionvfreprogramacionporvigencia"></span>
+                        <span id="name-capitulo-reprogramacionvfreprogramacionporvigencia"></span>
+                        <span class="hidden" id="id-capitulo-reprogramacionvfreprogramacionporvigencia"></span>
+                        <span id="arrow-reprogramacionvfreprogramacionporvigencia" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#reprogramacionvfreprogramacionporvigencia"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="reprogramacionvfreprogramacionporvigencia" style="padding-right: 15px; padding-left: 0px; margin-left: -15px;">
+                    <div class="row" style="margin-left:20px" ng-if="!vm.mostrar">
+                        <tabla-resumen-por-vigencia-formulario mostrar="{{'contractual'}}"
+                                                               vigenciaadicionada="vm.vigenciaAdicionada"
+                                                               habilitaconpes="{{vm.habilitaconpes}}"
+                                                               guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                                               notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                               notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)">
+                        </tabla-resumen-por-vigencia-formulario>
+                    </div>
+                </div>
+            </div>
+            <div class="ui-accordion-container " id="accordion-reprogramacionvfreprogramacionporproducto">
+                <div class="alert panel-heading row ui-accordion-header" style="">
+                    <button class="button" type="button" data-toggle="collapse" data-target="#reprogramacionvfreprogramacionporproducto" ng-click="vm.changeArrow('reprogramacionvfreprogramacionporproducto')">
+                        <span class="d-inline-block" id="alert-reprogramacionvfreprogramacionporproducto"></span>
+                        <span id="name-capitulo-reprogramacionvfreprogramacionporproducto"></span>
+                        <span class="hidden" id="id-capitulo-reprogramacionvfreprogramacionporproducto"></span>
+                        <span id="arrow-reprogramacionvfreprogramacionporproducto" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#reprogramacionvfreprogramacionporproducto"></span>
+                    </button>
+                </div>
+
+                <div class="collapse" id="reprogramacionvfreprogramacionporproducto" style="padding-right: 15px; padding-left: 0px; margin-left: -15px;">
+                    <div class="row" style="margin-left:20px" ng-if="!vm.mostrar">
+                        <reprogramacionproductovigfutura mostrar="{{'contractual'}}"
+                                                         vigenciaadicionada="vm.vigenciaAdicionada"
+                                                         guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                                         notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                         notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente,handlerCapitulos)">
+                        </reprogramacionproductovigfutura>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="ui-accordion-container " id="accordion-reprogramacionvfcronograma">
+                <div class="alert panel-heading row ui-accordion-header" style="">
+                    <button class="button" type="button" data-toggle="collapse" data-target="#reprogramacionvfcronograma" ng-click="vm.changeArrow('reprogramacionvfcronograma')">
+                        <span class="d-inline-block" id="alert-reprogramacionvfcronograma"></span>
+                        <span id="name-capitulo-reprogramacionvfcronograma"></span>
+                        <span class="hidden" id="id-capitulo-reprogramacionvfcronograma"></span>
+                        <span id="arrow-reprogramacionvfcronograma" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#reprogramacionvfcronograma"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="reprogramacionvfcronograma" style="padding-right: 15px; padding-left: 0px; margin-left: -15px;">
+                    <div class="row" style="margin-left:20px">
+                        <cronograma-modificar-formulario guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                                         notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                         notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)">
+
+                        </cronograma-modificar-formulario>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</section>

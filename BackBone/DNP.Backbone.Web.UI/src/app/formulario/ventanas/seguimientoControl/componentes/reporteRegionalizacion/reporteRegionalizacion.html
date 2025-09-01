@@ -1,0 +1,70 @@
+﻿<section>
+    <div class="container-fluid inbox" ng-init="vm.init();">
+        <div class="tab-content">
+            <div class="ui-accordion-container hidden" id="accordion-regionalizacionavanceregionaliza">
+                <div class="alert panel-heading row ui-accordion-header">
+                    <button type="button" data-toggle="collapse" data-target="#regionalizacionavanceregionaliza" ng-click="vm.changeArrow('regionalizacionavanceregionaliza')">
+                        <span class="d-inline-block" id="alert-regionalizacionavanceregionaliza"></span>
+                        <span id="name-capitulo-regionalizacionavanceregionaliza"></span>
+                        <span class="hidden" id="id-capitulo-regionalizacionavanceregionaliza"></span>
+                        <span id="arrow-regionalizacionavanceregionaliza" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#regionalizacionavanceregionaliza"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="regionalizacionavanceregionaliza">
+                    <div class="row m-0 mb-3">
+                        <reporte-avance-regionalizacion bpin="{{vm.globalVariables.bpin}}"
+                                                        guardadoevent="vm.guardadoevent(nombreComponenteHijo)"
+                                                        notificacioncambios="vm.notificacionCambiosCapitulosExternos(handler,nombreComponente)"
+                                                        notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                        notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"
+                                                        refreshregionalizacion="vm.refreshregionalizacion">
+                        </reporte-avance-regionalizacion>
+                    </div>
+                </div>
+            </div>
+
+            <!--<div class="ui-accordion-container hidden" id="accordion-regionalizacionresumenregionaliza">
+                <div class="alert panel-heading row ui-accordion-header">
+                    <button type="button" data-toggle="collapse" data-target="#regionalizacionresumenregionaliza" ng-click="vm.changeArrow('regionalizacionresumenregionaliza')">
+                        <span class="d-inline-block" id="alert-regionalizacionresumenregionaliza"></span>
+                        <span id="name-capitulo-regionalizacionresumenregionaliza"></span>
+                        <span class="hidden" id="id-capitulo-regionalizacionresumenregionaliza"></span>
+                        <span id="arrow-regionalizacionresumenregionaliza" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#regionalizacionresumenregionaliza"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="regionalizacionresumenregionaliza">
+                    <div class="row m-0 mb-3">
+                        <resumen-Avance-Regionalizacion bpin="{{vm.globalVariables.bpin}}"
+                                                             guardadoevent="vm.guardadoevent(nombreComponenteHijo)"
+                                                             notificacioncambios="vm.notificacionCambiosCapitulosExternos(handler,nombreComponente)"
+                                                             notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                             notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"
+                                                             refreshregionalizacion="vm.refreshregionalizacion">
+                        </resumen-Avance-Regionalizacion>
+                    </div>
+                </div>
+            </div>-->
+
+            <div class="ui-accordion-container hidden" id="accordion-regionalizacionavancefocaliza">
+                <div class="alert panel-heading row ui-accordion-header">
+                    <button type="button" data-toggle="collapse" data-target="#regionalizacionavancefocaliza" ng-click="vm.changeArrow('regionalizacionavancefocaliza')">
+                        <span class="d-inline-block" id="alert-regionalizacionavancefocaliza"></span>
+                        <span id="name-capitulo-regionalizacionavancefocaliza"></span>
+                        <span class="hidden" id="id-capitulo-regionalizacionavancefocaliza"></span>
+                        <span id="arrow-regionalizacionavancefocaliza" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#regionalizacionavancefocaliza"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="regionalizacionavancefocaliza">
+                    <div class="row m-0 mb-3">
+                        <!--<reporte-act-cap bpin="{{vm.globalVariables.bpin}}"
+                                         guardadoevent="vm.guardadoevent(nombreComponenteHijo)"
+                                         notificacioncambios="vm.notificacionCambiosCapitulosExternos(handler,nombreComponente)"
+                                         notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                         notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)">
+                        </reporte-act-cap>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

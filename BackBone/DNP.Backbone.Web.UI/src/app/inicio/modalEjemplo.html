@@ -1,0 +1,413 @@
+﻿
+
+
+<div class="modal-header modaleDNP" ng-init="vm.init();" >
+
+    <button type='button' class='swal2-close' aria-label='Close this dialog' ng-click="vm.cerrar()" >×</button>
+    <div ng-if="vm.MostarTabla == '1'">
+        <h3  class="modal-title" id="modal-title">Procesos para BIN #. </h3>
+        <span class="modal-title22" >  Nombre del proyecto. </span>
+    </div>
+    <div ng-if="vm.MostarTabla == '2'">
+
+        <h3 class="modal-titleTopDNP" >
+            <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Devolver">
+                <span> <img class="icoVolverDNP" src="Img/IcoAtrasDNP.svg" ng-click="vm.CambiarTabla()"></span>
+            </button><span class="detalletitle1DNP" >Procesos para BIN #.</span>
+            <br />
+            <span class="detalletitle2DNP" >  Nombre del proyecto. </span>
+        </h3>
+
+
+    </div>
+
+</div>
+<div class="modal-body modalebodyDNP"  id="modal-body">
+    <table class="TableDNP" ng-if="vm.MostarTabla == '1'" >
+        <thead>
+            <tr>
+                <th class="columAcc"></th>
+                <th class="textLeftDNP">Macroproceso</th>
+                <th class="textLeftDNP">Proceso</th>
+                <th class="textLeftDNP">
+                    Estado proceso /
+                    fecha inicio
+                </th>
+                <th class="textLeftDNP">
+                    Paso actual /fecha inicio /
+                    entidad encargada del paso
+                </th>
+                <th class="columAcc"></th>
+            </tr>
+        </thead>
+        <tbody >
+            <tr>
+                <td></td>
+                <td class="textLeftDNP modalnegrita" >Planeación</td>
+                <td>
+                    <button type="button" class="btn btn-link btn-md buttonhiperDNP" tooltip-placement="top" uib-tooltip="ver más" >
+                        ETB52546
+                    </button>
+                    <br />
+                    <button type="button" class="btn btn-link btn-md buttonhiperDNP" tooltip-placement="top" uib-tooltip="ver más" >
+                        Viabilidad PGN
+                    </button>
+
+                </td>
+                <td>
+                    Activo.
+                    <br />
+                    25/01/2022 12:56
+                </td>
+                <td>
+                    P2. Nombre del paso. 25/01/2022 12:56
+                    <br />
+                    Nombre entidad
+                </td>
+                <td class="textCenterDNP">
+                    <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Soportes" ng-click="vm.CambiarTabla()">
+                        <span> <img src="Img/u1709.svg"></span>
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="textLeftDNP modalnegrita">Planeación</td>
+                <td>
+                    <button type="button" class="btn btn-link btn-md buttonhiperDNP" tooltip-placement="top" uib-tooltip="ver más">
+                        ETB52546
+                    </button>
+                    <br />
+                    <button type="button" class="btn btn-link btn-md buttonhiperDNP" tooltip-placement="top" uib-tooltip="ver más">
+                        Viabilidad PGN
+                    </button>
+
+                </td>
+                <td>
+                    Activo.
+                    <br />
+                    25/01/2022 12:56
+                </td>
+                <td>
+                    P2. Nombre del paso. 25/01/2022 12:56
+                    <br />
+                    Nombre entidad
+                </td>
+                <td class="textCenterDNP">
+                    <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Soportes" ng-click="vm.CambiarTabla()">
+                        <span> <img src="Img/u1709.svg"></span>
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="textLeftDNP modalnegrita">Planeación</td>
+                <td>
+                    <button type="button" class="btn btn-link btn-md buttonhiperDNP" tooltip-placement="top" uib-tooltip="ver más">
+                        ETB52546
+                    </button>
+                    <br />
+                    <button type="button" class="btn btn-link btn-md buttonhiperDNP" tooltip-placement="top" uib-tooltip="ver más">
+                        Viabilidad PGN
+                    </button>
+
+                </td>
+                <td>
+                    Activo.
+                    <br />
+                    25/01/2022 12:56
+                </td>
+                <td>
+                    P2. Nombre del paso. 25/01/2022 12:56
+                    <br />
+                    Nombre entidad
+                </td>
+                <td class="textCenterDNP">
+                    <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Soportes" ng-click="vm.CambiarTabla()">
+                        <span> <img src="Img/u1709.svg"></span>
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="textLeftDNP modalnegrita">Planeación</td>
+                <td>
+                    <button type="button" class="btn btn-link btn-md buttonhiperDNP" tooltip-placement="top" uib-tooltip="ver más">
+                        ETB52546
+                    </button>
+                    <br />
+                    <button type="button" class="btn btn-link btn-md buttonhiperDNP" tooltip-placement="top" uib-tooltip="ver más">
+                        Viabilidad PGN
+                    </button>
+
+                </td>
+                <td>
+                    Activo.
+                    <br />
+                    25/01/2022 12:56
+                </td>
+                <td>
+                    P2. Nombre del paso. 25/01/2022 12:56
+                    <br />
+                    Nombre entidad
+                </td>
+                <td class="textCenterDNP">
+                    <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Soportes" ng-click="vm.CambiarTabla()">
+                        <span> <img src="Img/u1709.svg"></span>
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="textLeftDNP modalnegrita">Planeación</td>
+                <td>
+                    <button type="button" class="btn btn-link btn-md buttonhiperDNP" tooltip-placement="top" uib-tooltip="ver más">
+                        ETB52546
+                    </button>
+                    <br />
+                    <button type="button" class="btn btn-link btn-md buttonhiperDNP" tooltip-placement="top" uib-tooltip="ver más">
+                        Viabilidad PGN
+                    </button>
+
+                </td>
+                <td>
+                    Activo.
+                    <br />
+                    25/01/2022 12:56
+                </td>
+                <td>
+                    P2. Nombre del paso. 25/01/2022 12:56
+                    <br />
+                    Nombre entidad
+                </td>
+                <td class="textCenterDNP">
+                    <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Soportes" ng-click="vm.CambiarTabla()">
+                        <span> <img src="Img/u1709.svg"></span>
+                    </button>
+                </td>
+            </tr>
+
+        </tbody>
+
+    </table>
+    <div ng-if="vm.MostarTabla == '2'">
+        <div class="row " >
+            <div class="col-md-8 text-right padding-right-off" >
+                <p>
+                    <span class="lblbuscadorD" >Filtrar por tipo de documento:</span>
+                </p>
+            </div>
+            <div class="col-md-4 text-right padding-right-off SelectBuscadorDNP">
+                <select class="form-control selectDNP" chosen options="vm.tiposUsuario" ng-init="vm.tipoUsuario=1" ng-model="vm.tipoUsuario" required ng-change="vm.cambiaTipoValor(vm.tipoUsuario)">
+
+                    <option ng-repeat="tipo in vm.tiposUsuario" ng-value="tipo.id">{{ tipo.name }} </option>
+                </select>
+            </div>
+        </div>
+        <div class="row contenedorejemplo tablaDetallesoportesDNP" >
+            <table class="TableDNP "  >
+                <thead>
+                    <tr>
+                        <th class="columAcc"></th>
+                        <th class="textLeftDNP" style="width:213px">Cargado en</th>
+                        <th class="textLeftDNP" style="width:206px">
+                            Tipo de
+                            documento
+                        </th>
+                        <th class="textLeftDNP" style="width:250px">
+                            Documento y datos
+                        </th>
+                        <th class="textLeftDNP">
+                            Descripción
+                        </th>
+                        <th class="columAcc"></th>
+                        <th class="columAcc"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td class="textLeftDNP ">
+                            <span class="contenedorejemplo">
+                                <span class="modalnegrita"> Paso X. Nombre del paso.</span> Nombre sección / Nombre capítulo.
+                            </span>
+
+                        </td>
+                        <td class="textLeftDNP ">
+                            <span class="contenedorejemplo">
+                                <span class="modalnegrita">  Versión 1.1 </span>Concepto del Ministerio de Hacienda Crédito Público de no objeción sobre las condiciones financieras y las cláusulas contractuales
+                            </span>
+
+                        </td>
+                        <td style="line-height: 18px; ">
+                            <a href="" class="buttonhiperDNP"> documento final analisis.pdf</a>
+                            17/06/2022 05:12. Formulador. Pedro Nel Gutiérrez Castro. pedroguti@ANT.gov.co.
+
+                        </td>
+                        <td class="textLeftDNP ">
+                            <span class="contenedorejemplo">
+                                Su avión cayó y todos murieron, menos ella: la historia de Juliane Diller La mujer sobrevivió, pero tuvo que lidiar con la selva de Perú durante 11 días para buscar ayuda.
+                            </span>
+                        </td>
+                        <td class="textCenterDNP">
+                            <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Descargar">
+                                <span> <img src="Img/IcoDownload.svg"></span>
+                            </button>
+                        </td>
+                        <td class="textCenterDNP">
+                            <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Eliminar">
+                                <span> <img src="Img/IcoDelete.svg"></span>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td class="textLeftDNP ">
+                            <span class="contenedorejemplo">
+                                <span class="modalnegrita"> Paso X. Nombre del paso.</span> Nombre sección / Nombre capítulo.
+                            </span>
+
+                        </td>
+                        <td class="textLeftDNP ">
+                            <span class="contenedorejemplo">
+                                <span class="modalnegrita">  Versión 1.1 </span>Concepto del Ministerio de Hacienda Crédito Público de no objeción sobre las condiciones financieras y las cláusulas contractuales
+                            </span>
+
+                        </td>
+                        <td style="line-height: 18px; ">
+                            <a href="" class="buttonhiperDNP"> documento final analisis.pdf</a>
+                            17/06/2022 05:12. Formulador. Pedro Nel Gutiérrez Castro. pedroguti@ANT.gov.co.
+
+                        </td>
+                        <td class="textLeftDNP ">
+                            <span class="contenedorejemplo">
+                                Su avión cayó y todos murieron, menos ella: la historia de Juliane Diller La mujer sobrevivió, pero tuvo que lidiar con la selva de Perú durante 11 días para buscar ayuda.
+                            </span>
+                        </td>
+                        <td class="textCenterDNP">
+                            <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Descargar">
+                                <span> <img src="Img/IcoDownload.svg"></span>
+                            </button>
+                        </td>
+                        <td class="textCenterDNP">
+                            <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Eliminar">
+                                <span> <img src="Img/IcoDelete.svg"></span>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td class="textLeftDNP ">
+                            <span class="contenedorejemplo">
+                                <span class="modalnegrita"> Paso X. Nombre del paso.</span> Nombre sección / Nombre capítulo.
+                            </span>
+
+                        </td>
+                        <td class="textLeftDNP ">
+                            <span class="contenedorejemplo">
+                                <span class="modalnegrita">  Versión 1.1 </span>Concepto del Ministerio de Hacienda Crédito Público de no objeción sobre las condiciones financieras y las cláusulas contractuales
+                            </span>
+
+                        </td>
+                        <td style="line-height: 18px; ">
+                            <a href="" class="buttonhiperDNP"> documento final analisis.pdf</a>
+                            17/06/2022 05:12. Formulador. Pedro Nel Gutiérrez Castro. pedroguti@ANT.gov.co.
+
+                        </td>
+                        <td class="textLeftDNP ">
+                            <span class="contenedorejemplo">
+                                Su avión cayó y todos murieron, menos ella: la historia de Juliane Diller La mujer sobrevivió, pero tuvo que lidiar con la selva de Perú durante 11 días para buscar ayuda.
+                            </span>
+                        </td>
+                        <td class="textCenterDNP">
+                            <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Descargar">
+                                <span> <img src="Img/IcoDownload.svg"></span>
+                            </button>
+                        </td>
+                        <td class="textCenterDNP">
+                            <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Eliminar">
+                                <span> <img src="Img/IcoDelete.svg"></span>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td class="textLeftDNP ">
+                            <span class="contenedorejemplo">
+                                <span class="modalnegrita"> Paso X. Nombre del paso.</span> Nombre sección / Nombre capítulo.
+                            </span>
+
+                        </td>
+                        <td class="textLeftDNP ">
+                            <span class="contenedorejemplo">
+                                <span class="modalnegrita">  Versión 1.1 </span>Concepto del Ministerio de Hacienda Crédito Público de no objeción sobre las condiciones financieras y las cláusulas contractuales
+                            </span>
+
+                        </td>
+                        <td style="line-height: 18px; ">
+                            <a href="" class="buttonhiperDNP"> documento final analisis.pdf</a>
+                            17/06/2022 05:12. Formulador. Pedro Nel Gutiérrez Castro. pedroguti@ANT.gov.co.
+
+                        </td>
+                        <td class="textLeftDNP ">
+                            <span class="contenedorejemplo">
+                                Su avión cayó y todos murieron, menos ella: la historia de Juliane Diller La mujer sobrevivió, pero tuvo que lidiar con la selva de Perú durante 11 días para buscar ayuda.
+                            </span>
+                        </td>
+                        <td class="textCenterDNP">
+                            <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Descargar">
+                                <span> <img src="Img/IcoDownload.svg"></span>
+                            </button>
+                        </td>
+                        <td class="textCenterDNP">
+                            <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Eliminar">
+                                <span> <img src="Img/IcoDelete.svg"></span>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td class="textLeftDNP ">
+                            <span class="contenedorejemplo">
+                                <span class="modalnegrita"> Paso X. Nombre del paso.</span> Nombre sección / Nombre capítulo.
+                            </span>
+
+                        </td>
+                        <td class="textLeftDNP ">
+                            <span class="contenedorejemplo">
+                                <span class="modalnegrita">  Versión 1.1 </span>Concepto del Ministerio de Hacienda Crédito Público de no objeción sobre las condiciones financieras y las cláusulas contractuales
+                            </span>
+
+                        </td>
+                        <td style="line-height: 18px; ">
+                            <a href="" class="buttonhiperDNP"> documento final analisis.pdf</a>
+                            17/06/2022 05:12. Formulador. Pedro Nel Gutiérrez Castro. pedroguti@ANT.gov.co.
+
+                        </td>
+                        <td class="textLeftDNP ">
+                            <span class="contenedorejemplo">
+                                Su avión cayó y todos murieron, menos ella: la historia de Juliane Diller La mujer sobrevivió, pero tuvo que lidiar con la selva de Perú durante 11 días para buscar ayuda.
+                            </span>
+                        </td>
+                        <td class="textCenterDNP">
+                            <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Descargar">
+                                <span> <img src="Img/IcoDownload.svg"></span>
+                            </button>
+                        </td>
+                        <td class="textCenterDNP">
+                            <button class="btnaccion" tooltip-class="customClass" uib-tooltip="Eliminar">
+                                <span> <img src="Img/IcoDelete.svg"></span>
+                            </button>
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+
+</div>
+<div class="modal-footer textCenterDNP">
+    <!--<button class=" btneditarDNP" type="button" >CANCELAR</button>-->
+</div>

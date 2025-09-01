@@ -1,0 +1,42 @@
+﻿<div ng-init="vm.init();">
+    <form id="politicasTransversalesSgr" novalidate>
+        <div id="recursosfuentesdefinanc-validacionguardar-error" class="hidden text-left color-red">
+            <img class="img img-advertencia" src="Img/u11.svg" />
+            <span id="recursosfuentesdefinanc-validacionguardar-error-mns"></span>
+        </div>
+        <div id="fuentes" class="collapsed panel-body">
+            <h3 class="text-left ui-seccion-title">Políticas transversales asociadas <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg" ng-click="vm.abrirMensajePoliticasProyecto()"></h3>
+
+            <div class="col-md-12" style="padding-left:0px">
+                <span class="pull-left"><span>Las políticas transversales sobre las que ya se registró información sobre su ejecución no se encuentran disponibles para ser desasociadas. </span>
+            </div>
+            <table class="TableDNP no-border">
+                <thead>
+                    <tr>
+                        <th class="columAcc"></th>
+                        <th class="textLeftDNP">Política</th>
+                    </tr>
+                </thead>
+                <tbody ng-repeat="objPoliticas in vm.listaPoliticasProyectos">
+                    <tr>
+                        <td class="columAcc"
+                            style="background: transparent">
+                        </td>
+                        <td>{{objPoliticas.politica}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="row">
+                <div class="col-md-1">
+                    &nbsp;
+                </div>
+                <div class="col-md-11">
+                    <div id="sgrviabilidadpreviosfocalizacionpoliticas-categoriapolitica-error" class="hidden text-left color-red"></div>
+                </div>
+                <div class="col-md-11">
+                    <div id="sgrviabilidadpreviosfocalizacionpoliticas-valorcategoriapolitica-error" class="hidden text-left color-red"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

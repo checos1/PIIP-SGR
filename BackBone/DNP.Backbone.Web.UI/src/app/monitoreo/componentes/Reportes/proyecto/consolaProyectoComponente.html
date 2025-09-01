@@ -1,0 +1,51 @@
+
+<div class="dashboard">
+
+    <div id="proyectos" class="project" ng-init="vm.init();">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="titlebar marginb-15">
+                    <span>
+                        <a class="pull-left" href="/tableroControlProyectos" tooltip-placement="auto" uib-tooltip="Volver">
+                            <img class="btnvolver" src="Img/btn/btnVolver.png">
+                        </a> Ver Ejecución de Reportes
+                    </span>
+                    <span class="buttonbar pull-right">
+                        <div class="btn-group">
+                            <button class="btn btn-default btn-md dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Exportar <i class="fa fa-chevron-down"></i></button>
+                            <ul class="dropdown-menu">
+                                <li><a ng-repeat="fileFormat in vm.listaFileFormat" ng-click="vm.DescargarReportes(fileFormat.value, fileFormat.type)">{{fileFormat.text}}</a></li>
+                            </ul>
+                        </div>
+                        <button class="btn btn-default btn-md" ng-click="vm.fulscreen($event)">Pantalla Completa</button>
+                        <button class="btn btn-default btn-md" onclick="lista()">Ampliar</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+       <div class="row">
+            <div class="col-md-12">                
+                    <div class="agr">
+                        <span class="agr-black">{{ vm.CodigoBpin }}</span> 
+                        <span class="agr-blue">{{ vm.ProyectoNombre }}</span>
+                    </div>
+            </div>
+       </div>
+
+        <!--inicio grid-->
+        <div class="row">
+            <div class="col-md-3 col-xs-12 monitoreo-entidad" id="myLista">
+                <div class="borderTop4" ui-i18n="{{vm.lang}}" >
+                    <div class="clearfix grid-icon" id="uigprojecto" ui-grid="vm.gridOptions"
+                         ui-grid-resize-columns ui-grid-pagination ui-grid-expandable >
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9 col-xs-12 container-pw" id="element">
+                <powerbi-embed opciones="vm.embedConfig" filtro="vm.embedFiltro" type="vm.embedType"></powerbi-embed>
+            </div>
+        </div>
+    </div>
+
+</div>

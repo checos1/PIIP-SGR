@@ -1,0 +1,426 @@
+﻿<div class="row" ng-init="vm.initTablaResumen()">
+
+
+    <br />
+    <div id="aprobacionfinalfirmaconceptote-archivo-error" class="hidden uMensajeError"></div>
+    <div class="row ng-scope" style="padding-top:2rem;">
+        <div style="text-align: left;">
+            <h3 class="row" style="padding-left: 2rem; padding-right: 2rem; text-align: left; color: #004884">&nbsp;&nbsp;Tabla de resumen</h3>
+        </div>
+        <div>
+            <div class="row">
+                <div ng-if="vm.datos.EsConstante">
+                    <div class="col-md-2" style="margin-top: 15px; text-align: left; height: 50px">
+                        <span class="uLabelCampo_fp" style="margin-left:2rem;">Año base</span>
+                    </div>
+                    <div class="col-md-2" style="text-align:left">
+                        <table class="table-white">
+                            <thead>
+                                <tr style="text-align:center;" class="utitulo-grilla">
+                                    <td style="width: 15%; text-align: center; height: 50px "><label class="col-form-label"><span class="uLabelCampo_fp">{{vm.datos.AnioBase}}</span></label></td>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    <div class="col-md-8" style="text-align:left">
+                        &nbsp;
+                    </div>
+                    <br />
+                </div>
+            </div>
+            <div class="tab-container col-md-12" style="width:100%;">
+                <ul class="nav nav-tabs" ng-if="vm.datos.EsConstante">
+                    <li id="liPreinversion" ng-class="{active : 1 === vm.pagina}">
+                        <a href="" ng-click="vm.mostrarTab(1)" data-toggle="tab">
+                            <img class="img-advertencia mr-2" src="Img/u11.svg" ng-if="vm.errores.constante" />
+                            <b>Valores constantes</b>
+                        </a>
+                    </li>
+                    <li id="liInversion" ng-class="{active : 2 === vm.pagina}">
+                        <a href="" ng-click="vm.mostrarTab(2)" data-toggle="tab">
+                            <img class="img-advertencia mr-2" src="Img/u11.svg" ng-if="vm.errores.corriente" />
+                            <b>Valores corrientes</b>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div style="text-align: left;" ng-if="vm.Origen == 1">
+                <div class="row col-md-12">
+                    <div class="alert panel-heading">
+                        <span id="RVFP-" class="hidden uMensajeError error-vfproducto" style="padding-left:4rem;"></span>
+                        <table class="TableDNP">
+                            <thead>
+
+                                <tr style="text-align:center;">
+                                    <th style="width:5%;"></th>
+                                    <th style="width:5%;" class="textLeftDNP">
+                                        <span class="NomItemAccordDNP">Vigencia </span>
+                                    </th>
+                                    <th class="NomItemAccordDNP" style="width:5%">
+                                        <span class="NomItemAccordDNP">Deflactor </span>
+                                    </th>
+                                    <th style="width: 5%;" class="textLeftDNP">
+                                        <span class="NomItemAccordDNP">Tipo Recurso </span>
+                                    </th>
+                                    <th style="width: 25%;" class="textRightDNP">
+                                        <span class="NomItemAccordDNP">Utilizado $ </span>
+                                    </th>
+                                    <th style="width: 25%;" class="textRightDNP">
+                                        <span class="NomItemAccordDNP">Reprogramado $ </span>
+                                    </th>
+                                    <th style="width: 25%;" class="textRightDNP">
+                                        <span class="NomItemAccordDNP">Reprogramado por productos $ </span>
+                                    </th>
+                                    <th style="width:5%;"></th>
+                                </tr>
+                            </thead>
+                            <tbody ng-repeat="objVigencia in vm.datos.ResumenTramite[0].Valores | orderBy:'Vigencia'">
+                                <tr>
+                                    <td style="width:5%;">
+                                        <span id="RVFP-{{objVigencia.Vigencia}}" class="hidden uMensajeError error-vfproducto"></span>
+                                    </td>
+                                    <td class="textLeftDNP" style="width:5%;">
+                                        <span class="textLeftDNP">{{objVigencia.Vigencia}}</span>
+                                    </td>
+                                    <td class="textLeftDNP" style="width:5%;">
+                                        <span class="textLeftDNP">{{objVigencia.Deflactor}}</span>
+                                    </td>
+                                    <td class="textLefttDNP" style="width:5%;">
+                                        <div class="col-md-12" style="padding:0;">
+                                            <div class="col-md-12 " style=" margin-bottom: 0.5rem; height: 30px !important;">
+                                                <span class="textLeftDNP">Nación</span>
+                                            </div>
+                                            <div class="col-md-12  " style="height: 30px !important;">
+                                                <span class="textLeftDNP" ">Propios</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="textRightDNP" style="width:25%;">
+                                        <div class="col-md-12" style="padding:0;">
+                                            <div class="col-md-12 blockReferenciaDNP" style=" margin-bottom: 0.5rem; height: 30px !important;">
+                                                <span class="textLeftDNP ">{{vm.ConvertirNumero(objVigencia.UtilizadoNacion)}}</span>
+                                            </div>
+                                            <div class="col-md-12 blockReferenciaDNP" style="height: 30px !important;">
+                                                <span class="textLeftDNP ">{{vm.ConvertirNumero(objVigencia.UtilizadoPropios)}}</span>
+                                            </div>
+                                        </div>
+
+                                    </td>
+                                    <td class="textRightDNP" style="width:25%;">
+                                        <div class="col-md-12" style="padding:0;">
+                                            <div class="col-md-12 blockReferenciaDNP" style=" margin-bottom: 0.5rem; height: 30px !important;">
+                                                <span class="textLeftDNP ">{{vm.ConvertirNumero(objVigencia.ReprogramadoNacion)}}</span>
+                                            </div>
+                                            <div class="col-md-12 blockReferenciaDNP" style="height: 30px !important;">
+                                                <span class="textLeftDNP ">{{vm.ConvertirNumero(objVigencia.ReprogramadoPropios)}}</span>
+                                            </div>
+                                        </div>
+
+                                    </td>
+                                    <td class="textRightDNP" style="width:25%;">
+                                        <div class="col-md-12" style="padding:0;">
+                                            <div class="col-md-12 blockReferenciaDNP" style=" margin-bottom: 0.5rem; height: 30px !important;">
+                                                <span class="textLeftDNP ">{{vm.ConvertirNumero(objVigencia.ReprogramadoNacionPorProducto)}}</span>
+                                            </div>
+                                            <div class="col-md-12 blockReferenciaDNP" style="height: 30px !important;">
+                                                <span class="textLeftDNP ">{{vm.ConvertirNumero(objVigencia.ReprogramadoPropiosPorProducto)}}</span>
+                                            </div>
+                                        </div>
+
+                                    </td>
+
+                                    <td style="width:5%;">
+                                    </td>
+                                </tr>
+                            </tbody>
+
+                        </table>
+                    </div>
+                    <div class="row" style="padding-top:4rem;">
+                        <table class="TableDNP" style="margin-left: 3rem !important; width: 95%;">
+
+                            <tbody>
+
+                                <tr>
+                                    <td style="width:5%;"></td>
+                                    <td style="width:10%;">
+                                    </td>
+                                    <td class="textLeftDNP" style="width:5%;">
+                                        <div class="col-md-12" style="padding:0;">
+                                            <div class="col-md-12 " style=" margin-bottom: 0.5rem; height: 30px !important;">
+                                                <span class="textLeftDNP">Nación</span>
+                                            </div>
+                                            <div class="col-md-12  " style=" margin-bottom: 0.5rem; height: 30px !important;">
+                                                <span class="textLeftDNP">Propios</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="textRightDNP" style="width:25%;">
+                                        <div class="col-md-12" style="padding:0;">
+                                            <div class="col-md-12 blockReferenciaDNP" style=" margin-bottom: 0.5rem; height: 30px !important;">
+                                                <span class="textRightDNP ">{{vm.ConvertirNumero(vm.valoresTotales.ValorUtilizadoNacion)}}</span>
+                                            </div>
+                                            <div class="col-md-12 blockReferenciaDNP" style="margin-bottom: 0.5rem; height: 30px !important;">
+                                                <span class="textRightDNP ">{{vm.ConvertirNumero(vm.valoresTotales.ValorUtilizadoPropios)}}</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="textRightDNP" style="width:25%;">
+                                        <div class="col-md-12" style="padding:0;">
+                                            <div class="col-md-12 blockReferenciaDNP" style=" margin-bottom: 0.5rem; height: 30px !important;">
+                                                <span class="textRightDNP ">{{vm.ConvertirNumero(vm.valoresTotales.ValorReprogramadoNacion)}}</span>
+                                            </div>
+                                            <div class="col-md-12 blockReferenciaDNP " style="margin-bottom: 0.5rem; height: 30px !important;">
+                                                <span class="textRightDNP ">{{vm.ConvertirNumero(vm.valoresTotales.ValorReprogramadoPropios)}}</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="textRightDNP" style="width:25%;">
+                                        <div class="col-md-12" style="padding:0;">
+                                            <div class="col-md-12 blockReferenciaDNP" style="margin-bottom: 0.5rem; height: 30px !important;">
+                                                <span class="textLeftDNP ">{{vm.ConvertirNumero(vm.valoresTotales.ValorReprogramadoProductoNacion)}}</span>
+                                            </div>
+                                            <div class="col-md-12 blockReferenciaDNP" style="margin-bottom: 0.5rem; height: 30px !important;">
+                                                <span class="textLeftDNP ">{{vm.ConvertirNumero(vm.valoresTotales.ValorReprogramadoProductoPropios)}}</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td style="width:5%;">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:5%;"><b>=</b></td>
+                                    <td style="width:10%;">
+                                        <span class="textLeftDNP NomItemAccordDNP">Total</span>
+                                    </td>
+                                    <td class="textLeftDNP" style="width:5%;">
+                                    </td>
+                                    <td class="textRightDNP" style="width:25%;">
+                                        <div class="col-md-12" style="padding:0;">
+                                            <div class="col-md-12 blockReferenciaDNP" style=" margin-bottom: 0.5rem; height: 30px !important;">
+                                                <span class="textLeftDNP NomItemAccordDNP  ">{{vm.ConvertirNumero(vm.valoresTotales.TotalValorUtilizado)}}</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="textRightDNP" style="width:25%;">
+                                        <div class="col-md-12" style="padding:0;">
+                                            <div class="col-md-12 blockReferenciaDNP" style=" margin-bottom: 0.5rem; height: 30px !important;">
+                                                <span class="textLeftDNP NomItemAccordDNP ">{{vm.ConvertirNumero(vm.valoresTotales.TotalValorReprogramado)}}</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="textRightDNP" style="width:25%;">
+                                        <div class="col-md-12" style="padding:0;">
+                                            <div class="col-md-12 blockReferenciaDNP" style=" margin-bottom: 0.5rem; height: 30px !important;">
+                                                <span class="textLeftDNP NomItemAccordDNP ">{{vm.ConvertirNumero(vm.valoresTotales.TotalValorReprogramadoProducto)}}</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td style="width:5%;">
+                                    </td>
+                                </tr>
+                            </tbody>
+
+
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: left;" ng-if="vm.Origen == 2">
+                <div class="row col-md-12">
+                    <div class="alert panel-heading">
+                        <span id="RVFP-" class="hidden uMensajeError error-vfproducto" style="padding-left:4rem;"></span>
+                        <table class="TableDNP">
+                            <thead>
+                                <tr style="text-align:center;">
+                                    <th style="width:5%;"></th>
+                                    <th style="width:10%;" class="textLeftDNP">
+                                        <span class="NomItemAccordDNP">Vigencia </span>
+                                    </th>
+                                    <th style="width: 5%;" class="textLeftDNP">
+                                        <span class="NomItemAccordDNP">Tipo Recurso </span>
+                                    </th>
+                                    <th style="width: 25%;" class="textRightDNP">
+                                        <span class="NomItemAccordDNP">Utilizado $ </span>
+                                    </th>
+                                    <th style="width: 25%;" class="textRightDNP">
+                                        <span class="NomItemAccordDNP">Reprogramado $ </span>
+                                    </th>
+                                    <th style="width: 25%;" class="textRightDNP">
+                                        <span class="NomItemAccordDNP">Reprogramado por productos $ </span>
+                                    </th>
+                                    <th style="width:5%;"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="objVigencia in vm.datos.ResumenTramite[0].Valores | orderBy:'Vigencia'">
+                                    <td style="width:5%;">
+                                        <span id="RVFP-{{objVigencia.Vigencia}}" class="hidden uMensajeError error-vfproducto"></span>
+                                    </td>
+                                    <td class="textRightDNP" style="width:10%;">
+                                        <span class="textLeftDNP ">{{objVigencia.Vigencia}}</span>
+                                    </td>
+                                    <td class="textLefttDNP" style="width:5%;">
+                                        <div class="col-md-12" style="padding:0;">
+                                            <div class="col-md-12 " style=" margin-bottom: 0.5rem; height: 30px !important;">
+                                                <span class="textLeftDNP">Nación</span>
+                                            </div>
+                                            <div class="col-md-12  " style="height: 30px !important;">
+                                                <span class="textLeftDNP">Propios</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="textRightDNP" style="width:25%;">
+                                        <div class="col-md-12" style="padding:0;">
+                                            <div class="col-md-12 blockReferenciaDNP" style=" margin-bottom: 0.5rem; height: 30px !important;">
+                                                <span class="textLeftDNP ">{{vm.ConvertirNumero(objVigencia.UtilizadoNacion)}}</span>
+                                            </div>
+                                            <div class="col-md-12 blockReferenciaDNP" style="height: 30px !important;">
+                                                <span class="textLeftDNP ">{{vm.ConvertirNumero(objVigencia.UtilizadoPropios)}}</span>
+                                            </div>
+                                        </div>
+
+                                    </td>
+                                    <td class="textRightDNP" style="width:25%;">
+                                        <div class="col-md-12" style="padding:0;">
+                                            <div class="col-md-12 blockReferenciaDNP" style=" margin-bottom: 0.5rem; height: 30px !important;">
+                                                <span class="textLeftDNP ">{{vm.ConvertirNumero(objVigencia.ReprogramadoNacion)}}</span>
+                                            </div>
+                                            <div class="col-md-12 blockReferenciaDNP" style="height: 30px !important;">
+                                                <span class="textLeftDNP ">{{vm.ConvertirNumero(objVigencia.ReprogramadoPropios)}}</span>
+                                            </div>
+                                        </div>
+
+                                    </td>
+                                    <td class="textRightDNP" style="width:25%;">
+                                        <div class="col-md-12" style="padding:0;">
+                                            <div class="col-md-12 blockReferenciaDNP" style=" margin-bottom: 0.5rem; height: 30px !important;">
+                                                <span class="textLeftDNP ">{{vm.ConvertirNumero(objVigencia.ReprogramadoNacionPorProducto)}}</span>
+                                            </div>
+                                            <div class="col-md-12 blockReferenciaDNP" style="height: 30px !important;">
+                                                <span class="textLeftDNP ">{{vm.ConvertirNumero(objVigencia.ReprogramadoPropiosPorProducto)}}</span>
+                                            </div>
+                                        </div>
+
+                                    </td>
+
+                                    <td style="width:5%;">
+                                    </td>
+                                </tr>
+                            </tbody>
+
+                        </table>
+                    </div>
+                    <div class="row" style="padding-top:4rem;">
+                        <table class="TableDNP" style="margin-left: 3rem !important; width: 95%;">
+
+                            <tbody>
+
+                                <tr>
+                                    <td style="width:5%;"></td>
+                                    <td style="width:10%;">
+                                    </td>
+                                    <td class="textLeftDNP" style="width:5%;">
+                                        <div class="col-md-12" style="padding:0;">
+                                            <div class="col-md-12 " style=" margin-bottom: 0.5rem; height: 30px !important;">
+                                                <span class="textLeftDNP">Nación</span>
+                                            </div>
+                                            <div class="col-md-12  " style="height: 30px !important;">
+                                                <span class="textLeftDNP">Propios</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="textRightDNP" style="width:25%;">
+                                        <div class="col-md-12" style="padding:0;">
+                                            <div class="col-md-12 blockReferenciaDNP" style=" margin-bottom: 0.5rem; height: 30px !important;">
+                                                <span class="textLeftDNP ">{{vm.ConvertirNumero(vm.ValoresTotalesCorrientes.ValorUtilizadoNacion)}}</span>
+                                            </div>
+                                            <div class="col-md-12 blockReferenciaDNP" style="height: 30px !important;">
+                                                <span class="textLeftDNP ">{{vm.ConvertirNumero(vm.ValoresTotalesCorrientes.ValorUtilizadoPropios)}}</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="textRightDNP" style="width:25%;">
+                                        <div class="col-md-12" style="padding:0;">
+                                            <div class="col-md-12 blockReferenciaDNP" style=" margin-bottom: 0.5rem; height: 30px !important;">
+                                                <span class="textLeftDNP ">{{vm.ConvertirNumero(vm.ValoresTotalesCorrientes.ValorReprogramadoNacion)}}</span>
+                                            </div>
+                                            <div class="col-md-12 blockReferenciaDNP " style="height: 30px !important;">
+                                                <span class="textLeftDNP ">{{vm.ConvertirNumero(vm.ValoresTotalesCorrientes.ValorReprogramadoPropios)}}</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="textRightDNP" style="width:25%;">
+                                        <div class="col-md-12" style="padding:0;">
+                                            <div class="col-md-12 blockReferenciaDNP" style="height: 30px !important;">
+                                                <span class="textLeftDNP ">{{vm.ConvertirNumero(vm.ValoresTotalesCorrientes.ValorReprogramadoProductoNacion)}}</span>
+                                            </div>
+                                            <div class="col-md-12 blockReferenciaDNP" style="height: 30px !important;">
+                                                <span class="textLeftDNP ">{{vm.ConvertirNumero(vm.ValoresTotalesCorrientes.ValorReprogramadoProductoPropios)}}</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td style="width:5%;">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:5%;"><b>=</b></td>
+                                    <td style="width:10%;">
+                                        <span class="textLeftDNP NomItemAccordDNP">Total</span>
+                                    </td>
+                                    <td class="textLeftDNP" style="width:5%;">
+                                    </td>
+                                    <td class="textRightDNP" style="width:25%;">
+                                        <div class="col-md-12" style="padding:0;">
+                                            <div class="col-md-12 blockReferenciaDNP" style=" margin-bottom: 0.5rem; height: 30px !important;">
+                                                <span class="textLeftDNP NomItemAccordDNP  ">{{vm.ConvertirNumero(vm.ValoresTotalesCorrientes.TotalValorUtilizado)}}</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="textRightDNP" style="width:25%;">
+                                        <div class="col-md-12" style="padding:0;">
+                                            <div class="col-md-12 blockReferenciaDNP" style=" margin-bottom: 0.5rem; height: 30px !important;">
+                                                <span class="textLeftDNP NomItemAccordDNP ">{{vm.ConvertirNumero(vm.ValoresTotalesCorrientes.TotalValorReprogramado)}}</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="textRightDNP" style="width:25%;">
+                                        <div class="col-md-12" style="padding:0;">
+                                            <div class="col-md-12 blockReferenciaDNP" style=" margin-bottom: 0.5rem; height: 30px !important;">
+                                                <span class="textLeftDNP NomItemAccordDNP ">{{vm.ConvertirNumero(vm.ValoresTotalesCorrientes.TotalValorReprogramadoProducto)}}</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td style="width:5%;">
+                                    </td>
+                                </tr>
+                            </tbody>
+
+
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+            <br />
+            <div class="col-md-12">
+                <div id="recursosgrfuentesdefinanc-validacionFuentesErrores3-error" src="Img/u11.svg" class=" img hidden text-left color-red">
+                    <span id="recursosgrfuentesdefinanc-validacionFuentesErrores3-error-mns" style="font-size:!important 16px"></span>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-12" style="padding-top: 2rem;">
+            &nbsp;&nbsp;&nbsp;&nbsp;<div id="solicitarconceptodatosiniciales-pregunta-error-firma" class="hidden uMensajeError"></div>
+        </div>
+        <br />
+    </div>
+</div>

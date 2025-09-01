@@ -1,0 +1,120 @@
+﻿<div class="container-fluid inbox" style="height: 800px; overflow: scroll; padding-left: 20px;" ng-init="vm.init();">
+    <form id="resumenFuentesCostosForm" name="resumenFuentesCostosForm" novalidate>
+        <div class="row">
+            <br />
+            <div class="tab-container col-md-8 textLeftDNP">
+                <ul id="lstEtapas" class="nav nav-tabs tabsCostosAct">
+                    <li id="liPreinversion" ng-class="{active : 1 === vm.etapaId}">
+                        <a href="" ng-click="vm.mostrarTab(1)" data-toggle="tab">
+                            <img class="img-advertencia mr-2" src="Img/u11.svg" ng-if="vm.errores.preinversion" />
+                            <b>Preinversión</b>
+                        </a>
+                    </li>
+                    <li id="liInversion" ng-class="{active : 2 === vm.etapaId}">
+                        <a href="" ng-click="vm.mostrarTab(2)" data-toggle="tab">
+                            <img class="img-advertencia mr-2" src="Img/u11.svg" ng-if="vm.errores.inversion" />
+                            <b>Inversión</b>
+                        </a>
+                    </li>
+                    <li id="liOperacion" ng-class="{active : 3 === vm.etapaId}">
+                        <a href="" ng-click="vm.mostrarTab(3)" data-toggle="tab">
+                            <img class="img-advertencia mr-2" src="Img/u11.svg" ng-if="vm.errores.operacion" />
+                            <b>Operación</b>
+                        </a>
+                    </li>
+                </ul>
+                <br />
+            </div>
+        </div>
+        <div ng-repeat="objdatos in vm.listaFuentesEtapa">
+            <div class="row" style="padding-top: 2rem; padding-left: 0;">
+                <div class="col-md-12" style="display: inline-flex; padding-left: 0;">
+                    <span class="label" style="color: #004884; font-size: 24px; font-weight: 400;padding-left:0;">Costos por valor solicitado </span>
+                </div>
+            </div>
+            <div class="row">
+                <table class="TableDNP">
+                    <thead>
+                        <tr>
+                            <th class="columAcc" style="width:2%"></th>
+                            <th class="textRightDNP" style="width:32%">Año </th>
+                            <th class="textRightDNP" style="width:32%">Costo $ </th>
+                            <th class="textRightDNP" style="width:32%">Valor solicitado $ </th>
+                            <th class="columAcc" style="width:2%"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="objVigencias in objdatos.Vigencias" ng-init="vigenciaIndex = $index">
+                            <td></td>
+                            <td class="textRightDNP">
+                                <input type="text" class="form-control editInputDNP " disabled value="{{objVigencias.Vigencia}}" />
+                            </td>
+                            <td class="textRightDNP">
+                                <input type="text" format="currency" class="form-control editInputDNP " disabled value="{{objVigencias.CostoEtapaVigencia | currency}}" />
+                            </td>
+                            <td class="textRightDNP">
+                                <input type="text" format="currency" class="form-control editInputDNP " disabled value="{{objVigencias.ValorSolicitadoEtapaVigencia | currency}}" />
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr class="CustomTDTableDNP">
+                            <td class="columAcc icontotaldnp"><span>=</span></td>
+                            <td class="textRightDNP">Total {{vm.nombreEtapa}} $ </td>
+                            <td class="textRightDNP">
+                                <input type="text" format="currency" class="form-control editInputDNP " disabled value="{{objdatos.CostoEtapa | currency}}" />
+                            </td>
+                            <td class="textRightDNP">
+                                <input type="text" format="currency" class="form-control editInputDNP " disabled value="{{objdatos.ValorSolicitadoEtapa | currency}}" />
+                            </td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row" style="padding-top: 2rem; padding-left: 0;">
+                <div class="col-md-12" style="display: inline-flex; padding-left: 0;">
+                    <span class="label" style="color: #004884; font-size: 24px; font-weight: 400;padding-left:0;">Costos vs Valor solicitado por etapa</span>
+                </div>
+            </div>
+            <div class="row">
+                <table class="TableDNP">
+                    <thead>
+                        <tr>
+                            <th class="columAcc" style="width:2%"></th>
+                            <th class="textLeftDNP" style="width:32%">Etapa </th>
+                            <th class="textRightDNP" style="width:32%">Costo $ </th>
+                            <th class="textRightDNP" style="width:32%">Valor solicitado $ </th>
+                            <th class="columAcc" style="width:2%"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="objEtapas in vm.listaFuentes.Etapas">
+                            <td></td>
+                            <td class="textLeftDNP">
+                                <input type="text" class="form-control editInputDNP " disabled value="{{objEtapas.Etapa}}" />
+                            </td>
+                            <td class="textRightDNP">
+                                <input type="text" format="currency" class="form-control editInputDNP " disabled value="{{objEtapas.CostoEtapa | currency}}" />
+                            </td>
+                            <td class="textRightDNP">
+                                <input type="text" format="currency" class="form-control editInputDNP " disabled value="{{objEtapas.ValorSolicitadoEtapa | currency}}" />
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr class="CustomTDTableDNP">
+                            <td class="columAcc icontotaldnp"><span>=</span></td>
+                            <td class="textRightDNP"></td>
+                            <td class="textRightDNP">
+                                <input type="text" format="currency" class="form-control editInputDNP " disabled value="{{vm.TotalCostosEtapa | currency}}" />
+                            </td>
+                            <td class="textRightDNP">
+                                <input type="text" format="currency" class="form-control editInputDNP " disabled value="{{vm.TotalValorSolicitadoEtapa | currency}}" />
+                            </td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </form>
+</div>

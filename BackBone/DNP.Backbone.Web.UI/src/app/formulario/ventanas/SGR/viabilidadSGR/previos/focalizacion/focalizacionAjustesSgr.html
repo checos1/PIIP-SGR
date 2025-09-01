@@ -1,0 +1,93 @@
+﻿<section>
+    <div class="container-fluid inbox" ng-init="vm.init();">
+        <div class="tab-content">
+            <div class="ui-accordion-container hidden" id="accordion-sgrviabilidadpreviosfocalizacionpoliticas">
+                <div class="alert panel-heading row ui-accordion-header">
+                    <button type="button" data-toggle="collapse" data-target="#sgrviabilidadpreviosfocalizacionpoliticas-1" ng-click="vm.changeArrow('sgrviabilidadpreviosfocalizacionpoliticas-1')">
+                        <span class="d-inline-block" id="alert-sgrviabilidadpreviosfocalizacionpoliticas-1"></span>
+                        <span id="name-capitulo-sgrviabilidadpreviosfocalizacionpoliticas"></span>
+                        <span class="hidden" id="id-capitulo-sgrviabilidadpreviosfocalizacionpoliticas"></span>
+                        <span id="arrow-sgrviabilidadpreviosfocalizacionpoliticas-1" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#sgrviabilidadpreviosfocalizacionpoliticas-1"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="sgrviabilidadpreviosfocalizacionpoliticas-1">
+                    <div class="row m-0 mb-3">
+                        <politicas-Transversales-sgr guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                                 notificacioncambios="vm.notificacionCambiosCapitulosExternos(handler, nombreComponente)"
+                                                 notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                 notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"
+                                                 notificacioninicio="vm.notificacionInicioHijos(handlerInicio, nombreComponente)"
+                                                     ></politicas-Transversales-sgr>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ui-accordion-container hidden" id="accordion-sgrviabilidadpreviosfocalizacioncategoriapoliticas">
+                <div class="alert panel-heading row ui-accordion-header">
+                    <button type="button" data-toggle="collapse" data-target="#sgrviabilidadpreviosfocalizacioncategoriapoliticas-1" ng-click="vm.changeArrow('sgrviabilidadpreviosfocalizacioncategoriapoliticas-1')">
+                        <span class="d-inline-block" id="alert-sgrviabilidadpreviosfocalizacioncategoriapoliticas-1"></span>
+                        <span id="name-capitulo-sgrviabilidadpreviosfocalizacioncategoriapoliticas"></span>
+                        <span class="hidden" id="id-capitulo-sgrviabilidadpreviosfocalizacioncategoriapoliticas"></span>
+                        <span id="arrow-sgrviabilidadpreviosfocalizacioncategoriapoliticas-1" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#sgrviabilidadpreviosfocalizacioncategoriapoliticas-1"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="sgrviabilidadpreviosfocalizacioncategoriapoliticas-1">
+                    <div class="row m-0 mb-3">
+                        <resumen-focalizacion-sgr guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                              notificacioncambios="vm.notificacionCambiosCapitulosExternos(handler, nombreComponente)"
+                                              notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                              notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"
+                                              notificarrefresco="vm.notificarRefresco(handler, nombreComponente)"
+                                              notificacioninicio="vm.notificacionInicioHijos(handlerInicio, nombreComponente)"
+                                                  ></resumen-focalizacion-sgr>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ui-accordion-container hidden" id="accordion-sgrviabilidadpreviosfocalizacioncrucepoliticas">
+                <div class="alert panel-heading row ui-accordion-header">
+                    <button type="button" data-toggle="collapse" data-target="#sgrviabilidadpreviosfocalizacioncrucepoliticas-1" ng-click="vm.changeArrow('sgrviabilidadpreviosfocalizacioncrucepoliticas-1')">
+                        <span class="d-inline-block" id="alert-sgrviabilidadpreviosfocalizacioncrucepoliticas-1"></span>
+                        <span id="name-capitulo-sgrviabilidadpreviosfocalizacioncrucepoliticas"></span>
+                        <span class="hidden" id="id-capitulo-sgrviabilidadpreviosfocalizacioncrucepoliticas"></span>
+                        <span id="arrow-sgrviabilidadpreviosfocalizacioncrucepoliticas-1" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#sgrviabilidadpreviosfocalizacioncrucepoliticas-1"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="sgrviabilidadpreviosfocalizacioncrucepoliticas-1">
+                    <div class="row m-0 mb-3">
+                        <span>
+                            <cruce-Politicas-Transversales-Sgr guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                                           notificacioncambios="vm.notificacionCambiosCapitulosExternos(handler, nombreComponente)"
+                                                           notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                           notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"
+                                                           notificacioninicio="vm.notificacionInicioHijos(handlerInicio, nombreComponente)"></cruce-Politicas-Transversales-Sgr>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ui-accordion-container hidden" id="accordion-sgrviabilidadpreviosfocalizacionresumenfocalizacion">
+                <div class="alert panel-heading row ui-accordion-header">
+                    <button type="button" data-toggle="collapse" data-target="#sgrviabilidadpreviosfocalizacionresumenfocalizacion-1" ng-click="vm.changeArrow('sgrviabilidadpreviosfocalizacionresumenfocalizacion-1')">
+                        <span class="d-inline-block" id="alert-sgrviabilidadpreviosfocalizacionresumenfocalizacion-1"></span>
+                        <span id="name-capitulo-sgrviabilidadpreviosfocalizacionresumenfocalizacion"></span>
+                        <span class="hidden" id="id-capitulo-sgrviabilidadpreviosfocalizacionresumenfocalizacion"></span>
+                        <span id="arrow-sgrviabilidadpreviosfocalizacionresumenfocalizacion-1" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#sgrviabilidadpreviosfocalizacionresumenfocalizacion-1"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="sgrviabilidadpreviosfocalizacionresumenfocalizacion-1">
+                    <div class="row m-0 mb-3">
+                        <span>
+                            <resumen-Sgr guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                     notificacioncambios="vm.notificacionCambiosCapitulosExternos(handler, nombreComponente)"
+                                     notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                     notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"
+                                     notificacioninicio="vm.notificacionInicioHijos(handlerInicio, nombreComponente)"></resumen-Sgr>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>

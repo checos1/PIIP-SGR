@@ -1,0 +1,65 @@
+﻿<section>
+    <div class="container-fluid inbox" ng-init="vm.init();">
+        <div class="tab-content">
+            <!--<div class="ui-accordion-container hidden" id="accordion-sgprecursosfuentesfinanciacionsgp">
+                <div class="alert panel-heading row ui-accordion-header" style="border-color: #E6EFFD; border-left-color: #004884; height: 50px;">
+                    <button type="button" data-toggle="collapse" data-target="#rfuentesId" ng-click="vm.changeArrow('rfuentesId')">
+                        <span id="arrow-rfuentesId" class="glyphicon glyphicon-chevron-up pull-right" data-toggle="collapse" data-target="#rfuentesId"></span>
+                        <span class="d-inline-block" id="alert-sgprecursosfuentesfinanciacionsgp"></span>
+                        <span id="name-capitulo-sgprecursosfuentesfinanciacionsgp"></span>
+                        <span class="hidden" id="id-capitulo-sgprecursosfuentesfinanciacionsgp"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="rfuentesId" style="width: 97%;margin-left:15px;">                    
+                    <br /> <fuentes-sgp guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                    notificacioncambios="vm.notificacionCambiosCapitulosExternos(handler, nombreComponente)"
+                                    notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                    notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"
+                                    notificarrefresco="vm.notificarRefresco(handler, nombreComponente)"></fuentes-sgp>
+                </div>
+            </div>-->
+            <div class="ui-accordion-container hidden" id="accordion-sgprecursosfuentesfinanciacionsgp">
+                <div class="alert panel-heading row ui-accordion-header" style="border-color: #E6EFFD; border-left-color: #004884; height: 50px;">
+                    <button type="button" data-toggle="collapse" data-target="#sgprecursosfuentesfinanciacionsgp" ng-click="vm.changeArrow('rfuentesId')">
+                        <span id="arrow-rfuentesId" class="glyphicon glyphicon-chevron-up pull-right" data-toggle="collapse" data-target="#sgprecursosfuentesfinanciacionsgp"></span>
+                        <span class="d-inline-block" id="alert-sgprecursosfuentesfinanciacionsgp"></span>
+                        <span id="name-capitulo-sgprecursosfuentesfinanciacionsgp"></span>
+                        <span class="hidden" id="id-capitulo-sgprecursosfuentesfinanciacionsgp"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="sgprecursosfuentesfinanciacionsgp" style="width: 95%;margin-left: 40px;">                    
+                    <br />
+                    <fuentes-sgp guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                notificacioncambios="vm.notificacionCambiosCapitulosExternos(handler, nombreComponente)"
+                                notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"
+                                recargaregionalizacion="vm.recargarReg(handler)">
+
+                    </fuentes-sgp>
+                </div>
+            </div>
+
+            <div class="ui-accordion-container hidden" id="accordion-sgprecursosregionalizacionsgp">
+                <div class="alert panel-heading row ui-accordion-header" style="border-color: #E6EFFD; border-left-color: #004884; height: 50px;">
+                    <button type="button" data-toggle="collapse" data-target="#sgprecursosregionalizacionsgp" ng-click="vm.changeArrow('rregionalizacionId')">
+                        <span id="arrow-rregionalizacionId" class="glyphicon glyphicon-chevron-up pull-right" data-toggle="collapse" data-target="#sgprecursosregionalizacionsgp"></span>
+                        <span class="d-inline-block" id="alert-sgprecursosregionalizacionsgp"></span>
+                        <span id="name-capitulo-sgprecursosregionalizacionsgp"></span>
+                        <span class="hidden" id="id-capitulo-sgprecursosregionalizacionsgp"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="sgprecursosregionalizacionsgp" style="width: 95%;margin-left: 40px;">                    
+                    <br />
+                    <regionalizacion-fuentes-sgp guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                                notificacioncambios="vm.notificacionCambiosCapitulosExternos(handler, nombreComponente)"
+                                                notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)"
+                                                recargaregionalizacion="vm.recargarReg(handler)">
+
+                    </regionalizacion-fuentes-sgp>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>

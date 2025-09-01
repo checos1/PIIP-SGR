@@ -1,0 +1,86 @@
+﻿<modal-dialog cerrar="vm.cerrar" guardar="vm.guardar">
+    <div id="carga-datos-modal">
+        <div class="row ">
+            <div class="col-md-12">
+                <div class="titulo-modal">
+                    <span>CARGA DATOS</span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div
+                ng-class="vm.carga.tipoEntidad === 'SGR' || vm.carga.tipoEntidad === 'Territorial'? 'col-md-6': 'col-md-12'">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text bg-light rounded-left-2">Tipo</span>
+                    </div>
+                    <select ng-model="vm.carga.tipoCargaDatosId" class="form-control rounded-right-2">
+                        <option ng-repeat="tipo in vm.carga.listaTipoCargaDatos" value="{{tipo.Id}}">
+                            {{tipo.Nombre}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6" ng-if="vm.carga.tipoEntidad === 'SGR' || vm.carga.tipoEntidad === 'Territorial'">
+                    <!-- 
+                    <div class="input-group-prepend">
+                        <span class="input-group-text bg-light rounded-left-2">Entidad</span>
+                    </div>
+                    <select ng-model="vm.carga.idEntidad" class="form-control rounded-right-2">
+                        <option ng-repeat="e in vm.carga.listaEntidades" value="{{e.IdEntidad}}">
+                            {{e.NombreCompleto}}
+                        </option>
+                    </select>
+                </div> -->
+                    <div class="row">
+                        <div class="col-md-10">
+                            <select chosen options="vm.carga.listaEntidades" ng-model="vm.carga.idEntidad"
+                                ng-options="x.IdEntidad as x.NombreCompleto for x in vm.carga.listaEntidades"
+                                name="ddlEntidad" id="ddlEntidad"
+                                no-results-text="No hay ningún resultado para su búsqueda"
+                                placeholder-text-single="Entidades" class="form-control">
+                                <option value="" selected>Entidad</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text bg-light rounded-left-2">Fecha</span>
+                    </div>
+                    <input ng-model="vm.carga.fecha" type="date" class="form-control rounded-right-2" />
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="input-group mb-4">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text bg-light rounded-left-2">Crédito</span>
+                        <input type="text" ng-model="vm.carga.valorCredito" max="99999999"
+                            class="form-control rounded-right-2" ui-number-mask>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="input-group mb-4">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text bg-light rounded-left-2">Contra crédito</span>
+                    </div>
+                    <input type="text" ng-model="vm.carga.valorContraCredito" max="99999999"
+                        class="form-control rounded-right-2" ui-number-mask>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <label class="btn btn-primary" for="file-archivo">
+                    <input id="file-archivo" type="file" style="display:none"
+                        onchange="$('#upload-file-info').html(this.files[0].name)">
+                    Subir datos
+                </label>
+                <span class='label label-primary' id="upload-file-info"></span>
+
+            </div>
+        </div>
+    </div>
+</modal-dialog>

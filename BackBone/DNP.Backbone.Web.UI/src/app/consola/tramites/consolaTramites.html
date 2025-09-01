@@ -1,0 +1,172 @@
+﻿
+    <div class="container-fluid inbox">
+        <nav class="breadcrumb">
+            <a href="/">
+                <span class="breadcrumb-item active">
+                    <i class="fa fa-home" aria-hidden="true"></i> Inicio
+                </span>
+            </a>
+            /
+            <span class="breadcrumb-item active">Banco de Proyectos</span>
+        </nav>
+
+        <div class="dashboard" id="tramits" ng-init="vm.init();">
+
+            <div id="proyectos" class="project">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="titlebar marginb-15">
+                            <span>Trámites </span>
+                            <span class="buttonbar pull-right">
+                                <button type="button" class="btn btn-default btn-md" ng-click="vm.abrirModalAdicionarColumnas()"
+                                        tabindex="0" tooltip-placement="top" uib-tooltip="Add Columna">
+                                    Adicionar columna
+                                </button>
+                                <button type="button" class="btn btn-default btn-md" ng-click="vm.conmutadorFiltro()"
+                                        tooltip-placement="auto" uib-tooltip="Filtro" tabindex="0">
+                                    Filtrar
+                                </button>
+                                <a href="" download target="_blank" ng-click="vm.downloadPdf()" tooltip-placement="auto"
+                                   uib-tooltip="Exportar PDF" class="btn btn-default btn-md btnRedondo">PDF</a>
+                                <a href="" download target="_blank" ng-click="vm.downloadExcel()" tooltip-placement="auto"
+                                   uib-tooltip="Exportar XLS" class="btn btn-default btn-md btnRedondo">XLS</a>
+                                <!-- <a href="{{vm.obtenerXML}}" download target="_blank" tooltip-placement="auto" uib-tooltip="Exportar XML"><img src="/Img/btn/btnExportXML.png" alt="XML" /></a> -->
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="btn-group btn-group-toggle btnsFiltrosAgrupados" data-toggle="buttons">
+                            <label class="btn btn-secondary">
+                                <a href="/bancoproyectos/proyectos/{{vm.etapa}}">Proyectos</a>
+                            </label>
+                            <label class="btn btn-secondary active">
+                                <a>Trámites</a>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!--inicio tabs-->
+                <div class="form-group clearfix">
+                    <div class="row">
+                        <div class="col-md-12 radio radio-primary">
+
+                            <ul class="nav nav-tabs">
+                                <li tabindex="0" class="{{$index == 0 ? 'active' : ''}}"
+                                    ng-repeat="tipo in vm.listaTipoEntidad">
+                                    <a data-toggle="tab" ng-click="vm.cambioTipoEntidad(tipo.Nombre)"
+                                       ng-disabled="{{tipo.Deshabilitado}}" ng-if="!tipo.Deshabilitado"
+                                       llamar-funcion-con-tecla="vm.cambioTipoEntidad(tipo.Nombre)">
+                                        {{tipo.Descripcion}}
+                                    </a>
+                                    <a ng-if="tipo.Deshabilitado" class="disabled" disabled>{{tipo.Descripcion}}</a>
+                                </li>
+
+                            </ul>
+
+                        </div>
+                    </div>
+                    <!--inicio filtro-->
+                    <div class="filtro" ng-if="vm.mostrarFiltro">
+                        <div class="clearfix">
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <div class="col-md-2" ng-if="vm.puedeVerFiltroDescripcion">
+                                        <input type="text" ng-model="vm.tramiteFiltro.descripcion.valor" name="txtDescripcion"
+                                               id="txtDescripcion" class="form-control" placeholder="Descripción" />
+                                    </div>
+                                    <div class="col-md-4" ng-if="vm.puedeVerFiltroFecha">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">Fecha Desde</span>
+                                            </div>
+                                            <input type="date" ng-model="vm.tramiteFiltro.fechaDesde.valor" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4" ng-if="vm.puedeVerFiltroFecha">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">Fecha Hasta</span>
+                                            </div>
+                                            <input type="date" ng-model="vm.tramiteFiltro.fechaHasta.valor" class="form-control">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4" ng-if="vm.puedeVerFiltroSector">
+                                        <select ng-model="vm.tramiteFiltro.sectorId.valor"
+                                                ng-options="x.Id as x.Name for x in vm.listaFiltroSectores" name="ddlSector"
+                                                id="ddlSector" class="form-control">
+                                            <option value="" selected>Sector</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2" ng-if="vm.puedeVerFiltroEntidad">
+                                        <select chosen options="vm.listaFiltroEntidades" ng-model="vm.tramiteFiltro.entidadId.valor"
+                                                ng-options="x.Id as x.Name for x in vm.listaFiltroEntidades" name="ddlEntidad" id="ddlEntidad"
+                                                no-results-text="No hay ningún resultado para su búsqueda" placeholder-text-single="Entidades" class="form-control">
+                                            <option value="" selected>Entidad</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3" ng-if="vm.puedeVerFiltroAccionFlujo">
+                                        <input type="text" ng-model="vm.tramiteFiltro.accionFlujo.valor" class="form-control" placeholder="Accion Flujo" />
+                                    </div>
+                                    <div class="col-md-3" ng-if="vm.puedeVerFiltroNombreFlujo">
+                                        <input type="text" ng-model="vm.tramiteFiltro.nombreFlujo.valor" class="form-control" placeholder="Nombre Flujo" />
+                                    </div>
+
+                                </div>
+                                <div class="col-md-2 text-right">
+                                    <button type="button" class="btn btn-filtro" ng-click="vm.buscar()"
+                                            tooltip-placement="auto" uib-tooltip="Buscar">
+                                        Buscar
+                                    </button>
+                                    <button type="button" class="btn btn-filtro" tooltip-placement="auto"
+                                            ng-click="vm.limpiarCamposFiltro()" uib-tooltip="Limpiar">
+                                        Limpiar
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!--fim filtro-->
+                </div>
+
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="container-table" ui-i18n="{{vm.lang}}">
+
+                            <div ng-if="vm.filasFiltradas" class="clearfix grid-icon" id="uigprojecto" ui-grid="vm.gridOptions"
+                                 ui-grid-resize-columns ui-grid-pagination ui-grid-expandable>
+                            </div>
+
+                            <div class="text-center intro-help  min-mh no-result-watermark"
+                                 ng-if="!vm.tipoEntidad && !vm.filasFiltradas">
+                                <h4>{{ 'Buscando resultados' }} </h4>
+                            </div>
+
+                            <div class="text-center intro-help  min-mh no-result-watermark"
+                                 ng-if="vm.tipoEntidad && !vm.filasFiltradas">
+                                <h4>
+                                    {{ 'No hay ningún resultado para su búsqueda por el tipo de entidad' }}
+                                    {{ vm.tipoEntidad }}
+                                </h4>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div ng-if="vm.mostrarMensajeProyectos" ng-cloak>
+                        <div class="text-center intro-help no-result-watermark">
+                            <img src="Img/image-help.png" alt="Sin resultados">
+                            <h2 id="idLabelMensajeResultados">{{vm.Mensaje}}</h2>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+</div>

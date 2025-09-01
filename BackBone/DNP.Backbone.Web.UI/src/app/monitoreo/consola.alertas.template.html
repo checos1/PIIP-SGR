@@ -1,0 +1,95 @@
+﻿<div class="container-fluid inbox">
+    <nav class="breadcrumb">
+        <a href="/">
+            <span class="breadcrumb-item active">
+                <i class="fa fa-home" aria-hidden="true"></i> Inicio
+            </span>
+        </a>
+        /
+        <span class="breadcrumb-item active">Administración alertas</span>
+    </nav>
+
+    <div class="dashboard">
+        <div id="alertas" class="project" ng-init="vm.init();">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="titlebar">
+
+                        <span>Administración <i>/ Alertas</i></span>
+
+                        <span class="buttonbar pull-right">
+                            <button type="button" class="btn btn-default btn-md btnFiltroHeader" tooltip-placement="top" 
+                                    uib-tooltip="Crear Alerta" ng-click="vm.abrirModalCrearAlertaConfiguracion()" tabindex="0">
+                                Crear Alerta
+                            </button>
+                            <button type="button" class="btn btn-default btn-md btnFiltroHeader" ng-click="vm.conmutadorFiltro()" tooltip-placement="auto" 
+                                    uib-tooltip="Filtro">
+                                Filtro
+                            </button>
+                            <a href="" download target="_blank" class="btn btn-default btn-md btnFiltroHeader btnRedondo"  ng-click="vm.downloadPdf()" 
+                                tooltip-placement="auto" uib-tooltip="Exportar PDF">
+                                PDF
+                            </a>
+                            <a href="" download target="_blank" class="btn btn-default btn-md btnFiltroHeader btnRedondo"  ng-click="vm.downloadExcel()"
+                                tooltip-placement="auto" uib-tooltip="Exportar XLS">
+                                XLS
+                            </a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group clearfix">
+                <!--inicio filtro-->
+                <div class="filtro" ng-if="vm.mostrarFiltro">
+                    <div class="clearfix">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <div class="col-md-3">
+                                    <input type="text" ng-model="vm.filtro.nombreAlerta.valor" class="form-control" placeholder="Nombre del Alerta"/>
+                                </div>
+                                <div class="col-md-2">
+                                    <select ng-model="vm.filtro.tipoAlerta.valor" ng-options="x.Id as x.Name for x in vm.listaFiltroTipoAlerta" name="ddlTipoDelAlerta" id="ddlddlTipoDelAlerta" class="form-control">
+                                        <option value="" selected>Tipo del Alerta</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="text" ng-model="vm.filtro.mensajeAlerta.valor" class="form-control" placeholder="Mensaje del Alerta"/>
+                                </div>
+                                <div class="col-md-2">
+                                    <select ng-model="vm.filtro.estadoAlerta.valor" ng-options="x.Id as x.Name for x in vm.listaFiltroEstadoAlerta" name="ddlEstadoDelAlerta" id="ddlEstadoDelAlerta" class="form-control">
+                                        <option value="" selected>Estado del Alerta</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-2 text-right">
+                                <button type="button" class="btn btn-filtro" ng-click="vm.buscar()"
+                                        tooltip-placement="auto" uib-tooltip="Buscar">
+                                    Buscar
+                                </button>
+                                <button type="button" class="btn btn-filtro" tooltip-placement="auto"
+                                        ng-click="vm.limpiarCamposFiltro()" uib-tooltip="Limpiar">
+                                    Limpiar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--fim filtro-->
+            </div>
+            <div class="clearfix borderTop4 grid-monitoreo-proyecto">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="clearfix grid-icon" id="uigconsolaalertas" ui-grid="vm.gridOptions"
+                                ui-grid-resize-columns ui-grid-pagination>
+                        </div>
+                    </div>
+                </div>
+                <div ng-if="vm.mostrarMensaje" ng-cloak>
+                    <div class="text-center intro-help no-result-watermark">
+                        <h2 id="idLabelMensajeResultados">{{vm.Mensaje}}</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

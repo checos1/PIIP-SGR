@@ -1,0 +1,208 @@
+﻿<section>
+    <div class="container-fluid inbox" ng-init="vm.init();">
+        <div>
+            <div class="tab-container col-md-12" style="width:100%;">
+                <br />
+                <span class="buttonbar pull-right" ng-if="vm.mostrarregionalizacion && vm.habilitaBotones">
+                    <button type="button" class="btneditarDNP" tooltip-placement="top" ng-click="vm.EditarRegionaliza ? vm.CancelarValores(regionalizacion) : vm.EditarValores(regionalizacion)" uib-tooltip="{{vm.EditarRegionaliza ? 'CANCELAR' : 'EDITAR'}}">
+                        {{vm.EditarRegionaliza ? 'CANCELAR' : 'EDITAR'}}
+                    </button>
+                    <button ng-disabled="!vm.EditarRegionaliza" type="button" class="{{vm.EditarRegionaliza ? 'btnguardarDNP' : 'btnguardarDisabledDNP'}}" tooltip-placement="top" uib-tooltip="Guardar" tabindex="0" ng-click="vm.GuardarValores(regionalizacion)">
+                        GUARDAR
+                    </button>
+                </span>
+                <br />
+                <div style="text-align: left;">
+                    <div class="row col-md-12">
+                        <div class="alert panel-heading">
+                            <table class="TableDNP">
+                                <thead>
+                                    <tr>
+                                        <th class="columAcc" style="width:4%"></th>
+                                        <th class="textLeftDNP" style="width:28%">Localización</th>
+                                        <th class="textRightDNP" style="width:16%">Recursos Solicitados</th>
+                                        <th class="textRightDNP" style="width:16%">Nación CSF $</th>
+                                        <th class="textRightDNP" style="width:16%">Nación SSF $</th>
+                                        <th class="textRightDNP" style="width:16%">Propios $</th>
+                                        <th class="columAcc" style="width:4%"></th>
+                                    </tr>
+                                </thead>
+                                <tbody ng-repeat="recursos in regionalizacion.Recursos" ng-init="recursosindex = $index">
+                                    <tr>
+                                        <td></td>
+                                        <td class="textleftDNP">
+                                            {{recursos.Localizacion}}
+                                        </td>
+                                        <td class="textRightDNP"><div class="blockReferenciaDNP">{{vm.ConvertirNumero(recursos.Solicitado)}}</div></td>
+                                        <td ng-if="!vm.EditarRegionaliza || recursos.bloqueado == 1" class="textRightDNP">
+                                            <div class="blockReferenciaDNP">{{vm.ConvertirNumero(recursos.NacionCSF)}}</div>
+                                            <span>Aprobados</span><br />
+                                            <div class="blockReferenciaDNP">{{vm.ConvertirNumero(recursos.NacionCSFA)}}</div>
+                                        </td>
+                                        <td ng-if="vm.EditarRegionaliza && recursos.bloqueado == 0" class="textRightDNP">
+                                            <div class="blockReferenciaDNP">{{vm.ConvertirNumero(recursos.NacionCSF)}}</div>
+                                            <span>Aprobados</span><br />
+                                            <input id="input-NacionCSFA" type="number" string-to-number min="0.00"
+                                                   ng-readonly="!vm.EditarRegionaliza"
+                                                   ng-keypress="vm.validateFormat($event)"
+                                                   ng-keyup="vm.validarTamanio($event)"
+                                                   ng-blur="vm.actualizaFila($event, regionalizacion)"
+                                                   ng-value="recursos.NacionCSFA"
+                                                   ng-model="regionalizacion.Recursos[recursosindex].NacionCSFA"
+                                                   required class="form-control editInputDNP" style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px; background-color:white" />
+                                        </td>
+                                        <td ng-if="!vm.EditarRegionaliza || recursos.bloqueado == 1" class="textRightDNP">
+                                            <div class="blockReferenciaDNP">{{vm.ConvertirNumero(recursos.NacionSSF)}}</div>
+                                            <span>Aprobados</span><br />
+                                            <div class="blockReferenciaDNP">{{vm.ConvertirNumero(recursos.NacionSSFA)}}</div>
+                                        </td>
+                                        <td ng-if="vm.EditarRegionaliza && recursos.bloqueado == 0" class="textRightDNP">
+                                            <div class="blockReferenciaDNP">{{vm.ConvertirNumero(recursos.NacionSSF)}}</div>
+                                            <span>Aprobados</span><br />
+                                            <input id="input-NacionSSFA" type="number" string-to-number min="0.00"
+                                                   ng-readonly="!vm.EditarRegionaliza"
+                                                   ng-keypress="vm.validateFormat($event)"
+                                                   ng-keyup="vm.validarTamanio($event)"
+                                                   ng-blur="vm.actualizaFila($event, regionalizacion)"
+                                                   ng-value="recursos.NacionSSFA"
+                                                   ng-model="regionalizacion.Recursos[recursosindex].NacionSSFA"
+                                                   required class="form-control editInputDNP" style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px; background-color:white" />
+                                        </td>
+                                        <td ng-if="!vm.EditarRegionaliza || recursos.bloqueado == 1" class="textRightDNP">
+                                            <div class="blockReferenciaDNP">{{vm.ConvertirNumero(recursos.Propios)}}</div>
+                                            <span>Aprobados</span><br />
+                                            <div class="blockReferenciaDNP">{{vm.ConvertirNumero(recursos.PropiosA)}}</div>
+                                        </td>
+                                        <td ng-if="vm.EditarRegionaliza && recursos.bloqueado == 0" class="textRightDNP">
+                                            <div class="blockReferenciaDNP">{{vm.ConvertirNumero(recursos.Propios)}}</div>
+                                            <span>Aprobados</span><br />
+                                            <input id="input-Propios" type="number" string-to-number min="0.00"
+                                                   ng-readonly="!vm.EditarRegionaliza"
+                                                   ng-keypress="vm.validateFormat($event)"
+                                                   ng-keyup="vm.validarTamanio($event)"
+                                                   ng-blur="vm.actualizaFila($event, regionalizacion)"
+                                                   ng-value="recursos.PropiosA"
+                                                   ng-model="regionalizacion.Recursos[recursosindex].PropiosA"
+                                                   required class="form-control editInputDNP" style="text-align:right;padding: 0px 5px 0px 5px;margin-left: 5px; background-color:white" />
+                                        </td>
+                                        <td ng-if="vm.EditarRegionaliza && recursos.bloqueado == 0" class="textRightDNP">
+                                            <button class="btnaccion" id="BtnEliminarLocalizacion" tooltip-placement="Auto" uib-tooltip="Eliminar" ng-click="vm.eliminarLocalizacion(recursos.LocalizacionId)" has-claim has-opciones="['Ajustes:GeneralComponente']">
+                                                <span style="cursor:pointer" ng-show="!recursos.Eliminar"> <img src="Img/u928.svg"></span>
+                                                <span ng-show="recursos.Eliminar"> <img src="Img/btnElimdisabled.svg"></span>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <div class="col-md-6">
+                                        <p style="padding: 0px; margin-bottom: 0px; ">
+                                            <span id="ErrorRegionalizacion-{{recursos.LocalizacionId}}" class="hidden text-left color-red">
+                                                <img class="img img-advertencia" src="Img/u11.svg" />
+                                                <span id="ErrorRegionalizaMsg-{{recursos.LocalizacionId}}"></span>
+                                                <span id="ErrorRegionalizaMsgGuardar"></span>
+                                            </span>
+                                        </p>
+                                    </div>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td class="textleftDNP"><b>=</b></td>
+                                        <td class="textleftDNP"><b>Total solicitados</b></td>
+                                        <td class="textRightDNP">
+                                            <div class="blockReferenciaDNP">{{vm.ConvertirNumero(regionalizacion.Solicitado)}}</div>
+                                        </td>
+                                        <td class="textRightDNP">
+                                            <div class="blockReferenciaDNP">{{vm.ConvertirNumero(regionalizacion.TNacionCSF)}}</div>
+                                        </td>
+                                        <td class="textRightDNP">
+                                            <div class="blockReferenciaDNP">{{vm.ConvertirNumero(regionalizacion.TNacionSSF)}}</div>
+                                        </td>
+                                        <td class="textRightDNP">
+                                            <div class="blockReferenciaDNP">{{vm.ConvertirNumero(regionalizacion.TPropios)}}</div>
+                                        </td>
+                                        <td class="textRightDNP"></td>
+                                        <td class="columAcc"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="textleftDNP"><b>=</b></td>
+                                        <td class="textleftDNP"><b>Total aprobado</b></td>
+                                        <td class="textRightDNP">
+                                            <div class="blockReferenciaDNP">{{vm.ConvertirNumero(regionalizacion.Solicitado)}}</div>
+                                        </td>
+                                        <td class="textRightDNP">
+                                            <div class="blockReferenciaDNP">{{vm.ConvertirNumero(regionalizacion.TNacionCSFA)}}</div>
+                                        </td>
+                                        <td class="textRightDNP">
+                                            <div class="blockReferenciaDNP">{{vm.ConvertirNumero(regionalizacion.TNacionSSFA)}}</div>
+                                        </td>
+                                        <td class="textRightDNP">
+                                            <div class="blockReferenciaDNP">{{vm.ConvertirNumero(regionalizacion.TPropiosA)}}</div>
+                                        </td>
+                                        <td class="textRightDNP"></td>
+                                        <td class="columAcc"></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                            <br />                           
+                            <div class="row" style="margin-right:5px">
+                                <button type="button" class="btn btn-link btn-md pull-right buttonhiper" id="btn-agregar-localizacion" tooltip-placement="top" uib-tooltip="Agregar Localizacion" tabindex="0" ng-click="vm.abrirModalAgregarLocalizacion(0)" has-claim has-opciones="['Ajustes:GeneralComponente']">
+                                    AGREGAR
+                                </button>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12 DetacolumnDNP">
+                                    <span>
+                                        Archivo plantilla carga masiva <img id="u1275_img" class="imgTituloAccion " src="Img/u1275.svg">
+                                    </span>
+                                    <button type="button" class="btn btn-link btn-md buttonhiperDNP" ng-click="vm.descargarPlantila()">
+                                        DESCARGAR PLANTILLA
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-7">
+                                    <div class="divpanelcargarchivoDNP" style="">
+
+                                        <button class="btncargarch" id="btnExaminarArchivo" type="button" uib-tooltip="Editar" ng-if="vm.habilitaBotones" ng-click="vm.adjuntarArchivo(vm.proyectoid)">
+                                            EXAMINAR
+                                        </button>
+                                        <input type="file" style="display:none" id="fileregionalizacion-{{vm.proyectoid}}" name='fileregionalizacion[]' onchange="angular.element(this).scope().fileregionalizacionNameChanged(this)" accept=".xlsx, .xls, .csv" multiple />
+                                        <input type="search" style="display:none" id="regionalizacionnombrearchivo-{{vm.proyectoid}}" ng-model="vm.nombrearchivo" class="form-control InputSearchDNP " placeholder="">
+                                        <span>{{vm.nombrearchivo}}</span>
+                                        <button class="btncancearch" type="button" uib-tooltip="Cancelar" ng-click="vm.limpiarArchivo(vm.proyectoid)">
+                                            X
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <span class="buttonbar pull-right">
+                                        <button disabled="disabled" id="btnRegionalizacionValidarArchivo-{{vm.proyectoid}}" type="button" ng-if="vm.habilitaBotones" class="btn btnguardarDNP" tooltip-placement="top" uib-tooltip="Editar" tabindex="0" ng-click="vm.validarArchivo(vm.proyectoid)">
+                                            VALIDAR
+                                        </button>
+                                        <button disabled="disabled" id="btnRegionalizacionLimpiarArchivo-{{vm.proyectoid}}" type="button" ng-if="vm.habilitaBotones" class="btn btnguardarDNP" tooltip-placement="top" uib-tooltip="Cancelar" tabindex="0" ng-click="vm.limpiarArchivo(vm.proyectoid)">
+                                            CANCELAR
+                                        </button>
+                                        <button disabled="disabled" id="btnRegionalizacionArchivoSeleccionado-{{vm.proyectoid}}" class="btn btnguardarDNP" type="button" ng-if="vm.habilitaBotones" tooltip-placement="top" uib-tooltip="Guardar" tabindex="0" ng-click="vm.RegistrarCargaRegionalizacion()">
+                                            CARGAR
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 DetacolumnDNP">
+                                    <span class="detapregun">
+                                        Nota:
+                                    </span>
+                                    <span class="notapregun">
+                                        Los datos cargados previamente en las localizaciones se reescribiran si se realiza una carga masiva.
+                                    </span>
+                                </div>
+                            </div>
+
+                            <br />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

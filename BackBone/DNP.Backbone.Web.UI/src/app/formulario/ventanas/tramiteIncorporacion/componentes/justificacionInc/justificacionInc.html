@@ -1,0 +1,43 @@
+﻿<section>
+    <div class="container-fluid inbox" ng-init="vm.init();">
+        <div class="tab-content">
+            <div class="row" style="margin-left: 0px; margin-right: 0px; padding-bottom: 1rem">
+
+                <div class="alert panel-heading row ui-accordion-header" style="">
+                    <button class="button" type="button" data-toggle="collapse" data-target="#justificacionjustificacion" ng-click="vm.changeArrow('justificacionjustificacion')">
+                        <span class="d-inline-block" id="alert-justificacionjustificacion"></span>
+                        <span id="name-capitulo-justificacionjustificacion"></span>
+                        <span class="hidden" id="id-capitulo-justificacionjustificacion"></span>
+                        <span id="arrow-justificacionjustificacion" class="glyphicon-chevron-down glyphicon pull-right" data-toggle="collapse" data-target="#justificacionjustificacion"></span>
+                    </button>
+                </div>
+                <div class="collapse" id="justificacionjustificacion" style="padding-right: 15px; padding-left: 0px;">
+                    <div class="row" style="margin-left:20px"  ng-if="!vm.mostrarjustificacion">
+                        <justificacion-tramite tramiteid="{{vm.tramiteid}}" tipotramiteid="{{vm.tipotramiteid}}"
+                                               guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                               notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                               notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)">
+
+                        </justificacion-tramite>
+                    </div>
+                    <div ng-if="vm.mostrarjustificacion" style="margin-left:20px;">
+                        <justificacion-apro-formulario tramiteid="{{vm.tramiteid}}"
+                                                       tipotramiteid="{{vm.tipotramiteid}}"
+                                                       actualizacomponentes="{{vm.actualizacomponentes}}"
+                                                       idnivel="{{vm.idnivel}}"
+                                                       vm.nombrecomponentepaso="{{vm.nombreComponenteHijo}}"
+                                                       vm
+                                                       guardadoevent="vm.guardado(nombreComponenteHijo)"
+                                                       notificacionestado="vm.notificacionEstado(nombreComponente, esValido)"
+                                                       notificacionvalidacion="vm.notificacionValidacionHijos(handler, nombreComponente)">
+                        </justificacion-apro-formulario>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+</section>

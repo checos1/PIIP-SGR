@@ -1,0 +1,81 @@
+﻿<div class="modal-dashboard">
+    <div class="modal-header" style="background-color:#fff !important;">
+        <div class="col-md-12 text-right">
+            <button type="button" class="btn btn-sm btn-primary btnCloseModal" ng-click="vm.cancelar()">x</button>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12" style="padding-top: 15px">
+                <div class="titlebar">
+                    <span style="background: #FFF">Crear Nueva Línea</span>
+                    <span style="background: #FFF" class="buttonbar pull-right">
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row justify-content-start" >
+                    <div ng-if="vm.esCabeceraoDetalle">
+                        <div class="form-group col-md-4" ng-if="item.cabecera || item.detalle" ng-repeat="item in vm.modelo.items">
+                            <label>{{item.encabezado || item.displayName || item.field || item.propiedad}}</label>
+                            <input ng-if="!item.rCache" class="form-control text-right" type="{{item.tipo}}" min="{{item.tipo === 'number' ? 0 : ''}}" ng-model="vm.datoAGuardar[item.field || item.propiedad]" />
+
+                            <select ng-if="item.rCache" class="form-control" tooltip-placement="top" name="modal" ng-model="vm.datoAGuardar[item.field || item.propiedad]">
+                                <option value="{{itemRedis.Id}}"
+                                        ng-selected="item.Id"
+                                        ng-repeat="itemRedis in vm.getTiposCatalogo(dato[item.field || item.propiedad], item, vm.datoAGuardar)">
+                                    {{ itemRedis.Name }}
+                                </option>
+                            </select>
+
+                            <br />
+                        </div>
+                    </div>
+
+                    <div ng-if="!vm.esCabeceraoDetalle">
+                        <div class="form-group col-md-4" ng-if="item.habilitarEdicion || (!vm.esEdicion && item.visible && item.displayName !== 'Acciones')" ng-repeat="item in vm.modelo.items">
+                            <label>{{item.encabezado || item.displayName || item.field || item.propiedad}}</label>
+                            <input ng-if="!item.rCache" class="form-control text-right" type="{{item.tipo}}" min="{{item.tipo === 'number' ? 0 : ''}}" ng-model="vm.datoAGuardar[item.field || item.propiedad]" />
+
+                            <select ng-if="item.rCache" class="form-control" tooltip-placement="top" name="modal" ng-model="vm.datoAGuardar[item.field || item.propiedad]">
+                                <option value="{{itemRedis.Id}}"
+                                        ng-selected="vm.datoAGuardar[item.field || item.propiedad] == itemRedis.Name"
+                                        ng-repeat="itemRedis in vm.getTiposCatalogo(dato[item.field || item.propiedad], item, vm.datoAGuardar)">
+                                    {{ itemRedis.Name }}
+                                </option>
+                            </select>
+                            
+                            <br />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="pull-right top15">
+                    <span class="buttonbar pull-right">
+                        <button type="button"
+                            class="btn btn-success text-capitalize"
+                            ng-click="vm.adicionarDato()"
+                            tooltip-placement="top"
+                            uib-tooltip="{{ 'Guardar' | language }}">
+                            {{'Guardar' | language}}
+                        </button>
+                        <button type="button" class="btn btn-primary text-capitalize" tooltip-placement="top" uib-tooltip="{{ 'Cancelar' | language }}" ng-click="vm.cancelar()">
+                            {{'Cancelar' | language }}
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

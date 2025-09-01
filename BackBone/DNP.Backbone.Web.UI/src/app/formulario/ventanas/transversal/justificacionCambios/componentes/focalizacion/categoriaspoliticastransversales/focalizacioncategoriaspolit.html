@@ -1,0 +1,639 @@
+﻿<section ng-init="vm.init();" class="mx-5">
+    <h3 class="text-left ui-seccion-title">{{vm.titulo}}</h3>
+    <div class="row mb-5">
+        <div class="col-md-12 text-left">
+            <span>
+                <strong>Ruta: </strong> Focalización / {{vm.titulo}}
+            </span>
+        </div>
+    </div>
+    <!--Politicas Que requieren aprobacion-->
+    <div class="row">
+        <div class="" style="padding: 0 !important">
+            <div class="alert panel-headingAccDNP">
+                <div class="card card-body pull-left  divAccordionDNP">
+                    <span class="uLabelCampo">Políticas que requieren aprobación por Dirección Técnica del DNP</span>
+                    <p class="panelbtnalertAcordnp">
+                        <button class="btnaccion btnAccordionDNP" type="button" data-toggle="collapse" data-target="#objFocalizacionJustificacionDT" ng-click="vm.AbrilNivelDT()">
+                            <img id="imgmas-otras-politicasDT" src="Img/btnMas.svg">
+                            <img id="imgmenos-otras-politicasDT" style="display:none" src="Img/btnMenos.svg">
+                            <span id="ico-otras-politicasDT" style="display:none">+</span>
+                        </button>
+                        <!--
+                        <span class="img iconadverdnp "> <img src="Img/u4630.svg"> </span>
+                        <span class="messagealerttableDNP">Espacio reservado para información de validaciones. </span>
+                        -->
+                    </p>
+                </div>
+            </div>
+            <br />
+            <div class="collapse" id="objFocalizacionJustificacionDT">
+                <div class="LineaEncabezadodivDNP"></div>
+                <h3 class="row tituloEncabezadodivDNP">
+                    Políticas
+                </h3>
+                <div>
+                    <div class="row" ng-repeat="politicaDT in vm.SeccionPoliticasDT.Politicas" ng-init="indexpoliticasDT = $index">
+                        <div ng-if="politicaDT.VerPolitica === 1">
+                            <div class="alert panel-headingAcc2DNP">
+                                <div class="card card-body pull-left bordesencillo">
+                                    <span class="uLabelCampo">{{politicaDT.Politica}}</span>
+                                    <p class="panelbtnalertAcordnp">
+                                        <button class="btnaccion btnAccordionDNP" type="button" data-toggle="collapse" data-target="#objDT-{{politicaDT.PoliticaId}}-{{indexpoliticasDT}}" ng-click="vm.AbrilNivel1DT(politicaDT.PoliticaId, indexpoliticasDT)">
+                                            <img id="imgmasdt-{{politicaDT.PoliticaId}}-{{indexpoliticasDT}}" src="Img/btnMas.svg">
+                                            <img id="imgmenosdt-{{politicaDT.PoliticaId}}-{{indexpoliticasDT}}" style="display:none" src="Img/btnMenos.svg">
+                                            <span id="icodt-{{politicaDT.PoliticaId}}-{{indexpoliticasDT}}" style="display:none">+</span>
+                                        </button>
+                                        <!--<span class="img iconadverdnp"> <img src="Img/u4630.svg"> </span>
+                                        <span class="messagealerttableDNP">
+                                            Espacio reservado para información de validaciones.
+                                        </span>-->
+                                    </p>
+                                </div>
+
+
+                            </div>
+                            <br />
+                            <div class="collapse" id="objDT-{{politicaDT.PoliticaId}}-{{indexpoliticasDT}}">
+                                <div class="LineaEncabezado2divDNP"></div>
+                                <h3 class="row tituloEncabezadodiv2DNP">Política</h3>
+                                <div>
+
+                                    <div class="row" ng-repeat="DetalleDT in politicaDT.DetallePoliticas" ng-init="indexdetallepoliticasDT = $index">
+                                        <div ng-if="DetalleDT.Visible === 1">
+
+                                            <div class="alert panel-headingAcc2DNP">
+                                                <div class="card card-body pull-left bordesencillo">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <span class="NomItemAccordDNP">Categoria: </span>
+                                                            <span class="InfoItemAccordDNP">{{DetalleDT.NombreCategoria}} </span>
+                                                            <span class="NomItemAccordDNP">Subcategoria: </span>
+                                                            <span class="InfoItemAccordDNP">{{DetalleDT.SubCategoria}} </span>
+                                                            <span class="NomItemAccordDNP">Producto: </span>
+                                                            <span class="InfoItemAccordDNP">{{DetalleDT.NombreProducto}}</span>
+                                                        </div>
+                                                    </div>
+                                                    <p class="panelbtnalertAcordnp">
+                                                        <!--
+                                                        <span class="img iconadverdnp"> <img src="Img/u4630.svg"> </span>
+                                                        <span class="messagealerttableDNP">
+                                                            Espacio reservado para información de
+                                                            validaciones.
+                                                        </span>-->
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <!--<div class="row" ng-repeat="DetalleDT in politicaDT.DetallePoliticas" ng-init="indexdetallepoliticasDT = $index">-->
+                                            <div class="col-md-12 mb-4" ng-if="politicaDT.PoliticaId == DetalleDT.PoliticaId">
+                                                <ul class="nav nav-tabs">
+                                                    <li id="liRecursos" ng-if="DetalleDT.Recursos !== null">
+                                                        <a href="" ng-click="vm.mostrarTabDT(1,politicaDT.PoliticaId, DetalleDT.CategoriaId, DetalleDT.ProductoId, indexdetallepoliticasDT)" data-toggle="tab">
+                                                            <b>Recursos categoria</b>
+                                                        </a>
+                                                    </li>
+                                                    <li id="liMetas" ng-if="DetalleDT.Metas !== null">
+                                                        <a href="" ng-click="vm.mostrarTabDT(2, politicaDT.PoliticaId, DetalleDT.CategoriaId, DetalleDT.ProductoId, indexdetallepoliticasDT)" data-toggle="tab">
+                                                            <b>Meta categoria</b>
+                                                        </a>
+                                                    </li>
+                                                    <li id="liPersonas" ng-if="DetalleDT.Personas !== null">
+                                                        <a href="" ng-click="vm.mostrarTabDT(3, politicaDT.PoliticaId, DetalleDT.CategoriaId,  DetalleDT.ProductoId, indexdetallepoliticasDT)" data-toggle="tab">
+                                                            <b>Personas categoria</b>
+                                                        </a>
+                                                    </li>
+                                                    <li id="liMetaIndicador" ng-if="DetalleDT.MetasSecundarias !== null && politicaDT.PoliticaId == 7">
+                                                        <a href="" ng-click="vm.mostrarTabDT(4, politicaDT.PoliticaId, DetalleDT.CategoriaId,  DetalleDT.ProductoId,  indexdetallepoliticasDT)" data-toggle="tab">
+                                                            <b>Meta indicador secundario categoria</b>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                                <div id="divresumenjustificacionfocalizacionDT" class="mt-5">
+                                                    <div ng-if="DetalleDT.Recursos !== null" id="recursosdt{{politicaDT.PoliticaId}}-{{DetalleDT.CategoriaId}}-{{DetalleDT.ProductoId}}-{{indexdetallepoliticasDT}}">
+                                                        <table class="TableDNP">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th class="columAcc"></th>
+                                                                    <th class="textRightDNP">Vigencia</th>
+                                                                    <th class="textRightDNP">En firme $</th>
+                                                                    <th class="textRightDNP">En ajuste $</th>
+                                                                    <th class="textRightDNP">Diferencia</th>
+                                                                    <th class="columAcc"></th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr class="uTexto-grilla" ng-repeat="objResumen in DetalleDT.Recursos">
+                                                                    <td></td>
+                                                                    <td class="textRightDNP">{{objResumen.Vigencia}}</td>
+                                                                    <td class="textRightDNP">{{objResumen.ValorFirme}}</td>
+                                                                    <td class="textRightDNP">{{objResumen.ValorActual}}</td>
+                                                                    <td class="textRightDNP">{{objResumen.Diferencia}}</td>
+                                                                    <td></td>
+                                                                </tr>
+                                                            </tbody>
+                                                            <tfoot>
+                                                                <tr>
+                                                                    <td class="columAcc icontotaldnp"><span>=</span></td>
+                                                                    <td class="textRightDNP">Total</td>
+                                                                    <td class="textRightDNP"><div class="blockReferenciaDNP">{{DetalleDT.TotalRecursosFirme}}</div></td>
+                                                                    <td class="textRightDNP"><div class="blockReferenciaDNP">{{DetalleDT.TotalRecursosAjuste}}</div></td>
+                                                                    <td class="textRightDNP"><div class="blockReferenciaDNP">{{DetalleDT.TotalRecursosDiferencia}}</div></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                            </tfoot>
+                                                        </table>
+                                                    </div>
+                                                    <div ng-if="DetalleDT.Metas !== null" id="metasdt{{politicaDT.PoliticaId}}-{{DetalleDT.CategoriaId}}-{{DetalleDT.ProductoId}}-{{indexdetallepoliticasDT}}">
+                                                        <table class="TableDNP">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th class="columAcc"></th>
+                                                                    <th class="textRightDNP">Vigencia</th>
+                                                                    <th class="textRightDNP">Meta categoria en firme</th>
+                                                                    <th class="textRightDNP">Meta categoria en ajuste</th>
+                                                                    <th class="textRightDNP">Diferencia</th>
+                                                                    <th class="columAcc"></th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr class="uTexto-grilla" ng-repeat="objResumen in DetalleDT.Metas">
+                                                                    <td></td>
+                                                                    <td class="textRightDNP">{{objResumen.Vigencia}}</td>
+                                                                    <td class="textRightDNP">{{objResumen.MetaFirme}}</td>
+                                                                    <td class="textRightDNP">{{objResumen.MetaActual}}</td>
+                                                                    <td class="textRightDNP">{{objResumen.Diferencia}}</td>
+                                                                    <td></td>
+                                                                </tr>
+                                                            </tbody>
+                                                            <tfoot>
+                                                                <tr>
+                                                                    <td class="columAcc icontotaldnp"><span>=</span></td>
+                                                                    <td class="textRightDNP">Total</td>
+                                                                    <td class="textRightDNP"><div class="blockReferenciaDNP">{{DetalleDT.TotalMetaFirme}}</div></td>
+                                                                    <td class="textRightDNP"><div class="blockReferenciaDNP">{{DetalleDT.TotalMetaAjuste}}</div></td>
+                                                                    <td class="textRightDNP"><div class="blockReferenciaDNP">{{DetalleDT.TotalMetaDiferencia}}</div></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                            </tfoot>
+                                                        </table>
+                                                    </div>
+                                                    <div ng-if="DetalleDT.Personas !== null" id="personasdt{{politicaDT.PoliticaId}}-{{DetalleDT.CategoriaId}}-{{DetalleDT.ProductoId}}-{{indexdetallepoliticasDT}}">
+                                                        <table class="TableDNP">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th class="columAcc"></th>
+                                                                    <th class="textRightDNP">Vigencia</th>
+                                                                    <th class="textRightDNP">Personas categoria en firme</th>
+                                                                    <th class="textRightDNP">Personas categoria en ajuste</th>
+                                                                    <th class="textRightDNP">Diferencia</th>
+                                                                    <th class="columAcc"></th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr class="uTexto-grilla" ng-repeat="objResumen in DetalleDT.Personas">
+                                                                    <td></td>
+                                                                    <td class="textRightDNP">{{objResumen.Vigencia}}</td>
+                                                                    <td class="textRightDNP">{{objResumen.PersonasFirme}}</td>
+                                                                    <td class="textRightDNP">{{objResumen.PersonasActual}}</td>
+                                                                    <td class="textRightDNP">{{objResumen.Diferencia}}</td>
+                                                                    <td></td>
+                                                                </tr>
+                                                            </tbody>
+                                                            <tfoot>
+                                                                <tr>
+                                                                    <td class="columAcc icontotaldnp"><span>=</span></td>
+                                                                    <td class="textRightDNP">Total</td>
+                                                                    <td class="textRightDNP"><div class="blockReferenciaDNP">{{DetalleDT.TotalPersonasFirme}}</div></td>
+                                                                    <td class="textRightDNP"><div class="blockReferenciaDNP">{{DetalleDT.TotalPersonasAjuste}}</div></td>
+                                                                    <td class="textRightDNP"><div class="blockReferenciaDNP">{{DetalleDT.TotalPersonasDiferencia}}</div></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                            </tfoot>
+                                                        </table>
+                                                    </div>
+                                                    <div ng-if="DetalleDT.MetasSecundarias !== null && politicaDT.PoliticaId == 7" id="metassecundariasdt{{politicaDT.PoliticaId}}-{{DetalleDT.CategoriaId}}-{{DetalleDT.ProductoId}}-{{indexdetallepoliticasDT}}">
+                                                        <table class="TableDNP">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th class="columAcc"></th>
+                                                                    <th class="textRightDNP">Vigencia</th>
+                                                                    <th class="textRightDNP">Metas secundarias en firme</th>
+                                                                    <th class="textRightDNP">Metas secundarias en ajuste</th>
+                                                                    <th class="textRightDNP">Diferencia</th>
+                                                                    <th class="columAcc"></th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr class="uTexto-grilla" ng-repeat="objResumen in DetalleDT.MetasSecundarias">
+                                                                    <td></td>
+                                                                    <td class="textRightDNP">{{objResumen.Vigencia}}</td>
+                                                                    <td class="textRightDNP">{{objResumen.MetaIndicadorSecundarioFirme}}</td>
+                                                                    <td class="textRightDNP">{{objResumen.MetaIndicadorSecundarioActual}}</td>
+                                                                    <td class="textRightDNP">{{objResumen.Diferencia}}</td>
+                                                                    <td></td>
+                                                                </tr>
+                                                            </tbody>
+                                                            <tfoot>
+                                                                <tr>
+                                                                    <td class="columAcc icontotaldnp"><span>=</span></td>
+                                                                    <td class="textRightDNP">Total</td>
+                                                                    <td class="textRightDNP"><div class="blockReferenciaDNP">{{DetalleDT.TotalIndicadorSecundarioFirme}}</div></td>
+                                                                    <td class="textRightDNP"><div class="blockReferenciaDNP">{{DetalleDT.TotalIndicadorSecundarioAjuste}}</div></td>
+                                                                    <td class="textRightDNP"><div class="blockReferenciaDNP">{{DetalleDT.TotalIndicadorSecundarioDiferencia}}</div></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                            </tfoot>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                <br />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-4">
+                                        <div class="col-md-12 text-left">
+                                            <h4 class="uLabelCampo">Detalle del ajuste</h4>
+                                            <ul class="pl-4">
+                                                <li ng-repeat="detallea in politicaDT.Detalle">
+                                                    <span style="color:#4b4b4b;">{{detallea}}</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <br />
+
+                                    <div class="row my-4">
+                                        <div class="col-md-12 mt-3 mb-3">
+                                            <div class="row">
+                                                <div class="col-md-8 text-left">
+                                                    <h4 class="text-left ui-seccion-title">Justificación</h4>
+                                                </div>
+                                                <div class="col-md-4 text-right">
+                                                    <button id="btnEditarPolitca-{{politicaDT.PoliticaId}}"
+                                                            type="button"
+                                                            class="btn btncancelarHorizonte"
+                                                            tooltip-placement="top"
+                                                            uib-tooltip="Editar"
+                                                            tabindex="1"
+                                                            ng-click="vm.editarDT('editar',politicaDT.PoliticaId)"
+                                                            has-claim has-opciones="['Ajustes:GeneralComponente']">
+                                                        EDITAR
+                                                    </button>
+                                                    <button hidden
+                                                            id="btnCancelarPolitca-{{politicaDT.PoliticaId}}"
+                                                            type="button"
+                                                            class="btn btncancelarHorizonte hidden"
+                                                            tooltip-placement="top"
+                                                            uib-tooltip="Cancelar"
+                                                            tabindex="2"
+                                                            ng-click="vm.editarDT('cancelar',politicaDT.PoliticaId)"
+                                                            has-claim has-opciones="['Ajustes:GeneralComponente']">
+                                                        CANCELAR
+                                                    </button>
+                                                    <button ng-click="vm.guardarDT(politicaDT.PoliticaId)"
+                                                            type="button"
+                                                            id="btnGuardarPolitica-{{politicaDT.PoliticaId}}"
+                                                            class="btn btn-default btn-mdHorizonte disabled"
+                                                            tooltip-placement="auto"
+                                                            uib-tooltip="Guardar"
+                                                            has-claim has-opciones="['Ajustes:GeneralComponente']">
+                                                        GUARDAR
+                                                    </button>
+
+                                                    <!--<button type="button" class="{{vm.isEdicionP ? 'btn btncancelarHorizonte' : 'btn btncancelarHorizonte'}}" id="btn-editar-edicion-ff-{{politicaDT.PoliticaId}}" tooltip-placement="top" ng-click="vm.isEdicionP ? vm.editarDT('cancelar') : vm.editarDT('editar',politicaDT.PoliticaId)" uib-tooltip="{{vm.isEdicionP ? 'CANCELAR' : 'EDITAR'}}" has-claim has-opciones="['Ajustes:GeneralComponente']">{{vm.isEdicionP ? 'CANCELAR' : 'EDITAR'}}
+                                                    </button>
+                                                    <button ng-click="vm.guardar({{politicaDT.PoliticaId}})" type="button" id="btn-guardar-edicion-ff-{{politicaDT.PoliticaId}}" ng-class="localizacion.HabilitaEditarLocalizador  ? 'btn btn-default btn-mdHorizonte' : 'btn btnguardarHorizonte' " tooltip-placement="auto" uib-tooltip="Guardar" has-claim has-opciones="['Ajustes:GeneralComponente']">GUARDAR</button>-->
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12 text-left">
+                                                    <span>
+                                                        <strong>Justifique la modificación detallando las variaciones por categoria y subcategoria</strong> (Máximo 8.000 caracteres)
+                                                    </span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div id="focalizacionregionalizacion-justificacion-error-{{politicaDT.PoliticaId}}" class="hidden text-left color-red">
+                                                <img class="img img-advertencia-{{politicaDT.PoliticaId}}" src="Img/u11.svg" />
+                                                <span id="focalizacionregionalizacion-justificacion-error-mns-{{politicaDT.PoliticaId}}"></span>
+                                            </div>
+                                            <textarea rows="3"
+                                                      id="justificacionfocapdt-{{politicaDT.PoliticaId}}"
+                                                      name="justificacionfocapdt-{{politicaDT.PoliticaId}}"
+                                                      placeholder="Maximo 8.000 caracteres"
+                                                      ng-model="politicaDT.Justificacion"
+                                                      minlength="1"
+                                                      maxlength="8000"
+                                                      class="form-control disabled" ng-required="true"></textarea>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!--Otras Politicas-->
+    <div class="row mb-5">
+        <div class="row">
+            <div class="" style="padding: 0 !important">
+                <div class="alert panel-headingAccDNP">
+                    <div class="card card-body pull-left  divAccordionDNP">
+                        <span class="uLabelCampo"> Otras políticas</span>
+                        <p class="panelbtnalertAcordnp">
+                            <button class="btnaccion btnAccordionDNP" type="button" data-toggle="collapse" data-target="#objFocalizacionJustificacion" ng-click="vm.AbrilNivel()">
+                                <img id="imgmas-otras-politicas" src="Img/btnMas.svg">
+                                <img id="imgmenos-otras-politicas" style="display:none" src="Img/btnMenos.svg">
+                                <span id="ico-otras-politicas" style="display:none">+</span>
+                            </button>
+                        </p>
+                    </div>
+                </div>
+                <br />
+                <div class="collapse" id="objFocalizacionJustificacion">
+                    <div class="LineaEncabezadodivDNP"></div>
+                    <h3 class="row tituloEncabezadodivDNP">Políticas</h3>
+                    <div>
+                        <div class="alert panel-headingAcc2DNP">
+                            <div id="justificacionpoliticaspol" class="collapsed panel-body">
+                                <div class="row" ng-repeat="politica in vm.AjustesJustificaionRegionalizacion.Politicas" ng-init="indexpoliticas = $index">
+                                    <div ng-if="politica.VerPolitica === 1">
+                                        <span class="buttonbar pull-right">
+                                            <button class="btnaccion btnAccordionDNP" type="button" ng-click="vm.volver()">
+                                                <img src="Img/scroll_to.svg">
+                                            </button>
+                                        </span>
+                                        <div class="row" style="color: #004884">
+                                            <div class="" style="padding: 0 !important">
+                                                <div class="alert panel-heading" style="height:50px">
+                                                    <!--<div class="card card-body pull-left  divAccordionDNP" style="line-height: 18px; max-height: 750px;">-->
+                                                    <div class="card card-body pull-left  divAccordionDNP">
+                                                        <span class="uLabelCampo">{{politica.Politica}}</span>
+                                                        <p class="panelbtnalertAcordnp">
+                                                            <button class="btnaccion btnAccordionDNP" type="button" data-toggle="collapse" data-target="#obj-{{politica.PoliticaId}}-{{indexpoliticas}}" ng-click="vm.AbrilNivel1(politica.PoliticaId, indexpoliticas, politica.CategoriaId, politica.Fuenteid, politica.ProductoId, politica.LocalizacionId)">
+                                                                <img id="imgmas-{{politica.PoliticaId}}-{{indexpoliticas}}" src="Img/btnMas.svg">
+                                                                <img id="imgmenos-{{politica.PoliticaId}}-{{indexpoliticas}}" style="display:none" src="Img/btnMenos.svg">
+                                                                <span id="ico-{{politica.PoliticaId}}-{{indexpoliticas}}" style="display:none">+</span>
+                                                            </button>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="collapse" id="obj-{{politica.PoliticaId}}-{{indexpoliticas}}">
+                                                <div class="LineaEncabezadodivDNP" style="height:67px"></div>
+                                                <h3 class="row tituloEncabezadodivDNP">Política</h3>
+
+                                                <div class="row" ng-repeat="politicas in politica.DetallePoliticas">
+                                                    <div ng-if="politicas.Visible === 1">
+                                                        <div class="row" style="text-align:justify">
+                                                            <div class="col-md-1">
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <h4 class="text-right ui-seccion-title">Nombre de la Política</h4>
+                                                            </div>
+                                                            <div class="col-md-8" style="color:grey">
+                                                                {{politicas.Politica}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="row" style="text-align:justify">
+                                                            <div class="col-md-1">
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <h4 class="text-right ui-seccion-title">Categoria - Subcategoria</h4>
+                                                            </div>
+                                                            <div class="col-md-8" style="color:grey">
+                                                                {{politicas.NombreCategoria}} - {{politicas.SubCategoria}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="row" style="text-align:justify">
+                                                            <div class="col-md-1">
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <h4 class="text-right ui-seccion-title">Fuente</h4>
+                                                            </div>
+                                                            <div class="col-md-8" style="color:grey">
+                                                                {{politicas.Etapa}} {{politicas.TipoFinanciador}} {{politicas.Financiador}} {{politicas.Recurso}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="row" style="text-align:justify">
+                                                            <div class="col-md-1">
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <h4 class="text-right ui-seccion-title">Nombre del producto</h4>
+                                                            </div>
+                                                            <div class="col-md-8" style="color:grey">
+                                                                {{politicas.NombreProducto}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="row" style="text-align:justify">
+                                                            <div class="col-md-1">
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <h4 class="text-right ui-seccion-title">Localización</h4>
+                                                            </div>
+                                                            <div class="col-md-8" style="color:grey">
+                                                                {{politicas.Departamento}} {{politicas.Municipio}} {{politicas.NombreTipoAgrupacion}} {{politicas.Agrupacion}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12 mb-4">
+                                                            <ul class="nav nav-tabs">
+                                                                <li id="liRecursos" ng-if="politicas.Recursos !== null">
+                                                                    <a href="" ng-click="vm.mostrarTab(1,politicas.PoliticaId, politicas.CategoriaId, politicas.Fuenteid, politicas.ProductoId, politicas.LocalizacionId, indexpoliticas)" data-toggle="tab">
+                                                                        <b>Recursos</b>
+                                                                    </a>
+                                                                </li>
+                                                                <li id="liMetas" ng-if="politicas.Metas !== null">
+                                                                    <a href="" ng-click="vm.mostrarTab(2, politicas.PoliticaId, politicas.CategoriaId, politicas.Fuenteid, politicas.ProductoId, politicas.LocalizacionId, indexpoliticas)" data-toggle="tab">
+                                                                        <b>Metas</b>
+                                                                    </a>
+                                                                </li>
+                                                                <li id="liPersonas" ng-if="politicas.Personas !== null">
+                                                                    <a href="" ng-click="vm.mostrarTab(3, politicas.PoliticaId, politicas.CategoriaId, politicas.Fuenteid, politicas.ProductoId, politicas.LocalizacionId, indexpoliticas)" data-toggle="tab">
+                                                                        <b>Personas</b>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                            <div id="divresumenjustificacionfocalizacion" class="mt-5">
+                                                                <div ng-if="politicas.Recursos !== null" id="recursos{{politicas.PoliticaId}}-{{politicas.CategoriaId}}-{{politicas.Fuenteid}}-{{politicas.ProductoId}}-{{politicas.LocalizacionId}}-{{indexpoliticas}}">
+                                                                    <table class="TableDNP">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th class="columAcc"></th>
+                                                                                <th class="textRightDNP">Vigencia</th>
+                                                                                <th class="textRightDNP">En firme $</th>
+                                                                                <th class="textRightDNP">En ajuste $</th>
+                                                                                <th class="textRightDNP">Diferencia</th>
+                                                                                <th class="columAcc"></th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr class="uTexto-grilla" ng-repeat="objResumen in politicas.Recursos">
+                                                                                <td></td>
+                                                                                <td class="textRightDNP">{{objResumen.Vigencia}}</td>
+                                                                                <td class="textRightDNP">{{objResumen.ValorFirme}}</td>
+                                                                                <td class="textRightDNP">{{objResumen.ValorActual}}</td>
+                                                                                <td class="textRightDNP">{{objResumen.Diferencia}}</td>
+                                                                                <td></td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                        <tfoot>
+                                                                            <tr>
+                                                                                <td class="columAcc icontotaldnp"><span>=</span></td>
+                                                                                <td class="textRightDNP">Total</td>
+                                                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{politicas.Recursos.ValorFirme}}</div></td>
+                                                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{politicas.Recursos.ValorAjuste}}</div></td>
+                                                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{politicas.Recursos.ValorDiferencia}}</div></td>
+                                                                                <td></td>
+                                                                            </tr>
+                                                                        </tfoot>
+                                                                    </table>
+                                                                </div>
+                                                                <div ng-if="politicas.Metas !== null" id="metas{{politicas.PoliticaId}}-{{politicas.CategoriaId}}-{{politicas.Fuenteid}}-{{politicas.ProductoId}}-{{politicas.LocalizacionId}}-{{indexpoliticas}}">
+                                                                    <table class="TableDNP">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th class="columAcc"></th>
+                                                                                <th class="textRightDNP">Vigencia</th>
+                                                                                <th class="textRightDNP">Meta categoria en firme</th>
+                                                                                <th class="textRightDNP">Meta categoria en ajuste</th>
+                                                                                <th class="textRightDNP">Diferencia</th>
+                                                                                <th class="columAcc"></th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr class="uTexto-grilla" ng-repeat="objResumen in politicas.Metas">
+                                                                                <td></td>
+                                                                                <td class="textRightDNP">{{objResumen.Vigencia}}</td>
+                                                                                <td class="textRightDNP">{{objResumen.MetaFirme }}</td>
+                                                                                <td class="textRightDNP">{{objResumen.MetaActual}}</td>
+                                                                                <td class="textRightDNP">{{objResumen.Diferencia}}</td>
+                                                                                <td></td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                        <tfoot>
+                                                                            <tr>
+                                                                                <td class="columAcc icontotaldnp"><span>=</span></td>
+                                                                                <td class="textRightDNP">Total</td>
+                                                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{politicas.Metas.ValorFirme}}</div></td>
+                                                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{politicas.Metas.ValorAjuste}}</div></td>
+                                                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{politicas.Metas.ValorDiferencia}}</div></td>
+                                                                                <td></td>
+                                                                            </tr>
+                                                                        </tfoot>
+                                                                    </table>
+                                                                </div>
+                                                                <div ng-if="politicas.Personas !== null" id="personas{{politicas.PoliticaId}}-{{politicas.CategoriaId}}-{{politicas.Fuenteid}}-{{politicas.ProductoId}}-{{politicas.LocalizacionId}}-{{indexpoliticas}}">
+                                                                    <table class="TableDNP">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th class="columAcc"></th>
+                                                                                <th class="textRightDNP">Vigencia</th>
+                                                                                <th class="textRightDNP">Personas categoria en firme</th>
+                                                                                <th class="textRightDNP">Personas categoria en ajuste</th>
+                                                                                <th class="textRightDNP">Diferencia</th>
+                                                                                <th class="columAcc"></th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr class="uTexto-grilla" ng-repeat="objResumen in politicas.Personas">
+                                                                                <td></td>
+                                                                                <td class="textRightDNP">{{objResumen.Vigencia}}</td>
+                                                                                <td class="textRightDNP">{{objResumen.PersonasFirme}}</td>
+                                                                                <td class="textRightDNP">{{objResumen.PersonasActual}}</td>
+                                                                                <td class="textRightDNP">{{objResumen.Diferencia}}</td>
+                                                                                <td></td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                        <tfoot>
+                                                                            <tr>
+                                                                                <td class="columAcc icontotaldnp"><span>=</span></td>
+                                                                                <td class="textRightDNP">Total</td>
+                                                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{politicas.Personas.ValorFirme}}</div></td>
+                                                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{politicas.Personas.ValorAjuste}}</div></td>
+                                                                                <td class="textRightDNP"><div class="blockReferenciaDNP">{{politicas.Personas.ValorDiferencia}}</div></td>
+                                                                                <td></td>
+                                                                            </tr>
+                                                                        </tfoot>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                            <br />
+                                                        </div>
+                                                        <br />
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-4">
+                                                    <div class="col-md-12 text-left">
+                                                        <h4 class="uLabelCampo">Detalle del ajuste</h4>
+                                                        <ul class="pl-4">
+                                                            <li ng-repeat="detalle in politica.Detalle">
+                                                                <span style="color:#4b4b4b;">{{detalle}}</span>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+
+                                                <br />
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row my-4" ng-if="vm.VerJustificacionOtrasPoliticas == 1">
+                        <div class="col-md-12 mt-3 mb-3">
+                            <div class="row">
+                                <div class="col-md-8 text-left">
+                                    <h4 class="text-left ui-seccion-title">Justificación</h4>
+                                </div>
+                                <div class="col-md-4 text-right">
+                                    <button type="button" class="{{vm.isEdicion ? 'btn btncancelarHorizonte' : 'btn btncancelarHorizonte'}}" tooltip-placement="top" ng-click="vm.isEdicion ? vm.editar('cancelar') : vm.editar('editar')" uib-tooltip="{{vm.isEdicion ? 'CANCELAR' : 'EDITAR'}}" has-claim has-opciones="['Ajustes:GeneralComponente']">
+                                        {{vm.isEdicion ? 'CANCELAR' : 'EDITAR'}}
+                                    </button>
+                                    <button ng-click="vm.guardar()" type="button" id="btn-guardar-edicion-ff" ng-class="vm.ClasesbtnGuardar" tooltip-placement="auto" uib-tooltip="Guardar" has-claim has-opciones="['Ajustes:GeneralComponente']">GUARDAR</button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 text-left">
+                                    <span>
+                                        <strong>Justifique la modificación* </strong> (Máximo 8.000 caracteres)
+                                    </span>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-md-12">
+                            <div id="focalizacionregionalizacion-justificacion-error" class="hidden text-left color-red">
+                                <img class="img img-advertencia" src="Img/u11.svg" />
+                                <span id="focalizacionregionalizacion-justificacion-error-mns"></span>
+                            </div>
+                            <textarea rows="3"
+                                      id="justificacionfocapt"
+                                      name="justificacionfocapt"
+                                      ng-model="vm.justificacion"
+                                      placeholder="Maximo 8.000 caracteres"
+                                      minlength="1"
+                                      maxlength="8000"
+                                      class="form-control disabled" ng-required="true"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+</section>
